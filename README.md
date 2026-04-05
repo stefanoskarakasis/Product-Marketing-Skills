@@ -1,6 +1,10 @@
 # Product Marketing Skills Marketplace
 PMM Skills Marketplace: 10+ agentic skills, commands, and plugins — from discovery to strategy, execution, go-to-market, launch, and growth. A collection of AI agent skills focused on product marketing tasks. Built for go-to-market operators and PRoduct Marketers founders who want AI assistance to help with go-to-market strategy, PRD's, growth experiments, competitive intelligence, and customer research. 
 
+*Six packaged Claude skills for core product marketing work: context setup, messaging, competitive intelligence, customer research, go-to-market planning, and pricing.
+
+These skills live in .claude/skills as packaged .skill files and share a common context file at .agents/product-marketing-context.md*.
+
 [insert visual]
 
 Designed for Claude Code and Cowork. Skills compatible with other AI assistants. Built by Stefanos Karakasis.

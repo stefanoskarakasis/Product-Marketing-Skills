@@ -1,5 +1,5 @@
 # Product Marketing Skills Marketplace
-PMM Skills Marketplace: 10+ agentic skills, commands, and plugins — from context setup to strategy, execution, go-to-market, launch, and growth. A collection of AI agent skills focused on product marketing tasks. Built for go-to-market operators and Product Marketers founders who want AI assistance to help with go-to-market strategy, PRD's, growth experiments, competitive intelligence, and customer research. 
+PMM Skills Marketplace: 10+ agentic skills, commands, and plugins — from context setup to strategy, execution, go-to-market, launch, and growth. A collection of AI agent skills focused on product marketing tasks. Built for go-to-market operators and Product Marketers who want AI assistance to help with Go-To-Market strategy, PRD's, growth experiments, competitive intelligence, and customer research. 
 
 [insert visual]
 

@@ -1,5 +1,5 @@
 # Product Marketing Skills Marketplace
-PMM Skills Marketplace: 10+ agentic skills, commands, and plugins — from context setup to strategy, execution, go-to-market, launch, and growth. A collection of AI agent skills focused on product marketing tasks. Built for go-to-market operators and Product Marketers who want AI assistance to help with Go-To-Market strategy, PRD's, growth experiments, competitive intelligence, and customer research. 
+PMM Skills Marketplace: 10+ agentic skills, commands, and plugins — from context setup to strategy, execution, go-to-market, launch, and growth. 
 
 [insert visual]
 
@@ -30,7 +30,7 @@ Each skill encodes a proven Marketing framework — ICP, positioning, messaging,
 The result: better insights, not just faster documents.
 
 <h2>How It Works (Skills, Commands, Plugins)</h2>
-*Skills* are the building blocks of the marketplace. Each skill gives Claude domain knowledge, analytical frameworks, or a guided workflow for a specific PM task. Some skills also work as reusable foundations that multiple commands share.
+**Skills** are the building blocks of the marketplace. Each skill gives Claude domain knowledge, analytical frameworks, or a guided workflow for a specific PM task. Some skills also work as reusable foundations that multiple commands share.
 
 Skills are loaded automatically when relevant to the conversation — no explicit invocation needed. If needed (e.g., prioritizing skills over general knowledge), **you can force loading skills** with ``/plugin-name:skill-name`` or ``/skill-name`` (Claude will add the prefix).
 

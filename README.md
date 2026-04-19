@@ -43,12 +43,13 @@ Skills reference each other and build on shared context. The <code>/product-mark
 <h2>Installation</h2>
 
 <h3>Claude Cowork (recommended for non-developers)</h3>
-1. Open *Customize* (bottom-left)<br>
-2. Go to *Browse plugins → Personal → +*<br>
-3. Select *Add marketplace from GitHub*<br>
-4. Enter: <code>/stefanoskarakasis/product-marketing-skills</code><br>
 
-<br>All x plugins install automatically.<br>
+1. Open *Customize* (bottom-left)  
+2. Go to *Browse plugins → Personal → +*  
+3. Select *Add marketplace from GitHub*  
+4. Enter: `/stefanoskarakasis/product-marketing-skills`
+
+All x plugins install automatically.
 
 [insert visual]<br>
 

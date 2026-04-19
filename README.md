@@ -10,8 +10,6 @@ Designed for Claude Code and Cowork. Skills compatible with other AI assistants.
 <h2>What are Skills?</h2>
 Skills are markdown files that give AI agents specialized knowledge and workflows for specific tasks. When you add these to your project, your agent can recognize when you're working on a marketing task and apply the right frameworks and best practices.
 
-These skills live in .claude/skills as packaged .skill files and share a common context file at .agents/product-marketing-context.md**.
-
 <h2>Start Here</h2>
 
 New idea? → <code>/discover</code><br>

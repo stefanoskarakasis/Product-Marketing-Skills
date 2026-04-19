@@ -28,11 +28,14 @@ Each skill encodes a proven Marketing framework — ICP, positioning, messaging,
 The result: better insights, not just faster documents.
 
 <h2>How It Works (Skills, Commands, Plugins)</h2>
+
 **Skills** are the building blocks of the marketplace. Each skill gives Claude domain knowledge, analytical frameworks, or a guided workflow for a specific PM task. Some skills also work as reusable foundations that multiple commands share.
 
-Skills are loaded automatically when relevant to the conversation — no explicit invocation needed. If needed (e.g., prioritizing skills over general knowledge), **you can force loading skills** with ``/plugin-name:skill-name`` or ``/skill-name`` (Claude will add the prefix).
+Skills are loaded automatically when relevant to the conversation — no explicit invocation needed. If needed (e.g., prioritizing skills over general knowledge), you can **force loading skills** with `/plugin-name:skill-name` or `/skill-name` (Claude will add the prefix).
 
-**Commands** are user-triggered workflows invoked with ``/command-name``. They chain one or more skills into an end-to-end process. For example, '/discover' chains four skills together: brainstorm-ideas → identify-assumptions → prioritize-assumptions → brainstorm-experiments.
+**Commands** are user-triggered workflows invoked with `/command-name`. They chain one or more skills into an end-to-end process. For example, `/discover` chains four skills together: brainstorm-ideas → identify-assumptions → prioritize-assumptions → brainstorm-experiments.
+
+**Plugins** group related skills and commands into installable packages. Each plugin covers a PMM domain — go-to-market, icp, strategy, execution, and so on. Installing the marketplace gives you all X plugins at once.
 
 <h2>How Skills Work Together</h2>
 Skills reference each other and build on shared context. The <code>/product-marketing-context</code><br> skill is the foundation — every other skill checks it first to understand your product, audience, and positioning before doing anything.

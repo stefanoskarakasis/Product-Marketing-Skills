@@ -12,11 +12,11 @@ Skills are markdown files that give AI agents specialized knowledge and workflow
 
 <h2>Start Here</h2>
 
-New idea? → <code>/discover</code><br>
-Need strategic clarity? → <code>/strategy</code><br>
-Writing a PRD? → <code>/write-prd</code><br>
+New growth idea? → <code>/xx</code><br>
+Mapping stakeholders? → <code>/xx</code><br>
+Writing a PRD? → <code>/xx</code><br>
 Planning a launch? → <code>/plan-launch</code><br>
-Defining metrics? → <code>/north-star</code><br>
+Defining success metrics? → <code>/xx</code><br>
 <br>
 If this project helps you, ⭐ the repo.
 

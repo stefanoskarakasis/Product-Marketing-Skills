@@ -105,7 +105,7 @@ done
 
 ---
 
-## Available Plugins
+## Skill Categories
 
 ### 1. pmm-knowledge-foundation — The Brain
 

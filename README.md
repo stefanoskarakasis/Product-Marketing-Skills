@@ -1,6 +1,6 @@
-# Product Marketing Skills: The AI Operating System for B2B SaaS PMMs
+# Product Marketing Skills for AI Agents
 
-> 19 PMM skills across 3 plugins. Built for Claude Code, Cowork, and any agent that supports the [Agent Skills spec](https://agentskills.io). From product marketing context to messaging, launches, and execution.
+19 PMM skills across 3 plugins. Built for Claude Code, Cowork, and any agent that supports the [Agent Skills spec](https://agentskills.io). From product marketing context to messaging, launches, and execution.
 
 Designed for Claude Code and Cowork. Skills compatible with other AI assistants. Built by [Stefanos Karakasis](https://heystefanos.gumroad.com/).
 

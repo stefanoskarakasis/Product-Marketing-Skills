@@ -1,6 +1,6 @@
-# Product Marketing Skills for AI Agents
+# PMM Skills Marketplace: The AI Operating System for Better Go-To-Market Decisions
 
-19 PMM skills across 3 plugins. Built for Claude Code, Cowork, and any agent that supports the [Agent Skills spec](https://agentskills.io). From product marketing context to messaging, launches, and execution.
+Built for Claude Code, Cowork, and any agent that supports the [Agent Skills spec](https://agentskills.io). From building your product marketing context (brain) to product messaging, launches, experimentation, and competitive intelligence.
 
 Designed for Claude Code and Cowork. Skills compatible with other AI assistants. Built by [Stefanos Karakasis](https://heystefanos.gumroad.com/).
 
@@ -18,17 +18,19 @@ If this project helps you, ⭐ the repo.
 
 Generic AI gives you text. Product Marketing Skills gives you structure.
 
-Each skill encodes a proven PMM framework — April Dunford positioning, Fletch PMM canvas, JTBD theory, GACCS briefs, Gary Klein pre-mortems — and walks you through it step by step. You get the rigor of established methodologies built into your daily workflow, not sitting on a bookshelf.
+Each skill encodes a proven PMM framework — April Dunford positioning, Fletch PMM canvas, JTBD theory, GACCS briefs, and Gary Klein's pre-mortems — and walks you through it step by step. You get the rigour of established methodologies built into your daily workflow, not sitting on a bookshelf.
 
 The result: better positioning, sharper launches, and stronger competitive intelligence — anchored to your specific company context, not generic templates.
 
-## How It Works (Skills, Commands)
+## How It Works (Skills, Commands, Plugins)
 
 **Skills** are the building blocks of the marketplace. Each skill gives Claude domain knowledge, analytical frameworks, or a guided workflow for a specific PMM task. Some skills also work as reusable foundations that multiple commands share. Installing the marketplace gives you all PMM domains at once.
 
 Skills are loaded automatically when relevant to the conversation — no explicit invocation needed. If needed (e.g., prioritizing skills over general knowledge), you can **force loading skills** with `/plugin-name:skill-name` or `/skill-name` (Claude will add the prefix).
 
 **Commands** are user-triggered workflows invoked with `/command-name`. They chain one or more skills into an end-to-end process. For example, `/launch` chains product-marketing-context → positioning-messaging → gtm-launch-planner together.
+
+**Plugins** group related skills and commands into installable packages. Each plugin covers a GTM domain — building your context, product marketing strategy, execution, and so on.
 
 ## How Skills Work Together
 

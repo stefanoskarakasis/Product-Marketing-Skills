@@ -20,8 +20,6 @@ If this project helps you, ⭐ the repo.
 
 ## Why Product Marketing Skills?
 
-
-
 **The problem:** Every time you ask Claude for positioning, battlecards, or briefs, you re-explain your company. By session #5, you're copy-pasting from previous chats.
 
 **The solution:** Build your brain once (`product-marketing-context`). Every other skill reads it. Zero repetition.
@@ -134,7 +132,7 @@ done
 
 ## Skill Categories
 
-### 1. product-marketing-context — The Brain
+#### 1. product-marketing-context — The Brain
 
 > 8 skills, 1 plugin. The shared context layer every other PMM skill reads first.
 

@@ -105,9 +105,7 @@ All 3 plugins install automatically. You get both commands (`/launch`, `/compete
 claude plugin marketplace add stefanoskarakasis/product-marketing-skills
 
 # Step 2: Install plugins
-claude plugin install pmm-knowledge-foundation@product-marketing-skills
-claude plugin install pmm-toolkit@product-marketing-skills
-claude plugin install pmm-execution@product-marketing-skills
+[Download product-marketing-context.zip](https://github.com/yourusername/pmm-skills/releases/download/v2.1.0/product-marketing-context.zip)
 ```
 
 ### Other AI assistants (skills only)

@@ -1,8 +1,12 @@
-# PMM Skills Marketplace: The AI Operating System for Better Go-To-Market Decisions
+# Product Marketing Skills Marketplace: The AI Operating System for Better Go-To-Market Decisions
+
+The Product Marketing Brain + Execution Skills. 
+
+Build your PMM context once. Every skill gets smarter from it forever.
 
 Built for Claude Code, Cowork, and any agent that supports the [Agent Skills spec](https://agentskills.io). From building your product marketing context (brain) to product messaging, launches, experimentation, and competitive intelligence.
 
-Designed for Claude Code and Cowork. Skills compatible with other AI assistants. Built by [Stefanos Karakasis](https://heystefanos.gumroad.com/).
+Skills compatible with other AI assistants. Built by [Stefanos Karakasis](https://heystefanos.gumroad.com/).
 
 ## Start Here
 
@@ -16,11 +20,20 @@ If this project helps you, ⭐ the repo.
 
 ## Why Product Marketing Skills?
 
-Generic AI gives you text. Product Marketing Skills gives you structure.
+
+
+**The problem:** Every time you ask Claude for positioning, battlecards, or briefs, you re-explain your company. By session #5, you're copy-pasting from previous chats.
+
+**The solution:** Build your brain once (`product-marketing-context`). Every other skill reads it. Zero repetition.
 
 Each skill encodes a proven PMM framework — April Dunford positioning, Fletch PMM canvas, JTBD theory, GACCS briefs, and Gary Klein's pre-mortems — and walks you through it step by step. You get the rigour of established methodologies built into your daily workflow, not sitting on a bookshelf.
 
 The result: better positioning, sharper launches, and stronger competitive intelligence — anchored to your specific company context, not generic templates.
+
+**Results**
+- ✅ 10x faster (no re-explaining context)
+- ✅ Consistent messaging (all skills read the same source)
+- ✅ Compound intelligence (skills reference each other's outputs)
 
 ## How It Works (Skills, Commands, Plugins)
 
@@ -37,32 +50,44 @@ Skills are loaded automatically when relevant to the conversation — no explici
 Skills reference each other and build on shared context. The `product-marketing-context` skill is the foundation — every other skill checks it first to understand your product, ICP, personas, positioning, and competitive landscape before doing anything.
 
 ```
-                            ┌─────────────────────────────────────┐
-                            │     product-marketing-context       │
-                            │   (read by all other skills first)  │
-                            └─────────────────┬───────────────────┘
-                                              │
-        ┌─────────────────┬───────────────────┼──────────────────┐
-        ▼                 ▼                   ▼                  ▼
-   ┌──────────┐      ┌──────────┐       ┌──────────┐       ┌──────────┐
-   │Knowledge │      │Knowledge │       │ Toolkit  │       │Execution │
-   │Foundation│      │Foundation│       │          │       │          │
-   │ (apex)   │      │ (depth)  │       │          │       │          │
-   ├──────────┤      ├──────────┤       ├──────────┤       ├──────────┤
-   │ context  │      │ icp      │       │ writing- │       │ prd      │
-   │ strategy │      │ personas │       │  asst    │       │ okrs     │
-   │          │      │ position │       │ resume   │       │ retro    │
-   │          │      │ proof    │       │ privacy  │       │ pre-mort │
-   │          │      │ alts-map │       │ gaccs    │       │ stake-   │
-   │          │      │ market   │       │          │       │  maps    │
-   │          │      │ voice    │       │          │       │ priorit  │
-   │          │      │          │       │          │       │ summary  │
-   └──────────┘      └──────────┘       └──────────┘       └──────────┘
+┌─────────────────────────────────────────┐
+│  Layer 1: Foundation (The Brain)        │
+│  product-marketing-context              │
+│  ↓ Stores context once                  │
+└─────────────────────────────────────────┘
+                ↓
+┌─────────────────────────────────────────┐
+│  Layer 2: Positioning & Messaging       │
+│  • hs-positioning-messaging             │
+│  • hs-value-prop-statements             │
+│  • hs-competitive-battlecard            │
+│  ↓ Read brain → Generate outputs        │
+└─────────────────────────────────────────┘
+                ↓
+┌─────────────────────────────────────────┐
+│  Layer 3-5: Execution Skills            │
+│  Research, GTM, Content                 │
+│  ↓ Read brain + previous outputs        │
+└─────────────────────────────────────────┘
+                ↓
+        Compound Intelligence
+   (Messaging compounds, not fragments)  
+
 ```
 
 Commands use skills. Some skills serve multiple commands. Some skills (like `prioritization-frameworks` or `proof-points-claims`) are standalone references that Claude draws on whenever relevant — no command needed.
 
 Commands are designed to flow into each other, matching the PMM workflow. After any command completes, it suggests relevant next commands — just follow the prompts.
+
+## Quick Start
+
+1. **Download the brain:** [product-marketing-context.zip]
+2. **Upload to Claude.ai:** Settings → Skills → Upload
+3. **Run setup:** Say "Set up my PMM brain" (takes 15-20 min)
+4. **Check health:** Say "Check my brain health"
+5. **[Coming Soon] Use execution skills:** "Generate positioning", "Build battlecard"
+
+That's it. You're done.
 
 ## Installation
 
@@ -109,16 +134,15 @@ done
 
 ## Skill Categories
 
-### 1. pmm-knowledge-foundation — The Brain
+### 1. product-marketing-context — The Brain
 
-> 8 skills, 1 command. The shared context layer every other PMM skill reads first.
+> 8 skills, 1 plugin. The shared context layer every other PMM skill reads first.
 
 The foundation of the marketplace. These skills build, maintain, and govern your `product-marketing-context.md` — the living source of truth for product, ICP, personas, positioning, competitive landscape, narrative pillars, and GTM priorities.
 
 **Skills (8):**
 
 * `product-marketing-context` — When the user wants to create or update their product marketing context document. The apex skill — every other skill in this repo reads this first.
-* `product-marketing-strategy` — When the user wants to run the 7-exercise strategic thinking process that populates the context file (product context, personas + ICP, competitive landscape, positioning, narrative pillars, PMM advantages, GTM priorities).
 * `ideal-customer-profile` — When the user wants to build, enrich, or pressure-test their ICP. Synthesizes PMF survey data, win/loss signals, and customer interviews into a living ICP that grounds all downstream PMM work.
 * `buyer-personas` — When the user wants to build, map, or refine B2B SaaS buyer personas including the buying committee, JTBD profiles, and decision criteria.
 * `positioning-messaging` — When the user wants to build a message house, write a positioning document, develop value props by segment, or pressure-test existing messaging against strategy.
@@ -143,82 +167,22 @@ Commands:
 
 ---
 
-### 2. pmm-toolkit — Beyond Core PMM Work
-
-> 4 skills, 2 commands. The PMM utilities that don't fit into strategy or execution but ship work every week.
-
-Resume tailoring for PMM job searches, jurisdiction-aware privacy policies, B2B writing review, and structured marketing briefs. The skills you reach for when you're not planning a launch or building a battlecard, but you still need PMM-grade output.
-
-**Skills (4):**
-
-* `writing-assistant` — When the user wants to rewrite, sharpen, or pressure-test any written communication for B2B tech. Slack messages, async updates, decision memos, PRDs, one-pagers, homepage copy, ads, or email campaigns.
-* `pmm-resume` — When a Product Marketing Manager wants to review, tailor, or rebuild their resume for a specific PMM role (IC to VP, including AI PMM). Takes a JD and baseline resume, ranks bullets by impact fit, rebuilds in one pass.
-* `privacy-policy` — When the user wants to draft a jurisdiction-aware privacy policy for any digital product. Covers GDPR, CCPA, UK GDPR obligations, cookie policy, and DPA requirements.
-* `gaccs-brief` — When the user wants to build a GACCS marketing brief (Goals, Audience, Creative, Channels, Stakeholders) for any campaign, launch, content piece, or enablement asset.
-
-**Commands (2):**
-
-* `/tailor-resume` — Tailor a PMM resume to a specific job description.
-* `/brief` — Build a GACCS brief for any marketing project.
-
-**Examples:**
-
-Skills:
-* `Review my PMM resume against the Director of PMM role at [Company] [attach JD]`
-* `Sharpen this Slack update to my CMO about Q2 launch readiness`
-* `Draft a privacy policy for our SaaS product launching in the EU and California`
-
-Commands:
-* `/tailor-resume [attach resume + paste JD]`
-* `/brief — Q2 product launch campaign for our enterprise tier`
-
----
-
-### 3. pmm-execution — Day-to-Day PMM
-
-> 7 skills, 4 commands. The skills that fire every week — PRDs, OKRs, launches, retros, and the operational work that compounds.
-
-Day-to-day product marketing: PRDs with embedded Solution Stories, quarterly OKRs, structured GTM retros, pre-mortems, stakeholder maps, prioritization frameworks, and meeting summaries.
-
-**Skills (7):**
-
-* `product-requirement-doc` — When the user wants to build a complete PRD with an embedded Solution Story for cross-functional PM/PMM collaboration.
-* `brainstorm-okrs` — When the user wants to set quarterly PMM OKRs, review existing OKRs, or stress-test KR quality.
-* `retro` — When the user wants to run a structured GTM retrospective for a cross-functional squad. Anchored to OKRs and launch outcomes with a self-improving learning loop.
-* `pre-mortem` — When the user wants to pressure-test a strategic plan before launching. PRD, product launch, pricing change, GTM pivot, or new market entry. Gary Klein methodology with five initiative types.
-* `stakeholder-maps` — When the user wants to build a stakeholder political map for a launch or campaign. Identifies who can kill it, who can champion it, and what to say to each.
-* `prioritization-frameworks` — When the user needs to prioritize PMM projects, score launches, or decide what gets GTM investment. Reference for nine frameworks with launch tier output logic.
-* `interview-summary` — When the user wants to synthesize customer interview transcripts into structured discovery outputs. Anchored in JTBD theory with signal-level pattern detection and confidence scoring.
-
-**Commands (4):**
-
-* `/write-prd` — Create a PRD from a feature idea or problem statement.
-* `/plan-okrs` — Brainstorm quarterly PMM OKRs.
-* `/pre-mortem` — Pre-mortem risk analysis on a PRD or launch plan.
-* `/sprint` — Sprint lifecycle (`plan|retro`).
-
-**Examples:**
-
-Skills:
-* `Which prioritization framework should I use for a 50-item GTM backlog?`
-* `Map our stakeholders for the Q2 platform launch — VP Sales is the wildcard`
-* `Synthesize these 8 customer interview transcripts into JTBD signals`
-
-Commands:
-* `/write-prd Smart notification system that reduces alert fatigue for FinOps teams`
-* `/plan-okrs Q2 PMM OKRs aligned to company-level revenue targets`
-* `/pre-mortem Launch plan for our enterprise pricing tier [attach plan]`
-
----
-
 ## Roadmap
 
 These plugins are in active development and will ship in future drops. The structure of the marketplace is built to scale — each new plugin will install alongside the existing ones without disrupting current setups.
 
-* **pmm-go-to-market** — GTM strategy, beachhead segments, growth loops, GTM motions, objection handling, launch planning. (v1.1, Q3 2026)
-* **pmm-competitive-intelligence** — Battlecards, signal monitoring, judgment logs, market command matrix, win/loss extraction. (v1.2, Q3 2026)
-* **pmm-research** — Customer research, market research, segment analysis. (v2.0, Q4 2026)
-* **pmm-marketing-growth** — Product naming, marketing ideas, North Star metrics. (v2.0, Q4 2026)
+## Roadmap
+
+### ✅ Shipped (v2.1 - May 2026)
+- product-marketing-context (brain setup + audit)
+- Input validation (50+ rules)
+- Brain health scoring (0-100)
+- Compound intelligence (skills write back to brain)
+
+### 🔜 Next (v2.2 - June 2026)
+- hs-positioning-messaging (full Dunford framework)
+- hs-competitive-battlecard (talk tracks + landmines)
+- hs-value-prop-statements (segment-specific)
 
 Want to influence what ships next? [Open an issue](https://github.com/stefanoskarakasis/Product-Marketing-Skills/issues) with your use case.
 
@@ -244,9 +208,19 @@ Curated by [Stefanos Karakasis](https://heystefanos.gumroad.com/).
 
 ## Contributing
 
-Found a way to improve a skill? Have a new skill to suggest? PRs and issues welcome!
+Want to add a skill to the marketplace?
+1. Fork this repo
+2. Create your skill in `/skills/your-skill-name/`
+3. Follow the [Skill Creation Guide](SKILL_GUIDE.md)
+4. Submit a PR
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on adding or improving skills.
+**Skill requirements:**
+- Must read from `/foundation/brain.md` if brain-powered
+- Must include SKILL.md with YAML frontmatter
+- Must include description and triggers
+- Must pass quality evals
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ## License
 

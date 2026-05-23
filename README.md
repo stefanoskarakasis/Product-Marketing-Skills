@@ -152,36 +152,100 @@ done
 
 ## Skill Categories
 
-#### 1. product-marketing-context — The Brain
+<details>
+<summary><strong>1. product-marketing-context</strong> — The Brain (1 skill, 5 commands)</summary>
 
-> 8 skills, 1 plugin. The shared context layer every other PMM skill reads first.
+The foundation of the marketplace. Setup wizard + health audit. Creates `/foundation/brain.md` — the shared context layer every other PMM skill reads first.
 
-The foundation of the marketplace. These skills build, maintain, and govern your `product-marketing-context.md` — the living source of truth for product, ICP, personas, positioning, competitive landscape, narrative pillars, and GTM priorities.
+### Skills (1):
 
-**Skills (8):**
+- **product-marketing-context** — When the user wants to create or update their product marketing context document. The apex skill — every other skill in this repo reads this first.
 
-* `product-marketing-context` — When the user wants to create or update their product marketing context document. The apex skill — every other skill in this repo reads this first.
-* `ideal-customer-profile` — When the user wants to build, enrich, or pressure-test their ICP. Synthesizes PMF survey data, win/loss signals, and customer interviews into a living ICP that grounds all downstream PMM work.
-* `buyer-personas` — When the user wants to build, map, or refine B2B SaaS buyer personas including the buying committee, JTBD profiles, and decision criteria.
-* `positioning-messaging` — When the user wants to build a message house, write a positioning document, develop value props by segment, or pressure-test existing messaging against strategy.
-* `proof-points-claims` — When the user wants to build, validate, or audit their claims registry — the canonical source of approved metrics, quotes, case studies, and forbidden claims.
-* `alternatives-map` — When the user wants to map competitive alternatives or build April Dunford's named alternatives framework.
-* `market-context` — When the user wants to capture market category, macro forces, buying triggers, and the narrative arc that makes the solution feel inevitable.
-* `voice-tone` — When the user wants to build a brand voice and tone guide that adapts by buyer type and channel.
+### Commands (5):
 
-**Commands (1):**
+- `/product-marketing-context:setup-brain` — Bootstrap or update the product marketing context file. Stage-gated for pre-PMF, post-PMF, and mature companies.
+- `/product-marketing-context:brain-audit` — Run brain health diagnostics (0-100 score) with recommendations
+- `/product-marketing-context:brain-view` — Display brain contents
+- `/product-marketing-context:brain-export` — Export brain as markdown
+- `/product-marketing-context:brain-reset` — Delete brain and start fresh
 
-* `/setup-context` — Bootstrap or update the product marketing context file. Stage-gated for pre-PMF, post-PMF, and mature companies.
+### Examples:
 
-**Examples:**
+**Skills:**
+- `Set up my PMM brain`
+- `Check my brain health`
+- `What's in my brain?`
 
-Skills:
-* `Help me build the buyer committee map for our enterprise deals`
-* `Pressure-test our ICP — we're losing more deals in healthcare than we expected`
-* `Build a message house for our Champion persona, anchored to our positioning`
+**Commands:**
+- `/product-marketing-context:setup-brain` — Post-PMF B2B SaaS, mid-market focus
+- `/product-marketing-context:brain-audit` — We're losing more deals in healthcare than we expected
 
-Commands:
-* `/setup-context — Post-PMF B2B SaaS, FinTech vertical, mid-market focus`
+</details>
+
+<details>
+<summary><strong>2. pmm-positioning</strong> — Positioning & Messaging (1 skill, 5 commands)</summary>
+
+Strategic positioning using April Dunford's Obviously Awesome framework. Generates positioning statements, messaging hierarchies, homepage copy across 5 output modes.
+
+### Skills (1):
+
+- **positioning-messaging** — When the user wants to build a message house, write a positioning document, develop value props by segment, or pressure-test existing messaging against strategy.
+
+### Commands (5):
+
+- `/pmm-positioning:build` — Positioning statement + full 4-layer messaging document
+- `/pmm-positioning:audit` — Scored audit + prioritized rewrite queue with before/after
+- `/pmm-positioning:fletch` — 6-slide internal positioning deck + homepage wireframe
+- `/pmm-positioning:sales-enablement` — Persona cards + competitive response guide
+- `/pmm-positioning:homepage` — Production-ready headline, subhead, pillars, CTA — no placeholders
+
+### Examples:
+
+**Skills:**
+- `Generate positioning for our platform`
+- `Audit our current messaging — we sound like everyone else`
+- `Create homepage copy in HOMEPAGE mode`
+
+**Commands:**
+- `/pmm-positioning:build` — Mid-market B2B SaaS targeting marketing ops teams
+- `/pmm-positioning:audit` — Our messaging doc from Q2 (attach file)
+- `/pmm-positioning:homepage` — Use positioning from brain Section 7
+
+</details>
+
+<details>
+<summary><strong>3. pmm-toolkit</strong> — PMM Utilities (4 skills, 4 commands)</summary>
+
+PMM utilities: writing assistant, resume review, privacy policy, GACCS briefs.
+
+### Skills (4):
+
+- **writing-assistant** — Rewrites copy to match brand voice and checks against positioning
+- **pmm-resume** — Reviews and tailors PMM resumes for specific roles
+- **privacy-policy** — Generates jurisdiction-aware privacy policies
+- **gaccs-brief** — Creates campaign briefs (Goals, Audience, Creative, Channels, Stakeholders)
+
+### Commands (4):
+
+- `/pmm-toolkit:rewrite` — Rewrite copy to match brand voice
+- `/pmm-toolkit:tailor-resume` — Tailor resume for specific PMM role
+- `/pmm-toolkit:privacy-policy` — Generate privacy policy for product
+- `/pmm-toolkit:gaccs-brief` — Create campaign brief
+
+### Examples:
+
+**Skills:**
+- `Rewrite this homepage hero to match our voice`
+- `Review my PMM resume for a Director role at Stripe`
+- `Create privacy policy for our B2B SaaS product (US + EU)`
+- `Build GACCS brief for Q4 product launch`
+
+**Commands:**
+- `/pmm-toolkit:rewrite` — Make this email more concise and authoritative
+- `/pmm-toolkit:tailor-resume` — [paste resume] + [paste JD]
+- `/pmm-toolkit:gaccs-brief` — Campaign: Series B announcement
+
+</details>
 
 ---
 

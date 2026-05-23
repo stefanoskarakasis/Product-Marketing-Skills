@@ -1,10 +1,12 @@
 # Product Marketing Skills Marketplace: The AI Operating System for Better Go-To-Market Decisions
 
-Build your Product Marketing context once. Every skill gets smarter from it forever.
+Build your Product Marketing context once. Every skill gets smarter from it forever. Built by [Stefanos Karakasis](https://heystefanos.gumroad.com/).
 
-Built for Claude Code, Cowork, and any agent that supports the [Agent Skills spec](https://agentskills.io). From building your product marketing context (brain) to product messaging, launches, experimentation, and competitive intelligence.
+From building your product marketing context (brain) to product messaging, launches, experimentation, and competitive intelligence.
 
-Skills compatible with other AI assistants. Built by [Stefanos Karakasis](https://heystefanos.gumroad.com/).
+<img width="1440" height="712" alt="marketplace" src="https://github.com/user-attachments/assets/03980d16-0227-4e5d-96db-dd2129aa8e9a" />
+
+Designed for Claude Code and Cowork. Skills compatible with other AI assistants. 
 
 ## Start Here
 

@@ -1,8 +1,6 @@
 # Product Marketing Skills Marketplace: The AI Operating System for Better Go-To-Market Decisions
 
-The Product Marketing Brain + Execution Skills. 
-
-Build your PMM context once. Every skill gets smarter from it forever.
+Build your Product Marketing context once. Every skill gets smarter from it forever.
 
 Built for Claude Code, Cowork, and any agent that supports the [Agent Skills spec](https://agentskills.io). From building your product marketing context (brain) to product messaging, launches, experimentation, and competitive intelligence.
 

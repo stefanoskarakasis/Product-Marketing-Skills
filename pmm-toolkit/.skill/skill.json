@@ -1,0 +1,16 @@
+{
+  "name": "pmm-toolkit",
+  "version": "1.0.0",
+  "description": "PMM utilities: writing assistant, resume reviewer, privacy policy generator, GACCS brief builder",
+  "author": {
+    "name": "Stefanos Karakasis",
+    "github": "stefanoskarakasis"
+  },
+  "category": "toolkit",
+  "skills": ["writing-assistant", "pmm-resume", "privacy-policy", "gaccs-brief"],
+  "requires": {
+    "brain": false,
+    "mcp": false
+  },
+  "license": "MIT"
+}

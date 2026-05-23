@@ -1,0 +1,23 @@
+{
+  "name": "pmm-positioning",
+  "version": "1.0.0",
+  "description": "Strategic positioning using April Dunford's Obviously Awesome framework. Generates positioning statements, messaging hierarchies, homepage copy, and competitive positioning across 5 modes: BUILD, AUDIT, FLETCH, SALES-ENABLEMENT, HOMEPAGE.",
+  "author": {
+    "name": "Stefanos Karakasis",
+    "github": "stefanoskarakasis"
+  },
+  "category": "positioning",
+  "skills": ["positioning-messaging"],
+  "requires": {
+    "brain": false,
+    "mcp": false
+  },
+  "compound_intelligence": {
+    "enabled": true,
+    "reads_from_brain": true,
+    "writes_to_brain": true,
+    "brain_sections_read": [1, 2, 3, 5],
+    "brain_section_write": 7
+  },
+  "license": "MIT"
+}

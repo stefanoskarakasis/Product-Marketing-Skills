@@ -1,0 +1,56 @@
+{
+  "name": "product-marketing-context",
+  "version": "2.1.0",
+  "description": "The PMM Brain — setup wizard + health audit. Creates the foundation that all execution skills read.",
+  "author": {
+    "name": "Stefanos Karakasis",
+    "github": "stefanoskarakasis",
+    "twitter": "@heystefanos"
+  },
+  "category": "knowledge-foundation",
+  "tags": ["brain", "foundation", "context", "setup", "audit"],
+  "requires": {
+    "brain": false,
+    "mcp": false
+  },
+  "provides": {
+    "brain_file": "/foundation/brain.md",
+    "sections": [1, 2, 3, 4, 5, 6, 7, 8]
+  },
+  "commands": [
+    {
+      "name": "setup-brain",
+      "aliases": ["brain-setup", "create-brain"],
+      "description": "Launch brain setup wizard"
+    },
+    {
+      "name": "brain-audit",
+      "aliases": ["audit-brain", "check-brain"],
+      "description": "Run brain health diagnostics"
+    },
+    {
+      "name": "brain-view",
+      "aliases": ["view-brain", "show-brain"],
+      "description": "Display brain contents"
+    },
+    {
+      "name": "brain-export",
+      "aliases": ["export-brain"],
+      "description": "Export brain as markdown"
+    },
+    {
+      "name": "brain-reset",
+      "aliases": ["reset-brain"],
+      "description": "Delete brain and start fresh"
+    }
+  ],
+  "triggers": [
+    "set up my pmm brain",
+    "create my product marketing context",
+    "build my brain",
+    "check my brain health",
+    "audit my brain",
+    "how is my brain"
+  ],
+  "license": "MIT"
+}

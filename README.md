@@ -185,27 +185,6 @@ Commands:
 
 ---
 
-## Roadmap
-
-These plugins are in active development and will ship in future drops. The structure of the marketplace is built to scale — each new plugin will install alongside the existing ones without disrupting current setups.
-
-## Roadmap
-
-### ✅ Shipped (v2.1 - May 2026)
-- product-marketing-context (brain setup + audit)
-- Input validation (50+ rules)
-- Brain health scoring (0-100)
-- Compound intelligence (skills write back to brain)
-
-### 🔜 Next (v2.2 - June 2026)
-- hs-positioning-messaging (full Dunford framework)
-- hs-competitive-battlecard (talk tracks + landmines)
-- hs-value-prop-statements (segment-specific)
-
-Want to influence what ships next? [Open an issue](https://github.com/stefanoskarakasis/Product-Marketing-Skills/issues) with your use case.
-
----
-
 ## About
 
 This marketplace will evolve in tandem with PMM practices and LMM capabilities.

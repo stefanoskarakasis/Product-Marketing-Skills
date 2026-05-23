@@ -48,28 +48,52 @@ Skills are loaded automatically when relevant to the conversation — no explici
 Skills reference each other and build on shared context. The `product-marketing-context` skill is the foundation — every other skill checks it first to understand your product, ICP, personas, positioning, and competitive landscape before doing anything.
 
 ```
-┌─────────────────────────────────────────┐
-│  Layer 1: Foundation (The Brain)        │
-│  product-marketing-context              │
-│  ↓ Stores context once                  │
-└─────────────────────────────────────────┘
-                ↓
-┌─────────────────────────────────────────┐
-│  Layer 2: Positioning & Messaging       │
-│  • hs-positioning-messaging             │
-│  • hs-value-prop-statements             │
-│  • hs-competitive-battlecard            │
-│  ↓ Read brain → Generate outputs        │
-└─────────────────────────────────────────┘
-                ↓
-┌─────────────────────────────────────────┐
-│  Layer 3-5: Execution Skills            │
-│  Research, GTM, Content                 │
-│  ↓ Read brain + previous outputs        │
-└─────────────────────────────────────────┘
-                ↓
-        Compound Intelligence
-   (Messaging compounds, not fragments)  
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                        COMPOUND INTELLIGENCE                                  │
+│  Brain stores context once → All skills read it → Outputs save to Section 7  │
+│                     Zero repetition, consistent messaging                     │
+└──────────────────────────────────────────────────────────────────────────────┘
+                                      ↓
+┌───────────────────────┬──────────────────────────┬─────────────────────────┐
+│  Phase 1:             │  Phase 2:                │  Phase 3:               │
+│  FOUNDATION           │  EXECUTE                 │  SUPPORT                │
+├───────────────────────┼──────────────────────────┼─────────────────────────┤
+│                       │                          │                         │
+│ ┌───────────────────┐ │ ┌──────────────────────┐ │ ┌─────────────────────┐│
+│ │ Product Marketing │ │ │  PMM-Execution       │ │ │  PMM-Toolkit        ││
+│ │ Context           │→│ │                      │ │ │                     ││
+│ │                   │ │ │  Day-to-day PMM work │ │ │  Utilities & Tools  ││
+│ │ • Brain Setup     │ │ │                      │ │ │                     ││
+│ │   (31 questions)  │ │ │  • PRDs              │ │ │  • Writing Asst     ││
+│ │ • Brain Audit     │ │ │  • OKRs              │ │ │  • Resume Review    ││
+│ │   (0-100 score)   │ │ │  • Stakeholder Maps  │ │ │  • Privacy Policy   ││
+│ │ • Creates brain   │ │ │  • Pre-mortems       │ │ │  • GACCS Brief      ││
+│ │   file            │ │ │  • Retros            │ │ │                     ││
+│ │                   │ │ │  • Experiment Docs   │ │ │  Read brain         ││
+│ │ Saves to:         │ │ │  • Prioritization    │ │ │  (optional)         ││
+│ │ /foundation/      │ │ │  • Meeting Notes     │ │ │                     ││
+│ │ brain.md          │ │ │                      │ │ │                     ││
+│ │                   │ │ │  All read brain +    │ │ │                     ││
+│ │                   │ │ │  save to Section 7   │ │ │                     ││
+│ └───────────────────┘ │ └──────────────────────┘ │ └─────────────────────┘│
+│                       │                          │                         │
+│ Skill (1):            │ Skills (8):              │ Skills (4):             │
+│ ✅ product-marketing- │ ✅ product-requirement-  │ ✅ writing-assistant    │
+│    context            │    doc                   │ ✅ pmm-resume           │
+│                       │ ✅ stakeholder-maps      │ ✅ privacy-policy       │
+│                       │ ✅ pre-mortem            │ ✅ gaccs-brief          │
+│                       │ ✅ retro                 │                         │
+│                       │ ✅ brainstorm-okrs       │                         │
+│                       │ ✅ experiment-doc-       │                         │
+│                       │    builder               │                         │
+│                       │ ✅ prioritization-       │                         │
+│                       │    frameworks            │                         │
+│                       │ ✅ meeting-summaries     │                         │
+│                       │    (if separate)         │                         │
+└───────────────────────┴──────────────────────────┴─────────────────────────┘
+                                      ↑
+              All outputs stored in /foundation/brain.md Section 7
+                  Skills reference each other's work automatically
 
 ```
 

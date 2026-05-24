@@ -1,0 +1,28 @@
+{
+  "name": "pmm-execution",
+  "version": "1.0.0",
+  "description": "Day-to-day product marketing: PRDs, growth experiments, OKRs, pre-mortems, retrospectives, stakeholder management, meeting summaries, and prioritization frameworks.",
+  "author": "Stefanos Karakasis",
+  "license": "MIT",
+  "skills": [
+    "stakeholder-maps",
+    "retro",
+    "prioritization-frameworks",
+    "pre-mortem",
+    "pmm-okrs",
+    "prd",
+    "experiment-doc",
+    "meeting-summaries"
+  ],
+  "tags": [
+    "product-marketing",
+    "execution",
+    "okr",
+    "prd",
+    "experiments",
+    "stakeholder-management",
+    "retrospectives",
+    "pre-mortems"
+  ],
+  "mcp": false
+}

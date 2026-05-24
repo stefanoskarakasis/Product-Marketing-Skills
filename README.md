@@ -155,7 +155,7 @@ done
 ## Skill Categories
 
 <details>
-<summary><strong>1. product-marketing-context</strong> — The Brain (1 skill, 5 commands)</summary>
+<summary><strong>1. product-marketing-context</strong> — The Brain: setup wizard, health audit, compound intelligence (1 skill, 5 commands)</summary>
 
 The foundation of the marketplace. Setup wizard + health audit. Creates `/foundation/brain.md` — the shared context layer every other PMM skill reads first.
 
@@ -185,7 +185,7 @@ The foundation of the marketplace. Setup wizard + health audit. Creates `/founda
 </details>
 
 <details>
-<summary><strong>2. pmm-positioning</strong> — Positioning & Messaging (1 skill, 5 commands)</summary>
+<summary><strong>2. pmm-positioning</strong> — — Positioning & messaging: Dunford framework, message house, homepage copy, sales decks, audit mode (1 skill, 5 commands) (1 skill, 5 commands)</summary>
 
 Strategic positioning using April Dunford's Obviously Awesome framework. Generates positioning statements, messaging hierarchies, homepage copy across 5 output modes.
 
@@ -216,7 +216,7 @@ Strategic positioning using April Dunford's Obviously Awesome framework. Generat
 </details>
 
 <details>
-<summary><strong>3. pmm-toolkit</strong> — PMM Utilities (4 skills, 4 commands)</summary>
+<summary><strong>3. pmm-toolkit</strong> — Writing assistant, resume tailoring, privacy policy generator, GACCS campaign briefs (4 skills, 4 commands)</summary>
 
 PMM utilities: writing assistant, resume review, privacy policy, GACCS briefs.
 
@@ -246,6 +246,54 @@ PMM utilities: writing assistant, resume review, privacy policy, GACCS briefs.
 - `/pmm-toolkit:rewrite` — Make this email more concise and authoritative
 - `/pmm-toolkit:tailor-resume` — [paste resume] + [paste JD]
 - `/pmm-toolkit:gaccs-brief` — Campaign: Series B announcement
+
+</details>
+
+<details>
+<summary><strong>4. pmm-execution</strong> — PRDs, OKRs, experiments, pre-mortems, retros, stakeholder maps, prioritization, interview synthesis (8 skills, 8 commands)</summary>
+
+Day-to-day product marketing: PRDs, growth experiments, OKRs, pre-mortems, retrospectives, stakeholder management, meeting summaries, and prioritization frameworks.
+
+### Skills (8):
+
+- **stakeholder-maps** — Build political stakeholder maps for launches and GTM initiatives
+- **retro** — Facilitate structured GTM retrospectives with cross-functional teams
+- **prioritization-frameworks** — Apply 9 GTM-native prioritization frameworks (RICE, ICE, etc.)
+- **pre-mortem** — Run pre-mortem risk analysis on strategic projects
+- **pmm-okrs** — Build quarterly OKR sets for PMM teams
+- **prd** — Create HubSpot-style PRDs with embedded Solution Stories
+- **experiment-doc** — Build, audit, and score growth experiment documents
+- **interview-summary** — Summarize customer interviews with JTBD analysis
+
+### Commands (8):
+
+- `/pmm-execution:stakeholder-map` — Build stakeholder map for launch or initiative
+- `/pmm-execution:retro` — Facilitate post-launch or sprint retrospective
+- `/pmm-execution:prioritize` — Score and rank initiatives using prioritization frameworks
+- `/pmm-execution:pre-mortem` — Run pre-mortem risk analysis
+- `/pmm-execution:okrs` — Build quarterly PMM OKR set
+- `/pmm-execution:prd` — Create product requirements document
+- `/pmm-execution:experiment` — Build growth experiment document
+- `/pmm-execution:interview-summary` — Summarize interview transcript
+
+### Examples:
+
+**Skills:**
+- `Build stakeholder map for Q4 product launch`
+- `Run a retro on our last launch`
+- `Help me prioritize these 5 feature ideas using RICE`
+- `Create a PRD for our new dashboard feature`
+- `Build Q3 OKRs for my 3-person PMM team`
+- `Pre-mortem: we're raising prices 40% next quarter`
+- `Score this experiment: changing homepage headline to outcomes-focused`
+- `Summarize this customer interview transcript`
+
+**Commands:**
+- `/pmm-execution:stakeholder-map` — Q4 enterprise launch
+- `/pmm-execution:retro` — Last sprint (Apr 15-30)
+- `/pmm-execution:experiment` — Pricing page A/B test
+- `/pmm-execution:okrs` — Solo PMM at Series B, low seller adoption
+- `/pmm-execution:prd` — Analytics dashboard for marketing ops teams
 
 </details>
 

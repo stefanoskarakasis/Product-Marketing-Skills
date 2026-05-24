@@ -27,3 +27,26 @@ Day-to-day product marketing: PRDs, growth experiments, OKRs, pre-mortems, retro
 ## Installation
 
 ```bash
+# Claude Code
+claude plugin add stefanoskarakasis/Product-Marketing-Skills
+claude plugin install pmm-execution
+```
+
+## Brain Integration
+
+**stakeholder-maps** — Reads brain (optional): Sections 1, 2 (Product, ICP)  
+**retro** — Reads brain (optional): Section 1 (Product context)  
+**pmm-okrs** — Reads brain (optional): Sections 1, 2, 5 (Product, ICP, Market)  
+**prd** — Reads brain (optional): Sections 1, 2, 4 (Product, ICP, Voice)  
+**experiment-doc** — No brain needed (standalone)  
+**pre-mortem** — No brain needed (standalone)  
+**prioritization-frameworks** — No brain needed (standalone)  
+**interview-summary** — No brain needed (standalone)
+
+## Author
+
+Stefanos Karakasis — [Product Marketing Skills](https://heystefanos.gumroad.com/)
+
+## License
+
+MIT

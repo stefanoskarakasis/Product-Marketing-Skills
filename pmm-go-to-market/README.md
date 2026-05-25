@@ -1,15 +1,15 @@
 # PMM-Go-to-Market
 
-Go-to-market strategy and launch execution skills for B2B SaaS Product Marketing Managers.
+- **go-to-market-strategy** — Go-to-market strategy and launch execution skills for B2B SaaS Product Marketing Managers.
 
 ## Skills (1)
 
 ### go-to-market-strategy
 Brain-powered GTM strategy generator. Assigns launch tier (T1-T4), generates strategic brief with messaging, channels, metrics, and timeline. Self-learning via brain Section 7 memory.
 
-**Triggers:** 'create GTM strategy', 'plan this launch', 'tier this feature'
+## Commands (1)
 
-**Read more:** [go-to-market-strategy/](go-to-market-strategy/)
+- `/pmm-execution:stakeholder-map` — Build stakeholder map for launch or initiative
 
 ## Installation
 
@@ -29,10 +29,6 @@ claude plugin install pmm-go-to-market/go-to-market-strategy
 - Section 5: Proof Points
 - Section 6: Voice & Tone (optional)
 - Section 7: Launch History (self-learning)
-
-## Coming Soon
-
-More launch execution and analysis skills will be added to this collection.
 
 ## Author
 

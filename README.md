@@ -1,6 +1,6 @@
 # Product Marketing Skills Marketplace: The AI Operating System for Better Go-To-Market Decisions
 
-Build your PMM brain in 2 hours. Then every GTM decision gets 10x faster because Claude remembers your context, positioning, and past launches.
+Build your Product Marketing Brain in 2 hours. Then every GTM decision gets 10x faster because Claude remembers your context, positioning, and past launches.
 
 From building your product marketing context (brain) to product messaging, planning product launches, devising growth experiments, and gathering actionable competitive intelligence.
 

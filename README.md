@@ -24,8 +24,6 @@ If this project helps you, ⭐ the repo.
 
 **The solution:** Build your brain once (`product-marketing-context`). Every other skill reads it. Zero repetition.
 
-Each skill encodes a proven PMM framework — April Dunford positioning, Fletch PMM canvas, JTBD theory, GACCS briefs, and Gary Klein's pre-mortems — and walks you through it step by step. You get the rigour of established methodologies built into your daily workflow, not sitting on a bookshelf.
-
 The result: better positioning, sharper launches, and stronger competitive intelligence — anchored to your specific company context, not generic templates.
 
 **Results**

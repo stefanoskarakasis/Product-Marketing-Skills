@@ -307,11 +307,11 @@ Selected skills based on the work of:
 
 * April Dunford — [*Obviously Awesome*](https://www.aprildunford.com/obviously-awesome) and [*Sales Pitch*](https://www.aprildunford.com/sales-pitch-book)
 * Anthony W. Ulwick — [*Jobs to Be Done*](https://jobs-to-be-done-book.com/)
-* Emily Kramer — [*MKT1 Newsletter*](https://newsletter.mkt1.co/) (GACCS framework)
+* Emily Kramer — [*MKT1 Newsletter*](https://newsletter.mkt1.co/)
 * Maja Voje — [*Go-To-Market Strategist*](https://gtmstrategist.com/)
-* Paweł Huryn — [*The Product Compass Newsletter*](https://www.productcompass.pm/) (compounding skill architecture)
-* Corey Haines — [*Marketing Skills*](https://github.com/coreyhaines31/marketingskills) (structural inspiration)
-* Fletch PMM — [Anchor + Value Model canvas](https://www.fletchpmm.com/)
+* Paweł Huryn — [*The Product Compass Newsletter*](https://www.productcompass.pm/) 
+* Corey Haines — [*Marketing Skills*](https://github.com/coreyhaines31/marketingskills) 
+* Fletch PMM — [*Anchor + Value Model canvas*](https://www.fletchpmm.com/)
 * Gary Klein — Pre-mortem methodology
 * Roger L. Martin — [*Playing to Win*](https://www.amazon.com/Playing-Win-Expanded-Bonus-Articles/dp/B0F25SDYWV/)
 

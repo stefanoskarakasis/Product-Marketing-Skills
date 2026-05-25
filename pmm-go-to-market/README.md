@@ -1,4 +1,4 @@
-# Go-To-Market Plugin
+# pmm-go-to-market
 
 Brain-powered GTM strategy generator for B2B SaaS Product Marketing Managers.
 

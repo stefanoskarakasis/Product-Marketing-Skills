@@ -2,7 +2,7 @@
 
 Build your Product Marketing context once. Every skill gets smarter from it forever. Built by [Stefanos Karakasis](https://heystefanos.gumroad.com/).
 
-From building your product marketing context (brain) to product messaging, launches, experimentation, and competitive intelligence.
+From building your product marketing context (brain) to product messaging, planning product launches, devising growth experiments, and gathering actionable competitive intelligence.
 
 <img width="1440" height="712" alt="marketplace" src="https://github.com/user-attachments/assets/03980d16-0227-4e5d-96db-dd2129aa8e9a" />
 

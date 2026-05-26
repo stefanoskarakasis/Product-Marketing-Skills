@@ -540,7 +540,54 @@ If any check fails, loop back and fix before outputting.
 
 ---
 
-## Step 7: Post-Output Routing
+## Step 7: Offer Brain Update (Optional)
+
+After generating the strategy doc, offer to capture this launch plan in the brain.
+
+**Ask the user:**
+Would you like me to add this launch to your brain's Section 7 (Launch History)?
+This helps future launches learn from this one. I'll mark it as "Planned" until you run a retro after launch.
+[Yes / No]
+
+**If user says Yes:**
+
+Use the `str_replace` tool to append to `/foundation/brain.md` at the end of Section 7.
+
+**Format for the new entry:**
+
+```markdown
+### Planned Launch: [Product Name] | Tier: [T1/T2/T3/T4] | Date: [Planned Launch Date]
+
+**Strategy Summary:**
+- **Tier rationale:** [One sentence explaining why this tier was assigned]
+- **Target audience:** [Primary persona from brain Section 2]
+- **Key channels:** [List 3-5 channels from the strategy doc]
+- **Target metrics (T+90):**
+  - Adoption: [X%]
+  - Revenue impact: $[Y]
+  - [Other key metric from strategy]
+
+**Status:** Planned (not yet launched)
+
+**Note:** After launch, run `hs-retro` to update this entry with actual results and learnings.
+
+---
+```
+
+**Steps to append:**
+1. Read current Section 7 content from `/foundation/brain.md`
+2. Use `str_replace` to append the new entry at the end of Section 7
+3. Confirm to user: "✓ Added [Product] launch plan to brain Section 7"
+
+**If user says No:**
+
+Skip the brain update and proceed directly to presenting the strategy document.
+
+**Exit condition:** Brain updated (if Yes) or explicitly skipped (if No).
+
+---
+
+## Step 8: Post-Output Routing
 
 After delivering strategy doc, explicitly route to next skills:
 
@@ -574,7 +621,7 @@ Want to proceed with any of these? Or ready to share this strategy with your tea
 
 ---
 
-## Step 8: Memory Update (After Launch)
+## Step 9: Memory Update (After Launch)
 
 This step happens AFTER the launch (30-90 days later).
 

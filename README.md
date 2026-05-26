@@ -1,4 +1,4 @@
-# Product Marketing Skills Marketplace: The AI Operating System for Better Go-To-Market Decisions in Competitive Markets
+# Product Marketing Skills for AI Agents: The AI Operating System for Better Go-To-Market Decisions in Competitive Markets
 
 Build your Product Marketing Brain in 2 hours. Then every GTM decision gets 10x faster because Claude remembers your context, positioning, and past launches.
 

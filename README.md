@@ -177,6 +177,48 @@ cp -r Product-Marketing-Skills/pmm-*/* ~/.cursor/skills/  # For Cursor
 
 ---
 
+## Usage
+
+Once installed, just ask your agent to help with PMM tasks:
+
+```
+"Help me plan a product launch for SSO integration"
+→ Uses go-to-market-strategy skill
+
+"Generate positioning for our platform"
+→ Uses hs-positioning-messaging skill
+
+"Build a competitive battlecard for Okta"
+→ Uses hs-competitive-battlecard skill
+
+"Run Q3 quarterly PMM cycle"
+→ Uses workflow-orchestrator skill
+
+"Create a GACCS campaign brief"
+→ Uses hs-gaccs-brief skill
+```
+
+You can also invoke skills directly with commands:
+```
+"Run full launch workflow for [product]"
+/workflow-orchestrator
+
+"What tier is this feature?"
+/go-to-market-strategy
+
+"Build positioning for B2B SaaS"
+/hs-positioning-messaging 
+
+"Run retrospective for last launch"
+/hs-retro 
+
+"Generate Q4 OKRs"
+/hs-brainstorm-okrs 
+```
+Skills read your brain automatically — zero context re-explaining.
+
+---
+
 ## Skill Categories
 
 <details>

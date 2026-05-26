@@ -183,7 +183,7 @@ The foundation of the marketplace. Setup wizard + health audit. Creates `/founda
 </details>
 
 <details>
-<summary><strong>2. pmm-positioning</strong> — — Positioning & messaging: Dunford framework, message house, homepage copy, sales decks, audit mode (1 skill, 5 commands) (1 skill, 5 commands)</summary>
+<summary><strong>2. pmm-positioning</strong> — Positioning & messaging: Dunford framework, message house, homepage copy, sales decks, audit mode (1 skill, 5 commands)</summary>
 
 Strategic positioning using April Dunford's Obviously Awesome framework. Generates positioning statements, messaging hierarchies, homepage copy across 5 output modes.
 
@@ -295,11 +295,68 @@ Day-to-day product marketing: PRDs, growth experiments, OKRs, pre-mortems, retro
 
 </details>
 
+<details>
+<summary><strong>5. pmm-go-to-market</strong> — GTM strategy, workflow orchestration: full launch workflows, positioning refresh, competitive programs, quarterly cycles (2 skills, 2 commands)</summary>
+
+**NEW:** Complete GTM workflows that chain multiple skills together. One prompt runs positioning → competitive → strategy → execution. Brain updates automatically after each workflow.
+
+### Skills (2):
+
+- **go-to-market-strategy** — Assigns launch tier (T1-T4), generates strategic briefs with messaging and channels, self-learns from past launches
+- **workflow-orchestrator** — Chains 20+ hs- skills for complete GTM programs. Covers 10 workflows: full launch, positioning refresh, competitive program, quarterly PMM cycle, market entry, post-launch retro, competitive response, ICP foundation, voice foundation, and new hire onboarding
+
+### Commands (2):
+
+- `/pmm-go-to-market:launch-strategy` — Assign tier and generate GTM strategy for product/feature launch
+- `/pmm-go-to-market:run-workflow` — Run complete multi-skill GTM workflow (launch, quarterly, competitive, etc.)
+
+### Examples:
+
+**Skills:**
+- `We're launching SSO integration. What tier is this?`
+- `Run full launch workflow for analytics dashboard`
+- `Run Q3 PMM cycle — refresh all assets`
+- `Competitive program for top 3 competitors`
+- `We're entering the healthcare vertical — run market entry workflow`
+- `Run retro for our last launch and update brain`
+
+**Commands:**
+- `/pmm-go-to-market:launch-strategy` — SSO integration launch
+- `/pmm-go-to-market:run-workflow` — Full launch workflow for [product], DRI: me
+- `/pmm-go-to-market:run-workflow` — Quarterly PMM cycle, goal: refresh all core assets
+
+### Supported Workflows (10):
+
+1. **Full Product Launch** — positioning → competitive → strategy → campaign → stakeholder → retro (6-12 weeks)
+2. **Positioning Refresh** — positioning → value props → update battlecards (1-2 weeks)
+3. **Competitive Intelligence Program** — alternatives → battlecards → CI briefing (2-4 weeks)
+4. **Quarterly PMM Cycle** — retro → positioning audit → competitive refresh → OKRs (3-4 weeks)
+5. **New Market Entry** — ICP → personas → positioning → competitive → strategy (8-12 weeks)
+6. **Post-Launch Retro** — retro → update brain with actuals (1 week)
+7. **Competitive Response** — fast battlecard → value props → sales assets (1-2 weeks)
+8. **ICP + Personas Foundation** — ICP → personas → interviews (2-3 weeks)
+9. **Voice & Tone Foundation** — voice guide → test with writing-assistant (1 week)
+10. **Full PMM Onboarding** — audit brain → gap report (1-2 weeks, read-only)
+
+### What Makes This Different:
+
+**Self-learning:** Reads brain Section 7 (launch history) and adjusts recommendations based on YOUR past performance, not generic best practices.
+
+**Brain-integrated:** Pulls positioning (Section 3), ICP (Section 2), competitive intel (Section 4), proof points (Section 5) — or flags gaps.
+
+**Multi-skill orchestration:** One prompt chains positioning → competitive → strategy → campaign → stakeholder → execution. No manual routing.
+
+**Writes back to brain:** Updates Sections 3, 4, 5, 7 automatically after each workflow. Fifth launch is smarter than first.
+
+**Master program documents:** Produces complete program docs with artifacts, coherence reports, open questions, and next steps.
+
+</details>
+
 ---
 
 ## About
 
-This marketplace will evolve in tandem with PMM practices and LMM capabilities.
+This marketplace will evolve in tandem with PMM practices and LLM capabilities.
 
 Selected skills based on the work of:
 

@@ -101,52 +101,79 @@ Commands are designed to flow into each other, matching the PMM workflow. After 
 
 ## Quick Start
 
-1. **Download the brain:** [product-marketing-context.zip]
-2. **Upload to Claude.ai:** Settings → Skills → Upload
-3. **Run setup:** Say "Set up my PMM brain" (takes 15-20 min)
-4. **Check health:** Say "Check my brain health"
-5. **[Coming Soon] Use execution skills:** "Generate positioning", "Build battlecard"
-
-That's it. You're done.
-
-## Installation
-
-### Claude Cowork (recommended for non-developers)
-
-1. Open **Customize** (bottom-left)
+**Best option:** Claude Cowork
+1. Click **Customize** (bottom-left)
 2. Go to **Browse plugins** → **Personal** → **+**
 3. Select **Add marketplace from GitHub**
 4. Enter: `stefanoskarakasis/Product-Marketing-Skills`
+5. Click **Install**
 
-All 3 plugins install automatically. You get both commands (`/launch`, `/compete`, etc.) and skills.
+Done. All skills + commands ready.
 
-### Claude Code (CLI)
+---
+
+## Installation Quick Reference
+
+| Platform | Method | Status |
+|----------|--------|--------|
+| **Claude Cowork** | Settings → Browse plugins → Add from GitHub | ✅ Full support |
+| **Claude Code (CLI)** | `claude plugin marketplace add ...` | ✅ Full support |
+| **Claude.ai (Web)** | Manual skill upload only | ⚠️ Brain only |
+| **Cursor / Windsurf** | Copy skill folders | ✅ Skills only |
+
+---
+
+## Installation
+
+### Option 1: Claude Cowork (Recommended)
+
+Install all skills and commands in one click.
 
 ```bash
-# Step 1: Add the marketplace
-claude plugin marketplace add stefanoskarakasis/product-marketing-skills
-
-# Step 2: Install plugins
-[Download product-marketing-context.zip](https://github.com/yourusername/pmm-skills/releases/download/v2.1.0/product-marketing-context.zip)
+# In Claude Cowork:
+# Customize → Browse plugins → Personal → Add marketplace from GitHub
+# Enter: stefanoskarakasis/Product-Marketing-Skills
 ```
 
-### Other AI assistants (skills only)
+All 15+ skills, commands, and brain integration install automatically.
 
-The `skills/*/SKILL.md` files follow the universal skill format and work with any tool that reads it. Commands (`/slash-commands`) are Claude-specific.
+---
 
-| Tool | How to use | What works |
-| --- | --- | --- |
-| **Cursor** | Copy skill folders to `.cursor/skills/` | Skills only |
-| **Codex CLI** | Copy skill folders to `.codex/skills/` | Skills only |
-| **Gemini CLI** | Copy skill folders to `.gemini/skills/` | Skills only |
-| **Windsurf** | Copy skill folders to `.windsurf/skills/` | Skills only |
+### Option 2: Claude Code (CLI)
 
 ```bash
-# Example: copy all skills for Cursor
-for plugin in pmm-*/; do
-  cp -r "$plugin/skills/"* ~/.cursor/skills/ 2>/dev/null
-done
+claude plugin marketplace add stefanoskarakasis/Product-Marketing-Skills
 ```
+
+---
+
+### Option 3: Claude.ai (Web — Brain Only)
+
+⚠️ Web interface only supports manual skill uploads. Use Cowork or Code for full functionality.
+
+1. Download: [product-marketing-context.zip](#)
+2. Go to Settings → Skills → Upload
+3. Select the .zip file
+
+---
+
+### Option 4: Clone & Copy (Advanced)
+
+```bash
+git clone https://github.com/stefanoskarakasis/Product-Marketing-Skills.git
+cp -r Product-Marketing-Skills/pmm-*/* ~/.cursor/skills/  # For Cursor
+```
+
+---
+
+## What You Get
+
+| | Cowork | Code | Web | Copy |
+|---|--------|------|-----|------|
+| Skills | ✅ | ✅ | ⚠️ | ✅ |
+| Commands | ✅ | ✅ | ❌ | ❌ |
+| Brain | ✅ | ✅ | ⚠️ | ✅ |
+| Auto-update | ✅ | ✅ | ❌ | Manual |
 
 ---
 

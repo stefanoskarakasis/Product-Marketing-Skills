@@ -1,0 +1,12 @@
+{
+  "name": "pmm-skills",
+  "description": "Product Marketing Skills for B2B SaaS PMMs — positioning, GTM strategy, competitive intelligence, execution frameworks, and workflow orchestration",
+  "version": "1.0.0",
+  "author": {
+    "name": "Stefanos Karakasis"
+  },
+  "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
+  "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
+  "license": "MIT",
+  "skills": "./pmm-go-to-market/skills, ./pmm-positioning/skills, ./pmm-execution/skills, ./pmm-toolkit/skills"
+}

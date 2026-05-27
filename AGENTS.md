@@ -13,7 +13,8 @@ This repository contains **PMM Skills** for AI agents following the [Agent Skill
 
 ## Repository Structure
 
-'''Product-Marketing-Skills/
+```
+Product-Marketing-Skills/
 ├── .claude-plugin/
 │   └── marketplace.json        # Claude Code plugin marketplace manifest
 ├── pmm-go-to-market/           # Go-to-market strategy + workflow orchestration
@@ -25,7 +26,7 @@ This repository contains **PMM Skills** for AI agents following the [Agent Skill
 ├── README.md
 ├── AGENTS.md                   # AI agent guidelines
 └── VERSIONS.md                 # Skill version tracking
-'''
+```
 
 ## Build / Lint / Test Commands
 
@@ -70,11 +71,13 @@ description: What this skill does and when to use it. Include trigger phrases.
 
 ### Optional Skill Directories
 
+```
 skills/skill-name/
 ├── SKILL.md        # Required - main instructions (<500 lines)
 ├── references/     # Optional - detailed docs loaded on demand
 ├── config/         # Optional - configuration files
 └── templates/      # Optional - templates and examples
+```
 
 ## Writing Style Guidelines
 

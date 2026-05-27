@@ -1,0 +1,34 @@
+{
+  "name": "pmm-skills",
+  "owner": {
+    "name": "Stefanos Karakasis",
+    "url": "https://heystefanos.gumroad.com"
+  },
+  "metadata": {
+    "description": "Product Marketing Skills for B2B SaaS PMMs — positioning, GTM strategy, competitive intelligence, execution frameworks, and workflow orchestration",
+    "version": "1.0.0",
+    "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills"
+  },
+  "plugins": [
+    {
+      "name": "pmm-go-to-market",
+      "description": "Go-to-market strategy, tier assignment, and workflow orchestration for product launches, positioning refresh, competitive programs, and quarterly PMM cycles",
+      "source": "./pmm-go-to-market"
+    },
+    {
+      "name": "pmm-positioning",
+      "description": "Strategic positioning and messaging using April Dunford's framework",
+      "source": "./pmm-positioning"
+    },
+    {
+      "name": "pmm-execution",
+      "description": "Day-to-day PMM execution: PRDs, OKRs, pre-mortems, retros, stakeholder maps, interviews, experiments, and prioritization",
+      "source": "./pmm-execution"
+    },
+    {
+      "name": "pmm-toolkit",
+      "description": "PMM utilities: writing assistant, resume review, privacy policy generator, GACCS briefs",
+      "source": "./pmm-toolkit"
+    }
+  ]
+}

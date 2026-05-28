@@ -1,0 +1,12 @@
+{
+  "name": "pmm-toolkit",
+  "description": "PMM utilities: writing assistant, resume review, privacy policy generator, GACCS briefs. Essential tools for product marketers.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Stefanos Karakasis"
+  },
+  "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-toolkit",
+  "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
+  "license": "MIT",
+  "skills": "./skills"
+}

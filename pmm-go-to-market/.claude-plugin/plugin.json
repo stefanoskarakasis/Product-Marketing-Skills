@@ -1,0 +1,12 @@
+{
+  "name": "pmm-go-to-market",
+  "description": "Go-to-market strategy and workflow orchestration for product launches, GTM programs, positioning refresh, and market expansion",
+  "version": "1.0.0",
+  "author": {
+    "name": "Stefanos Karakasis"
+  },
+  "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-go-to-market",
+  "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
+  "license": "MIT",
+  "skills": "./skills"
+}

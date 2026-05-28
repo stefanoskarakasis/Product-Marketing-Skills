@@ -1,0 +1,12 @@
+{
+  "name": "pmm-positioning",
+  "description": "Positioning and messaging using April Dunford's framework. Build positioning statements, message houses, value propositions by segment, and homepage copy.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Stefanos Karakasis"
+  },
+  "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-positioning",
+  "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
+  "license": "MIT",
+  "skills": "./skills"
+}

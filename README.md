@@ -1,12 +1,14 @@
-# Product Marketing Skills for AI Agents: The AI Operating System for Better Go-To-Market Decisions in Competitive Markets
+# Product Marketing Skills for AI Agents: Better Go-To-Market Decisions in Competitive Markets
 
-Build your Product Marketing Brain in 2 hours. Then every GTM decision gets 10x faster because Claude remembers your context, positioning, and past launches.
+A collection of AI agent skills focused on product marketing tasks. Built for Product Marketing Managers, founders, and marketing leaders who want AI agents to help with positioning, competitive intelligence, launch planning, OKRs, experiments, and GTM strategy. Works with Claude Code, Claude Cowork, Cursor, Windsurf, and any agent that supports the [Agent Skills spec](https://agentskills.io/).
 
-From building your product marketing context (brain) to product messaging, planning product launches, devising growth experiments, and gathering actionable competitive intelligence.
+Built by [Stefanos Karakasis](https://heystefanos.gumroad.com/). Looking for GTM strategy guidance? Check out [The Spread](https://thespreadnewsletter.substack.com/) — weekly intelligence on AI GTM, fintech hiring, and competitive signals.
 
-<img width="1440" height="712" alt="marketplace" src="https://github.com/user-attachments/assets/03980d16-0227-4e5d-96db-dd2129aa8e9a" />
+New to skills and agents? Start with the **Quick Start** section above or jump to **Installation**.
 
-Designed for Claude Code and Cowork. Skills compatible with other AI assistants. 
+Contributions welcome! Found a way to improve a skill or have a new one to add? [Open a PR](#contributing).
+
+Run into a problem or have a question? [Open an issue](https://github.com/stefanoskarakasis/Product-Marketing-Skills/issues) — we're happy to help.
 
 ## Start Here
 
@@ -46,58 +48,66 @@ Skills are loaded automatically when relevant to the conversation — no explici
 Skills reference each other and build on shared context. The `product-marketing-context` skill is the foundation — every other skill checks it first to understand your product, ICP, personas, positioning, and competitive landscape before doing anything.
 
 ```
-┌──────────────────────────────────────────────────────────────────────────────┐
-│                        COMPOUND INTELLIGENCE                                  │
-│  Brain stores context once → All skills read it → Outputs save to Section 7  │
-│                     Zero repetition, consistent messaging                     │
-└──────────────────────────────────────────────────────────────────────────────┘
-                                      ↓
-┌───────────────────────┬──────────────────────────┬─────────────────────────┐
-│  Phase 1:             │  Phase 2:                │  Phase 3:               │
-│  FOUNDATION           │  EXECUTE                 │  SUPPORT                │
-├───────────────────────┼──────────────────────────┼─────────────────────────┤
-│                       │                          │                         │
-│ ┌───────────────────┐ │ ┌──────────────────────┐ │ ┌─────────────────────┐│
-│ │ Product Marketing │ │ │  PMM-Execution       │ │ │  PMM-Toolkit        ││
-│ │ Context           │→│ │                      │ │ │                     ││
-│ │                   │ │ │  Day-to-day PMM work │ │ │  Utilities & Tools  ││
-│ │ • Brain Setup     │ │ │                      │ │ │                     ││
-│ │   (31 questions)  │ │ │  • PRDs              │ │ │  • Writing Asst     ││
-│ │ • Brain Audit     │ │ │  • OKRs              │ │ │  • Resume Review    ││
-│ │   (0-100 score)   │ │ │  • Stakeholder Maps  │ │ │  • Privacy Policy   ││
-│ │ • Creates brain   │ │ │  • Pre-mortems       │ │ │  • GACCS Brief      ││
-│ │   file            │ │ │  • Retros            │ │ │                     ││
-│ │                   │ │ │  • Experiment Docs   │ │ │  Read brain         ││
-│ │ Saves to:         │ │ │  • Prioritization    │ │ │  (optional)         ││
-│ │ /foundation/      │ │ │  • Meeting Notes     │ │ │                     ││
-│ │ brain.md          │ │ │                      │ │ │                     ││
-│ │                   │ │ │  All read brain +    │ │ │                     ││
-│ │                   │ │ │  save to Section 7   │ │ │                     ││
-│ └───────────────────┘ │ └──────────────────────┘ │ └─────────────────────┘│
-│                       │                          │                         │
-│ Skill (1):            │ Skills (8):              │ Skills (4):             │
-│ ✅ product-marketing- │ ✅ product-requirement-  │ ✅ writing-assistant    │
-│    context            │    doc                   │ ✅ pmm-resume           │
-│                       │ ✅ stakeholder-maps      │ ✅ privacy-policy       │
-│                       │ ✅ pre-mortem            │ ✅ gaccs-brief          │
-│                       │ ✅ retro                 │                         │
-│                       │ ✅ brainstorm-okrs       │                         │
-│                       │ ✅ experiment-doc-       │                         │
-│                       │    builder               │                         │
-│                       │ ✅ prioritization-       │                         │
-│                       │    frameworks            │                         │
-│                       │ ✅ meeting-summaries     │                         │
-│                       │    (if separate)         │                         │
-└───────────────────────┴──────────────────────────┴─────────────────────────┘
-                                      ↑
-              All outputs stored in /foundation/brain.md Section 7
-                  Skills reference each other's work automatically
+┌──────────────────────────────────┐
+                            │  product-marketing-context       │
+                            │ (read by all other skills first) │
+                            └───────────────┬──────────────────┘
+                                            │
+                ┌──────────────┬──────────┬──┼──┬──────────────┬──────────────┐
+                ▼              ▼          ▼  ▼  ▼              ▼              ▼
+            ┌──────────────┐ ┌────────┐ ┌──────┐ ┌──────────────┐ ┌──────────────┐
+            │ Foundation   │ │Execution│ │Go-to-│ │ Positioning  │ │   Toolkit    │
+            │              │ │         │ │Market│ │              │ │              │
+            ├──────────────┤ ├─────────┤ ├──────┤ ├──────────────┤ ├──────────────┤
+            │product-      │ │prd      │ │gtm-  │ │positioning-  │ │writing-      │
+            │marketing-    │ │okrs     │ │strat-│ │messaging     │ │assistant     │
+            │context       │ │pre-     │ │egy   │ │              │ │pmm-resume    │
+            │              │ │mortem   │ │work- │ │              │ │privacy-      │
+            │              │ │         │ │flow- │ │              │ │policy        │
+            │              │ │         │ │orch  │ │              │ │gaccs-brief   │
+            │              │ │         │ │      │ │              │ │              │
+            │ Skill: 1     │ │Skills: 8│ │Skills:2 │ Skills: 3   │ │ Skills: 4    │
+            └──────────────┘ └─────────┘ └──────┘ └──────────────┘ └──────────────┘
+                    │             │          │         │              │
+                    └─────────────┴──────────┴─────────┴──────────────┘
+                                          ↓
+                    All outputs stored in /foundation/brain.md
+                      Skills reference each other's work automatically
+
+Skills cross-reference each other:
+prd ↔ okrs ↔ pre-mortem
+positioning-messaging ↔ gaccs-brief ↔ writing-assistant
+gtm-strategy ↔ workflow-orchestrator ↔ interview-summary
+
+See each skill's **Related Skills** section for the full dependency map.
 
 ```
 
 Commands use skills. Some skills serve multiple commands. Some skills (like `prioritization-frameworks` or `proof-points-claims`) are standalone references that Claude draws on whenever relevant — no command needed.
 
 Commands are designed to flow into each other, matching the PMM workflow. After any command completes, it suggests relevant next commands — just follow the prompts.
+
+----
+## Available Skills
+
+| Skill | Description |
+|-------|-------------|
+| [product-marketing-context](skills/product-marketing-context/) | When the user wants to create or update their product marketing context document. The apex skill — every other skill reads this first to understand your product, ICP, personas, positioning, and competitive landscape. |
+| [positioning-messaging](skills/positioning-messaging/) | When the user wants to build positioning statements, message houses, value propositions by segment, homepage copy, or audit existing messaging against strategy using April Dunford's framework. |
+| [stakeholder-maps](skills/stakeholder-maps/) | When the user needs to build political stakeholder maps for launches or GTM initiatives — mapping power dynamics, deal roles, objection profiles, and identifying who kills deals, champions products, and blocks initiatives. |
+| [retro](skills/retro/) | When the user wants to facilitate a structured GTM retrospective for cross-functional squads (Eng, Design, PM, PMM) anchored to OKRs and launch outcomes. |
+| [prioritization-frameworks](skills/prioritization-frameworks/) | When the user needs to select a prioritization method, score strategic projects, triage a launch backlog, or decide how much GTM weight a product or initiative deserves. |
+| [pre-mortem](skills/pre-mortem/) | When the user wants to run cross-functional risk analysis on any strategic project — PRD, product launch, pricing change, new marketing channel, GTM pivot, or new market entry. |
+| [brainstorm-okrs](skills/brainstorm-okrs/) | When the user is setting quarterly OKRs, reviewing existing OKRs, stress-testing KR quality, or building a complete measurement plan for their PMM team. |
+| [product-requirement-doc](skills/product-requirement-doc/) | When the user mentions PRD, product requirements, solution story, feature spec, GTM brief, launch plan, product brief, user stories, or feature rollout — or asks how to structure a product document. |
+| [experiment-doc-builder](skills/experiment-doc-builder/) | When the user mentions A/B tests, experiments, hypotheses, growth tests, feature flags, conversion optimization, or any kind of product or marketing experimentation. |
+| [interview-summary](skills/interview-summary/) | When the user wants to summarize, process, or extract meaning from a customer or prospect interview transcript using JTBD theory and signal-level pattern detection. |
+| [writing-assistant](skills/writing-assistant/) | When the user wants to rewrite, sharpen, draft, or pressure-test any written communication — internal emails, Slack messages, async updates, decision memos, PRDs, one-pagers, homepage copy, ads, or positioning documents. |
+| [pmm-resume](skills/pmm-resume/) | When the user wants to review, tailor, or rebuild their PMM resume for a specific role or company. |
+| [privacy-policy](skills/privacy-policy/) | When the user needs to create, update, audit, or review data protection documentation, asks about GDPR, CCPA, or UK GDPR obligations, or mentions privacy policy needs. |
+| [gaccs-brief](skills/gaccs-brief/) | When the user mentions a campaign, launch, content piece, event, enablement asset, or any marketing project — or says "I need to write a brief" or "where do I even start with this?" |
+| [go-to-market-strategy](skills/go-to-market-strategy/) | When the user wants to assign launch tier (T1-T4) or generate strategic briefs with messaging and channels for product or feature launches. |
+| [workflow-orchestrator](skills/workflow-orchestrator/) | When the user wants to run complete multi-skill GTM workflows in one prompt — full launch, positioning refresh, competitive program, quarterly PMM cycle, market entry, post-launch retro, or new hire onboarding. |
 
 ## Quick Start
 
@@ -112,70 +122,76 @@ Done. All skills + commands ready.
 
 ---
 
-## Installation Quick Reference
-
-| Platform | Method | Status |
-|----------|--------|--------|
-| **Claude Cowork** | Settings → Browse plugins → Add from GitHub | ✅ Full support |
-| **Claude Code (CLI)** | `claude plugin marketplace add ...` | ✅ Full support |
-| **Claude.ai (Web)** | Manual skill upload only | ⚠️ Brain only |
-| **Cursor / Windsurf** | Copy skill folders | ✅ Skills only |
-
----
-
 ## Installation
 
-### Option 1: Claude Cowork (Recommended)
+### Option 1: CLI Install (Recommended)
 
-Install all skills and commands in one click.
-
-```bash
-# In Claude Cowork:
-# Customize → Browse plugins → Personal → Add marketplace from GitHub
-# Enter: stefanoskarakasis/Product-Marketing-Skills
-```
-
-All 15+ skills, commands, and brain integration install automatically.
-
----
-
-### Option 2: Claude Code (CLI)
+Use [npx skills](https://github.com/vercel-labs/skills) to install skills directly:
 
 ```bash
-claude plugin marketplace add stefanoskarakasis/Product-Marketing-Skills
+# Install all skills
+npx skills add stefanoskarakasis/Product-Marketing-Skills
+
+# Install specific skills
+npx skills add stefanoskarakasis/Product-Marketing-Skills --skill positioning-messaging competitive-battlecard
+
+# List available skills
+npx skills add stefanoskarakasis/Product-Marketing-Skills --list
 ```
 
----
+This automatically installs to your `.agents/skills/` directory (and symlinks into `.claude/skills/` for Claude Code compatibility).
 
-### Option 3: Claude.ai (Web — Brain Only)
+### Option 2: Claude Cowork Plugin
 
-⚠️ Web interface only supports manual skill uploads. Use Cowork or Code for full functionality.
+Install via Claude Cowork's built-in plugin system:
 
-1. Download: [product-marketing-context.zip](#)
-2. Go to Settings → Skills → Upload
-3. Select the .zip file
+```bash
+# Add the marketplace
+/plugin marketplace add stefanoskarakasis/Product-Marketing-Skills
 
----
+# Install all PMM skills
+/plugin install pmm-skills
+```
 
-### Option 4: Clone & Copy (Advanced)
+### Option 3: Clone and Copy
+
+Clone the entire repo and copy the skills folder:
 
 ```bash
 git clone https://github.com/stefanoskarakasis/Product-Marketing-Skills.git
-cp -r Product-Marketing-Skills/pmm-*/* ~/.cursor/skills/  # For Cursor
+cp -r Product-Marketing-Skills/skills/* .agents/skills/
 ```
 
----
+### Option 4: Git Submodule
 
-## What You Get
+Add as a submodule for easy updates:
 
-| | Cowork | Code | Web | Copy |
-|---|--------|------|-----|------|
-| Skills | ✅ | ✅ | ⚠️ | ✅ |
-| Commands | ✅ | ✅ | ❌ | ❌ |
-| Brain | ✅ | ✅ | ⚠️ | ✅ |
-| Auto-update | ✅ | ✅ | ❌ | Manual |
+```bash
+git submodule add https://github.com/stefanoskarakasis/Product-Marketing-Skills.git .agents/pmm-skills
+```
 
----
+Then reference skills from `.agents/pmm-skills/skills/`.
+
+### Option 5: Fork and Customize
+
+1. Fork this repository
+2. Customize skills for your specific PMM needs
+3. Clone your fork into your projects
+
+### Option 6: SkillKit (Multi-Agent)
+
+Use [SkillKit](https://github.com/rohitg00/skillkit) to install skills across multiple AI agents (Claude Code, Cursor, Copilot, etc.):
+
+```bash
+# Install all skills
+npx skillkit install stefanoskarakasis/Product-Marketing-Skills
+
+# Install specific skills
+npx skillkit install stefanoskarakasis/Product-Marketing-Skills --skill positioning-messaging competitive-battlecard
+
+# List available skills
+npx skillkit install stefanoskarakasis/Product-Marketing-Skills --list
+```
 
 ## Usage
 

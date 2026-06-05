@@ -7,9 +7,14 @@ description: >
   or initiative. Also trigger when a PM or PMM asks how to structure a product document, align on messaging, define
   success metrics, or plan a feature launch — even if they don't use the word "PRD". This skill produces two tangible
   outputs: (1) a standalone Solution Story for PMM-led communications, and (2) a full collaborative PRD for PM + PMM.
+
 metadata:
   version: "2.0.0"
   updated: "2026-03-18"
+  author: Stefanos Karakasis
+  context: context-agnostic
+  quality_gate: true
+last_updated: 2026-06-05
 ---
 
 # HS Product Requirements Doc — Skill

@@ -1,6 +1,12 @@
 ---
 name: go-to-market-strategy
 description: "Assigns launch tier (T1-T4) and generates GTM strategy briefs with messaging, channels, and success metrics. Reads brain for self-learning from past launches. Use when planning product launches, features, pricing changes, or market expansion. Chains with positioning-messaging and workflow-orchestrator."
+
+metadata:
+  author: Stefanos Karakasis
+  context: brain-dependent
+  quality_gate: true
+last_updated: 2026-06-05
 ---
 
 # Go-to-Market Strategy

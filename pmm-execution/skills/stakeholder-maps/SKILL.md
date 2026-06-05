@@ -9,6 +9,12 @@ description: >
   "communication plan", "stakeholder communication", "launch alignment", "who do I brief",
   "who needs to know", "internal enablement", "build my stakeholder map", or any request
   to map, engage, or align stakeholders around a GTM initiative, launch, or campaign.
+
+metadata:
+  author: Stefanos Karakasis
+  context: brain-dependent
+  quality_gate: true
+last_updated: 2026-06-05
 ---
 
 # hs-stakeholder-maps — PMM Stakeholder Intelligence Engine

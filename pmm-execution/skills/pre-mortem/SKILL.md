@@ -9,6 +9,12 @@ description: >
   "launch readiness", "pressure-test", "failure modes", "risks before we launch",
   "pre-launch review", "what are we missing", "GTM risk", "pricing risk", "market entry risk",
   or any request to identify, categorise, or mitigate strategic risk before a major move.
+
+metadata:
+  author: Stefanos Karakasis
+  context: brain-dependent
+  quality_gate: true
+last_updated: 2026-06-05
 ---
 
 # hs-pre-mortem — Strategic Risk Engine for PMMs

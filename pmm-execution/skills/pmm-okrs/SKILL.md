@@ -6,8 +6,13 @@ description: >
   and Exec Summary language. Use when setting quarterly OKRs, reviewing existing OKRs,
   stress-testing KR quality, or building a measurement plan. Produces output ready to paste
   directly into the PMM OKR Builder spreadsheet or share with leadership.
+
 version: 1.0
-author: Stefanos Karakasis
+metadata:
+  author: Stefanos Karakasis
+  context: brain-dependent
+  quality_gate: true
+last_updated: 2026-06-05
 ---
 
 # hs-brainstorm-okrs

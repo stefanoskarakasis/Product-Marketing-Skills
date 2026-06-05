@@ -1,23 +1,17 @@
 ---
 name: hs-writing-assistant
 description: >
-  A writing coach and messaging strategist for B2B tech teams. Use this skill whenever
-  someone wants to rewrite, sharpen, draft, or pressure-test any written communication:
-  Slack messages, internal emails, async updates, decision memos, PRDs, one-pagers,
-  homepage copy, ads, email campaigns, or positioning documents. Trigger on phrases like:
-  "rewrite this", "sharpen this", "help me say this better", "draft a message", "is this
-  landing?", "why isn't this converting?", "make this more human", "review my copy",
-  "this feels flat", "help me write to my CEO", "write a Slack update", "turn this into
+  A writing coach and messaging strategist for B2B tech teams. Use this skill whenever   someone wants to rewrite, sharpen, draft, or pressure-test any written communication:   Slack messages, internal emails, async updates, decision memos, PRDs, one-pagers,   homepage copy, ads, email campaigns, or positioning documents. Trigger on phrases like: "rewrite this", "sharpen this", "help me say this better", "draft a message", "is this   landing?", "why isn't this converting?", "make this more human", "review my copy",   "this feels flat", "help me write to my CEO", "write a Slack update", "turn this into
   an email", or any request involving internal or external written communication in a
   tech or B2B context.
+
 metadata:
   version: "1.0.0"
   updated: "2026-03-17"
-conversation_starters:
-  - "Can you tighten this Slack message?"
-  - "Help me make this easier to scan"
-  - "Tighten this PRD for clarity + success metrics"
-  - "Review my copy — why isn't it landing?"
+  author: Stefanos Karakasis
+  context: context-agnostic
+  quality_gate: false
+last_updated: 2026-06-05
 ---
 
 # hs-writing-assistant

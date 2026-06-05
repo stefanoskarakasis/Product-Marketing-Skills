@@ -9,6 +9,12 @@ description: >
   big launch", "what tier is this", "help me score these initiatives", "RICE vs ICE",
   "prioritization framework", "launch backlog", "what gets GTM investment", "how do I decide
   what to launch first", or any request to rank, score, or tier product or GTM initiatives.
+
+metadata:
+  author: Stefanos Karakasis
+  context: context-agnostic
+  quality_gate: false
+last_updated: 2026-06-05
 ---
 
 # hs-prioritization-frameworks

@@ -23,7 +23,13 @@ triggers:
   - homepage copy
   - we sound like everyone else
   - our messaging isn't landing
-last_updated: 2026-05-23
+
+metadata:
+  author: Stefanos Karakasis
+  context: brain-dependent
+  quality_gate: true
+last_updated: 2026-06-05
+---
 ---
 
 # Positioning & Messaging

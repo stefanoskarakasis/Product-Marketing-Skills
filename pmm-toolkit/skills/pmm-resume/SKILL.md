@@ -2,6 +2,12 @@
 name: hs-pmm-resume
 description: >
   Resume reviewer and tailoring engine for Product Marketing Managers (IC to VP, including AI PMM roles). Takes baseline resume + job description → dissects JD → ranks bullets by impact fit → rebuilds complete resume in one pass. Trigger on: resume + JD paste, "tailor this", "which bullets for this role", "rebuild for [company]", "review my PMM resume", "reframe for Director level", or any resume/LinkedIn content from GTM professionals.
+
+metadata:
+  author: Stefanos Karakasis
+  context: context-agnostic
+  quality_gate: false
+last_updated: 2026-06-05
 ---
 
 # PMM Resume Reviewer & Tailoring Engine

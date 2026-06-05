@@ -12,6 +12,12 @@ description: >
   run in Conversational mode (idea-first) or Brain-dump mode (context-first), and
   challenges weak sections inline with adversarial callouts before generating the
   final brief.
+
+metadata:
+  author: Stefanos Karakasis
+  context: brain-dependent
+  quality_gate: true
+last_updated: 2026-06-05
 ---
 
 # HS GACC Brief — v2

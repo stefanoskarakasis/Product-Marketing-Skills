@@ -2,10 +2,6 @@
 name: product-marketing-context
 skill: product-marketing-context
 version: 2.1.0
-metadata:
-  author: Stefanos Karakasis
-  context: brain-dependent
-  quality_gate: true
 description: The PMM Brain - setup wizard + health audit. Create your brain once, use it everywhere. Zero repetition.
 triggers:
   - setup brain
@@ -17,6 +13,10 @@ triggers:
   - check brain health
   - audit brain
   - brain health score
+metadata:
+  author: Stefanos Karakasis
+  context: brain-dependent
+  quality_gate: true
 last_updated: 2026-06-05
 ---
 

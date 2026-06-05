@@ -10,6 +10,12 @@ description: >
   "what went wrong", "GTM debrief", "sprint review", "what should we do differently",
   "our last launch", "debrief this launch", "what did we learn", or any request to reflect
   on a completed GTM cycle or product initiative.
+
+metadata:
+  author: Stefanos Karakasis
+  context: brain-dependent
+  quality_gate: true
+last_updated: 2026-06-05
 ---
 
 # hs-retro — GTM Retrospective Engine for PMMs

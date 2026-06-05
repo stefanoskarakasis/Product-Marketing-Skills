@@ -1,6 +1,12 @@
 ---
 name: workflow-orchestrator
 description: "Orchestrates multi-skill PMM workflows end-to-end. Chains all hs- skills + pmm-toolkit skills for complete GTM programs. Reads brain context, writes back to brain after completion. Trigger on: 'run full GTM workflow', 'launch [product]', 'positioning refresh', 'competitive program', 'full PMM cycle', 'quarterly refresh', 'new market entry', or any multi-step PMM initiative. Maintains state across skills, verifies coherence, produces master program document."
+
+metadata:
+  author: Stefanos Karakasis
+  context: brain-dependent
+  quality_gate: true
+last_updated: 2026-06-05
 ---
 
 # PMM Workflow Orchestrator

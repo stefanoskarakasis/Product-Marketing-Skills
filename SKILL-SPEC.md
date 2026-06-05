@@ -1,7 +1,7 @@
 # SKILL-SPEC.md
 ## Product Marketing Skills — Skill Authoring Standard
 
-**Version:** 1.0.0  
+**Version:** 2.0.0  
 **Last updated:** 2026-06-05  
 **Applies to:** All skills in this repository  
 **Owner:** Stefanos Karakasis
@@ -14,9 +14,9 @@ Existing skills are upgraded to it on the improvement schedule in `ROADMAP.md`.
 
 ## 1. What a Skill Is (and Isn't)
 
-A skill is a **structured instruction set** that tells Claude how to behave when invoked. It is not documentation. It is not a feature list. It is not a README.
+A skill is a **structured instruction set** that tells Claude how to behave when invoked. It is not documentation, a feature list, or a README.
 
-A skill that reads like a README will produce README-quality output.  
+A skill that reads like a README produces README-quality output.  
 A skill that reads like an operating manual produces operating-manual-quality output.
 
 **The test:** Could a new PMM follow this skill and know exactly what to do at every step, in every edge case, without asking a question? If no — it's not done.
@@ -25,41 +25,43 @@ A skill that reads like an operating manual produces operating-manual-quality ou
 
 ## 2. File Structure
 
-Every skill lives in its own directory and must contain:
+Every skill lives in its own directory:
 
 ```
 skills/skill-name/
-├── SKILL.md          ← Required. Main instruction file. Max 500 lines.
+├── SKILL.md                      ← Required. Main instruction file. Max 500 lines.
 ├── evals/
-│   └── skill-name.eval.md   ← Required. At least 3 test cases.
-├── config/           ← Optional. Reference data, frameworks, defaults.
-└── templates/        ← Optional. Output templates, examples.
+│   └── skill-name.eval.md        ← Required. At least 3 test cases.
+├── config/                       ← Optional. Reference data, frameworks, defaults.
+└── templates/                    ← Optional. Output templates, examples.
 ```
 
 **Hard rules:**
-- `SKILL.md` must stay under 500 lines. Move reference material to `config/` or `references/`.
+- `SKILL.md` stays under 500 lines. Move reference material to `config/` or `references/`.
 - Directory name must exactly match the `name` field in frontmatter.
-- The `evals/` folder is not optional. A skill without evals has no quality floor.
+- `evals/` is not optional. A skill without evals has no quality floor.
+- **Do not have a `SKILL.md` in a template folder** — Claude Code treats any file named `SKILL.md` as a loadable skill.
 
 ---
 
 ## 3. Frontmatter — Required Fields
 
-Every `SKILL.md` opens with YAML frontmatter. No exceptions.
+Every `SKILL.md` opens with YAML frontmatter:
 
 ```yaml
 ---
 name: skill-name
 version: 1.0.0
 description: >
-  One to four sentences. What this skill does. When to trigger it (include
-  trigger phrases). What it outputs. What related skills it chains with.
-  Max 1024 characters. This is what surfaces in skill discovery — write it
-  to be found, not to be complete.
+  What this skill does + 3–5 trigger phrases verbatim. Target 300–600 chars.
+  Trigger phrases belong here — they drive auto-fire. Explanatory prose
+  belongs in the H1 paragraph of the body, not here.
+  Example: "Assigns launch tier and builds GTM strategy briefs. Trigger on:
+  'launch this', 'what tier is this', 'GTM strategy for', 'run GTM workflow'."
 metadata:
   author: Stefanos Karakasis
-  context: brain-dependent   # or: context-agnostic
-  quality_gate: true          # or: false (only for thin utility skills)
+  context: brain-dependent        # or: context-agnostic — see Section 8
+  quality_gate: true              # false only for simple utilities
 last_updated: YYYY-MM-DD
 ---
 ```
@@ -69,116 +71,191 @@ last_updated: YYYY-MM-DD
 | Field | Required | Rule |
 |---|---|---|
 | `name` | Yes | Lowercase, hyphens only. Matches directory name exactly. No `--`. |
-| `version` | Yes | Semantic versioning: `MAJOR.MINOR.PATCH`. Patch = wording fix. Minor = new section or behaviour. Major = structural rebuild. |
-| `description` | Yes | 1–1024 chars. Include trigger phrases. Mention related skills. |
+| `version` | Yes | Semantic versioning. See Section 10. |
+| `description` | Yes | 300–600 chars. Trigger phrases verbatim. Mention related skills for scope boundaries. |
 | `metadata.author` | Yes | Author name. |
 | `metadata.context` | Yes | `brain-dependent` or `context-agnostic`. See Section 8. |
-| `metadata.quality_gate` | Yes | `true` for any skill that produces strategic output. `false` only for simple utilities. |
+| `metadata.quality_gate` | Yes | `true` for any skill producing strategic output. `false` for simple utilities only. |
 | `last_updated` | Yes | ISO date of last meaningful change. |
 
 ---
 
-## 4. Required SKILL.md Sections
+## 4. The Seven Required Sections
 
-Every skill must contain these sections in this order. Section names are fixed — do not rename them.
+Every `SKILL.md` must contain exactly these seven sections, in this order. **Do not rename them. Do not omit them.** Use `n.v.t.` if a section doesn't apply — that's the whole point. An omitted section says nothing. `n.v.t.` says "I considered this and it doesn't apply."
 
-### 4.1 Skill Header (after frontmatter)
+After frontmatter, open with:
 
 ```markdown
-# [Skill Name] — [One-line purpose]
+# Skill Name
 
-[2–3 sentence description of what this skill does, who it's for, and
-what makes it different from a generic approach. This is the first thing
-Claude reads — make it load the right mental frame immediately.]
+One paragraph. What this skill does and why it exists. No commands, no section
+headers — just the essence. Someone reading this paragraph should know immediately
+whether this is the right skill.
 ```
 
-### 4.2 `## ⓪ CONTEXT LOAD`
+Then the seven sections:
 
-Defines what context this skill reads before doing anything else.
+---
 
-**For brain-dependent skills:**
+### Section 1: `## Trigger`
+
+When to use this skill and when not to. Explicit routing to other skills.
+
 ```markdown
-## ⓪ CONTEXT LOAD
+## Trigger
 
-Load `/foundation/brain.md` before intake. Extract:
-- [Section X]: [What to pull and why]
-- [Section Y]: [What to pull and why]
-
-If brain file missing: surface once, non-blocking:
-> "No PMM context found. Run `product-marketing-context` to make this sharper.
-> Continuing with assumption-based output."
-
-If a loaded section is marked 🔴 Placeholder: flag it before proceeding.
+- **When:** The condition that fires this skill. One sentence.
+- **Not for:** Explicit exclusions — prevents scope creep and overlap.
+  Reference the correct skill by name.
+- **Example prompts:**
+  - "exact trigger phrase 1"
+  - "exact trigger phrase 2"
+  - "edge case phrasing that should also work"
 ```
 
-**For context-agnostic skills:**
-```markdown
-## ⓪ CONTEXT LOAD
+**Why this matters:** Without explicit exclusions, skills accumulate scope silently. After 10 skills, nobody knows where one ends and another begins. Name the boundary.
 
-This skill is context-agnostic. Do not load `/foundation/brain.md`.
-Do not apply any prior company context, ICP, or positioning assumptions.
-Start from the user's input only.
+---
+
+### Section 2: `## Inputs`
+
+What this skill needs before it can run.
+
+```markdown
+## Inputs
+
+- **Args:** What the user passes. CLI-style if applicable. `n.v.t.` if none.
+- **Defaults:** What happens if no arg is given. `n.v.t.` if no defaults.
+- **Context keys:** Which files, brain sections, or external resources are
+  needed before running. List file paths explicitly.
+  n.v.t. if context-agnostic and no files needed.
 ```
 
-### 4.3 `## RELATED SKILLS`
+---
 
-Which skills to chain to, and when. Format:
+### Section 3: `## Pre-flight`
+
+Dependency checks and early-exit conditions. Running before anything else.
 
 ```markdown
-## RELATED SKILLS
+## Pre-flight
 
-- **skill-name** → [When to route here, what it adds]
-- **skill-name** → [When to route here, what it adds]
+- [Dependency check — what must exist or be loaded]
+- [Early-exit condition — when failing fast beats degraded output]
+- n.v.t. if no pre-flight needed — write it explicitly, don't omit it.
 ```
 
-Minimum 2 related skills. If a skill has no logical connections, it probably shouldn't exist as a standalone skill.
+**The `n.v.t.` rule applies here most often.** Simple utility skills genuinely have no pre-flight. Write `n.v.t.` explicitly so reviewers know it was considered.
 
-### 4.4 `## ① INTAKE`
+---
 
-How the skill gathers input before producing output. Rules:
-- Ask questions in **one conversational message**, not one by one.
-- Always reflect back the user's context before proceeding.
-- Never generate output before completing intake.
-- If user provides a document: read it fully, extract assumptions, reflect back before analysis.
+### Section 4: `## Steps`
 
-### 4.5 Numbered execution sections `## ② ... ③ ... ④`
+The core logic. Each step is a discrete, named action.
 
-The core logic of the skill. Each section is a discrete step.
+**Step header convention:** Always include a short name in imperative form.
 
-Rules:
-- Number every section with a circled digit: ①②③④⑤⑥⑦⑧⑨
-- Each section has one job. If a section does two things, split it.
-- Use tables for classification logic, not prose.
-- Use code blocks for output format templates.
-- Use `> ⚠️` callouts for rules that must not be skipped.
-
-### 4.6 `## OUTPUT STRUCTURE`
-
-The exact format the skill must produce. Always include:
-- A code block showing the full output template with placeholder values.
-- Explicit instruction on formatting (markdown, tables, line breaks).
-- What must always be present vs. what is conditional.
-
-### 4.7 `## OPERATING RULES`
-
-A flat list of non-negotiable rules for this skill. Plain English. One rule per line. These are the lines a `verify` skill will check against.
-
-Format:
 ```markdown
-## OPERATING RULES
+## Steps
+
+### Step 1: Load Context
+
+[Action. Concrete. What to read, what to extract.]
+
+### Step 2: Run Intake
+
+[Next action.]
+
+### Step N: Deliver Output
+
+[Closing action.]
+```
+
+**Why named steps matter:** Cross-references in memory files and knowledge logs use step names. If you renumber steps, names keep references stable. `"See Step 4 (Intake)"` survives a re-order. `"See Step 4"` doesn't.
+
+Rules for steps:
+- Each step has one job. Split if a step does two things.
+- Use code blocks for commands, queries, output templates.
+- Use `> ⚠️` callouts for rules that cannot be skipped. Use sparingly — if everything is urgent, nothing is.
+- Idempotent where possible.
+
+---
+
+### Section 5: `## Outputs`
+
+What this skill produces.
+
+```markdown
+## Outputs
+
+- **Files written:** path → what's in it. n.v.t. if pure read-only.
+- **Chat output format:** markdown shape, with example or reference to
+  example in appendix. n.v.t. if no chat output.
+- **External side effects:** DB writes, external services triggered.
+  n.v.t. if none.
+```
+
+**Convention — output templates go in a code fence.** If this section or an appendix shows a template with H2/H3 headers, wrap it in ` ```markdown … ``` `. Otherwise every parser (skill audit, plugin sync) reads those raw `##` lines as skill sections — producing broken audits.
+
+---
+
+### Section 6: `## Verification`
+
+How to confirm the skill ran correctly. Concrete and checkable.
+
+```markdown
+## Verification
+
+- [How to verify the output is correct. Concrete commands or checks.]
+- [What the expected result looks like.]
+- n.v.t. only if the output is self-evidently verifiable with no steps needed.
+```
+
+This is not a quality gate (that's in Section 9). Verification is for the user to confirm success after the skill completes.
+
+---
+
+### Section 7: `## Do Not Use For`
+
+Explicit routing away from this skill. Every skill has boundaries.
+
+```markdown
+## Do Not Use For
+
+- **skill-name** — When to use that skill instead. One sentence.
+- **skill-name** — When to use that skill instead.
+- n.v.t. if this skill has no overlap with other skills — write it explicitly.
+  n.v.t. here means: "overlap was considered and there is none."
+```
+
+**This is the most important section for a multi-skill system.** Without it, users hit the wrong skill and get confused. With it, the routing is baked in.
+
+---
+
+## 5. Additional Required Sections (Strategic Skills)
+
+For Tier 1 and Tier 2 skills (see Section 12), add these after the seven required sections:
+
+### `## Operating Rules`
+
+Non-negotiable rules for this skill. One rule per line. These are what `verify` checks against.
+
+```markdown
+## Operating Rules
 
 - **Rule statement.** Reason or consequence.
 - **Rule statement.** Reason or consequence.
 ```
 
-Minimum 6 rules. If you can't write 6, the skill doesn't have enough logic to justify existing.
+Minimum 6 rules for T1/T2 skills. If you can't write 6, the skill doesn't have enough defined behaviour to be production-grade.
 
-### 4.8 `## QUALITY GATE`
+### `## Quality Gate`
 
-A table of checks that runs after output generation and before delivery. Required for all skills where `quality_gate: true`.
+Runs after output generation, before delivery. Required for all skills where `quality_gate: true`.
 
 ```markdown
-## QUALITY GATE
+## Quality Gate
 
 Runs after output generation. Surface failures before delivering — never after.
 
@@ -189,23 +266,21 @@ Runs after output generation. Surface failures before delivering — never after
 
 Minimum 5 checks. Each check must be binary (pass/fail), not subjective.
 
-### 4.9 `## SELF-IMPROVEMENT LOOP`
+### `## Self-Improvement Loop`
 
-How this skill captures learnings and writes them back. Required for all strategic skills. Format:
+Required for all T1 strategic skills.
 
 ```markdown
-## SELF-IMPROVEMENT LOOP
+## Self-Improvement Loop
 
 ### Before every session:
 1. [What to read]
 2. [What to check]
 
 ### After every session:
-1. [What to capture]
-2. [Where to write it]
+1. [What to capture and where]
 
-**Self-Improvement Trigger format:**
-Surface before encoding. Never encode silently.
+**Self-Improvement Trigger format — surface before encoding, never silently:**
 
 > 🔁 SELF-IMPROVEMENT TRIGGER
 > Pattern: [what was observed]
@@ -214,15 +289,15 @@ Surface before encoding. Never encode silently.
 > Awaiting approval before encoding.
 ```
 
-### 4.10 `## CHANGELOG`
+### `## Changelog`
 
-Every meaningful change logged. Most recent first.
+Most recent first.
 
 ```markdown
-## CHANGELOG
+## Changelog
 
 ### v[X.Y.Z] — YYYY-MM-DD
-[What changed and why. Not just "updated" — what specifically changed.]
+[What changed and why. Not just "updated" — what specifically changed and why.]
 
 ### v1.0.0 — YYYY-MM-DD
 Initial release.
@@ -230,121 +305,97 @@ Initial release.
 
 ---
 
-## 5. Eval Format
+## 6. Appendix Conventions
 
-Every skill needs an eval file at `evals/skill-name.eval.md`.
+Optional content goes after the seven required sections. Use these canonical appendix names so skill-audit tooling can skip them correctly:
 
-Minimum 3 test cases. Each test case must include:
+| Appendix name | Use for |
+|---|---|
+| `## Gotchas` | Edge cases, traps, knowledge that doesn't follow from the steps |
+| `## Voice reference` | Link to voice/tone reference file |
+| `## Example output` | Reference illustration of what the skill produces |
+| `## Edge cases` | Optional, with suffix if needed: `Edge cases — delivery` |
+| `## When to offer proactively` | When Claude should suggest this skill unprompted |
+| `## Dialog mode` | Opt-in conversational behaviour for iterative skills |
+| `## Reference` | External docs, links |
 
-```markdown
-## Test Case [N]: [Descriptive name]
-
-**Input:**
-[Realistic user prompt or scenario]
-
-**Expected output includes:**
-- [Specific element that must be present]
-- [Specific element that must be present]
-- [Specific element that must be present]
-
-**Expected output excludes:**
-- [What should NOT appear]
-
-**Pass condition:**
-[Single sentence defining what "correct" looks like for this case]
-```
-
-One test case must be an **edge case** (missing context, ambiguous input, or conflicting signals).  
-One test case must test the **quality gate** specifically.
+**Binding appendices** — those that are part of the flow, not just reader notes — get `(appendix — reference for Step N)` in the title. Example: `## Feedback format (appendix — reference for Step 8)`. This makes it visible that the appendix is part of the execution path.
 
 ---
 
-## 6. Line Budget and Offloading
+## 7. The `n.v.t.` Rule
 
-`SKILL.md` has a hard 500-line limit. This is not a suggestion.
+This is the single most important consistency mechanism in the spec.
 
-When you hit the limit:
-- Move detailed reference frameworks to `config/[framework-name].md`
-- Move output templates to `templates/[template-name].md`
-- Move long examples to `references/[example-name].md`
-- Reference them in SKILL.md: `→ See config/framework-name.md`
+**Every section must be present. Always.**
 
-This keeps `SKILL.md` fast to load and easy to scan. Skills that are hard to scan produce inconsistent output because Claude doesn't reliably read all of a long file.
+If a section doesn't apply to a skill, write `n.v.t.` (not applicable) under it — do not omit the section.
 
----
+- An omitted section says nothing about whether it was considered.
+- `n.v.t.` says: "this was considered and doesn't apply."
 
-## 7. Writing Style
+These are completely different signals. The second is auditable. The first is not.
 
-**Voice:** Direct and instructional. Second person ("When you're planning...").  
-**Length:** Short paragraphs. 2–4 sentences max per paragraph.  
-**Lists:** Use for steps, rules, checks. Not for prose.  
-**Tables:** For classification logic, scoring, reference data.  
-**Bold:** For key terms, rule statements, non-negotiables.  
-**Callouts (`> ⚠️`):** For rules that must not be skipped. Use sparingly — if everything is urgent, nothing is.  
-**Emojis:** Only as navigational markers (① ② ⓪ 🐯 🔁 ⚠️). Not decorative.  
-**No "this skill will..."** — Write the instructions directly, not a description of them.
+**This rule applies to all seven required sections and to the `## Do Not Use For` section specifically.** A `## Do Not Use For` with `n.v.t.` says: "there are no overlapping skills." A missing `## Do Not Use For` says nothing — and after 15+ skills, that silence causes real confusion.
 
 ---
 
 ## 8. Context Classification: Brain-Dependent vs Context-Agnostic
 
-This is the most important architectural decision for each skill.
+The most important architectural decision for each skill. Declared in frontmatter as `metadata.context`.
 
-### Brain-Dependent Skills
+### Brain-Dependent (`brain-dependent`)
 
-These skills **must** load `/foundation/brain.md` before running. They use company-specific ICP, positioning, alternatives, voice, and proof points to personalise output.
+Must load `/foundation/brain.md` before running. Output depends on company-specific ICP, positioning, alternatives, voice, or proof points.
 
-**Skills in this category:**
-- `positioning-messaging` — output depends entirely on your alternatives and ICP
-- `competitive-battlecard` — depends on your positioning and proof points
-- `go-to-market-strategy` — depends on your ICP, tier history, competitive context
-- `buyer-personas` — depends on your ICP and product context
-- `value-prop-statements` — depends on your alternatives and positioning
-- `gaccs-brief` — depends on your ICP, voice, and proof points
-- `stakeholder-maps` — depends on your GTM motion
-- `retro` — depends on your launch history
-- `pre-mortem` — depends on your ICP, positioning, and GTM motion
-- `workflow-orchestrator` — reads and writes brain across all sections
-- `ci-stakeholder-briefing` — depends on your competitive landscape
-- `pmm-okrs` — depends on your product stage and GTM motion
+Load instruction for brain-dependent skills:
 
-### Context-Agnostic Skills
+```markdown
+## Pre-flight
 
-These skills **must not** load brain context. They operate on frameworks and universal logic only. This prevents your current positioning from biasing output that should be framework-pure.
+- Load `/foundation/brain.md`. Extract: [Section X → what to pull and why].
+- If brain file missing: surface once, non-blocking:
+  > "No PMM context found. Run `product-marketing-context` to make this
+  > significantly sharper. Continuing with assumption-based output."
+- If a loaded section is marked 🔴 Placeholder: flag before proceeding.
+```
 
-**Why this matters:** If `experiment-doc-builder` loads your current ICP, it will unconsciously validate experiments that fit your current ICP rather than challenging them. The framework should be objective.
+**Brain-dependent skills:** `positioning-messaging`, `competitive-battlecard`, `go-to-market-strategy`, `buyer-personas`, `value-prop-statements`, `gaccs-brief`, `stakeholder-maps`, `retro`, `pre-mortem`, `workflow-orchestrator`, `ci-stakeholder-briefing`, `pmm-okrs`, `product-marketing-context`
 
-**Skills in this category:**
-- `experiment-doc-builder` — experiment rigour is universal, not company-specific
-- `prioritization-frameworks` — scoring frameworks are universal
-- `privacy-policy` — legal compliance is not company-specific
-- `pmm-resume` — career advice should not be biased by your current company context
-- `writing-assistant` — grammar and clarity are universal; voice is passed explicitly by the user, not auto-loaded
-- `interview-summary` — synthesis should be unbiased by existing positioning
-- `prd` — product requirements structure is universal
+### Context-Agnostic (`context-agnostic`)
 
-**The rule:** If the skill's quality depends on knowing your product — it's brain-dependent. If the skill's quality depends on a universal framework — it's context-agnostic. When in doubt, make it agnostic.
+Must **not** load brain context. Operates on universal frameworks and the user's input only.
+
+Load instruction for context-agnostic skills:
+
+```markdown
+## Pre-flight
+
+- This skill is context-agnostic. Do not load `/foundation/brain.md`.
+- Do not apply prior company context, ICP, or positioning assumptions.
+- Start from the user's input only.
+```
+
+**Why this matters:** If `experiment-doc-builder` loads your current ICP, it validates experiments that fit your current ICP instead of stress-testing them. The framework must be objective.
+
+**Context-agnostic skills:** `experiment-doc-builder`, `prioritization-frameworks`, `privacy-policy`, `pmm-resume`, `writing-assistant`, `interview-summary`, `prd`
+
+**The rule:** If output quality depends on knowing your product → brain-dependent. If output quality depends on a universal framework → context-agnostic. When in doubt, choose agnostic.
 
 ---
 
 ## 9. Brain Read/Write Contract
 
-For every brain-dependent skill, declare exactly what it reads and writes.
+For every brain-dependent skill, declare exactly what it reads and writes. Add this block to `## Inputs`:
 
 ```markdown
-## BRAIN CONTRACT
-
-**Reads:**
-- Section 2 (ICP): [What specifically is extracted]
-- Section 3 (Positioning): [What specifically is extracted]
-
-**Writes:**
-- Section 7 (Launch History): [What is written back and when]
-
-**Never writes to:** Section 1, Section 6
+**Brain contract:**
+- Reads: Section 2 (ICP) — [what specifically], Section 3 (Positioning) — [what specifically]
+- Writes: Section 7 (Launch History) — [what is written and when]
+- Never writes to: Section 1, Section 6
 ```
 
-This prevents skills from silently overwriting brain sections they shouldn't touch.
+This prevents skills from silently overwriting sections they shouldn't touch.
 
 ---
 
@@ -352,75 +403,211 @@ This prevents skills from silently overwriting brain sections they shouldn't tou
 
 | Change type | Increment |
 |---|---|
-| Typo or wording fix | PATCH (1.0.0 → 1.0.1) |
-| New section, new check, new operating rule | MINOR (1.0.0 → 1.1.0) |
-| Restructured logic, changed intake, new output format | MAJOR (1.0.0 → 2.0.0) |
+| Typo, wording fix, minor clarification | PATCH (1.0.0 → 1.0.1) |
+| New section, new check, new operating rule, new step | MINOR (1.0.0 → 1.1.0) |
+| Restructured logic, changed intake, new output format, new section order | MAJOR (1.0.0 → 2.0.0) |
 | Patched from a live session finding | PATCH with session note in changelog |
 
-Increment `last_updated` on every change, regardless of increment size.
+Always update `last_updated` on every change regardless of increment size.
 
 ---
 
-## 11. The `review` Meta Skill Checklist
+## 11. Eval Format
 
-When the `review` meta skill audits a `SKILL.md`, it checks these in order. This is the same list you use when self-reviewing before committing.
+Every skill needs `evals/skill-name.eval.md`. Minimum 3 test cases.
+
+```markdown
+## Test Case N: Descriptive name
+
+**Input:**
+[Realistic user prompt or scenario]
+
+**Expected output includes:**
+- [Specific element that must be present]
+- [Specific element that must be present]
+
+**Expected output excludes:**
+- [What should NOT appear]
+
+**Pass condition:**
+[Single sentence defining what "correct" looks like]
+```
+
+One test case must be an **edge case** (missing context, ambiguous input, conflicting signals).  
+One test case must test the **quality gate** specifically.
+
+---
+
+## 12. Skill Tiers
+
+| Tier | Description | Examples | Requirements |
+|---|---|---|---|
+| **T1 — Strategic** | High-stakes, executive or customer-facing output | pre-mortem, positioning-messaging, competitive-battlecard, go-to-market-strategy | All 7 sections + operating rules + quality gate + self-improvement loop + changelog |
+| **T2 — Execution** | Day-to-day PMM work, high frequency, medium stakes | experiment-doc, prd, retro, stakeholder-maps, gaccs-brief, pmm-okrs, buyer-personas | All 7 sections + quality gate + changelog |
+| **T3 — Utility** | Tactical outputs, lower stakes | writing-assistant, pmm-resume, privacy-policy, interview-summary, prioritization-frameworks | All 7 sections + changelog. Quality gate optional. |
+| **T4 — Meta** | Skills that operate on other skills | review, learn, verify, workflow-orchestrator, product-marketing-context | Custom per meta skill. All 7 sections still required. |
+
+---
+
+## 13. The `review` Meta Skill Checklist
+
+When the `review` meta skill audits a `SKILL.md`, it checks these in order. Use this list for self-review before committing.
 
 **Frontmatter (5 checks):**
 - [ ] All required fields present
-- [ ] `name` matches directory name
-- [ ] `description` includes trigger phrases
-- [ ] `metadata.context` declared
+- [ ] `name` matches directory name exactly
+- [ ] `description` is 300–600 chars and includes trigger phrases verbatim
+- [ ] `metadata.context` declared as `brain-dependent` or `context-agnostic`
 - [ ] `version` and `last_updated` present
 
-**Structure (9 checks):**
-- [ ] `## ⓪ CONTEXT LOAD` present and correctly typed for context classification
-- [ ] `## RELATED SKILLS` present with ≥2 entries
-- [ ] `## ① INTAKE` present — asks questions in one message, reflects back before proceeding
-- [ ] Numbered execution sections present
-- [ ] `## OUTPUT STRUCTURE` present with template in code block
-- [ ] `## OPERATING RULES` present with ≥6 rules
-- [ ] `## QUALITY GATE` present (if `quality_gate: true`) with ≥5 checks
-- [ ] `## SELF-IMPROVEMENT LOOP` present (for strategic skills)
-- [ ] `## CHANGELOG` present with ≥1 entry
+**Seven required sections (7 checks):**
+- [ ] `## Trigger` — includes When, Not for, Example prompts
+- [ ] `## Inputs` — all three sub-fields present (or `n.v.t.`)
+- [ ] `## Pre-flight` — present (or explicit `n.v.t.`)
+- [ ] `## Steps` — named steps in imperative form, at least 2 steps
+- [ ] `## Outputs` — all three sub-fields present (or `n.v.t.`)
+- [ ] `## Verification` — concrete and checkable (or explicit `n.v.t.`)
+- [ ] `## Do Not Use For` — present with routing (or explicit `n.v.t.`)
 
-**Quality (5 checks):**
-- [ ] SKILL.md is ≤500 lines
-- [ ] No section reads like a README or documentation
-- [ ] Output template is complete and realistic
+**Tier-appropriate sections (4 checks):**
+- [ ] `## Operating Rules` present with ≥6 rules (T1/T2)
+- [ ] `## Quality Gate` present with ≥5 binary checks (T1/T2 where `quality_gate: true`)
+- [ ] `## Self-Improvement Loop` present (T1)
+- [ ] `## Changelog` present with ≥1 entry
+
+**Quality (3 checks):**
+- [ ] `SKILL.md` is ≤500 lines
+- [ ] Output template is in a code fence (not raw markdown headers)
 - [ ] Evals file exists with ≥3 test cases including one edge case
-- [ ] Brain contract declared (if brain-dependent)
 
-**Pass threshold:** 17/19 checks. Skills below this threshold are flagged for improvement before next use.
-
----
-
-## 12. Skill Tiers (Internal Classification)
-
-Not all skills are equal in complexity or strategic importance. Knowing the tier tells you how much investment to put into a skill.
-
-| Tier | Description | Skills | Required sections |
-|---|---|---|---|
-| **T1 — Strategic** | High-stakes output, used in executive or customer-facing contexts | pre-mortem, positioning-messaging, competitive-battlecard, go-to-market-strategy | All sections required. Quality gate mandatory. Self-improvement loop mandatory. |
-| **T2 — Execution** | Day-to-day PMM work, used frequently, medium stakes | experiment-doc, prd, retro, stakeholder-maps, gaccs-brief, pmm-okrs, buyer-personas | All sections required. Quality gate required. |
-| **T3 — Utility** | Tactical outputs, lower stakes | writing-assistant, pmm-resume, privacy-policy, interview-summary, prioritization-frameworks | Context load, intake, output structure, operating rules required. Quality gate optional. |
-| **T4 — Meta** | Skills that operate on other skills | review, learn, verify, workflow-orchestrator, product-marketing-context | Custom — defined per meta skill. |
+**Pass threshold:** 17/19 checks. Skills below this are flagged for improvement before next use.
 
 ---
 
-## 13. What Makes a Skill "Best in Class"
+## 14. What Makes a Skill "Best in Class"
 
 A best-in-class skill has five properties:
 
-**1. It fails gracefully.** Missing context, vague input, or interrupted sessions are handled explicitly — not silently ignored or producing generic output.
+**1. It fails gracefully.** Missing context, vague input, and interrupted sessions are handled explicitly — not silently producing generic output.
 
 **2. It enforces its own quality.** The quality gate runs before output is delivered. A skill that can produce a bad output without flagging it is not production-grade.
 
-**3. It gets smarter over time.** The self-improvement loop is not cosmetic. Patterns surface, get approved, get encoded. The 10th session is meaningfully sharper than the first.
+**3. It knows its boundaries.** The `## Do Not Use For` section names where the skill ends and routes clearly to what comes next. Users never wonder whether they're in the right skill.
 
-**4. It knows what it doesn't do.** The operating rules state what the skill will NOT do. Boundaries are as important as capabilities.
+**4. It gets smarter over time.** The self-improvement loop is not cosmetic. Patterns surface, get approved, get encoded. Session 10 is measurably sharper than session 1.
 
-**5. It hands off cleanly.** Related skills are named with specific routing conditions — not "you could also run X." The handoff logic is precise enough that the user never wonders what to do next.
+**5. It hands off cleanly.** The `## Trigger` section names specific routing conditions — not vague "you could also run X." The handoff is precise enough that the user never wonders what to do next.
 
 ---
 
-*This spec is a living document. Update it when patterns emerge across multiple skills that should be standardised. The spec version should increment whenever a new requirement is added.*
+## 15. SKILL.md Template
+
+Copy this to `skills/<skill-name>/SKILL.md` when creating a new skill. Fill every section. Use `n.v.t.` where genuinely not applicable — never leave a section blank or omit it.
+
+```markdown
+---
+name: skill-name
+version: 1.0.0
+description: >
+  What this skill does + 3–5 trigger phrases verbatim. 300–600 chars.
+  Trigger phrases here drive auto-fire. Explanatory prose goes in the body.
+metadata:
+  author: Stefanos Karakasis
+  context: brain-dependent
+  quality_gate: true
+last_updated: YYYY-MM-DD
+---
+
+# Skill Name
+
+One paragraph. What this skill does and why it exists. No commands, no
+section headers — just the essence. Someone reading this should know
+immediately whether this is the right skill.
+
+## Trigger
+
+- **When:** [Condition. One sentence.]
+- **Not for:** [Explicit exclusions with routing to correct skill.]
+- **Example prompts:**
+  - "[exact phrase 1]"
+  - "[exact phrase 2]"
+  - "[edge case that should also work]"
+
+## Inputs
+
+- **Args:** [n.v.t. if none]
+- **Defaults:** [n.v.t. if no defaults]
+- **Context keys:** [Files, brain sections, external resources needed.
+  n.v.t. if context-agnostic.]
+  - **Brain contract:** Reads: [sections]. Writes: [sections]. Never writes to: [sections].
+
+## Pre-flight
+
+- [Dependency check or early-exit condition]
+- n.v.t.
+
+## Steps
+
+### Step 1: [Name — imperative]
+
+[Action. Concrete.]
+
+### Step 2: [Name]
+
+[Next action.]
+
+### Step N: [Deliver Output]
+
+[Closing action.]
+
+## Outputs
+
+- **Files written:** [path → what's in it. n.v.t. if read-only.]
+- **Chat output format:** [markdown shape. n.v.t. if no chat output.]
+- **External side effects:** [n.v.t. if none.]
+
+## Verification
+
+- [How to confirm the skill ran correctly. Concrete.]
+- n.v.t.
+
+## Do Not Use For
+
+- **[skill-name]** — [When to use that skill instead.]
+- n.v.t.
+
+---
+
+## Operating Rules
+
+- **Rule.** Reason.
+
+## Quality Gate
+
+| Check | Standard | Pass = |
+|---|---|---|
+| [Check] | [What it tests] | [Pass condition] |
+
+## Self-Improvement Loop
+
+### Before every session:
+1. [What to read]
+
+### After every session:
+1. [What to capture and where]
+
+> 🔁 SELF-IMPROVEMENT TRIGGER
+> Pattern: [observed]
+> Proposed update: [exact change]
+> Location: [file path]
+> Awaiting approval before encoding.
+
+## Changelog
+
+### v1.0.0 — YYYY-MM-DD
+Initial release.
+```
+
+---
+
+*This spec is a living document. When patterns emerge across multiple skills that should be standardised, update the spec and increment its version. The spec version tracks separately from individual skill versions.*

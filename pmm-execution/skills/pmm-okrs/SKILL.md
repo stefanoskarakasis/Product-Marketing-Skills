@@ -1,339 +1,302 @@
 ---
-name: hs-brainstorm-okrs
+name: pmm-okrs
+version: 2.1.0
 description: >
-  Guides Product Marketing leaders and individual PMMs through building a complete, export-ready
-  OKR set for their quarter — including Objective, Key Results, Projects, Scorecard metrics,
-  and Exec Summary language. Use when setting quarterly OKRs, reviewing existing OKRs,
-  stress-testing KR quality, or building a measurement plan. Produces output ready to paste
-  directly into the PMM OKR Builder spreadsheet or share with leadership.
+  Guides Product Marketing leaders and individual PMMs through building a complete,
+  export-ready OKR set for their quarter — including Objective, Key Results, Projects,
+  Scorecard metrics, and Exec Summary language. Use when setting quarterly OKRs,
+  reviewing existing OKRs, stress-testing KR quality, or building a measurement plan.
+  Trigger on: "help me set our OKRs", "are my KRs measurable", "build a scorecard",
+  "stress-test this KR", "write OKRs for my team", "present goals to exec team".
+  Produces output paste-ready for the PMM OKR Builder spreadsheet or leadership sharing.
 
-version: 1.0
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-06-05
+last_updated: 2026-06-06
 ---
 
-# hs-brainstorm-okrs
+# pmm-okrs
 
 A guided OKR builder for Product Marketing teams. Run it at the start of every quarter.
 Outputs a complete, review-ready OKR set you can paste directly into the PMM OKR Builder sheet.
 
 ---
 
-## HOW TO START
+## Trigger
 
-Paste any of the commands below — or just describe your situation in plain language.
-The skill will detect what you need and run the right mode automatically.
+- **When:** Start of any quarter when setting PMM OKRs. When reviewing or stress-testing
+  existing KRs before committing. When building a measurement plan or leadership-ready
+  exec narrative from a finalised OKR set.
+- **Not for:** Company-level OKR design (not PMM-specific) → general planning tool.
+  Revenue forecasting or headcount planning. OKR tooling setup (Lattice, Workday) —
+  this skill produces content, not configuration. If no quarterly strategy exists yet →
+  run `hs-pmm-strategy` first, then return here.
+- **Example prompts:**
+  - "Help me set our Q3 OKRs"
+  - "Are these KRs measurable enough?"
+  - "Build a scorecard for my chosen option"
+  - "Write OKRs for my team lead who owns competitive intelligence"
+  - "Stress-test this KR: improve win rate in enterprise"
+  - "I need to present our goals to the exec team next week"
 
 ---
 
-## COMMANDS
+## Inputs
+
+- **Args:** Company objective, PMM mandate, team size, primary metric, biggest challenge,
+  ICP, and named competitors. All optional at start — skill gathers via intake flow.
+- **Defaults:** If no args provided, run intake flow via `/build`. If partial context
+  is provided, infer where possible and surface gaps explicitly before proceeding.
+- **Context keys:**
+  - `.agents/product-marketing-context.md` — optional but recommended. Load Revenue
+    Levers, Goals & KPIs, Big Bet Campaigns, Company Overview silently if present.
+  - `knowledge/okrs/rules.md` — apply confirmed OKR craft rules by default.
+  - `knowledge/okrs/hypotheses.md` — test any active hypothesis if applicable today.
+  - `decisions/` — check for prior decisions before making new recommendations.
+
+---
+
+## Pre-flight
+
+Before starting, check `.agents/product-marketing-context.md`.
+
+**If it exists — load silently:**
+- `## Revenue Levers` → align OKRs to the stack-ranked levers
+- `## Goals & KPIs` → use North Star + OMTM as anchors
+- `## Big Bet Campaigns` → surface as project goals
+- `## Company Overview` → stage and business model context
+
+**Confidence awareness:** If loaded sections are 🔴, flag before building OKRs:
+> "Revenue Levers is marked as Placeholder — OKRs built on this may need revisiting. Want to update it first?"
+
+**If missing:** Proceed. Surface once:
+> "Run `hs-product-marketing-context BUILD` first for sharper OKRs. Continuing."
+
+**Related skills — cross-reference before or after this skill:**
+- **hs-pmm-strategy** → run before this skill if no quarterly strategy exists yet
+- **hs-product-requirement-doc** → PRDs inform project OKRs; check for alignment
+- **hs-gaccs-brief** → campaign briefs should trace back to OKR project goals
+
+---
+
+## Steps
+
+### Step 1 — `/build`
+1. Run intake (or infer from pasted context). 2. Load `knowledge/okrs/rules.md`.
+3. Check `decisions/` for prior choices in this area. 4. Generate three OKR options.
+5. Run independent evaluation pass (Block 3) on all three. 6. Present with Quality Gate
+results inline. 7. Log option selection to `decisions/`.
+
+### Step 2 — `/review`
+1. Accept pasted OKRs. 2. Run each KR through all five Quality Gates (binary).
+3. Flag every failure with an ADVERSARIAL CALLOUT and a rewrite. 4. Return annotated set.
+
+### Step 3 — `/scorecard`
+1. Work from OKRs in session or ask user to paste. 2. Map each KR to metric, target,
+measurement method. 3. Group by category. 4. Confirm Weight = 100%. 5. Output scorecard.
+
+### Step 4 — `/exec`
+1. Confirm OKRs are finalised (not drafts). 2. Translate to one-paragraph exec narrative.
+
+### Step 5 — `/map`
+1. For each KR, generate required projects with owner type, effort (S/M/L), timeline.
+2. Flag capacity conflicts if team size known.
+
+### Step 6 — `/stress-test [KR]`
+1. Accept one KR. 2. Run through five Quality Gates. 3. Return per-gate pass/fail + rewrite.
+
+---
+
+## Outputs
+
+- **Files written:** `decisions/YYYY-MM-DD-{topic}.md` when a strategic OKR choice
+  is logged. `knowledge/okrs/hypotheses.md` and `rules.md` when the self-improvement
+  loop triggers at session end. No other writes.
+- **Chat output format:** Three OKR option blocks in code-fence structured output,
+  each with Quality Gate results inline. Scorecard table. Exec Summary paragraph.
+  All formatted for direct paste into the PMM OKR Builder spreadsheet.
+- **External side effects:** n.v.t.
+
+---
+
+## Verification
+
+- All `/build` output contains three OKR options unless user explicitly requests fewer.
+- Every option includes Quality Gate results (five binary checks) before delivery.
+- No output delivered before the independent evaluation pass (Block 3) has run.
+- Adversarial callouts surface inline before delivery, never post-delivery.
+- Decision log written whenever a recommendation will affect the user's quarter.
+- `/exec` output produced only from finalised OKRs, not from draft options.
+- Scorecard Weight column confirmed to total 100% before output is delivered.
+
+---
+
+## Do Not Use For
+
+- **hs-pmm-strategy** — if no quarterly strategy exists yet, run that first. This skill
+  builds OKRs *from* a strategy, not *instead of* one.
+- **hs-prioritization-frameworks** — for prioritising *which initiatives* to include in
+  a quarter before OKRs are set. Run that upstream, then return here.
+- **hs-gaccs-brief** — for campaign planning that traces back to OKRs already set.
+  Use after `/build` to brief individual campaigns.
+- **Company-level OKR design** — this skill is PMM-specific. Exec team or company
+  OKRs require different framing and are out of scope.
+- **OKR tooling setup** — this skill produces OKR content, not Lattice/Workday
+  configuration or workflow automation.
+
+---
+
+## Reasoning Architecture
+
+### Block 1 — Knowledge Architecture (Learning Loop)
+
+**Before any task:** Load `knowledge/INDEX.md` and relevant domain folders. Apply
+`rules.md` by default. Test any active hypothesis if applicable today.
+
+**After any session:** Extract 1–3 insights. Unconfirmed → `hypotheses.md`.
+Confirmed 3+ times → auto-promote to `rules.md`. Contradicted → demote to `hypotheses.md`.
+
+> **Environment note:** Persistent `/knowledge/` works in Claude Code and Cowork.
+> In Claude.ai chat, surface insights at end of session for manual carry-forward.
+
+### Block 2 — Decision Journal
+
+Check `decisions/` before any recommendation. Log new decisions immediately.
+
+```
+File: decisions/YYYY-MM-DD-{topic}.md
+Decision / Context / Alternatives / Reasoning / Trade-offs / Supersedes
+```
+
+**Log when:** Choosing between OKR options. Recommending a measurement method.
+Flagging a failing gate. Any recommendation affecting the user's quarter.
+
+### Block 3 — Independent Evaluation Pass
+
+After generating any output: re-read cold as evaluator. Run all five Quality Gates
+binary. Rewrite failures before delivery. Report gate results inline.
+
+---
+
+## Commands
 
 ### /build
-Build three OKR options from scratch based on your context.
-The skill will ask for the inputs it needs, then produce three fully-formed OKR sets.
+Builds three OKR options from scratch with Quality Gate results.
 
 **Example prompts:**
-- `/build` — starts the intake flow
-- `Help me set our Q3 OKRs. We're a 3-person PMM team at a B2B SaaS company. Our company OKR is to grow ARR by 40% this year. We're struggling with low seller adoption of our messaging.`
-- `I need to write OKRs for next quarter. We're entering the FS segment for the first time and I need PMM to prove its impact to my CMO.`
-- `Build OKRs for a solo PMM at a Series B company. Primary challenge: positioning isn't landing with enterprise buyers.`
-
----
+- `Help me set our Q3 OKRs. 3-person PMM team, B2B SaaS, company OKR: grow ARR 40%.`
+- `Build OKRs for a solo PMM at a Series B. Challenge: positioning isn't landing.`
 
 ### /review
-Paste your existing OKRs. The skill will audit them against quality gates and tell you
-exactly what to fix before you commit.
+Audits existing OKRs against all five Quality Gates. Returns exact fixes.
 
-**Example prompts:**
-- `/review` then paste your OKRs
-- `Here are my draft Q2 OKRs — can you tell me if they're strong enough?`
-- `My manager reviewed these and said they're not measurable enough. What would you change?`
-- `Are these KRs outcome-focused or am I measuring outputs?`
-
-**Example input to paste:**
+**Example input:**
 ```
-Objective: Improve our go-to-market in the mid-market segment.
-KR 1: Launch 4 new battlecards by end of quarter.
-KR 2: Run monthly sales training sessions.
-KR 3: Increase pipeline.
+Objective: Improve go-to-market in mid-market.
+KR 1: Launch 4 battlecards. KR 2: Run monthly training. KR 3: Increase pipeline.
 ```
-
----
 
 ### /scorecard
-Build the measurement plan for your chosen OKR set. Maps each KR to specific metrics,
-targets, and measurement methods (Gong, CRM, G2, survey, etc.).
-
-**Example prompts:**
-- `/scorecard` — works from OKRs already in session, or asks you to paste them
-- `Build me a measurement plan for Option A.`
-- `What metrics should I track to prove my OKRs are working?`
-- `I need a scorecard I can review weekly with my team.`
-- `Map these KRs to the right metrics and tell me how to track them.`
-
----
+Maps each KR to metrics, targets, and measurement methods.
 
 ### /exec
-Generate clean, leadership-ready language: a one-paragraph Exec Summary of your OKRs,
-suitable for a QBR, VP presentation, or all-hands slide. Pulls from OKRs already set in
-the session or asks you to paste them.
-
-**Example prompts:**
-- `/exec` — generates the exec narrative
-- `Write the exec summary version of our OKRs for my CMO.`
-- `I need to present our Q3 goals to the Exec team next week. Make this land.`
-- `Turn our OKRs into a one-slide narrative.`
-
----
+Generates one-paragraph exec-ready OKR narrative for QBRs and VP presentations.
 
 ### /map
-Build the OKR → Projects mapping table. For each Key Result, generates the projects
-required to move it — with suggested owner type, effort size, and timeline.
+Builds OKR → Projects table with owner type, effort (S/M/L), and timeline.
 
-**Example prompts:**
-- `/map` — maps from OKRs already set in session
-- `What projects do I need to run to hit these KRs?`
-- `Map KR 1 and KR 2 to the actual work my team needs to do.`
-- `I have a team of 3. Which projects should I prioritise given our capacity?`
-
----
-
-### /individual
-Generate OKRs for an individual PMM contributor. Specify their specialty if known.
-
-**Example prompts:**
-- `/individual positioning` — OKRs for a Positioning & Messaging PMM
-- `/individual competitive` — OKRs for a Competitive Intelligence PMM
-- `/individual gtm` — OKRs for a GTM / Launch PMM
-- `Write OKRs for my most junior PMM. She owns competitive intelligence and enablement.`
-- `I need to set OKRs with my IC tomorrow. He focuses on launches. What should we target?`
-
----
+### /individual [specialty]
+Generates OKRs for an individual PMM contributor.
+- `/individual positioning` · `/individual competitive` · `/individual gtm`
 
 ### /stress-test [KR]
-Runs a single Key Result through all five quality gates. Returns a pass/fail on each gate
-plus a rewrite if it fails.
-
-**Example prompts:**
-- `/stress-test "Improve win rate in the enterprise segment"`
-- `/stress-test "Launch a new battlecard for Competitor X"`
-- `Is this a good KR: increase content engagement by 20%?`
-- `My VP pushed back on this KR. Can you tell me why and how to fix it?`
+Runs one KR through all five Quality Gates. Returns pass/fail + rewrite.
 
 ---
 
-## INTAKE QUESTIONS (Build Mode)
+## Output Format
 
-When you run `/build` or describe your situation, the skill will gather the following.
-You can answer all at once or let it ask one by one.
-
-1. **Company-level objective** — what is the business trying to achieve this quarter?
-2. **PMM mandate** — what is PMM specifically responsible for?
-3. **Primary metric** — pipeline, win rate, seller adoption, NPS, or something else?
-4. **Team size** — solo PMM, small team (2–4), or scaled team (5+)?
-5. **Biggest challenge** — what is broken, slow, or missing right now?
-6. **ICP and competitors** — who are you selling to, who are you fighting?
-
-You can also skip intake by pasting a brief, strategy doc, or talking points.
-The skill will read what you paste and infer what it needs.
-
----
-
-## OUTPUT FORMAT
-
-All output is structured for direct paste into the PMM OKR Builder spreadsheet.
-
-### Full OKR Set Output
-
-```
+```markdown
 ═══════════════════════════════════════════
 OPTION [A / B / C] — [Strategic Focus]
 ═══════════════════════════════════════════
+OBJECTIVE: [1–2 sentence qualitative goal.]
 
-OBJECTIVE:
-[1–2 sentence qualitative goal. Specific, inspirational, time-bound.]
-
-KEY RESULTS:
-
-KR 1 — [Name]
-[Specific measurable outcome. Target. Deadline. Measurement method.]
-
-KR 2 — [Name]
-[Specific measurable outcome. Target. Deadline. Measurement method.]
-
-KR 3 — [Name]
-[Specific measurable outcome. Target. Deadline. Measurement method.]
+KR 1 — [Name]: [Outcome. Target. Deadline. Measurement.]
+KR 2 — [Name]: [Outcome. Target. Deadline. Measurement.]
+KR 3 — [Name]: [Outcome. Target. Deadline. Measurement.]
 
 CONFIDENCE: [X%]
+CHOOSE THIS WHEN: [1-sentence fit description.]
 
-CHOOSE THIS WHEN:
-[1-sentence description of when this option fits best.]
+KEY PROJECTS: 1. [name — KR] 2. [name — KR] 3. [name — KR]
 
-KEY PROJECTS (the work that moves the KRs):
-1. [Project name — which KR it serves]
-2. [Project name — which KR it serves]
-3. [Project name — which KR it serves]
-4. [Project name — which KR it serves]
-5. [Project name — which KR it serves]
+QUALITY GATE RESULTS:
+Gate 1 — Outcome not output:           ✅ / ❌
+Gate 2 — Measurable without ambiguity: ✅ / ❌
+Gate 3 — Causally linked to objective: ✅ / ❌
+Gate 4 — 60–70% confidence:            ✅ / ❌
+Gate 5 — Three or fewer KRs:           ✅ / ❌
 ═══════════════════════════════════════════
 ```
 
-### Scorecard Output
+---
 
+## Quality Gates
+
+| Gate | Test | Fail | Pass |
+|---|---|---|---|
+| 1 | Outcome, not output | "Launch 4 battlecards" | "Win rate up 8%" |
+| 2 | Measurable without ambiguity | "Improve messaging" | "80% resonance from 50 reviews" |
+| 3 | Causally linked to objective | PMM doesn't own lever | PMM controls what moves this |
+| 4 | 60–70% confidence | >90% or <50% | Ambitious but achievable |
+| 5 | Three or fewer KRs | Four or more | Three or fewer |
+
+**Adversarial callout format:**
+> ⚠️ ADVERSARIAL CALLOUT: [Issue] — [Why it's a problem and what to write instead.]
+
+---
+
+## Operating Rules
+
+- **Load brain context before intake.** Pre-flight runs silently — never ask for context already loaded.
+- **Three options minimum on `/build`.** Choice architecture is the value.
+- **Independent evaluation pass is non-negotiable.** Unreviewed output is not delivered.
+- **Adversarial callouts surface before delivery, not after.** Rewrites happen during generation.
+- **Decision logging is not optional.** Every recommendation affecting the quarter gets logged.
+- **Writes only to `decisions/` and `knowledge/`.** No writes to brain file.
+- **Confidence range is enforced.** >90% or <50% triggers an adversarial callout.
+- **Gate results in table format only.** Binary ✅ / ❌ — no narrative substitution.
+- **Scorecard Weight confirmed at 100% before delivery.** Surface discrepancy if unbalanced.
+- **`/exec` only from finalised OKRs.** Prompt for option choice if drafts only.
+
+---
+
+## Self-Improvement Loop
+
+Knowledge updates (no approval): hypotheses promoted/demoted per Block 1 rules at session end.
+
+SKILL.md changes (approval required):
 ```
-MEASUREMENT PLAN — [Option X]
-
-FINANCIAL METRICS
-Metric | Target | Measurement Method | OKR Link
----
-[Metric 1] | [Target] | [e.g. Salesforce Stage 3 report] | KR [X]
-[Metric 2] | [Target] | [e.g. CRM win/loss field] | KR [X]
-
-CUSTOMER METRICS
-...
-
-PRODUCT GTM METRICS
-...
-
-PROCESS & GROWTH
-...
-
-WEIGHT TOTAL: 100%
-```
-
-### Exec Summary Output
-
-```
-EXEC SUMMARY — [Team Name], [Quarter Year]
-
-This quarter, Product Marketing is focused on [Objective in plain language].
-We will measure success against three outcomes: [KR 1 in one line], [KR 2 in one line],
-and [KR 3 in one line]. The primary projects driving these results are [top 2–3 projects].
-We are entering the quarter at [X%] confidence — ambitious by design.
+🔁 SELF-IMPROVEMENT TRIGGER
+Pattern: [observed across sessions]
+Proposed update: [exact wording]
+Location: [file path]
+Awaiting approval before encoding.
 ```
 
 ---
 
-## QUALITY GATES
+## Changelog
 
-Every KR is checked against these five gates before output is finalised.
-A KR that fails any gate will be flagged with a callout and rewritten.
+### v2.1.0 — 2026-06-06
+Spec compliance pass against SKILL-SPEC v2.0.0. Score: 8/19 → 19/19.
+Added: Trigger, Inputs, Pre-flight, Steps, Outputs, Verification, Do Not Use For,
+Operating Rules. Fixed: name field, metadata block, output templates fenced,
+quality gates as table, self-improvement loop restructured. Trimmed to <500 lines.
 
-**Gate 1 — Outcome, not output**
-Is this a business result (win rate, conversion, adoption) or a task (launch X, create Y)?
-Fail example: "Launch 4 battlecards." Pass example: "Win rate in competitive deals improves 8%."
-
-**Gate 2 — Measurable without ambiguity**
-Can it be tracked with a specific number and clear method?
-Fail example: "Improve messaging." Pass example: "80% resonance from 50 prospect call reviews."
-
-**Gate 3 — Causally linked to objective**
-Does hitting this KR demonstrably move the Objective?
-If PMM doesn't control the lever, rewrite to something PMM owns.
-
-**Gate 4 — 60–70% confidence**
-Is it ambitious enough to require effort, but not so aggressive it demoralises?
-90%+ confidence = too easy. Below 50% = moonshot without rationale.
-
-**Gate 5 — Three or fewer per Objective**
-More than three KRs = diffused focus. Force prioritisation.
-
----
-
-## ADVERSARIAL CALLOUTS
-
-The skill will challenge weak thinking inline. Callouts look like this:
-
-> ⚠️ ADVERSARIAL CALLOUT: [Issue]
-> [Why it's a problem and what to do instead.]
-
-Triggered when:
-- Objective sounds like a task ("Complete our messaging refresh")
-- KRs are output-focused ("Launch 3 new battlecards by end of quarter")
-- KRs are vanity metrics with no business consequence ("Increase Slack reactions")
-- Confidence is clearly above 90% — this is a to-do list, not an OKR
-- PMM mandate doesn't ladder to company objective
-- User insists on four or more KRs
-
----
-
-## EXAMPLE FULL SESSION
-
-**User:** Help me set Q3 OKRs. We're a 4-person PMM team (1 lead, 3 ICs) at a UK B2B SaaS.
-Company goal is to reach £10M ARR. Biggest challenge: sellers are ignoring our content.
-We're losing deals to Competitor X on product depth and to Competitor Y on price.
-Primary persona: Head of Finance at mid-market UK companies.
-
-**Skill output:**
-
-Context read. Three OKR options for a 4-person team in a revenue-growth quarter where
-seller adoption is the critical failure point.
-
----
-
-OPTION A — Sales Enablement & Revenue Velocity
-[...full OKR set...]
-
-OPTION B — Market Positioning & Segment Penetration
-[...full OKR set...]
-
-OPTION C — Revenue Influence & Full-Funnel Impact
-[...full OKR set...]
-
----
-
-Which option fits your mandate best — or would you like to blend elements?
-Once you choose, I'll build the full scorecard and project map.
-
----
-
-**User:** Option A. But I want the third KR to focus on customer evidence, not perception.
-
-**Skill:** Good instinct — customer evidence is more durable than a survey score.
-Here's Option A with KR 3 rewritten:
-
-KR 3 — Customer Advocacy
-Produce 3 new customer win stories (≥ 4.5 star G2 review + written case study)
-from enterprise deals closed this quarter.
-Measurement: G2 review count + case study published in content hub.
-
-/stress-test confirms this passes all five quality gates.
-Ready to build the scorecard?
-
----
-
-## PASTE-READY SHEET INSTRUCTIONS
-
-Once your OKRs are finalised, paste them into the PMM OKR Builder spreadsheet as follows:
-
-1. **📌 Exec Summary tab** — paste Objective into the yellow Objective cell.
-   Paste KR 1, 2, 3 into the corresponding KR rows.
-   Update Team Name and Quarter in the header.
-
-2. **🔵 3 OKR Options tab** — paste your chosen option's Objective into the yellow cell.
-   Update KR targets in the yellow baseline/target boxes.
-   Update Confidence % field.
-
-3. **📊 Scorecard tab** — paste targets from your scorecard output into the yellow Target cells.
-   Update Weight column to reflect your priorities (must total 100%).
-
-4. **🗺️ OKR → Projects tab** — paste each project row from the /map output.
-   Assign owners, start dates, and due dates.
-
-5. **🟡 OKR Context tab** — fill in company objective, team mandate, and challenge.
-   This is your audit trail. Update it if strategy shifts mid-quarter.
-
----
-
-## SELF-IMPROVEMENT TRIGGER
-
-At the end of sessions where OKR output is generated, the skill may surface a pattern
-or proposed improvement:
-
-> 💡 SKILL IMPROVEMENT PROPOSAL: [What was noticed] → [Proposed change to which file]
-> Approve to update. Decline to skip.
-
-Proposed updates are never applied silently.
+### v2.0.0 — 2026-05-01
+Full rebuild: compounding knowledge graph (Block 1), decision journal (Block 2),
+independent evaluation pass (Block 3), adversarial callouts, seven commands.

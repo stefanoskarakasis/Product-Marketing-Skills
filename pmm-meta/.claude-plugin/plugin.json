@@ -1,0 +1,12 @@
+{
+  "name": "pmm-meta",
+  "description": "Meta skills that operate on the skill system itself — quality review, session learning, and output verification. Install alongside any PMM plugin.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Stefanos Karakasis"
+  },
+  "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-meta",
+  "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
+  "license": "MIT",
+  "skills": "./skills"
+}

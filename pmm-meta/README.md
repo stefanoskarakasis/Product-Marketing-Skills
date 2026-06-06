@@ -1,28 +1,24 @@
 # pmm-meta
 
-Meta skills that operate on the skill system itself.
+Meta skills that operate on the skill system itself. Install alongside any PMM plugin to improve skill quality and compound learnings across sessions.
 
-Install alongside any PMM plugin to improve skill quality and compound learnings
-across sessions.
+## Skills (3)
 
-## Skills
+- **review** — Audit any SKILL.md against SKILL-SPEC v2.0.0 — 19-point checklist with prioritised fixes and copy-paste repair content.
+- **learn** — Capture session learnings and route them to the right knowledge files automatically. *(Coming soon)*
+- **verify** — Second-pass quality check on T1 skill output before delivery. *(Coming soon)*
 
-| Skill | Purpose | Status |
-|---|---|---|
-| `review` | Audits any SKILL.md against SKILL-SPEC v2.0.0 — 19-point checklist with prioritised fixes | ✅ Live |
-| `learn` | Captures session learnings and routes them to the right knowledge files | 🔜 Coming |
-| `verify` | Second-pass quality check on T1 skill output before delivery | 🔜 Coming |
+## Commands (4)
 
-## Install
+- `/pmm-meta:review` — Run a full 19-point spec review on a named skill.
+- `/pmm-meta:review-all` — Batch review all skills in a plugin folder or the full repo.
+- `/pmm-meta:diff` — Compare two versions of a skill and confirm which spec checks improved.
+- `/pmm-meta:fix` — Generate copy-paste content to fix a specific failing check.
 
-```bash
-claude plugin install pmm-meta
-```
+## Author
 
-## How to use
+Stefanos Karakasis — [Product Marketing Skills](https://heystefanos.gumroad.com/)
 
-```
-/review pre-mortem
-/review-all pmm-execution
-/fix go-to-market-strategy S3
-```
+## License
+
+MIT

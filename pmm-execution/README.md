@@ -1,47 +1,28 @@
-# PMM-Execution
+# pmm-execution
 
-Day-to-day product marketing: PRDs, growth experiments, OKRs, pre-mortems, retrospectives, stakeholder management, interview synthesis, and prioritization frameworks.
+Day-to-day PMM execution: PRDs, growth experiments, OKRs, pre-mortems, retrospectives, stakeholder management, interview synthesis, and prioritization frameworks.
 
 ## Skills (8)
 
-- **stakeholder-maps** — Build political stakeholder maps for launches and GTM initiatives
-- **retro** — Facilitate structured GTM retrospectives with cross-functional teams
-- **prioritization-frameworks** — Apply 9 GTM-native prioritization frameworks (RICE, ICE, etc.)
-- **pre-mortem** — Run pre-mortem risk analysis on strategic projects
-- **pmm-okrs** — Build quarterly OKR sets for PMM teams
-- **prd** — Create HubSpot-style PRDs with embedded Solution Stories
-- **experiment-doc** — Build, audit, and score growth experiment documents
-- **interview-summary** — Summarize customer interviews with JTBD analysis
+- **experiment-doc** — Build, audit, score, and pressure-test growth experiment documents with ICE scoring and a self-improving knowledge base.
+- **interview-summary** — Synthesize customer interviews with JTBD theory, signal detection, and confidence scoring.
+- **pmm-okrs** — Build complete, export-ready OKR sets for PMM teams including Key Results, Projects, and Exec Summary language.
+- **prd** — Co-write a full PRD with embedded Solution Story for PM and PMM teams.
+- **pre-mortem** — Run cross-functional pre-mortem risk analysis on any strategic project or launch.
+- **prioritization-frameworks** — Apply 9 GTM-native prioritization frameworks with tier output logic (T1–T4).
+- **retro** — Facilitate structured GTM retrospectives anchored to OKRs with a compounding knowledge loop.
+- **stakeholder-maps** — Build political stakeholder maps with Sprint Cards for launches and GTM initiatives.
 
 ## Commands (8)
 
-- `/pmm-execution:stakeholder-map` — Build stakeholder map for launch or initiative
-- `/pmm-execution:retro` — Facilitate post-launch or sprint retrospective
-- `/pmm-execution:prioritize` — Score and rank initiatives using prioritization frameworks
-- `/pmm-execution:pre-mortem` — Run pre-mortem risk analysis
-- `/pmm-execution:okrs` — Build quarterly PMM OKR set
-- `/pmm-execution:prd` — Create product requirements document
-- `/pmm-execution:experiment` — Build growth experiment document
-- `/pmm-execution:interview-summary` — Summarize interview transcript
-
-## Installation
-
-```bash
-# Claude Code
-claude plugin add stefanoskarakasis/Product-Marketing-Skills
-claude plugin install pmm-execution
-```
-
-## Brain Integration
-
-**stakeholder-maps** — Reads brain (optional): Sections 1, 2 (Product, ICP)  
-**retro** — Reads brain (optional): Section 1 (Product context)  
-**pmm-okrs** — Reads brain (optional): Sections 1, 2, 5 (Product, ICP, Market)  
-**prd** — Reads brain (optional): Sections 1, 2, 4 (Product, ICP, Voice)  
-**experiment-doc** — No brain needed (standalone)  
-**pre-mortem** — No brain needed (standalone)  
-**prioritization-frameworks** — No brain needed (standalone)  
-**interview-summary** — No brain needed (standalone)
+- `/pmm-execution:experiment` — Build or audit a growth experiment document.
+- `/pmm-execution:interview-summary` — Synthesize a customer interview transcript.
+- `/pmm-execution:okrs` — Build a quarterly PMM OKR set.
+- `/pmm-execution:prd` — Create a product requirements document with Solution Story.
+- `/pmm-execution:pre-mortem` — Run pre-mortem risk analysis on a strategic project.
+- `/pmm-execution:prioritize` — Score and tier initiatives using prioritization frameworks.
+- `/pmm-execution:retro` — Facilitate a post-launch or sprint retrospective.
+- `/pmm-execution:stakeholder-map` — Build a stakeholder map for a launch or initiative.
 
 ## Author
 

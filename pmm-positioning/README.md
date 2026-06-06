@@ -1,30 +1,22 @@
-# PMM-Positioning
+# pmm-positioning
 
-Strategic positioning using April Dunford's Obviously Awesome framework.
+Strategic positioning and messaging using April Dunford's framework — with five output modes and a self-improving memory loop.
 
-## Skill (1)
+## Skills (1)
 
-**positioning-messaging** — Comprehensive positioning system with 5 output modes: BUILD (positioning statement + 4-layer messaging doc), AUDIT (scored review), FLETCH (6-slide deck), SALES-ENABLEMENT (persona cards), HOMEPAGE (production-ready copy).
+- **positioning-messaging** — Build or audit positioning statements, messaging hierarchies, homepage copy, sales persona cards, and competitive decks using the full Dunford sequence.
 
-## Installation
+## Commands (5)
 
-```bash
-# Claude Code
-claude plugin add stefanoskarakasis/Product-Marketing-Skills
-claude plugin install pmm-positioning
-```
+- `/pmm-positioning:build` — Build a full positioning statement and 4-layer messaging document.
+- `/pmm-positioning:audit` — Score existing messaging and produce a prioritised rewrite queue.
+- `/pmm-positioning:fletch` — Generate a 6-slide internal positioning deck and homepage wireframe.
+- `/pmm-positioning:sales-enablement` — Create persona cards and a competitive response guide.
+- `/pmm-positioning:homepage` — Generate production-ready headline, subhead, pillars, and CTA.
 
-## Brain Integration
+## Author
 
-**Reads brain:** Yes (optional)  
-**Reads sections:** 1 (Product), 2 (ICP), 3 (Alternatives), 5 (Market)  
-**Writes to brain:** Yes (Section 7)
-
-If brain exists, pre-fills discovery Phase with product, ICP, and alternatives data. Saves positioning output to brain Section 7 for downstream skills (battlecards, campaign briefs).
-
-## Version
-
-**Current:** 1.0.0 (May 2026)
+Stefanos Karakasis — [Product Marketing Skills](https://heystefanos.gumroad.com/)
 
 ## License
 

@@ -9,26 +9,29 @@
     "version": "1.0.0",
     "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills"
   },
-  "plugins": [
-    {
-      "name": "pmm-go-to-market",
-      "description": "Go-to-market strategy, tier assignment, and workflow orchestration for product launches, positioning refresh, competitive programs, and quarterly PMM cycles",
-      "source": "./pmm-go-to-market"
-    },
-    {
-      "name": "pmm-positioning",
-      "description": "Strategic positioning and messaging using April Dunford's framework",
-      "source": "./pmm-positioning"
-    },
-    {
-      "name": "pmm-execution",
-      "description": "Day-to-day PMM execution: PRDs, OKRs, pre-mortems, retros, stakeholder maps, interviews, experiments, and prioritization",
-      "source": "./pmm-execution"
-    },
-    {
-      "name": "pmm-toolkit",
-      "description": "PMM utilities: writing assistant, resume review, privacy policy generator, GACCS briefs",
-      "source": "./pmm-toolkit"
-    }
-  ]
-}
+"plugins": [
+  {
+    "name": "pmm-go-to-market",
+    "description": "Go-to-market strategy, tier assignment, and workflow orchestration for product launches, positioning refresh, competitive programs, and quarterly PMM cycles",
+    "source": "./pmm-go-to-market"
+  },
+  {
+    "name": "pmm-positioning",
+    "description": "Strategic positioning and messaging using April Dunford's framework",
+    "source": "./pmm-positioning"
+  },
+  {
+    "name": "pmm-execution",
+    "description": "Day-to-day PMM execution: PRDs, OKRs, pre-mortems, retros, stakeholder maps, interviews, experiments, and prioritization",
+    "source": "./pmm-execution"
+  },
+  {
+    "name": "pmm-toolkit",
+    "description": "PMM utilities: writing assistant, resume review, privacy policy generator, GACCS briefs",
+    "source": "./pmm-toolkit"
+  },
+  {
+    "name": "pmm-meta",
+    "description": "Meta skills for skill quality and session learning: review, learn, verify",
+    "source": "./pmm-meta"
+  }

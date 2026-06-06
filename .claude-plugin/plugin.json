@@ -8,5 +8,5 @@
   "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
   "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
   "license": "MIT",
-  "skills": "./pmm-go-to-market/skills, ./pmm-positioning/skills, ./pmm-execution/skills, ./pmm-toolkit/skills"
+  "skills": "./pmm-go-to-market/skills, ./pmm-positioning/skills, ./pmm-execution/skills, ./pmm-toolkit/skills, ./pmm-meta/skills"
 }

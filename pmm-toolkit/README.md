@@ -1,39 +1,24 @@
-# PMM-Toolkit
+# pmm-toolkit
 
-Core Product Marketing work: resume review, privacy policy, marketing briefs, and messaging stakeholders.
+PMM utilities: writing assistant, resume reviewer, privacy policy generator, and GACCS campaign briefs.
 
 ## Skills (4)
 
-- **writing-assistant** — Rewrites copy to match brand voice and checks against positioning  
-- **pmm-resume** — Reviews and tailors PMM resumes for specific roles  
-- **privacy-policy** — Generates jurisdiction-aware privacy policies  
-- **gaccs-brief** — Creates campaign briefs (Goals, Audience, Creative, Channels, Stakeholders)
+- **gaccs-brief** — Build and pressure-test a complete GACCS Brief (Goals, Audience, Creative, Channels, Stakeholders) for any marketing or GTM project.
+- **pmm-resume** — Review and tailor PMM resumes from IC to VP — dissects job descriptions, ranks bullets by fit, and rebuilds the full resume in one pass.
+- **privacy-policy** — Draft a jurisdiction-aware privacy policy for any digital product covering GDPR, CCPA, UK GDPR, and more.
+- **writing-assistant** — Rewrite, sharpen, or draft internal and external communications — with behavioral science pressure-testing for marketing copy.
 
 ## Commands (4)
 
-- `/pmm-toolkit:rewrite`— Rewrite copy to match brand voice  
-- `/pmm-toolkit:tailor-resume` — Tailor resume for specific PMM role  
-- `/pmm-toolkit:privacy-policy` — Generate privacy policy for product  
-- `/pmm-toolkit:gaccs-brief` — Create campaign brief
-
-## Installation
-
-```bash
-# Claude Code
-claude plugin add stefanoskarakasis/Product-Marketing-Skills
-claude plugin install pmm-toolkit
-```
-
-## Brain Integration
-
-**writing-assistant** — Reads brain (optional): Section 4 (Voice & Tone)  
-**gaccs-brief** — Reads brain (optional): Sections 2, 4, 5 (ICP, Voice, Market)  
-**pmm-resume** — No brain needed (standalone)  
-**privacy-policy** — No brain needed (standalone)
+- `/pmm-toolkit:brief` — Build a GACCS campaign brief.
+- `/pmm-toolkit:resume` — Review or tailor a PMM resume against a job description.
+- `/pmm-toolkit:privacy` — Draft a jurisdiction-aware privacy policy.
+- `/pmm-toolkit:write` — Rewrite or draft a communication in your voice.
 
 ## Author
 
-Stefanos Karakasis — [Product Marketing Skills]((https://heystefanos.gumroad.com/)
+Stefanos Karakasis — [Product Marketing Skills](https://heystefanos.gumroad.com/)
 
 ## License
 

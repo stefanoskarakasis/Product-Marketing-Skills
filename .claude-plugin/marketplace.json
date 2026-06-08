@@ -30,8 +30,8 @@
     "description": "PMM utilities: writing assistant, resume review, privacy policy generator, GACCS briefs",
     "source": "./pmm-toolkit"
   },
-  {
-    "name": "pmm-meta",
-    "description": "Meta skills for skill quality and session learning: review, learn, verify",
-    "source": "./pmm-meta"
-  }
+ {
+  "name": "pmm-meta",
+  "description": "Meta skills for skill quality, session learning, and output verification: meta-review, meta-learn, meta-verify (coming soon)",
+  "source": "./pmm-meta"
+}

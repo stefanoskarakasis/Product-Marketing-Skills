@@ -1,4 +1,4 @@
-# Product Marketing Skills for AI Agents: Better Go-To-Market Decisions in Competitive Markets
+# Product Marketing Skills for AI Agents
 
 A collection of AI agent skills focused on product marketing tasks. Built for Product Marketing Managers, founders, and marketing leaders who want AI agents to help with positioning, competitive intelligence, launch planning, OKRs, experiments, and GTM strategy. Works with Claude Code, Claude Cowork, Cursor, Windsurf, and any agent that supports the [Agent Skills spec](https://agentskills.io/).
 
@@ -92,22 +92,26 @@ Commands are designed to flow into each other, matching the PMM workflow. After 
 
 | Skill | Description |
 |-------|-------------|
-| [product-marketing-context](skills/product-marketing-context/) | When the user wants to create or update their product marketing context document. The apex skill — every other skill reads this first to understand your product, ICP, personas, positioning, and competitive landscape. |
-| [positioning-messaging](skills/positioning-messaging/) | When the user wants to build positioning statements, message houses, value propositions by segment, homepage copy, or audit existing messaging against strategy using April Dunford's framework. |
-| [stakeholder-maps](skills/stakeholder-maps/) | When the user needs to build political stakeholder maps for launches or GTM initiatives — mapping power dynamics, deal roles, objection profiles, and identifying who kills deals, champions products, and blocks initiatives. |
-| [retro](skills/retro/) | When the user wants to facilitate a structured GTM retrospective for cross-functional squads (Eng, Design, PM, PMM) anchored to OKRs and launch outcomes. |
-| [prioritization-frameworks](skills/prioritization-frameworks/) | When the user needs to select a prioritization method, score strategic projects, triage a launch backlog, or decide how much GTM weight a product or initiative deserves. |
-| [pre-mortem](skills/pre-mortem/) | When the user wants to run cross-functional risk analysis on any strategic project — PRD, product launch, pricing change, new marketing channel, GTM pivot, or new market entry. |
-| [brainstorm-okrs](skills/brainstorm-okrs/) | When the user is setting quarterly OKRs, reviewing existing OKRs, stress-testing KR quality, or building a complete measurement plan for their PMM team. |
-| [product-requirement-doc](skills/product-requirement-doc/) | When the user mentions PRD, product requirements, solution story, feature spec, GTM brief, launch plan, product brief, user stories, or feature rollout — or asks how to structure a product document. |
-| [experiment-doc-builder](skills/experiment-doc-builder/) | When the user mentions A/B tests, experiments, hypotheses, growth tests, feature flags, conversion optimization, or any kind of product or marketing experimentation. |
-| [interview-summary](skills/interview-summary/) | When the user wants to summarize, process, or extract meaning from a customer or prospect interview transcript using JTBD theory and signal-level pattern detection. |
-| [writing-assistant](skills/writing-assistant/) | When the user wants to rewrite, sharpen, draft, or pressure-test any written communication — internal emails, Slack messages, async updates, decision memos, PRDs, one-pagers, homepage copy, ads, or positioning documents. |
-| [pmm-resume](skills/pmm-resume/) | When the user wants to review, tailor, or rebuild their PMM resume for a specific role or company. |
-| [privacy-policy](skills/privacy-policy/) | When the user needs to create, update, audit, or review data protection documentation, asks about GDPR, CCPA, or UK GDPR obligations, or mentions privacy policy needs. |
-| [gaccs-brief](skills/gaccs-brief/) | When the user mentions a campaign, launch, content piece, event, enablement asset, or any marketing project — or says "I need to write a brief" or "where do I even start with this?" |
-| [go-to-market-strategy](skills/go-to-market-strategy/) | When the user wants to assign launch tier (T1-T4) or generate strategic briefs with messaging and channels for product or feature launches. |
-| [workflow-orchestrator](skills/workflow-orchestrator/) | When the user wants to run complete multi-skill GTM workflows in one prompt — full launch, positioning refresh, competitive program, quarterly PMM cycle, market entry, post-launch retro, or new hire onboarding. |
+| [beachhead-segment](pmm-go-to-market/skills/beachhead-segment/) | When the user needs to identify and score the first customer segment to dominate before scaling GTM investment. Four-dimension scoring (Burning Pain, Willingness to Pay, Winnability, Referral Potential) with blocking gates. |
+| [experiment-doc](pmm-execution/skills/experiment-doc/) | When the user mentions A/B tests, experiments, hypotheses, growth tests, feature flags, conversion optimisation, or any kind of product or marketing experimentation. |
+| [gaccs-brief](pmm-toolkit/skills/gaccs-brief/) | When the user mentions a campaign, launch, content piece, event, enablement asset, or any marketing project — or says "I need to write a brief" or "where do I even start with this?" |
+| [go-to-market-strategy](pmm-go-to-market/skills/go-to-market-strategy/) | When the user wants to assign launch tier (T1–T4) or build a complete GTM strategy brief with positioning angles, channel strategy, success metrics, and competitive context. |
+| [interview-summary](pmm-execution/skills/interview-summary/) | When the user wants to summarise or extract meaning from a customer or prospect interview transcript using JTBD theory and signal-level pattern detection. |
+| [meta-review](pmm-meta/skills/meta-review/) | When a skill file needs to be audited against SKILL-SPEC v2.0.0 — produces a 19-point scored gap list with exact fixes before shipping any new or updated skill. |
+| [pmm-okrs](pmm-execution/skills/pmm-okrs/) | When the user is setting quarterly OKRs, reviewing existing OKRs, stress-testing KR quality, or building a complete measurement plan for their PMM team. |
+| [pmm-resume](pmm-toolkit/skills/pmm-resume/) | When the user wants to review, tailor, or rebuild their PMM resume for a specific role — dissects the job description, ranks bullets by fit, and rebuilds the full resume in one pass. |
+| [positioning-messaging](pmm-positioning/skills/positioning-messaging/) | When the user wants to build positioning statements, messaging hierarchies, homepage copy, or audit existing messaging using April Dunford's framework. |
+| [prd](pmm-execution/skills/prd/) | When the user mentions PRD, product requirements, solution story, feature spec, GTM brief, launch plan, product brief, user stories, or feature rollout. |
+| [pre-mortem](pmm-execution/skills/pre-mortem/) | When the user wants to run cross-functional risk analysis on any strategic project — product launch, pricing change, new channel, GTM pivot, or new market entry. |
+| [prioritization-frameworks](pmm-execution/skills/prioritization-frameworks/) | When the user needs to select a prioritization method, score strategic projects, triage a launch backlog, or decide how much GTM weight an initiative deserves. |
+| [privacy-policy](pmm-toolkit/skills/privacy-policy/) | When the user needs to create, update, audit, or review data protection documentation, or asks about GDPR, CCPA, or UK GDPR obligations. |
+| [product-marketing-context](product-marketing-context/) | When the user wants to create or update their product marketing context. The apex skill — every other skill reads this first to understand your product, ICP, positioning, and competitive landscape. |
+| [retro](pmm-execution/skills/retro/) | When the user wants to facilitate a structured GTM retrospective for cross-functional squads anchored to OKRs and launch outcomes with a compounding knowledge loop. |
+| [stakeholder-maps](pmm-execution/skills/stakeholder-maps/) | When the user needs to build political stakeholder maps for launches or GTM initiatives — mapping power dynamics, identifying champions, blockers, and deal killers. |
+| [workflow-orchestrator](pmm-go-to-market/skills/workflow-orchestrator/) | When the user wants to run a complete multi-skill GTM program — full product launch, positioning refresh, competitive program, quarterly PMM cycle, or new market entry. |
+| [writing-assistant](pmm-toolkit/skills/writing-assistant/) | When the user wants to rewrite, sharpen, draft, or pressure-test any written communication — Slack messages, emails, memos, PRDs, homepage copy, ads, or positioning documents. |
+<!-- SKILLS:END -->
+
 
 ## Quick Start
 

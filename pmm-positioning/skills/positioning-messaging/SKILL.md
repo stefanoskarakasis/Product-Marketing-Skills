@@ -1,6 +1,6 @@
 ---
-name: positioning-messaging
-version: 1.0.0
+name: hs-positioning-messaging
+version: 2.0.0
 description: >
   Use for any positioning or messaging task — positioning statement, messaging
   hierarchy, homepage copy, sales persona cards, competitive deck, messaging audit,
@@ -12,119 +12,65 @@ description: >
   Parses attached screenshots and images before asking any questions, refuses
   briefs without a named primary persona and at least three alternatives including
   status quo, and blocks output until a 7-point self-verification gate passes.
-requires_brain: optional
-reads_brain_sections: [1, 2, 3, 5]
-writes_to_brain: true
-triggers:
-  - generate positioning
-  - create positioning
-  - positioning statement
-  - messaging hierarchy
-  - homepage copy
-  - we sound like everyone else
-  - our messaging isn't landing
 
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-06-05
----
+last_updated: 2026-06-11
 ---
 
-# Positioning & Messaging
+# hs-positioning-messaging
 
 Built on April Dunford's Obviously Awesome method. Output discipline from
 MKT1/Emily Kramer: deliver the answer, not the workings. Self-improving memory
 via Pawel Huryn's compounding loop.
 
----
-
-## Step 0: Check for Brain (Brain Integration)
-
-Does `/foundation/brain.md` exist?
-
-**If YES:**
-- Load Section 1 (Product Context)
-- Load Section 2 (ICP Definition)
-- Load Section 3 (Alternatives & Positioning)
-- Load Section 5 (Market Context)
-- Use brain data to pre-populate Phase 1 discovery
-- Skip discovery questions already answered in brain
-- Proceed to Session Start
-
-**If NO:**
-- Skip brain loading
-- Proceed to Session Start
-- Ask all discovery questions manually in Phase 1
+**Session start — silently, in order:**
+1. Read `knowledge/INDEX.md` — load `knowledge/rules.md` and `knowledge/hypotheses.md`
+2. Check `decisions/INDEX.md` for any prior structural decisions relevant to this product/domain
+3. Parse all attached images before reading the user's text
+4. Proceed to mode selection
 
 ---
 
-## Session Start — Silently, in Order
+## Trigger
 
-1. **Brain loaded?** Use brain data to pre-fill discovery inputs
-2. Parse all attached images before reading the user's text
-3. Proceed to mode selection
-
----
-
-## Vision Layer (Opus 4.7)
-
-Parse every attached image immediately. Do not ask the user to describe it.
-Surface findings in Phase 1 as **"What your current materials are saying"**
-before any discovery questions.
-
-**Extract from any image:**
-- Every explicit claim (exact text)
-- Implied market category and target buyer
-- Proof elements present (logos, metrics, quotes)
-- All undifferentiated terms → flag each:
-  `[VISION FLAG] "exact text" — reason this is weak`
-
-The same extraction applies regardless of image type (homepage, deck slide,
-ad, competitor page, one-pager). Flag, don't describe.
+- **When:** Positioning, messaging, value prop, sales copy, competitive messaging, homepage copy, or messaging audit work
+- **Not for:** Product specification → use hs-product-requirement-doc. Internal positioning audit without output → consult hs-alternatives-map first. Buyer persona building → use hs-buyer-personas.
+- **Example prompts:**
+  - "Build positioning for [product]"
+  - "Our messaging sounds like everyone else"
+  - "Help me position against [competitor]"
+  - "Write our homepage headline and pillars"
+  - "Audit this messaging for coherence"
+  - "We can't explain what we do to sales"
 
 ---
 
-## Evidence Standard
+## Inputs
 
-Classify all inputs before Phase 2. Tier governs output weight.
-
-| Tier | Qualifies as | Output rule |
-|------|-------------|-------------|
-| **T1** | Verbatim customer quotes, win/loss transcripts, NPS verbatims, G2 reviews in buyer's words | Can anchor a pillar headline |
-| **T2** | Usage data, churn rates, win rates, A/B results, conversion data | Supports a pillar claim |
-| **T3** | Product descriptions, PMM assertions, founder hypotheses | Must carry `[T3 — NEEDS VALIDATION]` flag; cannot headline a pillar |
-
-**Refusal triggers:**
-- Product in market 6+ months with zero T1/T2 → ask for it; don't proceed without
-- Primary persona missing or unranked → ask: who has this problem worst, right now?
-- Fewer than 3 alternatives (must include status quo + do-nothing) → no positioning without them
-- Differentiator is a roadmap item → mark `[ROADMAP — NOT YET VALID]`; exclude
-
-**Refusal format:**
-> "Can't proceed with [phase]. Missing: [evidence type]. Why it matters: [one sentence].
-> Provide: [exact format needed]."
+- **Args:** Product/market context, target persona (required), alternatives (3+ minimum, must include status quo + do-nothing), customer evidence or win/loss signals
+- **Defaults:** If no persona named, run Phase 1 discovery first. If fewer than 3 alternatives provided, ask for status quo before proceeding.
+- **Context keys:**
+  - `/foundation/brain.md` — optional. Sections 1, 2, 4 (ICP, positioning pillars, alternatives map) if available
+  - `knowledge/rules.md` — optional. Apply confirmed market energy state patterns
+  - `knowledge/hypotheses.md` — optional. Note active tests relevant to this positioning decision
 
 ---
 
-## Mode Selection
+## Pre-flight
 
-Infer from context and confirm in one line, or ask.
-
-| Mode | Output |
-|------|--------|
-| **BUILD** | Positioning statement + full 4-layer messaging document |
-| **AUDIT** | Scored audit + prioritised rewrite queue with before/after |
-| **FLETCH** | 6-slide internal positioning deck + homepage wireframe |
-| **SALES-ENABLEMENT** | Persona cards + competitive response guide |
-| **HOMEPAGE** | Production-ready headline, subhead, pillars, CTA — no placeholders |
-
-All modes run Phase 1–5. Phase 6 packages to mode format. Do not skip phases.
+- Load `/foundation/brain.md` if it exists. Extract ICP, positioning hypothesis, competitive alternatives silently.
+- If brain exists but Section 3 (Positioning) is marked 🔴 Placeholder: flag before intake: "⚠️ Your positioning hypothesis is marked Placeholder. This output will be sharper after validation. Continuing."
+- If fewer than 3 alternatives provided: block intake and ask for status quo + do-nothing before proceeding.
+- If no brain found: surface once, non-blocking: "No brain found. Run hs-product-marketing-context first for sharper output. Continuing."
 
 ---
 
-## Phase 1: Discovery
+## Steps
+
+### Phase 1: Discovery
 
 Run as a conversation. One question at a time. Never generate on the first message.
 
@@ -133,12 +79,6 @@ Run as a conversation. One question at a time. Never generate on the first messa
 - [ ] Buyer: one primary (title, company type, triggering situation)
 - [ ] Alternatives: 3+ including status quo and do-nothing
 - [ ] Outcome: single most important buyer result in one sentence
-
-**If brain exists:** Pre-fill from brain sections:
-- Product → Section 1 (Product Context)
-- Buyer → Section 2 (ICP Definition)
-- Alternatives → Section 3 (Alternatives & Positioning)
-- Market context → Section 5 (Market Context)
 
 **Ideal additions:** T1 customer quotes · current messaging/screenshots ·
 sales objections · win reasons · pricing model · company stage
@@ -154,7 +94,7 @@ sales objections · win reasons · pricing model · company stage
 
 ---
 
-## Phase 2A: Market Energy Check
+### Phase 2A: Market Energy Check
 
 Identify primary segment energy state before mapping competitors.
 
@@ -169,7 +109,7 @@ require separate tracks — never mix in primary messaging.
 
 ---
 
-## Phase 2B: Competitive Mapping
+### Phase 2B: Competitive Mapping
 
 Map all five alternative types honestly:
 1. Direct competitors (same category)
@@ -191,7 +131,7 @@ Cannot complete it? The product has a positioning problem messaging cannot fix. 
 
 ---
 
-## Phase 2C: Options-First
+### Phase 2C: Options-First
 
 Generate **3–4 distinct positioning bets** before committing to one direction.
 Each bet: the claim · target segment + energy state · primary risk ·
@@ -201,7 +141,9 @@ Present to user. Await selection. Do not proceed to Phase 3 without a chosen dir
 
 ---
 
-## Phase 3: Positioning Development
+### Phase 3: Positioning Development
+
+**Load `references/positioning-worksheet.md`.** Follow it exactly.
 
 Dunford sequence:
 1. Competitive alternatives (from Phase 2B)
@@ -218,7 +160,7 @@ named competitor. If it can, rewrite.
 
 ---
 
-## Phase 4: Messaging Hierarchy
+### Phase 4: Messaging Hierarchy
 
 Build top-down. Layer 3 claims must trace to Layer 1. Cannot trace → remove.
 
@@ -240,7 +182,9 @@ one objection pre-handled verbatim · stage-appropriate CTA
 
 ---
 
-## Phase 5: Differentiation Stress-Test
+### Phase 5: Differentiation Stress-Test
+
+**Load `knowledge/rules.md` and `knowledge/hypotheses.md`.** Apply confirmed rules first, then check hypotheses for active tests.
 
 4-question test per differentiator. YES or NO only:
 
@@ -256,7 +200,9 @@ Scoring (no exceptions):
 
 ---
 
-## Phase 6: Output Packaging
+### Phase 6: Output Packaging
+
+**Load `references/example-messaging-doc.md`.** That is the quality bar.
 
 ### Self-Verification Gate
 
@@ -295,29 +241,198 @@ No placeholders.
 
 ### All modes include
 Approved language · Forbidden language + reason · Version + review date ·
-Next steps for validation
+Next steps from `references/validation-playbook.md`
 
 ---
 
-## Step [Final]: Save to Brain (Optional)
+### Vision Layer (Opus 4.7)
 
-After generating positioning output:
+Parse every attached image immediately. Do not ask the user to describe it.
+Surface findings in Phase 1 as **"What your current materials are saying"**
+before any discovery questions.
 
-"Want to save this positioning to your brain memory? (yes/no)"
+**Extract from any image:**
+- Every explicit claim (exact text)
+- Implied market category and target buyer
+- Proof elements present (logos, metrics, quotes)
+- All undifferentiated terms → flag each:
+  `[VISION FLAG] "exact text" — reason this is weak`
 
-**Why save:**
-- Other skills (battlecard, value props, campaign briefs) will reference this
-- Consistent messaging across all GTM outputs
-- No re-explaining positioning in future sessions
+The same extraction applies regardless of image type (homepage, deck slide,
+ad, competitor page, one-pager). Flag, don't describe.
 
-**If YES:**
-1. Write output to `/foundation/brain.md` Section 7
-2. Field: `last_positioning_output` = [full positioning statement + messaging hierarchy]
-3. Field: `last_positioning_date` = [timestamp]
-4. Field: `last_positioning_mode` = [BUILD/AUDIT/FLETCH/etc.]
-5. Confirm: "✅ Saved to brain Section 7"
+---
 
-**If NO:**
-- Output only
-- Not saved to brain
-- User can save manually later
+### Evidence Standard
+
+Classify all inputs before Phase 2. Tier governs output weight.
+
+| Tier | Qualifies as | Output rule |
+|------|-------------|-------------|
+| **T1** | Verbatim customer quotes, win/loss transcripts, NPS verbatims, G2 reviews in buyer's words | Can anchor a pillar headline |
+| **T2** | Usage data, churn rates, win rates, A/B results, conversion data | Supports a pillar claim |
+| **T3** | Product descriptions, PMM assertions, founder hypotheses | Must carry `[T3 — NEEDS VALIDATION]` flag; cannot headline a pillar |
+
+**Refusal triggers:**
+- Product in market 6+ months with zero T1/T2 → ask for it; don't proceed without
+- Primary persona missing or unranked → ask: who has this problem worst, right now?
+- Fewer than 3 alternatives (must include status quo + do-nothing) → no positioning without them
+- Differentiator is a roadmap item → mark `[ROADMAP — NOT YET VALID]`; exclude
+
+---
+
+## Outputs
+
+- **Files written:** n.v.t. — hs-positioning-messaging produces no persistent files; outputs delivered in chat
+- **Chat output format:** Mode-specific (BUILD / AUDIT / FLETCH / SALES-ENABLEMENT / HOMEPAGE), all include approved/forbidden language, version, review date, next steps
+- **External side effects:** n.v.t.
+
+---
+
+## Verification
+
+- Positioning statement cannot be said by any named competitor
+- All pillar headlines scored 4/4 on stress-test (true, relevant, unique, sustainable)
+- Self-verification gate passed all 7 checks before delivery
+- Mode-specific output matches expected format (BUILD / AUDIT / FLETCH / SALES-ENABLEMENT / HOMEPAGE)
+- Evidence tier respected: T1/T2 claims anchor content; T3 claims flagged
+
+---
+
+## Do Not Use For
+
+- **hs-product-marketing-context** — when the task is buyer profiling or market definition → use that skill first
+- **hs-value-prop-statements** — when you only need segment-specific value props (not full messaging hierarchy)
+- **hs-competitive-battlecard** — when building sales competitive response; use that skill instead
+- **hs-icp** — when the primary need is ICP definition, not positioning
+- **experiment-doc-builder** — when testing messaging assumptions; this skill builds messaging, not validates it
+
+---
+
+## Commands
+
+### /build [product name or context]
+Run full BUILD mode: all 6 phases → 4-layer messaging document.
+
+### /audit [existing copy or landing page]
+Run AUDIT mode: score existing messaging + rewrite queue.
+
+### /fletch [product name]
+Run FLETCH mode: 6-slide internal deck + homepage wireframe.
+
+### /sales [product name]
+Run SALES-ENABLEMENT mode: persona cards + competitive playbook.
+
+### /homepage [product name]
+Run HOMEPAGE mode: production-ready hero + subhead + pillars + CTA.
+
+---
+
+## Learning Mode Close
+
+At session end:
+> "Run Learning Mode close? I'll log what worked and update the skill's memory."
+
+If yes, in order:
+1. Check `knowledge/rules.md` — demote any rule contradicted this session
+2. Check `knowledge/hypotheses.md` — promote any confirmed 3+ times; log new observations
+3. Check `decisions/INDEX.md` — log any structural decision made this session
+4. Append to `sessions/log.md` using the session format
+5. Update `knowledge/INDEX.md` status counts if rules/hypotheses changed
+
+**No file is written without explicit user approval. No updates mid-session.**
+
+---
+
+## Reference Files
+
+| File | Load when |
+|------|-----------|
+| `knowledge/INDEX.md` | Session start. Always first. |
+| `knowledge/rules.md` | Session start + Phase 5 |
+| `knowledge/hypotheses.md` | Phase 5 + Learning Mode close |
+| `knowledge/false-beliefs/catalog.md` | AUDIT mode + diagnosing weak positioning |
+| `decisions/INDEX.md` | Before any structural decision (category, segment, evidence tier) |
+| `references/positioning-worksheet.md` | Phase 3 |
+| `references/example-messaging-doc.md` | Phase 6 |
+| `references/validation-playbook.md` | Phase 6 + on request |
+| `sessions/log.md` | Learning Mode close only |
+
+---
+
+## Operating Rules
+
+- **Load brain first.** Context changes which energy state (M1/M2/M3) applies.
+- **Parse attached images before asking discovery questions.** Every explicit claim and visual signal tells you something.
+- **No positioning without 3+ alternatives — status quo mandatory.** If you can't name it, you don't understand the choice.
+- **Never skip phases.** All 6 phases run for every mode. Shortcuts produce weak output.
+- **Primary persona must be ranked.** Ask: who has this problem worst, right now?
+- **Stress-test all pillars before delivery.** 4/4 or remove. No exceptions.
+- **Layer 3 claims must trace to Layer 1.** Cannot trace = doesn't belong.
+- **Evidence tier is binding.** T3 claims must be flagged. Don't hide assumptions.
+
+---
+
+## Quality Gate
+
+Runs after output generation, before delivery. Surface failures — do not deliver
+incomplete output.
+
+| Check | Standard | Pass = |
+|---|---|---|
+| Proof coverage | Every claim has T1/T2 or carries `[T3]` flag | Yes |
+| Narrative coherence | Layers 1→4 read as one story | Yes |
+| Competitor specificity | Statement cannot be said by any named competitor | Yes |
+| Stress-test integrity | All pillar headlines 4/4 | Yes |
+| Persona count | ≤ 3 | Yes |
+| Jargon free | Zero forbidden terms | Yes |
+| Vision flags resolved | All `[VISION FLAG]` items addressed or documented as rejected | Yes |
+| Mode format correct | Output matches expected format for selected mode | Yes |
+
+---
+
+## Self-Improvement Loop
+
+### Before every session:
+1. Load `knowledge/INDEX.md` — load `knowledge/rules.md` and `knowledge/hypotheses.md`
+2. Check `decisions/INDEX.md` for any prior structural decisions relevant to this product/domain
+3. Parse all attached images before reading the user's text
+4. Proceed to mode selection
+
+### After every session where output was produced:
+1. Extract any positioning pattern → `knowledge/positioning/patterns.md`
+2. If the same stress-test failure appears 3+ times → propose rule addition to `knowledge/positioning/rules.md`
+3. If a competitor alternative was underestimated 3+ times → propose update to `knowledge/competitive-blind-spots.md`
+4. Append session summary to `sessions/log.md`
+
+**Self-Improvement Trigger format — surface before encoding, never silently:**
+
+```
+🔁 SELF-IMPROVEMENT TRIGGER
+Pattern: [what was observed this session]
+Proposed update: [exact wording of what would be added or changed]
+Location: [file path]
+Awaiting approval before encoding.
+```
+
+---
+
+## Changelog
+
+### v2.0.0 — 2026-06-11
+Full rebuild to SKILL-SPEC v2.0.0. Replaced legacy document with production-grade skill.
+
+Changes from v1.0.0:
+- Added all 7 required sections: Trigger, Inputs, Pre-flight, Steps, Outputs, Verification, Do Not Use For
+- Frontmatter now includes version, author, context, quality_gate, last_updated
+- 6-phase discovery flow formalized (Discovery → Market Energy Check → Competitive Mapping → Options-First → Development → Output)
+- Stress-test 4-question rubric (True / Relevant / Unique / Sustainable)
+- 5 output modes documented (BUILD / AUDIT / FLETCH / SALES-ENABLEMENT / HOMEPAGE)
+- Evidence tier classification (T1/T2/T3) with output rules
+- Operating rules (8) + Quality Gate (8 checks) + Self-Improvement Loop
+- Learning Mode close formalized
+- Reference file loading documented
+- Changelog added
+
+### v1.0.0 — [date]
+Initial build. Phase-based positioning framework.

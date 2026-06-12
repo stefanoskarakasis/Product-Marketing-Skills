@@ -1,214 +1,190 @@
-# go-to-market-strategy — Eval Suite
-**Skill version:** 2.0.0
-**Last updated:** 2026-06-06
+# go-to-market-strategy.eval.md
+
+Eval test cases for `go-to-market-strategy` skill (SKILL-SPEC v2.0.0 compliance).
 
 ---
 
-## Test Case 1: Tier assignment — T1 signal
+## Test 1: Fresh GTM Brief (Happy Path)
 
 **Input:**
-```
-We're launching a fully redesigned enterprise product tier targeting VP-level buyers
-at companies 500+ employees. It replaces our current mid-market pricing entirely.
-Success = $400K new ARR in 90 days. Launch in 8 weeks.
-```
+- Initiative: "Launch enterprise analytics dashboard for mid-market finance teams"
+- Success: "500 qualified trials in 90 days"
+- Timeline: "Soft launch in 4 weeks, GA announcement in 6 weeks"
+- Brain exists with: ICP (mid-market finance), positioning (self-serve alternative), launch history (2 prior launches)
 
-**Expected output includes:**
-- Tier assigned as T1 with explicit rationale citing at least two of the four signals
-  (market impact, revenue potential, competitive urgency, resource requirement)
-- One-sentence rationale before the full brief is generated
-- Brief contains all seven sections including Strategic Context, Channel Strategy,
-  Success Metrics, Competitive Context, Proof Points, Timeline, Next Steps
-- Timeline reflects T1 scope (6–12 weeks total)
-- Leading indicator present alongside $400K ARR primary metric
-- Next steps include `pre-mortem` and `retro` trigger
+**Expected Behavior:**
+1. Intake runs (initiative reflected back)
+2. Brain loads silently (Sections 2, 3, 4, 5, 7)
+3. Tier assigned with 4-signal rationale
+4. Full GTM brief generated with 7 sections:
+   - Strategic Context (market timing, ICP fit, positioning angle)
+   - Channel Strategy (3 channels, ICP-specific rationale)
+   - Success Metrics (primary + 2 leading indicators + guardrail)
+   - Competitive Context (primary alternative, attack/defend)
+   - Proof Points (claims from brain Section 5)
+   - Timeline (6-week phased approach)
+   - Next Steps (including pre-mortem and retro reference)
+5. Brain Section 7 updated with "Planned" launch entry
 
-**Expected output excludes:**
-- Tier assigned as T2 or lower without explicit reasoning challenging T1 signals
-- Generic channel list with no ICP-specific rationale
-- Brief generated before intake reflection step
+**Success Criteria:**
+- Tier clearly stated (expected: T1 or T2 based on revenue + market impact)
+- Rationale cites all 4 signals (market, revenue, competitive, resource)
+- Leading indicators present (early adoption signal before 90-day metric matures)
+- Channel recommendations name specific tactic per channel
+- Competitive context includes attack/defend pair
+- Proof points exist or gaps flagged
+- Brain write confirmed before final output
 
-**Pass condition:**
-T1 is assigned with all four signals addressed, brief contains all seven sections,
-and at least one leading indicator is present alongside the primary metric.
+**Test Pass:** Brief is actionable, metrics are linked to positioning, PMM can take it to stakeholders
 
 ---
 
-## Test Case 2: Tier assignment — T3 signal with T1 pressure
+## Test 2: Tier Override from Calibration History
 
 **Input:**
-```
-We're adding dark mode to the product. Our CEO wants to announce it at the
-upcoming conference as a big moment. I'm not sure it warrants a full launch.
-```
+- Initiative: "Pricing change on core product"
+- Success: "No churn increase >5% in customer base"
+- Timeline: "Announcement in 2 weeks"
+- Brain exists with Section 7 launch history:
+  - 2 prior pricing changes, both assigned T2, both performed at T1 signal
+  - Rule noted: "Pricing changes appear to be higher-impact than expected"
 
-**Expected output includes:**
-- Skill reflects back the initiative before tiering
-- Tier assigned as T3 (or T2 at most) with rationale that explicitly addresses
-  the CEO's desire for a "big moment" vs. the actual market impact signal
-- Operating rule applied: tier is based on four signals, not exec pressure
-- Acknowledgement that the conference is a channel opportunity, not a tier driver
-- Suggested framing: how to use the conference announcement for T3 without
-  over-resourcing the launch itself
-- "Do Not Use For" routing not triggered (this is appropriate for this skill)
+**Expected Behavior:**
+1. Tier assignment reaches T2 from signal analysis
+2. Brain Section 7 is checked and prior calibration is found
+3. Recommendation surfaces: "Prior pricing launches performed above assigned tier. Recommending T1 here to avoid under-resourcing."
+4. Tier is updated to T1 before brief generation
+5. Brief reflects T1 timeline (8-12 weeks, not 4-6 weeks)
 
-**Expected output excludes:**
-- T1 assignment based solely on CEO preference or conference timing
-- No challenge to the framing — brief generated without addressing the tier mismatch
-- Generic advice about "making a splash" without signal-based rationale
+**Success Criteria:**
+- Calibration check explicitly mentioned
+- Precedent named and rationale shown
+- Tier was adjusted based on history
+- Timeline adjusted to match new tier
 
-**Pass condition:**
-Tier is grounded in the four signals and the skill explicitly distinguishes between
-conference timing as a channel tactic vs. T1 market impact signal.
+**Test Pass:** System learns from prior launches and applies that pattern
 
 ---
 
-## Test Case 3: Edge case — missing brain, no launch history
+## Test 3: Brain Missing / Placeholder Positioning Warning
 
 **Input:**
-```
-/tier New market entry into healthcare vertical. Targeting mid-size health systems,
-100–500 beds. No prior launches in this segment. Goal: 3 signed pilots in 6 months.
-```
+- Initiative: "New vertical expansion into healthcare"
+- Success: "Initial customer acquisition target"
+- Timeline: "First customer by Q4"
+- Brain missing OR Section 3 (Positioning) is marked 🔴 Placeholder
 
-**Expected output includes:**
-- Pre-flight surfaced: brain missing or Section 7 empty — skill continues but flags it
-- Calibration note: "No prior precedent in brain — tier assigned on initiative
-  signals only"
-- Tier assigned (likely T1 or T2 for new market entry) with rationale based on
-  available signals
-- Confidence level stated: Medium or Low given absence of brain/history
-- Recommendation to run `product-marketing-context` before full brief
-- /tier command output format followed: Tier, Rationale, Calibration note, Confidence, Next
+**Expected Behavior:**
+1. Pre-flight surfaces warning (non-blocking):
+   - If brain missing: "No brain found. Run product-marketing-context first — this brief will be significantly sharper with your ICP, positioning, and launch history loaded. Continuing with assumption-based output."
+   - If positioning placeholder: "⚠️ Positioning is marked Placeholder. The GTM brief will lack sharp angles. Run positioning-messaging first for better output."
+2. Intake proceeds without blocking
+3. Brief is generated but noted as "assumption-based" in header
+4. Positioning angle in brief is generic (not anchored to named differentiator)
 
-**Expected output excludes:**
-- Tier assigned with High confidence when brain is absent
-- Full brief generated from /tier command (that requires /brief)
-- Error or refusal — skill should degrade gracefully, not block
+**Success Criteria:**
+- Warning surfaces at Pre-flight (not mid-brief)
+- Brief is still deliverable but visibly weaker
+- Narrative notes assumption-based approach
 
-**Pass condition:**
-Skill surfaces the brain gap non-blockingly, assigns tier with explicit confidence
-level, and uses the correct /tier command output format.
+**Test Pass:** Graceful degradation; user is aware of limitation
 
 ---
 
-## Test Case 4: Quality gate — incomplete brief triggers self-check
+## Test 4: Pre-flight Checks Working
 
 **Input:**
-```
-/brief We're launching a competitive battlecard program for the sales team.
-Internal enablement. Goal: improve competitive win rate against Competitor X.
-Timeline: 3 weeks.
-```
+- Initiative: "Feature launch: advanced reporting"
+- Brain exists but Section 7 (Launch history) is empty
+- Intake provides all required info
+- No overlapping launches named
 
-**Expected output includes:**
-- Tier assigned as T3 (internal enablement, 3-week timeline, single-team effort)
-- Quality gate runs silently after brief generation
-- Leading indicator present — not just win rate (lagging), but something earlier
-  (e.g. % of AEs using battlecard within 2 weeks of launch)
-- "Do Not Use For" routing surfaces: this is sales enablement that should also
-  involve `competitive-battlecard` skill for the actual battlecard content
-- Channel strategy is internal-only (no external channels listed for a T3 internal launch)
-- Brief does not include customer-facing channels (LinkedIn, events, etc.)
+**Expected Behavior:**
+1. Pre-flight loads brain successfully
+2. Notes internally: "Section 7 empty. Tier calibration will rely on signal analysis only — no historical precedent."
+3. Intake runs and completes
+4. Tier is assigned without calibration comparison (Confidence: Medium instead of High)
+5. Brief notes: "No prior launches of similar scope in history. Tier calibration based on this signal analysis only."
 
-**Expected output excludes:**
-- T1 or T2 tier for internal sales enablement
-- External channels in the channel strategy
-- Brief delivered without quality gate having run
-- No mention of `competitive-battlecard` skill for the battlecard content itself
+**Success Criteria:**
+- Tier assigned despite missing history
+- Confidence score reflects missing data
+- Brief is honest about assumption basis
 
-**Pass condition:**
-T3 assigned correctly, brief is internally-scoped, quality gate catches any missing
-leading indicator, and routing to `competitive-battlecard` is surfaced in next steps.
+**Test Pass:** System handles partial context gracefully
 
 ---
 
-## Test Case 5: /calibrate command — tier mismatch update
+## Test 5: Brain Write Confirmation
 
 **Input:**
-```
-/calibrate "Analytics Dashboard Launch" — We assigned T2 but it performed like T1.
-Pipeline generated was $280K vs. $90K target. Sales used it in 80% of enterprise deals.
-It became our main competitive differentiator for 2 quarters.
-```
+- Initiative: "Analytics expansion"
+- User accepts generated brief
 
-**Expected output includes:**
-- Launch name and assigned tier confirmed
-- Actual performance documented
-- Calibration verdict: "Under-resourced" — T2 assigned, T1 performance
-- Rule proposed in the Self-Improvement Trigger format (🔁)
-- Proposed rule is specific: e.g. "When a feature becomes a primary competitive
-  differentiator for enterprise ICP, assign T1 regardless of initial scope estimate"
-- Offer to update brain Section 7 with actuals
-- Rule proposed for `knowledge/gtm/hypotheses.md` with path stated
+**Expected Behavior:**
+1. Brief completes generation
+2. Before writing to brain, skill surfaces:
+   > "Logged to brain Section 7 as Planned. Run `retro` after launch to update with actuals — the 4th launch will be better calibrated than the 1st."
+3. User confirms or declines
+4. If confirmed: brain Section 7 updated with launch entry including:
+   - Date planned
+   - Tier assigned
+   - Tier rationale
+   - Primary metric
+   - Status: Planned
+5. If declined: brain not modified; user notified
 
-**Expected output excludes:**
-- No calibration verdict — just documenting without evaluating
-- Rule proposed without Self-Improvement Trigger format
-- Brain Section 7 updated without asking for confirmation
+**Success Criteria:**
+- Write is never silent
+- Confirmation always requested
+- User can reject without breaking output
 
-**Pass condition:**
-/calibrate command produces verdict, specific rule proposal in correct format,
-and asks for confirmation before writing to brain.
+**Test Pass:** Brain integration is explicit and controllable
 
 ---
 
-## Test Case 6: /history command — no history in brain
+## Test 6: /tier Command (Quick Scope)
 
 **Input:**
-```
-/history
-```
+- /tier [initiative description, no full context]
 
-**Expected output includes:**
-- Skill checks brain Section 7
-- If Section 7 is empty or absent: surfaces non-blocking message:
-  > "No launch history in brain yet. Run your first launch through `/brief` and
-  > confirm the brief to start building your calibration history."
-- Suggestion to run `product-marketing-context` if brain itself is missing
-- No error or confusing output
+**Expected Behavior:**
+1. Tier is assigned without full brief generation
+2. Output format:
+   ```
+   Tier: [T#]
+   Rationale: [one sentence — four signals applied]
+   Calibration note: [prior launch precedent if applicable, or "No prior precedent in brain"]
+   Confidence: [High / Medium / Low — based on signal quality]
+   Next: Run /brief for the full GTM strategy, or /pre-mortem to stress-test before committing.
+   ```
 
-**Expected output excludes:**
-- Fabricated launch history
-- Blocking error that prevents further use of the skill
-- Table with empty rows presented as if history exists
+**Success Criteria:**
+- Tier assigned in isolation
+- Rationale still cites all 4 signals
+- Confidence score reflects available info
+- User can decide to run /brief next or move to pre-mortem
 
-**Pass condition:**
-Skill handles empty or missing Section 7 gracefully with a clear message and
-actionable next step.
+**Test Pass:** Quick tier assignment without full brief overhead
 
 ---
 
-## Test Case 7: Full session — T2 launch with calibration precedent
+## Test 7: /history Command (Calibration Reference)
 
 **Input:**
-```
-We're launching a new API integration marketplace. It's targeted at our developer
-persona — CTOs and senior engineers at mid-market SaaS companies. Goal: 50 integrations
-published by partners in 90 days, which should generate 20% uplift in expansion ARR.
-Timeline: 6 weeks. We've launched partner programs before.
-```
+- /history
+- /history T1
+- /history [segment name]
 
-**Expected output includes:**
-- Intake reflected back correctly before tier assignment
-- Brain Section 7 checked for prior partner program launches
-- If prior launches exist: calibration note references them
-- Tier assigned — likely T2 (significant initiative, developer persona, 6-week timeline)
-  with four-signal rationale
-- Channel strategy includes developer-specific channels (documentation, devrel,
-  GitHub, developer newsletters) — not generic B2B channels
-- Leading indicator: number of integrations in development pipeline by week 3,
-  not just final count at 90 days
-- Proof points from Section 5 relevant to partner ecosystem pulled if available
-- Brain Section 7 write offered after brief confirmed
-- Next steps include `retro` at T+90 days for actuals update
+**Expected Behavior:**
+1. /history: returns all launches from brain Section 7 in table format
+2. /history T1: filters to T1 launches only
+3. /history [segment]: filters by ICP segment
+4. Table shows: Launch name | Tier assigned | Metric | Status | Actuals (if post-launch)
 
-**Expected output excludes:**
-- T1 assigned without stronger revenue signal or company-defining market impact
-- Channel list that doesn't acknowledge developer persona (LinkedIn ads, cold email)
-- No leading indicator — only the 50 integrations lagging metric
-- Brief delivered without intake reflection
+**Success Criteria:**
+- Historical context is accessible and filterable
+- User can see what's been launched before
+- Helps calibrate current initiative against precedent
 
-**Pass condition:**
-T2 assigned with developer-appropriate channels, leading indicator present,
-calibration history checked, and retro trigger in next steps.
+**Test Pass:** Historical learning is accessible and usable

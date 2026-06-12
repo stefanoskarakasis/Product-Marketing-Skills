@@ -1,6 +1,6 @@
 ---
 name: go-to-market-strategy
-version: 2.0.0
+version: 2.1.0
 description: >
   Assigns launch tier (T1–T4) and generates a complete GTM strategy brief with
   positioning angles, channel strategy, success metrics, and competitive context.
@@ -14,7 +14,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-06-06
+last_updated: 2026-06-12
 ---
 
 # Go-to-Market Strategy
@@ -64,13 +64,36 @@ recommending resource investment.
 
 ## Pre-flight
 
+### First-run detection
+
+Before loading any context, check for `/foundation/brain.md`.
+
+**If brain is missing entirely**, do not continue to intake. Run first-run onboarding:
+
+> "Welcome. Before we build your first GTM brief, I need your company context —
+> otherwise I'm generating generic output that won't be worth your time.
+>
+> **Step 1 of 2:** Run `product-marketing-context` first.
+> That skill sets up your brain file with ICP, positioning, competitive landscape,
+> and proof points — the four things that make a GTM brief sharp instead of generic.
+>
+> Come back here once your brain is set up and I'll assign a tier and build your
+> brief in one pass. It takes 10–15 minutes and you only do it once."
+
+Do not generate a brief without a brain. The non-blocking warning pattern is retired
+in this version — a brief without ICP and positioning is not a GTM brief.
+
+**Exception:** If the user explicitly states they want a draft brief without a brain
+(acknowledged limitation), surface once and proceed:
+> "Understood. Continuing without brain context. Output will be assumption-based —
+> treat it as a starting scaffold, not a strategy. Run `product-marketing-context`
+> before using this for real planning."
+
+### Standard pre-flight (brain present)
+
 - Load `/foundation/brain.md`. Extract Sections 2, 3, 4, 5, 7 silently.
-- If brain missing: surface once, non-blocking:
-  > "No brain found. Run `product-marketing-context` first — this brief will be
-  > significantly sharper with your ICP, positioning, and launch history loaded.
-  > Continuing with assumption-based output."
 - If Section 7 (Launch history) is empty or missing: note internally. Tier
-  calibration will rely on initiative signals only — no historical precedent to draw from.
+  calibration will rely on initiative signals only — no historical precedent.
 - If Section 3 (Positioning) is 🔴 Placeholder: flag before intake:
   > "⚠️ Positioning is marked Placeholder. The GTM brief will lack sharp angles.
   > Run `positioning-messaging` first for better output."
@@ -293,12 +316,15 @@ If the user declines brain write: proceed without writing. Do not force it.
 
 ## Verification
 
-- Tier is stated with a one-sentence rationale before the brief.
-- Brief contains all seven sections: Strategic Context, Channel Strategy, Success
-  Metrics, Competitive Context, Proof Points, Timeline, Next Steps.
-- Leading indicators are present alongside the primary metric.
-- Channel recommendations are specific to ICP and motion type — not generic lists.
-- Brain Section 7 write confirmed to user after brief acceptance.
+Runs after brief generation, before delivery. All checks must pass.
+
+| Check | Standard | Pass = |
+|---|---|---|
+| Tier stated with rationale | One-sentence rationale present before brief | Yes |
+| All seven brief sections present | Strategic Context, Channel Strategy, Success Metrics, Competitive Context, Proof Points, Timeline, Next Steps | Yes |
+| Leading indicator present | At least one leading indicator alongside primary metric | Yes |
+| Channel specificity | Every channel tied to ICP and motion type — not generic listing | Yes |
+| Brain Section 7 write confirmed | User asked before writing; outcome noted | Yes |
 
 ---
 
@@ -349,22 +375,15 @@ Runs Steps 1–5 sequentially. Outputs the full structured brief.
 ---
 
 ### /calibrate
-Review the tier assigned to a prior launch against what actually happened. Updates
-brain Section 7 with actuals and surfaces a calibration rule for future launches.
+Review the tier assigned to a prior launch against actuals. Updates brain Section 7
+and surfaces a calibration rule for future launches.
 
 ```
-/calibrate [launch name] — [what actually happened vs. what was projected]
+/calibrate [launch name] — [what happened vs. projected]
 ```
 
-Output format:
-```
-Launch: [name]
-Tier assigned: [T#]
-Actual performance: [what happened]
-Calibration: [Over-resourced / Under-resourced / Correct]
-Rule proposed: "[pattern statement for future similar launches]"
-→ Add to brain Section 7? [Y/N]
-```
+Output: Launch name, tier assigned, actual performance, calibration verdict
+(Over-resourced / Under-resourced / Correct), proposed rule, brain write prompt.
 
 ---
 
@@ -385,6 +404,9 @@ Output: table of prior launches with tier, metric, status, and actuals.
 
 - **Load brain before intake.** ICP, positioning, and launch history change what tier
   is appropriate. A T2 for one company is a T3 for another.
+- **First-run mode is not optional.** A missing brain triggers onboarding, not a
+  warning. The non-blocking pattern produces generic output that damages trust in
+  the skill — retire it.
 - **All four tier signals must be applied.** Never assign tier on a single signal.
   Revenue potential alone does not make something T1.
 - **Reflect back the initiative before tiering.** Assumption-surfacing is not polish —
@@ -416,6 +438,7 @@ incomplete output.
 |---|---|---|
 | Tier assigned with rationale | All four signals applied, one-sentence rationale stated | Yes |
 | Brain loaded | Sections 2, 3, 4, 5, 7 extracted before brief was generated | Yes |
+| First-run check completed | Brain presence verified; onboarding triggered if missing | Yes |
 | Intake complete | Initiative reflected back and confirmed before brief generated | Yes |
 | Leading indicator present | At least one leading indicator alongside primary metric | Yes |
 | Channel specificity | Every channel has ICP-specific rationale, not generic listing | Yes |
@@ -461,20 +484,16 @@ Awaiting approval before encoding.
 
 ## Changelog
 
+### v2.1.0 — 2026-06-12
+Spec compliance audit fixes. Brain-missing now triggers guided onboarding (not a
+non-blocking warning) — modelled on Ramp's zero-state UX. Verification converted
+to table format. First-run check added to Operating Rules and Quality Gate.
+
 ### v2.0.0 — 2026-06-06
 Full rebuild to SKILL-SPEC v2.0.0. Replaced README-grade file (93 lines) with
-production-grade skill.
-
-Changes from v1.0.0:
-- Added all 7 required sections: Trigger, Inputs, Pre-flight, Steps, Outputs,
-  Verification, Do Not Use For
-- Intake step added — tier never assigned without reflected-back initiative
-- Four-signal tier assignment model formalised with calibration history check
-- Full GTM brief structure with 7 sections including leading indicators
-- /tier, /brief, /calibrate, /history commands added
-- Brain contract declared: reads Sections 2, 3, 4, 5, 7; writes Section 7
-- Operating rules (10), quality gate (10 checks), self-improvement loop added
-- Explicit routing away from workflow-orchestrator, positioning-messaging, pre-mortem, retro
+production-grade skill. Added all 7 required sections, intake step, four-signal
+tier assignment, full GTM brief structure (7 sections), /tier /brief /calibrate
+/history commands, brain contract, operating rules, quality gate, self-improvement loop.
 
 ### v1.0.0 — 2026-04-01
 Initial build. Tier framework and brain integration concept. README-grade.

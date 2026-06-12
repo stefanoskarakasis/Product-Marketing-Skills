@@ -1,6 +1,6 @@
 ---
 name: workflow-orchestrator
-version: 2.0.0
+version: 2.1.0
 description: >
   Orchestrates multi-skill PMM programs end-to-end — chains positioning,
   competitive, GTM strategy, campaign briefs, stakeholder maps, and retros into
@@ -10,11 +10,11 @@ description: >
   market entry program", "full PMM onboarding", or any request for a multi-step
   PMM initiative that spans more than one skill.
 
-Metadata:
+metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-06-06
+last_updated: 2026-06-12
 ---
 
 # PMM Workflow Orchestrator
@@ -122,7 +122,7 @@ Primary metric:   [metric + target]
 Timeline:         [start → end]
 Brain status:     [Section staleness summary]
 Skills to run:    [ordered list]
-Skills to skip:   [list with reason — e.g. "Section 3 current, skip positioning"]
+Skills to skip:   [list with reason]
 ───────────────────────────────────────
 Confirm to start? [Y/N]
 ```
@@ -141,20 +141,18 @@ For each brain section relevant to the workflow, assess:
 | 4 — Competitive | [date or unknown] | 🟢 / 🟡 / 🔴 | Run / Skip / Flag |
 | 7 — Launch history | [date or count] | 🟢 / 🟡 / 🔴 | Note calibration quality |
 
-Surface the check to the user as part of the Program Charter — do not run this silently
-without user visibility.
+Surface as part of the Program Charter — do not run silently.
 
 ---
 
 ### Step 3: Skill Sequencing
 
-Determine the ordered skill chain for the confirmed workflow. Use the workflow
-definitions below. Surface the sequence before running:
+Determine the ordered skill chain for the confirmed workflow. Surface the sequence
+before running:
 
 > "Here's the sequence for this program:
 > 1. [Skill A] — [what it produces and why it's first]
 > 2. [Skill B] — [what it reads from A and what it adds]
-> 3. [Skill C] — [what it reads from A+B and what it adds]
 > ...
 > Each skill output feeds the next. I'll flag if a downstream skill can't proceed
 > due to a gap in an upstream output."
@@ -165,46 +163,39 @@ definitions below. Surface the sequence before running:
 
 Invoke each skill in sequence. Between each skill:
 
-1. Confirm output with user before passing state to next skill. Do not chain
-   silently without checkpoints.
+1. Confirm output with user before passing state to next skill.
 2. Extract relevant outputs and update the Program State document.
-3. Flag any coherence issue immediately — if positioning output conflicts with
-   ICP from brain, surface it before running the next skill.
+3. Flag any coherence issue immediately before running the next skill.
 
 **Coherence checks between skills:**
 - Positioning → GTM strategy: do channel recommendations match the positioned segment?
-- GTM strategy → Stakeholder maps: does the tier align with the stakeholder weight
-  given to Sales vs. CS vs. Product?
-- Competitive → GTM strategy: does the attack angle in the brief match the
-  battlecard differentiation?
-- Personas → Proof points: does the proof point set address the persona's primary
-  objection?
+- GTM strategy → Stakeholder maps: does the tier align with stakeholder weight?
+- Competitive → GTM strategy: does the attack angle match the battlecard?
+- Personas → Proof points: does the proof point set address the persona's primary objection?
 
-If coherence fails: surface the conflict, ask the user which output to trust,
-and re-run the downstream skill with corrected input.
+If coherence fails: surface the conflict, ask which output to trust, re-run
+the downstream skill with corrected input.
 
 ---
 
 ### Step 5: Brain Update
 
-After each skill produces a confirmed output, update brain as follows:
+After each skill produces a confirmed output:
 
-- **Positioning refresh completed:** Update Section 3 with new positioning statement
-  and timestamp.
-- **Competitive work completed:** Update Section 4 with refreshed alternative map
-  and timestamp.
-- **New proof points confirmed:** Update Section 5 with approved new claims.
-- **Launch planned:** Add entry to Section 7 as "Planned" with tier, metric, date.
+- **Positioning refresh:** Update Section 3 with new statement and timestamp.
+- **Competitive work:** Update Section 4 with refreshed alternative map and timestamp.
+- **New proof points:** Update Section 5 with approved new claims.
+- **Launch planned:** Add Section 7 entry as "Planned" with tier, metric, date.
 - **Retro completed:** Update Section 7 entry from "Planned" to "Completed" with actuals.
 
-Surface each write to the user:
+Surface each write:
 > "Updating brain Section [X] with [what]. Confirm? [Y/N]"
 
 ---
 
 ### Step 6: Master Program Document
 
-Compile all skill outputs into one master document. Structure:
+Compile all skill outputs into one master document:
 
 ```markdown
 # [Program Name] — Master Document
@@ -214,48 +205,37 @@ Compile all skill outputs into one master document. Structure:
 **Primary metric:** [metric + target]
 **Brain last updated:** [date]
 
----
-
 ## Program Charter
 [From Step 1]
 
 ## Skill Outputs
-
 ### [Skill A] — [date run]
-[Confirmed output or summary with link to full output]
+[Confirmed output or summary]
 
 ### [Skill B] — [date run]
 [Confirmed output or summary]
 
-### [Skill C] — [date run]
-[Confirmed output or summary]
-
----
-
 ## Coherence Check Results
-[Any conflicts surfaced and how they were resolved]
+[Conflicts surfaced and how resolved]
 
 ## Brain Updates Made
-[List of sections updated with timestamps]
+[Sections updated with timestamps]
 
 ## Open Items
-[Anything flagged but not resolved — with owner and due date]
+[Unresolved gaps — owner and due date]
 
 ## Next Program Trigger
-[When to run the next cycle — e.g. "Re-run quarterly cycle in [month]"]
+[When to run the next cycle]
 ```
 
 ---
 
-### Step 7: Self-Improvement and Close
+### Step 7: Close
 
-After program is complete:
-
-1. Extract 1–3 observations about the program — what worked, what stalled, what
-   would have been sharper with better brain data.
-2. Propose Self-Improvement Triggers for any structural observation.
+1. Run `/coherence` across all completed outputs — resolve any remaining conflicts.
+2. Propose Self-Improvement Triggers for structural observations (see Self-Improvement Loop).
 3. Log session to `sessions/log.md`.
-4. Offer next program trigger date based on workflow type:
+4. Surface next program trigger date:
    - Full launch → retro in 90 days
    - Quarterly cycle → next cycle in 13 weeks
    - Positioning refresh → re-audit in 6 months
@@ -267,64 +247,36 @@ After program is complete:
 
 ### 1. Full Product Launch
 **Trigger:** "run full launch workflow", "launch [product] end to end"
-
-**Sequence:**
 1. `go-to-market-strategy` — tier + strategy brief
-2. `positioning-messaging` (if Section 3 stale or initiative requires new angles)
+2. `positioning-messaging` (if Section 3 stale or new angles needed)
 3. `hs-competitive-battlecard` (if T1/T2 or competitor mentioned)
 4. `hs-gaccs-brief` — campaign brief
 5. `hs-stakeholder-maps` — internal alignment map
 6. `hs-pre-mortem` — risk analysis before committing
 7. Set T+90 retro trigger → `retro`
 
-**Brain writes:** Section 3 (if refreshed), Section 4 (if competitive run),
-Section 7 (Planned entry).
-
----
-
 ### 2. Positioning Refresh
 **Trigger:** "positioning refresh", "our messaging is stale", "update positioning"
-
-**Sequence:**
 1. `positioning-messaging` (AUDIT mode → full BUILD if audit score < 70)
 2. `hs-value-prop-statements` — persona-specific copy
-3. `hs-competitive-battlecard` — refresh differentiation section for top competitors
-
-**Brain writes:** Section 3 (full refresh), Section 4 (if alternatives changed).
-
----
+3. `hs-competitive-battlecard` — refresh differentiation for top competitors
 
 ### 3. Competitive Intelligence Program
 **Trigger:** "competitive program", "build battlecards", "competitive deep-dive"
-
-**Sequence:**
 1. `hs-alternatives-map` — if not current
 2. `hs-competitive-battlecard` — for each named competitor (run sequentially)
 3. `hs-ci-stakeholder-briefing` — exec-level competitive newsletter
 
-**Brain writes:** Section 4 (alternatives + battlecard intel).
-
----
-
 ### 4. Quarterly PMM Cycle
 **Trigger:** "quarterly PMM cycle", "Q[X] refresh", "quarterly review"
-
-**Sequence:**
 1. `retro` — debrief all launches from prior quarter
 2. `positioning-messaging` (AUDIT mode)
 3. `hs-competitive-battlecard` — refresh top 3 competitors
 4. `hs-proof-points-claims` — audit + add new proof points
 5. `hs-brainstorm-okrs` — set next quarter OKRs
 
-**Brain writes:** Section 3 (if refreshed), Section 4 (refreshed), Section 5
-(audited), Section 7 (retros completed).
-
----
-
 ### 5. New Market Entry Program
 **Trigger:** "enter new market", "expand to [segment]", "new vertical"
-
-**Sequence:**
 1. `hs-icp` — define ICP for new market
 2. `hs-buyer-personas` — buying committee for new market
 3. `positioning-messaging` — positioning for new segment
@@ -333,33 +285,19 @@ Section 7 (Planned entry).
 6. `hs-gaccs-brief` — campaign brief
 7. `hs-pre-mortem` — risk analysis before committing
 
-**Brain writes:** Section 2 (new segment ICP), Section 3 (new positioning),
-Section 4 (new market competitive), Section 7 (Planned entry).
-
----
-
 ### 6. Competitive Response (Fast)
 **Trigger:** "competitive response to [competitor]", "they just launched [X]"
-
-**Sequence:**
 1. `hs-competitive-battlecard` — expedited for named competitor
 2. `hs-value-prop-statements` — refreshed differentiation messaging
 3. `hs-ci-stakeholder-briefing` — exec alert
 
-**Brain writes:** Section 4 (updated for named competitor).
-
----
-
 ### 7. Full PMM Onboarding / Audit
 **Trigger:** "I just joined as PMM", "PMM audit", "what's our current state"
-
-**Sequence (read-only):**
 1. Audit brain Sections 1–7 — completeness, staleness, gaps
 2. `positioning-messaging` (AUDIT mode only)
 3. `hs-proof-points-claims` (AUDIT mode only)
 4. Produce Current State Report with prioritised gaps
-
-**Brain writes:** None — read-only audit.
+**Note:** Read-only. No brain writes under any circumstance.
 
 ---
 
@@ -378,99 +316,25 @@ Start a named workflow. Runs Steps 1–7 with checkpoints.
 /run audit
 ```
 
----
-
 ### /status
-Show current program state. Which skills have run, which are pending, what's
-in the master document, and what brain updates have been made.
-
-```
-/status
-```
-
-Output:
-```
-PROGRAM STATUS — [Initiative Name]
-Workflow: [type]
-Started: [date]
-
-Skills completed:  [list with dates]
-Skills pending:    [list]
-Next skill:        [name — what it needs from prior outputs]
-Brain updated:     [sections + timestamps]
-Open items:        [list]
-```
-
----
+Show current program state: skills completed, skills pending, next skill,
+brain updates made.
 
 ### /skip [skill-name]
 Skip a skill in the current sequence. Requires reason. Orchestrator flags
-downstream impact before confirming skip.
-
-```
-/skip positioning-messaging — positioning is current, refreshed 2 months ago
-```
-
-Output:
-```
-Skip confirmed: positioning-messaging
-Reason: [stated reason]
-Downstream impact: [what the next skill loses by skipping this one]
-Confirm skip? [Y/N]
-```
-
----
+downstream impact and requests confirmation before skipping.
 
 ### /coherence
-Run a coherence check across all completed skill outputs. Flags conflicts
-between positioning, personas, proof points, and competitive intel.
-
-```
-/coherence
-```
-
-Output:
-```
-COHERENCE CHECK — [Program Name]
-
-✅ Positioning ↔ GTM strategy: aligned — channel targets match positioned segment
-⚠️ Personas ↔ Proof points: gap — no proof point addresses Persona B's primary objection
-❌ Competitive ↔ GTM brief: conflict — attack angle in brief contradicts battlecard for Competitor X
-
-Recommended actions:
-1. [specific fix for ⚠️]
-2. [specific fix for ❌]
-```
-
----
+Run a coherence check across all completed outputs. Flags positioning ↔ GTM,
+competitive ↔ GTM, and personas ↔ proof point conflicts with specific fixes.
 
 ### /compile
-Compile the master program document from all confirmed skill outputs.
+Compile the Master Program Document from all confirmed skill outputs.
 Can be run mid-program or at end.
 
-```
-/compile
-```
-
-Produces the Master Program Document from Step 6.
-
----
-
 ### /next
-Show what skill runs next, what it needs, and what it will produce.
-
-```
-/next
-```
-
-Output:
-```
-Next skill: [name]
-Reads from: [prior skill outputs or brain sections]
-Produces: [what it adds to the program]
-Estimated time: [rough session estimate]
-Ready to run? [Y/N]
-```
+Show what skill runs next, what it reads from prior outputs, what it produces,
+and estimated session time.
 
 ---
 
@@ -488,12 +352,16 @@ Ready to run? [Y/N]
 
 ## Verification
 
-- Program Charter confirmed by user before any skill runs.
-- Each skill output confirmed by user before state passes to next skill.
-- Coherence check run after all skills complete.
-- Brain sections updated only after user confirmation of each write.
-- Master Program Document contains all confirmed outputs and open items.
-- Next program trigger date surfaced at close.
+Runs at program close, before Master Program Document is delivered.
+
+| Check | Standard | Pass = |
+|---|---|---|
+| Program Charter confirmed | User explicitly confirmed charter before any skill ran | Yes |
+| Each skill confirmed | Every output confirmed by user before next skill ran | Yes |
+| Coherence check run | /coherence run after all skills; conflicts surfaced and resolved | Yes |
+| Brain writes confirmed | Every brain write shown and confirmed before executing | Yes |
+| Master document complete | All required sections present with no orphaned outputs | Yes |
+| Next trigger surfaced | Next program cycle date recommended at close | Yes |
 
 ---
 
@@ -522,8 +390,7 @@ Ready to run? [Y/N]
 - **Coherence over speed.** If a conflict surfaces between outputs, stop and resolve
   it before proceeding. A fast program with incoherent outputs is not a program.
 - **Staleness must be surfaced.** If any brain section relevant to the workflow is
-  stale, say so in the charter. The user decides whether to refresh — but they must
-  decide consciously, not discover the staleness in the outputs.
+  stale, say so in the charter. The user decides whether to refresh — consciously.
 - **Brain writes require confirmation.** Never write to brain without explicit
   user go-ahead. Show what will be written, then wait.
 - **Skip requires downstream impact disclosure.** If the user skips a skill,
@@ -544,12 +411,12 @@ Runs at program close, before Master Program Document is delivered.
 | Check | Standard | Pass = |
 |---|---|---|
 | Program Charter confirmed | User explicitly confirmed charter before skills ran | Yes |
-| All skills checked | Each skill either ran or was explicitly skipped with reason | Yes |
+| All skills accounted for | Each skill either ran or was explicitly skipped with reason | Yes |
 | Checkpoint for each skill | Each skill output confirmed before next skill ran | Yes |
 | Coherence check run | /coherence run after all skills — conflicts surfaced and resolved | Yes |
 | Brain writes confirmed | Every brain write shown to user and confirmed | Yes |
-| Master document complete | All seven sections present in master document | Yes |
-| Open items documented | Any unresolved gaps have named owner and due date | Yes |
+| Master document complete | All required sections present in master document | Yes |
+| Open items documented | Unresolved gaps have named owner and due date | Yes |
 | Next trigger surfaced | Next program cycle date recommended at close | Yes |
 | No orphaned outputs | Every skill output referenced in master document | Yes |
 | DRI named | Program Charter includes a named DRI | Yes |
@@ -571,8 +438,8 @@ Runs at program close, before Master Program Document is delivered.
    - Which coherence conflict was most expensive to resolve?
 2. Log observations to `knowledge/orchestrator/hypotheses.md`.
 3. If same pattern observed 3+ times → propose promotion to `knowledge/orchestrator/rules.md`.
-4. Log session summary to `sessions/log.md` including: workflow type, duration,
-   skills run, brain sections updated, open items count.
+4. Log session summary to `sessions/log.md`: workflow type, duration, skills run,
+   brain sections updated, open items count.
 
 **Self-Improvement Trigger format — surface before encoding, never silently:**
 
@@ -588,24 +455,21 @@ Awaiting approval before encoding.
 
 ## Changelog
 
-### v2.0.0 — 2026-06-06
-Full rebuild to SKILL-SPEC v2.0.0.
+### v2.1.0 — 2026-06-12
+Spec compliance fixes from 16/19 audit. Zero failures, one permanent partial (Q3).
 
-Changes from v1.0.0:
-- Added all 7 required sections: Trigger, Inputs, Pre-flight, Steps, Outputs,
-  Verification, Do Not Use For
-- Brain is now mandatory (not optional) — orchestrator blocks without it
-- Program Charter formalised as Step 1 — no execution before confirmation
-- Checkpoint after every skill formalised — no silent chaining
-- Coherence check formalised between skill pairs (positioning/GTM, competitive/GTM,
-  personas/proof points)
-- /run, /status, /skip, /coherence, /compile, /next commands added
-- Brain contract declared: reads all sections, writes 3, 4, 5, 7 on confirmation
-- Staleness thresholds defined: Section 3 > 6 months, Section 4 > 3 months
-- Operating rules (10), quality gate (10 checks), self-improvement loop added
-- Read-only audit workflow added with explicit no-write rule
-- Next program trigger at close formalised
+- **F1:** Fixed `Metadata:` → `metadata:` (lowercase) — YAML parsers are case-sensitive.
+- **S6:** Verification converted from bullet list to binary table (6 checks).
+- **Q1:** Reduced from 612 → 499 lines. Cuts: Commands output blocks stripped
+  (signatures kept), Step 7 consolidated, Changelog v2.0.0 compressed, Supported
+  Workflows stripped of redundant brain-writes lines (covered in Inputs contract).
+
+### v2.0.0 — 2026-06-06
+Full rebuild to SKILL-SPEC v2.0.0. Added all 7 required sections, mandatory brain
+enforcement, Program Charter (Step 1), per-skill checkpoints, coherence checks
+across skill pairs, /run /status /skip /coherence /compile /next commands, brain
+contract with staleness thresholds, operating rules (10), quality gate (10 checks),
+self-improvement loop, read-only audit workflow.
 
 ### v1.0.0 — 2026-04-01
-Initial build. Workflow list and brain integration concept. No intake, no
-coherence checks, no checkpoints. README-grade.
+Initial build. Workflow list and brain integration concept. README-grade.

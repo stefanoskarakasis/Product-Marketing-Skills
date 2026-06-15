@@ -2,14 +2,10 @@
 name: hs-retro
 version: 2.1.0
 description: >
-  Facilitate a structured GTM retrospective for cross-functional squads (Eng, Design,
-  PM, PMM) — anchored to OKRs and launch outcomes, with a self-improving knowledge
-  loop that compounds across every session. Use when running a post-launch retro, GTM
-  cycle review, sprint retrospective with a PMM lens, or any cross-functional debrief
-  where you need decisions, not just discussion. Trigger on: "retro", "retrospective",
-  "post-launch review", "what went wrong", "GTM debrief", "sprint review", "what should
-  we do differently", "debrief this launch", "what did we learn", or any request to
-  reflect on a completed GTM cycle or product initiative.
+  Structured GTM retrospective for cross-functional squads anchored to OKRs and launch
+  outcomes. Produces diagnostic root causes and actionable decisions, not venting. Use for
+  post-launch reviews, GTM cycle debriefs, and sprint retrospectives where you need to
+  understand what broke structurally and fix it before the next cycle.
 
 metadata:
   author: Stefanos Karakasis

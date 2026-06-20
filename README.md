@@ -14,10 +14,10 @@ Run into a problem or have a question? [Open an issue](https://github.com/stefan
 
 ## Start Here
 
-New to product marketing context? → `/setup-context`
-Pressure-testing positioning? → `/position`
-Planning a launch? → `/launch`
-Building a battlecard? → `/compete`
+Setting up your Product Marketing Context? → `/setup-context`\
+Pressure-testing positioning? → `/position`\
+Planning a launch? → `/launch`\
+Building a battlecard? → `/compete`\
 Drafting a campaign brief? → `/brief`
 
 If this project helps you, ⭐ the repo.

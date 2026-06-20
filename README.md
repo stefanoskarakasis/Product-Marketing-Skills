@@ -1,8 +1,10 @@
 # Product Marketing Skills for AI Agents
 
-A collection of AI agent skills focused on product marketing tasks. Built for Product Marketing Managers, founders, and marketing leaders who want AI agents to help with positioning, competitive intelligence, launch planning, OKRs, experiments, and GTM strategy. Works with Claude Code, Claude Cowork, Cursor, Windsurf, and any agent that supports the [Agent Skills spec](https://agentskills.io/).
+A collection of AI agent skills focused on product marketing tasks. Built for Product Marketing Managers, founders, and marketing leaders who want AI agents to help with positioning, competitive intelligence, launch planning, OKRs, experiments, and GTM strategy. 
 
-Built by [Stefanos Karakasis](https://heystefanos.gumroad.com/). Looking for GTM strategy guidance? Check out [The Spread](https://thespreadnewsletter.substack.com/) — weekly intelligence on AI GTM, fintech hiring, and competitive signals.
+Works with Claude Code, Claude Cowork, Cursor, Windsurf, and any agent that supports the [Agent Skills spec](https://agentskills.io/).
+
+Built by [Stefanos Karakasis](https://heystefanos.gumroad.com/).
 
 New to skills and agents? Start with the **Quick Start** section above or jump to **Installation**.
 

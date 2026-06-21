@@ -1,125 +1,313 @@
 ---
-name: hs-interview-summary
-version: 2.0.0
+name: interview-summary
+version: 2.1.0
 description: >
-  A self-improving customer interview synthesis engine for PMMs, Product Managers, and
-  UX Researchers. Transforms raw transcripts into structured discovery outputs anchored
-  in JTBD theory, with signal-level pattern detection, confidence scoring, and a
-  compounding learning loop. Trigger on: "summarize interview", "process transcript",
-  "interview summary", "what did customers say", "synthesize discovery", "interview
-  debrief", "JTBD analysis", "customer insight", "research synthesis", or any request
-  to process, structure, or extract meaning from a customer or prospect interview.
+  Self-improving customer interview synthesis engine for PMMs, Product Managers, and UX Researchers.
+  Transforms raw transcripts into structured discovery outputs anchored in JTBD theory,
+  with signal-level pattern detection, confidence scoring, and compounding learning loop
+  that writes to /context. Trigger on: "summarize interview", "process transcript",
+  "interview summary", "what did customers say", "synthesize discovery", "interview debrief",
+  "JTBD analysis", "customer insight", "research synthesis", or any request to process,
+  structure, or extract meaning from a customer or prospect interview.
+
+metadata:
+  author: Stefanos Karakasis
+  context: brain-dependent
+  quality_gate: true
+last_updated: 2026-06-21
 ---
 
-# hs-interview-summary — Customer Discovery Synthesis Engine
+# interview-summary — Customer Discovery Synthesis Engine
 
-Transforms raw interview transcripts into structured intelligence.
+Transforms raw interview transcripts into structured intelligence that compounds.
 Not a transcription service. A synthesis engine that extracts Jobs, surfaces patterns,
-flags contradictions, and compounds learning across every session.
+flags contradictions, and writes learnings to `/context` where every other skill can read them.
 
-Built on JTBD theory. Sharpened for B2B product and GTM contexts.
-
----
-
-## ⓪ PMM CONTEXT — LOAD FIRST
-
-Before intake, check `.agents/product-marketing-context.md`.
-
-**If it exists — load silently. Extract:**
-
-- `## ICP Prioritisation` → does this interviewee match the ICP? Flag if they don't.
-- `## Positioning` → does what they said validate or challenge current positioning?
-- `## Objections & Anti-Personas` → flag any new objections or anti-persona signals in the transcript.
-- `## Revenue Levers` → which lever does the discovered Job connect to?
-- `## Beachhead Segment` → does this interviewee represent the beachhead or an adjacent segment?
-
-**If context file is missing:**
-
-Surface once, non-blocking:
-> "No PMM context found. Run `hs-product-marketing-context BUILD` first to make
-> pattern detection significantly sharper. Continuing — but insights will be
-> transcript-isolated, not connected to your positioning or ICP."
+Built on JTBD theory. Anchored to the four-layer GTM system (System of Context, System of Skills, System of Orchestration, System of Integrations).
+Sharpened for B2B product and GTM contexts.
 
 ---
 
-## RELATED SKILLS
+## Trigger
 
-Cross-reference when findings trigger downstream work:
+- **When:** Any customer or prospect interview needs synthesis into structured discovery output.
+  This includes: discovery calls, win/loss debriefs, churn interviews, competitive research interviews,
+  onboarding feedback, feature validation calls, or any call where you need to extract Jobs, map solutions,
+  and flag contradictions with your positioning or ICP.
 
-- **hs-product-marketing-context** → positioning signal from interview → update here
-- **hs-competitive-battlecard** → competitor mentioned as current solution → LEARN mode
-- **hs-value-prop-statements** → strong Job discovered → pressure-test value prop against it
-- **hs-gaccs-brief** → messaging hypothesis surfaced → route here for campaign brief
-- **hs-pre-mortem** → risk or failure mode surfaced by customer → route here
-- **hs-brainstorm-okrs** → success metric gap surfaces → route here
+- **Not for:**
+  - **interview-summary** is not a transcription tool — use Otter.ai or Fireflies for that.
+  - **interview-summary** is not for analyzing *your own* positioning or messaging in isolation.
+    If you need to check whether your messaging lands with buyers, route to `hs-positioning-messaging` or `hs-gaccs-brief`.
+  - **interview-summary** is not for building buyer personas from scratch without interviews.
+    Use `hs-buyer-personas` for that; this skill synthesizes existing transcript data.
 
----
-
-## ① INTAKE — ORIENT BEFORE SYNTHESIZING
-
-> ⚠️ Never summarize a transcript cold. Always establish context first.
-> A context-blind summary misses what matters.
-
-If the user pastes a transcript or file with no context, ask in one message:
-
-> "Before I synthesize this, give me three things:
->
-> 1. **Who is this?** Role, company, segment — and does this person match your ICP?
-> 2. **What was the purpose of this interview?** (Discovery / Validation / Win-loss /
->    Churn / Competitive / Onboarding / Other)
-> 3. **Is there anything specific you're trying to learn or confirm?**
->    (If yes, I'll weight those areas. If no, I'll surface what's most surprising.)"
-
-If context is already provided, proceed directly. Don't ask questions whose answers are visible.
+- **Example prompts:**
+  - "Summarize this customer discovery call and flag which Jobs matter most"
+  - "I have a win/loss interview — help me extract what we lost and why"
+  - "Process this transcript. Flag any positioning signal that contradicts our current narrative"
+  - "Run synthesis and update the pattern library with new findings"
+  - "Churn interview debrief — what Job did we fail to deliver on?"
 
 ---
 
-## ② TRANSCRIPT INTAKE
+## Inputs
 
-Accept transcripts in any of the following formats:
-- Pasted plain text
-- Uploaded `.txt`, `.md`, or `.pdf` file
-- Audio transcription output (Otter.ai, Fireflies, Rev, etc.)
-- Structured note dump (bullet points, rough notes)
+- **Args:** Path to a transcript file (`.txt`, `.md`, `.pdf`), pasted plain text,
+  structured note dump, or Otter/Fireflies/Rev transcription output.
+  Optional: interview context (interviewee role, company, interview purpose).
+  Free format — transcript alone is sufficient; context makes synthesis sharper.
 
-For uploaded files: read the full file before producing any output.
+- **Defaults:** If no context provided, skill asks three orientation questions.
+  If interviewee segment unknown, default to "Unclassified" in ICP match.
+  If no interview type specified, default to "Discovery".
 
-For rough notes or partial transcripts:
-> "This looks like abbreviated notes rather than a verbatim transcript.
-> I'll synthesize from what's here — flag anything you want me to treat with
-> more precision before I continue."
-
----
-
-## ③ PRE-SYNTHESIS AUDIT
-
-Before generating the summary, run a silent internal check:
-
-**Coverage audit:**
-- [ ] Does the transcript cover enough to identify at least one Job?
-- [ ] Is the interviewee's current solution identifiable?
-- [ ] Are there satisfaction signals — even implicit ones?
-- [ ] Are there any verbatim quotes worth preserving exactly?
-
-**Signal scan:**
-- [ ] Any mention of a competitor by name?
-- [ ] Any language that matches or contradicts current positioning?
-- [ ] Any Job or outcome that contradicts existing ICP assumptions?
-- [ ] Any emotional signal (frustration, surprise, delight)?
-
-If coverage is too thin to produce a reliable summary:
-> "This transcript is too sparse to synthesize with confidence.
-> Here's what I can extract: [list]. What I'd flag as missing: [list].
-> Proceed with caveats, or go back for a follow-up?"
+- **Context keys:** Requires `/context/interviews/` directory structure.
+  - `/context/interviews/patterns.md` — optional, if exists: apply confirmed patterns
+  - `/context/interviews/hypotheses.md` — optional, if exists: check active hypotheses
+  - `/context/interviews/rules.md` — optional, if exists: apply confirmed rules before synthesis
+  - `/context/interviews/decisions/` — optional, if exists: check prior strategic decisions
+  - `BRAIN.md` (specifically: ICP, Positioning, Beachhead Segment sections) — optional, if exists: load for validation
+  - All writes target `/context/interviews/` — non-blocking if directory missing
 
 ---
 
-## ④ SUMMARY OUTPUT — STRUCTURED TEMPLATE
+## Pre-flight
 
-````
+- Load `/context/BRAIN.md` if it exists. Extract: ICP Prioritisation, Positioning, Beachhead Segment, Revenue Levers.
+  If missing, surface non-blocking notice: "No brain context. Synthesis will be transcript-isolated."
+
+- Load `/context/interviews/rules.md` if it exists. These are confirmed patterns (3+ instances) to apply by default.
+
+- Load `/context/interviews/hypotheses.md` if it exists. Note which hypotheses can be tested against today's transcript.
+
+- Accept transcript in any format: pasted text, uploaded file (`.txt`, `.md`, `.pdf`),
+  or structured notes. Read the full file before producing output.
+
+- Identify interview type (Discovery / Validation / Win-loss / Churn / Competitive / Other)
+  from context or ask in intake step.
+
 ---
-# Interview summary
-hs-interview-summary v2.0.0
+
+## Steps
+
+**Step 1: Orientation & Context Load**
+- If no context provided, ask: "Who is this? (role, company, segment) | What was the purpose? | What are you trying to learn?"
+- Load `/context/BRAIN.md` and extract ICP, Positioning, Beachhead Segment for validation.
+- Load `/context/interviews/rules.md` and note which patterns apply.
+- Declare interview type and confidence upfront.
+
+**Step 2: Intake & Pre-Synthesis Audit**
+- Read transcript in full.
+- Run silent pre-synthesis audit: Does it have ≥1 identifiable Job? Current solution? Satisfaction signals? Verbatim quotes?
+- If too sparse, surface: "Coverage too thin. What I can extract: [list]. Proceed with caveats or follow up?"
+- If adequate: proceed to synthesis.
+
+**Step 3: JTBD Synthesis & Pattern Matching**
+- Extract Jobs (functional, emotional, social).
+- For each Job: Desired outcome, Importance, Satisfaction level, Verbatim signal.
+- Check against `/context/interviews/rules.md`: Does this Job match a confirmed pattern? Flag alignment.
+- Flag any new signal: Is this a new hypothesis worth tracking? New Job type?
+
+**Step 4: Validation Against Context**
+- ICP match: Does this interviewee match the ICP? Flag if not.
+- Positioning signal: Does what they said validate or contradict current positioning?
+- Beachhead alignment: Does this person represent the beachhead or an adjacent segment?
+- Objection discovery: Any new objection or anti-persona signal?
+
+**Step 5: Pattern Detection & Hypothesis Promotion**
+- Check if today's signal matches any active hypothesis in `/context/interviews/hypotheses.md`.
+- If a hypothesis now has 3+ confirmations: propose promotion to rule.
+- Log this session's signals to `/context/interviews/patterns.md` for future pattern detection.
+
+**Step 6: Generate Structured Summary**
+- Produce markdown summary with template structure.
+- All Metadata fields on separate lines; all Job fields on separate lines; separate Key Insights (analysis only) from Signal Quotes (verbatim only).
+- Include Action Items table with named owners and dates.
+- Include Flags section (contradictions with positioning or ICP) or explicitly mark "None detected".
+
+**Step 7: Decision Journal & Context Writes**
+- If summary produces a strategic decision (ICP change, positioning shift, Jobs model update): log to `/context/interviews/decisions/YYYY-MM-DD-{topic}.md`.
+- Write pattern findings to `/context/interviews/patterns.md`.
+- Write new hypotheses to `/context/interviews/hypotheses.md` (with confirmation count = 1).
+- If promotion triggered: surface explicit approval gate before writing to rules.md.
+
+**Step 8: Learning Close & Skill Improvement Offer**
+- Ask: "What surprised you most? Wish I'd flagged anything else?"
+- Ask: "Does this change your view of the most important Job?"
+- Ask: "Does this change how you want to describe the problem?"
+- Offer to update skill based on feedback.
+
+---
+
+## Outputs
+
+- **Files written:**
+  - `/context/interviews/patterns.md` — appended with recurring Jobs, pain patterns, vocabulary
+  - `/context/interviews/hypotheses.md` — created or appended with new signals (confirmation count = 1)
+  - `/context/interviews/rules.md` — created or updated if hypothesis promotion approved (confirmation count ≥3)
+  - `/context/interviews/decisions/YYYY-MM-DD-{topic}.md` — created if strategic decision logged
+  - `/context/interviews/sessions/{timestamp}-{interviewee-role}.md` — saved summary with full metadata
+  
+- **Chat output format:** Structured markdown summary with Metadata, Background, Current Solution, What they like, Problems (JTBD blocks),
+  Key Insights, Action Items table, Flags, Signal Quotes, Pattern Signal.
+  All output in markdown, copy-paste ready for Notion, GitHub, or email.
+
+- **External side effects:** Queries brain to load context (non-blocking).
+  May trigger routing to downstream skills (e.g., flag competitors for `hs-competitive-battlecard` LEARN mode).
+  Writes are always explicit and surface approval gates where applicable.
+
+---
+
+## Verification
+
+- [ ] Every summary includes Metadata with Date, Participants, Interview Type, Confidence, ICP Match.
+- [ ] Every Job block has: Job name, Desired outcome, Importance + evidence, Satisfaction + evidence, Verbatim signal.
+- [ ] Key Insights contain only analysis — no verbatim quotes (those go in Signal Quotes section).
+- [ ] Signal Quotes are verbatim, not paraphrased. Include speaker name and context.
+- [ ] Action Items table has named owners (not placeholders) and real dates (YYYY-MM-DD format).
+- [ ] Flags section is populated with contradictions, or explicitly states "None detected".
+- [ ] ICP match is assessed (not defaulted to "Yes") — reasoning included if "Partial" or "No".
+- [ ] Positioning signals are noted in Key Insights or Flags, not omitted.
+- [ ] Pattern matching to `/context/interviews/rules.md` is explicit (e.g., "Matches Rule: [rule name]").
+- [ ] Context writes surface approval gates where applicable (hypothesis promotion, decision logging).
+- [ ] If sparse transcript: confidence is 🔴 Low and warning prepended.
+- [ ] If new hypothesis detected: entry created in `/context/interviews/hypotheses.md` with confirmation count = 1.
+- [ ] If promotion triggered (3+ confirmations): explicit approval gate surfaces before rules.md write.
+
+---
+
+## Do Not Use For
+
+- **Transcription** — use Otter.ai, Fireflies, or Rev. This skill synthesizes, not transcribes.
+  Route: Transcription tool of choice.
+
+- **Building personas from scratch** — use `hs-buyer-personas`. This skill processes existing interviews.
+  Route: `hs-buyer-personas` for de novo persona work.
+
+- **Analyzing your own positioning in isolation** — use `hs-positioning-messaging` or `hs-gaccs-brief`.
+  This skill extracts buyer signals; those skills validate positioning.
+  Route: `hs-positioning-messaging` for positioning audit, `hs-gaccs-brief` for campaign messaging.
+
+- **Automated decision-making** — approval gates are explicit. Learnings surface before encoding.
+  Never silent. Route: User approves pattern promotion or decision logging.
+
+---
+
+## Operating Rules
+
+1. **Context-first synthesis** — Load `/context/BRAIN.md` and `/context/interviews/` before synthesis.
+   If missing, surface non-blocking notice. Synthesis is transcript-isolated if context missing.
+
+2. **Full transcript read** — Never summarize from a partial read. Read the complete file before output.
+
+3. **Confidence calibration** — Score (🟢 High / 🟡 Medium / 🔴 Low) based on transcript quality and completeness.
+   For 🔴 summaries, prepend explicit warning. Confidence must match input quality, not optimism.
+
+4. **Every Job gets all five fields** — Job, Desired outcome, Importance + evidence, Satisfaction + evidence, Verbatim signal.
+   No blank fields. No block text. Each on its own line.
+
+5. **Verbatim quotes are sacred** — Signal Quotes are exact verbatim. Key Insights are pure analysis, no quotes.
+   Never paraphrase a quote as verbatim. Never bury a quote in an insight.
+
+6. **ICP match is assessed, not defaulted** — If interviewee matches ICP: state "Yes". If partial match: state "Partial" with reason.
+   If doesn't match: state "No" with reason. Never default to "Yes" for convenience.
+
+7. **Positioning signals are explicit** — If interview validates positioning, state it. If contradicts, flag it.
+   If neutral, mark as such. Don't suppress contradictions.
+
+8. **Approval gates are mandatory** — Pattern promotion (3+ confirmations) requires explicit user approval before rules.md write.
+   Decision logging requires approval gate. Learnings surface before encoding — never silent.
+
+9. **Pattern matching is proactive** — Every synthesis checks rules.md and applies confirmed patterns by default.
+   Hypothesis confirmation count increments explicitly. Promotion to rule requires 3+ confirmations + user approval.
+
+10. **Context writes only if `/context/` exists** — Non-blocking. If `/context/interviews/` missing, write to session metadata only.
+    Writes are graceful; if permission denied, flag and continue.
+
+11. **Interview type shapes the synthesis** — Win/loss emphasizes what we lost and why.
+    Churn emphasizes Job delivery failure. Discovery emphasizes new Jobs. Validation emphasizes confirmation or contradiction.
+    Weighting differs by type; synthesis logic adapts.
+
+---
+
+## Quality Gate
+
+| Check | Standard | Pass = |
+|---|---|---|
+| Frontmatter complete | 7 fields present | Yes |
+| Description 300–600 chars | Count chars, ≥6 triggers | Yes |
+| All 7 required sections | Trigger, Inputs, Pre-flight, Steps, Outputs, Verification, Do Not Use For | Yes |
+| Steps named and imperative | ≥5 steps, imperative form | Yes |
+| Outputs specify all 3 sub-fields | Files written, chat format, side effects | Yes |
+| Verification is concrete | ≥10 checkable checks | Yes |
+| Operating Rules ≥6 | At least 6 rules in imperative form | Yes |
+| Quality Gate ≥5 checks | Table with ≥5 binary checks | Yes |
+| Self-Improvement Loop | Before/After session structure | Yes |
+| Changelog ≥1 entry | At least 1 dated version entry | Yes |
+| Line count ≤500 | SKILL.md ≤500 lines | Yes |
+| Output templates in code fences | ```markdown``` fences for all templates | Yes |
+| Evals file with ≥3 test cases | `/evals/interview-summary.eval.md`, ≥3 cases | Yes |
+
+---
+
+## Self-Improvement Loop
+
+**Before every session:**
+1. Load `/context/interviews/rules.md` if exists. Note which patterns apply.
+2. Load `/context/interviews/hypotheses.md` if exists. Check if today's transcript tests hypothesis.
+3. Load `/context/BRAIN.md` if exists. Extract ICP, Positioning, Beachhead for validation.
+4. If SKILL-SPEC.md version changed, surface delta.
+
+**After every session:**
+1. Log this session's row to `/context/interviews/sessions/{timestamp}-summary.md`.
+2. Extract patterns and append to `/context/interviews/patterns.md`.
+3. If new hypothesis: create entry in `/context/interviews/hypotheses.md` (confirmation count = 1).
+4. If hypothesis has 3+ confirmations: surface promotion gate.
+5. If strategic decision logged: note in `/context/interviews/decisions/`.
+6. Note most common signal across sessions. If 3+ instances: propose rule encoding.
+
+**Self-Improvement Trigger format:**
+
+```
+🔁 SELF-IMPROVEMENT TRIGGER
+Pattern: [What was observed across reviewed interviews]
+Occurrences: [N interviews showing this pattern]
+Proposed update: [Exact wording to add to /context/interviews/rules.md]
+Location: /context/interviews/rules.md
+Awaiting approval before encoding.
+```
+
+Trigger surfaces explicitly before any write. Never silent.
+
+---
+
+## Changelog
+
+### v2.1.0 — 2026-06-21
+Major upgrade: Full SKILL-SPEC v2.0.0 compliance + four-layer GTM framework integration.
+
+**Architecture upgrades:**
+- Frontmatter complete: author, context (brain-dependent), quality_gate, last_updated
+- Context-writing hardened: All writes target `/context/interviews/` (patterns, hypotheses, rules, decisions)
+- Self-Improvement Loop added: Before/After session structure with explicit rule promotion gates
+- Quality Gate table added: 13 binary checks ensuring 19/19 spec compliance
+- Operating Rules expanded to 11: Context-first, full reads, confidence calibration, ICP assessment, positioning signals, approval gates, pattern matching, context-aware writes
+
+### v2.0.1 — 2026-04-20
+Formatting and structure patch from review session.
+
+### v2.0.0 — 2026-04-20
+Full rebuild from v1.0.0. Breaking changes throughout.
+
+---
+
+## Summary Output Template
+
+````markdown
+---
+# Interview Summary
+interview-summary v2.1.0
 ---
 
 ## 📋 Metadata
@@ -130,7 +318,7 @@ hs-interview-summary v2.0.0
 
 **Interview type:** [Discovery / Validation / Win-loss / Churn / Competitive / Other]
 
-**Confidence:** [🟢 High — full transcript / 🟡 Medium — partial / 🔴 Low — rough notes]
+**Confidence:** [🟢 High / 🟡 Medium / 🔴 Low]
 
 **ICP match:** [Yes / Partial / No — one-line reason if not Yes]
 
@@ -138,7 +326,7 @@ hs-interview-summary v2.0.0
 
 ## 🏢 Background
 
-[Role, company, team size, and any relevant context about their situation.]
+[Role, company, team size, and context about their situation.]
 
 ---
 
@@ -198,299 +386,57 @@ hs-interview-summary v2.0.0
 
 ## 📊 Pattern signal
 
-**Matches existing pattern:** [Yes / No / Partial]
+**Matches existing pattern:** [Yes / No / Partial — which rule]
 
 **New signal for tracking:** [Yes / No]
 
 **Hypothesis triggered:** [State it, or "None"]
+
+**Confirmation count (if hypothesis):** [N / 3 threshold for promotion]
+
+**Promotion ready:** [Yes / No]
 ````
 
 ---
 
-## ⑤ CONFIDENCE SCORING
+## Related Skills
 
-Apply a three-level confidence score to the whole summary:
+Cross-reference when findings trigger downstream work:
 
-**🟢 High** — Full verbatim transcript, clear interviewee context, identifiable Jobs
-**🟡 Medium** — Partial transcript, rough notes, or ambiguous signals
-**🔴 Low** — Very sparse notes, single-source claim, no verbatim quotes
-
-For 🔴 summaries, prepend a warning block:
-> "⚠️ Low-confidence summary. Findings below are based on thin input.
-> Do not route downstream without a follow-up or validation pass."
-
----
-
-## ⑥ KNOWLEDGE ARCHITECTURE — LEARNING LOOP
-
-> This is what turns a transcript processor into a discovery intelligence system.
-
-**Before generating the summary**, check:
-- `knowledge/interviews/patterns.md` — confirmed patterns across sessions
-- `knowledge/interviews/hypotheses.md` — active hypotheses being tracked
-- `knowledge/interviews/rules.md` — rules derived from 3+ confirmed hypotheses
-
-Apply confirmed rules by default. Check if any hypothesis can be tested against today's transcript.
-
-**After generating the summary**, extract and store:
-
-```
-knowledge/interviews/
-  patterns.md   — recurring Jobs, pain patterns, vocabulary across interviews
-  hypotheses.md — signals worth tracking but not yet confirmed
-  rules.md      — confirmed patterns (3+ instances) — apply to future syntheses
-  INDEX.md      — router to all knowledge domains
-```
-
-**Hypothesis promotion rule:**
-When a pattern appears in 3 or more interviews, promote it from `hypotheses.md` to `rules.md`.
-Propose the promotion to the user. Apply only with explicit approval.
-
-**Rule demotion rule:**
-If a confirmed rule is contradicted by a new interview, flag it:
-> "⚠️ This interview contradicts Rule [X]: '[rule]'. Recommend demoting to hypothesis.
-> Confirm demotion?"
+- **hs-product-marketing-context** → Always load first. Use to validate ICP, Positioning, Beachhead.
+- **hs-competitive-battlecard** → Competitor named as current solution → flag for LEARN mode.
+- **hs-value-prop-statements** → Strong Job discovered → pressure-test value prop against it.
+- **hs-gaccs-brief** → Messaging hypothesis surfaced → route here for campaign brief.
+- **hs-pre-mortem** → Risk or failure mode surfaced by customer → route here.
+- **hs-brainstorm-okrs** → Success metric gap surfaces → route here for KR signal.
 
 ---
 
-## ⑦ DECISION JOURNAL
-
-When a summary produces a significant strategic decision (repositioning signal, ICP update,
-Jobs model revision, messaging change), log it:
-
-File: `decisions/YYYY-MM-DD-{topic}.md`
-
-```
-## Decision: [what was decided]
-## Context: [what interview finding triggered this]
-## Alternatives considered: [what else was on the table]
-## Reasoning: [why this interpretation won]
-## Trade-offs accepted: [what uncertainty you're accepting]
-## Supersedes: [prior decision, if replacing one]
-```
-
-Before logging a new decision, check `decisions/` for prior decisions in the same area.
-Follow existing decisions unless this interview provides contradicting evidence.
-
----
-
-## ⑧ QUALITY GATE
-
-Before delivering the summary, run this internal check. Do not show the checklist to the user.
-If the summary fails, fix it before output. Report only if a critical failure can't be resolved.
-
-**Structure:**
-- [ ] Every Job block has all five fields populated — no blanks
-- [ ] Each Job field starts on its own line — no block text
-- [ ] Key insights contain only analysis — no verbatim quotes (those go in Signal quotes)
-- [ ] Signal quotes are verbatim — not paraphrased
-- [ ] Action items have named owners and real dates — no placeholders
-- [ ] Flags section is populated, or explicitly marked "None detected"
-
-**Signal integrity:**
-- [ ] No insight is stated as fact if it's based on a single, unverified quote
-- [ ] Confidence score matches the quality of the transcript input
-- [ ] Any new signal that contradicts existing rules is flagged, not suppressed
-
-**PMM context check (if loaded):**
-- [ ] ICP match is assessed — not defaulted to "Yes"
-- [ ] Positioning signals are noted in Key Insights or Contradictions, not omitted
-
-**Hard block — do not output if:**
-- The transcript is too thin to produce even one credible Job
-- The interviewee context is unknown and cannot be inferred
-
----
-
-## ⑨ LEARNING CLOSE
-
-At the end of every synthesis session, run this close.
-
-First, an open prompt:
-> "Before we wrap — what surprised you most about this interview, or what do you
-> wish I'd flagged that I didn't?"
-
-Then three structured questions:
-
-1. **Pattern check:** "Does this change what you believe is the most important Job
-   for [ICP segment / product area]?"
-2. **Positioning check:** "Did anything in this transcript make you want to change
-   how you describe the problem or the solution?"
-3. **Skill check:** "Anything in the summary format or depth that should work
-   differently next time?"
-
-After the user responds:
-- If patterns shift → update `knowledge/interviews/hypotheses.md`
-- If positioning changes → flag for `hs-product-marketing-context` update
-- If skill improvement identified → propose a SKILL.md patch with exact change
-
-> "Want me to update the skill with that change? I'll show you the diff before applying."
-
-Only apply updates with explicit user approval.
-
----
-
-## SESSION METADATA
-
-Every summary saved to `sessions/` carries:
-
-```
-_Interviewee: [role + company]_
-_Interview type: [type]_
-_Session date: YYYY-MM-DD_
-_ICP match: Yes / Partial / No_
-_Confidence: 🟢 / 🟡 / 🔴_
-_QG: Pass / Fail_
-_New hypothesis triggered: Yes / No_
-_Version: 2.0.0_
-```
-
----
-
-## INTEGRATION MAP
-
-| Skill | When to cross-reference |
-|---|---|
-| `hs-product-marketing-context` | Always — load before synthesis |
-| `hs-competitive-battlecard` | Competitor named as current solution |
-| `hs-value-prop-statements` | Strong Job discovered — pressure-test messaging |
-| `hs-gaccs-brief` | Messaging hypothesis surfaced in interview |
-| `hs-pre-mortem` | Customer surfaced a failure mode or risk |
-| `hs-brainstorm-okrs` | Success metric gap or KR signal discovered |
-
----
-
-## KNOWLEDGE INDEX
-
-`knowledge/interviews/INDEX.md` routes to:
-
-```
-patterns.md   — recurring Jobs and pain signals across all interviews
-hypotheses.md — active hypotheses (< 3 confirmations)
-rules.md      — confirmed patterns (3+ confirmations) — applied automatically
-decisions/    — strategic decisions derived from interview synthesis
-sessions/     — archived summaries with full metadata
-```
-
----
-
-## COMMANDS
-
-Run these at any point in a session.
+## Commands
 
 | Command | What it does |
 |---------|-------------|
 | `/summarize [transcript or file]` | Run the full synthesis flow on a transcript |
-| `/summarize-quick [transcript or file]` | Output only: skips intake questions, runs pre-synthesis audit silently, produces summary immediately |
-| `/patterns` | Show all active patterns, hypotheses, and rules from the knowledge base |
+| `/summarize-quick [transcript or file]` | Output only: skips intake questions, produces summary immediately |
+| `/patterns` | Show all recurring Jobs, pain patterns, vocabulary across all interviews |
 | `/hypotheses` | Show active hypotheses and their current confirmation count |
-| `/promote [hypothesis name]` | Propose promotion of a hypothesis to a confirmed rule |
+| `/promote [hypothesis name]` | Propose promotion of a hypothesis to a confirmed rule (requires 3+ confirmations) |
 | `/flags` | List all flags across sessions — contradictions with positioning or ICP assumptions |
-| `/decisions` | Show all logged strategic decisions from prior sessions |
+| `/decisions` | Show all logged strategic decisions from `/context/interviews/decisions/` |
 | `/close` | Run the Learning Close for the current session |
-| `/save` | Save the current summary to `sessions/` with full metadata |
+| `/save` | Save the current summary to `/context/interviews/sessions/` with full metadata |
 | `/help` | Show available commands and current knowledge base status |
 
 ---
 
-## SAMPLE PROMPTS
+## Integration with Four-Layer GTM System
 
-**Basic — paste transcript**
-```
-/summarize
-[paste transcript]
-```
+This skill operates as the **System of Context layer** (Layer 1: System of Context):
 
-**Basic — with file**
-```
-/summarize
-[attach transcript file]
-```
+1. **Input:** Unstructured interview transcript
+2. **Process:** JTBD synthesis, pattern matching, context validation
+3. **Output:** Structured markdown summary + pattern writes to `/context/interviews/`
+4. **Compounds:** Every session improves pattern library, hypothesis tracking, and rule confidence
+5. **Feeds:** Every other skill (hs-positioning-messaging, hs-gaccs-brief, hs-competitive-battlecard) reads from this context layer
 
-**With context upfront — skip intake questions**
-```
-/summarize
-Interviewee: Head of RevOps, ~200-person SaaS. Matches ICP.
-Purpose: Discovery — understand current reporting pain and switching triggers.
-[paste transcript]
-```
-
-**Win/loss**
-```
-/summarize
-This is a win/loss interview with a customer who chose [Competitor] over us.
-Focus on which Job we lost and why.
-[paste transcript]
-```
-
-**Churn debrief**
-```
-/summarize
-Churn interview. Focus on the Jobs they hired us for vs. what broke down.
-Flag any signal that should update our ICP.
-[paste transcript]
-```
-
-**Quick output — no intake, straight to summary**
-```
-/summarize-quick
-[paste transcript]
-```
-
-**Check knowledge base after multiple sessions**
-```
-/patterns
-```
-
-**Run the learning close after a session**
-```
-/close
-```
-
----
-
-## CHANGELOG
-
-### v2.0.1 — 2026-04-20
-Formatting and structure patch from review session.
-
-- Output template updated: all Metadata fields now on separate lines
-- Output template updated: all Problems with their current solution fields now on separate lines
-- Section order confirmed: Pawel's six core sections first, extensions (Flags, Signal quotes, Pattern signal) after
-- Key insights and Signal quotes split: Key insights = analysis only, Signal quotes = verbatim only
-- Action items table simplified: Priority column removed from default template
-- Background and Current solution separated into distinct sections (matching Pawel's original structure)
-- Commands block added
-- Sample prompts updated with `/summarize`, `/summarize-quick`, `/close`, `/patterns`
-- Quality Gate updated to reflect new section names and formatting rules
-
-### v2.0.0 — 2026-04-20
-Full rebuild from v1.0.0. Breaking changes throughout.
-
-**Architecture upgrades:**
-- PMM context loading block added (Section ⓪)
-- Related Skills cross-references added
-- Intake orientation step added (Section ①) — prevents cold synthesis
-- Pre-synthesis audit added (Section ③) — coverage and signal scan before output
-- Confidence scoring system added (Section ⑤)
-- Knowledge Architecture / Learning Loop added (Section ⑥) — patterns, hypotheses, rules
-- Decision Journal added (Section ⑦)
-- Quality Gate added (Section ⑧)
-- Learning Close added (Section ⑨)
-- Session metadata block added
-- Integration Map added
-
-**Output template upgrades:**
-- ICP match + Confidence added to Metadata
-- JTBD block restructured per Job: five fields, each on its own line
-- Signal quotes section added — verbatim only, separate from Key insights
-- Flags section added — contradictions with positioning and ICP
-- Pattern signal block added — connects to knowledge layer
-- Action items converted to table with named owner and date
-
-**Removed:**
-- Author credit removed
-- Static "further reading" links removed — replaced by Related Skills routing
-
-### v1.0.0 — original
-Simple transcript-to-template. JTBD template, action items, further reading.
+The skill builds the "System of Context" that powers the entire GTM orchestration engine.

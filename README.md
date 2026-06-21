@@ -1,6 +1,6 @@
 # Product Marketing Skills for AI Agents
 
-A collection of AI agent skills focused on product marketing tasks. Built for Product Marketing Managers, founders, and marketing leaders who want AI agents to help with positioning, competitive intelligence, launch planning, OKRs, experiments, and GTM strategy. 
+A collection of AI agent skills focused on product marketing tasks. Built for Product Marketing Managers, founders, and marketing leaders who want AI agents to help with positioning, competitive intelligence, launch planning, OKRs, experiments, and GTM strategy.
 
 Works with Claude Code, Claude Cowork, Cursor, Windsurf, and any agent that supports the [Agent Skills spec](https://agentskills.io/).
 
@@ -16,6 +16,8 @@ Run into a problem or have a question? [Open an issue](https://github.com/stefan
 
 Build your product marketing brain once. Every other skill reads it. No re-explaining. No copy-pasting from old chats. Sharper positioning, consistent messaging, smarter launches.
 
+**NEW:** The system learns over time. By month 3, meta-synthesis detects patterns across all your work and updates guardrails automatically.
+
 ## See It in Action (90 Seconds)
 
 Don't want to commit 15 minutes to setup before seeing value?
@@ -28,11 +30,12 @@ Already convinced? Jump to [Installation](#installation) below.
 
 ## Start Here
 
-Setting up your Product Marketing Context? → `/setup-context`\
-Pressure-testing positioning? → `/position`\
-Planning a launch? → `/launch`\
-Building a battlecard? → `/compete`\
+Setting up your Product Marketing Context? → `/setup-context`
+Pressure-testing positioning? → `/position`
+Planning a launch? → `/launch`
+Building a battlecard? → `/compete`
 Drafting a campaign brief? → `/brief`
+Detecting patterns in your work? → `/pmm-meta:synthesis`
 
 If this project helps you, ⭐ the repo.
 
@@ -48,67 +51,116 @@ The result: better positioning, sharper launches, and stronger competitive intel
 - ✅ 10x faster (no re-explaining context)
 - ✅ Consistent messaging (all skills read the same source)
 - ✅ Compound intelligence (skills reference each other's outputs)
+- ✅ **System learns over time** — meta-synthesis detects patterns across all your work and updates guardrails monthly
 
-## How It Works (Skills, Commands, Plugins)
+## How It Works: Skills, Commands, and the Compounding Loop
+
+### Skills & Commands
+
+**Skills** are the building blocks of the marketplace. Each skill gives Claude domain knowledge, analytical frameworks, or a guided workflow for a specific PMM task.
+
+**Commands** are user-triggered workflows invoked with `/command-name`. They chain one or more skills into an end-to-end process.
+
+**Plugins** group related skills and commands into installable packages covering specific GTM domains.
+
+### The Compounding Loop (NEW)
+
+This system isn't just a collection of tools—it's a **self-improving operating system**. Every execution teaches the system. By month 3, it knows more about your GTM than you do.
+
+```
+Month 1: Baseline
+└─ Run execution skills (experiments, retros, OKRs, interviews)
+   └─ Each skill logs session data to /context/skill-sessions.md
+      └─ System collects patterns
+         └─ Monthly meta-synthesis runs
+            └─ Detects patterns (2+ occurrences = guardrail)
+               └─ Proposes guardrails + brain updates
+                  └─ You approve/reject via gates
+
+Month 2: Compound
+└─ Run execution skills again
+   └─ Each skill loads guardrails from meta-synthesis at pre-flight (Step 0)
+      └─ Inputs are smarter (guided by prior learnings)
+         └─ Outputs are higher quality
+            └─ Meta-synthesis detects new patterns
+               └─ Guardrails + brain update again
+                  └─ System gets smarter
+
+Month 3+: Exponential
+└─ Every execution is informed by every prior execution
+   └─ System knows your GTM blindspots
+      └─ System knows what risks to watch
+         └─ System knows your confidence calibration
+            └─ System makes better decisions than you could manually
+```
+
+**What gets stored and reused:**
+
+- `/context/skill-sessions.md` — Master log of all skill executions (logs from experiment-doc, interview-summary, retro, pmm-okrs, pre-mortem, prd, prioritization, stakeholder-maps)
+- `/context/meta-patterns.md` — Master guardrails file (written by meta-synthesis, read by all execution skills at pre-flight)
+- `/foundation/brain.md` Sections 2, 5, 7 — Updated by meta-synthesis with learnings (anti-ICP signals, revenue lever adjustments, system patterns)
+
+**Core monthly workflow:**
+
+1. Run execution skills throughout the month (30+ days of data)
+2. End of month: run `/pmm-meta:synthesis`
+3. Meta-synthesis detects patterns, proposes guardrails + brain updates
+4. You approve/reject via approval gates
+5. Next month: execution skills load updated guardrails → outputs are smarter
+6. Repeat. System compounds.
+
+---
+
+## How Skills Work Together
 
 Your skills cascade. Each reads your brain (the shared context layer), produces output, and stores learnings. The next skill is smarter because it inherited context from the last one.
 
 <img width="2534" height="795" alt="image" src="https://github.com/user-attachments/assets/1ea0d18b-a7ca-4ef8-b661-87be076fa359" />
 
-**Skills** are the building blocks of the marketplace. Each skill gives Claude domain knowledge, analytical frameworks, or a guided workflow for a specific PMM task. Some skills also work as reusable foundations that multiple commands share. Installing the marketplace gives you all PMM domains at once.
-
-Skills are loaded automatically when relevant to the conversation — no explicit invocation needed. If needed (e.g., prioritizing skills over general knowledge), you can **force loading skills** with `/plugin-name:skill-name` or `/skill-name` (Claude will add the prefix).
-
-**Commands** are user-triggered workflows invoked with `/command-name`. They chain one or more skills into an end-to-end process. For example, `/launch` chains product-marketing-context → positioning-messaging → gtm-launch-planner together.
-
-**Plugins** group related skills and commands into installable packages. Each plugin covers a GTM domain — building your context, product marketing strategy, execution, and so on.
-
-## How Skills Work Together
-
 Skills reference each other and build on shared context. The `product-marketing-context` skill is the foundation — every other skill checks it first to understand your product, ICP, personas, positioning, and competitive landscape before doing anything.
 
 ```
 ┌──────────────────────────────────┐
-                            │  product-marketing-context       │
-                            │ (read by all other skills first) │
-                            └───────────────┬──────────────────┘
-                                            │
-                ┌──────────────┬──────────┬──┼──┬──────────────┬──────────────┐
-                ▼              ▼          ▼  ▼  ▼              ▼              ▼
-            ┌──────────────┐ ┌────────┐ ┌──────┐ ┌──────────────┐ ┌──────────────┐
-            │ Foundation   │ │Execution│ │Go-to-│ │ Positioning  │ │   Toolkit    │
-            │              │ │         │ │Market│ │              │ │              │
-            ├──────────────┤ ├─────────┤ ├──────┤ ├──────────────┤ ├──────────────┤
-            │product-      │ │prd      │ │gtm-  │ │positioning-  │ │writing-      │
-            │marketing-    │ │okrs     │ │strat-│ │messaging     │ │assistant     │
-            │context       │ │pre-     │ │egy   │ │              │ │pmm-resume    │
-            │              │ │mortem   │ │work- │ │              │ │privacy-      │
-            │              │ │         │ │flow- │ │              │ │policy        │
-            │              │ │         │ │orch  │ │              │ │gaccs-brief   │
-            │              │ │         │ │      │ │              │ │              │
-            │ Skill: 1     │ │Skills: 8│ │Skills:2 │ Skills: 3   │ │ Skills: 4    │
-            └──────────────┘ └─────────┘ └──────┘ └──────────────┘ └──────────────┘
-                    │             │          │         │              │
-                    └─────────────┴──────────┴─────────┴──────────────┘
-                                          ↓
-                    All outputs stored in /foundation/brain.md
-                      Skills reference each other's work automatically
-
-Skills cross-reference each other:
-prd ↔ okrs ↔ pre-mortem
-positioning-messaging ↔ gaccs-brief ↔ writing-assistant
-gtm-strategy ↔ workflow-orchestrator ↔ interview-summary
-
-See each skill's **Related Skills** section for the full dependency map.
-
+│  product-marketing-context       │
+│ (read by all other skills first) │
+└───────────────┬──────────────────┘
+                │
+┌──────────────┬──────────┬──┼──┬──────────────┬──────────────┬──────────────┐
+▼              ▼          ▼  ▼  ▼              ▼              ▼              ▼
+┌──────────────┐ ┌────────┐ ┌──────┐ ┌──────────────┐ ┌──────────────┐ ┌──────────────┐
+│ Foundation   │ │Execution│ │Go-to-│ │ Positioning  │ │   Toolkit    │ │  Meta Layer  │
+│              │ │         │ │Market│ │              │ │              │ │(Self-Improve)│
+├──────────────┤ ├─────────┤ ├──────┤ ├──────────────┤ ├──────────────┤ ├──────────────┤
+│product-      │ │prd      │ │gtm-  │ │positioning-  │ │writing-      │ │meta-         │
+│marketing-    │ │okrs     │ │strat-│ │messaging     │ │assistant     │ │synthesis     │
+│context       │ │pre-     │ │egy   │ │              │ │pmm-resume    │ │meta-learn    │
+│              │ │mortem   │ │work- │ │              │ │privacy-      │ │meta-review   │
+│              │ │retro    │ │flow- │ │              │ │policy        │ │meta-verify   │
+│              │ │experi-  │ │orch  │ │              │ │gaccs-brief   │ │              │
+│              │ │ment-doc │ │      │ │              │ │              │ │Logs all      │
+│              │ │inter-   │ │      │ │              │ │              │ │execution     │
+│              │ │view-sum │ │      │ │              │ │              │ │detects       │
+│              │ │stake-   │ │      │ │              │ │              │ │patterns      │
+│              │ │holder   │ │      │ │              │ │              │ │proposes      │
+│              │ │priorit- │ │      │ │              │ │              │ │guardrails    │
+│              │ │ization  │ │      │ │              │ │              │ │updates brain │
+│              │ │          │ │      │ │              │ │              │ │              │
+│ Skill: 1     │ │Skills: 8 │ │Skills:2 │ Skills: 1   │ │ Skills: 4    │ │ Skills: 4    │
+└──────────────┘ └─────────┘ └──────┘ └──────────────┘ └──────────────┘ └──────────────┘
+        │             │          │         │              │              │
+        └─────────────┴──────────┴─────────┴──────────────┴──────────────┘
+                                  ↓
+                All outputs → logged → meta-synthesis reads → learns → updates brain
+                            (feedback loop, monthly cadence)
 ```
 
 Commands use skills. Some skills serve multiple commands. Some skills (like `prioritization-frameworks` or `proof-points-claims`) are standalone references that Claude draws on whenever relevant — no command needed.
 
 Commands are designed to flow into each other, matching the PMM workflow. After any command completes, it suggests relevant next commands — just follow the prompts.
 
-----
-## Available Skills (18 Total)
+---
+
+## Available Skills (22 Total)
 
 | Skill | Description | Reads From | Writes To |
 |-------|-------------|-----------|----------|
@@ -116,22 +168,26 @@ Commands are designed to flow into each other, matching the PMM workflow. After 
 | [positioning-messaging](pmm-positioning/skills/positioning-messaging/) | Positioning statements, message house, homepage copy (5 output modes) | ICP, Competitors | `brain Section 3` |
 | [gaccs-brief](pmm-toolkit/skills/gaccs-brief/) | Campaign briefs (Goals, Audience, Creative, Channels, Stakeholders) | Positioning, Brain | `/campaigns/` |
 | [writing-assistant](pmm-toolkit/skills/writing-assistant/) | Sharpen any written communication | Voice guide, Positioning | (in-place edits) |
-| [experiment-doc](pmm-execution/skills/experiment-doc/) | Growth experiments, A/B tests, hypotheses | Brain, `/context/experiments/` | `/context/knowledge/experiments/` |
-| [interview-summary](pmm-execution/skills/interview-summary/) | Customer discovery using JTBD | Transcripts, Brain | `/context/interviews/` |
+| [experiment-doc](pmm-execution/skills/experiment-doc/) | Growth experiments, A/B tests, hypotheses | Brain, `/context/experiments/` | `/context/skill-sessions.md` (NEW) |
+| [interview-summary](pmm-execution/skills/interview-summary/) | Customer discovery using JTBD | Transcripts, Brain | `/context/skill-sessions.md` (NEW) |
 | [prd](pmm-execution/skills/prd/) | Product requirements, Solution Stories | Brain, Positioning | `/docs/prd/` |
-| [pre-mortem](pmm-execution/skills/pre-mortem/) | Risk analysis, cross-functional alignment | Brain, `/context/risk-logs/` | `/context/knowledge/risks/` |
-| [retro](pmm-execution/skills/retro/) | Post-launch retrospectives, learnings | Brain, Launch data | `/context/knowledge/retros/` |
-| [pmm-okrs](pmm-execution/skills/pmm-okrs/) | Quarterly OKR building | Brain, Prior OKRs | `brain Section 7` |
-| [stakeholder-maps](pmm-execution/skills/stakeholder-maps/) | Political maps (champions, blockers) | Brain, Prior maps | `/context/stakeholders/` |
+| [pre-mortem](pmm-execution/skills/pre-mortem/) | Risk analysis, cross-functional alignment | Brain, `/context/meta-patterns.md` (NEW) | `/context/skill-sessions.md` (NEW) |
+| [retro](pmm-execution/skills/retro/) | Post-launch retrospectives, learnings | Brain, Launch data | `/context/skill-sessions.md` (NEW) |
+| [pmm-okrs](pmm-execution/skills/pmm-okrs/) | Quarterly OKR building | Brain, Prior OKRs | `brain Section 7` + `/context/skill-sessions.md` (NEW) |
+| [stakeholder-maps](pmm-execution/skills/stakeholder-maps/) | Political maps (champions, blockers) | Brain, Prior maps | `/context/skill-sessions.md` (NEW) |
 | [prioritization-frameworks](pmm-execution/skills/prioritization-frameworks/) | Score initiatives (RICE, ICE, Kano, etc.) | Brain, Initiatives | `/analysis/` |
 | [go-to-market-strategy](pmm-go-to-market/skills/go-to-market-strategy/) | GTM strategy, launch tier assignment | Brain, Positioning, Competitive | `brain Section 7` |
 | [beachhead-segment](pmm-go-to-market/skills/beachhead-segment/) | First customer wedge scoring | ICP, Brain | `brain Section 2` |
 | [workflow-orchestrator](pmm-go-to-market/skills/workflow-orchestrator/) | Full launch workflows (10 types) | Brain, All above | `brain + /artifacts/` |
+| [meta-synthesis](pmm-meta/skills/meta-synthesis/) | **NEW** Pattern detection across all skills, guardrail proposals, brain updates | `/context/skill-sessions.md`, brain | `/context/meta-patterns.md`, brain Sections 2, 5, 7 |
+| [meta-learn](pmm-meta/skills/meta-learn/) | Capture post-session learnings | Skill outputs | Knowledge base |
 | [meta-review](pmm-meta/skills/meta-review/) | Audit skills against SKILL-SPEC | All SKILL.md files | Gap list + fixes |
+| [meta-verify](pmm-meta/skills/meta-verify/) | Quality gate on T1 skill output | Skill outputs | Verification report |
 | [pmm-resume](pmm-toolkit/skills/pmm-resume/) | Resume tailoring for PMM roles | Your resume, JD | Tailored resume |
 | [privacy-policy](pmm-toolkit/skills/privacy-policy/) | GDPR/CCPA-compliant privacy policies | Product data | `policy.md` |
+| [competitive-battlecard](pmm-execution/skills/competitive-battlecard/) | Competitive positioning vs named rival | Brain, Positioning, Competitors | `/battlecards/` |
 
-> Each skill reads from the "Reads From" column to produce output in "Writes To". This data flow is how the system compounds — outputs from one skill become inputs to the next.
+> Each skill reads from the "Reads From" column to produce output in "Writes To". This data flow is how the system compounds — outputs from one skill become inputs to the next. **NEW execution skills (experiment-doc, interview-summary, pre-mortem, retro, pmm-okrs, stakeholder-maps) now log to `/context/skill-sessions.md` so meta-synthesis can read and detect patterns across all your work.**
 
 ## Installation
 
@@ -225,9 +281,13 @@ Once installed, just ask your agent to help with PMM tasks:
 
 "Create a GACCS campaign brief"
 → Uses gaccs-brief skill
+
+"Run meta-synthesis to detect patterns"
+→ Reads all execution logs, proposes guardrails + brain updates
 ```
 
 You can also invoke skills directly with commands:
+
 ```
 "Run full launch workflow for [product]"
 /workflow-orchestrator
@@ -243,7 +303,11 @@ You can also invoke skills directly with commands:
 
 "Generate Q4 OKRs"
 /pmm-okrs 
+
+"Run monthly meta-synthesis"
+/pmm-meta:synthesis
 ```
+
 Skills read your brain automatically — zero context re-explaining.
 
 ---
@@ -352,6 +416,8 @@ PMM utilities: writing assistant, resume review, privacy policy, GACCS briefs.
 
 Day-to-day product marketing: PRDs, growth experiments, OKRs, pre-mortems, retrospectives, stakeholder management, meeting summaries, and prioritization frameworks.
 
+**All execution skills now load guardrails from meta-synthesis at pre-flight (Step 0) and log session data for meta-synthesis to read and learn from.**
+
 ### Skills (8):
 
 - **stakeholder-maps** — Build political stakeholder maps for launches and GTM initiatives
@@ -393,12 +459,92 @@ Day-to-day product marketing: PRDs, growth experiments, OKRs, pre-mortems, retro
 - `/pmm-execution:okrs` — Solo PMM at Series B, low seller adoption
 - `/pmm-execution:prd` — Analytics dashboard for marketing ops teams
 
+### How Logging Works (NEW):
+
+Every execution skill logs session data automatically:
+
+```yaml
+skill: retro
+session_date: 2026-06-21
+quality_score: 78
+guardrails_triggered: 2
+risks_materialized: 2
+pre_mortem_accuracy: 67%
+brain_updates_proposed: 1
+```
+
+This data feeds into meta-synthesis, which detects patterns:
+- "Pre-mortem accuracy is 67% → let's refine the process"
+- "Champion alignment gap appeared 4 times → add to guardrails"
+- "Post-sales prep underestimated twice → give users more time"
+
+Each pattern becomes a guardrail that next month's skills load at pre-flight (Step 0).
+
 </details>
 
 <details>
-<summary><strong>5. pmm-go-to-market</strong> — GTM strategy, workflow orchestration: full launch workflows, positioning refresh, competitive programs, quarterly cycles (2 skills, 2 commands)</summary>
+<summary><strong>5. pmm-meta</strong> — **NEW** Self-improving system: meta-synthesis, meta-learn, meta-review, meta-verify (4 skills, 8 commands)</summary>
 
-**NEW:** Complete GTM workflows that chain multiple skills together. One prompt runs positioning → competitive → strategy → execution. Brain updates automatically after each workflow.
+**The meta layer that makes your entire system self-improving.** Reads execution logs, detects patterns, proposes guardrails and brain updates, gates approval before write.
+
+### Skills (4):
+
+- **meta-synthesis** (v1.0.0) — Monthly pattern detection across all execution skills. Reads `/context/skill-sessions.md`, detects cross-skill patterns (2+ domains = HIGH), proposes guardrails and brain updates, outputs to `/context/meta-patterns.md`. The beating heart of the system.
+- **meta-learn** — Captures post-session learnings and routes them to knowledge base.
+- **meta-review** — Audits any skill against SKILL-SPEC v2.0.0 (19-point checklist).
+- **meta-verify** — Quality gate on T1 skill output before delivery.
+
+### Commands (8):
+
+- `/pmm-meta:synthesis` — Run meta-synthesis monthly. Detects patterns, proposes guardrails + brain updates, gates approval.
+- `/pmm-meta:synthesis-status` — Show current meta-synthesis state (patterns, guardrails active/stale, updates proposed/approved).
+- `/pmm-meta:learn` — Capture learnings from last execution skill session.
+- `/pmm-meta:learn-history` — Show patterns captured in knowledge base (searchable).
+- `/pmm-meta:learn-promote [pattern]` — Promote pattern from "watch" to "active guardrail."
+- `/pmm-meta:review [skill]` — Audit skill against SKILL-SPEC (19-point checklist).
+- `/pmm-meta:review-all` — Batch review all skills in pmm-meta folder.
+- `/pmm-meta:verify [output]` — Quality check on T1 output before ship.
+
+### Examples:
+
+**Skills:**
+- `Run meta-synthesis for June` → Detects patterns, proposes guardrails
+- `Show synthesis status` → What patterns? Which guardrails active? Which proposals pending?
+- `Capture learnings from today's retro`
+- `Review experiment-doc skill against spec`
+- `Quality check: is this positioning brief ready to ship?`
+
+**Commands:**
+- `/pmm-meta:synthesis` — End of June
+- `/pmm-meta:synthesis-status` — Check state before approving guardrail proposals
+- `/pmm-meta:verify [positioning brief]` — Before sharing with CEO
+
+### How It Works:
+
+**Monthly loop:**
+1. Run execution skills throughout the month (30+ days of data)
+2. End of month: `/pmm-meta:synthesis`
+3. Meta-synthesis reads `/context/skill-sessions.md`, detects patterns
+4. Proposes guardrails + brain updates with approval gates
+5. You approve/reject
+6. Next month: execution skills load updated guardrails at Step 0
+7. System is smarter. Repeat.
+
+**By month 3:** System compounds automatically. Every execution is informed by every prior execution.
+
+### Files
+
+See [pmm-meta/](pmm-meta/) for:
+- `meta-synthesis/SKILL.md` — Full skill documentation (10 steps, 19/19 SKILL-SPEC)
+- `meta-synthesis/meta-synthesis.eval.md` — 8 comprehensive test scenarios
+- `README.md` — Complete meta layer documentation
+
+</details>
+
+<details>
+<summary><strong>6. pmm-go-to-market</strong> — GTM strategy, workflow orchestration: full launch workflows, positioning refresh, competitive programs, quarterly cycles (2 skills, 2 commands)</summary>
+
+Complete GTM workflows that chain multiple skills together. One prompt runs positioning → competitive → strategy → execution. Brain updates automatically after each workflow.
 
 ### Skills (2):
 

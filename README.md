@@ -12,6 +12,20 @@ Contributions welcome! Found a way to improve a skill or have a new one to add? 
 
 Run into a problem or have a question? [Open an issue](https://github.com/stefanoskarakasis/Product-Marketing-Skills/issues) — we're happy to help.
 
+## What This Is
+
+Build your product marketing brain once. Every other skill reads it. No re-explaining. No copy-pasting from old chats. Sharper positioning, consistent messaging, smarter launches.
+
+## See It in Action (90 Seconds)
+
+Don't want to commit 15 minutes to setup before seeing value?
+
+→ **[Read the 90-Second Quick Start](./QUICK-START.md)**
+
+Run one skill, get one output, see how the system works. Then decide if you want the full brain setup.
+
+Already convinced? Jump to [Installation](#installation) below.
+
 ## Start Here
 
 Setting up your Product Marketing Context? → `/setup-context`\
@@ -36,6 +50,8 @@ The result: better positioning, sharper launches, and stronger competitive intel
 - ✅ Compound intelligence (skills reference each other's outputs)
 
 ## How It Works (Skills, Commands, Plugins)
+
+Your skills cascade. Each reads your brain (the shared context layer), produces output, and stores learnings. The next skill is smarter because it inherited context from the last one.
 
 <img width="2534" height="795" alt="image" src="https://github.com/user-attachments/assets/1ea0d18b-a7ca-4ef8-b661-87be076fa359" />
 
@@ -92,45 +108,34 @@ Commands use skills. Some skills serve multiple commands. Some skills (like `pri
 Commands are designed to flow into each other, matching the PMM workflow. After any command completes, it suggests relevant next commands — just follow the prompts.
 
 ----
-## Available Skills
+## Available Skills (18 Total)
 
-| Skill | Description |
-|-------|-------------|
-| [beachhead-segment](pmm-go-to-market/skills/beachhead-segment/) | When the user needs to identify and score the first customer segment to dominate before scaling GTM investment. Four-dimension scoring (Burning Pain, Willingness to Pay, Winnability, Referral Potential) with blocking gates. |
-| [experiment-doc](pmm-execution/skills/experiment-doc/) | When the user mentions A/B tests, experiments, hypotheses, growth tests, feature flags, conversion optimisation, or any kind of product or marketing experimentation. |
-| [gaccs-brief](pmm-toolkit/skills/gaccs-brief/) | When the user mentions a campaign, launch, content piece, event, enablement asset, or any marketing project — or says "I need to write a brief" or "where do I even start with this?" |
-| [go-to-market-strategy](pmm-go-to-market/skills/go-to-market-strategy/) | When the user wants to assign launch tier (T1–T4) or build a complete GTM strategy brief with positioning angles, channel strategy, success metrics, and competitive context. |
-| [interview-summary](pmm-execution/skills/interview-summary/) | When the user wants to summarise or extract meaning from a customer or prospect interview transcript using JTBD theory and signal-level pattern detection. |
-| [meta-review](pmm-meta/skills/meta-review/) | When a skill file needs to be audited against SKILL-SPEC v2.0.0 — produces a 19-point scored gap list with exact fixes before shipping any new or updated skill. |
-| [pmm-okrs](pmm-execution/skills/pmm-okrs/) | When the user is setting quarterly OKRs, reviewing existing OKRs, stress-testing KR quality, or building a complete measurement plan for their PMM team. |
-| [pmm-resume](pmm-toolkit/skills/pmm-resume/) | When the user wants to review, tailor, or rebuild their PMM resume for a specific role — dissects the job description, ranks bullets by fit, and rebuilds the full resume in one pass. |
-| [positioning-messaging](pmm-positioning/skills/positioning-messaging/) | When the user wants to build positioning statements, messaging hierarchies, homepage copy, or audit existing messaging using April Dunford's framework. |
-| [prd](pmm-execution/skills/prd/) | When the user mentions PRD, product requirements, solution story, feature spec, GTM brief, launch plan, product brief, user stories, or feature rollout. |
-| [pre-mortem](pmm-execution/skills/pre-mortem/) | When the user wants to run cross-functional risk analysis on any strategic project — product launch, pricing change, new channel, GTM pivot, or new market entry. |
-| [prioritization-frameworks](pmm-execution/skills/prioritization-frameworks/) | When the user needs to select a prioritization method, score strategic projects, triage a launch backlog, or decide how much GTM weight an initiative deserves. |
-| [privacy-policy](pmm-toolkit/skills/privacy-policy/) | When the user needs to create, update, audit, or review data protection documentation, or asks about GDPR, CCPA, or UK GDPR obligations. |
-| [product-marketing-context](product-marketing-context/) | When the user wants to create or update their product marketing context. The apex skill — every other skill reads this first to understand your product, ICP, positioning, and competitive landscape. |
-| [retro](pmm-execution/skills/retro/) | When the user wants to facilitate a structured GTM retrospective for cross-functional squads anchored to OKRs and launch outcomes with a compounding knowledge loop. |
-| [stakeholder-maps](pmm-execution/skills/stakeholder-maps/) | When the user needs to build political stakeholder maps for launches or GTM initiatives — mapping power dynamics, identifying champions, blockers, and deal killers. |
-| [workflow-orchestrator](pmm-go-to-market/skills/workflow-orchestrator/) | When the user wants to run a complete multi-skill GTM program — full product launch, positioning refresh, competitive program, quarterly PMM cycle, or new market entry. |
-| [writing-assistant](pmm-toolkit/skills/writing-assistant/) | When the user wants to rewrite, sharpen, draft, or pressure-test any written communication — Slack messages, emails, memos, PRDs, homepage copy, ads, or positioning documents. |
-<!-- SKILLS:END -->
+| Skill | Description | Reads From | Writes To |
+|-------|-------------|-----------|----------|
+| [product-marketing-context](product-marketing-context/) | Build or audit your brain | N/A | `/foundation/brain.md` |
+| [positioning-messaging](pmm-positioning/skills/positioning-messaging/) | Positioning statements, message house, homepage copy (5 output modes) | ICP, Competitors | `brain Section 3` |
+| [gaccs-brief](pmm-toolkit/skills/gaccs-brief/) | Campaign briefs (Goals, Audience, Creative, Channels, Stakeholders) | Positioning, Brain | `/campaigns/` |
+| [writing-assistant](pmm-toolkit/skills/writing-assistant/) | Sharpen any written communication | Voice guide, Positioning | (in-place edits) |
+| [experiment-doc](pmm-execution/skills/experiment-doc/) | Growth experiments, A/B tests, hypotheses | Brain, `/context/experiments/` | `/context/knowledge/experiments/` |
+| [interview-summary](pmm-execution/skills/interview-summary/) | Customer discovery using JTBD | Transcripts, Brain | `/context/interviews/` |
+| [prd](pmm-execution/skills/prd/) | Product requirements, Solution Stories | Brain, Positioning | `/docs/prd/` |
+| [pre-mortem](pmm-execution/skills/pre-mortem/) | Risk analysis, cross-functional alignment | Brain, `/context/risk-logs/` | `/context/knowledge/risks/` |
+| [retro](pmm-execution/skills/retro/) | Post-launch retrospectives, learnings | Brain, Launch data | `/context/knowledge/retros/` |
+| [pmm-okrs](pmm-execution/skills/pmm-okrs/) | Quarterly OKR building | Brain, Prior OKRs | `brain Section 7` |
+| [stakeholder-maps](pmm-execution/skills/stakeholder-maps/) | Political maps (champions, blockers) | Brain, Prior maps | `/context/stakeholders/` |
+| [prioritization-frameworks](pmm-execution/skills/prioritization-frameworks/) | Score initiatives (RICE, ICE, Kano, etc.) | Brain, Initiatives | `/analysis/` |
+| [go-to-market-strategy](pmm-go-to-market/skills/go-to-market-strategy/) | GTM strategy, launch tier assignment | Brain, Positioning, Competitive | `brain Section 7` |
+| [beachhead-segment](pmm-go-to-market/skills/beachhead-segment/) | First customer wedge scoring | ICP, Brain | `brain Section 2` |
+| [workflow-orchestrator](pmm-go-to-market/skills/workflow-orchestrator/) | Full launch workflows (10 types) | Brain, All above | `brain + /artifacts/` |
+| [meta-review](pmm-meta/skills/meta-review/) | Audit skills against SKILL-SPEC | All SKILL.md files | Gap list + fixes |
+| [pmm-resume](pmm-toolkit/skills/pmm-resume/) | Resume tailoring for PMM roles | Your resume, JD | Tailored resume |
+| [privacy-policy](pmm-toolkit/skills/privacy-policy/) | GDPR/CCPA-compliant privacy policies | Product data | `policy.md` |
 
-
-## Quick Start
-
-**Best option:** Claude Cowork
-1. Click **Customize** (bottom-left)
-2. Go to **Browse plugins** → **Personal** → **+**
-3. Select **Add marketplace from GitHub**
-4. Enter: `stefanoskarakasis/Product-Marketing-Skills`
-5. Click **Install**
-
-Done. All skills + commands ready.
-
----
+> Each skill reads from the "Reads From" column to produce output in "Writes To". This data flow is how the system compounds — outputs from one skill become inputs to the next.
 
 ## Installation
+
+Pick any method below. All work with Claude Code CLI, Cursor, Cowork, and Windsurf.
 
 ### Option 1: CLI Install (Recommended)
 
@@ -141,7 +146,7 @@ Use [npx skills](https://github.com/vercel-labs/skills) to install skills direct
 npx skills add stefanoskarakasis/Product-Marketing-Skills
 
 # Install specific skills
-npx skills add stefanoskarakasis/Product-Marketing-Skills --skill positioning-messaging competitive-battlecard
+npx skills add stefanoskarakasis/Product-Marketing-Skills --skill positioning-messaging experiment-doc
 
 # List available skills
 npx skills add stefanoskarakasis/Product-Marketing-Skills --list
@@ -195,7 +200,7 @@ Use [SkillKit](https://github.com/rohitg00/skillkit) to install skills across mu
 npx skillkit install stefanoskarakasis/Product-Marketing-Skills
 
 # Install specific skills
-npx skillkit install stefanoskarakasis/Product-Marketing-Skills --skill positioning-messaging competitive-battlecard
+npx skillkit install stefanoskarakasis/Product-Marketing-Skills --skill positioning-messaging experiment-doc
 
 # List available skills
 npx skillkit install stefanoskarakasis/Product-Marketing-Skills --list
@@ -210,16 +215,16 @@ Once installed, just ask your agent to help with PMM tasks:
 → Uses go-to-market-strategy skill
 
 "Generate positioning for our platform"
-→ Uses hs-positioning-messaging skill
+→ Uses positioning-messaging skill
 
 "Build a competitive battlecard for Okta"
-→ Uses hs-competitive-battlecard skill
+→ Uses competitive-battlecard skill
 
 "Run Q3 quarterly PMM cycle"
 → Uses workflow-orchestrator skill
 
 "Create a GACCS campaign brief"
-→ Uses hs-gaccs-brief skill
+→ Uses gaccs-brief skill
 ```
 
 You can also invoke skills directly with commands:
@@ -231,19 +236,21 @@ You can also invoke skills directly with commands:
 /go-to-market-strategy
 
 "Build positioning for B2B SaaS"
-/hs-positioning-messaging 
+/positioning-messaging 
 
 "Run retrospective for last launch"
-/hs-retro 
+/retro 
 
 "Generate Q4 OKRs"
-/hs-brainstorm-okrs 
+/pmm-okrs 
 ```
 Skills read your brain automatically — zero context re-explaining.
 
 ---
 
-## Skill Categories
+## Skill Categories: How They Chain Together
+
+These skills are organized by domain, but they're designed to flow into each other. After any skill completes, it suggests the next logical step.
 
 <details>
 <summary><strong>1. product-marketing-context</strong> — The Brain: setup wizard, health audit, compound intelligence (1 skill, 5 commands)</summary>

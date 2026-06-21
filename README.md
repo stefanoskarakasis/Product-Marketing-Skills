@@ -30,12 +30,12 @@ Already convinced? Jump to [Installation](#installation) below.
 
 ## Start Here
 
-Setting up your Product Marketing Context? → `/setup-context`
-Pressure-testing positioning? → `/position`
-Planning a launch? → `/launch`
-Building a battlecard? → `/compete`
-Drafting a campaign brief? → `/brief`
-Detecting patterns in your work? → `/pmm-meta:synthesis`
+Setting up your Product Marketing Context? → `/setup-context`\
+Pressure-testing positioning? → `/position`\
+Planning a launch? → `/plan-launch`\
+Building a battlecard? → `/compete`\
+Drafting a campaign brief? → `/brief`\
+Detecting patterns in your work? → `/pmm-meta:synthesis`\
 
 If this project helps you, ⭐ the repo.
 

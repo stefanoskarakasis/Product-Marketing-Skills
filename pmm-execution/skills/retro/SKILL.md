@@ -15,7 +15,7 @@ metadata:
   logging_enabled: true
 last_updated: 2026-06-21
 ---
-# hs-retro — GTM Retrospective Engine for PMMs
+# GTM Retrospective Engine for PMMs
 Runs a structured retrospective for cross-functional squads that produces OKR-linked
 decisions — and gets smarter every session.
 Not a feelings circle. A diagnostic system.

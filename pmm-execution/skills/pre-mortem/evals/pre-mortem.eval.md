@@ -1,259 +1,371 @@
-# hs-pre-mortem.eval.md
+---
+name: pre-mortem.eval
+version: 2.3.0
+description: >
+  Comprehensive eval suite for pre-mortem skill. Tests: guardrail surfacing,
+  brain context loading, failure scenario generation quality, Tiger/Paper Tiger/Elephant classification accuracy,
+  Tiger triage completeness (owner + signal + action plan), PMM recommendation clarity, logging accuracy,
+  and pattern detection for meta-synthesis. 8 scenarios covering real initiative types and edge cases.
+---
 
-Eval test cases for `hs-pre-mortem` skill (SKILL-SPEC v2.0.0 compliance).
+# Pre-Mortem — Eval Suite
+
+## Setup (Universal)
+
+Each eval:
+1. Populates `/foundation/brain.md` with baseline PMM context (Sections 2, 3, 4, 5)
+2. Populates `/context/meta-patterns.md` with guardrails (if testing guardrail surfacing)
+3. Populates `/context/skill-sessions.md` with prior pre-mortem sessions (if testing pattern detection)
+4. Runs pre-mortem skill for given initiative
+5. Validates outputs: risk classification quality, Tiger triage completeness, recommendation clarity, session logging
 
 ---
 
-## Test 1: Full Pre-Mortem — Product Launch
+## Eval 1: Guardrail Surfacing (Step 0)
 
-**Input:**
-- Initiative: "Analytics dashboard for mid-market finance (product launch)"
-- Type: Product Launch
-- Success definition: "500 qualified trials in 90 days"
-- Decision gates: Feature freeze (Week 2), beta launch (Week 4), GA (Week 6)
-- Team in session: PMM, Product, Sales, CS
-- Brain exists with ICP (finance), positioning (self-serve), and GTM motion (sales + community)
+**Scenario:** `/context/meta-patterns.md` exists with guardrail "Pricing changes without competitive posture analysis have failed 2 prior times → Always run comp posture check pre-launch". User triggers pre-mortem for a pricing initiative. Skill should surface guardrail before intake.
 
-**Expected Behavior:**
-1. Intake runs (initiative, success, gates, team composition)
-2. Thesis interrogation: "What would have to be true for this initiative to be the wrong move entirely?" (e.g., "If self-serve doesn't work in finance because they need handholding…")
-3. Failure scenario calibration: "What would failure unambiguously look like to your CEO?" (e.g., "<100 trials by Week 12 = failure")
-4. Failure frame set: "Imagine it's Week 12. You have <100 trials. What did you know that you ignored?"
-5. Risk generation across 5 lenses:
-   - 🔍 Lens 1 (Market & Customer): ICP fit assumptions, buyer awareness gap, willingness to pay
-   - 🔍 Lens 2 (Competitive & Strategic): Competitor response risk, positioning drift, cannibalization
-   - 🔍 Lens 3 (GTM & Execution): Sales readiness (will sellers bring this up unprompted?), message-market fit, activation path clarity
-   - 🔍 Lens 4 (Organisational & Stakeholder): Sales VP alignment, Sales compensation (does comp incentivize new product?), resource commitment
-   - 🔍 Lens 5 (Data & Measurement): Success metric defined?, leading indicators (adoption velocity in Week 2–3?), attribution (can we isolate dashboard impact from other changes?)
-6. Risk classification:
-   - 🐯 Tigers (real risks): Sales compensation misaligned (no incentive to sell), message-market fit unvalidated (sales can't explain it)
-   - 📄 Paper Tigers (acknowledged, not acted on): Competitor response (we're first-mover in this category)
-   - 🐘 Elephants (investigation needed): Willingness to pay (is 40% of ICP willing to adopt?), Investigator: Sales, Due: Week 1 sales call
-7. Tiger triage:
-   - 🚨 Launch-Blocking: Sales compensation, message-market fit
-   - ⚡ Fast-Follow: Product doc quality, CS onboarding readiness
-8. Action plans for Launch-Blocking Tigers:
-   ```
-   ### 🚨 Tiger: Sales Compensation Misaligned
-   
-   **What breaks:**
-   - Sales ignores new product in prospect calls
-   - Pipeline to new product stalls after Week 2
-   
-   **Why it's real:**
-   - Sales comp only incentivizes legacy products
-   - Sales manager said "My reps won't lead with this"
-   
-   **Mitigation:**
-   - Add $X spiff for each trial sign-up
-   - Co-design sales comp with VP Sales by [date]
-   
-   **Owner:** VP Sales + Finance
-   
-   **Due date:** Before Week 4 beta
-   
-   **Confidence:** 🟢 Credible — VP Sales has budget authority
-   ```
-9. PMM Recommendation:
-   - 🟡 Conditional Go — "Go if sales comp is fixed before Week 4 beta. If not fixed by [date], reverts to No-Go."
-10. Confidence score: 🟡 Medium — Tigers are credible but mitigation is in progress
+**Test Data:**
+```yaml
+# /context/meta-patterns.md
+guardrail_1:
+  text: "Pricing changes without competitive posture analysis"
+  trigger: "Pre-mortem on pricing initiative"
+  action: "Require competitive posture check before risk triage"
+  status: ACTIVE
 
-**Success Criteria:**
-- All 5 lenses covered (at least one risk per lens)
-- Tigers are evidence-based (not worry)
-- Elephants have investigators + due dates + upgrade conditions
-- Launch-Blocking Tigers have full action plans
-- Mitigations have confidence scores (🟢/🟡/🔴)
-- PMM Recommendation is explicit (Go/Conditional/No-Go)
-- If any 🔴 mitigation on launch-blocker → Recommendation is not 🟢 Go
+# /context/skill-sessions.md
+skill: pre-mortem
+session_date: 2026-06-10
+initiative_name: "Price Optimization Q2"
+recommendation: "Hold"
+tigers_count: 4
 
-**Test Pass:** Pre-mortem changes execution plan; risks are owned
+skill: pre-mortem
+session_date: 2026-06-15
+initiative_name: "Enterprise Tier Launch"
+recommendation: "Hold"
+tigers_count: 3
+```
+
+**Expected Output - Guardrail Surfaced:**
+```
+🔁 PATTERN FROM PRIOR PRE-MORTEMS
+
+I've seen pricing changes without competitive posture analysis fail 2 prior times.
+Examples: "Price Optimization Q2", "Enterprise Tier Launch"
+
+Quick check: Are you aware of this risk?
+- If YES → We'll dig into competitive response during Tiger triage
+- If NO → Let's add it to our failure scenarios
+```
+
+**Pass Criteria:**
+- Guardrail surfaces before Step 1 intake
+- Pattern count accurate (2 prior occurrences)
+- User can approve/skip guardrail
+- Guardrail logged in Step 7 (guardrails_triggered field)
 
 ---
 
-## Test 2: Elephant Upgrade (Avoidance Rule)
+## Eval 2: Brain Context Loading (Pre-flight)
 
-**Input:**
-- Initiative: "New market entry (healthcare vertical)"
-- Risk surfaced: "Do healthcare buyers have budget for this?" (Willingness to pay)
-- Classification attempt: Elephant (unspoken, needs investigation)
-- BUT: Sales has done 3 healthcare pilot calls; willingness to pay could have been asked but wasn't
+**Scenario:** `/foundation/brain.md` exists with populated ICP (§2), Positioning (§3), Revenue Levers (§5). Skill should load silently and reference during intake and scenario generation.
 
-**Expected Behavior:**
-1. Elephant rule triggered: "Avoidance upgrades Elephants to Tigers"
-2. Diagnostic: "You have access to the evidence (you can ask pilot customers directly), and you chose not to gather it. That's not uncertainty — that's avoidance."
-3. Risk reclassified: 🐯 Tiger (real risk, launch-blocking until resolved)
-4. Action plan required immediately:
-   ```
-   ### 🚨 Tiger: Willingness to Pay Not Validated
-   
-   **What breaks:**
-   - Launch fails if healthcare buyers won't spend enough
-   
-   **Why it's real:**
-   - Healthcare has unique budget cycles (annual purchasing)
-   - Pilot calls didn't ask about budget/buying process
-   - Evidence is accessible but untested
-   
-   **Mitigation:**
-   - Call 5 pilot participants + ask budget + procurement process
-   - Report findings by [date]
-   
-   **Owner:** Sales
-   
-   **Due date:** Before [date] (before market entry announcement)
-   
-   **Confidence:** 🟡 Partial — Sales owns this but may not prioritize
-   ```
-5. Recommendation drops to 🔴 No-Go until avoidance is resolved
+**Test Data:**
+```yaml
+# /foundation/brain.md
+## Section 2: ICP
+Primary: Mid-market B2B SaaS, 50-500 employees, ops teams
+Pain points: Manual processes, lack of visibility, team coordination friction
 
-**Success Criteria:**
-- Avoidance is named (not soft-pedaled)
-- Elephant automatically becomes Tiger
-- Action plan has named owner + deadline
-- Recommendation reflects unresolved risk
+## Section 3: Positioning
+Unique angle: "For ops leaders who measure impact, not activity"
+Key differentiator: Outcome-first analytics
 
-**Test Pass:** Known unknowns don't hide in Elephant classification
+## Section 5: Revenue Levers
+Lever 1: Time-to-value (setup speed)
+Lever 2: Outcome visibility (customer success metric)
+Lever 3: Team collaboration (multiple stakeholder adoption)
+```
+
+**Expected Output - Context Referenced:**
+```
+✓ Brain context loaded:
+  - ICP: Mid-market ops teams (grounding failure scenarios in this segment)
+  - Positioning: Outcome-first analytics (informing messaging risks)
+  - Revenue: Team collaboration as lever (adding adoption friction scenario)
+
+Target customer from brain ICP: [Pre-filled — mid-market ops leaders]
+Risk angle: If adoption slower than expected, teams won't unlock the collaboration lever
+```
+
+**Pass Criteria:**
+- Brain sections loaded silently at pre-flight
+- ICP informs target customer in intake
+- Positioning anchors messaging-related failure scenarios
+- Revenue Levers inform adoption/friction scenarios
 
 ---
 
-## Test 3: Paper Tiger Integrity Check
+## Eval 3: Failure Scenario Generation (Initiative-Specific)
 
-**Input:**
-- Risk surfaced: "Competitor responds to our launch"
-- Classification attempt: Paper Tiger ("We're first-mover in this category, so competitor response is low-probability")
+**Scenario:** User completes intake for a feature launch. Skill generates 8-12 failure scenarios specific to the initiative type, rooted in brain context (ICP, competitive positioning).
 
-**Expected Behavior:**
-1. Paper Tiger integrity rule applies: "A PMM's confidence in their existing customer relationship, brand strength, or internal alignment is never sufficient evidence to classify a commercial, competitive, or perception risk as a Paper Tiger."
-2. Pushback: "Familiarity is not validation. Confidence is not data. What evidence shows competitor won't respond in 2 weeks?"
-3. If no evidence: "This needs to stay as Tiger with mitigation plan: (1) monitor competitor announcements, (2) if competitor responds, execute talk track with sales by [date]."
-4. If evidence exists (e.g., "Competitor is in acquisition process for 3 months"), then Paper Tiger classification holds with stated reason
+**Test Data - Feature Launch:**
+User input:
+- Initiative: "Bulk User Imports"
+- Target: Mid-market ops teams (from brain ICP)
+- Timeline: 6 weeks
+- Tier: P2 Notable
+- Team readiness: Sales prepped, docs in progress
 
-**Success Criteria:**
-- PMM confidence alone doesn't downgrade risks
-- Paper Tiger classification requires evidence
-- Reasoning is explicit
+**Expected Output - Failure Scenarios:**
+```
+Market/Competitive:
+1. Competitor ships bulk import faster / with better UX
+2. Market shifted; ops teams deprioritized user management (macro headwind)
 
-**Test Pass:** Optimism bias doesn't hide risks
+Go-To-Market:
+3. Sales team didn't understand the value story — didn't position it as "time-to-value lever"
+4. Launch messaging focused on technical features, not outcome ("saves 8 hours per cycle")
 
----
+Product/Adoption:
+5. Bulk import has bugs in production; customers can't use it
+6. Integration complexity higher than expected; customers abandon it
+7. Adoption slower than expected; ops teams prefer manual CSV (familiarity bias)
 
-## Test 4: New Market Entry — Local Knowledge Audit
+Internal/Execution:
+8. Team alignment broke; product wanted different scope than marketing promised
+9. Rollback decision took 3 weeks; customer churn started Day 7
+```
 
-**Input:**
-- Initiative: "Expand into Southeast Asia market"
-- Risk generation would run Lenses 1 + 2 (Market & Competitive)
-- Question before risk generation: "Do you have anyone in this session with on-the-ground knowledge of Southeast Asia?"
-- Answer: "No — we're relying on secondary research and vendor data"
-
-**Expected Behavior:**
-1. Local knowledge audit flags: "All Market & Customer and Competitive & Strategic risks for this market entry are assumption-based — not evidence-based. Every risk in those two lenses is flagged 🔴 confidence until local validation exists."
-2. Additional checks run:
-   - Does beachhead segment (from brain) conflict with this new market?
-   - Are ICP assumptions being translated or assumed to carry over unchanged?
-   - Full regulatory surface area in this market identified?
-   - Local competitive dynamic that doesn't exist in home market?
-   - GTM team structurally equipped (language, network, local knowledge)?
-   - Defined beachhead (one city/region, one subsegment) before outbound begins?
-   - Country Manager decision trigger with go/no-go date?
-3. Risk generation produces high number of 🔴 confidence Tigers
-4. Recommendation: 🟡 Conditional Go — "Go if we hire local market expert by [date]. If not, reverts to No-Go."
-
-**Success Criteria:**
-- Local knowledge gap is surfaced upfront
-- Confidence scores reflect assumption-based risk
-- Checks are comprehensive
-- Entry point is defined before scaling
-
-**Test Pass:** Market entry risks are grounded in reality, not assumptions
+**Pass Criteria:**
+- 8-12 scenarios, not fewer
+- Scenarios grounded in ICP (mid-market ops teams, time-to-value lever)
+- Scenarios span all 4 categories (Market, GTM, Product, Execution)
+- Scenarios feel specific, not generic ("sales didn't prep" not vague)
+- Failure narratives are concrete ("churn >15% in first 30 days" not "adoption slow")
 
 ---
 
-## Test 5: GTM Pivot — Organisational Lens First
+## Eval 4: Tiger/Paper Tiger/Elephant Classification Accuracy
 
-**Input:**
-- Initiative: "Sales-led to self-serve GTM pivot"
-- Modification: GTM Pivot initiative type triggers Lens 4 (Organisational) first
-- Additional checks for pivot:
-  - Has Sales leadership been briefed before the announcement?
-  - Is there a compensation model defined for self-serve motion before go-live?
-  - Is there a playbook for how Sales uses self-serve in live deals?
-  - Has the CEO mandate been translated into explicit resource commitment?
+**Scenario:** User classifies failure scenarios. Skill should help distinguish between deal-blockers (Tigers), loud but manageable (Paper Tigers), and accepted trade-offs (Elephants).
 
-**Expected Behavior:**
-1. Lens 4 (Organisational) runs first, not last
-2. Risks surfaced:
-   - 🚨 Sales leadership blindsided by announcement (not briefed in advance)
-   - 🚨 Sales comp still incentivizes old motion (no self-serve incentives)
-   - 🚨 Sales playbook undefined (how do reps use self-serve for enterprise deals?)
-3. All rated 🚨 Launch-Blocking (motion pivot fails if sales is unaligned)
-4. Action plans required before proceeding to other lenses
-5. Additional check: "What is the opportunity cost of pivoting away from sales-led? Are we leaving revenue on the table during transition?"
-6. Recommendation: 🔴 No-Go unless Lens 4 risks are resolved
+**Test Data:**
+```
+Scenario 1: "Competitor ships bulk import faster with better UX"
+  → Expected classification: Tiger (deal-blocking if competitor wins adoption)
 
-**Success Criteria:**
-- Lens 4 executed first
-- All three checks run
-- Organisational failures are flagged as launch-blockers
-- Opportunity cost is explicit
+Scenario 2: "Sales team didn't understand the value story"
+  → Expected classification: Tiger (directly impacts launch if sales doesn't sell)
 
-**Test Pass:** GTM pivots fail on internal misalignment, not market conditions
+Scenario 3: "Some customers confused by new bulk import UI"
+  → Expected classification: Paper Tiger (manageable with docs/support, improves over time)
+
+Scenario 4: "We're launching without the "auto-retry" feature"
+  → Expected classification: Elephant (known trade-off, accepted to hit timeline)
+
+Scenario 5: "Rollback decision took 3 weeks; customer churn started"
+  → Expected classification: Tiger (slow decision-making blocks recovery)
+```
+
+**Pass Criteria:**
+- Classification aligns with user's risk appetite (Tigers = must-mitigate, Paper Tigers = monitor, Elephants = accept)
+- Skill asks clarifying question if ambiguous: "Is this deal-blocking, or manageable?"
+- User can reclass if disagree ("Actually, that's an Elephant — we decided to accept it")
+- Classification count logged in Step 7 (tigers_count, paper_tigers_count, elephants_count)
 
 ---
 
-## Test 6: No-Go Delivery (Leadership Reframing)
+## Eval 5: Tiger Triage Completeness (Owner + Signal + Action)
 
-**Input:**
-- Pre-mortem complete
-- Multiple 🚨 Launch-Blocking Tigers with 🔴 confidence (unresolved)
-- Recommendation: 🔴 No-Go
-- Context: Initiative has CEO directive + conference commitment
+**Scenario:** For each Tiger, user provides or skill elicits: owner (named person), signal (measurable proof), and action plan (mitigation or rollback trigger).
 
-**Expected Behavior:**
-1. Recommendation is stated clearly: "Not ready. The risk to [revenue/positioning/market perception] outweighs the benefit of launching on schedule."
-2. For politically complex situations, PMM reframes: "We ran a pre-mortem. The recommendation is a [X]-day validation sprint before full launch — because that's how we make [initiative name] work, not how we slow it down."
-3. Validation sprint structure offered:
-   - "Here's what we validate: [specific Tiger mitigations]"
-   - "Here's the go/no-go condition at the end of the sprint: [threshold]"
-   - "Here's what we announce now vs. what we hold: [phased launch]"
-4. This reframes delay as diligence, not resistance
+**Test Data - Tiger 1:**
+```
+Tiger: "Sales team didn't understand the value story"
 
-**Success Criteria:**
-- No-Go is not softened with caveats
-- Leadership reframe offered if politically needed
-- Validation sprint gives decision point (not endless delay)
-- PMM is protected from "person who said no to growth" narrative
+Skill generates / elicits:
+- Owner: "Sarah (VP Sales) owns sales enablement"
+- Signal: "Sales adoption measured by: ≥80% of AE ramp in first 2 weeks. Signals failure: <60% ramp."
+- Action: "Pre-brief sales 3 weeks pre-launch. Weekly competitive positioning stand-ups. Rollback trigger: If <50% of AE ramp after 3 weeks, pause launch to rework training materials."
+```
 
-**Test Pass:** Bad launches are stopped; good leaders listen
+**Test Data - Tiger 2:**
+```
+Tiger: "Adoption slower than expected — ops teams prefer manual CSV"
+
+Skill generates / elicits:
+- Owner: "Marcus (VP Product) owns adoption friction reduction"
+- Signal: "Target: ≥40% of eligible customers adopt within 30 days. Signal of failure: <20% adoption by Day 30."
+- Action: "Run weekly adoption analytics. Day 20 check-in: if trending <20%, ship UX patch (1-week sprint). Rollback: If Day 30 <20%, pause feature, invest in onboarding workflow redesign (2-week sprint)."
+```
+
+**Pass Criteria:**
+- All Tigers have named owners (person + role, not "team")
+- All Tigers have measurable signals (e.g., "churn >15%", "<50% adoption")
+- All Tigers have mitigation or rollback actions (not "hope it doesn't happen")
+- Actions are specific enough to execute (owner knows what to do)
+- Signal + Action logged in Step 7
 
 ---
 
-## Test 7: Learning Close — Hypothesis Capture
+## Eval 6: PMM Recommendation Clarity (Go / Conditional Go / Hold)
 
-**Input:**
-- Pre-mortem session complete
-- Closing questions asked:
-  1. "Is there anything you want to say out loud before we close?"
-  2. "Was there a risk that surprised you?"
-  3. "Was there a Tiger I flagged that you think is actually a Paper Tiger?"
-  4. "Was there an Elephant the team already knew about but hadn't named?"
+**Scenario:** After Tiger triage, skill delivers a clear recommendation: Go, Conditional Go, or Hold.
 
-**Expected Behavior:**
-1. Step 1: User says "Honestly, I'm worried that Sales won't prioritize this — but we've never had that problem before"
-2. Skill captures: "That's a Tiger being avoided, not an Elephant."
-3. Learning close extracts:
-   - Pattern: "Sales prioritization assumptions based on past launches"
-   - Proposed rule: "Sales prioritization is not guaranteed across new product launches. Always validate readiness before go-live."
-   - Proposed addition to `knowledge/gtm/rules.md`
-4. Step 2: User: "Yes, competitor response surprised us — we've been first-mover so long, we forgot they exist."
-5. Capture: Pattern learned; added to `knowledge/gtm/hypotheses.md`
-6. Final offer: "Log this session? I'll extract patterns and update the knowledge base."
-7. No file is written without explicit approval
+**Test Data:**
+```
+Input: Feature launch, 5 Tigers identified
+- Tiger 1: Owner assigned, signal clear, action plan defined ✓
+- Tiger 2: Owner assigned, signal clear, action plan defined ✓
+- Tiger 3: Owner assigned, signal clear, action plan defined ✓
+- Tiger 4: Owner assigned, signal clear, action plan defined ✓
+- Tiger 5: No owner assigned, action plan vague ✗
 
-**Success Criteria:**
-- Unstructured prompt runs first (captures deepest insights)
-- Pattern capture happens
-- Rule/hypothesis updates are proposed (not silent)
-- Approval required before encoding
+Expected recommendation: Conditional Go
+Condition: "Go if Tiger 5 (exec alignment) gets an owner and decision by Friday. If not, hold."
+```
 
-**Test Pass:** Learning compounds; future pre-mortems are sharper
+**Pass Criteria:**
+- Recommendation is one of: Go, Conditional Go, Hold (not wishy-washy)
+- If Go: All Tigers have owners, signals, actions
+- If Conditional Go: Explicit condition stated ("if X happens by Y date")
+- If Hold: Clear reason given ("unmitigated Tigers: X, Y, Z")
+- Recommendation is 1-2 paragraphs max (clear, direct)
+- Recommendation logged in Step 7
+
+---
+
+## Eval 7: Session Logging Accuracy (Step 7)
+
+**Scenario:** Pre-mortem skill session completes with failure scenarios → classification → Tiger triage → recommendation. Skill logs to `/context/skill-sessions.md`.
+
+**Expected Output - Session Log:**
+```yaml
+skill: pre-mortem
+session_date: 2026-06-21
+initiative_name: "Bulk User Imports Feature"
+initiative_tier: P2
+quality_score: 88
+tigers_count: 5
+paper_tigers_count: 3
+elephants_count: 2
+guardrails_triggered:
+  - "Sales alignment risk" (pre-flagged from prior pre-mortems)
+brain_context_loaded: true
+brain_sections_referenced:
+  - "ICP (Section 2) — mid-market ops teams"
+  - "Positioning (Section 3) — outcome-first analytics"
+  - "Revenue Levers (Section 5) — time-to-value"
+brain_updates_proposed:
+  - "Section 5: Emerging pattern — feature launches without sales alignment have 80% Tiger materialization. Recommend 3-week sales prep minimum."
+  - "Section 2: Anti-ICP signal — ops teams without process maturity churn 2x post-launch. Tighten ICP on process sophistication."
+recommendation: "Conditional Go — proceed if Tiger 2 (adoption friction) has owner assigned by Friday"
+decision: "approved"
+risks_materialized_count: null
+output_path: "/artifacts/pre-mortem/bulk-imports-tiger-summary-v1.md"
+```
+
+**Pass Criteria:**
+- Session logged to `/context/skill-sessions.md`
+- All metadata fields populated (initiative name, tier, counts, quality score, guardrails)
+- Tigers/Paper Tigers/Elephants accurately counted
+- Guardrails triggered listed (if any)
+- Brain context loaded and sections referenced
+- Brain updates proposed (for meta-synthesis)
+- Recommendation field matches Step 5 output
+- Quality score reflects Tiger completeness (90+ = all Tigers have owners + signals + actions)
+
+---
+
+## Eval 8: End-to-End Pre-Mortem with Pattern Detection
+
+**Scenario:** User runs pre-mortem end-to-end: intake → failure scenarios → classification → Tiger triage → recommendation → logging. Test detects patterns (guardrails useful? Tigers materialized in follow-up?).
+
+**Test Data:**
+```yaml
+# /context/skill-sessions.md (3 prior pre-mortems)
+Session 1: Feature launch, 4 Tigers, recommendation "Go"
+  → Follow-up 3 months later: 3 of 4 Tigers materialized (accuracy: 75%)
+Session 2: Pricing change, 5 Tigers, recommendation "Hold"
+  → User proceeded anyway; 4 Tigers materialized immediately (accuracy: 80%)
+Session 3: GTM pivot, 3 Tigers, recommendation "Conditional Go"
+  → Condition met; 1 Tiger materialized (accuracy: 67%)
+
+# Current session:
+Feature launch intake → 6 Tigers identified → owners assigned → signals clear → recommendation "Go"
+```
+
+**Expected Output - Pattern Recognition:**
+```
+✓ Session completed: Feature launch pre-mortem
+✓ Quality score: 87/100 (all Tigers have owners + signals + actions)
+✓ Guardrails triggered: 2 ("Sales alignment", "Adoption friction")
+
+🔁 PATTERN FOR META-SYNTHESIS:
+
+Pre-mortem accuracy tracking (last 3 sessions):
+  - Tiger materialization rate: 75–80% (model is well-calibrated)
+  - "Sales alignment" Tigers have 100% materialization (strong signal)
+  - "Adoption friction" Tigers have 67% materialization (less predictive)
+
+Guardrail recommendation: Keep "Sales alignment" ACTIVE. Downgrade "Adoption friction" (false alarm rate too high).
+
+Emerging pattern: Pre-mortems with named owners have 85% Tiger mitigation success.
+Proposed learning for Section 7 (Meta-Learnings): "Named owner accountability in pre-mortem action plans drives 85% execution success vs. 40% when ownership is vague."
+```
+
+**Pass Criteria:**
+- Full workflow completes (intake → scenarios → triage → recommendation → log)
+- Quality score calculated and reflects Tiger completeness
+- Guardrails surfaced at Step 0 (if applicable)
+- Guardrails triggered count matches usage in session
+- Session logged to `/context/skill-sessions.md` with all metadata
+- Brain updates proposed for meta-synthesis
+- Pattern signals extracted for pattern detection (if follow-up session exists, compare predicted vs. materialized Tigers)
+- Output path recorded
+
+---
+
+## Eval Test Coverage Matrix
+
+| Eval | Feature | Pass Criteria |
+|------|---------|---------------|
+| 1 | Guardrail surfacing (Step 0) | Pattern detected, user warned, can approve/skip |
+| 2 | Brain context loading (pre-flight) | ICP, positioning, revenue levers inform scenarios |
+| 3 | Failure scenario generation | 8-12 scenarios, initiative-specific, rooted in ICP |
+| 4 | Risk classification | Tigers/Paper Tigers/Elephants aligned with risk appetite |
+| 5 | Tiger triage completeness | All Tigers have named owner, signal, action plan |
+| 6 | PMM recommendation clarity | Go / Conditional Go / Hold with clear reasoning |
+| 7 | Session logging accuracy | Complete metadata logged to `/context/skill-sessions.md` |
+| 8 | End-to-end workflow | Intake→Scenarios→Triage→Recommendation→Log, patterns detected |
+
+---
+
+## Running Evals
+
+```bash
+# Run all evals
+for i in {1..8}; do
+  echo "Running eval $i..."
+  # [invoke pre-mortem with test data]
+  # [validate outputs against pass criteria]
+done
+
+# Run single eval
+# [invoke pre-mortem with eval N test data]
+# [validate against eval N pass criteria]
+```
+
+---
+
+## Changelog
+
+### v2.3.0 — 2026-06-22
+Initial release: 8 comprehensive scenarios covering guardrail surfacing, brain context loading, failure scenario generation (initiative-specific), Tiger/Paper Tiger/Elephant classification, Tiger triage completeness (owner + signal + action), PMM recommendation clarity, logging accuracy, and end-to-end pattern detection for meta-synthesis.
+
+Tests guardrail pre-flight, brain context integration, logging to `/context/skill-sessions.md`, and pattern signals for meta-synthesis monthly cycle. Includes pre-mortem accuracy tracking (comparing predicted vs. materialized Tigers) for calibration.
+

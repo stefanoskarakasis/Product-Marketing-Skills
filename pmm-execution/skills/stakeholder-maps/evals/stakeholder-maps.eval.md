@@ -1,200 +1,388 @@
-# hs-stakeholder-maps.eval.md
+---
+name: stakeholder-maps.eval
+version: 2.3.0
+description: >
+  Comprehensive eval suite for stakeholder-maps skill. Tests: guardrail surfacing,
+  brain context loading, inversion check quality, Power × Interest classification accuracy,
+  political role assignment rigor, conflict mapping completeness, silent blocker identification,
+  sprint card execution clarity, logging accuracy, and pattern detection for meta-synthesis.
+  8 scenarios covering real GTM initiative types and stakeholder political dynamics.
+---
 
-Eval test cases for `hs-stakeholder-maps` skill (SKILL-SPEC v2.0.0 compliance).
+# Stakeholder-Maps — Eval Suite
+
+## Setup (Universal)
+
+Each eval:
+1. Populates `/foundation/brain.md` with baseline PMM context (Sections 2, 3, 5)
+2. Populates `/context/meta-patterns.md` with guardrails (if testing guardrail surfacing)
+3. Populates `/context/skill-sessions.md` with prior stakeholder maps (if testing pattern detection)
+4. Runs stakeholder-maps skill for given initiative
+5. Validates outputs: inversion check rigor, classification accuracy, role assignment, conflict mapping, logging
 
 ---
 
-## Test 1: Fresh Stakeholder Map (Happy Path)
+## Eval 1: Guardrail Surfacing (Step 0)
 
-**Input:**
-- Initiative: "Pricing change on core product (increasing by 15%)"
-- Success: "No customer churn >5% in Q3"
-- Timeline: "Announcement in 2 weeks, go-live in 4 weeks"
-- Stakeholders: CFO (champion, owns pricing), VP Sales (concerned), CS (worried about churn), Product (neutral)
+**Scenario:** `/context/meta-patterns.md` exists with guardrail "Product launches without Sales Manage Closely engagement and written commitment have failed 3 times → Always surface Sales Performer risk". User triggers stakeholder skill for a product launch without mentioning Sales alignment. Skill should surface guardrail before intake.
 
-**Expected Behavior:**
-1. Intake runs: initiative, success, timeline, champions, blockers, decision gates all captured
-2. Inversion check: "Who could sink this? Finance could if churn exceeds tolerance."
-3. Power × Interest grid populated:
-   - CFO: High Power, High Interest → Manage Closely (Champion)
-   - VP Sales: High Power, High Interest → Manage Closely (Floating Voter, worried about pipeline)
-   - CS VP: High Power, Low Interest → Keep Satisfied (frozen, hasn't engaged)
-   - Product Lead: Low Power, High Interest → Keep Informed (supporter)
-4. Political roles assigned:
-   - CFO = 🏆 Champion
-   - VP Sales = 🌊 Floating Voter
-   - CS VP = 🧊 Frozen
-   - Product = 🏆 Champion
-5. Conflicts identified: CFO wants to move fast; CS wants data on churn tolerance first
-6. Communication plan built:
-   - CFO: Weekly sync, key message "This increases ARR 18% while maintaining retention", next action "QBR review by [date]"
-   - VP Sales: Bi-weekly, key message "Pricing anchors us as premium; here's the new value narrative for sales", next action "Sales kickoff by [date]"
-   - CS VP: Biweekly update, key message "We're running churn analysis in parallel. Here's the threshold we're protecting", next action "Share churn data by [date]"
-7. Sprint Cards generated (5-field format per stakeholder)
-8. Confidence assessment: 🟢 High (champion coverage strong, frozen voter identified, conflict mapped)
+**Test Data:**
+```yaml
+# /context/meta-patterns.md
+guardrail_1:
+  text: "Product launches without Sales Manage Closely engagement fail"
+  trigger: "Product launch stakeholder map"
+  action: "Surface Sales Performer risk before mapping"
+  status: ACTIVE
+  confirmation_count: 3
 
-**Success Criteria:**
-- Both Map and Sprint Card files generated
-- HTML widget rendered before markdown
-- Political roles are specific (not just quadrant placement)
-- Conflicts have resolution owners + dates
-- Watch For signals included in Sprint Cards
-- Confidence score reflects reality (not overstated)
+# /context/skill-sessions.md (3 prior product launch maps)
+skill: stakeholder-maps
+session_date: 2026-06-10
+initiative_type: "product launch"
+sales_performer_count: 1
+outcome: "launch delayed"
 
-**Test Pass:** Map is actionable; PMM knows what to do next week
+skill: stakeholder-maps
+session_date: 2026-06-12
+initiative_type: "product launch"
+sales_performer_count: 1
+outcome: "launch delayed"
 
----
+skill: stakeholder-maps
+session_date: 2026-06-15
+initiative_type: "product launch"
+sales_performer_count: 1
+outcome: "launch delayed"
+```
 
-## Test 2: Silent Blocker Discovery
+**Expected Output - Guardrail Surfaced:**
+```
+🔁 PATTERN FROM PRIOR STAKEHOLDER MAPS
 
-**Input:**
-- Initiative: "GTM pivot from sales-led to self-serve"
-- Stakeholders named: CEO, VP Product, VP Sales
-- Stakeholder not named in intake: RevOps (they control pricing page, billing system, product configuration)
+I've seen product launches without Sales Manage Closely engagement fail 3 times.
+Watch for Sales Performers — folks who say yes in the room but don't commit in writing.
 
-**Expected Behavior:**
-1. Intake completes
-2. Inversion check asks "Who could sink this?"
-3. User doesn't name RevOps
-4. Mapping step reveals: RevOps has high power (controls billing system) but low interest initially
-5. Conflict map identifies: "If RevOps isn't aligned, self-serve checkout can't scale"
-6. Silent blockers section flags: "RevOps — controls billing + pricing page — recommend alignment call before full GTM announcement"
-7. Sprint Card includes "RevOps" in Week 1 actions: "Brief RevOps on self-serve motion before CEO announcement"
+Quick check: Do you have written Sales VP buy-in on this launch?
+- If YES → We'll build Sales enablement tracking into Watch For signals
+- If NO → Let's identify the Sales hold-up before mapping
+```
 
-**Success Criteria:**
-- Silent blocker surfaced during mapping, not after launch
-- Specific power/interest stated
-- Action assigned before the issue compounds
-
-**Test Pass:** Structural risks are caught early
+**Pass Criteria:**
+- Guardrail surfaces before Step 1 intake
+- Pattern count accurate (3 prior occurrences)
+- User can acknowledge or skip
+- Guardrail logged in Step 7 (guardrails_triggered field)
 
 ---
 
-## Test 3: Floating Voter to Champion Path
+## Eval 2: Brain Context Loading (Pre-flight)
 
-**Input:**
-- Prior map: VP Sales is Floating Voter (undecided)
-- User reports: "VP Sales has been running a pilot with 2 customers and likes the results"
-- New iteration: /update [initiative] — "VP Sales has moved from skeptical to supporter based on pilot results"
+**Scenario:** `/foundation/brain.md` exists with populated ICP (§2), Positioning (§3), GTM Motion (§5). Skill should load and inform which stakeholders matter and what their power is.
 
-**Expected Behavior:**
-1. /update command runs
-2. Map reloads previous state
-3. Stakeholder (VP Sales) quadrant/role updated: Floating Voter → Champion
-4. Watch For signal noted: "Pilot success → role shift"
-5. New Sprint Card reflects champion status: higher-frequency touchpoints, ask for help (e.g., "Can you speak at the launch event?")
-6. New version saved with metadata: "v2 — VP Sales moved to Champion after pilot"
+**Test Data:**
+```yaml
+# /foundation/brain.md
+## Section 2: ICP
+Primary: Mid-market ops teams, 50-500 employees
+Secondary: Enterprise ops, 500+ employees (lower growth)
 
-**Success Criteria:**
-- Map is updatable (not static)
-- Role shift is tracked
-- Next steps adjust to new role
-- Learning is logged (pilot success → champion conversion)
+## Section 3: Positioning
+Unique angle: "For ops leaders who measure impact, not activity"
+GTM narrative: Outcome-first analytics
 
-**Test Pass:** Map evolves with political reality
+## Section 5: GTM Motion & Growth Loops
+Primary motion: Sales-led (enterprise), PLG (mid-market)
+Key stakeholders: VP Sales (motion authority), VP Product (platform dependency)
+Revenue Levers: Time-to-value, outcome visibility, team collaboration
+```
 
----
+**Expected Output - Context Referenced:**
+```
+✓ Brain context loaded:
+  - ICP: Mid-market primary, enterprise secondary (shapes who's in room)
+  - GTM Motion: Sales-led + PLG (Sales VP is Manage Closely, Product VP is critical)
+  - Revenue Levers: Time-to-value (Eng stakeholder power), outcome visibility (CS stakeholder power)
 
-## Test 4: Frozen Voter Investigation
+Inferred stakeholder power:
+  - Sales VP: High Power, High Interest (sales-led motion authority)
+  - Product VP: High Power, Medium Interest (platform dependency)
+  - CS VP: Medium Power, High Interest (outcome visibility lever owner)
+```
 
-**Input:**
-- Initiative: "New market entry into healthcare"
-- Stakeholder: Legal (Frozen — hasn't engaged)
-- Intake notes: "Legal hasn't said yes or no"
-
-**Expected Behavior:**
-1. Mapping identifies Legal as Frozen
-2. Deep-dive insight: "Why frozen? Legal typically raises compliance concerns. Our healthcare entry likely triggers data residency questions."
-3. Recommendation: Schedule 30-min call before announcement to surface actual concerns
-4. Pre-filled Sprint Card for Legal:
-   - Touchpoint: "30-min discovery call to surface regulatory concerns"
-   - Send: "1-pager on healthcare data handling + compliance approach"
-   - Need by: "Go/no-go decision by [date]"
-   - Watch For: "If Legal goes silent after initial call, escalate to General Counsel"
-5. Action owner named: "PMM to schedule + prepare 1-pager"
-
-**Success Criteria:**
-- Frozen voter doesn't stay frozen (investigation happens)
-- Specific ask structured
-- Watch For signal is concrete
-
-**Test Pass:** Frozen voters aren't treated as aligned
+**Pass Criteria:**
+- Brain sections loaded silently at pre-flight
+- ICP shapes Manage Closely stakeholder scope
+- GTM Motion informs which function owns which decision
+- Revenue Levers inform which stakeholders can block
 
 ---
 
-## Test 5: Performer Detection
+## Eval 3: Inversion Check Quality
 
-**Input:**
-- Prior sprint card: VP Finance verbally committed "We're all in on this"
-- Follow-up: One week later, VP Finance hasn't approved budget
-- User reports via /update: "VP Finance said yes in the alignment meeting but hasn't signed off on budget commitment"
+**Scenario:** User completes intake for a product launch. Skill runs inversion check: "Who could sink this from inside?"
 
-**Expected Behavior:**
-1. Skill flags: "Verbal yes without written follow-through = Performer"
-2. Political role updated: Champion → Performer
-3. Rule applied from Operating Rules: "Name the Performers. Verbal yes with no follow-through is the most common stakeholder failure mode. Written commitment or it didn't happen."
-4. Next action: "Send budget approval request (email) instead of relying on verbal. Confirmation by [date] or escalate."
-5. Watch For signal: "Budget approval by [deadline]. If silent, escalate to CFO."
+**Test Data - Scenario A:**
+```
+Initiative: "Launch customer analytics dashboard"
+User struggles to name who could sink it.
 
-**Success Criteria:**
-- Performer behavior is named
-- Requires written action (not another conversation)
-- Escalation path clear
+Expected inversion response: "If you can't name who could sink this, the political map is assumed — not validated. Let's do this first before we build the map."
 
-**Test Pass:** Verbal commitments don't derail plans
+Result: User identifies "Finance (if they see this as feature bloat without ROI)" + "Sales (if enablement isn't ready)"
+```
 
----
+**Test Data - Scenario B:**
+```
+Initiative: "Pricing change from per-user to value-based"
+User immediately names: "Finance owns margin model validation" + "CS owns customer comms risk" + "Legal owns contract wording"
 
-## Test 6: Conflict Mapping and Resolution
+Expected: Skill validates these as load-bearing. Adds them to Manage Closely for mapping.
+```
 
-**Input:**
-- Initiative: "Product pricing change"
-- Stakeholders:
-  - CFO: wants maximum price (revenue optimization)
-  - VP Sales: wants lower price (market competitiveness)
-  - Customer Success: worried about churn from price increase
-
-**Expected Behavior:**
-1. Mapping identifies conflict: CFO vs VP Sales (revenue vs. competitive positioning)
-2. Second-order risk: "If unresolved, sales team gets confused messaging. VP Sales may torpedo internally."
-3. Resolution block: "Before announcement: CFO and VP Sales align on value narrative. Product positions 15% price increase as 'premium tier, enterprise-grade support.' Sales uses narrative for upsell, not discount negotiation."
-4. Resolution owner: "CFO + VP Sales co-lead narrative workshop"
-5. Resolution due date: "Before sales kickoff on [date]"
-6. Sprint Card includes both as "Manage Closely" with Watch For: "Are CFO and VP Sales using the same narrative in customer calls?"
-
-**Success Criteria:**
-- Conflict is named and specific
-- Second-order risk is clear
-- Resolution is concrete (not vague)
-- Owner and date assigned
-- Watch For is measurable
-
-**Test Pass:** Conflicts don't become launch disasters
+**Pass Criteria:**
+- Inversion check surfaces concrete stakeholders (not generic "leadership")
+- Skill surfaces flag if user can't name blockers
+- Named blockers flow into Manage Closely quadrant in mapping step
+- Quality score reflects whether inversion was run and quality of blocker identification
 
 ---
 
-## Test 7: Weekly Map Health Check (/check Command)
+## Eval 4: Power × Interest Classification + Political Role Accuracy
 
-**Input:**
-- /check [initiative]
-- Map is 2 weeks old
-- Stakeholder "Director of Ops" hasn't been contacted in 8 days
-- Watch For signal from prior sprint: "Finance will escalate churn concerns by [date]" — signal hasn't fired yet
-- Sprint Card outdated (last updated 12 days ago)
+**Scenario:** Skill places stakeholders on 2×2 grid and assigns political roles.
 
-**Expected Behavior:**
-1. /check output surfaces:
-   - "Stakeholder silent: Director of Ops hasn't been contacted in 8 days. Recommend touchpoint this week."
-   - "Watch For pending: Finance escalation signal due in [2] days. Prepare response now."
-   - "Sprint Card stale: Not updated in 12 days. Recommend /update before next week."
-   - "Map age: 2 weeks old. Recommend running /update if any alignment conversations happened."
-2. Confidence score may drop from 🟢 to 🟡 due to staleness
-3. Recommendations are specific actions
+**Test Data:**
+```
+Stakeholder 1: Sales VP
+- Power: High (authority over sales enablement, can refuse to sell)
+- Interest: High (revenue-dependent, directly impacted)
+- Expected quadrant: 🔴 Manage Closely
+- Political role: Champion (advocates for faster launches) OR Blocker (if CRO mandates slow rollout)
+- Expected role assessment: "Look for signs: is she pushing launch forward or holding back?"
 
-**Success Criteria:**
-- Stale maps are flagged
-- Silent stakeholders are surfaced
-- Pending Watch Fors are visible
-- Recommendations are actionable
+Stakeholder 2: Finance Controller
+- Power: High (budget owner, can halt spend)
+- Interest: Low (approval-level interest, not day-to-day)
+- Expected quadrant: 🟡 Keep Satisfied
+- Political role: Gatekeeper (controls budget release, not the launch decision itself)
+- Expected role assessment: "Never bypass. Earn trust first, then get expedited approval."
 
-**Test Pass:** Map health is monitored; staleness doesn't go unnoticed
+Stakeholder 3: Marketing manager (peer)
+- Power: Low (no authority over launch, can't block)
+- Interest: High (wants to co-own campaign messaging)
+- Expected quadrant: 🟢 Keep Informed
+- Political role: Floating Voter (undecided, could amplify or dampen momentum)
+- Expected role assessment: "Bring early win from a Champion to move them."
+
+Stakeholder 4: CEO
+- Power: High (can kill any initiative)
+- Interest: Low (executive bandwidth limited, approves direction only)
+- Expected quadrant: 🟡 Keep Satisfied
+- Political role: Performer (said yes in board meeting, but availability uncertain for detail work)
+- Expected role assessment: "Validate commitment with CEO's direct report, not CEO. Written approval required."
+```
+
+**Pass Criteria:**
+- Power assessment grounded in initiative context (not just job title)
+- Interest assessment grounded in initiative impact (not just function)
+- Political role assigned with behavioral signal (Champion = advocates unprompted; Performer = says yes verbally but no follow-through)
+- Role assessment includes Watch For signal (what would indicate this person shifted quadrant or role)
+
+---
+
+## Eval 5: Conflict Mapping Completeness
+
+**Scenario:** Skill identifies stakeholder conflicts, defines second-order risks, and assigns resolution owners.
+
+**Test Data - Conflict 1:**
+```
+Stakeholder A: VP Sales
+vs.
+Stakeholder B: VP Product
+
+Conflict: "Sales wants faster launch timeline. Product wants more QA time."
+
+Skill-generated conflict map:
+- Conflict description: "Sales argues launch-ready by Q3. Product needs Q4 for stability testing."
+- Second-order risk: "If unresolved by decision gate (June 15), launch will slip. Sales will blame Product for missing committed date. Trust erodes for next 3 launches."
+- Resolution owner: "PMM owns alignment on mutual success definition. Specific move: joint demo to executive sponsor (CEO) to force priority decision by June 10."
+- Follow-up: "If Sales wins (Q3), Product gets post-launch support budget. If Product wins (Q4), Sales gets 4-week head-start on pre-selling."
+```
+
+**Pass Criteria:**
+- Every conflict has two named stakeholders
+- Conflict description is 2 sentences (specific, not abstract)
+- Second-order risk named (what breaks downstream, not just what they do)
+- Resolution owner assigned (not "alignment happens")
+- Resolution owner deadline (not "before launch")
+- Conflict-resolution trade-off explicit (what Sales gives up if Product wins, vice versa)
+
+---
+
+## Eval 6: Silent Blocker Identification
+
+**Scenario:** Skill scans for functions not in the room but could kill the launch.
+
+**Test Data - Product Launch Initiative:**
+```
+Initiative: "Bulk user import feature"
+Stakeholders named: Sales VP, Product VP, Engineering Lead, PMM
+
+Silent functions scan:
+- Finance: Pricing implications? No → Not a blocker
+- Legal: Contract implications? No → Not a blocker
+- CS: Customer-facing operational change? Yes → Brief timing: 2 weeks pre-launch, owner: PMM
+- Security: Data import security review needed? Yes → Brief timing: 3 weeks pre-launch, owner: Engineering Lead
+- HR: No implications → Not a blocker
+
+Output:
+```
+Silent blockers — functions not in the room:
+CS — Must brief on support playbook for bulk import edge cases — 2 weeks pre-launch — PMM owns outreach
+Security — Must review data import validation security — 3 weeks pre-launch — Eng Lead owns
+```
+```
+
+**Pass Criteria:**
+- Silent function identified (not just in the room)
+- Implication stated (why they could block)
+- Brief timing specific (not "eventually")
+- Owner named (who reaches out)
+- Question-driven (Does this function have a say in this decision?)
+
+---
+
+## Eval 7: Sprint Card Execution Clarity
+
+**Scenario:** Skill generates Sprint Card with five fields per stakeholder.
+
+**Test Data:**
+```
+[🏆 Champion] Sales VP — Ramini Velasquez
+📅 Next touchpoint: Tuesday, June 18 · 30-min sync
+  _(Execution note: Cannot slip past this — need written confirmation on enablement timeline by EOD)_
+📝 Send before touchpoint: Pre-launch sales readiness deck (9 slides: timeline, talking points, objection handling, first-week support)
+  _[2 hours to build. Send by Monday, June 17, 5pm.]_
+🎯 What you need from them, by when: Written confirmation of sales availability for 4-week pre-launch sprint. Deadline: EOD Tuesday.
+  _If no response by EOD Wednesday: escalate to CRO with timeline implications._
+🗣️ The one sentence that has to land: "We hit the Q3 timeline because Sales is ready, not because Product rushes. Let's prove that with enablement."
+  _(If she pushes back on timeline: "The Q4 alternative costs us [X customer deals]. This is the financial choice, not just a nice-to-have.")_
+🚨 Watch for: "Ramini stops initiating asks. Delegates details to her manager. Stops showing up to optional syncs."
+  → If this fires: call her directly; diagnose the shift (concerns about enablement? CEO pressure? Something else?); don't assume silence = approval.
+```
+
+**Pass Criteria:**
+- Five fields: touchpoint + prep work + ask + one-liner + Watch For (no six fields, no paragraphs)
+- Execution note: specific what-cannot-slip (not general "important meeting")
+- Prep artefact: named, not vague ("pre-launch readiness deck" not "an update")
+- Ask: explicit, deadline explicit, non-response plan explicit
+- One-liner: speaks to her frame, not generic positioning
+- Watch For: behavioral signal (not "if she disagrees")
+- Immediate action: what to do if signal fires (not "follow up")
+
+---
+
+## Eval 8: End-to-End Stakeholder Mapping with Pattern Detection
+
+**Scenario:** User runs stakeholder map end-to-end: intake → inversion check → classification → conflict mapping → silent blocker scan → output → logging. Test detects patterns (Watch For signals useful? Inversion checks catching risks?).
+
+**Test Data:**
+```yaml
+# /context/skill-sessions.md (3 prior stakeholder maps)
+Session 1 (product launch): Sales Performer identified, Watch For signal fired (stopped initiating contact) → caught early
+Session 2 (pricing change): Finance Gatekeeper as Keep Satisfied → silent blocker emerged Day 3 → should have been Manage Closely
+Session 3 (GTM pivot): Inversion check named 3 potential blockers; 2 materialized; 1 was red herring
+
+# Current session (campaign launch):
+Inversion check → identifies 4 potential blockers
+Classification → places them in quadrants
+Conflict mapping → 2 conflicts identified
+Silent blocker scan → flags Legal for contract review
+Logging → all steps captured
+```
+
+**Expected Output - Pattern Recognition:**
+```
+✓ Session completed: Campaign launch stakeholder map
+✓ Quality score: 88/100
+✓ Inversion check run: 4 blockers named and placed in map
+✓ Watch For patterns extracted: 2 patterns identified (Sales Performers going dark, Finance gatekeepers hiding)
+
+🔁 PATTERN FOR META-SYNTHESIS:
+
+Inversion check accuracy tracking (last 3 sessions):
+  - Blockers named: average 3.3 per session
+  - Blockers that materialized: ~67% accuracy
+  - False alarms: ~33% (red herrings that never moved)
+
+Watch For signal effectiveness:
+  - Sales Performer silence signal: 100% accuracy (when signal fires, they've shifted)
+  - Finance Gatekeeper hiding signal: 50% accuracy (signal sometimes indicates nothing, sometimes indicates blocker)
+
+Emerging pattern: Finance stakeholders should be Manage Closely if >$100K budget impact.
+Proposed rule: "If Finance controls >$50K, move from Keep Satisfied to Manage Closely."
+
+Guardrail recommendation: Keep "Sales Performer risk" ACTIVE. Downgrade "Finance hidden blocker" to conditional (add budget threshold).
+```
+
+**Pass Criteria:**
+- Full workflow completes (intake → inversion → classification → conflicts → silent blockers → output → log)
+- Quality score reflects rigor (inversion check run? All roles assigned? Conflicts resolved?)
+- Inversion check resulted in named blockers (not abstract risks)
+- Watch For signals captured in Sprint Cards
+- Session logged to `/context/skill-sessions.md` with all metadata
+- Stakeholder counts accurate
+- Brain updates proposed (if pattern suggests ICP or GTM Motion shifts needed)
+- Pattern signals extracted (Watch For effectiveness, inversion accuracy, role distributions)
+
+---
+
+## Eval Test Coverage Matrix
+
+| Eval | Feature | Pass Criteria |
+|------|---------|---------------|
+| 1 | Guardrail surfacing (Step 0) | Pattern detected, user warned, can acknowledge/skip |
+| 2 | Brain context loading (pre-flight) | ICP, GTM Motion, Revenue Levers inform stakeholder power assessment |
+| 3 | Inversion check quality | Named concrete blockers (not generic); skill flags if user can't name |
+| 4 | Power × Interest + political role | Grid placement grounded in initiative context; role assigned with Watch For signal |
+| 5 | Conflict mapping completeness | Every conflict has second-order risk + resolution owner + deadline |
+| 6 | Silent blocker identification | Functions identified with implication + brief timing + owner |
+| 7 | Sprint Card execution clarity | Five fields, no exceptions; execution notes, asks, Watch For all explicit |
+| 8 | End-to-end workflow | Intake→Inversion→Classification→Conflicts→Silent blockers→Output→Log, patterns detected |
+
+---
+
+## Running Evals
+
+```bash
+# Run all evals
+for i in {1..8}; do
+  echo "Running eval $i..."
+  # [invoke stakeholder-maps with test data]
+  # [validate outputs against pass criteria]
+done
+
+# Run single eval
+# [invoke stakeholder-maps with eval N test data]
+# [validate against eval N pass criteria]
+```
+
+---
+
+## Changelog
+
+### v2.3.0 — 2026-06-22
+Major refactor for MCP-ready architecture: Added Step 0 guardrail loading from `/context/meta-patterns.md`. Added Step 7 session logging to `/context/skill-sessions.md` with 15+ metadata fields (stakeholder counts, role distributions, Watch For patterns, confidence assessment). Integrated brain context loading (Sections 2, 3, 5). Consolidated Operating Rules and Self-Improvement Loop into logging layer. Weight-cut from v2.2.0 (~850 lines) to ~550 lines while preserving visual-first output architecture. Added 8 comprehensive evals covering guardrail surfacing, inversion check quality, classification accuracy, conflict mapping, silent blocker identification, Sprint Card clarity, logging, and pattern detection. Full 19/19 SKILL-SPEC compliance.
+
+### v2.2.0 — 2026-06-11
+Spec compliance update: added Trigger, Inputs, Pre-flight, Outputs, Verification sections.
+
+### v2.1.0 — 2026-04-17
+Visual-first architecture introduced. HTML widget with Power × Interest grid, stakeholder chips, communication table, conflict map cards.
+
+### v2.0.0 — 2026-04-17
+Two-phase output: Map + Sprint Card as separate documents. Five-field Sprint Card format. Watch For observations wired to knowledge/ learning loop.
+
+### v1.0.0 — 2026-04-17
+Initial build.

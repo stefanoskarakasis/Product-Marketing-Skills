@@ -1,0 +1,138 @@
+# Quality Gate Checklist
+# Version: 2.2.0
+# Last Updated: 2026-06-22
+# Used in Step 4 to validate brief quality before delivery
+
+quality_gates:
+  gate_1:
+    id: "four_signals_applied"
+    description: "All four signals reasoned through before tier assigned"
+    category: "Tier Assignment"
+    enforcement: "HARD GATE"
+    check: "Market impact reasoning present AND Revenue potential reasoning present AND Competitive urgency reasoning present AND Resource requirement reasoning present"
+    pass_criteria: "All four signal evaluations visible in brief"
+    fail_action: "Block brief output; surface which signals are missing reasoning"
+    weight: 1.0
+
+  gate_2:
+    id: "brain_loaded"
+    description: "Sections 2, 3, 4, 5, 7 extracted before brief generated"
+    category: "Brain Integration"
+    enforcement: "HARD GATE"
+    check: "ICP present AND Positioning present AND Competitive landscape present AND Proof points present AND Launch history present"
+    pass_criteria: "All brain sections logged in session metadata"
+    fail_action: "Block brief output; surface which brain sections missing or stale"
+    weight: 1.0
+
+  gate_3:
+    id: "intake_complete"
+    description: "Initiative name, success metric, timeline confirmed by user"
+    category: "Intake"
+    enforcement: "HARD GATE"
+    check: "Initiative reflected back and user acknowledged"
+    pass_criteria: "User responded 'yes' or equivalent confirmation"
+    fail_action: "Block tier assignment; re-run intake"
+    weight: 1.0
+
+  gate_4:
+    id: "leading_indicator_present"
+    description: "Brief includes ≥1 leading indicator + primary lagging metric"
+    category: "Metrics"
+    enforcement: "HARD GATE"
+    check: "Leading indicator(s) count ≥1 AND Lagging metric present AND Leading indicators tied to lagging metric"
+    pass_criteria: "Success Metrics section has both leading and lagging metrics with causal link"
+    fail_action: "Block brief output; surface missing leading indicators"
+    weight: 0.95
+
+  gate_5:
+    id: "channel_specificity"
+    description: "Every channel has ICP-specific reason + tactic, not generic recommendations"
+    category: "GTM Execution"
+    enforcement: "HARD GATE"
+    check: "For each channel: (ICP characteristic mentioned OR buying motion referenced) AND Specific tactic named (not 'run LinkedIn campaign')"
+    pass_criteria: "Channel Strategy section has [Channel | Why (ICP-tied) | Tactic (specific) | Owner]"
+    fail_action: "Reject generic channels; force ICP grounding"
+    weight: 0.9
+
+  gate_6:
+    id: "competitive_context"
+    description: "Primary alternative named + defensive & attack angles"
+    category: "Competitive"
+    enforcement: "HARD GATE"
+    check: "Primary alternative from brain Section 4 named AND Defensive angle stated (what to say when buyer brings it up) AND Attack angle stated (gap the alternative has)"
+    pass_criteria: "Competitive Context section complete with all three fields"
+    fail_action: "Block brief; surface which competitive pieces missing"
+    weight: 0.85
+
+  gate_7:
+    id: "proof_point_check"
+    description: "Missing proof points flagged if brief requires unverified claims"
+    category: "Evidence"
+    enforcement: "HARD GATE"
+    check: "If brief makes ROI claim or specific metric claim, proof point exists in brain Section 5 OR proof point flagged as missing"
+    pass_criteria: "Either all claims backed by proof points OR ⚠️ flag present naming missing proof points"
+    fail_action: "Flag missing proof points and recommend gather-vs-reframe decision"
+    weight: 0.9
+
+  gate_8:
+    id: "timeline_present"
+    description: "Timeline includes tier-appropriate milestones from pre-launch to retro trigger"
+    category: "Execution"
+    enforcement: "HARD GATE"
+    check: "Timeline table present with: pre-launch prep, launch readiness check, launch day, first signal check, retro trigger"
+    pass_criteria: "Timeline section has 5+ milestones with owners"
+    fail_action: "Block brief; surface missing timeline"
+    weight: 0.8
+
+  gate_9:
+    id: "next_steps_include_retro"
+    description: "Next steps explicitly name retro as post-launch trigger"
+    category: "Learning Loop"
+    enforcement: "HARD GATE"
+    check: "'Run retro after launch' or 'Retro trigger' present in next steps"
+    pass_criteria: "Step 5 in Next Steps section names retro + brain update"
+    fail_action: "Add retro as final next step before brief delivery"
+    weight: 0.85
+
+  gate_10:
+    id: "brain_write_confirmed"
+    description: "User confirmed brain Section 7 update before write executed"
+    category: "Brain Integration"
+    enforcement: "HARD GATE"
+    check: "User responded 'yes' to 'Update brain Section 7 with [launch]?' AND brain_write_executed: true logged"
+    pass_criteria: "Session metadata shows brain_write_executed = true"
+    fail_action: "Ask user to confirm brain write; re-log session"
+    weight: 1.0
+
+# Quality Score Calculation
+quality_score_rules:
+  baseline: 100
+  deductions:
+    missing_gate_1: -10
+    missing_gate_2: -10
+    missing_gate_3: -15
+    missing_gate_4: -8
+    missing_gate_5: -8
+    missing_gate_6: -7
+    missing_gate_7: -8
+    missing_gate_8: -6
+    missing_gate_9: -7
+    missing_gate_10: -10
+
+  quality_tiers:
+    excellent: "90-100"
+    good: "75-89"
+    acceptable: "60-74"
+    poor: "<60"
+
+# Gate Severity Levels
+enforcement_levels:
+  hard_gate:
+    description: "Blocks brief output until passed"
+    gates: [gate_1, gate_2, gate_3, gate_4, gate_5, gate_6, gate_7, gate_8, gate_9, gate_10]
+    action: "Do not deliver brief"
+
+  soft_gate:
+    description: "Flags warning but allows delivery with caveat"
+    gates: []
+    action: "Include warning in brief"

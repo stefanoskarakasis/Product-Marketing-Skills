@@ -1,0 +1,159 @@
+# Launch Readiness Scoring System
+# Version: 2.2.0
+# Last Updated: 2026-06-22
+# Calculates launch_readiness_score (0-1.0) for GTM brief calibration and guardrail detection
+
+launch_readiness_dimensions:
+  positioning:
+    id: "positioning_clarity"
+    description: "Is positioning sharp and differentiated for target segment?"
+    weight: 0.15
+    scoring:
+      1.0: "Positioning statement present, grounded in alternatives, tested with buyers"
+      0.75: "Positioning present, grounded in one alternative, not yet tested"
+      0.5: "Positioning rough or generic, needs work before launch"
+      0.25: "Positioning missing or contradicts competitive context"
+      0.0: "No positioning; messaging unclear"
+    source: "Brain Section 3"
+
+  proof_points:
+    id: "evidence_strength"
+    description: "Are claims in brief backed by verified proof points or flagged as assumptions?"
+    weight: 0.2
+    scoring:
+      1.0: "All claims backed by proof points; no gaps flagged"
+      0.8: "90%+ of claims backed; <1 proof point gap"
+      0.6: "70-89% backed; 1-2 gaps flagged; gaps have reframe plan"
+      0.4: "50-69% backed; 3+ gaps; unclear gap mitigation"
+      0.2: "30-49% backed; multiple gaps; no mitigation plan"
+      0.0: "<30% backed; brief makes unsubstantiated claims"
+    source: "Brain Section 5"
+
+  sales_readiness:
+    id: "sales_enablement_readiness"
+    description: "Are sales teams aligned and equipped to execute launch?"
+    weight: 0.2
+    scoring:
+      1.0: "Sales VP written sign-off, enablement plan complete, training scheduled"
+      0.8: "Sales VP buy-in, enablement plan drafted, owner assigned"
+      0.6: "Sales feedback received, enablement plan missing or incomplete"
+      0.4: "Sales awareness only; no enablement plan; concerns raised"
+      0.2: "Minimal sales engagement; enablement needed but not planned"
+      0.0: "Sales not engaged or actively pushing back"
+    source: "Stakeholder map output"
+
+  competitive_clarity:
+    id: "competitive_position_clarity"
+    description: "Is competitive position defensible? Can sales articulate why buyers choose you?"
+    weight: 0.15
+    scoring:
+      1.0: "Primary alternative, attack angle, defense angle all clear; sales talk tracks ready"
+      0.8: "Primary alternative clear; attack/defense angles drafted"
+      0.6: "Primary alternative clear; attack/defense angles rough"
+      0.4: "Primary alternative unclear or multiple competitors equally strong"
+      0.2: "Competitive position weak or unclear"
+      0.0: "No competitive clarity; risk of buyer confusion"
+    source: "Brain Section 4 + Competitive Battlecard"
+
+  timeline_feasibility:
+    id: "timeline_resource_fit"
+    description: "Is pre-launch timeline realistic given resource commitment?"
+    weight: 0.15
+    scoring:
+      1.0: "Timeline matches tier duration; all teams committed; dependencies managed"
+      0.8: "Timeline tight but achievable; dependencies identified"
+      0.6: "Timeline aggressive; some resource conflict; mitigation plan exists"
+      0.4: "Timeline unrealistic; multiple resource conflicts"
+      0.2: "Timeline impossible given stated resource level; major conflicts"
+      0.0: "Timeline/resource mismatch is unrecoverable"
+    source: "Tier definition + Stakeholder map"
+
+  measurement_readiness:
+    id: "metrics_tracking_readiness"
+    description: "Are leading & lagging metrics trackable from day 1?"
+    weight: 0.15
+    scoring:
+      1.0: "All metrics have data source, tracking live, dashboards ready"
+      0.8: "All metrics have data source, tracking planned, 90%+ live"
+      0.6: "Lagging metric tracked; some leading indicators need setup"
+      0.4: "Primary metric tracked; leading indicators unclear or missing"
+      0.2: "Only 1 metric can be tracked; others require new instrumentation"
+      0.0: "No clear metrics tracking plan"
+    source: "Success Metrics section"
+
+# Readiness Score Interpretation
+readiness_interpretation:
+  0.8_to_1.0:
+    label: "🟢 Launch Ready"
+    description: "All systems ready for launch. Proceed with confidence."
+    guardrail: "None — no calibration risk"
+    recommendation: "Execute as planned"
+
+  0.6_to_0.79:
+    label: "🟡 Conditionally Ready"
+    description: "Most systems ready. Small gaps exist but manageable."
+    guardrail: "Moderate risk — surface conditions to exec sponsor"
+    recommendation: "Launch with explicit contingency plan for flagged gaps"
+
+  0.4_to_0.59:
+    label: "⚠️ Proceed with Caution"
+    description: "Major gaps exist. Risk of launch delay or underperformance."
+    guardrail: "High risk — consider tier downgrade or delay"
+    recommendation: "Address top 2-3 gaps before launch; accept slip timeline"
+
+  0.0_to_0.39:
+    label: "🔴 Not Ready"
+    description: "Critical gaps make launch risky. Do not proceed."
+    guardrail: "Critical — block launch or fundamentally rethink"
+    recommendation: "Delay or redesign; gaps are deal-breakers"
+
+# Tier-Specific Readiness Floors
+readiness_floors_by_tier:
+  T1:
+    floor: 0.70
+    rationale: "Company bets require high readiness. <0.7 = unacceptable risk"
+    guardrail: "T1 launches with readiness <0.7 slip 3+ weeks 80% of the time"
+
+  T2:
+    floor: 0.50
+    rationale: "Major initiatives can tolerate moderate gaps. <0.5 = under-resourced risk"
+    guardrail: "T2 launches with readiness <0.5 underperform 60% of the time"
+
+  T3:
+    floor: 0.30
+    rationale: "Routine launches are lower risk. Floor is forgiving"
+    guardrail: "None — T3 assumes constraints"
+
+  T4:
+    floor: 0.0
+    rationale: "Minimal lift, no readiness requirement"
+    guardrail: "None"
+
+# Readiness Score Calculation Algorithm
+calculation:
+  step_1: "Score each dimension 0.0-1.0"
+  step_2: "Multiply each dimension by its weight"
+  step_3: "Sum all weighted dimensions"
+  step_4: "Round to 0.1 precision (e.g., 0.65)"
+  step_5: "Compare against tier floor in readiness_floors_by_tier"
+  step_6: "If score < floor, surface guardrail + recommendation"
+
+example_calculation:
+  scenario: "T1 GTM Brief"
+  dimensions:
+    positioning: "1.0 × 0.15 = 0.15"
+    proof_points: "0.8 × 0.2 = 0.16"
+    sales_readiness: "0.6 × 0.2 = 0.12"
+    competitive_clarity: "1.0 × 0.15 = 0.15"
+    timeline_feasibility: "0.75 × 0.15 = 0.1125"
+    measurement_readiness: "0.9 × 0.15 = 0.135"
+  total: "0.6725 → rounds to 0.7"
+  tier_floor: "0.7"
+  result: "🟡 Marginal — at floor. Flagged as conditional. Recommend address measurement gaps before launch."
+
+# Guardrail Integration
+guardrail_connection:
+  description: "Launch readiness score feeds meta-synthesis pattern detection"
+  logged_as: "launch_readiness_score in session metadata"
+  monthly_check: "Meta-synthesis tracks readiness_score vs. actual launch outcome"
+  pattern_example: "If 3+ T1 launches with readiness 0.5-0.7 all slip, guardrail = 'T1 requires >0.7 or risk 3+ week slip'"

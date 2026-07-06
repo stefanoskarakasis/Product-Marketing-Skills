@@ -1,0 +1,137 @@
+# Tier Definitions & Signal Mappings
+# Version: 2.2.0
+# Last Updated: 2026-06-22
+# Defines T1–T4 tier criteria and resource investment levels
+
+tiers:
+  T1:
+    name: "Company Bet"
+    duration_weeks: 6-12
+    description: "Major initiative with full exec alignment, all channels, dedicated GTM budget"
+    signal_profile:
+      market_impact: "New category or primary segment entry"
+      revenue_potential: "Materially moves ARR/NRR (10%+ impact or $500K+ new pipeline)"
+      competitive_urgency: "Closes gap or creates competitive advantage"
+      resource_requirement: "All teams (Sales, Product, Eng, PMM, Design, CS), full budget, CEO visibility"
+    requirements:
+      channels_minimum: 3+
+      proof_points_required: true
+      leading_indicators_required: 2+
+      stakeholder_alignment: "Exec sponsor + function heads"
+      launch_readiness_floor: 0.7
+    timeline:
+      pre_launch_weeks: 4-6
+      launch_week: "Full team execution"
+      post_launch_check: "Week +2 for signals"
+    signals_weight:
+      market_impact: 0.3
+      revenue_potential: 0.3
+      competitive_urgency: 0.2
+      resource_requirement: 0.2
+
+  T2:
+    name: "Major Initiative"
+    duration_weeks: 2-4
+    description: "Meaningful initiative with targeted GTM, dedicated PMM, 2–4 teams"
+    signal_profile:
+      market_impact: "Major new segment or significant feature for existing segment"
+      revenue_potential: "Meaningful pipeline contribution ($100K–500K new pipeline)"
+      competitive_urgency: "Responds to or anticipates competitor move"
+      resource_requirement: "2–4 teams (Sales, Eng, PMM), targeted budget, director-level visibility"
+    requirements:
+      channels_minimum: 2
+      proof_points_required: true
+      leading_indicators_required: 1+
+      stakeholder_alignment: "Function heads (VP Sales, VP Product, VP PMM)"
+      launch_readiness_floor: 0.5
+    timeline:
+      pre_launch_weeks: 2-3
+      launch_week: "Focused execution"
+      post_launch_check: "Week +1 for signals"
+    signals_weight:
+      market_impact: 0.25
+      revenue_potential: 0.35
+      competitive_urgency: 0.25
+      resource_requirement: 0.15
+
+  T3:
+    name: "Routine Launch"
+    duration_weeks: 1
+    description: "Incremental launch with focused enablement, 1 team lead, standard budget"
+    signal_profile:
+      market_impact: "Existing segment, incremental feature"
+      revenue_potential: "Conversion or retention support ($25K–100K indirect impact)"
+      competitive_urgency: "No immediate competitive pressure"
+      resource_requirement: "1 core team (PMM + Eng or Sales), standard budget, manager visibility"
+    requirements:
+      channels_minimum: 1
+      proof_points_required: false
+      leading_indicators_required: 0+
+      stakeholder_alignment: "Functional lead (Engineering or Sales lead)"
+      launch_readiness_floor: 0.3
+    timeline:
+      pre_launch_weeks: 1
+      launch_week: "Coordinated execution"
+      post_launch_check: "Ad-hoc"
+    signals_weight:
+      market_impact: 0.2
+      revenue_potential: 0.4
+      competitive_urgency: 0.2
+      resource_requirement: 0.2
+
+  T4:
+    name: "Minimal Lift"
+    duration_weeks: <1
+    description: "Internal or beta only, minimal external comms, changelog or in-product only"
+    signal_profile:
+      market_impact: "Internal only or maintenance"
+      revenue_potential: "Minimal or indirect (<$25K)"
+      competitive_urgency: "N/A"
+      resource_requirement: "Minimal (owner + 1 peer review)"
+    requirements:
+      channels_minimum: 0
+      proof_points_required: false
+      leading_indicators_required: 0
+      stakeholder_alignment: "Owner only"
+      launch_readiness_floor: 0.0
+    timeline:
+      pre_launch_weeks: 0
+      launch_week: "Ship when ready"
+      post_launch_check: "None required"
+    signals_weight:
+      market_impact: 0.25
+      revenue_potential: 0.25
+      competitive_urgency: 0.25
+      resource_requirement: 0.25
+
+# Tier Assignment Rules
+tier_assignment_rules:
+  rule_1:
+    description: "All four signals must be evaluated before assigning tier"
+    enforcement: "HARD GATE — block brief generation if any signal unevaluated"
+
+  rule_2:
+    description: "Single signal does not override others"
+    enforcement: "If revenue is high but market impact is low, tier is T2-T3, not T1"
+
+  rule_3:
+    description: "Tier rationale must be one sentence grounded in signals"
+    enforcement: "HARD GATE — reject tier assignment without rationale"
+
+  rule_4:
+    description: "Calibration check: check Section 7 (launch history) for precedent"
+    enforcement: "SOFT GATE — surface calibration note if prior similar launch was mis-tiered"
+
+# Confidence Score Mapping
+confidence_scoring:
+  green_🟢:
+    description: "All signals aligned, no conflicts, proof points present, assumptions <2"
+    threshold: "90+ quality score"
+
+  yellow_🟡:
+    description: "Most signals aligned, some proof point gaps, assumptions 2-3"
+    threshold: "70-89 quality score"
+
+  red_🔴:
+    description: "Signals misaligned or contradictory, major proof point gaps, assumptions >3"
+    threshold: "<70 quality score"

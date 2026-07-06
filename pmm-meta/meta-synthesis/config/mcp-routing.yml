@@ -1,0 +1,70 @@
+mcp_routing:
+  fallback_mode: "ALWAYS"
+  timeout_seconds: 30
+  
+  retry:
+    on_timeout: true
+    max_retries: 2
+    backoff_seconds: 10
+  
+  data_aggregation:
+    store_raw_data: false
+    aggregation_mode: "summary"
+    max_summary_length: 500
+    max_signals_per_mcp: 20
+    max_collaborators_listed: 10
+  
+  logging:
+    log_all_queries: true
+    log_mcp_queries: true
+    log_mcp_responses: false
+    log_mcp_failures: true
+    log_query_success_rate: true
+    log_path: "/memory/mcp-routing.log"
+  
+  performance:
+    query_parallelism: "sequential"
+    connection_pool_size: 3
+    cache_results: true
+    cache_duration_minutes: 60
+  
+  mcp_settings:
+    slack:
+      enabled_by_default: true
+      timeout_override: 20
+      priority: "high"
+      if_fails:
+        action: "continue"
+        log_as_warning: true
+    
+    google_drive:
+      enabled_by_default: true
+      timeout_override: 30
+      priority: "high"
+      if_fails:
+        action: "continue"
+        log_as_warning: true
+    
+    gmail:
+      enabled_by_default: false
+      timeout_override: 30
+      priority: "medium"
+      if_fails:
+        action: "continue"
+        log_as_warning: true
+    
+    google_calendar:
+      enabled_by_default: false
+      timeout_override: 20
+      priority: "medium"
+      if_fails:
+        action: "continue"
+        log_as_warning: true
+    
+    gong:
+      enabled_by_default: false
+      timeout_override: 40
+      priority: "medium-high"
+      if_fails:
+        action: "continue"
+        log_as_warning: true

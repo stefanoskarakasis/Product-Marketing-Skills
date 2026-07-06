@@ -1,0 +1,19 @@
+# Meta-Synthesis Scheduler Configuration
+scheduler:
+  job_name: "meta-synthesis-24h"
+  enabled: true
+  frequency: "24h"
+  timezone: "UTC"
+  time_of_day: "02:00"
+  retry:
+    enabled: true
+    max_retries: 3
+    backoff_seconds: 300
+  logging:
+    log_all_runs: true
+    log_path: "/memory/meta-synthesis-log.md"
+    retention_days: 365
+    verbose: false
+  notifications:
+    on_success: false
+    on_failure: true

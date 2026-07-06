@@ -1,465 +1,471 @@
 ---
 name: meta-synthesis.eval
-version: 1.0.0
+version: 2.0.0
 description: >
-  Comprehensive eval suite for meta-synthesis skill. Tests: pattern detection accuracy,
-  cross-skill signal correlation, guardrail proposal logic, brain update gating, confidence
-  calibration trending, stale guardrail detection, logging completeness, and output format compliance.
-  8 scenarios covering real compounding loops and edge cases.
+  Comprehensive eval suite for meta-synthesis v2.0.0. Tests: scheduler trigger, integration mining,
+  profile synthesis, stale cleanup, pattern detection, guardrail injection, brain gating, logging,
+  and end-to-end 24h workflow with fallback modes. 8 scenarios covering ALWAYS mode, SUPERCHARGED
+  mode, integration failures, and compounding learnings across multiple cycles.
 ---
 
-# Meta-Synthesis Eval Suite
+# Meta-Synthesis v2.0.0 — Eval Suite
 
 ## Setup (Universal)
+
 Each eval:
-1. Populates `/context/skill-sessions.md` with test data (8 execution skill sessions)
-2. Populates `/foundation/brain.md` with baseline state (Sections 1-7)
-3. Populates `/context/meta-patterns.md` with prior guardrails (if testing guardrail drift)
-4. Runs meta-synthesis skill for given analysis period or session count
-5. Validates outputs: `/context/meta-patterns.md`, brain Section updates, approval gates
+1. Populates `/config/scheduler.yml`, `/config/integration-queries.yml`, `/config/mcp-routing.yml`
+2. Populates `/context/skill-sessions.md` with sample sessions (24h to 90d of data)
+3. Populates `/foundation/brain.md` with baseline context (Sections 2-7)
+4. Populates `/context/meta-patterns.md` with existing guardrails
+5. Creates `/memory/` directory structure
+6. Runs meta-synthesis v2.0.0 for given mode (ALWAYS or SUPERCHARGED)
+7. Validates outputs: profile, guardrails, brain updates, logging
 
 ---
 
-## Eval 1: Cross-Skill Signal Detection (3+ Occurrences)
-**Scenario:** "Champion alignment gap" appears in 2 retros + 2 pre-mortems. Skill should detect HIGH-CONFIDENCE pattern and rank it for brain update.
+## Eval 1: Scheduler Trigger (24-Hour Automation)
+
+**Scenario:** Configure scheduler.yml with timezone "America/New_York" and frequency "24h". Verify meta-synthesis triggers automatically at 2 AM ET every day.
 
 **Test Data:**
 ```yaml
-# /context/skill-sessions.md
-skill: retro
-session_date: 2026-06-01
-output: "retro notes mention champion alignment gap, -48 hours"
-
-skill: retro
-session_date: 2026-06-08
-output: "same champion alignment gap flagged again"
-
-skill: pre-mortem
-session_date: 2026-06-10
-output: "tiger risk: IT/champion alignment not secured"
-
-skill: pre-mortem
-session_date: 2026-06-15
-output: "tiger risk: same IT/champion alignment risk flagged"
+scheduler:
+  frequency: "24h"
+  timezone: "America/New_York"
+  time_of_day: "02:00"
+  enabled: true
 ```
 
 **Expected Output:**
-```
-HIGH-CONFIDENCE PATTERN: Champion alignment gap (4 occurrences across 2 skill domains)
-- Retro: 2 occurrences
-- Pre-mortem: 2 occurrences
-- Impact: 4 launches delayed by 48 hours
-- Proposed guardrail: "Add champion alignment owner to launch checklist"
-```
+- ✅ Scheduler loaded correctly (timezone, frequency)
+- ✅ First cycle runs at configured time
+- ✅ Cycle completes within timeout (10 min)
+- ✅ Run logged to `/memory/meta-synthesis-log.md` with timestamp
+- ✅ Next run scheduled for +24h
 
 **Pass Criteria:**
-- Pattern detected and ranked HIGH-CONFIDENCE
-- Cross-skill count correct (4 total, 2 domains)
-- Impact quantified
-- Guardrail proposal explicit
-- Ranked above single-domain patterns
+- Scheduler config parsed without errors
+- Timezone respected (2 AM in user's timezone, not UTC)
+- Retry logic works (if cycle fails, retries up to 3 times)
+- Run logged with exact start/end timestamps
+- Quality score present in log
 
 ---
 
-## Eval 2: Domain-Specific Pattern Deepening (2 Occurrences)
-**Scenario:** "Baseline metrics missing" appears in 2 experiment-doc sessions. Skill should identify MEDIUM-CONFIDENCE pattern but flag as WATCH (not yet proposal stage).
+## Eval 2: Integration Mining — ALWAYS Mode (No MCPs)
+
+**Scenario:** All MCPs disabled in config. Meta-synthesis runs with only `/context/skill-sessions.md` + `/foundation/brain.md`. Verify profile synthesizes from skill logs alone.
 
 **Test Data:**
 ```yaml
-# /context/skill-sessions.md
-skill: experiment-doc
-session_date: 2026-06-05
-output: "experiment brief rejected: baseline metrics undefined"
-
-skill: experiment-doc
-session_date: 2026-06-12
-output: "same issue: baseline metrics not provided by user"
+integrations:
+  slack:
+    enabled: false
+  google_drive:
+    enabled: false
+  gmail:
+    enabled: false
+  google_calendar:
+    enabled: false
+  gong:
+    enabled: false
 ```
+
+**Skill Sessions:** 12 sessions past 24h (experiment, interview, retro, okr, pre-mortem)
 
 **Expected Output:**
-```
-MEDIUM-CONFIDENCE PATTERN: Baseline metrics missing (2 occurrences in experiment-doc)
-- Impact: 2 experiments rejected, rigor compromised
-- Status: WATCH (insufficient evidence for guardrail, but pattern emerging)
-- Recommendation: Monitor next 2 experiments. If 3rd occurrence, propose guardrail.
+```markdown
+# User Profile — ALWAYS Mode
+Mode: ALWAYS (no integrations)
+Data sources: Skill logs only
+
+## Who You Work With
+⚠️ MISSING DATA — Connect integrations to see collaborators
+
+## What You're Working On
+- [3 initiatives from brain Section 7]
+
+## Top Blockers
+- [Top 3-5 from guardrails triggered + pre-mortem risks]
+
+## Timeline Pressure
+⚠️ MISSING DATA — Connect Calendar to see milestones
+
+## Patterns & Signals
+- Strongest: [cross-skill signal from logs]
+- Quality: [avg skill quality score]
 ```
 
 **Pass Criteria:**
-- Pattern detected and ranked MEDIUM-CONFIDENCE
-- Status correctly marked WATCH (not promoted to guardrail)
-- Threshold for promotion explicit (3 occurrences)
-- No guardrail injected (yet)
+- Profile generated successfully
+- "Who You Work With" shows placeholder for missing Slack/Calendar
+- "What You're Working On" populated from brain
+- "Top Blockers" populated from guardrails + pre-mortems
+- Mode labeled as "ALWAYS"
+- No errors from missing MCPs
 
 ---
 
-## Eval 3: Confidence Calibration Audit & Trending
-**Scenario:** 3 consecutive OKR quarters with confidence predictions vs. actual achievement. Skill should calculate delta trend and recommend confidence range adjustment.
+## Eval 3: Integration Mining — SUPERCHARGED Mode (With Slack + Drive)
+
+**Scenario:** Slack + Drive enabled, others disabled. Verify integration queries run and signals extracted.
 
 **Test Data:**
 ```yaml
-# /context/skill-sessions.md (OKRs only)
-skill: pmm-okrs
-session_date: 2026-03-31
-output: "predicted 70% confidence, actually achieved 65%"
-confidence_calibration_delta: -5
-
-skill: pmm-okrs
-session_date: 2026-06-30
-output: "predicted 75% confidence, actually achieved 78%"
-confidence_calibration_delta: +3
-
-skill: pmm-okrs
-session_date: 2026-09-30
-output: "predicted 72% confidence, actually achieved 74%"
-confidence_calibration_delta: +2
+integrations:
+  slack:
+    enabled: true
+  google_drive:
+    enabled: true
+  gmail:
+    enabled: false
+  google_calendar:
+    enabled: false
+  gong:
+    enabled: false
 ```
+
+**Mock Slack Signals:**
+- Active channels: #gtm, #launches, #sales
+- Blockers mentioned: "procurement blocked", "waiting CFO", "legal review stuck"
+- Top collaborators: alice (45 msgs), bob (32 msgs), carol (28 msgs)
+- Momentum: ↑ 15% vs last week
+
+**Mock Drive Signals:**
+- Recently edited: Q3-Roadmap.doc (2h ago), GTM-Brief-Sept.doc (4h ago)
+- Shared with: 5 collaborators
+- Priority docs: 3 docs in "Priority" folder
 
 **Expected Output:**
-```
-CONFIDENCE CALIBRATION AUDIT:
-Q1: -5% (under-predicted)
-Q2: +3% (over-predicted)
-Q3: +2% (over-predicted)
+```markdown
+# User Profile — SUPERCHARGED Mode
+Mode: SUPERCHARGED (Slack, Drive)
 
-Average delta: 0% (WELL-CALIBRATED)
-Trend: Improving (was -5%, now +3% to +2%)
-Recommendation: "User is well-calibrated. Maintain confidence range 72-76%."
+## Who You Work With
+- alice — 45 messages in #gtm, #launches
+- bob — 32 messages in #sales, #launches
+- carol — 28 messages in #gtm
+- [Shared drive docs with 5 people]
 
-Brain update proposal: Section 5 (Revenue Levers) → "OKR confidence range: 72-76% (based on 3-quarter calibration data)"
+## What You're Working On
+- Q3-Roadmap (last edited 2h ago)
+- GTM-Brief-Sept (last edited 4h ago)
+- [Brain initiatives]
+
+## Top Blockers
+- Procurement: blocked on procurement approval (mentioned 3x in Slack)
+- Finance: CFO sign-off waiting (mentioned 2x in Slack)
+- Legal: legal review stuck (mentioned 1x in Slack)
+- [From guardrails + pre-mortems]
+
+## Patterns & Signals
+- Team momentum: ↑ 15% (Slack activity trending up)
+- Active docs: 2 docs edited in past 24h (high velocity)
 ```
 
 **Pass Criteria:**
-- Delta calculated correctly for all 3 quarters
-- Average delta computed (0%)
-- Trend identified (improving)
-- Recommendation explicit and specific
-- Brain update proposed (if applicable)
-- Section 5 target identified
+- Slack queries executed successfully
+- Drive queries executed successfully
+- Collaborator names extracted correctly
+- Blocker keywords detected ("blocked", "waiting", "stuck")
+- Momentum trend calculated (↑ / ↓ / stable)
+- Profile now includes team + strategic signals
+- Mode labeled as "SUPERCHARGED (Slack, Drive)"
 
 ---
 
-## Eval 4: Guardrail Drift Detection (Stale Guardrails)
-**Scenario:** `/context/meta-patterns.md` contains a guardrail that hasn't been triggered in 60+ days. Skill should flag as STALE and propose archiving.
+## Eval 4: Integration Timeout & Fallback to ALWAYS
+
+**Scenario:** Slack enabled but times out (returns error after 30s). Drive succeeds. Verify system falls back gracefully to ALWAYS mode + continues with Drive signals.
 
 **Test Data:**
 ```yaml
-# /context/meta-patterns.md (prior guardrails)
-guardrail_1:
-  text: "Button color tested 2x. Recommend refining isolation."
-  first_triggered: 2026-04-15
-  last_triggered: 2026-04-28
-  triggered_count: 2
-  status: ACTIVE (from prior meta-synthesis run)
-
-# /context/skill-sessions.md (current sessions)
-# No triggers for guardrail_1 in past 60 days (data from 2026-05-21 onwards)
+integrations:
+  slack:
+    enabled: true
+    timeout_seconds: 30
+  google_drive:
+    enabled: true
 ```
+
+**Mock Behavior:** Slack MCP doesn't respond within 30s. Drive MCP responds normally.
 
 **Expected Output:**
-```
-GUARDRAIL DRIFT ASSESSMENT:
-Guardrail #1: "Button color tested 2x. Recommend refining isolation."
-- Last triggered: 2026-04-28 (53 days ago)
-- Triggers in past 60 days: 0
-- Status: STALE (no recent activity)
-- Recommendation: Archive but retain for historical reference
+```markdown
+# User Profile — ALWAYS + Partial SUPERCHARGED
+Mode: ALWAYS + SUPERCHARGED (Drive only)
+Note: Slack signals unavailable this cycle (timeout after 30s, max retries exhausted)
 
-Action: Move to archived-guardrails section
+## Who You Work With
+[From Drive only — shared collaborators]
+⚠️ Slack collaborators unavailable this cycle
+
+## What You're Working On
+- [From Drive + brain]
+
+## Top Blockers
+- [From Drive + guardrails + pre-mortems]
+- ⚠️ Slack blockers unavailable this cycle
+
+## Patterns & Signals
+- Team momentum: ⚠️ Unavailable (Slack timeout)
+- [From Drive + skill logs]
 ```
 
 **Pass Criteria:**
-- Stale guardrail identified (no triggers in 60+ days)
-- Last triggered date correct
-- Recommendation explicit (archive)
-- Retention policy clear (historical reference kept)
+- Slack timeout detected
+- Retry logic triggered (up to 3 retries)
+- After max retries, system continues with other sources
+- Drive queries still execute
+- Profile includes Drive signals
+- Note surfaced: "Slack signals unavailable"
+- Synthesis completes (doesn't block on Slack failure)
+- Logged: "slack: timeout after retries"
 
 ---
 
-## Eval 5: Brain Update Proposal with Approval Gate
-**Scenario:** Pattern detected (champion alignment gap, 4 occurrences). Skill proposes Section 7 update and surfaces approval gate. User approves. Skill writes to brain.
+## Eval 5: Pattern Detection & Ranking (Cross-Skill Signals)
+
+**Scenario:** 12 skill sessions analyzed. Cross-skill patterns detected (2+ occurrences across domains). Verify impact scoring and ranking.
 
 **Test Data:**
 ```yaml
-# /context/skill-sessions.md
-[4 champion alignment gap occurrences across retro + pre-mortem]
-
-# /foundation/brain.md Section 7 (baseline)
-"Launch timelines: Standard 2-week GTM cycle. Watch for external dependencies."
+Sessions:
+  - retro #1: champion_alignment_gap (date: 6/20)
+  - retro #2: champion_alignment_gap (date: 6/21)
+  - pre_mortem #1: champion_alignment_gap (date: 6/22)
+  - pre_mortem #2: champion_alignment_gap (date: 6/22)
+  - interview #1: procurement_blockers (date: 6/21)
+  - interview #2: procurement_blockers (date: 6/21)
+  - interview #3: procurement_blockers (date: 6/20)
+  - interview #4: procurement_blockers (date: 6/19)
+  - okr #1: external_dependency_risk (date: 6/20)
+  - okr #2: external_dependency_risk (date: 6/21)
+  - experiment #1: baseline_metrics_missing (date: 6/22)
+  - gaccs #1: proof_points_gap (date: 6/21)
 ```
 
-**Expected Output - Approval Gate:**
-```
-BRAIN UPDATE PROPOSAL
+**Expected Pattern Ranking:**
+1. **HIGH: Procurement Blockers** (4 occurrences in interview domain)
+   - Impact score: 8/10 (high frequency + cross-reference with guardrails)
+   - Recommendation: "Procurement blockers flagged 4x. Update anti-ICP."
 
-Section 7 (Meta-Learnings)
+2. **HIGH: Champion Alignment Gap** (4 occurrences across retro + pre-mortem)
+   - Impact score: 7/10 (cross-skill + business impact: delays)
+   - Recommendation: "Add champion alignment owner to launch checklist."
 
-Should we update with:
-"Launch assumption: +48 hours for champion + IT alignment. Assign dedicated owner."
+3. **MEDIUM: External Dependency Risk** (2 occurrences in okr domain)
+   - Impact score: 5/10 (medium frequency, specific to one domain)
+   - Recommendation: "Watch for external dependencies in pre-flight."
 
-Evidence: 4 occurrences (2 retros, 2 pre-mortems), dates [list], impact: 48-hour delays
-Downstream: Affects pre-mortem guardrails, launch checklists, stakeholder-maps inputs
-
-Approve? (Y/N)
-```
-
-**If Approved:**
-```
-✅ Brain Section 7 updated:
-"Launch timelines: Standard 2-week GTM cycle. Watch for external dependencies.
-→ LEARNING 2026-Q2: Champion + IT alignment requires +48 hours. Assign dedicated owner."
-
-Updated: 2026-06-21
-```
+4. **LOW: Baseline Metrics Missing** (1 occurrence)
+   - Impact score: 2/10 (single occurrence)
+   - Note: Monitor, not yet a rule
 
 **Pass Criteria:**
-- Approval gate surfaced with evidence
-- Downstream impact stated
-- If Y: Brain written with timestamp
-- If N: Rejection logged to `/context/skill-sessions.md`
-- No silent writes
+- Patterns detected: ≥2 occurrences grouped correctly
+- Impact score calculated: Occurrence count + cross-domain breadth + business impact
+- Ranking by impact_score: HIGH (7+) > MEDIUM (4-6) > LOW (<4)
+- Confidence assessed: HIGH (3+), MEDIUM (2), LOW (1)
+- Recommendation generated per pattern
+- Output sorted by impact (not alphabetical)
 
 ---
 
-## Eval 6: Anti-ICP Discovery via Cross-Skill Interview Signals
-**Scenario:** "Procurement cycles 60+ days" flagged in 4 interview-summary sessions + stored as anti-ICP signal in interview logs. Meta-synthesis detects, proposes Section 2 update.
+## Eval 6: Profile Synthesis (All Sections Complete)
+
+**Scenario:** Full profile synthesized with all sections populated. Verify structure, content quality, metadata accuracy.
+
+**Test Data:** Same 12 sessions + Slack/Drive signals
+
+**Expected Output Structure:**
+```
+✅ Who You Work With (populated from Slack + Drive + Calendar)
+✅ What You're Working On (populated from Drive + brain + Calendar)
+✅ Top Blockers (populated from logs + Slack + Gmail + Gong)
+✅ Timeline Pressure (populated from Calendar + brain dates)
+✅ Patterns & Signals (populated from meta-synthesis)
+✅ Last Week's Key Updates (decisions, risks materialized, assumptions validated)
+✅ Next 24 Hours: What to Watch (top 3 items)
+✅ Metadata (last updated, next sync, data sources, completeness %)
+```
+
+**Content Validation:**
+- Collaborator names: Real (from actual Slack/Drive, not fabricated)
+- Initiatives: From brain Section 7 or active Drive docs (real)
+- Blockers: From actual guardrails / interviews / pre-mortems (real)
+- Dates: All formatted YYYY-MM-DD, no future dates
+- Patterns: Grounded in actual session data (evidenced)
+
+**Metadata Validation:**
+- Last updated: Exact timestamp of synthesis run
+- Next sync: +24h from now
+- Mode: ALWAYS / SUPERCHARGED [MCPs]
+- Completeness: % fields populated (should be 90-100%)
+- Quality score: 0-100 (based on gates)
+
+**Pass Criteria:**
+- All 8 sections present
+- All sections have real content (not placeholders)
+- All dates valid (no future dates)
+- All collaborator names match actual sources
+- Metadata accurate
+- Profile is <1500 words (concise, scannable)
+- Profile is readable by execution skills at Step 0
+
+---
+
+## Eval 7: Stale Cleanup & Archiving
+
+**Scenario:** Entries in `/context/skill-sessions.md` and `/memory/user-profile.md` are old. Verify cleanup logic archives correctly.
 
 **Test Data:**
 ```yaml
-# /context/skill-sessions.md
-skill: interview-summary
-session_date: 2026-06-02
-anti_signals: ["Procurement cycles 60+ days"]
-
-skill: interview-summary
-session_date: 2026-06-09
-anti_signals: ["Procurement cycles 60+ days"]
-
-skill: interview-summary
-session_date: 2026-06-16
-anti_signals: ["Procurement cycles 60+ days"]
-
-skill: interview-summary
-session_date: 2026-06-20
-anti_signals: ["Procurement cycles 60+ days"]
-
-# /foundation/brain.md Section 2 (baseline)
-"Anti-ICP: Startup, <50 employees, no procurement process"
+Stale entries:
+  - Initiative "Q2 Planning" (last mentioned 30 days ago)
+  - Blocker "Legal review" (resolved 90 days ago, marked resolved: true)
+  - Guardrail "Low Pain segments" (last triggered 120 days ago)
+  - Skill sessions >90 days old (30 entries)
 ```
 
-**Expected Output:**
-```
-CROSS-SKILL SIGNAL: Procurement blocker pattern emerging
+**Expected Behavior:**
+1. Initiative Q2 Planning (>14 days) → Move to `/memory/archived/initiatives/Q2-Planning.md`
+2. Blocker Legal Review (resolved, >60 days) → Move to `/memory/archived/blockers/Legal-Review.md`
+3. Guardrail (>90 days no trigger) → Mark status: STALE in `/context/meta-patterns.md` (keep, don't surface)
+4. Sessions >90 days → Compress to 1-line summary, move to `/memory/archived/skill-sessions/`
+5. Update `/memory/archived/index.md` with all archived entries
 
-Pattern: "Procurement cycles 60+ days" (4 interview-summaries, 4 occurrences)
-Buyer impact: 4 deals stalled by procurement timeline
-Proposed anti-ICP: "Long procurement cycles (60+ days)"
-
-Brain update proposal:
-Section 2 (Anti-ICP) → "Startup, <50 employees, no procurement process
-→ WATCH 2026-Q2: Procurement cycles 60+ days = deal-stall risk. Qualify early."
-
-Approve? (Y/N)
+**Archive File Format:**
+```markdown
+# [Entry Name] — Archived
+**Archive Date:** 2026-06-22
+**Reason:** Initiative not mentioned in 14+ days
+**Original Entry:**
+[Full entry content]
+**Status:** Archived
 ```
 
 **Pass Criteria:**
-- Interview pattern detected (4 occurrences)
-- Anti-signal aggregated correctly
-- Section 2 target identified
-- Wording appended to existing anti-ICP (not replaced)
-- Approval gate surfaced
+- Stale initiatives archived (>14 days no mention)
+- Resolved blockers archived (>60 days)
+- Guardrails marked STALE (>90 days no trigger, not archived)
+- Old sessions compressed + archived
+- Archive index updated with all entries + retention dates
+- Removed from active profile (not surfaced in next cycle)
+- Historical record preserved (can retrieve if needed)
 
 ---
 
-## Eval 7: Pre-Mortem Accuracy Correlation (Retro + Pre-Mortem Cross-Reference)
-**Scenario:** Pre-mortem predicted 3 tiger risks. Retro run 3 weeks later shows 2 of 3 risks materialized, 1 did not. Skill calculates accuracy score and recommends confidence adjustment.
+## Eval 8: End-to-End Workflow (Full 24h Cycle with Compounding)
 
-**Test Data:**
+**Scenario:** Multi-cycle test. Run meta-synthesis twice, 24h apart. Verify system compounds learnings: guardrails from Cycle 1 trigger in Cycle 2, patterns strengthen, confidence improves.
+
+**Cycle 1 Data:**
 ```yaml
-# /context/skill-sessions.md
-skill: pre-mortem
-session_date: 2026-05-15
-tiger_risks:
-  - "Champion alignment gap"
-  - "Post-sales prep underestimation"
-  - "Procurement blockers"
-
-skill: retro
-session_date: 2026-06-01
-output: "retro notes"
-risks_materialized:
-  - "Champion alignment gap" (YES, -48 hours)
-  - "Post-sales prep underestimation" (YES, -72 hours)
-  - "Procurement blockers" (NO, not encountered)
-pre_mortem_correlation:
-  accuracy: 0.67
-  risks_predicted: 3
-  risks_materialized: 2
+Sessions (Cycle 1): 10 sessions, 3 domains
+Detected patterns:
+  - "Champion alignment gap" (2 occurrences, new)
+  - "Proof points gap" (1 occurrence, new)
+Proposed guardrails: 2
+Brain updates: 1 (Section 7)
+Quality score: 82/100
 ```
 
-**Expected Output:**
-```
-PRE-MORTEM ACCURACY CORRELATION
-
-Pre-mortem date: 2026-05-15 (3 weeks prior)
-Tiger risks predicted: 3
-Risks that materialized: 2/3 (67% accuracy)
-
-Materialized:
-✅ Champion alignment gap (predicted, materialized)
-✅ Post-sales prep underestimation (predicted, materialized)
-❌ Procurement blockers (predicted, did NOT materialize)
-
-Accuracy score: 67% (GOOD)
-Recommendation: "Pre-mortem calibration is strong. User predicted 2/3 correctly. Continue process."
-
-Next step: Log accuracy trend over time. If 3+ pre-mortems with 60%+ accuracy, guardrail: "Pre-mortem process is reliable."
-```
-
-**Pass Criteria:**
-- Accuracy calculated correctly (2/3 = 67%)
-- Materialized risks matched to predictions
-- Unmaterialized risks noted
-- Recommendation explicit (GOOD)
-- Trend tracking offered (if 3+ cycles exist)
-
----
-
-## Eval 8: Complete Meta-Synthesis Output & Compounding Loop
-**Scenario:** Full end-to-end run. 12 sessions across 8 skills over 1 month. Skill detects 3 HIGH-confidence patterns, 2 MEDIUM patterns, proposes 2 guardrails + 2 brain updates, gates approvals, logs session.
-
-**Test Data:**
+**Cycle 2 Data (24h later):**
 ```yaml
-# /context/skill-sessions.md (12 rows, synthesized from evals 1-7)
-experiment-doc: 4 sessions (baseline metrics issue recurring)
-interview-summary: 3 sessions (procurement pattern + anti-ICP signals)
-retro: 2 sessions (champion alignment + post-sales prep)
-pmm-okrs: 2 sessions (confidence calibration data)
-pre-mortem: 1 session (tiger risk predictions)
+Sessions (Cycle 2): 8 new sessions, 2 domains
+These sessions reference Cycle 1 patterns:
+  - "Champion alignment gap" mentioned 3 more times (total: 5 now)
+  - "Proof points gap" mentioned 2 more times (total: 3 now)
+  - New pattern: "External dependency risk" (2 occurrences)
+Proposed guardrails: 3 (2 from Cycle 1 confirmed, 1 new)
+Brain updates: 2 (Section 7, Section 5)
+Quality score: 87/100
 ```
 
-**Expected Output - Full Report Structure:**
-
+**Expected Compounding:**
 ```
-# META-SYNTHESIS REPORT
-Analysis Period: 2026-05-21 to 2026-06-21
-Sessions Analyzed: 12
-Execution Skills: experiment-doc (4), interview-summary (3), retro (2), pmm-okrs (2), pre-mortem (1)
+Cycle 1 Output:
+  guardrail_1: "Champion alignment gap" (confidence: MEDIUM, 2 occurrences)
+  guardrail_2: "Proof points gap" (confidence: LOW, 1 occurrence)
 
----
-## HIGH-CONFIDENCE PATTERNS (3+ occurrences)
+Cycle 2 Output:
+  guardrail_1: "Champion alignment gap" (confidence: HIGH, 5 occurrences) ← PROMOTED
+  guardrail_2: "Proof points gap" (confidence: MEDIUM, 3 occurrences) ← UPGRADED
+  guardrail_3: "External dependency risk" (confidence: MEDIUM, 2 occurrences) ← NEW
 
-1. Champion Alignment Gap
-   - Occurrences: 4 (2 retros, 2 pre-mortems)
-   - Impact: 4 launches delayed 48 hours
-   - Proposed guardrail: "Add champion alignment owner to launch checklist"
-   - Status: ACTIVE
+Execution Skill Step 0 (Cycle 2):
+  ✅ Load guardrail_1: "Champion alignment gap" (now HIGH confidence, more likely to surface)
+  ✅ Load guardrail_2: "Proof points gap" (now MEDIUM, surfaces)
+  ✅ Load guardrail_3: "External dependency risk" (MEDIUM, surfaces)
 
-2. Post-Sales Prep Underestimation
-   - Occurrences: 3 (2 retros, 1 interview)
-   - Impact: Support docs missed pre-launch deadlines
-   - Proposed guardrail: "Support docs deadline -7 days pre-launch"
-   - Status: ACTIVE
-
-3. Procurement Blockers
-   - Occurrences: 5 (4 interviews, 1 anti-ICP signal)
-   - Impact: 5 deals stalled 60+ days
-   - Proposed anti-ICP: "Long procurement cycles (60+ days)"
-   - Status: NEW PATTERN
-
----
-## MEDIUM-CONFIDENCE PATTERNS (2 occurrences)
-
-1. Baseline Metrics Missing
-   - Occurrences: 2 (experiment-doc)
-   - Status: WATCH (monitor for 3rd occurrence)
-   - Proposed action: Surface guardrail if 3rd occurrence
-
----
-## CROSS-SKILL SIGNALS (2+ domains)
-
-1. Champion alignment impacts both retros (outcomes) and pre-mortems (risk prediction)
-   - Implication: Process gap, not random event
-   - Recommendation: Dedicated pre-launch champion alignment check
-
----
-## CONFIDENCE CALIBRATION (OKRs)
-
-Quarters analyzed: 3
-Average delta: 0% (well-calibrated)
-Trend: Improving
-Recommendation: Maintain 72-76% confidence range
-
----
-## BRAIN UPDATE PROPOSALS
-
-1. Section 7: Add "Launch assumption: +48 hours for champion alignment. Assign owner."
-   - Evidence: 4 occurrences
-   - Downstream: Pre-mortem guardrails, launch checklists
-   - Approve? [Y/N gate]
-
-2. Section 2: Add anti-ICP "Long procurement cycles (60+ days)"
-   - Evidence: 4 interview + 1 anti-signal
-   - Downstream: ICP qualification, sales process
-   - Approve? [Y/N gate]
-
----
-## GUARDRAIL STATUS
-
-Active: 8 guardrails (all triggered in past 60 days)
-Stale: 1 guardrail (archived, historical reference kept)
-New: 2 guardrails (proposed this cycle)
-
----
-## NEXT ACTIONS
-
-1. Approve brain updates (2 gates)
-2. Approve new guardrails (2 gates)
-3. Monitor: Baseline metrics pattern (watch for 3rd occurrence)
-4. Scheduled: Next meta-synthesis run 2026-07-21
+Result: Cycle 2 execution skills are smarter, see more patterns, make better decisions
 ```
+
+**Logging Validation:**
+- `/memory/meta-synthesis-log.md` has 2 entries (Cycle 1 + Cycle 2)
+- Cycle 1 logs guardrail promotions + confidence upgrades
+- Cycle 2 logs guardrail accuracy ("Guardrails from Cycle 1: 100% triggered again")
+- Confidence trend visible: Cycle 1 avg 82 → Cycle 2 avg 87 (↑ improving)
 
 **Pass Criteria:**
-- 3 HIGH-confidence patterns identified
-- 2 MEDIUM patterns identified with WATCH status
-- Cross-skill signals ranked by impact
-- Confidence calibration completed (3 quarters)
-- 2 brain updates proposed with gating
-- Guardrail status assessed (active, stale, new)
-- Output format matches specification
-- Session logged to `/context/skill-sessions.md`
-- Next actions explicit
+- Cycle 1 completes (profile, guardrails, logging)
+- Cycle 2 runs 24h later successfully
+- Patterns from Cycle 1 referenced in Cycle 2 (compounding)
+- Confidence upgraded if pattern appears 2+ more times
+- Guardrail accuracy logged (% from prior cycle triggered again)
+- Quality trend visible (score improving or stable)
+- Brain Section 7 accumulates learnings (no overwrites, additive)
+- Profile updates correctly (stale entries from Cycle 1 cleaned, new signals added)
 
 ---
 
 ## Eval Test Coverage Matrix
+
 | Eval | Feature | Pass Criteria |
 |---|---|---|
-| 1 | Cross-skill signal detection (3+) | HIGH-CONFIDENCE pattern ranked, impact quantified |
-| 2 | Domain-specific patterns (2) | MEDIUM confidence, WATCH status, promotion threshold |
-| 3 | Confidence calibration trending | Delta calculated, average computed, trend identified |
-| 4 | Guardrail drift detection | Stale guardrails identified, 60-day threshold applied |
-| 5 | Brain update gating | Approval gate surfaced, approval/rejection logged |
-| 6 | Anti-ICP discovery | Section 2 update proposed, interview signals aggregated |
-| 7 | Pre-mortem accuracy | Correlation calculated, materialized risks tracked |
-| 8 | Full pipeline | 12 sessions, 3 HIGH patterns, 2 updates gated, logging complete |
+| 1 | Scheduler trigger | 24h automation works, timezone respected, retry logic succeeds |
+| 2 | ALWAYS mode | Profile synthesized from skill logs only, no MCP failures |
+| 3 | Integration mining (Slack + Drive) | Signals extracted, profile enriched with team + strategic |
+| 4 | MCP timeout & fallback | Slack times out, Drive continues, profile partial but completes |
+| 5 | Pattern detection & ranking | Patterns detected 2+, ranked by impact, confidence accurate |
+| 6 | Profile synthesis | All 8 sections present, content real, metadata accurate |
+| 7 | Stale cleanup | Archives created, old entries removed, index updated |
+| 8 | End-to-end workflow + compounding | Multi-cycle test, patterns strengthen, guardrails promoted, quality improves |
 
 ---
 
-## Running Evals
+## Running the Evals
+
 ```bash
-# Run all evals
+# Run all 8 evals
 for i in {1..8}; do
   echo "Running eval $i..."
-  # [invoke meta-synthesis with test data]
+  # [invoke meta-synthesis v2.0.0 with test data]
   # [validate outputs against pass criteria]
 done
 
 # Run single eval
-# [invoke meta-synthesis with eval N test data]
+# [invoke meta-synthesis v2.0.0 with eval N test data]
+# [validate against eval N pass criteria]
+
+# Run end-to-end (Eval 8 in isolation)
+# [Cycle 1: invoke, verify outputs]
+# [Wait 24h or simulate time]
+# [Cycle 2: invoke, verify compounding]
 ```
 
 ---
 
 ## Changelog
-### v1.0.0 — 2026-06-21
-Initial release: 8 comprehensive scenarios covering cross-skill signal detection, pattern confidence scoring, guardrail drift, brain update gating, calibration trending, anti-ICP discovery, pre-mortem accuracy correlation, and full end-to-end compounding loop.
+
+### v2.0.0 — 2026-06-22
+Initial eval suite for meta-synthesis v2.0.0:
+- 8 comprehensive scenarios covering all new features
+- Scheduler automation testing (24h cycle)
+- Integration mining (ALWAYS + SUPERCHARGED modes)
+- Pattern detection and ranking
+- Profile synthesis with all sections
+- Stale entry cleanup and archiving
+- End-to-end multi-cycle workflow with compounding
+- 100% coverage of v2.0.0 SKILL.md features

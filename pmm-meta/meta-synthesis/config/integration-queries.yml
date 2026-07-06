@@ -1,0 +1,93 @@
+integrations:
+  slack:
+    enabled: false
+    priority: "high"
+    queries:
+      - name: "active_channels"
+        description: "Channels with recent activity"
+        look_back_hours: 24
+        extract: "channel_name, message_count, key_topics"
+      - name: "blockers_mentioned"
+        description: "Messages containing blocker keywords"
+        keywords: ["blocked", "stuck", "waiting", "hold", "risk"]
+        extract: "keyword, context_snippet, channel, date"
+      - name: "top_collaborators"
+        description: "Most active people"
+        limit: 5
+        extract: "name, channel, message_count"
+      - name: "momentum_trend"
+        description: "Message volume trending"
+        compare: "last_7_days vs last_14_days"
+        extract: "trend_direction, percent_change"
+
+  google_drive:
+    enabled: false
+    priority: "high"
+    queries:
+      - name: "recently_edited_docs"
+        description: "Documents edited in past 24h"
+        look_back_hours: 24
+        extract: "doc_name, doc_type, last_modified, shared_with_count"
+      - name: "new_shares"
+        description: "Documents recently shared"
+        look_back_days: 7
+        extract: "doc_name, shared_with_whom, date_shared"
+      - name: "priority_indicators"
+        description: "Priority docs"
+        look_in: ["Priority", "Q3", "Urgent", "Active"]
+        extract: "doc_name, folder, priority_level"
+
+  gmail:
+    enabled: false
+    priority: "medium"
+    queries:
+      - name: "open_commitments"
+        description: "Open action items"
+        keywords: ["waiting on you", "blocked", "needs approval", "on hold"]
+        look_back_days: 30
+        extract: "keyword, from_whom, subject, date"
+      - name: "urgent_threads"
+        description: "Urgent emails"
+        filter: "is:starred OR has:flag OR urgent"
+        look_back_days: 14
+        extract: "from_whom, subject, urgency_level, date"
+
+  google_calendar:
+    enabled: false
+    priority: "medium"
+    queries:
+      - name: "upcoming_milestones"
+        description: "Milestones next 30 days"
+        look_ahead_days: 30
+        keywords_in_title: ["launch", "deadline", "review", "go-live", "close"]
+        extract: "event_name, date, attendees_count"
+      - name: "time_allocation"
+        description: "Hours per topic"
+        look_back_days: 7
+        extract: "category, hours_total, percent_of_week"
+
+  gong:
+    enabled: false
+    priority: "medium-high"
+    queries:
+      - name: "deal_momentum"
+        description: "Deal stage changes"
+        look_back_days: 30
+        extract: "deal_name, account, stage_before, stage_after, date"
+      - name: "customer_objections"
+        description: "Top objections from calls"
+        look_back_days: 30
+        top_count: 5
+        extract: "objection_text, frequency, deals_affected"
+      - name: "competitor_mentions"
+        description: "Competitors mentioned"
+        look_back_days: 30
+        extract: "competitor_name, frequency, context_brief"
+
+mcp_routing:
+  fallback_mode: "ALWAYS"
+  timeout_seconds: 30
+  retry_on_timeout: true
+  retry_count: 2
+  query_aggregation_mode: "summary"
+  log_mcp_queries: true

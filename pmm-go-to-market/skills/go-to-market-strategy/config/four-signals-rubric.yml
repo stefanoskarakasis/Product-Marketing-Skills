@@ -1,0 +1,278 @@
+# Four-Signal Rubric for Tier Assignment
+# Version: 2.2.0
+# Last Updated: 2026-06-22
+# Detailed scoring guidance for Market Impact, Revenue Potential, Competitive Urgency, Resource Requirement
+
+signals:
+  market_impact:
+    id: "market_impact"
+    description: "How significant is this in the market? New category? Existing segment expansion?"
+    weight_in_tier_assignment: 0.3
+    scoring:
+      T1:
+        text: "New category creation OR primary segment entry (major expansion into high-value segment)"
+        examples:
+          - "Creating first-to-market category (e.g., predictive analytics for ops)"
+          - "Entering Fortune 500 segment for first time with dedicated motion"
+          - "Geographic market entry (e.g., EMEA after NA dominance)"
+        evidence_required:
+          - "Market sizing data or TAM analysis"
+          - "Buyer research showing segment appetite"
+          - "Competitive landscape scan"
+        signal_check: "Is this market size significant enough to move company needle?"
+
+      T2:
+        text: "Major new segment OR significant feature for existing segment (moves needle but not category-creating)"
+        examples:
+          - "Entering mid-market after enterprise dominance"
+          - "Adding analytics to workflow product"
+          - "Vertical specialization (healthcare ops after general ops)"
+        evidence_required:
+          - "Segment size estimates"
+          - "Sales pipeline signals or inbound volume"
+          - "Product-market fit signals in pilot"
+        signal_check: "Does this open a new customer cohort or significantly expand use case?"
+
+      T3:
+        text: "Incremental feature or motion improvement in existing segment (minor expansion)"
+        examples:
+          - "New reporting dashboard for mid-market ops"
+          - "API for power users in core segment"
+          - "Vertical features (healthcare compliance, finance audit trails)"
+        evidence_required:
+          - "Customer feedback requesting feature"
+          - "Usage patterns showing gap"
+          - "Comp research showing gap exists elsewhere"
+        signal_check: "Does this deepen penetration in existing segment?"
+
+      T4:
+        text: "Internal only or maintenance (no market expansion)"
+        examples:
+          - "Performance improvements"
+          - "Bug fixes and stability"
+          - "Internal-only features"
+        evidence_required: "None"
+        signal_check: "Not applicable"
+
+    source_data: "Brain Section 2 (ICP), Section 4 (Competitive), sales pipeline"
+    red_flags:
+      - "Market size claimed but TAM undefined"
+      - "Segment entry claimed without sales evidence"
+      - "Geographic expansion assumed without research"
+
+  revenue_potential:
+    id: "revenue_potential"
+    description: "What is the financial upside? Does this move the needle on ARR/NRR or deal flow?"
+    weight_in_tier_assignment: 0.3
+    scoring:
+      T1:
+        text: "Materially moves ARR/NRR (10%+ impact or $500K+ new annual pipeline in yr 1)"
+        examples:
+          - "$10M company adding $1M+ new ARR via new segment"
+          - "Feature enables $2M contract upsell (10%+ of revenue)"
+          - "Geographic expansion creates $500K+ new pipeline"
+        evidence_required:
+          - "Deal size research or pricing model"
+          - "Pipeline forecast for segment"
+          - "Customer ROI model or unit economics"
+        calculation: "Estimated new ARR / Total current ARR ≥ 10% OR new pipeline ≥ $500K"
+        signal_check: "Is this deal size or volume significant enough to matter to the board?"
+
+      T2:
+        text: "Meaningful pipeline contribution ($100K–500K new pipeline yr 1)"
+        examples:
+          - "$5M company creating $200K new pipeline"
+          - "Feature enables $1M contract expansions (5% of revenue)"
+          - "Upsell motion targets existing customers, projects $150K net new"
+        evidence_required:
+          - "Sales forecast for segment"
+          - "Pricing research or existing customer expansion data"
+          - "Deal size benchmarks from wins in similar segment"
+        calculation: "New pipeline $100K–$500K"
+        signal_check: "Will sales team notice this revenue?"
+
+      T3:
+        text: "Conversion or retention support ($25K–100K indirect impact)"
+        examples:
+          - "Feature reduces churn 2% → $50K annual retention"
+          - "Improves time-to-value, increases expansion by $30K/yr"
+          - "API enables 3-4 new integrations → $20K/yr in indirect demand"
+        evidence_required:
+          - "Churn rate and impact of feature on churn"
+          - "Existing expansion rate and uplift estimate"
+          - "Indirect pipeline estimate (e.g., integrations)"
+        calculation: "Indirect impact $25K–$100K"
+        signal_check: "Does this tighten unit economics or improve LTV?"
+
+      T4:
+        text: "Minimal or indirect impact (<$25K)"
+        examples:
+          - "Bug fix or performance improvement"
+          - "Admin tooling (improves speed but not customer revenue)"
+        evidence_required: "None"
+        signal_check: "Not applicable"
+
+    source_data: "Brain Section 2 (deal sizes), Section 5 (proof points), CRM forecasts, pricing models"
+    red_flags:
+      - "Revenue claimed but deal size is assumption only"
+      - "Upsell pipeline not validated with sales"
+      - "Feature ROI estimated without customer evidence"
+
+  competitive_urgency:
+    id: "competitive_urgency"
+    description: "Is there time pressure from competitors? Does this close a gap or create advantage?"
+    weight_in_tier_assignment: 0.2
+    scoring:
+      T1:
+        text: "Closes critical feature gap vs. incumbent OR creates competitive advantage"
+        examples:
+          - "Competitor (Okta, Stripe) adding feature you lack → customers asking about it"
+          - "You add feature no incumbent has → new wedge differentiation"
+          - "Competitor funding round, public announcement of competitive roadmap"
+        evidence_required:
+          - "Named competitor, specific feature or move"
+          - "Customer win/loss data or RFP feedback showing this is decision driver"
+          - "Public company announcements or analyst reports"
+        urgency_signal: "Customers asking for this in RFPs or as cancel reasons?"
+        signal_check: "Does this change the competitive dynamic in next 6 months?"
+
+      T2:
+        text: "Responds to or anticipates competitor move (tactical, not strategic)"
+        examples:
+          - "Competitor shipping feature in 8 weeks, you ship in 4 to stay ahead"
+          - "Market signal: 2-3 competitors adding vertical specialization"
+          - "Analyst report: trend shifting, you need to respond"
+        evidence_required:
+          - "Competitor move identified (public or via customer signals)"
+          - "Timeline pressure (they're shipping in X weeks)"
+          - "Market data or analyst commentary"
+        urgency_signal: "Is this responding to a near-term threat or just nice-to-have?"
+        signal_check: "Do we lose customers or deals if we wait 6 months?"
+
+      T3:
+        text: "No immediate competitive pressure (defensive, not urgent)"
+        examples:
+          - "Incremental feature competitor has, but no customer complaints"
+          - "Nice-to-have competitive parity"
+        evidence_required:
+          - "No win/loss mention of this gap"
+          - "No customer RFP requirement"
+        urgency_signal: "Customers not asking; no public competitor signal"
+        signal_check: "Does this lose us deals?"
+
+      T4:
+        text: "N/A — Not applicable"
+        examples:
+          - "Internal features, bug fixes, performance"
+        evidence_required: "None"
+        signal_check: "Not applicable"
+
+    source_data: "Brain Section 4 (Competitive landscape), Win/loss data, Analyst reports, Customer RFP feedback"
+    red_flags:
+      - "Competitor threat assumed without evidence"
+      - "Claimed urgency based on internal fear, not customer signals"
+      - "Indefinite timeline attached to competitive move"
+
+  resource_requirement:
+    id: "resource_requirement"
+    description: "What's the investment cost? Who needs to be involved? How disruptive?"
+    weight_in_tier_assignment: 0.2
+    scoring:
+      T1:
+        text: "All teams required. Full budget. 6–12 week commitment. CEO visibility."
+        examples:
+          - "New product category: Eng (12 weeks), Sales (4-week enablement), PMM (8 weeks), Design, CS"
+          - "Geographic expansion: All functions, 15%+ budget, exec sponsor"
+          - "Major reposition: months-long brand + messaging work, all channels"
+        requirements:
+          - teams_involved: "5+ (Eng, Sales, Product, PMM, Design, CS, potentially Legal/Finance)"
+          - "budget_level: 'Full, unbudgeted spend approved'"
+          - "duration_weeks: 6-12"
+          - "exec_visibility: 'CEO-aware, board-relevant'"
+        opportunity_cost: "This displaces other roadmap priorities by 15%+ team capacity"
+        signal_check: "Can company afford to focus entire org on this for 2-3 months?"
+
+      T2:
+        text: "2–4 teams required. Targeted budget. 2–4 week commitment. Director visibility."
+        examples:
+          - "New vertical feature: Eng (3 weeks), Sales enablement, PMM (focused campaign)"
+          - "Upsell motion: Sales (2 weeks), PMM (1 week), Product (QA)"
+          - "Mid-size segment entry: Sales, PMM, Eng, CS (2-3 weeks each)"
+        requirements:
+          - teams_involved: "2-4 (Eng, Sales, PMM, Product, optionally Design/CS)"
+          - "budget_level: 'Targeted, within existing budget or minor reallocation'"
+          - "duration_weeks: 2-4"
+          - "exec_visibility: 'VP-level aware, not CEO'"
+        opportunity_cost: "This displaces other roadmap priorities by 5-10% team capacity"
+        signal_check: "Can 2-4 teams focus on this without killing other initiatives?"
+
+      T3:
+        text: "1 core team. Standard budget. 1 week. Manager visibility."
+        examples:
+          - "Routine feature: Eng (1 week) + PMM (2 days) + Sales QA"
+          - "Vertical variation: Product adds field, Eng codes it, PMM updates one-pager"
+        requirements:
+          - teams_involved: "1-2 (Eng or Sales-led + PMM)"
+          - "budget_level: 'Standard, within existing budget'"
+          - "duration_weeks: <1"
+          - "exec_visibility: 'Team lead only'"
+        opportunity_cost: "Minimal; fits within sprint"
+        signal_check: "Can this fit in a standard sprint?"
+
+      T4:
+        text: "Minimal. Owner + peer review. <1 week. No exec visibility."
+        examples:
+          - "Bug fixes, performance tuning, maintenance"
+        requirements:
+          - teams_involved: "1 (owner) + 1 (peer review)"
+          - "budget_level: 'Negligible'"
+          - "duration_weeks: '<1'"
+          - "exec_visibility: 'None'"
+        opportunity_cost: "None"
+        signal_check: "Can individual complete this in a few hours?"
+
+    source_data: "Roadmap, team capacity, prior launch resource actuals, stakeholder availability"
+    red_flags:
+      - "Resource req understated ('This will be easy')"
+      - "Cross-team dependencies downplayed"
+      - "Timeline doesn't account for coordition overhead"
+
+# Cross-Signal Decision Rules
+decision_rules:
+  rule_1:
+    text: "No single signal determines tier alone"
+    example: "Revenue high (T1) but market impact low (T3) + competitive urgency low (T3) = T2, not T1"
+    enforcement: "HARD GATE in Step 3"
+
+  rule_2:
+    text: "If signals are misaligned, tier trends conservative"
+    example: "Market impact T1 + Revenue T2 + Competitive T3 + Resource T1 = T2 (not T1)"
+    enforcement: "Surface misalignment in rationale"
+
+  rule_3:
+    text: "Resource signal is a ceiling, not a floor"
+    example: "If resources available are T2-level but market impact is T1, escalate resource ask first, don't downgrade tier"
+    enforcement: "Escalation step in Step 3"
+
+  rule_4:
+    text: "Competitive urgency can accelerate tier but not lower it"
+    example: "Market impact T2 + revenue T2, but competitor shipping in 4 weeks = T1. Not downgraded below T2."
+    enforcement: "Rationale must explain acceleration"
+
+# Confidence Modifiers
+confidence_modifiers:
+  high_evidence:
+    description: "All four signals have strong evidence (customer data, sales validation, etc.)"
+    impact: "+confidence to 🟢 (if quality score ≥90)"
+
+  assumption_heavy:
+    description: "2+ signals rely on assumptions (no customer evidence, no sales validation)"
+    impact: "-confidence to 🟡 (cap at 75% quality score)"
+
+  conflicting_signals:
+    description: "Signals point to different tiers"
+    impact: "-confidence to 🟡; surface conflict in rationale"
+
+  calibration_precedent:
+    description: "Prior similar launch in Section 7 with known outcome"
+    impact: "Use precedent to validate or flag tier drift"

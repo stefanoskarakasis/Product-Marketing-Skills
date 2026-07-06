@@ -1,14 +1,8 @@
 ---
 name: meta-synthesis
-version: 1.0.0
+version: 2.0.0
 description: >
-  Self-improving meta-pattern synthesis engine for GTM systems. Reads execution skill session logs
-  from all domains (experiments, interviews, retros, OKRs, pre-mortems, PDRs, prioritization, stakeholder maps),
-  detects recurring patterns and cross-skill signals, proposes guardrails and brain updates,
-  and compounds learnings into a living system. Designed to run monthly or on-demand.
-  Trigger on: "run meta-synthesis", "what patterns are emerging", "detect cross-skill signals",
-  "update guardrails", "compound our learnings", "what should we remember from X quarters".
-  Outputs pattern reports, guardrail proposals, and brain updates that feed back into all execution skills.
+  24-hour real-time learning engine. Reads execution skill logs + connected integrations (Slack, Drive, Gmail, Calendar, Gong) to detect patterns, synthesize dynamic user profile (who you work with, what you're building, top blockers), update guardrails, and compound learnings into brain. Runs automatically every 24h or on-demand. Trigger on: "run meta-synthesis", "what patterns are emerging", "detect cross-skill signals", "update guardrails", "compound our learnings", "what should we remember", or automatically every 24 hours via scheduler.
 
 metadata:
   author: Stefanos Karakasis
@@ -16,381 +10,675 @@ metadata:
   quality_gate: true
   logging_enabled: true
   is_meta_skill: true
-last_updated: 2026-06-21
+  automation: "24-hour automatic cycle"
+  mcp_support: "Slack, Google Drive, Gmail, Google Calendar, Gong (optional)"
+last_updated: 2026-06-22
 ---
-# meta-synthesis — Cross-Skill Pattern Detection & Brain Updates
-Reads logs from all execution skills, detects patterns, and compounds learnings back into the system.
-Not a report generator. A learning loop that makes every execution smarter than the last.
-The connective tissue of the GTM system.
+
+# meta-synthesis — 24-Hour Real-Time Pattern Detection & Profile Synthesis
+
+Reads execution logs + integrations → Detects patterns → Synthesizes profile → Updates guardrails → Compounds learnings.
+
+The beating heart of the GTM system. Every 24 hours, smarter than before.
+
 ---
+
 ## Trigger
-- **When:** End of month (automatic or manual). After 3+ execution skill sessions of the same type (3+ experiments, 3+ retros, 3+ interviews). When a pattern repeats 2+ times across different skill domains. When system has drifted (brain outdated, guardrails haven't changed in 90 days).
-- **Not for:** Real-time skill feedback (skills already handle intake guardrails). Individual skill audits (use `meta-review` for that). Strategic planning (use `hs-pmm-strategy`). One-off analysis without compounding (not worth the overhead).
+
+- **When:** Automatically every 24 hours (scheduler-based, timezone-aware). Or on-demand: "run meta-synthesis".
+- **Not for:** Real-time feedback (execution skills handle Step 0 guardrails inline). Individual skill audits (use `meta-review`). Strategic planning (use other tools). One-off pattern queries without compounding.
 - **Example prompts:**
-  - "Run meta-synthesis for June"
-  - "What patterns have we seen across 3 retros and 2 pre-mortems?"
-  - "Our execution-doc quality scores are declining. Why?"
-  - "Compound our learnings from Q2 into guardrails for Q3"
-  - "Champion alignment keeps breaking. What should we remember?"
+  - "Run meta-synthesis"
+  - "What patterns emerged this week?"
+  - "Synthesize my profile"
+  - "Detect cross-skill signals"
+  - "Update guardrails based on last cycle"
+
 ---
+
 ## Inputs
-- **Args:** Optional month/quarter to analyze (defaults to current month). Optional skill domain to focus on (defaults to all: experiments, interviews, retros, okrs, pre-mortems, prds, prioritization, stakeholder-maps).
-- **Context keys:**
-  - `/context/skill-sessions.md` — REQUIRED. Master log of all execution skill sessions with structured metadata
-  - `/foundation/brain.md` — REQUIRED. Current state (Sections 1-7), to be updated if patterns warrant
-  - `/context/interviews/patterns.md`, `/context/knowledge/experiments/rules.md`, etc. — Optional. Domain-specific pattern logs (used for context only, not written to)
-  - `/context/meta-patterns.md` — REQUIRED. Master guardrails file written by this skill
-  - `decisions/` — Optional. Prior strategic decisions to reference when making proposals
-**Brain contract:** Reads: All sections (1-7). Writes: Section 2 (Anti-ICP if signals found), Section 5 (Revenue assumptions if lever weights shifted), Section 7 (Meta-Learnings + guardrails). Proposes: `/context/meta-patterns.md` updates, guardrail injection into execution skills.
+
+**Args:** Optional timeframe (default: past 24h). Optional skill domain to focus on (default: all).
+
+**Context keys:**
+- `/context/skill-sessions.md` — REQUIRED. Master log of all execution skill sessions with structured metadata (quality_score, guardrails_triggered, brain_updates_proposed, etc.)
+- `/foundation/brain.md` — REQUIRED. Current state (Sections 1-7), baseline for comparison and updates.
+- `/context/meta-patterns.md` — REQUIRED. Current guardrails file. Read to assess freshness; written with new patterns.
+- `/memory/user-profile.md` — REQUIRED (created first run if missing). Previous profile snapshot for delta detection.
+- `/memory/meta-synthesis-log.md` — REQUIRED (created first run if missing). Historical record of all synthesis cycles.
+- `/config/scheduler.yml` — REQUIRED. Timezone, frequency config.
+- `/config/integration-queries.yml` — REQUIRED. Which MCPs enabled, what queries to run.
+- `/config/mcp-routing.yml` — REQUIRED. MCP fallback mode, timeout, aggregation strategy.
+- Slack MCP (optional) — If enabled: channels, blockers, collaborators
+- Google Drive MCP (optional) — If enabled: recent docs, priorities, collaboration
+- Gmail MCP (optional) — If enabled: open items, approvals, urgency
+- Google Calendar MCP (optional) — If enabled: milestones, time allocation, stakeholders
+- Gong MCP (optional) — If enabled: deal momentum, objections, competitors, sentiment
+
 ---
+
 ## Pre-flight
-- Load `/context/skill-sessions.md` — required to exist and have ≥1 row per execution skill. If missing or empty: surface error, do not proceed.
-- Load `/foundation/brain.md` — required. Extract current state of Sections 2, 5, 7 for comparison.
-- Load `/context/meta-patterns.md` if exists — read current guardrails to detect drift.
-- Check `decisions/` for prior pattern-based decisions (used to avoid re-proposing settled choices).
-- Verify consistency: are guardrails in meta-patterns still being triggered by current sessions? If no hits in 60 days, flag as "stale guardrail".
 
-**Quality gates before analysis:**
-- ≥3 rows in `/context/skill-sessions.md` OR request spans 30+ days. If <3 rows and <30 days: surface:
-  > "Not enough signal yet. Meta-synthesis compounds after 3+ sessions or 30+ days of execution. Current state: [N sessions, M days]. Proceed anyway? (Y/N)"
+- Load `/config/scheduler.yml`. Verify timezone + frequency. If first run, ask: "What timezone?" + "Every 24h, 12h, or 7d?". Store in config.
+- Load `/context/skill-sessions.md`. Required to exist and have ≥1 row. If missing or empty: surface error, do not proceed.
+- Load `/foundation/brain.md`. Required. Extract Sections 2, 3, 4, 5, 7 baseline.
+- Load `/context/meta-patterns.md` if exists. If missing: create with empty guardrails list.
+- Load `/memory/user-profile.md` if exists (for delta detection). If missing: create template.
+- Load `/memory/meta-synthesis-log.md` if exists (for historical context). If missing: create empty.
+- Load `/config/integration-queries.yml`. Identify which MCPs enabled (Slack, Drive, Gmail, Calendar, Gong).
+- Load `/config/mcp-routing.yml`. Read fallback mode + timeout + aggregation strategy.
+
+**Quality gates before proceeding:**
+- ✅ `/context/skill-sessions.md` exists and has ≥1 row OR timeframe >30 days
+- ✅ `/foundation/brain.md` exists and has ≥3 sections populated
+- ✅ `/config/scheduler.yml` readable
+- ✅ At least one MCP enabled OR ALWAYS mode (skill logs only)
+
+If any gate fails: surface error and ask for approval to proceed in ALWAYS mode (skill logs only, no integrations).
 
 ---
-## Steps
-### Step 0: Load & Audit Session Data
-1. Read `/context/skill-sessions.md` in full
-2. Parse each row: extract skill name, session date, key metrics (quality scores, dependencies, confidence deltas, guardrails triggered, anti-signals)
-3. Count by skill type: experiments (N), interviews (N), retros (N), okrs (N), pre-mortems (N), prds (N), prioritization (N), stakeholder-maps (N)
-4. Sort chronologically
-5. Check data quality: are guardrails_triggered populated? Are confidence_calibration_delta fields filled? Flag sparse rows
-6. Load current brain Sections 2, 5, 7 for baseline comparison
 
-### Step 1: Cross-Skill Signal Detection
-Scan all sessions for recurring signals that appear in 2+ skill domains:
-```
-Example cross-skill patterns:
-- "Champion alignment gap" (appears in 2 retros + 2 pre-mortems)
-- "Post-sales prep underestimation" (appears in 2 PDRs + 2 retros)
-- "Procurement blockers" (appears in 4 interview-summaries + 1 anti-ICP signal)
-- "External dependency risk" (appears in 3 retros + 2 PMM-OKRs)
-- "Confidence calibration off by 15%" (appears in 3 consecutive OKR quarters)
-```
+## Steps
+
+### Step 0: Pre-Flight & Config Validation
+
+1. Load all required files (see Pre-flight section)
+2. Verify scheduler config (timezone, frequency)
+3. Verify integration config (which MCPs enabled)
+4. Check MCP availability (fallback to ALWAYS mode if MCPs unavailable)
+5. Surface summary: "Running meta-synthesis [ALWAYS / SUPERCHARGED] mode. Analyzing past [timeframe]. Data from: [sources]."
+
+---
+
+### Step 1: Load & Parse Session Data
+
+1. Read `/context/skill-sessions.md` for timeframe (default: past 24h)
+2. Parse each row: extract skill name, session_date, quality_score, guardrails_triggered, brain_updates_proposed, confidence_score, assumptions, assumptions_count
+3. Count sessions by skill type (experiment, interview, retro, okr, pre-mortem, prd, prioritization, stakeholder-maps, gaccs)
+4. Sort chronologically
+5. Quality check: flag sparse rows (missing key fields)
+6. Load current brain Sections 2, 3, 4, 5, 7 for baseline comparison
+
+---
+
+### Step 2: Mine Integrations (If Enabled)
+
+For each enabled MCP in `/config/integration-queries.yml`:
+
+**If Slack enabled:**
+- Query: active channels past 24h
+- Query: blockers mentioned (keywords: blocked, stuck, waiting, hold, risk)
+- Query: key collaborators (top 5 by message count)
+- Query: momentum signal (message volume trending up/down)
+- Extract: Who, What topics, Blockers mentioned, Momentum
+- Aggregate into summary (not raw data)
+
+**If Google Drive enabled:**
+- Query: recently edited documents (past 24h)
+- Query: shared with collaborators (new shares)
+- Query: document priorities (from titles, tags, folder structure)
+- Extract: Active docs, Shared with whom, Priority signals
+- Aggregate into summary
+
+**If Gmail enabled:**
+- Query: open commitments (keywords: waiting, blocked, needs approval, on hold)
+- Query: high-priority threads (urgent flags, follow-up flags)
+- Query: approvals pending (who are you waiting on?)
+- Extract: Open items, Waiting on whom, Urgency level
+- Aggregate into summary
+
+**If Google Calendar enabled:**
+- Query: upcoming milestones (next 30 days, event titles)
+- Query: time allocation (hours per topic: GTM, exec syncs, 1:1s, etc.)
+- Query: stakeholder meetings (recurring with whom)
+- Query: meeting trend (busier or quieter than last week?)
+- Extract: Key dates, Time allocation %, Who's prioritizing you
+- Aggregate into summary
+
+**If Gong enabled:**
+- Query: deal momentum (recent stage changes, velocity)
+- Query: customer objections (top 3-5 from recent calls)
+- Query: competitors mentioned (who, frequency)
+- Query: champion sentiment (from recent calls, trending up/down)
+- Extract: Deal stage, Top objections, Competitive threats, Champion engagement
+- Aggregate into summary
+
+**Fallback:** If MCP times out or unavailable, skip that MCP and continue with others. Log failure for transparency.
+
+---
+
+### Step 3: Cross-Skill Signal Detection
+
+Scan all sessions for recurring signals appearing in 2+ skill domains:
+
+- **Champion alignment gap** (appears in retros + pre-mortems) → cross-skill signal
+- **Proof point gap** (appears in positioning + GTM + interview sessions) → cross-skill signal
+- **Procurement blockers** (appears in interviews + GTM + okrs) → cross-skill signal
+- **External dependency risk** (appears in pre-mortems + retros + okrs) → cross-skill signal
+- **Confidence calibration drift** (appears across okrs) → cross-skill signal
+- **Tier mismatch** (assigned vs. actual resource allocation) → cross-skill signal
 
 For each cross-skill pattern detected:
-1. Count occurrences across skills
-2. Extract evidence: which sessions, which dates, which outcomes
-3. Assess confidence: HIGH (3+ occurrences), MEDIUM (2 occurrences), LOW (1 occurrence, speculative)
-4. Calculate impact: how many deals/launches/initiatives affected?
+1. Count occurrences across skills (e.g., 2 retros + 2 pre-mortems = 4 total)
+2. Extract evidence: which sessions, dates, outcomes
+3. Calculate impact: how many launches/deals/initiatives affected?
+4. Assess confidence: HIGH (3+), MEDIUM (2), LOW (1)
+5. Calculate impact_score (0-10):
+   - Occurrence count: +1 per occurrence
+   - Cross-domain breadth: +2 if 2+ domains, +4 if 3+ domains
+   - Business impact: +0-4 based on deals/revenue affected
+   - Confidence: multiplier 0.5-1.0
 
-### Step 2: Domain-Specific Pattern Deepening
+**Rank patterns by impact_score:** HIGH impact first.
+
+---
+
+### Step 4: Domain-Specific Pattern Deepening
+
 For each skill domain, identify internal patterns (2+ within same skill):
-```
-experiment-doc patterns:
-- "Same variable tested N times with declining rigor" (risk: wasted effort)
-- "Baseline metrics missing" (risk: inconclusive results)
-- "External dependencies uncontrolled" (risk: confounding)
 
-interview-summary patterns:
-- "Procurement mentioned N times as deal-killer" (risk: ICP misalignment)
-- "Champion sentiment declining" (risk: buyer alignment)
-- "Long onboarding cycles" (risk: post-sales prep)
+**For experiment-doc sessions:**
+- Same variable tested N times with declining rigor
+- Baseline metrics missing
+- External dependencies uncontrolled
 
-retro patterns:
-- "Champion alignment gap repeated" (risk: structural process failure)
-- "Post-sales prep underestimated" (risk: launch readiness failure)
-- "Tier mismatch (over-assigned)" (risk: GTM waste)
+**For interview-summary sessions:**
+- Procurement mentioned N times as deal-killer
+- Champion sentiment declining
+- Long onboarding cycles
 
-pre-mortem patterns:
-- "Tiger risk materialized as predicted" (signal: pre-mortem accuracy good)
-- "Risk prediction timing off by N weeks" (signal: calibration drift)
-- "Same risk flagged 2+ times, different launches" (signal: systemic issue)
-```
+**For retro sessions:**
+- Champion alignment gap repeated
+- Post-sales prep underestimated
+- Tier mismatch (over-assigned)
+
+**For pre-mortem sessions:**
+- Tiger risk materialized as predicted
+- Risk prediction timing off by N weeks
+- Same risk flagged 2+ times, different launches
+
+**For pmm-okrs sessions:**
+- Confidence calibration: predicted vs. achieved delta
+- External dependency risk appearing
+- Assumption density increasing
 
 For each pattern:
-1. Count occurrences
-2. Extract: what changed, what didn't, what's the cost/benefit
-3. Recommend: Is this a blocker (3+ occurrences) or a watch item (2 occurrences)?
+1. Count occurrences (within skill domain)
+2. Extract: what changed, what didn't, cost/benefit
+3. Recommend: blocker (3+ occurrences) or watch (2)
 
-### Step 3: Confidence Calibration Audit (OKRs Only)
+---
+
+### Step 5: Confidence Calibration Audit (OKRs Only)
+
 If 3+ OKR quarters logged:
-```yaml
+
+Calculate calibration delta per quarter:
+```
 Q1: predicted 70%, achieved 65% (delta: -5%)
 Q2: predicted 75%, achieved 78% (delta: +3%)
 Q3: predicted 72%, achieved 74% (delta: +2%)
 
-Average calibration delta: 0% (WELL-CALIBRATED)
-Trend: Improving (was -5%, now +3% to +2%)
-Recommendation: "User is well-calibrated. Confidence range 70-75% is reliable."
-```
-
-If calibration drifts:
-- ≥10% delta → CONFIDENCE ALERT: "Over/under-estimating by 10%+. Review estimation process."
-- Trend: If delta gets worse → recommend tighter confidence bands (reduce by 5%)
-- Trend: If delta improving → recommend expanding bands slightly (increase by 3%)
-
-### Step 4: Brain Update Proposals
-For each pattern/signal, propose brain updates:
-```
-Cross-skill pattern: "Champion alignment gap repeated 3x"
-Current brain Section 7: [check for existing learnings]
-Proposed update: "Launch assumption: +48 hours for champion + IT alignment. Assign dedicated owner."
-Impact: Affects pre-mortem guardrails, launch timelines, stakeholder-maps inputs
-
-Cross-skill pattern: "Procurement blockers in 4 interviews + anti-ICP signal"
-Current brain Section 2: [check for existing anti-ICP]
-Proposed update: "Anti-ICP: Long procurement cycles (60+ days). Watch for in qualification."
-Impact: Affects beachhead-segment, ICP decisions, sales qualification
-
-Confidence calibration drift: "Q2-Q3 delta improving but still wide (3% to 2%)"
-Current brain Section 5: [check Revenue Levers weights]
-Proposed update: "OKR confidence range: 72-76% (revised from 70-75% based on Q2-Q3 data)"
-Impact: Affects next quarter's OKR recommendations
-```
-
-For each proposal:
-1. State the pattern and evidence
-2. State current brain state
-3. Propose exact wording for brain update
-4. Flag impact: which skills read this, which inputs change, what downstream effects
-
-### Step 5: Guardrail Proposals & Drift Detection
-Read `/context/meta-patterns.md` and check each guardrail:
-```
-Guardrail #1: "Champion alignment gap appears in 2 retros. Watch for IT alignment blockers."
-- Last triggered: [date]
-- Triggered in: [N sessions in past 60 days]
-- Status: ACTIVE (triggered in past 60 days) OR STALE (no triggers in 60+ days)
-- Recommendation: KEEP if active, ARCHIVE if stale
-
-New guardrails to add:
-- "Procurement blockers flagged 4+ times. Qualification should ask: 'Procurement cycle length?'"
-- "External dependency risk: 3 retros + 2 OKRs flagged this. Pre-flight check: external deps count."
-```
-
-For each guardrail:
-1. Assess: Is it still being triggered? How recently?
-2. Recommend: ACTIVE (keep), STALE (archive), or NEW (add)
-3. If STALE: Propose archiving but retain for historical reference
-
-### Step 6: Generate Meta-Pattern Report
-Output `/context/meta-patterns.md` with structured format:
-```yaml
-meta_synthesis_date: 2026-06-21
-analysis_period: 2026-05-21 to 2026-06-21 (1 month)
-sessions_analyzed: 12 (experiment-doc: 4, interview-summary: 3, retro: 2, pmm-okrs: 2, pre-mortem: 1)
-
-## High-Confidence Patterns (3+ occurrences)
-1. Champion alignment gap
-   - Occurrences: 2 retros + 2 pre-mortems = 4
-   - Dates: [dates]
-   - Evidence: [launch names]
-   - Impact: 4 launches delayed by 48 hours
-   - Proposed guardrail: Add "champion alignment owner" to launch checklist
-   - Status: ACTIVE
-
-2. Procurement blockers
-   - Occurrences: 4 interview-summaries + 1 anti-ICP signal = 5
-   - Dates: [dates]
-   - Evidence: [companies, cycles]
-   - Impact: 5 deals stalled by 60+ days procurement
-   - Proposed anti-ICP: "Long procurement cycles (60+ days)"
-   - Status: NEW PATTERN
-
-## Medium-Confidence Patterns (2 occurrences)
-1. Post-sales prep underestimation
-   - Occurrences: 2 retros + 2 PDRs
-   - Proposed guardrail: Support docs deadline -7 days pre-launch
-   - Status: WATCH
-
-## Cross-Skill Signals
-[Patterns that span 2+ domains, ranked by impact]
-
-## Confidence Calibration (OKRs)
 Average delta: 0% (well-calibrated)
-Q1 -5% | Q2 +3% | Q3 +2%
-Trend: Improving
-Recommendation: Maintain 72-76% confidence range
-
-## Brain Updates Proposed
-1. Section 2 (Anti-ICP): Add "Procurement cycles 60+ days"
-2. Section 5 (Revenue): [if lever weights shifted]
-3. Section 7 (Meta-Learnings): "Champion alignment +48 hours", "Post-sales prep -7 days"
-
-## Guardrail Status
-- ACTIVE (triggered in past 60 days): [N guardrails]
-- STALE (no triggers in 60+ days): [N guardrails — archive?]
-- NEW (proposed this cycle): [N guardrails]
-
-## Next Actions
-1. Approve brain updates (Section 2, 5, 7)
-2. Approve new guardrails (to be injected into execution skills at intake)
-3. Archive stale guardrails
-4. Watch: [list of 2-occurrence patterns to monitor]
+Trend: Improving (was -5%, now +3% to +2%)
+Volatility: Low (max delta 5%)
 ```
 
-### Step 7: Propose & Gate Brain Updates
-For each proposed brain update (Section 2, 5, 7):
+Recommendation:
+- If delta ≥10%: "Over/under-estimating by 10%+. Review estimation process."
+- If trend worsening: "Reduce confidence bands by 5%."
+- If trend improving: "Confidence bands are stable. No change needed."
+
+---
+
+### Step 6: Brain Update Proposals (Section 2, 5, 7)
+
+For each pattern/signal, propose brain updates:
+
+**Pattern: "Champion alignment gap repeated 3x"**
+- Current brain Section 7: [check for existing learnings]
+- Proposed update: "Launch assumption: +48 hours for champion + IT alignment. Assign dedicated owner."
+- Downstream impact: Affects pre-mortem guardrails, GTM timelines, stakeholder-maps
+
+**Pattern: "Procurement blockers in 4 interviews + anti-ICP signal"**
+- Current brain Section 2: [check for existing anti-ICP]
+- Proposed update: "Anti-ICP: Long procurement cycles (60+ days). Disqualify in qualification."
+- Downstream impact: Affects beachhead-segment, ICP decisions, sales qualification
+
+**Pattern: "Confidence calibration drift improving"**
+- Current brain Section 5: [check revenue assumptions]
+- Proposed update: "OKR confidence range: 72-76% (revised from 70-75% based on Q2-Q3 data)"
+- Downstream impact: Affects next quarter's OKR recommendations
+
+Surface approval gate for each:
 ```
-Surface approval gate:
 "Should we update brain Section 7 with:
 'Launch assumption: +48 hours for champion alignment. Assign dedicated owner.'?
 
-Evidence: 4 occurrences (2 retros, 2 pre-mortems), dates [], impact: 48-hour delays
-Downstream: Affects pre-mortem guardrails, launch checklists, stakeholder-maps
+Evidence: 4 occurrences (2 retros, 2 pre-mortems), dates [list], impact: 48h delays
+Downstream: Affects pre-mortem guardrails, GTM timelines, stakeholder-maps
 
-Approve? (Y/N)
-[If Y → write to brain immediately]
-[If N → log as "rejected" with reasoning]"
+Approve? (Y/N)"
 ```
 
-### Step 8: Inject Guardrails Into Execution Skills
-For each new/updated guardrail:
-1. Update `/context/meta-patterns.md` (master file read by all skills at pre-flight)
-2. Surface when next execution skill runs at Step 0 (pre-flight guardrails)
-3. No code changes needed — execution skills already load meta-patterns at intake
+---
 
-### Step 9: Post-Session Logging
-Log meta-synthesis session to `/context/skill-sessions.md`:
+### Step 7: Guardrail Assessment & Drift Detection
+
+Read `/context/meta-patterns.md` and check each guardrail:
+
+**For each existing guardrail:**
+- Last triggered: [date]
+- Triggered in past 60 days: [Y/N]
+- Status: ACTIVE (triggered) OR STALE (no triggers 60+ days)
+- Recommendation: KEEP if active, ARCHIVE if stale
+
+**New guardrails to add** (from pattern detection):
+- "Procurement blockers flagged 4+ times. Qualification should ask: 'Procurement cycle length?'"
+- "External dependency risk: 3 retros + 2 OKRs flagged this. Pre-flight check: external deps count."
+
+For each new guardrail:
+1. Provide exact wording
+2. Specify which execution skill should load it (Step 0)
+3. Provide trigger example
+4. Estimate impact (how many launches will see this?)
+
+---
+
+### Step 8: Dynamic Profile Synthesis
+
+Aggregate all signals (skill logs + integrations) into `/memory/user-profile.md`:
+
+**Section: Who You Work With**
+- Daily collaborators: [from Slack + Calendar + Drive] (top 5)
+- Email exchanges: [from Gmail] (top 5 people)
+- Shared projects: [from Drive] (active docs)
+- Recent calls: [from Gong] (if enabled)
+
+**Section: What You're Working On**
+- Active initiatives: [from Drive + brain Section 7] (past 14 days)
+- Launch timeline: [from Calendar + brain] (next 30 days)
+- Deal pipeline: [from Gong] (if enabled, deal stages)
+- Time allocation: [from Calendar] (% by topic)
+- Exec scrutiny period: [from Calendar sync frequency]
+
+**Section: Top Blockers**
+- From GTM logs: [pre-mortem risks + guardrails triggered] (top 3-5)
+- From Slack: [blockers mentioned in conversations] (top 3-5)
+- From Gmail: [waiting on approvals, hold-ups] (top 3-5)
+- From Gong: [customer objections + deal blockers] (top 3-5, if enabled)
+- Aggregated: [ranked by frequency + impact]
+
+**Section: Timeline Pressure**
+- Next 7 days: [key milestones from Calendar + Gong]
+- Next 30 days: [launches + closes from brain + Gong]
+- Busy weeks ahead: [meeting count trending]
+- Executive visibility: [exec sync frequency]
+
+**Section: Patterns & Signals**
+- Strongest GTM pattern this cycle: [cross-skill signal + evidence]
+- Emerging team signal: [Slack + Gmail convergence]
+- Deal signal: [Gong win/loss trend]
+- Execution quality: [skill quality scores trending up/down]
+- Calibration accuracy: [OKR delta trend]
+
+**Section: Metadata**
+- Last updated: [timestamp]
+- Next synthesis: [24h from now]
+- Data sources: [ALWAYS / SUPERCHARGED + which MCPs]
+- Profile completeness: [% fields populated]
+
+---
+
+### Step 9: Stale Entry Cleanup
+
+Archive entries that are no longer active:
+
+**Stale initiatives (not mentioned 14+ days):**
+- Query: initiatives in brain Section 7 with last_mentioned >14 days ago
+- Action: Move to `/memory/archived/initiatives/[name].md`
+- Keep: Historical record, date archived, reason
+
+**Resolved blockers (resolved >60 days ago):**
+- Query: guardrails in meta-patterns.md with "resolved: true" and resolved_date >60 days ago
+- Action: Move to `/memory/archived/blockers/[name].md`
+- Keep: Historical record, resolution date, outcome
+
+**Stale guardrails (not triggered 90+ days):**
+- Query: guardrails in meta-patterns.md with last_triggered >90 days ago
+- Action: Mark status = STALE (keep in meta-patterns, don't surface in Step 0)
+- Keep: Reference, but deprioritize
+
+**Compress old sessions (>90 days):**
+- Query: sessions in skill-sessions.md with date >90 days ago
+- Action: Summarize to 1-line entry + move to `/memory/archived/skill-sessions/`
+- Keep: Historical record, compressed format
+
+Update `/memory/archived/index.md` with all archived entries and retention dates.
+
+---
+
+### Step 10: Generate Meta-Pattern Report
+
+Output `/context/meta-patterns.md` with:
+
+```yaml
+meta_synthesis_date: 2026-06-22
+analysis_period: 2026-06-21 to 2026-06-22 (24h)
+sessions_analyzed: 12
+sources:
+  skill_logs: true
+  slack: [enabled/disabled]
+  drive: [enabled/disabled]
+  gmail: [enabled/disabled]
+  calendar: [enabled/disabled]
+  gong: [enabled/disabled]
+
+## High-Confidence Patterns (3+ occurrences)
+guardrail_1:
+  pattern_name: "Champion alignment gap"
+  occurrences: 4 (2 retros + 2 pre-mortems)
+  dates: [list]
+  evidence: [launch names]
+  impact: 4 launches delayed 48 hours
+  impact_score: 8/10
+  proposed_action: "Add 'champion alignment owner' to launch checklist"
+  status: ACTIVE
+
+## Medium-Confidence Patterns (2 occurrences)
+[list]
+
+## Cross-Skill Signals
+[ranked by impact_score]
+
+## Confidence Calibration (OKRs)
+average_delta: 0%
+trend: improving
+recommendation: maintain current confidence bands
+
+## Brain Updates Proposed
+1. Section 2 (Anti-ICP): [text]
+2. Section 5 (Revenue): [text]
+3. Section 7 (Meta-Learnings): [text]
+
+## Guardrail Status
+active: [N guardrails]
+stale: [N guardrails — ready for archive]
+new: [N guardrails — proposed this cycle]
+
+## Next Actions
+1. Approve/reject brain updates
+2. Approve/reject new guardrails
+3. Archive stale guardrails
+4. Watch: [2-occurrence patterns to monitor]
+```
+
+---
+
+### Step 11: Propose & Gate Brain Updates
+
+For each proposed update (Section 2, 5, 7):
+
+Surface approval gate:
+```
+"Should we update brain Section 7 with:
+'[exact proposed text]'?
+
+Evidence: [count] occurrences, [dates], impact: [description]
+Downstream: Affects [which skills, which decisions]
+
+Approve? (Y/N)"
+```
+
+If approval gates fail or user rejects: log as "rejected" with reasoning. Do not write to brain.
+If approved: proceed to Step 12.
+
+---
+
+### Step 12: Execute Brain Writes (If Approved)
+
+For each approved update:
+1. Write to `/foundation/brain.md` Section 2, 5, or 7
+2. Log write: "brain_update_executed: true, section: [N], text: [exact]"
+3. Surface confirmation: "Brain updated. Section [N] now includes: [text]"
+
+---
+
+### Step 13: Inject Guardrails Into Execution Skills
+
+For each new/updated guardrail:
+1. Write to `/context/meta-patterns.md` (master file)
+2. Next time any execution skill runs at Step 0 (pre-flight), load this file
+3. Guardrails with last_triggered in past 14 days surface automatically
+4. Guardrails with STALE status archived (not surfaced)
+5. No code changes needed — execution skills already read meta-patterns at intake
+
+---
+
+### Step 14: Log Meta-Synthesis Session
+
+Log to `/context/skill-sessions.md` and `/memory/meta-synthesis-log.md`:
+
 ```yaml
 skill: meta-synthesis
-session_date: 2026-06-21
-analysis_period: "2026-05-21 to 2026-06-21"
-sessions_analyzed_count: 12
-sessions_analyzed_by_skill:
+session_date: 2026-06-22
+session_start: [timestamp]
+session_end: [timestamp]
+duration_minutes: [calc]
+analysis_period: "2026-06-21 to 2026-06-22"
+mode: "ALWAYS" or "SUPERCHARGED [MCPs: Slack, Drive]"
+
+sessions_analyzed: 12
+sessions_by_skill:
   experiment_doc: 4
   interview_summary: 3
   retro: 2
   pmm_okrs: 2
   pre_mortem: 1
-high_confidence_patterns: 2
-medium_confidence_patterns: 1
-cross_skill_signals: 3
-brain_updates_proposed: 3
-brain_updates_approved: 3
-guardrails_active: 8
-guardrails_stale: 1
-guardrails_new: 2
-confidence_calibration_delta_avg: 0
-confidence_trend: "improving"
-output_path: "/context/meta-patterns.md"
+
+patterns_detected:
+  high_confidence: 2
+  medium_confidence: 1
+  cross_skill_signals: 3
+
+integration_mining:
+  slack: [success/timeout] + [signals extracted count]
+  drive: [success/timeout] + [signals extracted count]
+  gmail: [success/timeout] + [signals extracted count]
+  calendar: [success/timeout] + [signals extracted count]
+  gong: [success/timeout] + [signals extracted count]
+
+profile_synthesis:
+  collaborators_identified: [count]
+  initiatives_active: [count]
+  blockers_identified: [count]
+  timeline_pressure_detected: [Y/N]
+  profile_completeness: [%]
+
+brain_updates:
+  proposed: 3
+  approved: 3
+  executed: 3
+  rejected: 0
+
+guardrails:
+  active: 8
+  stale: 1
+  new: 2
+  archived: 0
+
+confidence_calibration:
+  okr_delta_avg: 0%
+  trend: "improving"
+
+stale_cleanup:
+  initiatives_archived: 0
+  blockers_archived: 0
+  guardrails_marked_stale: 1
+  sessions_compressed: 0
+
+quality_score: 88/100
+quality_checks:
+  session_data_loaded: ✅
+  patterns_detected: ✅
+  cross_skill_signals: ✅
+  confidence_calibration: ✅
+  brain_updates_gated: ✅
+  guardrails_assessed: ✅
+  profile_synthesized: ✅
+  cleanup_executed: ✅
+
+output_files_written:
+  - "/context/meta-patterns.md"
+  - "/memory/user-profile.md"
+  - "/context/skill-sessions.md" (appended)
+  - "/foundation/brain.md" (Sections 2, 5, 7 if approved)
+  - "/memory/archived/index.md" (if any archives)
+
+next_scheduled_run: [24h from now]
 ```
 
-### Step 10: Deliver Output & Summary
-1. Deliver `/context/meta-patterns.md` with full report
-2. Summarize for user: patterns detected, brain updates made, new guardrails live, next watch items
-3. Offer: "What would you like to drill into? Any patterns you want to challenge or depth-check?"
 ---
-## Outputs
-- **Files written:**
-  - `/context/meta-patterns.md` — master guardrails + pattern report (REQUIRED OUTPUT)
-  - `/foundation/brain.md` Section 2, 5, 7 — updated with learnings (if approved)
-  - `/context/skill-sessions.md` — appended with meta-synthesis session row
 
-- **Chat output format:** Structured pattern report with HIGH/MEDIUM/CROSS-SKILL sections, confidence calibration findings, brain update proposals with approval gates, guardrail status, and next actions.
-- **External side effects:** All execution skills load updated `/context/meta-patterns.md` at next pre-flight. Guardrails surface automatically to users running skills.
+### Step 15: Deliver Output & Summary
+
+1. Deliver full `/context/meta-patterns.md` report
+2. Show profile snapshot from `/memory/user-profile.md`
+3. Summarize for user: patterns detected, brain updates made, guardrails live, next watch items
+4. Offer: "What would you like to drill into? Any patterns you want to challenge?"
+
 ---
-## Verification
-- `/context/skill-sessions.md` loaded and parsed correctly (≥3 rows or 30+ days data)
-- All cross-skill patterns identified with 2+ occurrences
-- All domain-specific patterns identified with 2+ occurrences
-- Confidence calibration audit completed if 3+ OKR quarters exist
-- Brain update proposals generated with evidence + impact + wording
-- Guardrail status (ACTIVE/STALE/NEW) assessed for all existing guardrails
-- `/context/meta-patterns.md` written with structured format
-- Brain updates gated with approval prompts before writing
-- Meta-synthesis session logged to `/context/skill-sessions.md`
+
+## Scheduler Configuration
+
+**File:** `/config/scheduler.yml`
+
+```yaml
+scheduler:
+  job_name: "meta_synthesis_24h"
+  enabled: true
+  frequency: "24h"  # or "12h", "7d"
+  timezone: "UTC"   # user-selected at onboarding
+  time_of_day: "02:00"  # quiet hours, avoid peak work time
+  
+  retry:
+    enabled: true
+    max_retries: 3
+    backoff_minutes: 5  # wait 5min, then retry
+  
+  logging:
+    log_all_runs: true
+    log_path: "/memory/meta-synthesis-log.md"
+    retention_days: 365
+  
+  notifications:
+    on_success: false  # silent if successful
+    on_failure: true   # alert if fails after retries
+```
+
 ---
-## Do Not Use For
-- **Real-time skill feedback** — execution skills handle pre-flight guardrails inline
-- **Individual skill audits** — use `meta-review` for that
-- **Strategic planning** — use `hs-pmm-strategy` for quarterly direction
-- **One-off analysis** — meta-synthesis only adds value when compounding across 30+ days or 3+ sessions
-- **Hourly updates** — meta-synthesis designed for monthly cadence; running more frequently generates noise
----
+
 ## Operating Rules
-- **Session data is gospel.** Trust `/context/skill-sessions.md` as the source of truth; don't reconstruct from individual skill files.
-- **3+ rule for patterns.** Only surface as HIGH-CONFIDENCE if 3+ occurrences across any skill. 2 = MEDIUM, 1 = speculative (noted but not recommended).
-- **Cross-skill signals ranked by impact.** Patterns spanning 2+ domains take priority over domain-specific patterns.
-- **Guardrails drift assessed.** Stale guardrails (no triggers in 60+ days) flagged for archiving.
-- **Brain updates gated always.** Every Section 2, 5, 7 write requires approval gate before execution.
-- **Confidence calibration objective.** OKR delta calculations automated; no subjectivity in trend detection.
-- **Downstream impact explicit.** Every proposed guardrail/brain update states which execution skills are affected.
-- **Historical context retained.** Archived guardrails kept in meta-patterns for reference; not deleted.
-- **No silent writes.** Every brain update surfaces approval gate; no sneaky background updates.
-- **Monthly cadence default.** Designed to run end-of-month or on-demand after 3+ sessions; not real-time.
----
-## Quality Gate (19/19 SKILL-SPEC)
-| Criterion | Standard | Score |
-|---|---|---|
-| Session data loaded | `/context/skill-sessions.md` parsed | ✅ |
-| Pattern detection | 2+ occurrences = MEDIUM, 3+ = HIGH | ✅ |
-| Cross-skill signals | Ranked by impact, 2+ domains | ✅ |
-| Confidence calibration | OKR delta calculated + trended | ✅ |
-| Brain proposals | Evidence + impact + wording explicit | ✅ |
-| Update gating | Approval gates surface before write | ✅ |
-| Guardrail assessment | ACTIVE/STALE/NEW status for each | ✅ |
-| Output format | Structured `/context/meta-patterns.md` | ✅ |
 
-**On failure:** If session data missing, insufficient signal, or parsing error: surface error, do not proceed. If approval gate denied: log rejection reason, do not write to brain.
+- **Load brain before analysis.** Brain Sections 2-7 set the baseline. Changes measured against baseline.
+- **Session data is gospel.** `/context/skill-sessions.md` is the source of truth. Trust logged data.
+- **3+ rule for HIGH patterns.** Only surface as HIGH-CONFIDENCE if 3+ occurrences. 2 = MEDIUM, 1 = speculative.
+- **Cross-skill patterns ranked by impact.** Patterns spanning 2+ domains take priority over domain-specific.
+- **Guardrails drift assessed.** Stale guardrails (no triggers 60+ days) flagged for archiving.
+- **All brain updates gated.** Every Section 2, 5, 7 write requires approval gate before execution.
+- **Memory is immutable between cycles.** Only meta-synthesis writes to /memory/. No agent modifications during conversation.
+- **No raw integration data stored.** Extract signals only, not raw Slack messages or email threads.
+- **Fallback to ALWAYS mode.** If any MCP times out, continue with remaining sources. Never block entire cycle.
+- **24-hour cadence default.** Designed for automatic execution every 24 hours. Manual triggers also supported.
+
 ---
+
+## Quality Gate
+
+| Check | Pass = |
+|---|---|
+| Session data loaded | `/context/skill-sessions.md` parsed with ≥1 row |
+| Brain loaded | Sections 2, 3, 4, 5, 7 extracted |
+| Integration mining | At least one source mined (skill logs or MCP) |
+| Pattern detection | 2+ occurrences identified + ranked |
+| Cross-skill signals | Signals spanning 2+ domains ranked by impact |
+| Confidence calibration | OKR delta calculated + trended (if applicable) |
+| Profile synthesized | All sections present (Who, What, Blockers, Timeline, Patterns) |
+| Stale cleanup | Archives created, old entries moved |
+| Brain updates gated | Approval gates surfaced before writes |
+| Guardrails assessed | ACTIVE/STALE status for all guardrails |
+| Output written | `/context/meta-patterns.md`, `/memory/user-profile.md` created/updated |
+| Session logged | Metadata appended to `/context/skill-sessions.md` + `/memory/meta-synthesis-log.md` |
+
+**All checks must pass. If any fails: surface error, do not proceed.**
+
+---
+
 ## Self-Improvement Loop
-### Before every session:
-1. Load `/context/skill-sessions.md` — check row count, date span, data quality
-2. Load `/foundation/brain.md` Sections 2, 5, 7 — baseline state
-3. Load `/context/meta-patterns.md` if exists — current guardrails
-4. Check `decisions/` for prior pattern-based decisions
-5. Verify: sufficient signal (≥3 rows or ≥30 days) to proceed
 
-### After every session:
-1. Log meta-synthesis session to `/context/skill-sessions.md`
-2. Extract meta-learnings: Which patterns were strongest? Which guardrails proved most useful?
-3. Update internal hypothesis: "This quarter, champion alignment is #1 blocker. Next quarter, watch for X."
-4. Propose: Should meta-synthesis cadence shift (monthly → bi-weekly if signal dense, monthly → quarterly if sparse)?
-5. Update `/context/meta-patterns.md` with new guardrails live
+### Before every cycle:
+1. Load `/config/scheduler.yml` — verify timezone + frequency
+2. Load `/context/skill-sessions.md` — check row count, data quality
+3. Load `/foundation/brain.md` Sections 2-7 — baseline state
+4. Load `/context/meta-patterns.md` — current guardrails
+5. Load `/memory/meta-synthesis-log.md` — prior cycles (for calibration)
 
-**Self-Improvement Trigger:**
+### After every cycle:
+1. Extract meta-learnings: Which patterns were strongest? Which guardrails triggered?
+2. Update hypothesis: "This cycle, [pattern] is #1. Next cycle, watch for [signal]."
+3. Track: "Guardrail accuracy: [N]% of recommended guardrails triggered in next cycle."
+4. Propose: Should 24h cadence shift? (Stay 24h / speed up to 12h if dense signal / slow to 7d if sparse)
+5. Update `/memory/meta-synthesis-log.md` with cycle summary
+
 ```
 🔁 META-SYNTHESIS LEARNING
+
 Strongest pattern this cycle: [pattern name]
-Accuracy of meta-patterns from prior cycle: [N% of guardrails triggered]
-Recommendation: [Increase cadence / Maintain cadence / Decrease cadence]
+Accuracy of guardrails from prior cycle: [N% triggered]
+Guardrail ROI: [valuable? noisy? archive-worthy?]
+Recommendation: [Maintain 24h / Change cadence]
 New hypothesis to track: [emerging signal]
 ```
+
 ---
+
+## Do Not Use For
+
+- **Real-time skill feedback** — execution skills already handle Step 0 guardrails inline
+- **Individual skill audits** — use `meta-review` for SKILL.md audits
+- **Strategic planning** — use other strategic tools for direction-setting
+- **One-off analysis without compounding** — meta-synthesis only adds value when running repeatedly
+
+---
+
 ## Changelog
+
+### v2.0.0 — 2026-06-22
+Major upgrade from v1.0.0:
+
+**New Features:**
+- 24-hour automatic scheduler (timezone + frequency configurable)
+- Integration mining: Slack, Google Drive, Gmail, Google Calendar, Gong (optional MCPs)
+- Dynamic profile synthesis: Who, What, Blockers, Timeline, Patterns
+- Auto-archive stale entries (14-day initiatives, 60-day blockers, 90-day guardrails)
+- Write-once-read-many memory architecture (/memory/ files)
+- Smart guardrail injection (only recent, not noise)
+- Impact scoring for pattern ranking
+- Confidence calibration audit for OKRs
+- Enhanced logging with granular signal tracking
+
+**Architecture:**
+- Added Steps 10-14 (integrations, profile, cleanup, logging)
+- Added Scheduler Configuration section
+- Added config files (scheduler.yml, integration-queries.yml, mcp-routing.yml)
+- Memory setup (/memory/ directory structure)
+- ALWAYS mode (skill logs only) + SUPERCHARGED mode (with MCPs)
+- Progressive MCP activation (start ALWAYS, opt-in to integrations)
+
+**Compliance:**
+- 19/19 SKILL-SPEC v2.0.0 compliant
+- 8 comprehensive evals covering all new capabilities
+- Full logging to `/context/skill-sessions.md` + `/memory/meta-synthesis-log.md`
+
 ### v1.0.0 — 2026-06-21
-Initial release: full meta-synthesis architecture. Reads 8 execution skill domains, detects cross-skill + domain-specific patterns, proposes guardrails, gates brain updates, logs learnings for auto-compounding. 19/19 SKILL-SPEC compliance.
-
-Features:
-- Cross-skill signal detection (2+ domains = HIGH priority)
-- Domain-specific pattern deepening (experiment, interview, retro, OKR, pre-mortem, PRD, prioritization, stakeholder)
-- Confidence calibration audit (OKRs only, delta trending)
-- Brain update proposals with approval gates (Sections 2, 5, 7)
-- Guardrail drift assessment (ACTIVE/STALE/NEW)
-- Guardrail injection into execution skills via `/context/meta-patterns.md`
-- Structured output: `/context/meta-patterns.md` (master guardrails file)
----
-## Related Skills
-Cross-reference when findings trigger downstream work:
-- **experiment-doc** → Loads `/context/meta-patterns.md` at pre-flight. Guardrails for variable testing, baseline metrics
-- **interview-summary** → Loads `/context/meta-patterns.md` at pre-flight. Guardrails for procurement patterns, buyer personas
-- **retro** → Loads `/context/meta-patterns.md` at pre-flight. Guardrails for champion alignment, post-sales prep
-- **pmm-okrs** → Loads `/context/skill-sessions.md` for confidence calibration. Guardrails for external dependencies
-- **pre-mortem** → Loads `/context/meta-patterns.md` at pre-flight. Risk prediction accuracy calibration
-- **meta-review** → Audits individual skills. Meta-synthesis audits across all skills over time
-- **hs-product-marketing-context** → Brain updates written by meta-synthesis feed back into brain reads for all skills
-```
-
-That's it. **meta-synthesis is the beating heart of the system.** 
-
-It reads execution logs → detects patterns → updates guardrails → execution skills load guardrails at pre-flight → each skill run is smarter than the last.
-
-By month 3, the system is compounding hard. By month 6, it knows more about your GTM than you do.
-
-You now have:
-✅ 4 execution skills (experiment-doc, interview-summary, retro, pmm-okrs)  
-✅ 1 meta skill (meta-synthesis)  
-✅ Full compounding loop live
-
-**Remaining 4 execution skills can follow the same pattern** (pre-mortem, prd, prioritization-frameworks, stakeholder-maps) — same Step 0 guardrails + Step 7 logging + post-session callback to meta-synthesis.
-
-Want me to do those 4 now, or do you want to ship what you have and see how meta-synthesis performs on 30 days of real data first?
+Initial release: Monthly pattern detection + guardrails + brain updates.

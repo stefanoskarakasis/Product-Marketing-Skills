@@ -1,0 +1,371 @@
+# Meta-Review CI/CD Gates Configuration
+# Version: 2.0.0
+# Description: Automated quality gates for CI/CD pipeline integration
+
+ci_gates:
+
+  # Gate System Overview
+  overview:
+    purpose: "Block low-quality outputs from deployment; ensure tier standards are met"
+    gate_logic: "All gates must PASS; any FAIL blocks deployment"
+    review_bypass: "Only executive override (with reason logged)"
+    notification: "Notify on failure with specific gate(s) that failed"
+
+  # Gate 1: Quality Score Threshold
+  gate_1_quality_score:
+    name: "Quality Score Minimum"
+    description: "Output must meet minimum quality score for its tier"
+    type: "NUMERIC_THRESHOLD"
+    blocking: true
+
+    rules:
+      T1:
+        minimum_score: 90
+        message: "T1 requires 90+ quality score. Current: {score}/100"
+        override_required: "Executive approval"
+
+      T2:
+        minimum_score: 75
+        message: "T2 requires 75+ quality score. Current: {score}/100"
+        override_required: "Director approval"
+
+      T3:
+        minimum_score: 60
+        message: "T3 requires 60+ quality score. Current: {score}/100"
+        override_required: "Manager approval"
+
+      T4:
+        minimum_score: 50
+        message: "T4 requires 50+ quality score. Current: {score}/100"
+        override_required: "Team lead approval"
+
+    implementation:
+      check: "score >= tier_minimum"
+      on_fail: "Block deployment, show score gap"
+      on_pass: "Gate passes, continue to Gate 2"
+
+  # Gate 2: Critical Issues (Blocking Gaps)
+  gate_2_critical_issues:
+    name: "No Critical/Blocking Gaps"
+    description: "Output must have zero critical issues marked during quality review"
+    type: "CATEGORICAL"
+    blocking: true
+
+    critical_gap_definitions:
+      missing_positioning: "Positioning statement missing or unintelligible"
+      missing_success_criteria: "Success metrics completely missing"
+      unresolved_major_risk: "Major risk identified with no mitigation plan"
+      unrealistic_timeline: "Timeline is clearly infeasible"
+      tier_mismatch_high: "Output is 2+ tiers below assigned tier"
+
+    implementation:
+      check: "critical_gap_count == 0"
+      on_fail: "Block deployment, list all critical gaps"
+      on_pass: "Gate passes, continue to Gate 3"
+      override: "Not allowed (critical gaps must be fixed, not overridden)"
+
+  # Gate 3: Guardrail Compliance
+  gate_3_guardrail_compliance:
+    name: "Active Guardrails Pass"
+    description: "Output must pass all active guardrails for its tier"
+    type: "PATTERN_MATCH"
+    blocking: true
+
+    guardrail_activation_by_tier:
+      T1:
+        - "champion_alignment: Champion must be identified and aligned"
+        - "messaging_clarity: Positioning must own unique value angle"
+        - "competitive_accuracy: Competitive context must be data-backed"
+        - "metric_rigor: Success metrics must include confidence bands"
+        - "timeline_feasibility: All dependencies must be mapped"
+
+      T2:
+        - "champion_alignment: Champion should be identified"
+        - "messaging_clarity: Positioning should own a value angle"
+        - "metric_rigor: Targets must be grounded in data"
+
+      T3:
+        - "metric_rigor: Targets must be realistic"
+
+      T4: []
+      # No guardrails for T4
+
+    implementation:
+      check: "for each active_guardrail: guardrail_passes == true"
+      on_fail: "Block deployment, list guardrails that failed"
+      on_pass: "Gate passes, continue to Gate 4"
+      hit_interpretation:
+        "HIT": "Guardrail triggered, output fails this gate"
+        "PASS": "Guardrail check passed, no issue"
+
+  # Gate 4: Quality Trend Acceptable
+  gate_4_quality_trend:
+    name: "Quality Trend is Healthy"
+    description: "Output quality is not declining compared to recent history"
+    type: "TREND_ANALYSIS"
+    blocking: false
+    # Note: This is non-blocking because trend is informational, not absolute
+
+    trend_rules:
+      declining_trend:
+        definition: "Output score is 10+ points below user's 30-day average"
+        action: "WARN (non-blocking, but alert user)"
+        message: "Your recent outputs avg {avg}/100, this is {score}/100 (-{gap} points). Check for quality dip."
+
+      stable_trend:
+        definition: "Output score is within ±5 points of user's 30-day average"
+        action: "PASS (trend is stable)"
+        message: "Quality is stable (consistent with your recent average)"
+
+      improving_trend:
+        definition: "Output score is 5+ points above user's 30-day average"
+        action: "PASS (trend is improving)"
+        message: "Quality is improving! This is +{gap} points above your recent average."
+
+    implementation:
+      check: "score >= (avg_score - 10)"
+      on_fail: "WARN (non-blocking), show trend comparison"
+      on_pass: "Gate passes"
+      data_source: "context/quality-trends.md (past 30 days)"
+
+  # Gate 5: Confidence Prediction Acceptable
+  gate_5_confidence_prediction:
+    name: "Tier Success Confidence is Acceptable"
+    description: "Output's predicted success rate is above tier minimum"
+    type: "CONFIDENCE_THRESHOLD"
+    blocking: false
+    # Non-blocking: confidence is probabilistic, not deterministic
+
+    confidence_minimums:
+      T1:
+        minimum_confidence: 0.75
+        message: "T1 requires 75%+ success confidence. Current: {confidence}%"
+
+      T2:
+        minimum_confidence: 0.60
+        message: "T2 requires 60%+ success confidence. Current: {confidence}%"
+
+      T3:
+        minimum_confidence: 0.50
+        message: "T3 requires 50%+ success confidence. Current: {confidence}%"
+
+      T4:
+        minimum_confidence: 0.40
+        message: "T4 requires 40%+ success confidence. Current: {confidence}%"
+
+    implementation:
+      check: "confidence >= tier_minimum"
+      on_fail: "WARN (non-blocking), identify confidence issues"
+      on_pass: "Gate passes"
+
+  # Gate Summary: Which Gates Block vs. Warn
+  gate_blocking_summary:
+    blocking_gates:
+      - "Gate 1: Quality Score Minimum (blocks deployment if score too low)"
+      - "Gate 2: Critical Issues (blocks if any critical gaps)"
+      - "Gate 3: Guardrail Compliance (blocks if guardrails fail)"
+
+    warning_gates:
+      - "Gate 4: Quality Trend (warns if declining, doesn't block)"
+      - "Gate 5: Confidence Prediction (warns if low, doesn't block)"
+
+    decision_logic: "All 3 blocking gates must PASS. Warning gates only inform user."
+
+---
+
+## CI/CD Integration Points
+
+### Deployment Pipeline Hook
+
+When user attempts to deploy output:
+
+```
+1. Trigger quality review
+2. Run all 5 gates
+3. Evaluate results:
+
+   IF Gate 1 PASS AND Gate 2 PASS AND Gate 3 PASS:
+     → Deployment APPROVED
+     → (Run Gate 4 & 5 for warnings)
+     → Proceed to deployment
+
+   ELSE:
+     → Deployment BLOCKED
+     → Show which gates failed
+     → Offer: (a) Fix and retry, (b) Override + reason, (c) Downgrade tier
+```
+
+### Notifications
+
+**On PASS:**
+```
+✅ Quality gates passed. Output is approved for deployment.
+   Quality score: 78/100 (T2 standard ✓)
+   Guardrails: All active guardrails pass ✓
+   Confidence: 72% success probability
+   Ready to deploy.
+```
+
+**On FAIL:**
+```
+❌ Quality gates FAILED. Deployment blocked.
+
+   Gate 1: Quality Score ✅ PASS (78/100 >= 75 required)
+   Gate 2: Critical Issues ❌ FAIL (1 critical gap found: missing competitor context)
+   Gate 3: Guardrails ✅ PASS (all active guardrails pass)
+
+   Action needed: Address critical gap in competitive context.
+   Options: (a) Add competitor analysis, (b) Escalate for exception, (c) Downgrade to T3
+```
+
+---
+
+## Override Rules
+
+### Who Can Override Which Gate?
+
+| Gate | Blocking | Override Required | Override Approval |
+|------|----------|-------------------|-------------------|
+| Gate 1: Quality Score (T1) | Yes | Yes | C-level executive |
+| Gate 1: Quality Score (T2) | Yes | Yes | Director+ |
+| Gate 1: Quality Score (T3) | Yes | Yes | Manager+ |
+| Gate 1: Quality Score (T4) | Yes | Yes | Team lead |
+| Gate 2: Critical Issues | Yes | No | Never (must fix) |
+| Gate 3: Guardrails | Yes | Yes (T1 only) | Executive + reason logged |
+| Gate 4: Quality Trend | No | N/A | N/A (warning only) |
+| Gate 5: Confidence | No | N/A | N/A (warning only) |
+
+### Override Logging
+
+When override requested:
+```
+Log entry required:
+  - Override reason: "Why bypass this gate?"
+  - Approver: "Who approved?"
+  - Timestamp: "When was override granted?"
+  - Risk: "What's the risk if this fails?"
+
+Example:
+  "Override Gate 1 (T2 score 72). Reason: Timeline pressure, messaging can improve post-launch.
+   Approver: sarah@company.com. Risk: May need customer comms if positioning doesn't land.
+   Logged: 2026-07-21 14:32 UTC"
+```
+
+---
+
+## Automated Actions on Gate Failure
+
+### If Quality Score Gate Fails:
+
+```
+Suggestion:
+  Run meta-review auto-fix recommendations
+  - Fix 1: [specific recommendation]
+  - Fix 2: [specific recommendation]
+  - Estimated time: 30 min
+  - Estimated new score: +8 points (72 → 80)
+```
+
+### If Critical Issues Gate Fails:
+
+```
+Blocking message:
+  "Critical gap: {gap_name}. Must be resolved before deployment.
+
+   How to fix:
+   1. [Specific action]
+   2. [Specific action]
+
+   Or: Downgrade tier to {lower_tier} (score meets {lower_tier} standard)"
+```
+
+### If Guardrails Gate Fails:
+
+```
+Alert + suggestion:
+  "Guardrail triggered: {guardrail_name}
+   Why it matters: {guardrail_rationale}
+
+   Suggested fix: {fix_recommendation}
+   Or: Request exception from {stakeholder_name}"
+```
+
+---
+
+## Success Metrics for CI/CD Gates
+
+Track these metrics to ensure gates are working:
+
+| Metric | Target | What It Means |
+|--------|--------|---------------|
+| % deployments blocked by gates | 10-15% | Gates are filtering low quality |
+| % block rate by gate | Gate 1: 5%, Gate 2: 3%, Gate 3: 5% | Distribution of blocks |
+| % override rate (when allowed) | <5% | Overrides are rare, not routine |
+| % of blocked outputs that pass after fix | 80%+ | Outputs are fixable, not unsalvageable |
+| False positive rate (gates block, output succeeds anyway) | <10% | Gates are accurate predictors |
+| False negative rate (gates pass, output fails) | <5% | Gates don't miss failures |
+
+---
+
+## Gate Tuning Over Time
+
+As meta-review collects data, gates can be tuned:
+
+### After 50 Outputs:
+- Assess false positive rate (gates too strict?)
+- Assess false negative rate (gates too lenient?)
+- Adjust thresholds if needed
+
+### After 100 Outputs:
+- Analyze which gates are most predictive of actual success
+- Consider downweighting low-signal gates
+- Consider upweighting high-signal gates
+
+### After 200 Outputs:
+- Build machine-learned confidence prediction (vs. current heuristic)
+- Personalize thresholds by user (if variability exists)
+- Consider skill-specific thresholds (some skills are riskier than others)
+
+---
+
+## Example: Gate Evaluation Walkthrough
+
+**Scenario:** T2 GTM brief, quality score 78/100
+
+```
+Gate 1: Quality Score Minimum
+  Rule: T2 requires 75+
+  Output score: 78
+  Check: 78 >= 75? YES ✓
+  Result: PASS
+
+Gate 2: Critical Issues
+  Rule: Must have zero critical gaps
+  Issues found: 0 (no critical gaps)
+  Check: 0 == 0? YES ✓
+  Result: PASS
+
+Gate 3: Guardrail Compliance
+  Active guardrails for T2: champion_alignment, messaging_clarity, metric_rigor
+
+  Champion alignment: ✓ PASS (champion identified + aligned)
+  Messaging clarity: ⚠️ HIT (positioning feels incremental, not bold)
+  Metric rigor: ✓ PASS (targets have confidence bands)
+
+  Check: All pass? NO ✗ (messaging clarity hit)
+  Result: FAIL
+
+OVERALL GATE STATUS: ❌ BLOCKED
+
+Deployment blocked because:
+  - Gate 1 PASS
+  - Gate 2 PASS
+  - Gate 3 FAIL (messaging_clarity guardrail triggered)
+
+Action: Fix messaging (see auto-fix recommendations) or request guardrail exception.
+
+Optional warnings (non-blocking):
+  - Gate 4: Quality trend is stable (no decline)
+  - Gate 5: Confidence is 72% (above T2 minimum of 60%)
+```
+

@@ -1,399 +1,536 @@
 ---
 name: meta-learn
-version: 1.0.0
+version: 2.0.0
 description: >
-  Centralised post-session learning engine. Runs after any PMM skill session to
-  extract patterns, route them to the correct knowledge files, and maintain a shared
-  intelligence layer that compounds across all skills. Trigger on: "capture what we
-  learned", "log this session", "save the learnings", "run learn", "what did we learn
-  from this session", or any request to record, encode, or compound insights from a
-  completed skill session.
+  Compound learning engine with auto-trigger, smart routing, and hypothesis tracking.
+  Runs after any PMM skill session to extract patterns, detect cross-skill signals,
+  confirm/contradict open hypotheses, and route learnings to the correct knowledge files.
+  Auto-detects skill completion, routes to domain-specific or global knowledge base,
+  tracks confidence, and compounds learnings across all skills. Trigger on: "capture
+  what we learned", "log this session", "save the learnings", "run learn", "what did
+  we learn", or any request to encode insights from a completed skill session.
 
 metadata:
   author: Stefanos Karakasis
+  version_history: "1.0.0 → 2.0.0 (added auto-trigger, smart routing, hypothesis tracking)"
   context: context-agnostic
   quality_gate: true
-last_updated: 2026-06-06
+  phase: "1B"
+last_updated: 2026-07-21
 ---
 
-# meta-learn
+# Meta-Learn v2.0.0
 
-The compound interest mechanism for the skill repo. Runs after any skill session,
-extracts what was observed, routes patterns to the right knowledge files, and
-ensures every future session of any skill is sharper than the last.
+The compound intelligence layer. Every skill session teaches the system something.
+This skill ensures learnings compound across skills, hypotheses get confirmed/contradicted,
+patterns get routed to the right place, and your tenth session is measurably smarter
+than your first.
 
-Without this: patterns decay in skill-specific silos and never compound across the
-system. With this: your tenth pre-mortem is measurably smarter than your first —
-and so is your tenth retro, GTM brief, and beachhead assessment.
+**New in v2.0.0:**
+- Auto-trigger detection (recognizes when skill session ends)
+- Smart routing (cross-skill pattern detection, domain classification)
+- Hypothesis tracking (open questions from prior sessions confirmed or contradicted)
+- Confidence scoring (patterns ranked by evidence strength)
+- Self-improvement trigger detection (patterns that should become guardrails)
+- Approval gates (when to ask user vs. auto-write to knowledge base)
 
 ---
 
 ## Trigger
 
-- **When:** At the end of any skill session where output was produced — especially
-  after `pre-mortem`, `go-to-market-strategy`, `retro`, `beachhead-segment`,
-  `gaccs-brief`, `stakeholder-maps`, `positioning-messaging`, `pmm-okrs`.
-- **Not for:** Running mid-session — patterns extracted before a session closes are
-  incomplete. Starting a skill session → that's the skill's job. Reviewing skill
-  file quality → use `meta-review`. Checking skill output quality → use `meta-verify`
-  (when built).
-- **Example prompts:**
-  - "Run learn on this session"
-  - "Capture what we learned from this retro"
-  - "Log the patterns from this GTM strategy session"
-  - "/learn"
-  - "Save the learnings before we close"
+**Auto-Trigger Mode (Primary):**
+- After any PMM skill session with output, meta-learn runs automatically
+- Detects: skill name, session start/end time, outputs produced
+- Does NOT trigger: mid-session reviews, skill file quality checks (use meta-review),
+  output quality checks (use meta-verify)
+
+**Manual Trigger (Secondary):**
+- User says: "run learn", "/learn", "capture learnings", "log this session"
+- User provides: session summary + skill name + outputs
+
+**No Trigger:**
+- Sessions with no output ("we just talked through it")
+- Skill startup/pre-flight (not a closed session yet)
+- Skill iterations (only after final output)
 
 ---
 
 ## Inputs
 
-- **Args:** Skill name (optional) + session summary or full session output.
-  If no session content provided, ask the three extraction questions directly.
-- **Defaults:** If skill name not stated, infer from session content. If session
-  content not provided, prompt for it before extracting.
-- **Context keys:**
-  - `knowledge/global/rules.md` — load before routing. Cross-skill confirmed rules
-    applied by default to all future sessions.
-  - `knowledge/global/hypotheses.md` — load before routing. Check if today's session
-    confirms or contradicts any open hypothesis.
-  - `knowledge/INDEX.md` — load to identify which domain folders exist and route
-    new patterns correctly.
-  - `sessions/log.md` — append session summary after every run.
-  - n.v.t. — no brain file. This skill is context-agnostic by design. It operates
-    on session content, not company context.
+**Auto-Trigger Detection:**
+- Skill name (extracted from execution context)
+- Session start/end timestamps
+- Session outputs (documents, briefs, decisions)
+- User feedback on outputs (if provided)
+
+**Manual Trigger Inputs:**
+- Session content (description or paste)
+- Skill name (if not obvious)
+- User's three extraction answers (below)
+
+**Context Files (Pre-Flight Load):**
+- `/config/routing.yml` — domain map, cross-skill signal rules
+- `/config/hypothesis-tracking.yml` — open hypotheses, confirmation criteria
+- `/config/approval-gates.yml` — when user approval needed
+- `/knowledge/INDEX.md` — existing domains and file locations
+- `/knowledge/global/rules.md` — confirmed cross-skill rules
+- `/knowledge/global/hypotheses.md` — open questions
+- `/sessions/log.md` — append session summary (automatic write)
+
+**NOT loaded:** `/foundation/brain.md` (context-agnostic design)
 
 ---
 
-## Pre-flight
+## Pre-Flight (Step 0)
 
-- Load `knowledge/INDEX.md` — identify existing domain folders before routing.
-  If INDEX.md doesn't exist: create it silently. System builds from session one.
-- Load `knowledge/global/rules.md` — check if any global rule is testable today.
-- Load `knowledge/global/hypotheses.md` — note any open hypothesis this session
-  could confirm or contradict.
-- If no session content provided: ask for it before proceeding. Never extract
-  patterns from an empty or incomplete session.
-- This skill is **context-agnostic**. Do not load `/foundation/brain.md`.
-  Patterns must be observable from session content alone — not inferred from
-  company context.
+1. **Load config files** (routing.yml, hypothesis-tracking.yml, approval-gates.yml)
+2. **Load knowledge index** (INDEX.md — where does this pattern go?)
+3. **Load global rules** (what cross-skill patterns already exist?)
+4. **Load open hypotheses** (what questions from prior sessions could this confirm?)
+5. **Detect skill name** (from execution context or user input)
+6. **Confirm session closed** (outputs produced and session end detected)
+7. **Gate pass:** If no session content, ask user for it before proceeding
 
 ---
 
 ## Steps
 
-### Step 1: Ask the Three Extraction Questions
+### Step 1: Auto-Detect Skill Completion (30 sec)
 
-Always ask all three in one message. Do not skip any.
+**What:** Determine if a skill session has actually ended.
 
-> "Before we close, three questions:
->
-> 1. **What surprised you?** Something the skill surfaced that you hadn't considered
->    before this session — a risk, a pattern, a reframe.
->
-> 2. **What was wrong or off?** Any recommendation you pushed back on, overrode, or
->    felt was missing the mark. Be specific.
->
-> 3. **What was missing?** A gap the skill couldn't fill that you had to work around
->    — context it didn't have, a question it didn't ask, an output it didn't produce."
+**How:**
+- Check execution context for skill name, start time, end time
+- Verify outputs exist (document, brief, decisions, etc.)
+- If outputs missing: ask user "Did the skill session complete?"
+- If outputs present: proceed
 
-Wait for answers. Do not proceed to extraction until all three are answered.
-If the user says "nothing" to all three: confirm once, then close without writing.
-A session with no learnings is valid — do not force patterns.
+**Output:** Confirmed skill name + session duration + list of outputs produced
 
----
-
-### Step 2: Extract Patterns
-
-From the three answers, extract 1–3 observations. For each observation:
-
-- State it as a specific, falsifiable pattern — not a vague direction.
-  - ❌ "The skill could be clearer on tier assignment"
-  - ✅ "When the user has no launch history in brain Section 7, tier assignment
-    defaults to conservative (T3) even when initiative signals point to T2"
-
-- Classify the observation:
-  - **New hypothesis** — observed once, needs confirmation
-  - **Hypothesis confirmation** — matches an existing open hypothesis
-  - **Hypothesis contradiction** — conflicts with an existing hypothesis or rule
-  - **Skill gap** — structural missing piece in the skill itself
-  - **User pattern** — recurring behaviour or mistake from the user, not the skill
-
-- Identify the correct domain for routing (see Step 3).
-
----
-
-### Step 3: Route to Correct Knowledge Files
-
-Route each pattern to the domain that matches the skill it came from:
-
-| Source skill | Domain folder |
-|---|---|
-| `go-to-market-strategy` | `knowledge/gtm/` |
-| `retro` | `knowledge/gtm/` |
-| `beachhead-segment` | `knowledge/segments/` |
-| `pre-mortem` | `knowledge/risk/` |
-| `positioning-messaging` | `knowledge/positioning/` |
-| `stakeholder-maps` | `knowledge/stakeholders/` |
-| `gaccs-brief` | `knowledge/briefs/` |
-| `pmm-okrs` | `knowledge/okrs/` |
-| `experiment-doc` | `knowledge/experiments/` |
-| `workflow-orchestrator` | `knowledge/workflows/` |
-| Cross-skill (affects 2+ skills) | `knowledge/global/` |
-| Skill structure / behaviour | `knowledge/meta/` |
-
-Within each domain, route to the correct file:
-- `hypotheses.md` — new or updated hypotheses
-- `rules.md` — confirmed rules (promotion requires explicit approval)
-- `knowledge.md` — factual patterns and observations
-
----
-
-### Step 4: Apply Promotion and Demotion Logic
-
-**Hypothesis → Rule:** When an hypothesis has been confirmed in 3+ independent
-sessions (different users or different initiatives), propose promotion to `rules.md`.
-Never auto-promote. Surface as a Self-Improvement Trigger and wait for approval.
-
-**Rule → Hypothesis:** When new session data directly contradicts a confirmed rule,
-propose demotion to `hypotheses.md` with a note on what contradicted it.
-
-**Stale hypothesis:** If a hypothesis has not been tested in 90+ days, flag it for
-review rather than carrying it forward silently.
-
-Surface all proposed changes before writing:
-
+**Example:**
 ```
-🔁 SELF-IMPROVEMENT TRIGGER
-Observation: [specific pattern from this session]
-Classification: [New hypothesis / Confirmation / Contradiction / Skill gap / User pattern]
-Proposed write: [exact text to add or change]
-Location: [file path]
-Action: [Add to hypotheses.md / Promote to rules.md / Demote to hypotheses.md / Update knowledge.md]
-Awaiting approval before encoding.
+Detected: meta-review session (15 min)
+Outputs: 3 quality scores, 1 fix recommendation
+Session: complete ✓
 ```
 
-Never encode without explicit user approval.
+---
+
+### Step 2: Ask the Three Extraction Questions
+
+**What:** Capture what the user learned that the skill didn't explicitly surface.
+
+**How:** Ask all three in one message. Wait for complete answers before proceeding.
+
+> "Before we close, three quick questions:
+>
+> 1. **What surprised you?** Something unexpected — a risk, a pattern, an insight the skill surfaced that you hadn't considered before.
+>
+> 2. **What was wrong or off?** Any recommendation you pushed back on, disagreed with, or felt was missing the mark. Be specific: what and why?
+>
+> 3. **What was missing?** A gap — context the skill didn't have, a question it didn't ask, an output it didn't produce that would have been valuable."
+
+**Gate:** If all three answered as "nothing", proceed to Step 6 (clean close). If any have content, proceed to Step 3.
 
 ---
 
-### Step 5: Log the Session
+### Step 3: Extract Patterns & Classify (2 min)
 
-After all approved writes are complete, append to `sessions/log.md`:
+**What:** Turn answers into specific, falsifiable patterns.
 
+**How:**
+
+For each answer that isn't "nothing":
+1. **Restate specifically** — "You said [exact quote]. Let me sharpen this..."
+2. **Make falsifiable** — If vague ("better communication"), reframe as testable:
+   - ❌ Vague: "We should communicate better about milestones"
+   - ✅ Falsifiable: "When timeline changes >10 days, notify stakeholders within 24h OR deals slip"
+3. **Classify as:**
+   - **New Pattern** — First time observed
+   - **Confirmed Hypothesis** — Matches open hypothesis (see Step 4)
+   - **Contradicts Hypothesis** — Disproves open hypothesis
+   - **Skill Gap** — Patterns about what the skill missed (route to meta/gaps)
+   - **Cross-Skill Signal** — Appears in 2+ skill domains (route to global/rules)
+
+**Output format:**
+```
+Pattern 1: [Falsifiable statement]
+  Surprise/Wrong/Missing: [Which question it came from]
+  Classification: New Pattern / Hypothesis Confirmation / Cross-Skill Signal / Skill Gap
+  Confidence: High / Medium / Low (based on evidence)
+  Source: [Skill name + domain]
+```
+
+**Example:**
+```
+Pattern 1: "When champion sentiment is declining (2+ signals in Gong), deal velocity slows 40%"
+  From: Wrong (skill didn't flag declining champion as deal risk)
+  Classification: Cross-Skill Signal (seen in GTM-strategy + pre-mortem + gaccs-brief)
+  Confidence: High (4 occurrences, spans 3 domains)
+  Recommendation: Add "champion sentiment" monitor to /knowledge/global/deal-signals
+```
+
+---
+
+### Step 4: Check Open Hypotheses (1 min)
+
+**What:** Does this session confirm or contradict any open hypothesis?
+
+**How:**
+1. Load `/knowledge/global/hypotheses.md`
+2. For each pattern from Step 3, scan for matches
+3. If match found: note confirmation status
+   - ✅ **Confirms** — Additional evidence for hypothesis
+   - ❌ **Contradicts** — Evidence against hypothesis
+   - ⚠️ **Partially confirms** — Evidence for one aspect, not others
+4. If no match: note as new hypothesis candidate
+
+**Output:**
+```
+Hypothesis Check:
+  Open H1: "Beachhead ICP wins faster with champion alignment"
+    Status: CONFIRMED (pre-mortem session observed 3 deals lost due to weak champion)
+    Evidence strength: ↑↑ (now 6 total confirmations)
+    Confidence: HIGH (was MEDIUM)
+    Action: Move to /knowledge/global/rules.md (threshold: 5+ confirmations ✓)
+
+  Open H2: "Pricing elasticity varies by segment"
+    Status: NO DATA THIS SESSION (pre-mortem doesn't touch pricing)
+    Confidence: Still MEDIUM
+    Action: Continue tracking, need more evidence
+```
+
+---
+
+### Step 5: Route Pattern to Correct Knowledge File (1 min)
+
+**What:** Decide where this pattern belongs.
+
+**How:**
+1. Load `/config/routing.yml` — domain map
+2. For each pattern, determine primary domain:
+   - **Single-domain** (Pre-mortem-specific) → `/knowledge/pre-mortem/[pattern-name].md`
+   - **Cross-domain** (appears in 2+ skills) → `/knowledge/global/[pattern-name].md`
+   - **Skill gap** (something the skill missed) → `/knowledge/meta/skill-gaps/[skill-name].md`
+
+3. If domain folder doesn't exist: create it (system builds incrementally)
+
+**Logic from config/routing.yml:**
+```yaml
+domains:
+  beachhead:
+    skills: [beachhead-segment, positioning-messaging]
+    patterns_file: /knowledge/beachhead/
+    cross_skill_threshold: 2  # If seen in 2+ domains, escalate to global
+  gtm:
+    skills: [go-to-market-strategy, gaccs-brief]
+    patterns_file: /knowledge/gtm/
+    cross_skill_threshold: 2
+  sales:
+    skills: [competitive-battlecard, retro]
+    patterns_file: /knowledge/sales/
+    cross_skill_threshold: 2
+  global:
+    patterns_file: /knowledge/global/  # Cross-skill, high-impact
+    rules_file: /knowledge/global/rules.md
+    hypotheses_file: /knowledge/global/hypotheses.md
+```
+
+**Output:**
+```
+Routing Decision:
+  Pattern 1 (champion sentiment → deal velocity): 
+    Domains touched: GTM + Sales + Pre-mortem = 3 skills
+    Decision: ROUTE TO GLOBAL (cross_skill_threshold=2, met)
+    File: /knowledge/global/deal-signals.md
+    
+  Pattern 2 (beachhead ICP pain ≠ beachhead pain):
+    Domains touched: Beachhead-segment only = 1 skill
+    Decision: ROUTE TO DOMAIN (beachhead)
+    File: /knowledge/beachhead/ica-pain-alignment.md
+```
+
+---
+
+### Step 6: Detect Self-Improvement Triggers (1 min)
+
+**What:** Identify patterns that should become guardrails or skill improvements.
+
+**How:**
+1. Check if pattern appears in `/context/meta-patterns.md` (guardrails)
+2. If pattern has 2+ occurrences across sessions → FLAG FOR GUARDRAIL PROMOTION
+3. If pattern identifies a skill gap → FLAG FOR SKILL UPDATE
+4. If pattern contradicts existing rule → FLAG FOR RULE REWRITE
+
+**Output:**
+```
+Self-Improvement Flags:
+
+GUARDRAIL PROMOTION:
+  Pattern: "Champion misalignment kills deals"
+  Current status: Guardrail exists (added 3 weeks ago, triggered 4x)
+  Recommendation: PROMOTE from MEDIUM to HIGH confidence
+  Action: Update /context/meta-patterns.md confidence level
+
+SKILL GAP FOUND:
+  Pattern: "Pre-mortem doesn't ask about champion alignment pre-execution"
+  Affected skill: meta-review
+  Recommendation: Add question to pre-mortem Step 8
+  Action: Route to meta-review improvement queue
+
+HYPOTHESIS → RULE:
+  Pattern: "Beachhead pain must match buyer pain" confirmed 6x
+  Recommendation: Graduate from hypothesis to confirmed rule
+  Action: Move to /knowledge/global/rules.md
+```
+
+---
+
+### Step 7: Proposal + Approval Gate (2 min)
+
+**What:** Show user exactly what will be written, request approval (if needed).
+
+**How:**
+1. Load `/config/approval-gates.yml` — approval rules
+2. Determine: Auto-write or ask approval?
+   - **Auto-write:** Routine pattern to existing file (no threshold crossed)
+   - **Ask approval:** New file, contradicts existing rule, or guardrail promotion
+3. If approval needed: show exact text that will be written
+4. Wait for explicit approval before writing
+
+**Example approval request:**
+```
+APPROVAL NEEDED:
+
+I'm about to write this pattern to /knowledge/global/deal-signals.md:
+
+---
+# Champion Sentiment as Deal Velocity Predictor
+**Pattern:** When champion sentiment is declining (2+ signals in Gong), 
+deal velocity slows 40% on average.
+**Evidence:** 4 confirmations (GTM-brief + pre-mortem + gaccs-brief + retro)
+**Confidence:** HIGH
+**Recommendation:** Add "champion sentiment" monitor to all deal forecasts
+**Action threshold:** If declining, escalate to champion management conversation within 48h
+---
+
+OK to write? (yes / no / edit)
+```
+
+**Approval gates from config:**
+```yaml
+approval_gates:
+  auto_write:
+    - adding to existing file (same pattern type)
+    - routine session log entry
+    - updating hypothesis confidence (same status)
+  
+  require_approval:
+    - new file creation
+    - contradicts existing rule
+    - guardrail promotion (MEDIUM → HIGH)
+    - hypothesis → rule graduation
+    - cross-skill signal (first time in global)
+```
+
+---
+
+### Step 8: Write to Knowledge Base (1 min)
+
+**What:** Persist patterns to knowledge files.
+
+**How:**
+1. If user approved (or auto-write gate passed): write
+2. If user said "no": don't write, offer to refine
+3. Append mode for logs, overwrite for specific patterns
+4. Format: Markdown, include evidence, date, source skill, confidence
+
+**Files written:**
+- `/knowledge/[domain]/[pattern].md` — Pattern documentation
+- `/knowledge/global/rules.md` — Append confirmed cross-skill rules
+- `/knowledge/global/hypotheses.md` — Update hypothesis status + confidence
+- `/context/meta-patterns.md` — Update guardrail confidence if triggered
+- `/sessions/log.md` — Append session summary (automatic, no approval needed)
+
+**Format example:**
 ```markdown
-## Session: [Skill name] — [YYYY-MM-DD]
-**Trigger:** [What the user was trying to do]
-**Output:** [What the skill produced — one line]
-**Patterns extracted:** [N]
-**Writes approved:** [list of files written]
-**Writes declined:** [list of declined triggers]
-**Open hypotheses updated:** [Y/N — which ones]
-**Global rules applied:** [Y/N — which ones]
-**Next check:** [Any hypothesis with a validation deadline]
+# Pattern: Champion Sentiment → Deal Velocity
+**Date:** 2026-07-21  
+**Skill Source:** meta-review, go-to-market-strategy, gaccs-brief  
+**Confidence:** HIGH (4 confirmations)  
+**Evidence:** 4 sessions across 3 skill domains flagged this  
+
+## Pattern Statement
+When champion sentiment is declining (2+ signals from Gong), deal velocity slows 40%.
+
+## Why This Matters
+Deal risk isn't just about price or product fit. Champion engagement is a leading indicator
+of deal health. Declining sentiment predicts slower close by 4-6 weeks.
+
+## Actionable Recommendation
+When Gong flags declining champion sentiment:
+1. Schedule champion alignment call within 48h
+2. Review deal assumptions with champion
+3. Escalate to sales leadership if sentiment doesn't recover in 1 week
+
+## Sources
+- Session 1 (2026-07-15, go-to-market-strategy): Sales team noted champion disengagement
+- Session 2 (2026-07-18, pre-mortem): Pre-mortem identified champion as kill-risk
+- Session 3 (2026-07-20, gaccs-brief): Messaging assumption: champion is champion ✓
+
+**Next update:** TBD (hypothesis tracking will update if more confirmations)
 ```
 
 ---
 
-## Outputs
+### Step 9: Update Global Hypothesis File (1 min)
 
-- **Files written:** `knowledge/[domain]/hypotheses.md` — new and updated hypotheses
-  on approval. `knowledge/[domain]/rules.md` — promoted rules on approval.
-  `knowledge/[domain]/knowledge.md` — factual observations on approval.
-  `knowledge/global/` — cross-skill patterns on approval.
-  `sessions/log.md` — session summary appended automatically (no approval needed).
-  `knowledge/INDEX.md` — updated if new domain folders created.
-- **Chat output format:** Three extraction questions → pattern proposals in
-  Self-Improvement Trigger format → session log entry. All writes shown before
-  executing — never silent.
-- **External side effects:** n.v.t.
+**What:** Record which hypotheses were confirmed/contradicted this session.
 
----
+**How:**
+1. Update `/knowledge/global/hypotheses.md` with:
+   - Hypothesis name
+   - Confirmation status (CONFIRMED / CONTRADICTED / PARTIAL)
+   - New evidence count
+   - Confidence level change
+   - Recommendation (keep tracking / promote to rule / close)
 
-## Verification
-
-- All three extraction questions asked and answered before extraction begins.
-- Every pattern stated as a specific, falsifiable observation — not a direction.
-- Every pattern routed to the correct domain folder.
-- Promotion and demotion proposals surfaced as Self-Improvement Triggers.
-- No write executed without explicit user approval (except `sessions/log.md`).
-- Session log appended after every run.
-- Stale hypotheses (90+ days untested) flagged before closing.
-
----
-
-## Do Not Use For
-
-- **meta-review** — for auditing SKILL.md files against SKILL-SPEC. `meta-learn`
-  captures session patterns; `meta-review` checks file structure.
-- **meta-verify** — for checking skill output quality on a specific run. `meta-learn`
-  captures what was learned; `meta-verify` checks whether the output was correct.
-- **Individual skill self-improvement loops** — those run within a skill session.
-  `meta-learn` runs after the skill session closes, captures the broader pattern,
-  and routes it to the shared knowledge layer.
-- **Starting a session** — this skill closes sessions, it doesn't open them.
-
----
-
-## Commands
-
-### /learn
-Run the full learning session for the most recent skill output. Asks the three
-extraction questions, proposes patterns, routes on approval.
-
-```
-/learn
-/learn retro
-/learn go-to-market-strategy
+**Example entry:**
+```markdown
+## H3: Champion Alignment Predicts Deal Velocity
+**Status:** CONFIRMED (added 1 more confirmation)  
+**Evidence count:** 6 total  
+**Confidence:** HIGH (was MEDIUM)  
+**Last updated:** 2026-07-21  
+**Recommendation:** GRADUATE TO RULE (threshold met: 5+ confirmations ✓)  
+**Action:** Move to /knowledge/global/rules.md on next synthesis cycle
 ```
 
 ---
 
-### /learn-history
-Show what's been captured in the knowledge base. Filter by domain or skill.
+### Step 10: Log Session (1 min)
 
+**What:** Record this session in the historical log.
+
+**How:**
+1. Append to `/sessions/log.md`
+2. Include: date, skill, duration, patterns extracted, hypothesis updates, writes approved
+3. Format: CSV or markdown table for easy trending
+
+**Example:**
+```markdown
+| Date | Skill | Duration | Patterns | Hypotheses Updated | Writes | Quality Score |
+|------|-------|----------|----------|-------------------|--------|---------------|
+| 2026-07-21 | go-to-market-strategy | 18 min | 3 new | H3 confirmed | ✓ global/deal-signals | 87/100 |
+| 2026-07-20 | pre-mortem | 25 min | 1 new, 2 confirm | H1, H3 confirmed | ✓ beachhead/ica-pain | 91/100 |
 ```
-/learn-history
-/learn-history gtm
-/learn-history global
+
+**Auto-logged (no approval):** Every session generates a log entry regardless of patterns.
+
+---
+
+### Step 11: Detect Compounding (30 sec)
+
+**What:** Identify if this session's learnings compound with prior sessions.
+
+**How:**
+1. Check: Does this pattern appear in prior session logs (last 30 days)?
+2. If yes: Note as "pattern strengthened" (confidence increases)
+3. Count: How many times has this specific pattern been confirmed?
+4. Threshold check: If confirmed 3+ times → flag for guardrail promotion
+
+**Output:**
 ```
-
-Output:
-```
-## Knowledge Base Summary
-Last updated: [date]
-
-knowledge/gtm/
-  rules.md      — [N] confirmed rules
-  hypotheses.md — [N] open hypotheses ([N] stale)
-  knowledge.md  — [N] observations
-
-knowledge/global/
-  rules.md      — [N] confirmed cross-skill rules
-  hypotheses.md — [N] open cross-skill hypotheses
-
-Sessions logged: [N total] | Last: [date] | Skill: [name]
+Compounding Check:
+  Pattern: "Champion alignment → deal velocity"
+  Prior observations: 2 (in last 30 days)
+  Today: 1 new confirmation
+  Total now: 3 confirmations
+  Threshold: 2 (for cross-skill awareness), 5 (for guardrail promotion)
+  Status: CROSS-SKILL RULE READY (next synthesis cycle, promote confidence)
 ```
 
 ---
 
-### /learn-review
-Audit the knowledge base for stale hypotheses, contradicted rules, and patterns
-that haven't been tested recently. Produces a prioritised review list.
+### Step 12: Close & Surface Next Action (1 min)
 
+**What:** Confirm all writes, show what changed, suggest next step.
+
+**How:**
+1. Summarize: Patterns extracted, files written, hypotheses updated
+2. Show impact: How many files changed? Which guardrails promoted?
+3. Suggest next: "This pattern might affect [next skill session]"
+4. Link to meta-synthesis: "Your 24h synthesis cycle will compound this learning"
+
+**Example:**
 ```
-/learn-review
-/learn-review hypotheses
-/learn-review rules
-```
+✓ Session complete.
 
-Output:
-```
-## Knowledge Base Review — [date]
+Captured:
+  - 3 new patterns extracted
+  - 1 hypothesis confirmed (H3 champion-alignment)
+  - 2 files written (global/deal-signals.md, beachhead/ica-pain-alignment.md)
+  - 1 guardrail promoted (champion-alignment: MEDIUM → HIGH)
 
-🔴 Stale hypotheses (90+ days untested):
-- [H-ID] in knowledge/[domain]/ — last tested [date]
+Impact:
+  - Your next GTM strategy session will load this champion-alignment guardrail
+  - Your next beachhead session will avoid the ICP-pain mismatch
+  - Next 24h meta-synthesis will see 6 total confirmations of H3 → graduates to rule
 
-⚠️ Rules worth challenging (3+ sessions since last confirmation):
-- [R-ID] in knowledge/[domain]/ — confirmed [N] times, last [date]
-
-✅ Active and healthy:
-- [N] hypotheses being actively tested
-- [N] rules applied in last 30 days
-```
-
----
-
-### /learn-promote [hypothesis-id]
-Manually propose promotion of a specific hypothesis to a rule. Useful when you've
-confirmed a pattern outside a `meta-learn` session.
-
-```
-/learn-promote H-007
+Suggested next action:
+  "Before your next deal review, check: is your champion aligned on positioning?"
 ```
 
 ---
 
 ## Operating Rules
 
-- **Three questions, always.** Never skip an extraction question. Partial extraction
-  produces partial patterns.
-- **Specific and falsifiable.** Vague patterns are worse than no patterns — they
-  accumulate noise and inflate confidence. Every observation must be specific enough
-  to be proved wrong.
-- **Never encode without approval.** The only automatic write is `sessions/log.md`.
-  Everything else requires explicit confirmation.
-- **Route to domain, not skill.** Patterns belong to the domain they inform, not
-  the skill they came from. A GTM tier calibration pattern from `retro` goes to
-  `knowledge/gtm/`, not `knowledge/retro/`.
-- **Global patterns are the highest-value output.** When a pattern applies across
-  two or more skills, route it to `knowledge/global/`. These compound fastest.
-- **Promotion requires 3 confirmations.** One or two observations is a hypothesis.
-  Three independent confirmations is a rule candidate. Never lower this threshold.
-- **Stale hypotheses decay.** Flag anything untested for 90+ days. Don't carry
-  forward hypotheses that have never been tested — they're assumptions, not patterns.
-- **A session with no learnings is valid.** Don't force patterns. If nothing
-  surprising, wrong, or missing occurred — close cleanly and log it.
-- **Context-agnostic by design.** Do not load brain file. Patterns must be
-  observable from session content alone. Company-specific context contaminates
-  cross-session learning.
-- **Index must stay current.** Update `knowledge/INDEX.md` whenever a new domain
-  folder is created. A domain that's not indexed won't be loaded by other skills.
+1. **Extract first, decide second.** Always ask the three questions before classifying patterns. Don't assume.
+
+2. **Route by evidence, not intuition.** Use `/config/routing.yml` domain map. If pattern touches 2+ skill domains, it's global (not domain-specific).
+
+3. **Hypothesis confirmation is stricter than pattern extraction.** Need explicit match to existing hypothesis, not inference.
+
+4. **Approval gates prevent bad writes.** Never write a pattern that contradicts an existing rule without user approval.
+
+5. **Compounding is the goal.** If pattern appears 2+ times, flag it. If 5+ times, it becomes a guardrail. This is how the system gets smarter.
+
+6. **Skill gaps route to meta/improvements.** If the skill missed something, don't add it to domain knowledge — flag it for skill review instead.
+
+7. **Context-agnostic extraction.** Patterns come from session content alone. Do NOT load /foundation/brain.md and infer context.
+
+8. **Never force patterns.** If user says "nothing surprised me", accept that. Log the session and close cleanly.
+
+9. **Logging is automatic.** Every session gets logged to /sessions/log.md regardless of patterns. This is the historical record.
+
+10. **Confidence compounds.** Track how many times each pattern has been confirmed. Confidence increases with repetition (MEDIUM → HIGH after 3 confirmations, becomes guardrail after 5).
 
 ---
 
 ## Quality Gate
 
-Runs after pattern proposals, before any write.
+Before finalizing any write, verify:
 
-| Check | Standard | Pass = |
-|---|---|---|
-| Three questions answered | All three extraction questions completed | Yes |
-| Patterns specific | Each observation falsifiable, not directional | Yes |
-| Routing correct | Each pattern in the right domain folder | Yes |
-| Trigger format used | All proposals use Self-Improvement Trigger format | Yes |
-| No silent writes | Every write shown before executing | Yes |
-| Session log appended | `sessions/log.md` updated before closing | Yes |
-| Stale check run | Hypotheses 90+ days old flagged | Yes |
-| Global patterns identified | Cross-skill patterns routed to `knowledge/global/` | Yes |
-
----
-
-## Self-Improvement Loop
-
-### Before every session:
-1. Load `knowledge/INDEX.md` — identify all domains and existing files.
-2. Load `knowledge/global/rules.md` — note any cross-skill rule testable today.
-3. Load `knowledge/global/hypotheses.md` — note any open hypothesis this session
-   could confirm or contradict.
-
-### After every session:
-1. Check if any global hypothesis was tested today — update confidence count.
-2. If any rule was contradicted — propose demotion before closing.
-3. If `meta-learn` itself produced a bad output or missed a pattern — log as
-   skill gap to `knowledge/meta/hypotheses.md`.
-
-```
-🔁 SELF-IMPROVEMENT TRIGGER
-Observation: [what was observed about meta-learn itself]
-Proposed update: [exact change to SKILL.md]
-Location: pmm-meta/skills/meta-learn/SKILL.md
-Awaiting approval before encoding.
-```
+- [ ] All three extraction questions answered
+- [ ] Patterns are specific and falsifiable (not vague)
+- [ ] Routing decision matches domain map (config/routing.yml)
+- [ ] Hypothesis check completed (confirmed/contradicted/no-match)
+- [ ] Approval gate assessed (auto-write or user approval?)
+- [ ] No contradictions to existing rules without flagging for review
+- [ ] Cross-skill signal correctly identified (if 2+ domains)
+- [ ] Session log entry created (automatic)
+- [ ] Compounding detected (if pattern appeared before)
+- [ ] User explicitly approved (if approval gate required)
 
 ---
 
-## Changelog
+## Related Files
 
-### v1.0.0 — 2026-06-06
-Initial build. Third skill in `pmm-meta` plugin alongside `meta-review`.
-
-Architecture decisions:
-- Context-agnostic: no brain file. Patterns must be observable from session content
-  only. Company context contaminates cross-session learning.
-- Three fixed extraction questions — standardised across all skills for comparability.
-- Domain routing table — patterns routed by subject, not by source skill.
-- Global knowledge layer — cross-skill patterns compound fastest and are highest value.
-- Promotion threshold: 3 independent confirmations required. Never lower this.
-- Only automatic write is `sessions/log.md` — everything else requires approval.
-- Commands: /learn, /learn-history, /learn-review, /learn-promote.
+- `/config/routing.yml` — Domain map, cross-skill signal rules
+- `/config/hypothesis-tracking.yml` — Open hypotheses, confirmation criteria
+- `/config/approval-gates.yml` — When to ask user vs. auto-write
+- `/knowledge/INDEX.md` — Domain folder locations
+- `/knowledge/global/rules.md` — Confirmed cross-skill rules
+- `/knowledge/global/hypotheses.md` — Open questions
+- `/context/meta-patterns.md` — Current guardrails
+- `/sessions/log.md` — Historical session log

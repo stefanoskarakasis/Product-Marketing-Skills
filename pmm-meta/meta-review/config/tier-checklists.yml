@@ -1,0 +1,266 @@
+# Meta-Review Tier Checklists Configuration
+# Version: 2.0.0
+# Description: Tier-specific quality standards (T1, T2, T3, T4)
+
+tier_checklists:
+
+  # T1 Tier: Premium/Strategic Launches
+  # Definition: Major product launches, market expansion, strategic GTM pivots
+  # Investment: High (dedicated team, budget, timeline)
+  # Success criteria: Hit targets within 10% (90-110%)
+  # Quality bar: 90+/100, all guardrails pass, near-zero risk
+
+  T1:
+    name: "T1: Premium/Strategic Launch"
+    minimum_quality_score: 90
+    minimum_confidence: 0.75
+    definition: "Major launches with high investment and high visibility (product launch, market entry, strategic pivot)"
+
+    required_sections:
+      positioning:
+        description: "Positioning statement must be bold, differentiated, own unique value angle"
+        requirement: "Score 18+ on positioning clarity (out of 20)"
+        rationale: "T1 positioning is public-facing, must resonate in market"
+
+      channel_strategy:
+        description: "Channel plan must be detailed, prioritized, with regional/segment breakdowns"
+        requirement: "Score 18+ on channel strategy (out of 20)"
+        rationale: "T1 requires precision in go-to-market execution"
+
+      success_metrics:
+        description: "Metrics must include targets, confidence bands, leading/lagging indicators"
+        requirement: "Score 18+ on success metrics (out of 20)"
+        rationale: "T1 is measured relentlessly; metrics must be rigorous"
+
+      competitive_context:
+        description: "Must map 4+ alternatives including status quo, with win/loss data"
+        requirement: "Score 14+ on competitive context (out of 15)"
+        rationale: "T1 launches compete against incumbents; buyer's decision set must be clear"
+
+      timeline_and_resources:
+        description: "Timeline must include buffers, resource allocation detailed, dependencies mapped"
+        requirement: "Score 14+ on timeline (out of 15)"
+        rationale: "T1 has zero margin for error; execution timeline must be bulletproof"
+
+      risk_mitigation:
+        description: "All top 5 risks must have specific mitigation plans with owners and timelines"
+        requirement: "Score 9+ on risk mitigation (out of 10)"
+        rationale: "T1 risks can kill launches; mitigation must be proactive"
+
+    guardrails_required:
+      - "Champion alignment: Champion must be aligned on positioning + use case"
+      - "Messaging clarity: Positioning must own unique value, not iterate incumbent"
+      - "Competitive accuracy: Competitive context must be data-backed, not assumption"
+      - "Metric rigor: Success metrics must include confidence bands and leading indicators"
+      - "Timeline feasibility: All dependencies must be mapped and owned"
+
+    approval_workflow:
+      - "Product lead: Validates positioning + competitive context"
+      - "GTM lead: Validates channel strategy + timeline feasibility"
+      - "Finance/Exec: Approves budget and success targets"
+      - "CEO/Executive sponsor: Final sign-off before launch"
+
+    success_criteria:
+      - "Launch targets hit within ±10% (90-110% of goal)"
+      - "No major surprises (risks that materialized were mitigated)"
+      - "Customer feedback validates positioning (resonates in market)"
+      - "Sales adoption is smooth (enablement was effective)"
+
+  # T2 Tier: Standard Feature/GTM
+  # Definition: Feature launches, GTM updates, market expansion
+  # Investment: Medium (1-2 engineers, PMM, sales, 1-2 months)
+  # Success criteria: Hit targets within 20% (80-120%)
+  # Quality bar: 75+/100, high-priority guardrails pass, acceptable risk
+
+  T2:
+    name: "T2: Standard Feature/GTM Launch"
+    minimum_quality_score: 75
+    minimum_confidence: 0.60
+    definition: "Mid-scale launches (feature releases, GTM refreshes, segment expansion)"
+
+    required_sections:
+      positioning:
+        description: "Positioning must be clear and differentiated"
+        requirement: "Score 15+ on positioning clarity (out of 20)"
+        rationale: "T2 positioning must be clear but doesn't need to be as bold as T1"
+
+      channel_strategy:
+        description: "Channel plan must identify 2-3 primary channels with realistic execution"
+        requirement: "Score 15+ on channel strategy (out of 20)"
+        rationale: "T2 channels should be focused, not attempt everything at once"
+
+      success_metrics:
+        description: "Metrics must include targets and success thresholds"
+        requirement: "Score 15+ on success metrics (out of 20)"
+        rationale: "T2 metrics can be simpler than T1 but must include confidence ranges"
+
+      competitive_context:
+        description: "Must reference 3+ alternatives including status quo"
+        requirement: "Score 12+ on competitive context (out of 15)"
+        rationale: "T2 still needs competitive grounding but can be less detailed than T1"
+
+      timeline_and_resources:
+        description: "Timeline must be realistic with key dependencies identified"
+        requirement: "Score 12+ on timeline (out of 15)"
+        rationale: "T2 can be tighter than T1 but resource conflicts must be addressed"
+
+      risk_mitigation:
+        description: "Top 3 risks must have mitigation plans"
+        requirement: "Score 7+ on risk mitigation (out of 10)"
+        rationale: "T2 risk mitigation is focused on blocking issues"
+
+    guardrails_required:
+      - "Champion alignment: Should identify champion, note if alignment unclear"
+      - "Messaging clarity: Positioning should own a value angle vs. incumbent"
+      - "Metric rigor: Targets must be grounded in data (not guesses)"
+
+    approval_workflow:
+      - "Product lead: Validates positioning + metrics"
+      - "GTM lead: Validates channel strategy + feasibility"
+      - "Manager signoff: Approves before launch"
+
+    success_criteria:
+      - "Launch targets hit within ±20% (80-120% of goal)"
+      - "Top 3 risks materialized as expected (or mitigated)"
+      - "Sales adoption is reasonable (minor enablement gaps tolerated)"
+      - "Customer feedback is neutral to positive"
+
+  # T3 Tier: Minor Update/Enablement
+  # Definition: Minor feature updates, sales enablement, tactical GTM
+  # Investment: Low (1 PMM, 1-2 weeks)
+  # Success criteria: No hard targets, measure engagement/adoption
+  # Quality bar: 60+/100, blocking guardrails pass, some risk tolerated
+
+  T3:
+    name: "T3: Minor Update/Enablement"
+    minimum_quality_score: 60
+    minimum_confidence: 0.50
+    definition: "Tactical launches (minor features, sales enablement, localization)"
+
+    required_sections:
+      positioning:
+        description: "Clear statement of what's new and why it matters"
+        requirement: "Score 10+ on positioning clarity (out of 20)"
+        rationale: "T3 can be more tactical; clear is enough"
+
+      channel_strategy:
+        description: "Identify 1-2 primary channels (e.g., sales team email, internal sync)"
+        requirement: "Score 10+ on channel strategy (out of 20)"
+        rationale: "T3 channels are usually internal/direct"
+
+      success_metrics:
+        description: "Basic metrics (e.g., 'adoption by 80% of users in 30 days')"
+        requirement: "Score 10+ on success metrics (out of 20)"
+        rationale: "T3 metrics can be simple (adoption vs. revenue targets)"
+
+      competitive_context:
+        description: "Optional for T3 (reference competitors if relevant)"
+        requirement: "Score 8+ on competitive context (out of 15)"
+        rationale: "T3 may not need deep competitive analysis"
+
+      timeline_and_resources:
+        description: "Basic timeline with milestones"
+        requirement: "Score 8+ on timeline (out of 15)"
+        rationale: "T3 timeline is usually short and simple"
+
+      risk_mitigation:
+        description: "Identify top 1-2 risks"
+        requirement: "Score 4+ on risk mitigation (out of 10)"
+        rationale: "T3 risk mitigation is minimal; focus on blockers"
+
+    guardrails_required:
+      - "Metric rigor: Targets must be realistic and measurable"
+
+    approval_workflow:
+      - "Team lead: Light review for blockers only"
+      - "Self-approval: Can proceed if no blockers"
+
+    success_criteria:
+      - "Adoption/engagement hits stated targets"
+      - "No major blockers emerged"
+      - "Feedback is positive or neutral"
+
+  # T4 Tier: Routine/Operational
+  # Definition: Routine updates, internal communications, operational changes
+  # Investment: Minimal (ad-hoc, <1 week)
+  # Success criteria: None formal; monitor signals
+  # Quality bar: 50+/100, auto-approved if no critical gaps
+
+  T4:
+    name: "T4: Routine/Operational"
+    minimum_quality_score: 50
+    minimum_confidence: 0.40
+    definition: "Routine operations (internal comms, process updates, minor docs)"
+
+    required_sections:
+      positioning:
+        description: "Clear statement of the change"
+        requirement: "Score 5+ on positioning clarity (out of 20)"
+        rationale: "T4 can be basic; needs clarity only"
+
+      timeline_and_resources:
+        description: "When and how (can be minimal)"
+        requirement: "Score 5+ on timeline (out of 15)"
+        rationale: "T4 timeline is usually immediate"
+
+    guardrails_required: []
+    # No guardrails required for T4
+
+    approval_workflow:
+      - "Self-approval: Can proceed with no blockers"
+
+    success_criteria:
+      - "Change communicated and understood"
+      - "No major issues reported"
+
+---
+
+## Tier Comparison Matrix
+
+| Factor | T1 | T2 | T3 | T4 |
+|--------|----|----|----|----|
+| Min Quality Score | 90+ | 75+ | 60+ | 50+ |
+| Min Success Confidence | 75% | 60% | 50% | 40% |
+| Guardrails Active | All | High-impact | Blocking only | None |
+| Approval Required | Executive | Manager | Team lead | None |
+| Success Target | ±10% | ±20% | Adoption-based | No target |
+| Risk Tolerance | Minimal | Low | Medium | High |
+| Timeline | 2-3 months | 4-6 weeks | 1-2 weeks | <1 week |
+
+---
+
+## How to Use Tier Checklists
+
+### Step 1: Identify Output Tier
+Determine if this is T1/T2/T3/T4 launch based on scope and investment.
+
+### Step 2: Load Corresponding Checklist
+Load the T1 / T2 / T3 / T4 checklist from this config.
+
+### Step 3: Score Against Requirements
+For each "required_sections" item, verify output meets requirement (e.g., "Score 18+ on positioning clarity").
+
+### Step 4: Verify Guardrails
+Check that all "guardrails_required" are passed.
+
+### Step 5: Approve or Flag
+If all sections pass + guardrails pass → Approval
+If any section fails → Flag for fixes or tier reassignment
+
+---
+
+## Tier Reassignment Rules
+
+If output quality is mismatched to assigned tier:
+
+**Assigned T3, but quality is T1** (90+/100)
+→ Consider upgrading scope (additional budget, visibility) to match quality
+
+**Assigned T2, but quality is T3** (50-60/100)
+→ Downgrade tier (reset expectations, simplify GTM) OR require fixes
+
+**Assigned T1, but quality is T2** (75-80/100)
+→ Flag risk: This is below T1 bar, recommend either: (a) fixes, (b) tier downgrade
+
+Never launch something at T1 with T2 quality. Risk is too high.
+

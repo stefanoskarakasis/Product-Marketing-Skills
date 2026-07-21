@@ -1,6 +1,6 @@
 # pmm-meta
 
-Self-improving GTM system for product marketers. Meta skills that read execution logs, detect patterns, propose guardrails, predict success, and compound learnings across sessions. Integrated with Pawel Huryn's positioning rigor and 2026 GTM adoption lens.
+Self-improving GTM system for product marketers. Meta skills that read execution logs, detect patterns, propose guardrails, predict success, and compound learnings across sessions.
 
 ## Skills (4)
 
@@ -13,7 +13,7 @@ Self-improving GTM system for product marketers. Meta skills that read execution
 
 - `/pmm-meta:synthesis` — Run 24h automation. Detects cross-skill patterns, proposes guardrails, updates brain. Show status: `/pmm-meta:synthesis-status`
 - `/pmm-meta:learn` — Capture post-session learnings. Routes patterns, tracks hypotheses, gates approvals. Run after every skill session.
-- `/pmm-meta:review [output]` — Score quality (Pawel rigor + adoption lens). Get auto-fix recommendations + confidence prediction.
+- `/pmm-meta:review [output]` — Score quality, get auto-fix recommendations + confidence prediction.
 - `/pmm-meta:verify [output]` — Predict success confidence. Suggest scope expansion if T2 quality justifies T1 tier.
 
 ## How It Works
@@ -41,17 +41,6 @@ Your system compounds learnings every 24 hours:
 3. (After 3+ skills) `/pmm-meta:synthesis` — Detect patterns, propose guardrails
 4. Approve guardrails
 5. Next skill loads updated guardrails → output quality improves
-
-## Tech Stack
-
-- **Positioning rigor:** Pawel Huryn (unique value clarity test)
-- **Adoption lens:** 2026 GTM best practices (sales ramp, CS handoff, expansion triggers, enablement timing)
-- **Pattern detection:** Cross-skill signal identification with confidence compounding
-- **Hypothesis tracking:** Open hypothesis confirmation/contradiction/promotion
-- **Approval gates:** User gates high-stakes knowledge base writes
-- **Persistent memory:** Team learnings compound via quality-learnings.md
-- **Confidence prediction:** Historical baseline → success probability
-- **Calibration trending:** Prediction accuracy improves over time
 
 ## Author
 

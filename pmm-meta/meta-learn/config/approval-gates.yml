@@ -1,0 +1,304 @@
+# Meta-Learn Approval Gates Configuration
+# Version: 2.0.0
+# Description: When to ask user approval before writing to knowledge base
+
+approval_gates:
+
+  # Gate 1: Routine Pattern to Existing File
+  gate_existing_file_same_type:
+    name: "Adding to existing pattern file"
+    description: "Writing a new observation to a pattern that already exists in the knowledge base"
+
+    conditions:
+      - "Pattern file already exists (e.g., /knowledge/gtm/launch-tier-accuracy.md)"
+      - "New observation is same pattern type (confirmation, not contradiction)"
+      - "No major confidence jump (stays LOW or goes MEDIUM)"
+
+    approval_required: false
+    action: "AUTO-WRITE"
+    reasoning: "Routine observation, established pattern, low risk"
+
+    examples:
+      - "Pattern: 'Launch tier assignment accuracy improves with market research'
+         Existing file: /knowledge/gtm/launch-tier-accuracy.md
+         New observation: One more confirmation from retro session
+         Gate: AUTO-WRITE (same pattern, +1 confirmation)"
+
+      - "Pattern: 'Champion alignment predicts deal velocity'
+         Existing file: /knowledge/global/deal-signals.md (WAIT - global scope)
+         Gate: REQUIRE APPROVAL (global file, even if exists)"
+
+  # Gate 2: New File Creation
+  gate_new_file:
+    name: "Creating new pattern file"
+    description: "Writing a pattern to a file that doesn't exist yet"
+
+    conditions:
+      - "File /knowledge/[domain]/[pattern].md doesn't exist"
+      - "OR global file being created for first time"
+
+    approval_required: true
+    action: "REQUIRE USER APPROVAL"
+    reasoning: "New pattern entering knowledge base, should be deliberate"
+
+    examples:
+      - "Pattern: 'Objection handling framework for 3 common scenarios'
+         Target: /knowledge/sales/objection-handling.md (new file)
+         Gate: REQUIRE APPROVAL"
+
+      - "Pattern: 'GTM channel effectiveness by segment type'
+         Target: /knowledge/gtm/channel-segment-fit.md (new file)
+         Gate: REQUIRE APPROVAL"
+
+  # Gate 3: Contradicts Existing Rule
+  gate_contradicts_rule:
+    name: "Contradicts established rule"
+    description: "New pattern contradicts a rule in /knowledge/global/rules.md"
+
+    conditions:
+      - "Pattern directly contradicts existing rule"
+      - "Example: Rule says 'pricing elasticity is uniform', pattern shows 'pricing varies by segment'"
+
+    approval_required: true
+    action: "REQUIRE USER APPROVAL + EXPERT REVIEW"
+    reasoning: "Contradiction may invalidate prior learning, needs deliberation"
+
+    examples:
+      - "Existing rule: 'Beachhead success requires >60% win rate in segment'
+         New pattern: 'Segment with 45% win rate still achieved 3x revenue target'
+         Gate: REQUIRE APPROVAL + note for rule re-evaluation"
+
+      - "Existing rule: 'Positioning clarity drives sales velocity'
+         New pattern: 'Ambiguous positioning actually won more in 1 deal'
+         Gate: REQUIRE APPROVAL (is this real contradiction or exception?)"
+
+  # Gate 4: Guardrail Promotion
+  gate_guardrail_promotion:
+    name: "Promoting guardrail confidence level"
+    description: "Changing guardrail status from LOW/MEDIUM to HIGH, or creating new guardrail"
+
+    conditions:
+      - "Pattern appears 5+ times (hypothesis promotion to rule)"
+      - "Pattern appears in 3+ domains (cross-domain guardrail creation)"
+      - "Guardrail confidence level changing: MEDIUM → HIGH"
+
+    approval_required: true
+    action: "REQUIRE USER APPROVAL"
+    reasoning: "Guardrails are high-stakes, load in every skill session, should be deliberate"
+
+    examples:
+      - "Pattern: 'Champion alignment' confirmed 5x, appears in 3 domains (sales, gtm, beachhead)
+         Action: Promote from HYPOTHESIS to RULE, then to GUARDRAIL
+         Gate: REQUIRE APPROVAL (high-confidence guardrail entering system)"
+
+      - "Guardrail: 'Low-pain segments are high-risk' (MEDIUM confidence)
+         New data: Pattern confirmed 3x total (threshold = 5 for MEDIUM → HIGH)
+         Status: Not yet HIGH, but close
+         Gate: AUTO-WRITE (confidence update tracked, not yet promotion)"
+
+  # Gate 5: Hypothesis Promotion
+  gate_hypothesis_promotion:
+    name: "Graduating hypothesis to rule or guardrail"
+    description: "Moving hypothesis from /knowledge/global/hypotheses.md to /knowledge/global/rules.md"
+
+    conditions:
+      - "Hypothesis has 5+ confirmations"
+      - "Status changing from TRACKING to CONFIRMED or RULE"
+      - "Guardrail promotion (if cross-domain)"
+
+    approval_required: true
+    action: "REQUIRE USER APPROVAL"
+    reasoning: "Hypotheses moving to rules is significant learning, needs deliberate acceptance"
+
+    examples:
+      - "H3: 'Champion sentiment predicts deal velocity' (5 confirmations)
+         Action: Move to /knowledge/global/rules.md
+         Gate: REQUIRE APPROVAL + surface guardrail promotion candidate"
+
+      - "H1: 'Beachhead ICP wins faster with champion alignment' (only 3 confirmations)
+         Action: Stay in TRACKING (not yet 5 confirmations)
+         Gate: AUTO-UPDATE (status stays same, confidence updated)"
+
+  # Gate 6: Hypothesis Contradiction/Closure
+  gate_hypothesis_closure:
+    name: "Closing contradicted hypothesis"
+    description: "Hypothesis disproven by new evidence, marking as CONTRADICTED or ARCHIVED"
+
+    conditions:
+      - "2+ direct contradictions to hypothesis"
+      - "OR new data invalidates core claim"
+      - "Status changing from TRACKING to CONTRADICTED"
+
+    approval_required: true
+    action: "REQUIRE USER APPROVAL"
+    reasoning: "Disproven hypotheses should be documented deliberately, learnings extracted"
+
+    examples:
+      - "H2: 'Pricing elasticity varies by segment' contradicted by pricing study
+         Contradictions: 2 direct (research + customer interviews show uniform pricing)
+         Gate: REQUIRE APPROVAL (hypothesis closure, extract learnings)"
+
+  # Gate 7: Session Log Entry
+  gate_session_log:
+    name: "Writing session log entry"
+    description: "Recording this session in /sessions/log.md"
+
+    conditions:
+      - "Every session generates a log entry"
+      - "No patterns extracted (or patterns extracted)"
+      - "Automatic write, no gate"
+
+    approval_required: false
+    action: "AUTO-WRITE"
+    reasoning: "Logging is always valuable, non-destructive, creates historical record"
+
+    examples:
+      - "Session: go-to-market-strategy (18 min)
+         Patterns: 3 extracted
+         Log entry: Automatically appended to /sessions/log.md
+         Gate: AUTO-WRITE (no user input needed)"
+
+  # Gate 8: Skill Gap File
+  gate_skill_gap:
+    name: "Creating skill gap file"
+    description: "Documenting something a skill missed or should improve"
+
+    conditions:
+      - "Pattern identifies skill limitation"
+      - "File: /knowledge/meta/skill-gaps/[skill-name].md"
+
+    approval_required: true
+    action: "REQUIRE USER APPROVAL"
+    reasoning: "Skill feedback should be deliberate, reviewed before flagging skill authors"
+
+    examples:
+      - "Pre-mortem didn't ask about champion alignment pre-execution
+         Gap file: /knowledge/meta/skill-gaps/pre-mortem.md
+         Gate: REQUIRE APPROVAL (feedback to skill author)"
+
+      - "GTM brief assumed tier assignment was validated, but wasn't
+         Gap file: /knowledge/meta/skill-gaps/go-to-market-strategy.md
+         Gate: REQUIRE APPROVAL"
+
+  # Gate 9: Overwrites or Deletions
+  gate_destructive:
+    name: "Overwriting or deleting existing content"
+    description: "Any action that would change or delete existing knowledge"
+
+    conditions:
+      - "Overwriting existing pattern file content"
+      - "Changing hypothesis status to CONTRADICTED"
+      - "Deleting or archiving entries"
+
+    approval_required: true
+    action: "REQUIRE USER APPROVAL + SHOW DIFF"
+    reasoning: "Destructive changes should never be silent, always require deliberation"
+
+    examples:
+      - "Update to existing rule: "Tier assignment should weight win/loss data more heavily"
+         Current rule: [old text]
+         Proposed rule: [new text]
+         Gate: REQUIRE APPROVAL + show diff"
+
+  # Summary Matrix
+  approval_matrix:
+    auto_write_gates:
+      - "Adding to existing file (same pattern type)"
+      - "Session log entry"
+      - "Hypothesis confidence update (no status change)"
+      - "Routine domain pattern observation"
+
+    approval_required_gates:
+      - "New file creation"
+      - "Contradicts existing rule"
+      - "Guardrail promotion (any confidence level change)"
+      - "Hypothesis graduation (hypothesis → rule)"
+      - "Hypothesis closure (tracking → contradicted)"
+      - "Skill gap documentation"
+      - "Overwriting or destructive changes"
+      - "Global knowledge base writes (any new entry)"
+
+---
+
+## Approval Gate Logic (Applied in Meta-Learn Step 7)
+
+### Decision Tree
+
+```
+Does pattern exist in knowledge base?
+├─ YES: Is it contradictory or high-impact?
+│  ├─ YES → REQUIRE APPROVAL
+│  └─ NO → AUTO-WRITE
+├─ NO: Is it a new file?
+│  ├─ YES → REQUIRE APPROVAL
+│  └─ NO → AUTO-WRITE (existing file structure)
+```
+
+### When User Sees Approval Request
+
+Show:
+1. **Proposed write:** Exact text that will be written
+2. **Target file:** Where it's going (and whether it exists)
+3. **Gate reason:** Why approval is needed (new file / contradiction / high-impact)
+4. **Context:** Related existing patterns (if any)
+5. **Actions:** (yes / no / edit)
+
+### Example Approval Request Format
+
+```
+APPROVAL REQUIRED: Write to Global Knowledge Base
+
+[Gate]: New file creation + global knowledge base entry
+
+Target: /knowledge/global/deal-signals.md (NEW FILE)
+
+Proposed content:
+---
+# Champion Sentiment as Deal Velocity Predictor
+Pattern: When champion sentiment is declining (2+ Gong signals),
+deal velocity slows 40% on average.
+
+Evidence: 4 confirmations (go-to-market-strategy, pre-mortem, gaccs-brief, retro)
+Confidence: HIGH
+Domains: sales, gtm, beachhead (cross-domain = 3 ✓)
+
+Action threshold: If declining sentiment detected, escalate to champion management
+conversation within 48h.
+---
+
+This is a cross-domain pattern (3 skills), high-confidence (4 confirmations).
+Approval recommended because: New file + global scope + high impact on deal flow.
+
+OK to write? [yes] [no] [edit]
+```
+
+---
+
+## Post-Approval Actions
+
+Once user approves:
+
+1. **Write file** (or update existing)
+2. **Update INDEX.md** (if new domain or file)
+3. **Log approval** in /sessions/log.md (metadata: pattern, file, approval_required, approval_given)
+4. **Surface impact** (e.g., "This guardrail will affect your next deal review")
+5. **Close session** (Step 12 of meta-learn)
+
+---
+
+## Exceptions to Gates
+
+**If user says "always auto-write [domain]":**
+- Remember preference in session context
+- Auto-write all patterns to that domain for rest of session
+- Reset preference next session (unless stored in user profile)
+
+**If user says "always ask for approval":**
+- Override all auto-write gates
+- Require approval for everything
+- Useful for learning new patterns before they're trusted
+
+**If critical time constraint ("hurry, just log it"):**
+- Write all patterns with approval_required = false flag
+- Log notice that expedited approval skipped
+- Note for next review: validate these patterns were correct

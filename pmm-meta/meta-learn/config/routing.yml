@@ -1,0 +1,194 @@
+# Meta-Learn Routing Configuration
+# Version: 2.0.0
+# Description: Domain map + cross-skill signal detection rules
+
+routing:
+
+  # Domain Classification
+  domains:
+
+    beachhead:
+      skills: [beachhead-segment, positioning-messaging, hs-icp]
+      patterns_path: /knowledge/beachhead/
+      cross_skill_threshold: 2  # If seen in 2+ domains, escalate to global
+      key_signals:
+        - "buyer_pain_alignment"
+        - "ica_definition_gap"
+        - "willingness_to_pay"
+        - "winnability_assessment"
+      description: "Beachhead segment selection, ICP definition, PMF validation"
+
+    gtm:
+      skills: [go-to-market-strategy, hs-gaccs-brief, hs-positioning-messaging]
+      patterns_path: /knowledge/gtm/
+      cross_skill_threshold: 2
+      key_signals:
+        - "launch_tier_accuracy"
+        - "channel_effectiveness"
+        - "messaging_clarity"
+        - "positioning_differentiation"
+      description: "Launch strategy, GTM timing, channel mix, positioning"
+
+    sales:
+      skills: [hs-competitive-battlecard, hs-retro, hs-pre-mortem]
+      patterns_path: /knowledge/sales/
+      cross_skill_threshold: 2
+      key_signals:
+        - "competitive_positioning"
+        - "objection_handling"
+        - "deal_velocity"
+        - "champion_alignment"
+        - "sales_enablement_gaps"
+      description: "Sales battlecards, deal flow, champion management, objections"
+
+    execution:
+      skills: [experiment-doc, hs-retro, meta-learn]
+      patterns_path: /knowledge/execution/
+      cross_skill_threshold: 2
+      key_signals:
+        - "metric_definition_clarity"
+        - "experiment_rigor"
+        - "guardrail_trigger_frequency"
+        - "execution_quality_trend"
+      description: "Experiment rigor, execution quality, metric tracking"
+
+    global:
+      patterns_path: /knowledge/global/
+      rules_file: /knowledge/global/rules.md
+      hypotheses_file: /knowledge/global/hypotheses.md
+      description: "Cross-skill patterns, high-impact learnings"
+
+  # Cross-Skill Signal Detection Rules
+  cross_skill_signals:
+
+    # Rule 1: Champion alignment appears in 3+ domains
+    champion_alignment:
+      keywords: [champion, stakeholder, alignment, engagement, sentiment]
+      domains: [sales, gtm, beachhead]
+      trigger_threshold: 2  # If seen in 2+ of these domains, flag global
+      impact_score: 9  # High impact (deal flow + positioning + selection)
+      recommendation: "Route to global/deal-signals.md"
+
+    # Rule 2: Messaging clarity issues span positioning + gtm + sales
+    messaging_clarity:
+      keywords: [messaging, clarity, positioning, confusion, vague]
+      domains: [gtm, beachhead, sales]
+      trigger_threshold: 2
+      impact_score: 8
+      recommendation: "Route to global/messaging-clarity.md"
+
+    # Rule 3: Metric definition gaps appear in experiment + retro
+    metric_definition:
+      keywords: [metric, baseline, measurement, guardrail, success_criteria]
+      domains: [execution, sales]
+      trigger_threshold: 2
+      impact_score: 7
+      recommendation: "Route to global/metric-rigor.md"
+
+    # Rule 4: Buyer pain ≠ seller assumption (beachhead + gtm + sales)
+    pain_mismatch:
+      keywords: [pain, assumption, buyer_perspective, seller_assumption, gap]
+      domains: [beachhead, gtm, sales]
+      trigger_threshold: 2
+      impact_score: 8
+      recommendation: "Route to global/buyer-pain-alignment.md"
+
+    # Rule 5: Timeline pressure indicators (gtm + sales + execution)
+    timeline_pressure:
+      keywords: [timeline, deadline, delay, schedule, rush, pressure]
+      domains: [gtm, sales, execution]
+      trigger_threshold: 2
+      impact_score: 6
+      recommendation: "Route to global/timeline-risks.md"
+
+  # Pattern Routing Logic
+  routing_decisions:
+
+    single_domain_pattern:
+      rule: "If pattern mentions only one domain (e.g., beachhead ICP only)"
+      action: "Route to /knowledge/[domain]/[pattern-name].md"
+      approval: "Auto-write if adding to existing file, ask approval if new file"
+
+    cross_domain_pattern:
+      rule: "If pattern appears in 2+ domains OR matches cross_skill_signal rule"
+      action: "Route to /knowledge/global/[pattern-name].md"
+      approval: "Require user approval (high-impact, first time in global)"
+
+    skill_gap_pattern:
+      rule: "If pattern identifies something a skill missed or should improve"
+      action: "Route to /knowledge/meta/skill-gaps/[skill-name].md"
+      approval: "Require user approval (flags skill for update)"
+
+    hypothesis_confirmation:
+      rule: "If pattern confirms/contradicts open hypothesis"
+      action: "Update /knowledge/global/hypotheses.md + route primary pattern"
+      approval: "Auto-update hypothesis status, ask approval for guardrail promotion"
+
+    guardrail_promotion:
+      rule: "If pattern appears 3+ times, or contradicts existing rule"
+      action: "Flag for /context/meta-patterns.md update"
+      approval: "Always require approval for guardrail changes"
+
+  # Domain Confidence Scoring
+  confidence_calculation:
+    base_score: 1  # Each observation = +1 confidence
+    cross_domain_bonus: 0.5  # +0.5 for each additional domain
+    evidence_quality_multiplier: 1.0  # Future: weight direct evidence higher
+
+    confidence_levels:
+      low: "1-2 observations"
+      medium: "3-4 observations (or 2+ domains)"
+      high: "5+ observations (or 3+ domains)"
+
+    guardrail_promotion_threshold: 5  # Promote to guardrail after 5 confirmations
+    hypothesis_graduation_threshold: 5  # Graduate hypothesis to rule after 5 confirmations
+
+  # File Structure Assumptions
+  file_structure:
+    index: /knowledge/INDEX.md
+    global_rules: /knowledge/global/rules.md
+    global_hypotheses: /knowledge/global/hypotheses.md
+    domain_pattern_template: /knowledge/[DOMAIN]/[PATTERN-NAME].md
+    skill_gap_template: /knowledge/meta/skill-gaps/[SKILL-NAME].md
+    session_log: /sessions/log.md
+
+    # Domains that should auto-create if missing
+    auto_create_domains: [beachhead, gtm, sales, execution, global]
+
+---
+
+# Implementation Notes
+
+## How to Use This Config
+
+1. **Detect domain:** When pattern extracted, check `domains:` section for skill match
+2. **Check cross-skill:** Scan `cross_skill_signals:` rules — does pattern match any?
+3. **Apply routing logic:** Use `routing_decisions:` to determine target file
+4. **Calculate confidence:** Use `confidence_calculation:` formula
+5. **Flag promotions:** If confidence ≥ threshold, flag guardrail or hypothesis graduation
+
+## Example: Champion Alignment Pattern
+
+Input: "When champion sentiment is declining, deal velocity slows 40%"
+Source skills: go-to-market-strategy, pre-mortem, retro
+
+Steps:
+1. Skill domains: GTM, Beachhead (GTM is primary)
+2. Check cross-skill signals: "champion_alignment" rule matches (keywords ✓, domains ✓)
+3. Trigger threshold: 2 domains needed, only 1 (GTM) — wait, retro is also sales
+4. Revise: Skills touch GTM + Sales = 2 domains → TRIGGER cross-skill signal
+5. Routing decision: Cross-domain pattern → route to `/knowledge/global/deal-signals.md`
+6. Confidence: 3 observations + 2 domains = MEDIUM confidence
+7. Approval: Required (first time in global, cross-domain)
+
+---
+
+## When Domains Auto-Create
+
+If `/knowledge/beachhead/` doesn't exist yet:
+1. Check `auto_create_domains:` — beachhead ✓
+2. Create directory silently
+3. Write pattern to new file
+4. Update `/knowledge/INDEX.md` with new domain pointer
+
+This ensures the system builds incrementally without manual setup.

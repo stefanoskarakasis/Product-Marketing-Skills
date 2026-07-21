@@ -22,7 +22,7 @@ metadata:
 last_updated: 2026-07-21
 ---
 
-# Meta-Review v2.0.0 (Enhanced with Pawel + 2026 GTM Learnings)
+# Meta-Review v2.0.0
 
 The quality control layer. Every skill output gets scored against clarity + feasibility standards,
 compared to tier benchmarks, trended over time, and validated against automated gates. Unique to v2.0.0:

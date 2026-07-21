@@ -1,0 +1,291 @@
+# Meta-Review 2026 Adoption Lens Configuration
+# Version: 2.0.0
+# Description: Framework for assessing GTM outputs through adoption curve + enablement lens
+
+adoption_lens:
+
+  # 2026 GTM Adoption Curve Framework
+  # Based on Ramp learnings + 2026 GTM trends: adoption curves are non-linear,
+  # enablement timing is critical, cross-functional handoffs prevent chaos
+
+  overview:
+    purpose: "Validate GTM briefs account for realistic adoption curves, enablement timing, and cross-functional handoffs"
+    applies_to: ["go-to-market-strategy", "gaccs-brief", "beachhead-segment", "hs-pre-mortem"]
+    not_applicable_to: ["positioning-messaging", "hs-competitive-battlecard", "hs-interview-summary"]
+
+  # Standard Sales Ramp Curve (Ramp learnings)
+  sales_ramp:
+    definition: "Time required for sales team to become productive with new GTM/product"
+
+    ramp_curves_by_complexity:
+      simple_feature:
+        duration_days: 14
+        description: "Simple feature add, no new process, sales already trained"
+        example: "Add new pricing tier to existing product line"
+
+      moderate_gtm:
+        duration_days: 30
+        description: "Standard GTM update, new talking points, sales needs 2-3 training sessions"
+        example: "Launch new beachhead segment with new positioning"
+        key_milestones:
+          - "T+0: Training delivered"
+          - "T+7: Reps using new talking points in calls"
+          - "T+14: Pipeline reflects new segment"
+          - "T+30: Ramp complete, velocity normalized"
+
+      complex_gtm:
+        duration_days: 60
+        description: "Major GTM pivot, new process, new comp plan, sales mindset shift"
+        example: "Pivot from upmarket to mid-market, new ICP, new channel"
+        key_milestones:
+          - "T+0: Kickoff, training begins"
+          - "T+14: Core training complete, pilot with top 10 reps"
+          - "T+30: Full team trained, metrics baseline set"
+          - "T+45: Ramp acceleration (reps hitting stride)"
+          - "T+60: Ramp complete, performance normalized"
+
+    validation_in_gtm_brief:
+      must_include: ["Ramp duration explicitly stated (days)", "Key milestones with dates"]
+      scoring:
+        realistic_duration: "+2 pts (ramp timeline is accurate for complexity)"
+        vague_duration: "-1 pt (ramp mentioned but no timeline)"
+        missing_duration: "-2 pts (ramp not addressed)"
+        explicit_milestones: "+1 pt (milestones mapped with dates)"
+
+  # Customer Success Handoff Window
+  cs_handoff:
+    definition: "Point at which CS takes primary ownership from Sales (typically 30-60 days post-close)"
+
+    handoff_models:
+      sales_owned_ramp:
+        duration: "First 30 days"
+        owner: "Sales + Sales Engineer"
+        cs_role: "Supportive (monitoring, issue resolution)"
+        rationale: "Sales knows buyer best, can unblock objections, ensure quick wins"
+
+      shared_ramp:
+        duration: "Days 30-60"
+        owner: "Sales + CS (joint ownership)"
+        cs_role: "Primary relationship, Sales in background"
+        rationale: "CS takes relationship, Sales addresses adoption blockers"
+
+      cs_owned_success:
+        duration: "Day 60+"
+        owner: "CS"
+        sales_role: "Expansion/upsell only"
+        rationale: "Product is stable, focus shifts to value realization"
+
+    validation_in_gtm_brief:
+      must_include: ["Handoff date explicit (e.g., 'CS takes primary at day 35')", "CS role in first 30 days defined", "Success criteria for handoff (e.g., 'customer hitting XYZ adoption milestone')"]
+      scoring:
+        clear_handoff: "+2 pts (handoff date, owner, criteria all explicit)"
+        vague_handoff: "-1 pt (handoff mentioned but unclear)"
+        missing_handoff: "-2 pts (no CS/sales transition plan)"
+
+  # Expansion Trigger Model
+  expansion_triggers:
+    definition: "Signals that indicate readiness for upsell/expansion (post-stability window)"
+
+    expansion_model:
+      stability_window: "First 60 days"
+      purpose: "Ensure customer is stable, hitting initial success criteria"
+
+      post_stability_triggers:
+        adoption_depth:
+          signal: "Customer using 80%+ of core features"
+          timeframe: "Day 60-90"
+          action: "Introduce advanced features or higher tier"
+
+        use_case_expansion:
+          signal: "Customer asking for adjacent use case support"
+          timeframe: "Day 45-90"
+          action: "Propose add-on module or new team licensing"
+
+        usage_growth:
+          signal: "Monthly usage trending up 20%+ month-over-month"
+          timeframe: "Day 60+"
+          action: "Proactive upsell conversation (higher volume tier)"
+
+    validation_in_gtm_brief:
+      must_include: ["Expansion triggers defined (specific signals)", "Expansion timeline (when does Sales start upsell?)", "Expansion owner (Sales? Account exec? CS?)"]
+      scoring:
+        defined_triggers: "+2 pts (triggers are specific and intentional)"
+        vague_triggers: "-1 pt (expansion mentioned but reactive, not proactive)"
+        missing_triggers: "-2 pts (no expansion strategy)"
+
+  # Enablement Timing (2026 Best Practice)
+  enablement_timing:
+    definition: "Training must happen BEFORE or COINCIDE with launch (not after)"
+
+    timing_models:
+      pre_launch:
+        when: "Training completes 1-2 weeks before launch"
+        advantage: "Reps are sharp at launch, can field real objections"
+        requirement: "Content must be final 3 weeks before launch"
+
+      day_zero:
+        when: "Training happens on launch day or launch week"
+        advantage: "Content is fresh, aligned with launch messaging"
+        challenge: "Reps may be rusty during first real sales calls"
+
+      post_launch_risk:
+        when: "Training happens after launch (weeks 2-4)"
+        advantage: "Sales feels launch pressure, more engaged training"
+        risk: "First calls lack sharp positioning, early deals may be weak"
+        recommendation: "Avoid if possible. If necessary, pair with Sales Engineer support"
+
+    validation_in_gtm_brief:
+      must_include: ["Training date explicit (before or on launch day)", "Training format + duration (online sync? Async? Duration?)", "Success criteria (% reps trained by day 1, readiness test)"]
+      scoring:
+        pre_launch_timing: "+2 pts (training done before launch, reps sharp)"
+        day_zero_timing: "+1 pt (training on launch, acceptable)"
+        post_launch_timing: "-2 pts (high risk, reps unprepared at launch)"
+        explicit_dates: "+1 pt (training date is specific date, not 'week of')"
+        explicit_success_criteria: "+1 pt (readiness test or signoff defined)"
+
+  # Cross-Functional Alignment Signals
+  cross_functional_alignment:
+    definition: "Clarity on who owns what, when, and success criteria at each stage"
+
+    alignment_checklist:
+      sales_owner_identified:
+        question: "Who owns sales success for first 30/60 days?"
+        good_answer: "SVP Sales or VP Sales name specified, clear success criteria"
+        scoring: "+2 pts (specific owner, accountability clear)"
+
+      cs_owner_identified:
+        question: "Who owns CS success? When do they take over?"
+        good_answer: "VP/Director Customer Success named, handoff date explicit, success milestone defined"
+        scoring: "+2 pts (CS owner + handoff date + milestone)"
+
+      marketing_enablement:
+        question: "What does marketing do during ramp? Support or launch-only?"
+        good_answer: "Marketing supports launch week, then steps back. Or 'marketing owns demand gen for new segment, sales owns education'"
+        scoring: "+1 pt (marketing's role is clear)"
+
+      product_support:
+        question: "If reps hit product issues, who escalates? Timeline?"
+        good_answer: "SE owns first-line support. Critical bugs: 24h fix SLA. Support is available during ramp."
+        scoring: "+1 pt (product support escalation is clear)"
+
+    validation_in_gtm_brief:
+      must_include: ["Sales owner (name/title)", "CS owner + handoff date", "Marketing role during ramp", "Product/SE support model"]
+      scoring:
+        all_owners_named: "+3 pts (Sales, CS, Marketing, Product all have clear owners)"
+        some_owners_named: "+1 pt (2-3 owners identified)"
+        no_owners: "-1 pt (ownership unclear, execution will suffer)"
+
+  # Quality Scoring Integration
+  scoring_impact:
+    positioning_outputs: "Adoption lens does NOT apply (positioning is not a launch)"
+    gtm_briefs: "Adoption lens IS applied (mandatory for T1/T2 launches)"
+    beachhead_analysis: "Adoption lens CONDITIONALLY applied (if includes go-to-market plan)"
+
+    point_deductions:
+      missing_sales_ramp: "-2 pts (ramp curve not addressed)"
+      vague_sales_ramp: "-1 pt (ramp mentioned, no timeline)"
+
+      missing_cs_handoff: "-2 pts (CS/sales transition not defined)"
+      vague_cs_handoff: "-1 pt (handoff mentioned, dates unclear)"
+
+      post_launch_enablement: "-2 pts (training after launch, high risk)"
+      vague_enablement_timing: "-1 pt (training mentioned, no dates)"
+
+      missing_expansion_triggers: "-2 pts (no expansion strategy)"
+      vague_expansion_triggers: "-1 pt (expansion mentioned, not strategic)"
+
+      unclear_ownership: "-1 pt (cross-functional owners not named)"
+
+    point_bonuses:
+      explicit_ramp_milestones: "+1 pt (ramp timeline includes key milestones)"
+      clear_cs_handoff: "+1 pt (CS handoff date + success criteria both defined)"
+      explicit_enablement_dates: "+1 pt (training dates are specific, not 'week of')"
+      pre_launch_enablement: "+1 pt (training before launch, reps prepared)"
+      defined_expansion: "+1 pt (expansion triggers are strategic, not reactive)"
+
+  # 2026 GTM Benchmark
+  gtm_brief_benchmark:
+    dimension: "Adoption Curve & Enablement Timing (2026 Lens)"
+    max_points: 20
+
+    scoring_levels:
+      20_points:
+        criteria:
+          - "Sales ramp explicitly stated with key milestones"
+          - "CS handoff date and success criteria defined"
+          - "Enablement training before launch (or day-zero)"
+          - "Expansion triggers are strategic and proactive"
+          - "All cross-functional owners named (Sales, CS, Marketing, Product)"
+        examples: "Sales owns first 30d (milestones: training T+0, calls T+7, pipeline T+14). CS takes at T+30 (success: customer at 50% feature adoption). Expansion at T+60+ (signal: usage up 20%+). Marketing owns demand gen for segment, Sales owns buyer education. Product supports via SE (SLA: critical bugs 24h)."
+
+      15_points:
+        criteria:
+          - "Sales ramp and CS handoff dates specified"
+          - "Enablement timing is clear (pre-launch or day-zero)"
+          - "Expansion strategy mentioned"
+          - "Most cross-functional owners identified"
+        examples: "Sales ramps 30d, CS takes at day 30. Training happens pre-launch. Expansion discussed but triggers not specific."
+
+      10_points:
+        criteria:
+          - "Adoption curve mentioned but vague"
+          - "Enablement timing unclear (no dates)"
+          - "Some cross-functional owners mentioned"
+        examples: "Sales will ramp up. Enablement will happen. CS will take over at some point."
+
+      5_points:
+        criteria:
+          - "Adoption curve not addressed or post-launch enablement (risky)"
+          - "Cross-functional owners not named"
+        examples: "Training TBD. CS involvement TBD."
+
+---
+
+## How to Apply Adoption Lens in Meta-Review
+
+### Step 1: Detect if Adoption Lens Applies
+Output type is GTM brief, beachhead with go-to-market, or GACCS brief?
+→ YES: Apply adoption lens
+
+Output type is positioning statement or battlecard?
+→ NO: Skip adoption lens
+
+### Step 2: Run the Adoption Checklist
+For each GTM output, verify:
+- [ ] Sales ramp curve (duration + milestones)
+- [ ] CS handoff (date + owner + success criteria)
+- [ ] Enablement timing (date, must be pre-launch or day-zero)
+- [ ] Expansion triggers (strategic, not reactive)
+- [ ] Cross-functional owners (Sales, CS, Marketing, Product all named)
+
+### Step 3: Score the "Adoption Curve" Dimension
+Allocate points (0-20) based on benchmark levels above.
+
+### Step 4: Apply Bonuses/Deductions
+- Missing ramp curve: -2 pts
+- Clear handoff: +1 pt
+- Pre-launch enablement: +1 pt
+- etc.
+
+### Step 5: Reference in Recommendations
+If adoption curve is weak:
+- FIX: "Add explicit sales ramp timeline with milestones"
+- FIX: "Define CS handoff date + success criteria"
+- FIX: "Move training to pre-launch"
+
+---
+
+## 2026 GTM Learnings (Ramp + Industry)
+
+1. **Sales ramp is real.** Don't assume reps are productive day 1. Standard ramp is 30 days, complex GTM is 60 days.
+
+2. **Enablement timing matters.** Training before launch beats training during launch beats training after launch.
+
+3. **CS handoff must be explicit.** If undefined, sales and CS will fight over ownership, customer suffers.
+
+4. **Expansion is proactive, not reactive.** Define triggers (adoption depth, use case expansion, usage growth) and assign owner (Sales or CS).
+
+5. **Cross-functional alignment prevents chaos.** Name owners for Sales, CS, Marketing, Product. If anyone is undefined, execution will suffer.
+
+6. **Adoption curves are non-linear.** First 30 days is about getting customer productive. Days 30-60 is about value realization. After day 60, focus shifts to expansion.
+

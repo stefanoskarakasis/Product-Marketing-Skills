@@ -1,0 +1,289 @@
+# Meta-Learn Hypothesis Tracking Configuration
+# Version: 2.0.0
+# Description: Open hypotheses, confirmation criteria, promotion thresholds
+
+hypothesis_tracking:
+
+  # Global Hypothesis Registry
+  open_hypotheses:
+
+    H1:
+      name: "Beachhead ICP wins faster with champion alignment"
+      description: "When a beachhead ICP segment has a champion-aligned use case, sales cycles compress 30% and deal velocity increases"
+      domain: beachhead
+      related_skills: [beachhead-segment, hs-stakeholder-maps, hs-competitive-battlecard]
+      created: 2026-06-15
+
+      confirmation_criteria:
+        - "Champion explicitly mentioned in beachhead selection rationale"
+        - "Win/loss data shows 30%+ faster cycles in champion-aligned segments"
+        - "Sales team reports higher close rate when champion is aligned"
+
+      confirmations: 2
+      contradictions: 0
+      confidence: MEDIUM
+
+      evidence:
+        - "2026-06-20: Retro on Q2 launch noted champion alignment in top 2 segments"
+        - "2026-07-10: GTM strategy for Q3 identified champion alignment as selection criterion"
+
+      status: TRACKING (need 3 more confirmations for promotion)
+      graduation_threshold: 5
+      promotion_rules:
+        - "Promote to RULE when: 5+ confirmations, 0 contradictions"
+        - "Escalate to GUARDRAIL when: appears in 3+ skill domains"
+
+    H2:
+      name: "Pricing elasticity varies significantly by segment"
+      description: "Customer willingness to pay is not uniform across ICP segments; beachhead segment may accept 2x premium vs. adjacent segment"
+      domain: beachhead
+      related_skills: [beachhead-segment, go-to-market-strategy]
+      created: 2026-06-18
+
+      confirmation_criteria:
+        - "Pricing research shows >30% WTP variance between segments"
+        - "Historical win/loss data correlates WTP with segment"
+        - "Customer interviews confirm price sensitivity differences"
+
+      confirmations: 1
+      contradictions: 0
+      confidence: LOW
+
+      evidence:
+        - "2026-06-28: Beachhead segment work identified WTP as selection criterion"
+
+      status: TRACKING (need 4 more confirmations)
+      graduation_threshold: 5
+      promotion_rules:
+        - "Promote to RULE when: 5+ confirmations, 0 contradictions"
+
+    H3:
+      name: "Champion sentiment predicts deal velocity"
+      description: "When champion sentiment is declining (2+ Gong signals), deal stage progression slows 40% on average"
+      domain: sales
+      related_skills: [go-to-market-strategy, hs-retro, hs-pre-mortem]
+      created: 2026-07-10
+
+      confirmation_criteria:
+        - "Gong data shows declining champion engagement (calls, responsiveness)"
+        - "Deal progression slows after sentiment decline"
+        - "Sales team confirms champion disengagement as deal risk"
+
+      confirmations: 3
+      contradictions: 0
+      confidence: HIGH
+
+      evidence:
+        - "2026-07-15: Go-to-market-strategy flagged champion engagement as launch success factor"
+        - "2026-07-18: Pre-mortem identified weak champion as kill-risk"
+        - "2026-07-20: Retro noted champion disengagement in 2 lost deals"
+
+      status: TRACKING (need 2 more confirmations for rule graduation)
+      graduation_threshold: 5
+      promotion_rules:
+        - "Promote to RULE when: 5+ confirmations, reaches GLOBAL cross-skill status"
+        - "Escalate to GUARDRAIL immediately when: appears in 3+ domains (currently sales + gtm + beachhead = 3 ✓)"
+
+      next_action: "Schedule champion-sentiment guardrail for meta-synthesis next cycle"
+
+    H4:
+      name: "Positioning clarity directly impacts sales velocity"
+      description: "When positioning is ambiguous or internally inconsistent, sales takes 25% longer to close and lose rate increases 15%"
+      domain: gtm
+      related_skills: [hs-positioning-messaging, hs-gaccs-brief, hs-retro]
+      created: 2026-07-08
+
+      confirmation_criteria:
+        - "Sales team confirms messaging confusion in recent calls"
+        - "Win/loss data shows vague positioning in lost deals"
+        - "A/B test: clearer positioning vs. ambiguous positioning impact on conversion"
+
+      confirmations: 2
+      contradictions: 0
+      confidence: MEDIUM
+
+      evidence:
+        - "2026-07-12: GACCS brief noted inconsistent messaging across channels"
+        - "2026-07-18: Retro on Q2 campaign identified positioning ambiguity as risk"
+
+      status: TRACKING (need 3 more confirmations)
+      graduation_threshold: 5
+      promotion_rules:
+        - "Promote to RULE when: 5+ confirmations + cross-domain evidence"
+
+    H5:
+      name: "Pre-mortem risk materialization rate predicts launch success"
+      description: "Pre-mortems that surface 8+ material risks correlate with launches that hit tier targets 60% of the time; 4 or fewer risks → 85% hit rate"
+      domain: execution
+      related_skills: [hs-pre-mortem, hs-retro, go-to-market-strategy]
+      created: 2026-07-12
+
+      confirmation_criteria:
+        - "Launch outcome data: hit/miss correlated with pre-mortem risk count"
+        - "Risk materialization rate: % of pre-mortem risks that actually occurred"
+        - "Confidence band calibration: do pre-mortems over-predict or under-predict risk?"
+
+      confirmations: 1
+      contradictions: 0
+      confidence: LOW
+
+      evidence:
+        - "2026-07-20: Retro on Q2 launch: 6 pre-mortem risks identified, 4 materialized (67%)"
+
+      status: TRACKING (need 4 more confirmations)
+      graduation_threshold: 5
+      promotion_rules:
+        - "Promote to RULE when: 5+ launches tracked with pre-mortem risk counts + materialization rates"
+        - "Note: This is a meta-hypothesis (about skill accuracy), may route to meta/calibration"
+
+  # Confirmation & Contradiction Rules
+  confirmation_rules:
+
+    explicit_match:
+      description: "Session explicitly mentions hypothesis by name or core claim"
+      example: "Retro: Champion disengagement was the main kill factor"
+      weight: 1.0  # Full confirmation
+
+    inferred_match:
+      description: "Session evidence supports hypothesis without explicit mention"
+      example: "Pre-mortem identifies champion as top risk (supports H3)"
+      weight: 0.7  # Partial confirmation (weaker evidence)
+
+    partial_contradiction:
+      description: "Session provides counter-evidence to one aspect"
+      example: "One deal with weak champion still closed fast (partial contradiction of H3)"
+      weight: -0.5  # Counts as partial contradiction
+
+    direct_contradiction:
+      description: "Session explicitly disproves hypothesis"
+      example: "Analysis shows no correlation between champion sentiment and deal speed"
+      weight: -1.0  # Full contradiction
+
+  # Status Workflow
+  status_workflow:
+
+    TRACKING:
+      description: "Hypothesis is open, actively being tested"
+      conditions:
+        - "1-4 confirmations"
+        - "0 contradictions (or only weak contradictions)"
+        - "Still gathering evidence"
+      actions:
+        - "Continue monitoring across skill sessions"
+        - "Look for confirmations in upcoming sessions"
+        - "Log all related observations"
+
+    CONFIRMED:
+      description: "Hypothesis has sufficient evidence (5+ confirmations)"
+      conditions:
+        - "≥5 confirmations"
+        - "0-1 weak contradictions (tolerated, <-0.5 weight)"
+        - "Ready to graduate to rule or guardrail"
+      actions:
+        - "Propose promotion to /knowledge/global/rules.md"
+        - "Consider guardrail creation if cross-domain (3+ skills)"
+        - "Track in meta-synthesis for next cycle"
+
+    RULE:
+      description: "Hypothesis graduated to confirmed rule"
+      conditions:
+        - "5+ confirmations"
+        - "Documented in /knowledge/global/rules.md"
+        - "Cross-domain status confirmed (if applicable)"
+      actions:
+        - "Rule applies across all future skill sessions"
+        - "Continue confidence tracking (may increase to guardrail)"
+        - "Log any contradictions for re-evaluation"
+
+    GUARDRAIL:
+      description: "Hypothesis is a high-confidence guardrail (3+ domains, CONFIRMED status)"
+      conditions:
+        - "5+ confirmations"
+        - "Appears in 3+ skill domains"
+        - "CONFIRMED status"
+        - "Documented in /context/meta-patterns.md"
+      actions:
+        - "Guardrail loads in Step 0 of all skills"
+        - "Skills reference guardrail in pre-flight"
+        - "High-confidence, actionable across all domains"
+
+    CONTRADICTED:
+      description: "Hypothesis has been disproven"
+      conditions:
+        - "2+ direct contradictions"
+        - "OR 3+ weak contradictions"
+        - "OR new data invalidates core claim"
+      actions:
+        - "Mark hypothesis as CLOSED / DISPROVEN"
+        - "Document why in /knowledge/global/hypotheses.md"
+        - "Extract learnings about why hypothesis was wrong"
+        - "Don't use as guardrail or rule"
+
+    ARCHIVED:
+      description: "Hypothesis no longer relevant (e.g., market changed)"
+      conditions:
+        - "No new data in 90+ days"
+        - "Hypothesis is outdated (market shift, product change)"
+      actions:
+        - "Move to /knowledge/archived/"
+        - "Keep for historical reference"
+        - "Document archival reason"
+
+  # Promotion Thresholds
+  thresholds:
+
+    hypothesis_to_rule:
+      confirmation_count: 5
+      contradiction_count: 0
+      contradiction_tolerance: 1  # 1 weak contradiction tolerated
+      minimum_confidence: HIGH
+      message: "After 5+ confirmations, hypothesis graduates to rule"
+
+    rule_to_guardrail:
+      cross_domain_count: 3  # Appears in 3+ skill domains
+      confirmation_count: 5
+      confidence: HIGH
+      message: "Cross-domain (3+) + 5+ confirmations = guardrail status"
+
+    hypothesis_to_archived:
+      days_without_data: 90
+      market_relevance: false
+      message: "No new data in 90+ days or hypothesis outdated"
+
+  # Compounding Logic
+  confidence_compounding:
+
+    calculation:
+      base_confidence: "LOW (1-2), MEDIUM (3-4), HIGH (5+)"
+      formula: "confidence = count(confirmations) - 0.5 * count(weak_contradictions)"
+
+    tracking:
+      - "Each explicit confirmation +1"
+      - "Each inferred confirmation +0.7"
+      - "Each weak contradiction -0.5"
+      - "Each direct contradiction -1.0"
+
+    compounding_effect:
+      - "Hypothesis: 1 confirmation (LOW) → 2 confirmations (MEDIUM) → 5 confirmations (HIGH)"
+      - "With each confirmation, confidence increases → skill sessions that load this hypothesis can rely on it more"
+      - "Guardrails with HIGH confidence are triggered more aggressively in skill execution"
+
+    example_progression:
+      "H3 Champion Sentiment":
+        - "2026-07-15: First observation (LOW, 1 confirmation)"
+        - "2026-07-18: Second observation (MEDIUM, 2 confirmations)"
+        - "2026-07-20: Third observation (MEDIUM, 3 confirmations)"
+        - "2026-07-21: Fourth observation (HIGH, 4 confirmations, cross-domain = 3 domains)"
+        - "2026-07-22: Guardrail promotion proposed (HIGH confidence, cross-domain, promotion threshold met)"
+
+---
+
+## How to Use This Config
+
+1. **Load hypothesis file:** `/knowledge/global/hypotheses.md`
+2. **Check for matches:** Does extracted pattern match any open hypothesis?
+3. **Apply confirmation rule:** Classify as explicit, inferred, or contradictory
+4. **Update confidence:** Increment confirmation count or add contradiction
+5. **Check thresholds:** If confirmed 5+, flag for rule promotion
+6. **Check cross-domain:** If appears in 3+ domains, flag for guardrail promotion
+7. **Propose promotion:** Surface in approval gate (Step 7 of meta-learn)

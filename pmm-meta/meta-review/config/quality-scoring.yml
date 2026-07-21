@@ -1,0 +1,331 @@
+# Meta-Review Quality Scoring Configuration
+# Version: 2.0.0
+# Description: Point system and rubrics for scoring PMM skill outputs
+
+quality_scoring:
+
+  # Scoring System Overview
+  overview:
+    scale: "0-100 points"
+    passing_score: "70 points (C, acceptable quality)"
+    good_score: "80-89 points (B, good quality)"
+    excellent_score: "90-100 points (A, excellent/T1-ready)"
+
+    grading_scale:
+      "90-100": "A (Excellent, T1-ready)"
+      "80-89": "B (Good, T2-appropriate)"
+      "70-79": "C (Acceptable, T2/T3 minimum)"
+      "60-69": "D (Below standard, needs fixes)"
+      "0-59": "F (Failing, blocked from deployment)"
+
+  # Rubric: GTM Brief (100 points)
+  gtm_brief_rubric:
+    name: "GTM Brief Quality Rubric"
+    max_score: 100
+
+    dimensions:
+
+      positioning_clarity:
+        name: "Positioning Clarity & Differentiation"
+        max_points: 20
+
+        criteria:
+          5_points:
+            name: "Vague or incremental"
+            description: "Positioning is unclear, sounds like competitor, missing unique value angle"
+
+          10_points:
+            name: "Somewhat clear but soft"
+            description: "Positioning is understandable but lacks boldness, feels iterative vs. incumbent"
+
+          15_points:
+            name: "Clear and differentiated"
+            description: "Positioning owns unique value angle, distinct from competitors, but could be sharper"
+
+          20_points:
+            name: "Clear, bold, differentiated"
+            description: "Positioning is crisp, owns unique value, clear vs. 3+ alternatives, competitive"
+
+      channel_strategy:
+        name: "Channel Strategy & Feasibility"
+        max_points: 20
+
+        criteria:
+          5_points:
+            name: "No channel plan"
+            description: "No clear channel strategy or mix identified"
+
+          10_points:
+            name: "Vague channels"
+            description: "Channels mentioned but no prioritization, timeline unclear, resources not realistic"
+
+          15_points:
+            name: "Clear channels, realistic"
+            description: "Channels prioritized, timeline is feasible, resource allocation reasonable"
+
+          20_points:
+            name: "Detailed, prioritized, feasible"
+            description: "Channels ranked by impact, timeline specific, regional/segment prioritization included, resources detailed"
+
+      success_metrics:
+        name: "Success Metrics & Measurement"
+        max_points: 20
+
+        criteria:
+          5_points:
+            name: "No metrics or vague"
+            description: "No success criteria defined, or metrics are unmeasurable"
+
+          10_points:
+            name: "Basic metrics"
+            description: "Metrics defined (e.g., leads target) but no confidence bands, no failure thresholds"
+
+          15_points:
+            name: "Clear metrics with ranges"
+            description: "Metrics include target + success range (e.g., 100-150% of target), failure thresholds"
+
+          20_points:
+            name: "Comprehensive, tiered"
+            description: "Metrics include target, confidence bands, leading/lagging indicators, tier-specific success criteria"
+
+      competitive_context:
+        name: "Competitive Positioning & Win/Loss Insight"
+        max_points: 15
+
+        criteria:
+          5_points:
+            name: "No competitive context"
+            description: "No mention of competitors or alternatives, assumes vacuum"
+
+          10_points:
+            name: "Basic competitive awareness"
+            description: "Mentions 1-2 competitors, but no win/loss insight or differentiation vs. them"
+
+          12_points:
+            name: "Good competitive context"
+            description: "Maps 3+ alternatives, includes win/loss patterns, but could deepen insight"
+
+          15_points:
+            name: "Deep competitive insight"
+            description: "Maps 4+ alternatives including status quo, references win/loss data, clear 'why us vs. them'"
+
+      timeline_feasibility:
+        name: "Timeline & Resource Feasibility"
+        max_points: 15
+
+        criteria:
+          5_points:
+            name: "Unrealistic timeline"
+            description: "Timeline is impossible given resources, dependencies not addressed"
+
+          10_points:
+            name: "Optimistic timeline"
+            description: "Timeline is tight, dependencies exist but not fully mapped, resource conflicts possible"
+
+          12_points:
+            name: "Realistic timeline"
+            description: "Timeline is achievable, key dependencies identified, resource conflicts minimal"
+
+          15_points:
+            name: "Well-planned timeline"
+            description: "Timeline has buffers, all dependencies mapped, resources allocated, risk mitigation plan"
+
+      risk_mitigation:
+        name: "Risk Mitigation & Contingency Planning"
+        max_points: 10
+
+        criteria:
+          2_points:
+            name: "No risk plan"
+            description: "No risks identified or discussed"
+
+          5_points:
+            name: "Basic risks noted"
+            description: "Risks mentioned (e.g., 'sales enablement could be weak') but no mitigation plan"
+
+          8_points:
+            name: "Risks + mitigation"
+            description: "Top 3-5 risks identified with mitigation plans (but not all plan details)"
+
+          10_points:
+            name: "Comprehensive risk plan"
+            description: "Risks ranked by impact, mitigation plans detailed, contingency playbook included"
+
+  # Rubric: Positioning Statement (100 points)
+  positioning_statement_rubric:
+    name: "Positioning Statement Quality Rubric"
+    max_score: 100
+
+    dimensions:
+
+      clarity:
+        max_points: 25
+        criteria:
+          25_points: "Crystal clear, one sentence, non-technical, memorable"
+          20_points: "Clear, slightly wordy, mostly non-technical"
+          15_points: "Understandable, uses jargon, needs tightening"
+          10_points: "Somewhat vague, jargon-heavy, open to interpretation"
+          5_points: "Unclear or confusing"
+
+      differentiation:
+        max_points: 25
+        criteria:
+          25_points: "Owns unique value angle no competitor owns, clear 'why us vs. them'"
+          20_points: "Differentiated, but not the strongest angle available"
+          15_points: "Somewhat differentiated, but feels iterative"
+          10_points: "Me-too positioning, incremental vs. incumbent"
+          5_points: "No differentiation, sounds like competitor"
+
+      believability:
+        max_points: 20
+        criteria:
+          20_points: "Backed by data/win-loss, achievable, grounded in real capability"
+          15_points: "Mostly credible, minor stretch, one assumption not proven"
+          10_points: "Optimistic, some assumptions not validated, one bold claim"
+          5_points: "Overstated, many assumptions, not credible to market"
+
+      resonance:
+        max_points: 15
+        criteria:
+          15_points: "Lands emotionally with buyer, addresses deep pain, memorable"
+          10_points: "Lands with buyer, but messaging could be sharper"
+          7_points: "Relevant to buyer, but doesn't resonate as strongly as it could"
+          3_points: "Relevant but dry, features over benefits"
+
+      brevity:
+        max_points: 15
+        criteria:
+          15_points: "One crisp sentence or very short paragraph"
+          10_points: "1-2 sentences, slightly long but tight"
+          5_points: "2-3 sentences, could be tightened"
+          2_points: "Multiple sentences, too long"
+
+  # Rubric: Beachhead Segment Analysis (100 points)
+  beachhead_segment_rubric:
+    name: "Beachhead Segment Scoring Rubric"
+    max_score: 100
+
+    dimensions:
+
+      pain_clarity:
+        max_points: 20
+        criteria:
+          20_points: "Pain is specific, quantified, urgent, validated in interviews"
+          15_points: "Pain is clear but not quantified, validated in 1-2 interviews"
+          10_points: "Pain is stated but vague, limited validation"
+          5_points: "Pain is assumed, not validated"
+
+      willingness_to_pay:
+        max_points: 20
+        criteria:
+          20_points: "WTP validated in pricing research or willingness test, 2+ data points"
+          15_points: "WTP estimated based on comparable, reasonable assumptions"
+          10_points: "WTP guessed, one assumption not validated"
+          5_points: "WTP unclear or unrealistic"
+
+      winnability:
+        max_points: 20
+        criteria:
+          20_points: "High win rate (70%+) in this segment, validation data"
+          15_points: "Estimated high win rate (60-70%), some validation"
+          10_points: "Uncertain win rate (50%), limited validation"
+          5_points: "Low win rate (<50%), too risky"
+
+      referral_potential:
+        max_points: 20
+        criteria:
+          20_points: "Segment has network effects, champion will evangelize, strong ref potential"
+          15_points: "Segment has reference potential, but not strongest evangelists"
+          10_points: "References possible but not guaranteed, weak evangelist tendencies"
+          5_points: "Low reference potential, hard to evangelize"
+
+      size_and_urgency:
+        max_points: 20
+        criteria:
+          20_points: "Segment is large enough for meaningful revenue, urgency is high"
+          15_points: "Segment is adequate size, urgency is moderate to high"
+          10_points: "Segment is smallish, urgency is low"
+          5_points: "Segment is too small or urgency is very low"
+
+  # Rubric: Pre-Mortem Risk Summary (100 points)
+  pre_mortem_rubric:
+    name: "Pre-Mortem Risk Summary Rubric"
+    max_score: 100
+
+    dimensions:
+
+      risk_quality:
+        max_points: 30
+        criteria:
+          30_points: "Risks are specific, falsifiable, grounded in real concerns from cross-functional"
+          20_points: "Risks are clear, mostly specific, some grounded in data"
+          15_points: "Risks are stated, but some are vague or assumed"
+          10_points: "Risks are generic, lack specificity"
+          5_points: "Risks are not clearly articulated"
+
+      mitigation_plans:
+        max_points: 30
+        criteria:
+          30_points: "Every risk has specific mitigation plan, owner assigned, timeline set"
+          20_points: "Most risks have mitigation (80%), some lack owner/timeline"
+          15_points: "Half of risks have clear mitigation, half are vague"
+          10_points: "Few risks have mitigation plans"
+          5_points: "No mitigation plans, just risk listing"
+
+      completeness:
+        max_points: 20
+        criteria:
+          20_points: "Covers all critical risk areas (execution, market, competitive, team)"
+          15_points: "Covers most areas, misses 1 category"
+          10_points: "Covers half the areas, gaps remain"
+          5_points: "Incomplete risk coverage"
+
+      actionability:
+        max_points: 20
+        criteria:
+          20_points: "Risks and mitigations are actionable right now (no blockers)"
+          15_points: "Mostly actionable, one or two require more data"
+          10_points: "Some risks require more information before acting"
+          5_points: "Unclear how to actually mitigate"
+
+---
+
+## How to Use Quality Scoring
+
+### Step 1: Select Rubric
+Match output type to rubric (GTM brief, positioning, beachhead, pre-mortem, etc.)
+
+### Step 2: Score Each Dimension
+For each dimension:
+1. Read output content carefully
+2. Match to criteria (which level: 5pts, 10pts, 15pts, 20pts?)
+3. Assign points honestly
+4. Note evidence (quote or example from output)
+
+### Step 3: Calculate Total
+Sum all dimensions → total score out of 100
+
+### Step 4: Grade
+Convert score to letter grade (A/B/C/D/F) and tier appropriateness (T1/T2/T3/T4)
+
+### Step 5: Interpret
+Scores are diagnostic:
+- 90+: Excellent, T1-ready
+- 80-89: Good, T2-appropriate
+- 70-79: Acceptable, T2/T3 minimum (proceed with caution)
+- 60-69: Below standard (needs fixes)
+- <60: Failing (blocked from deployment)
+
+---
+
+## Quality Standards by Tier
+
+Tiers and their corresponding quality minimums:
+
+| Tier | Min Quality Score | Confidence Required | Guardrails Active | Deploy Approval |
+|------|-------------------|---------------------|-------------------|-----------------|
+| T1 | 90+ | 75%+ | All guardrails | Executive approval |
+| T2 | 75+ | 60%+ | High-impact only | Product lead approval |
+| T3 | 60+ | 50%+ | Blocking only | Team lead signoff |
+| T4 | 50+ | 40%+ | None | Auto-approved if no critical gaps |
+

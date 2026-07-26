@@ -1,6 +1,6 @@
 # pmm-meta
 
-Self-improving GTM system for product marketers. Meta skills that read execution logs, detect patterns, propose guardrails, predict success, and compound learnings across sessions. Integrated with Pawel Huryn's positioning rigor and 2026 GTM adoption lens.
+Self-improving GTM system for product marketers. Meta skills that read execution logs, detect patterns, propose guardrails, predict success, and compound learnings across sessions.
 
 ## Skills (4)
 

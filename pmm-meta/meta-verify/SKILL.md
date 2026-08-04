@@ -1,408 +1,209 @@
 ---
 name: meta-verify
-version: 1.0.0
-description: >
-  Second-pass quality check on T1 skill output. Reads output cold — without the
-  context of how it was produced — and checks it against the originating skill's
-  operating rules and quality gate criteria. The difference between a skill
-  self-grading and an independent evaluator. Start with T1 skills: pre-mortem,
-  go-to-market-strategy, positioning-messaging. Trigger on: "verify this output",
-  "check this brief", "is this pre-mortem complete", "second opinion on this",
-  "quality check this", or any request to independently validate a skill output
-  before acting on it.
-
+version: 2.0.0
+description: Predicts success confidence for GTM outputs, scores collaboration readiness (ownership/shareability/learnings), suggests scope expansion (T2→T1), and calibrates predictions over time—enabling multiplayer adoption and self-improving GTM systems.
 metadata:
-  author: Stefanos Karakasis
-  context: context-agnostic
-  quality_gate: true
-last_updated: 2026-06-06
+  phase: 1D
+  frameworks: ["Positioning rigor", "2026 GTM adoption lens", "Multiplayer Claude framework"]
+  last_updated: 2026-08-04
 ---
 
-# meta-verify
+# Meta-Verify
 
-Independent quality check for T1 skill output. Reads output cold — no session
-context, no knowledge of how it was produced — and checks it against the
-originating skill's operating rules and quality gate.
-
-The skill that produced the output is the worst judge of whether it's good.
-This skill is the second opinion that catches what self-grading misses.
+Closes the compounding loop. Predicts success confidence, scores collaboration readiness, suggests scope expansion, calibrates predictions over time.
 
 ---
 
-## Trigger
+## When to Use
 
-- **When:** Any T1 skill output before the user acts on it — especially before
-  a launch commits resources, a pre-mortem is presented to stakeholders, or
-  positioning is handed off to copy or sales.
-- **Not for:** Checking skill *file* structure → use `meta-review`. Capturing
-  session learnings → use `meta-learn`. Reviewing brain file health → use
-  `product-marketing-context` audit mode.
-- **Example prompts:**
-  - "Verify this GTM brief before I share it with my VP"
-  - "Second opinion on this pre-mortem"
-  - "Is this positioning output complete?"
-  - "/verify gtm [paste output]"
-  - "Quality check this before we commit to the launch plan"
+**Trigger:** After quality review completes. Use meta-verify to:
+- Predict success confidence (will this output hit targets at its tier?)
+- Score collaboration readiness (is this shareable? will team adopt?)
+- Suggest scope expansion (should we upgrade T2 to T1?)
+- Track calibration (are our predictions improving?)
+
+**Manual trigger:** User says "verify this", "will this succeed?", "check collaboration", "should we go T1?"
 
 ---
 
-## Inputs
+## Input
 
-- **Args:** Skill name + output to verify. Paste the full output directly.
-- **Defaults:** If skill name not stated, infer from output structure before asking.
-  If output not provided, ask for it — never verify without the content.
-- **Context keys:**
-  - Originating skill's `SKILL.md` — required. Load the operating rules and
-    quality gate of the skill that produced the output.
-  - n.v.t. — no brain file. Context-agnostic by design. Verification must be
-    objective and independent of company context.
+From quality review output:
+- Skill output (brief, positioning, beachhead, pre-mortem, etc.)
+- Quality score (0-100)
+- Launch tier (T1/T2/T3/T4)
+- Guardrails triggered (count, severity)
+- Team learnings applied (yes/no)
 
----
-
-## Pre-flight
-
-- Identify the originating skill from the output structure or user statement.
-- Load the originating skill's `SKILL.md` — specifically its `## Operating Rules`
-  and `## Quality Gate` sections. These are the standards to verify against.
-- If the originating skill's SKILL.md cannot be found: ask the user to confirm
-  which skill produced the output before proceeding.
-- Do not load `/foundation/brain.md`. Verification must be independent of the
-  company context that generated the output — otherwise the same bias that
-  produced the output will evaluate it.
-- Read the output in full before running any checks. No partial verification.
+Context files (pre-flight load):
+- `/config/confidence-model.yml` — Base confidences, quality adjustments, guardrail penalties
+- `/config/collaboration-signals.yml` — Ownership/shareability/learnings patterns
+- `/sessions/quality-learnings.md` — Team insights
+- `/sessions/collaboration-log.md` — Adoption tracking
+- `/context/skill-sessions.md` — Execution history
 
 ---
 
-## Steps
+## Output
 
-### Step 1: Load Verification Standard
-
-Load the originating skill's operating rules and quality gate. State them
-explicitly before checking — this makes the standard visible and auditable.
-
-> "Verifying against [skill-name] operating rules and quality gate.
-> [N] operating rules. [N] quality gate checks. Reading output now."
-
----
-
-### Step 2: Run Independent Quality Gate
-
-Check each quality gate item from the originating skill as binary pass/fail.
-Read the output cold — as if you did not produce it.
-
-For every ❌:
-- Name the specific check that failed
-- Quote the exact part of the output that failed it (or note the omission)
-- State the specific fix required — not a direction, the actual content needed
-
-Format each failure:
-
+**Confidence Prediction:**
 ```
-❌ [Check name]
-Found: [exact quote from output, or "missing"]
-Required: [what the check demands]
-Fix: [specific content to add or change]
+Success confidence: 72% ± 12% (60-84% range)
+Reasoning: Base T2 (70%) + Quality (78>75: +2%) - Guardrail hit (-3%) + Team strong (+3%)
+Recommendation: Proceed with launch
+```
+
+**Collaboration Readiness:**
+```
+Collaboration score: 78% (35/45 points)
+  Ownership clarity: 12/15 (owner explicit, handoff clear)
+  Skill-shareability: 13/15 (modular, evals exist, interface mostly clear)
+  Learnings hooks: 10/15 (meta-learn can extract patterns, partially updates quality-learnings)
+Recommendation: SHAREABLE — push to GitHub with minor fixes
+```
+
+**Scope Expansion:**
+```
+Current: T2 at 78 quality, 72% confidence
+T1 thresholds: 90 quality (gap: -12), 75% confidence (gap: -3)
+Recommendation: Stay T2. Fix now, resubmit for T1 evaluation in 30 days.
 ```
 
 ---
 
-### Step 3: Check Operating Rules
+## Steps (14 Total)
 
-Beyond the quality gate, scan output against the originating skill's operating rules.
-These catch behavioural failures the quality gate doesn't test — things like
-"tier rationale must be grounded in four signals" or "no Tiger without a mitigation."
+### STEP 0: PRE-FLIGHT (Load Context)
 
-Flag any operating rule violation in the same format as quality gate failures.
+Load: confidence-model.yml, collaboration-signals.yml, quality-learnings.md, collaboration-log.md, confidence-log.md, skill-sessions.md
 
----
-
-### Step 4: Produce Verification Report
-
-```markdown
-## Verification Report — [skill-name] output
-**Verified against:** [skill-name] v[version] operating rules + quality gate
-**Date:** [YYYY-MM-DD]
-**Verifier:** meta-verify v1.0.0
+Gate check: If no output provided, ask user for quality review output.
 
 ---
 
-### Result: ✅ PASS / ❌ FAIL / ⚠️ CONDITIONAL PASS
+### STEP 1: Load Historical Predictions (1 min)
 
-**Quality gate:** [X/N checks passed]
-**Operating rules:** [X/N rules satisfied]
-
----
-
-### Failures (must fix before acting on this output)
-
-[Failure blocks in format from Step 2]
+Load `/sessions/confidence-log.md` (last 30 days). Calculate % of predictions within ±10% of actual. Check for calibration drift.
 
 ---
 
-### Warnings (should fix before sharing externally)
+### STEP 2: Assess Output Quality + Context (2 min)
 
-[Any ⚠️ items — present but weak, not absent]
-
----
-
-### Passing checks
-
-[List of ✅ checks — confirms what's correct]
+Load: quality score, tier, guardrails triggered, team learnings applied, team track record.
 
 ---
 
-### Recommendation
+### STEP 3: Predict Success Confidence (3 min)
 
-[One sentence: safe to act on / fix these items first / do not use without revision]
-```
-
----
-
-### Step 5: Offer Fix Mode
-
-After report, offer:
-> "Want me to fix the failures and produce a corrected version of the output?
-> Use `/verify-fix` to apply the fixes automatically."
+Load confidence model. Base T2 confidence: 70%. Adjustments: Quality +/-2-5%, Guardrails -3% each, Team capability ±3%. Result: 72% ± 12%.
 
 ---
 
-## Outputs
+### STEP 4: Suggest Scope Expansion (2 min)
 
-- **Files written:** n.v.t. — verification is read-only. No writes.
-- **Chat output format:** Verification report in the structure above. Markdown
-  formatted for copy-paste into a review comment, Notion, or GitHub issue.
-- **External side effects:** n.v.t.
+Check: quality vs. T1 min (90), confidence vs. T1 min (75%), collaboration vs. T1 min (65). Decision: Upgrade to T1 / On fence / Stay current.
 
 ---
 
-## Verification
+### STEP 5: Assess Collaboration Readiness (3 min)
 
-- Originating skill's SKILL.md loaded before checking begins.
-- Standard stated explicitly before checks run.
-- Output read in full — no partial verification.
-- Every ❌ includes exact quote from output and specific fix.
-- Result clearly states Pass / Fail / Conditional Pass.
-- No brain file loaded — verification is context-agnostic.
-- No writes made — read-only throughout.
+Score three dimensions:
+- **A. Ownership Clarity (0-15 pts):** Owner explicit? Handoff clear? Maintenance plan?
+- **B. Skill-Shareability (0-15 pts):** Modular? Evals exist? Interface clear?
+- **C. Learnings Hooks (0-15 pts):** Meta-learn hook? Will quality-learnings update? Structure consistent?
 
----
-
-## Do Not Use For
-
-- **meta-review** — for checking whether a skill *file* is built correctly.
-  `meta-verify` checks whether a skill *output* is correct. Different inputs,
-  different purpose.
-- **meta-learn** — for capturing what was learned from a session. Run `meta-verify`
-  first to check output quality, then `meta-learn` to capture patterns.
-- **Rewriting output** — `meta-verify` identifies failures. Use `/verify-fix`
-  to produce corrections, or return to the originating skill with the failures listed.
+Total: 0-45 pts (0-100%).
 
 ---
 
-## Commands
+### STEP 6: Assess Context-Engineering Rigor (2 min)
 
-### /verify [skill-name]
-Run full verification on a pasted output. Loads the originating skill's standards
-and checks the output cold.
-
-```
-/verify pre-mortem
-/verify go-to-market-strategy
-/verify positioning-messaging
-```
-
-Paste the output immediately after the command.
+Check: Does skill pull from MCPs? Update /foundation/brain.md? Become guardrail material? Score: 0-15 pts.
 
 ---
 
-### /verify-fix [skill-name]
-After a verification report, apply the identified fixes and produce a corrected
-version of the output.
+### STEP 7: Assess Multiplayer Adoption Curve (2 min)
 
-```
-/verify-fix pre-mortem
-```
+Score three adoption dimensions:
+- **A. Multiplayer Reach (0-15 pts):** 8-10 people (14-15), 4-7 people (10-13), 1-3 people (5-9), just creator (0-4)
+- **B. Skill Multiplier (0-15 pts):** 3+ skills (15), 1-2 skills (5-10), 0 skills (0)
+- **C. Model Fit (0-15 pts):** Team GitHub + packaged + adoption pattern (15), partial (9-14), none (0-8)
 
-Applies all ❌ fixes from the most recent verification report. Outputs corrected
-version. Does not change ⚠️ warnings — those are flagged but left to the user.
+Total: 0-45 pts (0-100%).
 
 ---
 
-### /verify-standard [skill-name]
-Show the verification standard for a named skill — its operating rules and quality
-gate — without running a verification. Useful for understanding what will be checked
-before submitting output.
+### STEP 8: Benchmark Comparison (1 min)
 
-```
-/verify-standard pre-mortem
-/verify-standard go-to-market-strategy
-```
-
-Output:
-```
-Verification standard — [skill-name] v[version]
-
-Operating rules ([N]):
-1. [Rule]
-2. [Rule]
-...
-
-Quality gate checks ([N]):
-| Check | Standard | Pass = |
-|---|---|---|
-| [Check] | [Standard] | [Condition] |
-```
+Compare quality, confidence, collaboration to T2 averages. Flag if above/below.
 
 ---
 
-### /verify-scope
-List which skills are currently in scope for `meta-verify`. Starts with T1 skills
-and expands as the meta skill matures.
+### STEP 9: Flag Calibration Drift (1 min)
 
-```
-/verify-scope
-```
-
-Output:
-```
-meta-verify scope — v1.0.0
-
-✅ In scope (T1 skills):
-- pre-mortem — 17 quality gate checks, 14 operating rules
-- go-to-market-strategy — 10 quality gate checks, 10 operating rules
-- positioning-messaging — 7 quality gate checks
-
-🔜 Planned (T2 skills):
-- retro
-- stakeholder-maps
-- beachhead-segment
-
-Not in scope: T3/T4 skills, utility skills
-```
+Check 30-day calibration trends. Calculate over-prediction %, under-prediction %. Flag if drift > 5%.
 
 ---
 
-## T1 Skill Verification Standards
+### STEP 10: Surface Risk Factors + Opportunities (1 min)
 
-### pre-mortem
-Key operating rules to verify against:
-- Every Tiger has a mitigation and named owner — no Tiger without a plan
-- Every Elephant has: what to find out / investigator / due date / upgrade condition
-- PMM Recommendation present and explicit (Go / Conditional Go / No-Go)
-- No-Go framed as validation sprint if politically complex
-- All five lenses represented with at least one risk each
-- Launch-Blocking Tigers: 🔴 mitigation confidence → recommendation cannot be 🟢
+Review guardrails. Identify what pushes confidence down (to 60%) and up (to 84%).
 
-### go-to-market-strategy
-Key operating rules to verify against:
-- All four tier signals applied — tier not assigned on single signal
-- Tier rationale stated in one sentence before brief
-- Leading indicator present alongside primary metric
-- Channel recommendations ICP-specific — not generic lists
-- Competitive context: primary alternative named with attack and defend angle
-- Brain Section 7 write offered (not auto-executed)
+---
 
-### positioning-messaging
-Key operating rules to verify against:
-- Positioning statement cannot be said honestly by any named competitor
-- All pillar headlines pass 4/4 differentiation stress-test
-- Zero jargon: leverage, seamless, best-in-class, robust, enterprise-grade, etc.
-- Every claim has T1/T2 evidence or carries `[T3 — NEEDS VALIDATION]` flag
-- Persona count ≤ 3
-- All Vision Flags addressed or documented as rejected
+### STEP 11: Recommend Next Action (1 min)
+
+If confidence > 75%: "Proceed with launch". If 60-74%: "Proceed with monitoring" or "Consider fixes". If < 60%: "Block and fix". If collaboration < 65: "Fix before sharing" or "Push as-is, flag for rework".
+
+---
+
+### STEP 12: Update Calibration Model (1 min)
+
+When actual outcome known: Update confidence-log.md and collaboration-log.md. Model improves 1-2% accuracy/week.
+
+---
+
+### STEP 13: Feed Back to Meta-Learn (1 min)
+
+Log prediction to confidence-log.md and collaboration-log.md. Will update when outcome known.
+
+---
+
+### STEP 14: Close + Link to Meta-Learn (1 min)
+
+Summarize: confidence, collaboration, scope, adoption. Next action: launch/monitor/fix. Re-verify in 30 days.
 
 ---
 
 ## Operating Rules
 
-- **Load the standard before the output.** Always load the originating skill's
-  operating rules and quality gate before reading the output. Standard-first
-  prevents anchoring on what's there rather than what's required.
-- **Read the output in full before checking.** Partial reads produce false passes.
-- **Context-agnostic by design.** Never load brain file. The same company context
-  that generated the output will bias its evaluation.
-- **Every failure needs a specific fix.** "The tier rationale is weak" is not a fix.
-  "Tier rationale must cite all four signals — Market Impact, Revenue Potential,
-  Competitive Urgency, Resource Requirement — currently only Revenue is cited" is.
-- **Quotes, not summaries.** For every failure, quote the exact text or note the
-  exact omission. Never paraphrase a failure.
-- **Read-only always.** No writes under any circumstance. Verification produces
-  a report — it does not produce a fixed output unless `/verify-fix` is called.
-- **Pass threshold is the skill's own gate.** Do not apply a lower standard than
-  the originating skill's quality gate. The standard is the standard.
-- **Conditional Pass for minor gaps.** If the output passes all hard gates but
-  has ⚠️ warnings, issue a Conditional Pass — safe to use internally but not
-  yet ready for external sharing.
-- **Expand scope deliberately.** Start with T1 skills only. Add T2 skills when
-  T1 verification patterns are stable and the checklist is confirmed accurate.
-- **Surface scope gaps.** If a skill is not yet in scope for verification, say
-  so explicitly rather than running an informal check. Informal checks without
-  loaded standards are less reliable than no check.
+1. Confidence is probabilistic, not point estimate.
+2. Calibration improves with data.
+3. Each guardrail ≈ 3% penalty.
+4. Strong team → +3%, weak → -3%.
+5. Quality below tier minimum → confidence capped.
+6. Scope expansion requires quality 85+, confidence 75+, collaboration 65+.
+7. Collaboration independent of confidence (high quality ≠ high adoption).
+8. Ownership explicit required (no owner → collab capped at 50%).
+9. Multiplayer adoption compounds (3+ skills = flywheel).
+10. Context-engineering rigor feeds the brain.
+11. Predictions feed meta-learn for continuous improvement.
+12. Collaboration model calibrates (35+ → 80%+ adoption, <25 → <30%).
 
 ---
 
 ## Quality Gate
 
-Runs after verification report is generated, before delivery.
-
-| Check | Standard | Pass = |
-|---|---|---|
-| Standard loaded | Originating skill's SKILL.md read before output checked | Yes |
-| Full output read | No partial verification | Yes |
-| Brain not loaded | Verification is context-agnostic | Yes |
-| Every ❌ has quote | Exact text or omission cited for each failure | Yes |
-| Every ❌ has fix | Specific content required stated, not direction | Yes |
-| Result stated | Pass / Fail / Conditional Pass clearly declared | Yes |
-| Recommendation present | One sentence on whether output is safe to act on | Yes |
-| No writes made | Verification produced no file changes | Yes |
+Before finalizing, verify all 15 checkpoints: quality loaded, tier identified, guardrails assessed, team capability considered, confidence calculated, confidence band set, scope expansion logic applied, collaboration scored, context rigor assessed, adoption curve evaluated, calibration drift checked, risk factors surfaced, collaboration history reviewed, meta-learn linkage made, next action clear.
 
 ---
 
-## Self-Improvement Loop
+## Related Files
 
-### Before every session:
-1. Check `knowledge/meta/rules.md` — apply any confirmed patterns about what
-   T1 skills most commonly fail on.
-2. Check `knowledge/meta/hypotheses.md` — note any open hypothesis about
-   verification accuracy this session could test.
-3. Load `pmm-meta/skills/[originating-skill]/SKILL.md` — fresh load every
-   session. Never use a cached standard.
-
-### After every session:
-1. Note which check most commonly failed in this verification.
-   Log to `knowledge/meta/hypotheses.md`.
-2. If the same check fails across 3+ verifications of the same skill →
-   propose to `knowledge/meta/rules.md`: "Check [X] in [skill] is the most
-   common failure — flag proactively before running full verification."
-3. If a failure was found that the originating skill's quality gate doesn't
-   currently test → propose addition to that skill's quality gate via
-   Self-Improvement Trigger, routed to the originating skill's SKILL.md.
-
-```
-🔁 SELF-IMPROVEMENT TRIGGER
-Pattern: [what was observed across verifications]
-Proposed update: [exact wording]
-Location: [file path — either meta-verify or originating skill]
-Awaiting approval before encoding.
-```
-
----
-
-## Changelog
-
-### v1.0.0 — 2026-06-06
-Initial build. Third skill in `pmm-meta` plugin.
-
-Architecture decisions:
-- Context-agnostic: no brain file. Verification must be independent of the
-  context that generated the output being checked.
-- Standard-first: originating skill's SKILL.md loaded before output is read.
-  Prevents anchoring on what's present rather than what's required.
-- T1 scope only at launch: pre-mortem, go-to-market-strategy,
-  positioning-messaging. Expand to T2 once T1 patterns are stable.
-- Read-only by design. Verification produces a report. `/verify-fix` produces
-  corrections. They are deliberately separate commands.
-- Conditional Pass for ⚠️ warnings: output safe for internal use, not external.
-- Four commands: /verify, /verify-fix, /verify-standard, /verify-scope.
-- T1 verification standards documented inline — reduces dependency on reading
-  individual skill files for the most common verification scenarios.
+- `/config/confidence-model.yml` — Prediction model with tier baselines
+- `/config/collaboration-signals.yml` — Ownership/shareability/learnings rubrics
+- `/context/quality-trends.md` — Quality baseline by tier
+- `/context/skill-sessions.md` — Execution log
+- `/sessions/quality-learnings.md` — Team insights
+- `/sessions/confidence-log.md` — Predictions + actual outcomes
+- `/sessions/collaboration-log.md` — Adoption tracking

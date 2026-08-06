@@ -1,0 +1,380 @@
+# PMM-Positioning Configuration: Scoring Rubric
+# Integrates positioning rigor with 2026 GTM adoption lens
+# Used by meta-review to score positioning outputs
+
+version: 2.0.0
+framework: "Positioning Rigor + 2026 GTM Adoption Lens + Multiplayer Framework"
+
+---
+
+## Part 1: Positioning Clarity (Unique Value Angle) — 20 pts max
+
+# Core positioning principle: Does this position own a unique angle competitors don't claim?
+# High score = buyer can't find this elsewhere. Low score = table stakes.
+
+positioning_clarity:
+  scoring:
+    20:
+      label: "Owned Unique Value"
+      description: "Position owns a clear, unique angle that competitors don't claim"
+      signals:
+        - unique_value_explicit: true              # "We're the only [specific thing]"
+        - owned_by_no_competitor: true             # Verified against alternatives map
+        - buyer_differentiation_clear: true        # Buyer immediately sees why different
+        - not_table_stakes: true                   # Goes beyond "we're efficient" or "we're simple"
+      example: |
+        "We reduce GTM complexity by 40% via integration-native architecture"
+        (Not: "We simplify GTM operations" — that's table stakes)
+      score: 20
+
+    15:
+      label: "Moderately Differentiated"
+      description: "Unique angle present but could be stronger; competitor might claim similar"
+      signals:
+        - unique_value_stated: true
+        - owned_by_some_competitors: true          # 1-2 competitors claim similar
+        - buyer_sees_difference: true
+      score: 15
+
+    10:
+      label: "Incremental Positioning"
+      description: "Position is clear but represents incremental improvement, not unique angle"
+      signals:
+        - value_stated: true
+        - table_stakes_heavy: true                 # "We're faster, cheaper, better" (many claim)
+      score: 10
+
+    0:
+      label: "Generic or Missing"
+      description: "Position doesn't own anything; sounds like every competitor"
+      signals:
+        - not_differentiated: true
+      score: 0
+
+  patterns_to_watch:
+    owned_positioning_impact: "Owned positioning → 82% win rate vs. incumbent (confirmed 5+ times)"
+    generic_positioning_impact: "Generic positioning → 35% win rate vs. incumbent"
+    buyer_resonance_correlation: "Positioning clarity score 18+ → 80%+ messaging resonance"
+
+---
+
+## Part 2: Clarity (Can Buyer Understand It?) — 20 pts max
+
+# Position must be clear AND differentiated. This dimension covers clarity alone.
+
+clarity:
+  scoring:
+    20:
+      label: "Crystal Clear"
+      description: "Buyer immediately understands value; no ambiguity"
+      signals:
+        - one_sentence_clear: true                 # Can state in one sentence
+        - jargon_minimal: true                     # No corporate BS
+        - benefit_explicit: true                   # "Results in X" not "Enables Y possibilities"
+      score: 20
+
+    15:
+      label: "Mostly Clear"
+      description: "Buyer understands after reading once; minor clarification needed"
+      signals:
+        - requires_one_read: true
+        - slight_jargon: true
+      score: 15
+
+    10:
+      label: "Somewhat Clear"
+      description: "Requires rereading; could be tightened"
+      signals:
+        - multi_read_required: true
+        - jargon_present: true
+      score: 10
+
+    0:
+      label: "Unclear"
+      description: "Buyer confused; positioning muddled"
+      score: 0
+
+  patterns_to_watch:
+    clarity_adoption_correlation: "Clarity 18+ → 75% faster sales ramp"
+
+---
+
+## Part 3: Resonance (Does Target Buyer Care?) — 15 pts max
+
+# Does the positioning resonate with target buyer persona?
+# High score = buyer nods and says "yes, that's my problem"
+# Low score = buyer says "nice, but not my priority"
+
+resonance:
+  scoring:
+    15:
+      label: "Strong Resonance"
+      description: "Positioning directly addresses buyer's top 2 priorities"
+      signals:
+        - buyer_problem_solved: true               # "This solves my actual problem"
+        - top_2_priorities_hit: true               # Not just nice-to-have
+        - emotional_buy_in: true                   # Buyer cares, not just intellectually aligned
+      score: 15
+
+    10:
+      label: "Moderate Resonance"
+      description: "Addresses buyer pain but might be 3rd or 4th priority"
+      signals:
+        - buyer_problem_addressed: true
+        - secondary_priority: true
+      score: 10
+
+    5:
+      label: "Weak Resonance"
+      description: "Nice-to-have value; not urgent for buyer"
+      signals:
+        - addressed_but_not_urgent: true
+      score: 5
+
+    0:
+      label: "No Resonance"
+      description: "Buyer doesn't care"
+      score: 0
+
+  patterns_to_watch:
+    resonance_adoption_speed: "Resonance 12+ → deals close 20% faster"
+    buyer_persona_alignment: "Positioning tailored to ICP → 2.5x higher resonance vs. generic"
+
+---
+
+## Part 4: Messaging Alignment — 15 pts max
+
+# Does messaging support and reinforce positioning?
+# High score = messaging is 100% on-brand with position
+# Low score = messaging contradicts or dilutes position
+
+messaging_alignment:
+  scoring:
+    15:
+      label: "Fully Aligned"
+      description: "All messaging flows from and reinforces positioning"
+      signals:
+        - all_messages_flow_from_position: true
+        - no_contradictions: true
+        - reinforcement_consistent: true
+      score: 15
+
+    10:
+      label: "Mostly Aligned"
+      description: "Most messaging aligned; minor off-brand elements"
+      signals:
+        - most_messages_aligned: true
+        - minor_tangents: true
+      score: 10
+
+    5:
+      label: "Partially Aligned"
+      description: "Some messaging contradicts positioning"
+      signals:
+        - mixed_alignment: true
+      score: 5
+
+    0:
+      label: "Misaligned"
+      description: "Messaging doesn't support position"
+      score: 0
+
+---
+
+## Part 5: Tier Validation — 10 pts max
+
+# Does positioning tier match execution tier (T1-T4)?
+# High score = positioning strength matches GTM investment
+# Low score = mismatch (e.g., T1 positioning supported by weak messaging for T3 launch)
+
+tier_validation:
+  scoring:
+    10:
+      label: "Tier-Matched"
+      description: "Positioning strength matches GTM tier"
+      signals:
+        - t1_positioning_if_t1_gtm: true          # Strong positioning for big bets
+        - t3_positioning_if_t3_gtm: true          # Exploratory positioning for tests
+      score: 10
+
+    5:
+      label: "Tier-Mismatched"
+      description: "Positioning doesn't match GTM tier"
+      signals:
+        - t1_positioning_for_t3_gtm: true         # Overkill or underinvested
+      score: 5
+
+    0:
+      label: "Severely Mismatched"
+      description: "Tier mismatch creates execution risk"
+      score: 0
+
+---
+
+## Part 6: Total Positioning Score (80 pts max)
+
+positioning_total_score:
+  formula: |
+    clarity (20) + uniqueness (20) + resonance (15) + messaging_alignment (15) + tier_validation (10) = 80 pts
+
+  scoring_interpretation:
+    75_80: "Excellent positioning (ready to deploy)"
+    65_74: "Good positioning (minor strengthening recommended)"
+    55_64: "Adequate positioning (fix 1-2 dimensions before launch)"
+    below_55: "Weak positioning (rewrite before launch)"
+
+  patterns_to_watch:
+    score_75_plus: "Positioning 75+ → 85%+ win rate vs. incumbent"
+    score_65_to_74: "Positioning 65-74 → 70% win rate vs. incumbent"
+    score_below_65: "Positioning <65 → 40-50% win rate vs. incumbent (risk)"
+
+---
+
+## Part 7: Meta-Learn Integration (Guardrails Feedback)
+
+# How does meta-learn capture learnings from this positioning output?
+
+meta_learn_hooks:
+  extractable_patterns:
+    - "positioning_clarity_score: [0-20]"         # Feeds into guardrail penalties in meta-verify
+    - "buyer_persona_resonance: [0-15]"            # Tracks if ICP-tailoring improves resonance
+    - "messaging_alignment_quality: [0-15]"        # Learns what makes messaging on-brand
+
+  learnings_to_compound:
+    - "When positioning owns unique angle → 82% win rate (confirmed)"
+    - "When messaging alignment <10 → positioning effectiveness drops 30%"
+    - "ICP-tailored positioning → 2.5x higher resonance (observation #X)"
+
+  quality_learnings_field:
+    what_worked:
+      - "Owned positioning in medical device segment"
+      - "Messaging hierarchy (primary + 2 supporting angles)"
+    what_didnt_work:
+      - "Generic positioning 'we simplify operations'"
+      - "Messaging that contradicts position"
+    what_to_watch:
+      - "Positioning clarity score trend (is team improving?)"
+
+  brain_sections_updated:
+    - "Section 5: Positioning & Messaging (update with new positioning learned)"
+    - "Section 7: Meta-Learnings (log pattern confirmation/contradiction)"
+
+---
+
+## Part 8: Collaboration Signals (Meta-Verify Integration)
+
+collaboration_readiness:
+  ownership_clarity:
+    description: "Who owns this positioning? Is it clear and maintainable?"
+    required_signals:
+      - owner_name_explicit: true                 # "Sarah (Content Marketing)"
+      - handoff_date: true                        # When does it transfer to sales/content?
+      - maintenance_plan: true                    # How often is positioning refreshed?
+    score_if_present: 15
+    score_if_absent: 0
+
+  skill_shareability:
+    description: "Can this positioning be pushed to GitHub and adopted by team?"
+    required_signals:
+      - evals_complete: true                      # 3+ test cases showing positioning works
+      - interface_clear: true                     # Input/output format documented
+      - dependencies_listed: true                 # "Requires: ICP + alternatives map"
+    score_if_present: 15
+    score_if_absent: 0
+
+  learnings_hooks:
+    description: "Does meta-learn have clear hooks to extract positioning patterns?"
+    required_signals:
+      - extractable_patterns: true                # "Positioning clarity score → win rate correlation"
+      - quality_learnings_field: true             # What worked, what didn't, what to watch
+      - brain_section_updates: true               # Will Section 5 be updated?
+    score_if_present: 15
+    score_if_absent: 0
+
+  collaboration_total: "45 pts max (same as meta-verify scoring)"
+
+---
+
+## Part 9: 2026 GTM Adoption Lens Validation
+
+# Does positioning support 2026 GTM adoption patterns?
+
+adoption_lens_validation:
+  sales_ramp_clarity:
+    description: "Does positioning support realistic sales ramp?"
+    signals:
+      - positioning_owned: true                   # Owned positioning → faster initial closes
+      - buyer_resonance_high: true                # High resonance → faster deal velocity
+      - messaging_supports_ramp: true             # Clear messaging → faster qualification
+
+  expansion_trigger_support:
+    description: "Does positioning enable expansion into adjacent segments?"
+    signals:
+      - position_generalizable: true              # Can apply to multiple segments? (or is it too narrow?)
+      - buyer_problem_broad: true                 # Problem exists across segments?
+
+  enablement_timing:
+    description: "Can this positioning be briefed to sales pre-launch?"
+    signals:
+      - clear_enough_for_sales: true              # Sales can memorize in 1 training session
+      - key_differentiators_teachable: true       # Reps can explain in 30 seconds
+
+---
+
+## Part 10: Anti-Patterns (What NOT to Score High)
+
+anti_patterns:
+  false_high_scores:
+    - "Positioning is clear but generic (high clarity, low uniqueness)"
+    - "Positioning owns unique angle but unclear (high uniqueness, low clarity)"
+    - "Strong positioning but no messaging (high positioning, low messaging alignment)"
+    - "Ownership unclear (high score but collaboration risk)"
+
+  red_flags:
+    - "Clarity 18+ but Resonance <8 (clear but buyer doesn't care)"
+    - "Uniqueness 18+ but competitors claim similar (false differentiation)"
+    - "Tier-validation score 0 (positioning doesn't match GTM tier — execution risk)"
+    - "No learnings hooks (high quality but won't compound into system)"
+
+---
+
+## Part 11: Template for Logging Positioning Outcomes
+
+positioning_log_entry:
+  date: "2026-08-02"
+  positioning_brief: "Medical Device GTM Positioning"
+  owner: "Sarah Chen (Product Marketing)"
+
+  predicted_scores:
+    clarity: 18
+    uniqueness: 17
+    resonance: 14
+    messaging_alignment: 13
+    tier_validation: 9
+    total: 71
+    assessment: "Good (launch-ready after minor messaging tightening)"
+
+  collaboration_readiness:
+    ownership_clarity: 15
+    skill_shareability: 14
+    learnings_hooks: 13
+    total_collaboration: 42
+    assessment: "High (ready for team adoption)"
+
+  actual_outcome_30_days_later:
+    win_rate_vs_incumbent: "82%"                  # Validates uniqueness score impact
+    sales_ramp_velocity: "On track"               # Validates resonance impact
+    customer_resonance_qualitative: "Strong"      # Validates resonance score
+    messaging_adoption_by_sales: "100%"           # Validates messaging alignment
+
+  learnings_captured:
+    pattern: "Owned positioning in medical device → 82% win rate"
+    confirmation_count: 3
+    confidence: "70%"
+    action: "Use as guardrail for future medical device GTM briefs"
+
+  meta_verify_confidence_impact:
+    base_confidence_t2: 70
+    positioning_clarity_adjustment: +3            # Owned positioning → higher confidence
+    final_confidence: 73
+    notes: "Strong positioning pushed confidence from 70% → 73%"

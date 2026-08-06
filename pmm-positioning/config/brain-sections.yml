@@ -1,0 +1,453 @@
+# PMM-Positioning Configuration: Brain Section Dependencies
+# Integrates pmm-positioning with product-marketing-context brain updates
+# Defines which brain sections pmm-positioning reads and writes
+
+version: 2.0.0
+framework: "Product-Marketing-Context Brain Integration"
+
+---
+
+## Part 1: Pre-Flight: Read Brain Sections
+
+# When pmm-positioning runs, Step 0 must load these sections from /foundation/brain.md
+
+required_brain_sections:
+  section_1_company_strategy:
+    read: true
+    required: true
+    why: "Positioning must align with company strategy"
+    fields_used:
+      - company_mission: "What is company trying to accomplish?"
+      - strategic_focus: "What segments/markets are we prioritizing?"
+      - go_to_market_strategy: "How are we entering each market?"
+    if_missing: "Warning: Strategy context will improve positioning quality (consider running product-marketing-context first)"
+
+  section_2_buyer_intelligence:
+    read: true
+    required: true
+    why: "Positioning must resonate with target buyer persona"
+    fields_used:
+      - icp_name: "Target buyer segment"
+      - buyer_persona: "Detailed buyer profile"
+      - buyer_priorities: "What does this buyer care about?"
+      - buying_triggers: "What causes them to evaluate solutions?"
+      - job_to_be_done: "What is buyer trying to accomplish?"
+    if_missing: "CRITICAL: Run buyer-intelligence skill before pmm-positioning"
+    validation: "ICP explicitly referenced in positioning output"
+
+  section_3_alternatives_map:
+    read: true
+    required: true
+    why: "Positioning must own unique angle vs. all alternatives"
+    fields_used:
+      - named_alternatives: "List of 3-5 alternatives (competitors + status quo)"
+      - our_differentiation_vs_each: "How we differ from each"
+      - buying_decision_criteria: "What buyer uses to choose between alternatives"
+    if_missing: "CRITICAL: Run alternatives-map skill before pmm-positioning"
+    validation: "All named alternatives referenced in positioning"
+
+  section_4_market_context:
+    read: true
+    required: false
+    why: "Positioning stronger when anchored in market narrative"
+    fields_used:
+      - category_definition: "What is the problem space/category?"
+      - market_maturity: "Early/growth/mature?"
+      - macro_forces: "What trends support this positioning?"
+      - buying_triggers: "What's changing in the market?"
+      - narrative_arc: "Why now?"
+    if_missing: "Nice-to-have: Market context will enrich positioning narrative (consider running market-context skill)"
+
+  section_5_positioning_messaging:
+    read: false                                    # We will WRITE to this, not read
+    write: true
+    required_write: true
+    why: "Update with new positioning output"
+
+  section_6_proof_points_claims:
+    read: true
+    required: false
+    why: "Positioning should reference proof points (reason-to-believe)"
+    fields_used:
+      - approved_claims: "What can we claim? What's verified?"
+      - proof_points: "Case studies, data, customer quotes"
+      - forbidden_claims: "What can't we claim?"
+    if_missing: "Acceptable: Positioning can exist without proof points, but will be weaker"
+
+  section_7_meta_learnings:
+    read: true
+    write: true
+    required: false
+    why: "Log positioning clarity patterns and hypotheses"
+    fields_used:
+      - positioning_clarity_patterns: "What makes positioning resonate?"
+      - meta_patterns: "Guardrails that improve positioning quality"
+      - hypothesis_tracking: "Is positioning clarity → win rate correlation holding?"
+    if_missing: "Acceptable: Will be created on first write"
+
+---
+
+## Part 2: What pmm-positioning WRITES to Brain Sections
+
+# After positioning completes, update brain with learnings
+
+write_destinations:
+  section_5_positioning_messaging:
+    writes:
+      - positioning_statement: "The finalized positioning (one sentence)"
+      - target_buyer: "Who is this positioning for?"
+      - unique_value_angle: "What unique angle does it own?"
+      - differentiation_vs_alternatives: "How we differ from each named alternative"
+      - messaging_hierarchy: "Primary + 2-3 supporting angles"
+      - proof_points: "Claims to make (verified against Section 6)"
+      - sales_pitch_30sec: "Can sales say this in 30 seconds?"
+      - messaging_by_channel: "How to adapt for sales vs. marketing vs. content"
+      - evals_passed: "Link to positioning evals that passed"
+    example: |
+      # Positioning: Medical Device GTM Ops
+
+      **Positioning Statement:**
+      Reduce go-to-market complexity by 40% via integration-native architecture.
+      The only platform built for GTM ops where data flows automatically across sales, marketing, CS, finance.
+
+      **Target Buyer:** Mid-market ops leaders (50-500 people)
+      **Unique Angle:** Integration-native + GTM-specific (competitors own either, not both)
+      **Differentiation:**
+        vs. Competitor A: We own GTM ops consolidation; they own team comms
+        vs. Competitor B: We integrate GTM workflows; they are CRM-only
+
+      **Messaging Hierarchy:**
+        Primary: Integration-native GTM ops consolidation
+        Support 1: 40% reduction in operational complexity
+        Support 2: No more manual data sync across tools
+
+  section_7_meta_learnings:
+    writes:
+      - positioning_clarity_score: "Quality score for this positioning"
+      - buyer_resonance_rating: "How well does this resonate with target buyer?"
+      - alternative_coverage: "Does position own angle vs. all named alternatives?"
+      - what_worked: "What positioning dimensions resonated?"
+      - what_didnt_work: "What fell flat?"
+      - what_to_watch: "Patterns to monitor"
+      - confidence_impact: "Did this positioning improve success confidence?"
+      - collaboration_readiness: "Can this positioning be shared with team?"
+    example: |
+      ## Positioning Learnings (Medical Device, 2026-08-02)
+
+      **What Worked:**
+      - Owned positioning (integration-native) vs. all competitors
+      - Messaging hierarchy (primary + 2 supports) clear to sales
+      - Buyer resonance high (ops leaders nodded)
+
+      **What Didn't Work:**
+      - "40% complexity reduction" was vague (changed to "40% + specific metrics")
+      - Status quo comparison initially weak (strengthened in v2)
+
+      **What to Watch:**
+      - Win rate vs. competitors in medical device (predicted 75%, actual TBD)
+      - Sales adoption of 30-sec pitch (target: 80% reps use within 2 weeks)
+      - Message resonance by company size (does it work for 100-500 people? What about 50-100?)
+
+      **Impact on Meta-Verify:**
+      - Positioning clarity score: 17/20 → Confidence +2% bonus
+      - Collaboration readiness: 42/45 → Confidence +1% bonus
+
+---
+
+## Part 3: Product-Marketing-Context Integration Points
+
+# How pmm-positioning interacts with product-marketing-context brain
+
+integration_with_pmc:
+  pmc_role: "Builds and maintains /foundation/brain.md across all sections"
+
+  before_positioning_runs:
+    check_sections_exist:
+      - section_1: "Strategy (optional, but helpful)"
+      - section_2: "Buyer intelligence (REQUIRED)"
+      - section_3: "Alternatives map (REQUIRED)"
+      - section_6: "Proof points (optional)"
+
+    if_required_sections_missing:
+      action: "Auto-trigger prerequisite skills"
+      examples:
+        - "Section 2 missing → Run buyer-intelligence skill (30 min)"
+        - "Section 3 missing → Run alternatives-map skill (15 min)"
+        - "Section 6 missing → Run proof-points skill (optional)"
+
+  after_positioning_completes:
+    write_to_brain:
+      - update_section_5: "Log new positioning + messaging hierarchy"
+      - update_section_7: "Log what worked, what didn't, patterns"
+      - trigger_downstream: "value-prop-statements will read what we just wrote"
+
+  dependency_graph:
+    product_marketing_context:
+      reads: "All brain sections"
+      writes: "All brain sections"
+
+    buyer_intelligence:
+      reads: "Nothing"
+      writes: "Section 2"
+
+    alternatives_map:
+      reads: "Sections 1, 2"
+      writes: "Section 3"
+
+    pmm_positioning:
+      reads: "Sections 1, 2, 3, 4, 6"
+      writes: "Sections 5, 7"
+
+    value_prop_statements:
+      reads: "Sections 1, 2, 3, 5, 6"
+      writes: "Sections 5, 7"
+
+---
+
+## Part 4: Pre-Flight Checklist (Enhanced SKILL.md Step 0)
+
+# pmm-positioning must check these before starting
+
+preflight_checklist:
+  step_0_load_brain:
+    action: "Load /foundation/brain.md"
+    validate:
+      - section_1_exists: true                    # Strategy
+      - section_2_complete: true                  # Buyer intelligence (REQUIRED)
+      - section_3_complete: true                  # Alternatives (REQUIRED)
+      - section_4_present: false                  # Market context (optional)
+      - section_6_present: false                  # Proof points (optional)
+
+    if_section_missing:
+      section_2: "Block execution; trigger buyer-intelligence skill"
+      section_3: "Block execution; trigger alternatives-map skill"
+      section_4: "Warn user; nice-to-have"
+      section_6: "Warn user; optional"
+
+  step_0_load_guardrails:
+    action: "Load /context/meta-patterns.md"
+    guardrails_to_load:
+      - positioning_must_own_angle_vs_alternatives: "HIGH confidence"
+      - alternatives_map_required_for_positioning: "MEDIUM confidence"
+      - status_quo_comparison_must_be_explicit: "MEDIUM confidence"
+      - positioning_clarity_supports_sales_ramp: "NEW pattern (observation 1/5)"
+
+  step_0_load_quality_learnings:
+    action: "Load /sessions/quality-learnings.md"
+    learnings_to_surface:
+      - "Owned positioning → 82% win rate (confirmed 5x)"
+      - "Positioning clarity 18+ → 80% messaging resonance"
+      - "ICP-tailored positioning → 2.5x higher resonance"
+
+    how_to_use: "User should see these patterns before writing positioning"
+
+  step_0_create_workspace:
+    action: "Create /context/positioning-workspace.md"
+    contents:
+      - icp_context: "Copy ICP from Section 2"
+      - alternatives_context: "Copy alternatives from Section 3"
+      - market_context: "Copy market narrative from Section 4 (if present)"
+      - guardrail_reminders: "Copy key guardrails from meta-patterns"
+
+    user_sees: "All context on one screen, pre-flight checksum"
+
+---
+
+## Part 5: Post-Execution Brain Updates
+
+# After positioning completes, update brain automatically
+
+post_execution_updates:
+  update_section_5:
+    timing: "Immediately after positioning output generated"
+    fields_to_add:
+      - positioning_statement: "[Copy from output]"
+      - target_buyer: "[Copy from output]"
+      - unique_value_angle: "[Copy from output]"
+      - differentiation_matrix: "[Copy from output]"
+      - messaging_hierarchy: "[Copy from output]"
+      - sales_pitch_30sec: "[Copy from output]"
+
+    format: "Markdown, organized by buyer segment"
+
+  update_section_7:
+    timing: "After user confirms positioning is final"
+    fields_to_add:
+      - pattern_name: "positioning_clarity_[segment]"
+      - observation: "[What worked, what didn't]"
+      - confidence_level: "[20%, 50%, 70%, etc.]"
+      - next_confirmation_expected: "[Date]"
+
+    format: "YAML list under Hypothesis Tracking"
+
+  trigger_downstream_skills:
+    after_section_5_updated:
+      - "value-prop-statements can now run (reads Section 5)"
+      - "messaging-brief can now run (reads Section 5)"
+      - "competitive-analysis can now run (reads Sections 3, 5)"
+
+---
+
+## Part 6: Quality Gate: Brain Integration Checklist
+
+# Before marking positioning as "complete", verify brain integration
+
+brain_integration_quality_gate:
+  gate_1_section_reads:
+    requirement: "All required brain sections (2, 3) loaded and referenced"
+    check: "Do output fields mention 'ICP', 'alternatives', 'differentiation'?"
+    pass_criteria: "YES to all"
+
+  gate_2_section_writes:
+    requirement: "Section 5 and 7 updated with new positioning + learnings"
+    check: "Is /foundation/brain.md newer than /context/skill-sessions.md?"
+    pass_criteria: "YES"
+
+  gate_3_guardrail_loading:
+    requirement: "All active guardrails were considered during execution"
+    check: "Does output mention 'positioning owns angle' or reference guardrails?"
+    pass_criteria: "YES or N/A (no guardrails active yet)"
+
+  gate_4_collaboration_scoring:
+    requirement: "Meta-verify can score this positioning (ownership clear, evals exist)"
+    check: "Is owner specified? Are evals documented?"
+    pass_criteria: "Owner named + evals in output"
+
+  gate_5_meta_learn_hooks:
+    requirement: "Meta-learn can extract patterns from this positioning"
+    check: "Are 'what worked', 'what didn't', 'what to watch' fields filled?"
+    pass_criteria: "All three fields present + actionable"
+
+  gate_result:
+    all_passed: "Positioning ready for team adoption + meta-learn compounding"
+    any_failed: "Minor rework needed; positioning reusable but learnings incomplete"
+
+---
+
+## Part 7: Escalation Paths
+
+# If brain sections are out of sync or missing
+
+escalation_if_brain_incomplete:
+  scenario_1_no_icp:
+    trigger: "Section 2 (ICP) missing or outdated"
+    message: "Positioning requires fresh ICP context"
+    action: "Run buyer-intelligence skill (30 min) then retry pmm-positioning"
+    blocker: "YES - cannot proceed"
+
+  scenario_2_no_alternatives:
+    trigger: "Section 3 (Alternatives) missing or outdated"
+    message: "Positioning requires alternatives anchor to validate differentiation"
+    action: "Run alternatives-map skill (15 min) then retry pmm-positioning"
+    blocker: "YES - cannot proceed"
+
+  scenario_3_old_market_context:
+    trigger: "Section 4 (Market Context) is 2+ months old"
+    message: "Market context outdated; positioning narrative may not reflect current market"
+    action: "Optional: Run market-context skill (20 min) for richer positioning"
+    blocker: "NO - can proceed, but offer refresh"
+
+  scenario_4_positioning_sections_conflict:
+    trigger: "Section 5 (old positioning) conflicts with new positioning"
+    message: "Old positioning exists. Is this a refresh or new segment?"
+    action: "Offer to archive old positioning, create new section"
+    blocker: "NO - user chooses"
+
+---
+
+## Part 8: Memory Logging (For Compounding)
+
+# pmm-positioning logs to memory files for system learning
+
+memory_files_updated:
+  file_1_quality_learnings:
+    path: "/sessions/quality-learnings.md"
+    logged_patterns:
+      - "Owned positioning in [segment] → [win_rate]% win rate"
+      - "Positioning clarity [score] → [adoption_speed] sales ramp"
+      - "ICP-tailored positioning → [resonance_multiplier]x higher resonance"
+
+  file_2_collaboration_log:
+    path: "/sessions/collaboration-log.md"
+    logged_metrics:
+      - positioning_owner: "Who owns this positioning?"
+      - adoption_by_week_2: "% of sales reps using 30-sec pitch by week 2"
+      - downstream_skills_enabled: "How many other skills built on top of this positioning?"
+
+  file_3_confidence_log:
+    path: "/sessions/confidence-log.md"
+    logged_prediction:
+      - predicted_confidence: "Meta-verify's confidence estimate (before launch)"
+      - actual_outcome: "Win rate, sales adoption, market response (after 30 days)"
+      - calibration_delta: "Prediction accuracy tracking"
+
+---
+
+## Part 9: Template: Brain Section 5 Update
+
+# What Section 5 (Positioning & Messaging) looks like after pmm-positioning runs
+
+brain_section_5_example:
+  segment: "Medical Device, Mid-Market"
+  date_created: "2026-08-02"
+  owner: "Team Member (Product Marketing)"
+  status: "Live (validated in 2 deals)"
+
+  positioning_statement: |
+    Reduce go-to-market complexity by 40% via integration-native architecture.
+    The only platform built specifically for GTM ops where data flows automatically
+    across sales, marketing, CS, and finance — no spreadsheets, no manual sync.
+
+  target_buyer: "Medical device ops leaders (50-500 people, $500K-5M tech budget)"
+  buyer_job_to_be_done: "Consolidate GTM data + workflows without moving off existing tools"
+
+  unique_value_angle: "Integration-native architecture + GTM-specific workflows"
+
+  differentiation:
+    vs_competitor_1: "Competitor 1 owns communications; we own GTM ops consolidation"
+    vs_competitor_2: "Competitor 2 is CRM-only; we integrate GTM workflows"
+    vs_competitor_3: "Competitor 3 is generic; we ship GTM-specific templates"
+
+  messaging_hierarchy:
+    primary: "Integration-native GTM ops (no more manual data sync)"
+    support_1: "40% reduction in operational overhead"
+    support_2: "No need to learn new tools (works with existing stack)"
+
+  sales_pitch_30sec: |
+    "We reduce GTM complexity by consolidating data across your existing tools.
+     Medical device companies see 40% less operational overhead and get a single source of truth
+     without having to rebuild their stack."
+
+  sales_enablement:
+    pitch_trained_by_date: "2026-08-15"
+    adoption_target: "80% of reps using by 2026-09-01"
+    live_deal_examples: "2 closed deals with positioning (actual resonance validating)"
+
+  messaging_by_channel:
+    sales: "Focus on integration + complexity reduction"
+    marketing: "Focus on buyer problem + why-now"
+    content: "Case studies showing before/after ops metrics"
+
+  evals_passed:
+    - "eval-positioning-owned-angle ✓"
+    - "eval-positioning-buyer-resonance ✓"
+    - "eval-positioning-messaging-alignment ✓"
+
+---
+
+## Part 10: Sync Protocol (Keep Brain & Positioning Aligned)
+
+sync_protocol:
+  trigger_resync:
+    when: "Section 2 (ICP) or Section 3 (Alternatives) updated"
+    action: "Re-run pmm-positioning to refresh positioning with new context"
+    user_prompt: "ICP changed. Revalidate positioning?"
+
+  version_control:
+    positioning_versioning: "Keep old positioning as archive (dated)"
+    current_positioning: "Always in Section 5, updated with latest run"
+    comparison: "pmm-positioning can show before/after to user"
+
+  conflict_resolution:
+    if_positioning_conflicts_with_alternatives: "User chooses: refresh positioning or keep old?"
+    if_icp_changes_mid_cycle: "Option to revalidate positioning against new ICP"

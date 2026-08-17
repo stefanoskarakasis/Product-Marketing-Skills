@@ -584,19 +584,44 @@ Complete GTM workflows that chain multiple skills together. One prompt runs posi
 9. **Voice & Tone Foundation** — voice guide → test with writing-assistant (1 week)
 10. **Full PMM Onboarding** — audit brain → gap report (1-2 weeks, read-only)
 
-### What Makes This Different:
+## How Skills Compound Over Time
 
-**Self-learning:** Reads brain Section 7 (launch history) and adjusts recommendations based on YOUR past performance, not generic best practices.
+Each skill learns from all prior skills. Here's the flow:
 
-**Brain-integrated:** Pulls positioning (Section 3), ICP (Section 2), competitive intel (Section 4), proof points (Section 5) — or flags gaps.
+### Week 1: First Skill Runs
+- Skill reads `/foundation/brain.md` (shared context)
+- Skill executes
+- Meta-learn detects pattern, logs to `/sessions/quality-learnings.md`
 
-**Multi-skill orchestration:** One prompt chains positioning → competitive → strategy → campaign → stakeholder → execution. No manual routing.
+### Week 2: Second Skill Runs
+- Skill reads `/foundation/brain.md`
+- Skill reads `/sessions/quality-learnings.md` (Week 1 learnings)
+- Pre-flight displays: "Based on Week 1: [Pattern from first skill]"
+- Skill's quality improves 2-3% automatically from loading prior learnings
+- Skill executes, meta-learn detects new pattern
 
-**Writes back to brain:** Updates Sections 3, 4, 5, 7 automatically after each workflow. Fifth launch is smarter than first.
+### Week 3+: Each New Skill
+- Loads all prior learnings automatically
+- Quality improves baseline from loaded patterns
+- Adds new learnings
+- System compounds exponentially
 
-**Master program documents:** Produces complete program docs with artifacts, coherence reports, open questions, and next steps.
+## Shared Files (Read-Only for Skills)
 
-</details>
+- `/foundation/brain.md` — ICP, positioning, alternatives, market context (from product-marketing-context)
+- `/context/meta-patterns.yml` — Active guardrails (populated by meta-synthesis)
+- `/sessions/quality-learnings.md` — Learnings log (populated by meta-learn)
+- `/sessions/stack-learnings.md` — Pattern aggregation (populated by meta-synthesis)
+
+## Adding New Skills
+
+1. Create new skill folder
+2. Add Step 0 to SKILL.md:
+   - Read `/foundation/brain.md`
+   - Load `/context/meta-patterns.yml` at pre-flight
+   - Read `/sessions/quality-learnings.md` and display learnings to user
+3. Skill automatically compounds with prior learnings
+4. No other setup needed
 
 ---
 

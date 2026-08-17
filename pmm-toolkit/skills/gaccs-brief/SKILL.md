@@ -18,6 +18,28 @@ metadata:
 last_updated: 2026-06-06
 ---
 
+## Step 0: Pre-Flight
+
+### Load Positioning Learnings & Context
+
+1. **Load Brain** (OPTIONAL)
+   - Read `/foundation/brain.md` if available
+   - Useful sections: positioning (Section 3), proof points (Section 5)
+
+2. **Load Active Guardrails**
+   - Read `/context/meta-patterns.yml`
+   - Display: `"Campaign guardrails: [patterns]"`
+
+3. **Load Quality Learnings**
+   - Read `/sessions/quality-learnings.md`
+   - Look for "positioning" or "messaging" patterns
+   - Display: `"From positioning runs: clarity matters (+40% CTR). Applying to brief."`
+
+4. **Log Execution**
+   - Log to `/skill-sessions.md`: gaccs_brief_skill, timestamp
+  
+---
+
 # gaccs-brief
 
 A sharp, pragmatic brief-builder for PMMs and GTM teams. Interrogates before it

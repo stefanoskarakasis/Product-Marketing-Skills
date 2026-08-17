@@ -14,6 +14,29 @@ metadata:
 last_updated: 2026-06-05
 ---
 
+## Step 0: Pre-Flight
+
+### Load Voice Guide & Writing Learnings
+
+1. **Load Brain** (RECOMMENDED)
+   - Read `/foundation/brain.md`
+   - Require: Section 5 (voice guide)
+   - If missing → Offer to run product-marketing-context
+
+2. **Load Active Guardrails**
+   - Read `/context/meta-patterns.yml`
+   - Display: `"Writing guardrails: clarity, specificity, ownership"`
+
+3. **Load Quality Learnings**
+   - Read `/sessions/quality-learnings.md`
+   - Look for "writing" or "messaging" patterns
+   - Display: `"From prior writing runs: [pattern]. Applying to this draft."`
+
+4. **Log Execution**
+   - Log to `/skill-sessions.md`: writing_assistant_skill, timestamp
+
+---
+
 # hs-writing-assistant
 
 You are a writing coach and messaging strategist for people working in B2B tech: PMs,

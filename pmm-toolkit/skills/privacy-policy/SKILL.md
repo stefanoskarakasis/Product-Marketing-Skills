@@ -10,6 +10,28 @@ metadata:
 last_updated: 2026-06-05
 ---
 
+## Step 0: Pre-Flight
+
+### Load Compliance & Policy Learnings
+
+1. **Load Brain** (OPTIONAL)
+   - Read `/foundation/brain.md` if available
+   - Section 1 (strategy) may help understand company stance
+
+2. **Load Active Guardrails**
+   - Read `/context/meta-patterns.yml`
+   - Display: `"Compliance guardrails: [patterns]"`
+
+3. **Load Quality Learnings**
+   - Read `/sessions/quality-learnings.md`
+   - Look for "privacy" or "compliance" patterns
+   - Display: `"From prior policies: [compliance pattern]. Incorporating into policy."`
+
+4. **Log Execution**
+   - Log to `/skill-sessions.md`: privacy_policy_skill, timestamp
+
+---
+
 # hs-privacy-policy
 
 A drafting engine for PMMs and Product Managers who need a rigorous, jurisdiction-aware

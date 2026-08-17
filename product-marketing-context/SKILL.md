@@ -9,12 +9,37 @@ description: >
   "check brain health", "update my ICP", "configure context", "brain wizard",
   "initialize foundation", or any request to create or refresh the shared context
   that powers the full PMM skill ecosystem.
-
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
 last_updated: 2026-06-12
+---
+
+## Step 0: Pre-Flight
+
+### Validate Learning Infrastructure
+
+Before running the brain wizard, validate that the Phase 1 learning infrastructure is ready.
+
+1. **Check Infrastructure Files**
+   - Check if `/context/meta-patterns.yml` exists
+   - Check if `/sessions/quality-learnings.md` exists
+   - Check if `/sessions/stack-learnings.md` exists
+
+2. **Report Status**
+   - If all files exist: Display `"✓ Learning infrastructure ready"`
+   - If files missing: Display `"ℹ Phase 1 files not yet uploaded. See UPLOAD-INSTRUCTIONS.md in your repo."`
+
+3. **Display Active Guardrails & Learnings** (if they exist)
+   - Load and display `/context/meta-patterns.yml` (show count of active guardrails)
+   - Load and display `/sessions/quality-learnings.md` (show count of learnings)
+   - Display to user: "This brain will benefit from [N] prior guardrails and [N] learnings from the ecosystem."
+
+4. **Create Execution Log**
+   - Log to `/skill-sessions.md`: skill_name: "product-marketing-context", timestamp, version
+   - This allows meta-learn to track brain creation/edits for pattern extraction
+
 ---
 
 # Product Marketing Context
@@ -35,10 +60,12 @@ Not a form. A 15-minute conversation that makes every future PMM output sharper.
   - Refreshing buyer intelligence after a market shift or repositioning event
   - Any PMM skill is about to run and there's no brain file yet
   - Checking brain health and getting improvement recommendations
+
 - **Not for:** One-time positioning work → `hs-positioning-messaging`. Competitive
   analysis → `hs-competitive-battlecard`. Individual audience research →
   `hs-buyer-personas`. OKR planning → `hs-brainstorm-okrs`. Each of those skills
   reads your brain — this skill builds it.
+
 - **Example prompts:**
   - "Build my brain"
   - "Set up my GTM foundation"
@@ -54,11 +81,13 @@ Not a form. A 15-minute conversation that makes every future PMM output sharper.
 
 - **Args:** None required. Skill auto-detects whether a brain exists or needs building.
   Optional: `--edit-section [1-6]` to update one section without re-running the full wizard.
+
 - **Defaults:**
   - No brain found → first-run onboarding (see Pre-flight) → fresh wizard
   - Brain exists → offer: [View current] [Edit sections] [Rebuild from scratch]
   - v1.x legacy files found in `.agents/` or `.claude/` → offer migration with
     field-by-field confirmation before writing
+
 - **Context keys:**
   - `/foundation/brain.md` — read if exists
   - `.agents/product-marketing-context.md` — check for legacy v1.x
@@ -72,7 +101,7 @@ Not a form. A 15-minute conversation that makes every future PMM output sharper.
 
 ## Pre-flight
 
-### First-run detection (Ramp Glass pattern)
+### First-run detection
 
 Before anything else: check for `/foundation/brain.md`.
 
@@ -91,11 +120,13 @@ Do not go straight to wizard questions. Show value before asking for effort:
 **If brain exists**: skip first-run hook. Load silently, offer [View / Edit / Rebuild].
 
 **If legacy v1.x files found** (in `.agents/` or `.claude/`): offer migration:
+
 > "Found older foundation files from v1.x. Want to migrate them automatically?
 > I'll show you each extracted value before writing anything."
 > [Yes, migrate] [No, start fresh]
 
 ### Standard checks
+
 - `/foundation/` directory — create if missing
 - Any section marked 🔴 Placeholder → flag before running dependent skills:
   > "Section [X] is incomplete. Skills that depend on it will produce weaker output."
@@ -123,9 +154,13 @@ questions without re-running the others.
 Without it, positioning output is generic. This anchors everything.
 
 **Q1:** What's your product called?
+
 **Q2:** In 2–3 sentences, what does it do? Focus on the problem it solves, not features.
+
 **Q3:** What stage is it at? (Pre-launch / Launch / Growth / Scale)
+
 **Q4:** Who's your primary target market? Be specific — company size, industry, role.
+
 **Q5:** Complete: "[Product] helps [target market] to _____ so they can _____"
 
 Store as: `product_name`, `product_description`, `product_stage`, `target_market`,
@@ -141,12 +176,19 @@ Store as: `product_name`, `product_description`, `product_stage`, `target_market
 launch brief traces back to this. Specificity here multiplies across every output.
 
 **Q1:** What company size (employees or ARR) is your ideal customer?
+
 **Q2:** Any specific industries or verticals? Or horizontal across all industries?
+
 **Q3:** Primary geographic market(s)?
+
 **Q4:** Who's the primary buyer? (Title + role description)
+
 **Q5:** Who actually signs the contract? (Economic buyer, if different)
+
 **Q6:** Who becomes your internal champion? What do they care about?
+
 **Q7:** What are the top 3 pain points your ICP has that your product solves?
+
 **Q8:** What event triggers them to start looking for a solution like yours?
 
 Store as: `icp_company_size`, `icp_industry`, `icp_geography`, `icp_primary_persona`,
@@ -158,17 +200,22 @@ Store as: `icp_company_size`, `icp_industry`, `icp_geography`, `icp_primary_pers
 
 ### Step 4: Alternatives & Positioning (6 Questions)
 
-**Why this section:** April Dunford's framework. You're not positioning against
+**Why this section:** Dunford's framework. You're not positioning against
 "competitors" — you're positioning against what buyers are actually comparing you to,
 including doing nothing. This is the hardest section to get right and the one that
 makes the biggest difference.
 
 **Q1:** What are the top 3 products buyers compare you to? (Not "our competitors" —
 what do BUYERS actually consider before choosing?)
+
 **Q2:** What do buyers do TODAY if they don't buy any tool, including yours?
+
 **Q3:** Why do buyers leave those alternatives and consider you instead?
+
 **Q4:** What can you do that NO alternative can do? (Features, approach, delivery model)
+
 **Q5:** What category do you compete in? (If creating a new category, name it)
+
 **Q6:** Are you in an existing market, new market, or resegmenting an existing market?
 
 Store as: `alternatives_primary[]`, `alternatives_status_quo`, `alternatives_why_leaving`,
@@ -184,9 +231,13 @@ Store as: `alternatives_primary[]`, `alternatives_status_quo`, `alternatives_why
 before producing copy. Without it, outputs sound like AI. With it, they sound like you.
 
 **Q1:** Pick 3–5 words that describe your brand voice.
+
 **Q2:** Does your tone shift when talking to different personas? Describe the shifts.
+
 **Q3:** Any language preferences? ("We say X, not Y")
+
 **Q4:** Any words or phrases you NEVER use? (Jargon, clichés, competitor language)
+
 **Q5:** Paste a paragraph of copy that perfectly captures your voice.
 
 Store as: `voice_attributes[]`, `tone_shifts`, `language_preferences`,
@@ -202,8 +253,11 @@ Store as: `voice_attributes[]`, `tone_shifts`, `language_preferences`,
 arbitrary. Without this, GTM briefs lack urgency and messaging lacks a market narrative.
 
 **Q1:** How mature is your market? (Nascent / Emerging / Growing / Mature)
+
 **Q2:** What macro trends or forces make your solution relevant NOW?
+
 **Q3:** Complete: "Buyers need [your product] NOW because _____"
+
 **Q4:** What's the bigger story about where the market is going? (2–3 sentences)
 
 Store as: `market_maturity`, `macro_forces`, `why_now`, `market_narrative`
@@ -218,7 +272,9 @@ Store as: `market_maturity`, `macro_forces`, `why_now`, `market_narrative`
 This is the approved claims registry every battlecard and launch brief pulls from.
 
 **Q1:** What metrics can your team confidently cite? (With sources if possible)
+
 **Q2:** Any customer quotes, testimonials, or case study results you can reference?
+
 **Q3:** Any claims your team is NOT allowed to make? (Unverified, exaggerated, legally risky)
 
 Store as: `approved_metrics[]`, `proof_points_quotes`, `forbidden_claims`
@@ -230,6 +286,7 @@ Store as: `approved_metrics[]`, `proof_points_quotes`, `forbidden_claims`
 ### Step 8: Generate and Save Brain File
 
 Once all 6 sections are confirmed:
+
 - Populate all 31 variables from wizard answers
 - Write to `/foundation/brain.md`
 - Delete `/foundation/.brain-draft.md` if it exists
@@ -237,10 +294,8 @@ Once all 6 sections are confirmed:
 
 ```markdown
 ✅ Your brain is live at /foundation/brain.md
-
 Every PMM skill in this ecosystem will now read from it automatically.
 ICP, positioning, alternatives, voice, proof points — captured once, used everywhere.
-
 Want to see your brain file? (yes / no)
 ```
 
@@ -302,9 +357,11 @@ For senior operators and VP-level users, also surface:
 - **Files written:** `/foundation/brain.md` — 6 sections, all 31 variables populated.
   All PMM skills read this. `/foundation/.brain-draft.md` — partial state written if
   wizard is interrupted, deleted once full brain is written.
+
 - **Chat output format:** Section-by-section confirmation → final brain summary →
   success message → post-setup routing (Step 9). Each section shows answers and asks
   for confirmation before proceeding.
+
 - **External side effects:** If legacy v1.x files in `.agents/`, migration is offered
   with field-by-field confirmation. Old files are not deleted — user keeps them.
 
@@ -339,25 +396,33 @@ For senior operators and VP-level users, also surface:
 
 - **Show value before asking for setup.** First-run users see the first-run hook (Step
   Pre-flight) before wizard questions. They know what they're building and why before
-  they start. This is the Ramp Glass principle: earn the setup, don't demand it.
+  they start. Earn the setup, don't demand it.
+
 - **Never run wizard without brain state check.** Always check `/foundation/brain.md`
   first. If it exists, offer View/Edit/Rebuild — never auto-launch the wizard.
+
 - **Validate specificity at every answer.** Reject vague answers inline: "We sell to
   businesses" → push back: "Be more specific — what company size, industry, or role?"
   The brain is only as sharp as the answers that build it.
+
 - **Save partial state on any interrupt.** If user quits mid-wizard, write
   `/foundation/.brain-draft.md` with all completed sections and current question
   number. On next run, detect draft and offer to resume from exactly where they left.
+
 - **Parse legacy files with confirmation, never silently.** Show each extracted field
   before writing. User must confirm. Silent migration introduces errors that corrupt
   the brain without anyone noticing.
+
 - **Post-setup routing is mandatory.** After every completed brain setup or edit,
   run Step 9. A brain without a next action is a brain that doesn't get used.
+
 - **Role-surface the right skills.** VP and senior operators get `workflow-orchestrator`
   and `hs-ci-stakeholder-briefing` surfaced alongside path skills. IC operators get
   individual execution skills. Ask about focus, not title — focus reveals role.
+
 - **Brain writes require section confirmation.** Each section must be confirmed before
   writing. Never write the brain file from unconfirmed answers.
+
 - **Never recommend direct file edits.** If user wants to edit brain manually, redirect
   to `--edit-section [1-6]` wizard flow. Manual edits bypass validation.
 
@@ -381,18 +446,23 @@ Runs after brain file is written, before Step 9 routing.
 ## Self-Improvement Loop
 
 ### Before every session:
+
 1. Check if `/foundation/brain.md` exists — load it silently.
 2. Check `knowledge/brain/rules.md` if it exists — apply confirmed quality patterns.
 3. Note current brain section scores if last audit was run — flag degraded sections.
 
 ### After every completed brain setup or edit:
+
 1. Note which sections users most commonly skip or ask to revisit.
    Log to `knowledge/brain/hypotheses.md`.
+
 2. Note which answers most commonly fail the specificity check.
    If same field fails 3+ times across sessions → propose a more specific example
    prompt for that question. Log proposed change to `knowledge/brain/hypotheses.md`.
+
 3. Note which post-setup routing path was chosen most. If one path dominates,
    consider surfacing it as the default suggestion.
+
 4. Log session: setup or edit, sections completed, routing path chosen.
 
 **Self-Improvement Trigger format — surface before encoding, never silently:**
@@ -410,21 +480,22 @@ Awaiting approval before encoding.
 ## Changelog
 
 ### v2.3.0 — 2026-06-12
-Spec compliance fixes (11/19 → 18/19) + Glass onboarding + role routing.
-
+Spec compliance fixes + onboarding + role routing.
 - **F1/F5:** Moved `version:` and `last_updated:` to root level (were nested in metadata).
 - **F3:** Description expanded to 412 chars with "Trigger on:" phrase verbatim.
 - **S6:** Verification converted from checkbox list to binary table (6 checks).
 - **T2:** Added Quality Gate section (6 binary checks in table format).
 - **T3:** Added Self-Improvement Loop (before/after + trigger format).
 - **Q2:** Step 8 success message wrapped in ```markdown fence.
-- **Pre-flight:** First-run hook added (Ramp Glass pattern) — shows value before
+- **Pre-flight:** First-run hook added — shows value before
   asking for setup effort. Zero-state detection hardened.
 - **Step 9:** New post-setup routing step — one question maps user's focus to 2–3
   specific skills. Senior/VP operators surface `workflow-orchestrator` and
   `hs-ci-stakeholder-briefing` alongside path skills.
 - **Operating Rules:** Two new rules — first-run hook (Rule 1) and role-surface
   routing (Rule 7). Total: 9 rules.
+- **Step 0:** Added Phase 1 learning infrastructure validation. Checks for guardrails
+  and learnings files. Logs execution for meta-learn pattern extraction.
 
 ### v2.2.0 — 2026-06-11
 Restructured to SKILL-SPEC v2.0.0 (partial). Removed brain-audit logic (now uses

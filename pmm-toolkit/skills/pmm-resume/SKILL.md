@@ -10,7 +10,29 @@ metadata:
 last_updated: 2026-06-05
 ---
 
-# PMM Resume Reviewer & Tailoring Engine
+## Step 0: Pre-Flight
+
+### Load Resume Learnings & Patterns
+
+1. **Load Brain** (OPTIONAL)
+   - Read `/foundation/brain.md` if available
+   - Section 3 (positioning) may help with brand context
+
+2. **Load Active Guardrails**
+   - Read `/context/meta-patterns.yml`
+   - Display: `"Resume guardrails: [patterns]"`
+
+3. **Load Quality Learnings**
+   - Read `/sessions/quality-learnings.md`
+   - Look for "resume" or "skills" patterns
+   - Display: `"From prior resumes: specificity matters (+25% callback rate). Emphasizing metrics."`
+
+4. **Log Execution**
+   - Log to `/skill-sessions.md`: pmm_resume_skill, timestamp
+
+---
+
+# PMM Resume Review
 
 **Three core capabilities:**
 1. Review — show exactly how a GTM hiring exec reads this resume, then fix it

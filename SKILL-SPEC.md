@@ -7,8 +7,9 @@
 **Owner:** Stefanos Karakasis
 
 This is the canonical standard every skill in this repo must meet.  
-The `review` meta skill enforces it. New skills ship only when they pass it.  
-Existing skills are upgraded to it on the improvement schedule in `ROADMAP.md`.
+The `meta-review` skill enforces it. New skills ship only when they pass it.  
+Existing skills are upgraded to it on the improvement schedule in
+`product-marketing-context/ROADMAP.md`.
 
 ---
 
@@ -360,7 +361,7 @@ Load instruction for brain-dependent skills:
 - If a loaded section is marked 🔴 Placeholder: flag before proceeding.
 ```
 
-**Brain-dependent skills:** `positioning-messaging`, `competitive-battlecard`, `go-to-market-strategy`, `buyer-personas`, `value-prop-statements`, `gaccs-brief`, `stakeholder-maps`, `retro`, `pre-mortem`, `workflow-orchestrator`, `ci-stakeholder-briefing`, `pmm-okrs`, `product-marketing-context`
+**Brain-dependent skills:** `positioning-messaging`, `go-to-market-strategy`, `gaccs-brief`, `stakeholder-maps`, `retro`, `pre-mortem`, `workflow-orchestrator`, `pmm-okrs`, `beachhead-segment`, `product-marketing-context`
 
 ### Context-Agnostic (`context-agnostic`)
 
@@ -445,7 +446,7 @@ One test case must test the **quality gate** specifically.
 | **T1 — Strategic** | High-stakes, executive or customer-facing output | pre-mortem, positioning-messaging, competitive-battlecard, go-to-market-strategy | All 7 sections + operating rules + quality gate + self-improvement loop + changelog |
 | **T2 — Execution** | Day-to-day PMM work, high frequency, medium stakes | experiment-doc, prd, retro, stakeholder-maps, gaccs-brief, pmm-okrs, buyer-personas | All 7 sections + quality gate + changelog |
 | **T3 — Utility** | Tactical outputs, lower stakes | writing-assistant, pmm-resume, privacy-policy, interview-summary, prioritization-frameworks | All 7 sections + changelog. Quality gate optional. |
-| **T4 — Meta** | Skills that operate on other skills | review, learn, verify, workflow-orchestrator, product-marketing-context | Custom per meta skill. All 7 sections still required. |
+| **T4 — Meta** | Skills that operate on other skills | meta-review, meta-learn, meta-verify, meta-synthesis, workflow-orchestrator, product-marketing-context | Custom per meta skill. All 7 sections still required. |
 
 ---
 

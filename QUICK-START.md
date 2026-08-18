@@ -25,9 +25,9 @@ Takes about 15 minutes. Answers save to `/foundation/brain.md`.
 
 Once your brain exists, any brain-dependent skill in this repo reads it
 automatically. Try:
-"Generate positioning for our platform" 
-"What tier is this launch?" 
-"Run a retro on our last launch"
+- "Generate positioning for our platform" 
+- "What tier is this launch?" 
+- "Run a retro on our last launch"
 
 ## What You Can Do (21 skills across 6 plugins)
 

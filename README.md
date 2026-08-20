@@ -131,9 +131,6 @@ Once installed, ask your agent to help with PMM tasks:
 "Generate positioning for our platform"
 → Uses positioning-messaging skill
 
-"Build a competitive battlecard for Okta"
-→ Uses competitive-battlecard skill
-
 "Build Q3 OKRs for my team"
 → pmm-okrs
 

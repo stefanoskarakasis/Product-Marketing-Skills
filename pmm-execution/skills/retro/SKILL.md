@@ -1,6 +1,6 @@
 ---
-name: hs-retro
-version: 2.2.0
+name: retro
+version: 1.1.0
 description: >
   Structured GTM retrospective for cross-functional squads anchored to OKRs and launch
   outcomes. Produces diagnostic root causes and actionable decisions, not venting. Uses post-session logging
@@ -15,7 +15,28 @@ metadata:
   logging_enabled: true
 last_updated: 2026-06-21
 ---
-# GTM Retrospective Engine for PMMs
+## ⓪ PMM CONTEXT — LOAD FIRST
+
+Before anything else, check `/foundation/brain.md`.
+
+**If it exists — load silently. Extract:**
+- Section 2 (ICP Definition) → shapes which failure modes are highest-stakes
+- Section 3 (Alternatives & Positioning) → was the positioning coherent with this launch? Source of truth for diagnosis.
+- Section 5 (Market Context) → which market forces was this initiative riding on? Root causes shift by context.
+- Section 6 (Proof Points Registry) → what proof was this launch meant to generate or rely on?
+
+**Confidence awareness:** If Section 3 (Alternatives & Positioning) or Section 2 (ICP Definition) is 🔴 Placeholder, flag before proceeding:
+> "⚠️ Positioning is marked Placeholder in your brain. This retro may surface
+> symptoms rather than root causes — update the brain first for sharper diagnosis."
+
+**If missing:** Proceed. Surface once, non-blocking:
+> "No brain found. Run `product-marketing-context` to make root cause
+> diagnosis significantly sharper. Continuing."
+
+--
+
+# retro — GTM Retrospective Engine for PMMs
+
 Runs a structured retrospective for cross-functional squads that produces OKR-linked
 decisions — and gets smarter every session.
 Not a feelings circle. A diagnostic system.
@@ -323,6 +344,23 @@ write session file → update knowledge base → log decisions → run quality g
 - **Quality gate runs before final delivery.** Minimum 17/21 on the seven criteria. Below that: revise before presenting as complete.
 - **Always log.** Every retro writes to `/context/skill-sessions.md`. Meta-synthesis learns from both successful launches and failures.
 ---
+## RELATED SKILLS
+
+Cross-reference these when a retro surfaces issues that belong elsewhere:
+
+- **product-marketing-context** → source of ICP, positioning, and brain context
+- **pre-mortem** → if the next launch is already planned → run risk analysis before it ships
+- **gaccs-brief** → if retro surfaces campaign or messaging failure → rebuild the brief
+- **pmm-okrs** → if KR design or success metric ambiguity drove the miss → route here
+- **prioritization-frameworks** → If tier mismatch is identified, route to `prioritization-frameworks` for rescoring.
+
+Note: this file previously referenced hs-competitive-battlecard and
+hs-ci-stakeholder-briefing — neither exists as a built skill in this repo
+under any name. Removed rather than left as phantom references. Add them
+back here if/when those skills get built.
+
+--
+
 ## Quality Gate
 Runs before final delivery. Score each criterion 1–3. Minimum 17/21 to pass.
 | Criterion | Standard | Score (1–3) |
@@ -364,42 +402,20 @@ Pattern: [observed this session]
 Proposed update: [exact wording]
 Location: [file path]
 Awaiting approval before encoding.
+--
 ```
----
-## Changelog
-### v2.2.0 — 2026-06-21
-Added post-session logging + guardrail intake + pre-mortem correlation + brain updates. Guardrails loaded from `/context/meta-patterns.md` at pre-flight. Step 0 surfaces patterns (e.g., "champion alignment was gap in 2 retros, watch for it"). Step 6 correlates pre-mortem predictions to actual outcomes. Step 8 proposes brain Section 7 updates + anti-ICP discovery. Step 9 logs session metadata to `/context/skill-sessions.md` for meta-synthesis to read. Operating Rules reprioritized (guardrails first). Quality gate expanded to 8 checks. Self-improvement loop now loads guardrails first, logs pre-mortem correlation, gates brain updates.
+--
+## CHANGELOG
 
-Changes from v2.1.0:
-- Added Step 0: Surface guardrails before intake (reads `/context/meta-patterns.md`)
-- Updated Pre-flight: Load guardrails first + check meta-patterns
-- Added Step 6: Correlate pre-mortem predictions to actual risks + log accuracy
-- Added Step 8: Propose brain updates (Section 7 learnings + Section 2 anti-ICP)
-- Added Step 9: Post-session logging to `/context/skill-sessions.md`
-- Updated Outputs: Now writes to `/context/skill-sessions.md` (NEW) + optional `/foundation/brain.md` Sections 2 & 7
-- Updated Inputs: Now reads `/context/meta-patterns.md` (NEW)
-- Updated Operating Rules: "Guardrails first" + "Pre-mortem correlation is automatic" + "Always log"
-- Updated Quality Gate: Added checks for guardrails + pre-mortem correlation (now 8 checks)
-- Updated Verification: Added checks for guardrails + pre-mortem correlation + session logging + brain updates
-- Updated Self-Improvement Loop: Load guardrails first, correlate pre-mortem, gate brain updates
-- Updated Changelog: Now includes v2.2.0 entry
-- Version bump 2.1.0 → 2.2.0
-- Updated metadata: Added `logging_enabled: true`
-
-### v2.1.0 — 2026-06-11
-Full SKILL-SPEC v2.0.0 compliance. Score: 9/19 → 19/19.
-Changes:
-- Added frontmatter fields: `name`, `version`, `description`, `metadata` (author, context, quality_gate), `last_updated`
-- Added all 7 required sections: Trigger, Inputs, Pre-flight, Steps, Outputs, Verification, Do Not Use For
-- Formalized: Operating Rules (9 rules), Quality Gate (7 binary criteria, 1–3 scoring)
-- Restructured: Pre-flight section formalized with loading logic
-- Steps: Numbered 1–10 with clear imperative forms
-- Self-Improvement Loop: Before/after structure with explicit trigger format
-- Added Changelog section with version history
-No methodology changes — all existing retro logic preserved and structured per spec.
-
-### v2.0.0 — 2026-06-06
-Spec compliance pass. Renamed from `hs-retro` to `retro`, formalized all sections.
+### v1.1.0 — 2026-08-20
+Renamed from hs-retro to retro (dropping the hs- prefix repo-wide).
+Context load switched from the legacy `.agents/product-marketing-context.md`
+file to `/foundation/brain.md`, using the confirmed 6-section schema
+(Section 2 ICP, Section 3 Alternatives & Positioning, Section 5 Market
+Context, Section 6 Proof Points Registry). Related Skills list corrected
+to real skill names only; removed two phantom hs- references
+(hs-competitive-battlecard, hs-ci-stakeholder-briefing) that don't
+correspond to any built skill in this repo.
 
 ### v1.0.0 — 2026-04-17
 Initial build.

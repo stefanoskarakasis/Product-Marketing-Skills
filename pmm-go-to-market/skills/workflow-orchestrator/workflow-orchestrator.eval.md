@@ -77,10 +77,8 @@ with a clear reason. No skill runs.
 **Expected output includes:**
 - Skip acknowledged with the user's reason
 - Downstream impact explicitly stated before confirmation:
-  - What the next skill (e.g. `hs-competitive-battlecard`) loses by not having
-    fresh positioning output
-  - Whether the 6-week-old positioning is likely still coherent with upcoming
-    competitive work
+  - What the next skill (e.g. `gaccs-brief`) loses by not having     fresh positioning output
+  - Whether the 6-week-old positioning is likely still coherent with upcoming competitive work
 - Explicit confirmation request before skip is locked in: "Confirm skip? [Y/N]"
 - If confirmed: orchestrator proceeds to next skill in sequence without re-running
   positioning
@@ -135,15 +133,14 @@ and blocks progression until user resolves it.
 /status
 
 [Context: quarterly-cycle workflow started 3 days ago. retro and positioning-messaging
-have been completed. hs-competitive-battlecard is pending.]
+have been completed.]
 ```
 
 **Expected output includes:**
 - Program name and workflow type
 - Skills completed with dates: `retro` (date), `positioning-messaging` (date)
-- Skills pending: `hs-competitive-battlecard`, `hs-proof-points-claims`, `hs-brainstorm-okrs`
-- Next skill clearly named: `hs-competitive-battlecard` — what it reads from prior
-  outputs and what it will produce
+- Skills pending: `pmm-okrs` (proof points and competitive battlecard work: no dedicated skill yet)
+- Next skill clearly named: `pmm-okrs` — what it reads from prior
 - Brain updates made so far: Section 3 updated (date), Section 7 retros completed (date)
 - Open items if any surfaced during completed skills
 - No new skills triggered by /status
@@ -173,7 +170,7 @@ DRI: me.
 - Charter produced: workflow type = "Full PMM Onboarding / Audit", read-only noted
 - Brain sections 1–7 audited: completeness, staleness, gaps named per section
 - `positioning-messaging` run in AUDIT mode only — no new positioning generated
-- `hs-proof-points-claims` run in AUDIT mode only — no new claims added
+- Proof points audit (via product-marketing-context Section 6) run in AUDIT mode only — no new claims added
 - Current State Report produced with prioritised gaps
 - Explicit statement at close: "No brain writes made — this was a read-only audit"
 - Recommended next step: which skill to run first based on highest-priority gap
@@ -206,9 +203,9 @@ who will definitely bring this up.
 - Urgency acknowledged — orchestrator notes "expedited mode" in charter
 - Charter produced but lightweight — does not require full charter confirmation
   given stated urgency (offers "Confirm in 30 seconds or I start immediately")
-- `hs-competitive-battlecard` runs for Salesforce specifically — not all competitors
+- Competitive battlecard work (no dedicated skill yet) runs for Salesforce specifically — not all competitors
 - Output includes immediate talk tracks usable in tomorrow's sales call
-- `hs-ci-stakeholder-briefing` produces a short exec alert, not a full newsletter
+- (No dedicated stakeholder-briefing skill yet) produces a short exec alert, not a full newsletter
 - Brain Section 4 update offered after completion
 - Timeline: entire program estimated < 1 hour
 

@@ -236,7 +236,7 @@ Recommendation:
 For each pattern/signal, propose brain updates:
 
 **Pattern: "Champion alignment gap repeated 3x"**
-- Current brain Section 7: [check for existing learnings]
+- Current `/context/skill-sessions.md`: [check for existing learnings]
 - Proposed update: "Launch assumption: +48 hours for champion + IT alignment. Assign dedicated owner."
 - Downstream impact: Affects pre-mortem guardrails, GTM timelines, stakeholder-maps
 
@@ -252,7 +252,7 @@ For each pattern/signal, propose brain updates:
 
 Surface approval gate for each:
 ```
-"Should we update brain Section 7 with:
+"Should we log to /context/meta-patterns.md:
 'Launch assumption: +48 hours for champion alignment. Assign dedicated owner.'?
 
 Evidence: 4 occurrences (2 retros, 2 pre-mortems), dates [list], impact: 48h delays
@@ -296,7 +296,7 @@ Aggregate all signals (skill logs + integrations) into `/memory/user-profile.md`
 - Recent calls: [from Gong] (if enabled)
 
 **Section: What You're Working On**
-- Active initiatives: [from Drive + brain Section 7] (past 14 days)
+- Active initiatives: [from Drive + /context/skill-sessions.md] (past 14 days)
 - Launch timeline: [from Calendar + brain] (next 30 days)
 - Deal pipeline: [from Gong] (if enabled, deal stages)
 - Time allocation: [from Calendar] (% by topic)
@@ -335,7 +335,7 @@ Aggregate all signals (skill logs + integrations) into `/memory/user-profile.md`
 Archive entries that are no longer active:
 
 **Stale initiatives (not mentioned 14+ days):**
-- Query: initiatives in brain Section 7 with last_mentioned >14 days ago
+- Query: initiatives in /context/skill-sessions.md with last_mentioned >14 days ago
 - Action: Move to `/memory/archived/initiatives/[name].md`
 - Keep: Historical record, date archived, reason
 
@@ -398,8 +398,8 @@ recommendation: maintain current confidence bands
 
 ## Brain Updates Proposed
 1. Section 2 (Anti-ICP): [text]
-2. Section 5 (Revenue): [text]
-3. Section 7 (Meta-Learnings): [text]
+2. Section 5 (Market Context): [text]
+3. Logged learnings (/context/meta-patterns.md): [text]
 
 ## Guardrail Status
 active: [N guardrails]
@@ -421,7 +421,7 @@ For each proposed update (Section 2, 5, 7):
 
 Surface approval gate:
 ```
-"Should we update brain Section 7 with:
+"Should we log to /context/meta-patterns.md with:
 '[exact proposed text]'?
 
 Evidence: [count] occurrences, [dates], impact: [description]

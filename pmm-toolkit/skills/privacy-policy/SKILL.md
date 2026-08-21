@@ -1,35 +1,13 @@
 ---
 name: privacy-policy
-version: 2.0.0
+version: 2.1.0
 description: Draft a jurisdiction-aware privacy policy for any digital product — use this skill whenever a PMM or Product Manager needs to create, update, audit, or review data protection documentation, asks about GDPR, CCPA, or UK GDPR obligations, mentions "privacy policy", "cookie policy", "data retention", "right to be forgotten", "data processing agreement", or asks what their product needs to comply with applicable privacy law.
 
 metadata:
   author: Stefanos Karakasis
   context: context-agnostic
   quality_gate: false
-last_updated: 2026-06-05
----
-
-## Step 0: Pre-Flight
-
-### Load Compliance & Policy Learnings
-
-1. **Load Brain** (OPTIONAL)
-   - Read `/foundation/brain.md` if available
-   - Section 1 (strategy) may help understand company stance
-
-2. **Load Active Guardrails**
-   - Read `/context/meta-patterns.yml`
-   - Display: `"Compliance guardrails: [patterns]"`
-
-3. **Load Quality Learnings**
-   - Read `/sessions/quality-learnings.md`
-   - Look for "privacy" or "compliance" patterns
-   - Display: `"From prior policies: [compliance pattern]. Incorporating into policy."`
-
-4. **Log Execution**
-   - Log to `/skill-sessions.md`: privacy_policy_skill, timestamp
-
+last_updated: 2026-08-21
 ---
 
 # privacy-policy
@@ -43,29 +21,19 @@ High-risk clauses are marked `[⚠️ LEGAL REVIEW REQUIRED]` throughout — alw
 
 ---
 
-## ⓪ On Load — Read Before Anything Else
+## Pre-Flight
 
-**1. Load apex context**
-
-Check `/foundation/brain.md`. If found, extract silently:
+Read `/foundation/brain.md` if available. Extract silently:
 - Product name and description
 - Company name and registered address
 - Primary market / geographic focus → infer likely jurisdiction(s)
 - Data types mentioned in the product description
 - ICP → infer B2C vs B2B exposure
 
-**2. Load skill knowledge**
+If missing, proceed without it and collect everything through Intake instead.
 
-Check `knowledge/INDEX.md`. If it exists:
-- Load applicable `knowledge/jurisdiction/` files
-- Load applicable `knowledge/clauses/` files
-- Apply confirmed 🟢 rules by default
-- Note any 🟡 hypotheses testable with today's session
-
-**3. Challenge the user — never auto-populate silently**
-
-Even with full context loaded, surface what was inferred and require explicit confirmation.
-Legal documents cannot be built on silent assumptions. Present the intake block in Section ①.
+Even with brain context loaded, surface what was inferred and require explicit
+confirmation in Section ①. Legal documents cannot be built on silent assumptions.
 
 ---
 
@@ -105,19 +73,22 @@ If the user skips intake → default to broadest jurisdiction coverage; flag all
 
 ---
 
-## ② Jurisdiction Detection
+## ② Jurisdiction Baseline
 
-Derive applicable laws from confirmed inputs — never assume.
+Derive applicable laws from confirmed inputs — never assume. Apply the relevant
+baseline below. These are the core obligations to draft from; treat every specific
+period, threshold, or right listed as a candidate to confirm or correct with the
+user, not a fact to state unflagged in the final policy.
 
-| User location | Primary law | Load |
+| User location | Primary law | Core obligations to reflect |
 |---|---|---|
-| EU / EEA | GDPR | `knowledge/jurisdiction/gdpr.md` |
-| UK | UK GDPR + PECR | `knowledge/jurisdiction/uk-gdpr.md` |
-| California | CCPA / CPRA | `knowledge/jurisdiction/ccpa.md` |
-| US (other states) | VCDPA, CPA, TDPSA, CTDPA patchwork | `knowledge/jurisdiction/us-states.md` |
-| Canada | PIPEDA / Law 25 (QC) | `knowledge/jurisdiction/canada.md` |
-| Australia | Privacy Act + APPs | `knowledge/jurisdiction/australia.md` |
-| Global / Multi | All above — GDPR as floor, layer others | All files |
+| EU / EEA | GDPR | Lawful basis for each processing activity; data subject rights (access, rectification, erasure, portability, restriction, objection); DPO required above certain processing thresholds (Art. 37); breach notification to the supervisory authority within 72 hours; cross-border transfer mechanism (SCCs or adequacy) for any non-EEA processor. |
+| UK | UK GDPR + PECR | Same core rights as GDPR, enforced by the ICO; PECR governs cookies and direct electronic marketing consent separately from the general lawful-basis regime; UK IDTA or the UK Addendum to SCCs for cross-border transfers. |
+| California | CCPA / CPRA | Right to know, delete, correct, and opt out of sale/sharing of personal information; "Do Not Sell or Share My Personal Information" link required if applicable; look-back disclosure of categories collected in the past 12 months; opt-out for sensitive personal information processing. |
+| US (other states) | VCDPA, CPA, TDPSA, CTDPA, and similar | Broadly CCPA-adjacent: access, deletion, correction, opt-out of targeted advertising/sale, and (in several states) opt-out of profiling with legal effect. Thresholds and exact rights vary by state — flag as `[⚠️ LEGAL REVIEW REQUIRED]` rather than asserting exact scope. |
+| Canada | PIPEDA / Law 25 (QC) | Consent-based collection, meaningful purpose limitation, breach reporting to the Privacy Commissioner where real risk of significant harm exists; Law 25 adds Quebec-specific consent and cross-border transfer assessment requirements. |
+| Australia | Privacy Act + APPs | 13 Australian Privacy Principles covering collection, use, disclosure, access, and correction; notifiable data breach scheme for eligible breaches. |
+| Global / Multi | All above | Use GDPR as the floor (it is the strictest baseline) and layer jurisdiction-specific rights (e.g. CCPA's "sale/share" opt-out) as additional sections rather than separate policies where feasible. |
 
 **Industry overlays** — apply silently when relevant:
 
@@ -129,8 +100,9 @@ Derive applicable laws from confirmed inputs — never assume.
 | HR / employee data | Additional GDPR lawful basis requirements |
 | B2B only | Reduced consumer-rights exposure; processor obligations remain |
 
-If a jurisdiction file does not yet exist: draft from model knowledge, tag all claims `[M]`,
-add to hypothesis queue for live verification.
+Every obligation in these tables is a drafting starting point, not confirmed law for
+the user's specific situation — tag any clause built from this baseline `[M]` (model
+knowledge, not a loaded authoritative source) and mark it `[⚠️ LEGAL REVIEW REQUIRED]`.
 
 ---
 
@@ -142,25 +114,57 @@ add to hypothesis queue for live verification.
 | **REFRESH** | Existing policy provided | Diff: legal changes + redlined clauses |
 | **AUDIT** | "Review our policy" / "are we compliant" | Gap analysis + prioritised fix list |
 | **CLAUSE** | "Write the cookie section" / "draft our retention policy" | Single section with alternatives |
-| **LEARN** | "Our lawyer flagged X" / "legal said we need Y" | Legal feedback → knowledge base |
+| **LEARN** | "Our lawyer flagged X" / "legal said we need Y" | Legal feedback surfaced back to the user for their own records |
 
 Default: **DRAFT**.
 
 ---
 
-## ④ Drafting Protocol
+## ④ The Twelve-Section Policy Architecture
+
+Draft every DRAFT and REFRESH policy in this order. This is the baseline structure —
+adapt section depth to what Section ① and ② actually surfaced, and drop a section
+only if it is genuinely inapplicable (state why, briefly, rather than deleting silently).
+
+1. **Overview and scope** — who this policy covers, what product/service it applies to.
+2. **Data we collect** — every data type from Intake, organized by collection method
+   (provided directly, collected automatically, received from third parties).
+3. **How we use your data** — purpose for each data type, tied to a lawful basis
+   (GDPR) or business purpose (CCPA).
+4. **Legal basis for processing** (GDPR/UK GDPR jurisdictions only) — consent,
+   contract, legitimate interest, legal obligation, vital interest, or public task,
+   named per processing activity.
+5. **Cookies and tracking technologies** — categories used (strictly necessary,
+   functional, analytics, advertising), consent mechanism, link to cookie settings.
+6. **Third-party sharing and processors** — every named third party from Intake,
+   what data they receive, and why. Never describe processors generically.
+7. **International data transfers** — named transfer mechanism (SCCs, UK IDTA,
+   adequacy decision) for every processor outside the user's primary jurisdiction.
+8. **Data retention** — a stated period or deletion trigger per data type. Every
+   period gets `[⚠️ LEGAL REVIEW REQUIRED]` — no exceptions.
+9. **Your rights** — the specific rights from the Section ② baseline for the user's
+   confirmed jurisdiction(s), plus how to exercise each one.
+10. **Security measures** — a general, honest description of safeguards in place.
+    Never overstate; never make an unverifiable claim (e.g. "military-grade").
+11. **Children's data** — state whether the product is directed at children; if
+    special-category handling applies, flag it explicitly.
+12. **Changes to this policy and contact information** — how updates are
+    communicated, plus the confirmed privacy contact from Intake.
+
+---
+
+## ⑤ Drafting Protocol
 
 Follow this sequence — it prevents confident-sounding errors.
 
-1. Confirm all inputs are verified, not inferred
-2. Load jurisdiction rules — apply 🟢 rules silently
-3. Load clause patterns — apply 🟢 patterns silently
-4. Identify special categories and industry overlays
-5. List every named third-party processor before drafting Section 4
-6. Load `references/policy-sections.md` — draft all twelve sections in order
-7. Run self-audit (Section ⑦) — all four layers must pass before output
-8. Deliver three-part output (Section ⑤)
-9. Run self-improvement loop (Section ⑧)
+1. Confirm all inputs are verified, not inferred.
+2. Apply the Section ② jurisdiction baseline for every confirmed location.
+3. Identify special categories and industry overlays.
+4. List every named third-party processor before drafting Section 6 of the policy.
+5. Draft all twelve sections from Section ④, in order.
+6. Run self-audit (Section ⑧) — all four layers must pass before output.
+7. Deliver three-part output (Section ⑥).
+8. Run self-improvement loop (Section ⑨).
 
 **The specificity rule** — apply to every clause:
 
@@ -173,7 +177,7 @@ If a clause could appear in any product's privacy policy unchanged, rewrite it.
 
 ---
 
-## ⑤ Output Format
+## ⑥ Output Format
 
 Deliver in three parts every session, every mode.
 
@@ -187,14 +191,13 @@ THIRD PARTIES:       [named list]
 SPECIAL CATEGORIES:  [Yes — type / No]
 INFERRED INPUTS:     [anything not explicitly confirmed — flagged]
 MODE:                [DRAFT / REFRESH / AUDIT / CLAUSE / LEARN]
-KNOWLEDGE APPLIED:   [rules and clause patterns loaded this session]
 ```
 
 **Part 2 — Full Policy Document**
 
-Complete, ready-to-send-to-legal policy using the section architecture in
-`references/policy-sections.md`. Write in plain English. No legalese. Define
-technical terms on first use. Every `[⚠️ LEGAL REVIEW REQUIRED]` marker visible inline.
+Complete, ready-to-send-to-legal policy using the twelve-section architecture in
+Section ④. Write in plain English. No legalese. Define technical terms on first use.
+Every `[⚠️ LEGAL REVIEW REQUIRED]` marker visible inline.
 
 **Part 3 — Compliance Notes and Next Steps**
 - Summary of every `[⚠️ LEGAL REVIEW REQUIRED]` clause and why it needs legal attention
@@ -214,7 +217,7 @@ technical terms on first use. Every `[⚠️ LEGAL REVIEW REQUIRED]` marker visi
 
 ---
 
-## ⑥ Hard Rules
+## ⑦ Hard Rules
 
 **Never present output as a finished legal document.**
 The disclaimer is mandatory. Remove or soften it at user request: not permitted.
@@ -232,13 +235,13 @@ Retention periods are a primary enforcement target. Every stated period gets
 **Never describe third-party processors generically.**
 Name them, or state "processors are listed at [URL]" with a maintained live list.
 
-**Never present memory-generated compliance requirements as confirmed law.**
-Tag any claim not drawn from a loaded knowledge file as `[M]`. Add to hypothesis queue.
-Do not omit — flag it.
+**Never present the Section ② baseline as confirmed law for the user's situation.**
+It is model knowledge (`[M]`), not a verified legal source. Flag every clause drawn
+from it.
 
 ---
 
-## ⑦ Self-Audit
+## ⑧ Self-Audit
 
 Run internally before producing any output. All four layers must pass.
 
@@ -260,7 +263,7 @@ Only after all four layers pass: produce output.
 
 ---
 
-## ⑧ Self-Improvement Loop
+## ⑨ Self-Improvement Loop
 
 Run at end of every session, after output delivered and audit passed.
 
@@ -268,97 +271,24 @@ Run at end of every session, after output delivered and audit passed.
 
 A clause that reads well can still get flagged by a data protection authority.
 The skill cannot infer legal quality from silence — learning only fires when the
-user explicitly reports legal outcomes. This is what separates a compounding system
-from a static template.
+user explicitly reports legal outcomes.
 
 **Prompt the user before closing:**
 > "Before I close — did your lawyer flag anything in a previous policy review,
 > or do you have feedback from a legal or compliance review?
-> Even a quick note helps the skill improve for next time."
+> Even a quick note helps me apply the right pattern next time."
 
-**LEARN mode triggers:**
+**If the user reports feedback**, treat it as a signal for this session and any
+future one you draft for them — but do not write it to any file on your own. If they
+want it saved, ask where (their own notes, or a brain-adjacent doc they maintain)
+and let them confirm the destination.
 
-| User input | Action |
+| User input | How to use it this session |
 |---|---|
-| "Our lawyer flagged [clause]" | Store as clause risk → 🟡 hypothesis |
-| "Legal said [X] needed to be added / removed / reworded" | Store as jurisdiction rule → 🟡 hypothesis |
-| "This draft got approved unchanged" | Promote clause pattern → 🟢 rule (after 2nd confirmation) |
-| "We were fined / audited about [X]" | Immediate 🔴 rule — highest priority |
-
-**Promotion / demotion logic:**
-
-| Status | Promoted when | Demoted when |
-|---|---|---|
-| 🟡 Hypothesis | Added after first legal feedback signal | — |
-| 🟢 Rule | Confirmed across 2+ sessions or jurisdictions | Contradicted by new legal data |
-| 🔴 Rule | Triggered by fine, audit, or formal complaint | — |
-| Stale hypothesis | — | Untested for 180 days → flag for pruning |
-
-**Decision log** — record any structural decisions about output format, clause defaults,
-or jurisdiction handling:
-
-```
-decisions/YYYY-MM-DD-{topic}.md
-
-## Decision:     {what was decided}
-## Context:      {why this came up}
-## Alternatives: {what else was considered}
-## Reasoning:    {why this option won}
-## Trade-offs:   {what was given up}
-## Supersedes:   {prior decision if replacing one}
-```
-
-**Session log** — append to `sessions/log.md` every session:
-
-```
-DATE:                [YYYY-MM-DD]
-PRODUCT:             [name or "undisclosed"]
-JURISDICTIONS:       [list]
-MODE:                [DRAFT / REFRESH / AUDIT / CLAUSE / LEARN]
-SPECIAL CATEGORIES:  [list or none]
-THIRD PARTIES:       [count]
-LEGAL FEEDBACK:      [Yes — summary / No]
-KNOWLEDGE UPDATES:   [files written or updated]
-RULES PROMOTED:      [list or none]
-RULES DEMOTED:       [list or none]
-```
-
-**Deployment note:**
-Claude Code → knowledge files update automatically each session.
-Claude.ai → output a copyable block at session end:
-`📋 SAVE THIS — Knowledge updates, new rules, and session log for manual save`
-
----
-
-## ⑨ Knowledge Structure
-
-```
-knowledge/
-  INDEX.md                        ← router — update every session
-  jurisdiction/
-    gdpr.md                       ← GDPR clause rules + hypothesis queue
-    uk-gdpr.md                    ← UK GDPR post-Brexit divergence
-    ccpa.md                       ← CCPA / CPRA specifics
-    us-states.md                  ← state patchwork (VA, CO, TX, CT…)
-    canada.md
-    australia.md
-  clauses/
-    retention.md                  ← retention patterns by industry + jurisdiction
-    consent.md                    ← consent language — flagged vs approved
-    legitimate-interests.md       ← LI balancing test patterns (legally confirmed)
-    cookies.md                    ← cookie clause patterns + CMP recommendations
-    international-transfers.md    ← SCC / UK IDTA / adequacy patterns
-    special-categories.md         ← health, biometric, children, financial patterns
-    security.md                   ← security clause language confirmed by legal
-
-decisions/                        ← structural decisions about this skill's behaviour
-sessions/log.md                   ← session history + legal feedback received
-craft/examples.md                 ← anonymised examples of approved clause language
-
-references/
-  policy-sections.md              ← twelve-section drafting architecture
-                                     (load during DRAFT and REFRESH modes)
-```
+| "Our lawyer flagged [clause]" | Treat as a known risk area — apply extra scrutiny to that clause type for the rest of this draft and any future one. |
+| "Legal said [X] needed to be added / removed / reworded" | Apply the correction now; note it back to the user as a pattern worth remembering. |
+| "This draft got approved unchanged" | Good signal — keep using the same structure for that clause type. |
+| "We were fined / audited about [X]" | Highest priority — treat that clause area as `[⚠️ LEGAL REVIEW REQUIRED]` even where it wouldn't otherwise be flagged, for the rest of this engagement. |
 
 ---
 
@@ -368,7 +298,6 @@ references/
 |---|---|---|
 | `product-marketing-context` → product, market, ICP | `privacy-policy` | Legal review → published policy |
 | User confirms data types and jurisdiction | | `gaccs-brief` if policy change triggers comms |
-| Legal feedback → LEARN mode | | `knowledge/` compounds across sessions |
 
 If product context changes — new market, new data type, new feature:
-→ Re-run in **REFRESH** mode. Log the trigger in `sessions/log.md`.
+→ Re-run in **REFRESH** mode.

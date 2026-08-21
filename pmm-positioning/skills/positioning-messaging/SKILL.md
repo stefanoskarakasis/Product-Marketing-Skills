@@ -1,5 +1,5 @@
 ---
-name: hs-positioning-messaging
+name: positioning-messaging
 version: 2.1.0
 description: >
   Use for positioning statement, messaging hierarchy, homepage copy, persona cards,
@@ -40,7 +40,7 @@ last_updated: 2026-06-15
 
 ---
 
-# hs-positioning-messaging
+# positioning-messaging
 
 Built on Dunford's Obviously Awesome framework. Delivers sharp, defensible
 positioning through a 6-phase discovery and stress-test process.
@@ -57,9 +57,7 @@ positioning through a 6-phase discovery and stress-test process.
 ```
 Does /foundation/brain.md exist?
   YES → Load silently. Note ICP, alternatives, energy state. Proceed.
-  NO  → Surface once: "No brain found. You can still run this skill, but output
-         will be less precise. Run hs-product-marketing-context first for
-         sharper results. Continuing."
+  NO  → Surface once: "No brain found. You can still run this skill, but output will be less precise. Run product-marketing-context first for sharper results. Continuing."
 ```
 
 **Step 2 — Select mode:**
@@ -104,9 +102,9 @@ implied category. Report as: `"Your current materials say: [findings]"`
   homepage copy, messaging audit, or any request involving how a product should
   be described to buyers
 
-- **Not for:** Product specification → use hs-product-requirement-doc. Buyer
-  persona building → use hs-buyer-personas. Alternatives mapping in isolation →
-  use hs-alternatives-map first.
+- **Not for:** Product specification → use `prd`. Buyer persona building or
+  alternatives mapping in isolation → no dedicated skill exists for these yet;
+  handle within this skill's own intake instead.
 
 - **Example prompts:**
   - "Build positioning for [product]"
@@ -145,8 +143,8 @@ implied category. Report as: `"Your current materials say: [findings]"`
   competitive alternatives silently.
 
 - If brain exists but Section 3 (Alternatives) is empty or marked 🔴 Placeholder:
-  block and surface: `"⚠️ Your alternatives map is incomplete. Run hs-alternatives-map
-  first, then return here. I need named alternatives before positioning."`
+   block and surface: `"⚠️ Your alternatives map is incomplete. Complete Section 3
+  (Alternatives & Positioning) of your brain via product-marketing-context
 
 - If fewer than 3 alternatives provided by user and not found in brain: block intake
   and ask for status quo + do-nothing before proceeding. Hard stop.
@@ -368,19 +366,16 @@ Version + review date · Next steps from `references/validation-playbook.md`
 
 ## Do Not Use For
 
-- **hs-product-marketing-context** — when the task is buyer profiling or market
-  definition → use that skill first
+- **product-marketing-context** — when the task is buyer profiling or market
 
-- **hs-value-prop-statements** — when you only need segment-specific value props
+- **value-proposition** — when you only need segment-specific value props
   without a full messaging hierarchy
 
-- **hs-competitive-battlecard** — when building sales competitive response cards;
-  use that skill after positioning is locked
+- **(no dedicated skill yet)** — when building sales competitive response cards;
 
-- **hs-icp** — when the primary need is ICP definition, not positioning output
+- **product-marketing-context** — when the primary need is ICP definition (Section 2), not positioning output
 
-- **hs-alternatives-map** — when the primary need is mapping competitive
-  alternatives in depth; use that skill first, then return here
+- **product-marketing-context** — when the primary need is mapping competitive
 
 - **experiment-doc-builder** — when testing messaging assumptions; this skill
   builds messaging, not validates it experimentally

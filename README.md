@@ -17,16 +17,17 @@ Run into a problem or have a question? [Open an issue](https://github.com/stefan
 
 ## What This Is
 
-Build your product marketing brain once, in `product-marketing-context`.
-Every other skill in this repo reads it before producing output. No
-re-explaining your company, your buyer, or your competitors every time.
+This is a Claude agent marketplace designed to streamline product
+marketing tasks. The system operates on a foundational principle:
+"Build your brain once (`product-marketing-context`). Every other skill
+reads it. Zero repetition."
 
-**Status note:** cross-skill "compounding" (skills automatically logging
-session data and getting smarter from prior runs) is a design goal for this
-repo, not a shipped feature yet. Today, each skill reads
-`/foundation/brain.md` directly for shared context. Automatic session
-logging and pattern detection across skills is on the roadmap — see
-`product-marketing-context/ROADMAP.md`.
+**The Brain System:**
+Users establish a single context document — `/foundation/brain.md` —
+that stores product context, ICP, positioning, voice and tone, market
+context, and proof points across 6 sections. Every skill in this
+marketplace reads this file before producing output, eliminating the
+need to re-explain context across sessions.
 
 ## Why Product Marketing Skills?
 
@@ -96,14 +97,22 @@ every other skill reads from it.
 /plugin marketplace add stefanoskarakasis/Product-Marketing-Skills
 /plugin install pmm-foundation
 /plugin install pmm-positioning
-/plugin install pmm-go-to-market
-/plugin install pmm-execution
 /plugin install pmm-toolkit
+/plugin install pmm-execution
+/plugin install pmm-go-to-market
 /plugin install pmm-meta
 ```
 
-Install only the plugins you need — `pmm-foundation` is recommended first
-since every other plugin reads from the brain it builds.
+Install `pmm-foundation` first — every other plugin reads the brain it
+builds. `pmm-meta` can be installed alongside any combination of the
+others; it doesn't depend on which ones you have.
+
+## Workflow Intelligence
+
+`workflow-orchestrator` (in `pmm-go-to-market`) chains multiple skills
+into one coherent, end-to-end program — a Program Charter, sequenced
+skill runs, coherence checks between their outputs, and one master
+document at the end.
 
 ### Option 2: Clone and Copy
 

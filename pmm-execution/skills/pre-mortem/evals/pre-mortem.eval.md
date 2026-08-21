@@ -315,7 +315,7 @@ Pre-mortem accuracy tracking (last 3 sessions):
 Guardrail recommendation: Keep "Sales alignment" ACTIVE. Downgrade "Adoption friction" (false alarm rate too high).
 
 Emerging pattern: Pre-mortems with named owners have 85% Tiger mitigation success.
-Proposed learning for Section 7 (Meta-Learnings): "Named owner accountability in pre-mortem action plans drives 85% execution success vs. 40% when ownership is vague."
+Proposed learning for /context/meta-patterns.md: "Named owner accountability in pre-mortem action plans drives 85% execution success vs. 40% when ownership is vague."
 ```
 
 **Pass Criteria:**

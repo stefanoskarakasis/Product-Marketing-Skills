@@ -346,7 +346,6 @@ Patterns feed back into guardrail injection (Step 0) and brain updates (Section 
 ## Do Not Use For
 
 - **go-to-market-strategy** — after beachhead confirmed, use this to build full GTM brief
-- **hs-buyer-personas** — for persona depth within confirmed beachhead (run after)
 - **positioning-messaging** — for messaging for confirmed beachhead (run after)
 - **workflow-orchestrator** — to chain this with above for full market entry program
 

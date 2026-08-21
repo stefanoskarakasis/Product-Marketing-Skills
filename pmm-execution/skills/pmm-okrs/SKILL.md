@@ -45,24 +45,23 @@ Learns from prior quarters to improve confidence calibration and KR quality.
 - **Defaults:** If no args provided, run intake flow via `/build`. If partial context
   is provided, infer where possible and surface gaps explicitly before proceeding.
 - **Context keys:**
-  - `.agents/product-marketing-context.md` — optional but recommended. Load Revenue
-    Levers, Goals & KPIs, Big Bet Campaigns, Company Overview silently if present.
+  - `/foundation/brain.md` — recommended. Load Section 2 (ICP), Section 3
+    (Alternatives & Positioning), Section 5 (Market Context) silently if present.
   - `/context/meta-patterns.md` — optional; recurring patterns from all skills (guardrail prompts)
   - `knowledge/okrs/rules.md` — apply confirmed OKR craft rules by default.
   - `knowledge/okrs/hypotheses.md` — test any active hypothesis if applicable today.
   - `decisions/` — check for prior decisions before making new recommendations.
   - `/context/skill-sessions.md` — optional; prior quarter OKR data for confidence calibration
-**Brain contract:** Reads: Section 2 (ICP), Section 3 (Positioning), Section 5 (Revenue), Section 6 (Goals). Writes: `/context/skill-sessions.md`, `/foundation/brain.md` Section 5 (if lever weights change).
+**Brain contract:** Reads: Section 2 (ICP), Section 3 (Alternatives & Positioning), Section 5 (Market Context). Writes: `/context/skill-sessions.md`.
 ---
 ## Pre-flight
 **Load guardrails first:** Check `/context/meta-patterns.md` for recurring OKR patterns. If pattern matches (e.g., "confidence calibration off by 15% in Q2-Q3"), surface guardrail prompt before Step 1.
 
-Before starting, check `.agents/product-marketing-context.md`.
+Before starting, check `/foundation/brain.md`.
 **If it exists — load silently:**
-- `## Revenue Levers` → align OKRs to the stack-ranked levers
-- `## Goals & KPIs` → use North Star + OMTM as anchors
-- `## Big Bet Campaigns` → surface as project goals
-- `## Company Overview` → stage and business model context
+- Section 1 (Product Context) → stage and business model context
+- Section 2 (ICP Definition) → align OKRs to the named buyer
+- Section 5 (Market Context) → align OKRs to macro forces and timing
 **Confidence awareness:** If loaded sections are 🔴, flag before building OKRs:
 > "Revenue Levers is marked as Placeholder — OKRs built on this may need revisiting. Want to update it first?"
 **If missing:** Proceed. Surface once:

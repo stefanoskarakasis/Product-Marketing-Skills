@@ -73,7 +73,7 @@ Guides Product Managers and Product Marketing Managers to co-create complete Pro
   - `knowledge/false-beliefs/catalog.md` — OPTIONAL. Known weak patterns in problem statements
   - `knowledge/craft/patterns.md` — OPTIONAL. Confirmed patterns about what lands in pitches
 
-**Brain contract:** Reads: Sections 2, 3, 4, 5, 7. Writes: Section 7 (if major learnings emerge). Reads guardrails, logs to `/context/skill-sessions.md`.
+**Brain contract:** Reads: Sections 2, 3, 4, 5. Reads guardrails, logs to `/context/skill-sessions.md`.
 
 ---
 
@@ -394,7 +394,7 @@ brain_sections_referenced:
   - "ICP (Section 2)"
   - "Revenue Levers (Section 5)"
 brain_updates_proposed:
-  - "Section 7: New learning about announcement-level timing"
+  - "Logged to /context/skill-sessions.md: new learning about announcement-level timing"
 pm_pmm_collaboration: true
 collaboration_checkpoints_surfaced: 3
 output_path: "/artifacts/prd/dashboard-analytics-v1.0.md"
@@ -470,7 +470,6 @@ Each pattern becomes a guardrail that future PRD sessions load at pre-flight (St
 1. Log to `/context/skill-sessions.md` (Step 7) → Complete session metadata
 2. Extract learnings: Which guardrails proved most useful? Which gaps appeared 2+ times?
 3. Propose to `/context/meta-patterns.md`: Should we surface a new guardrail next time?
-4. Update brain Section 7: Did this PRD surface new learnings about announcement timing, success metrics, or rollout patterns?
 
 **Self-Improvement Trigger:**
 ```

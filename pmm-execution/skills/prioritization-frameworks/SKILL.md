@@ -289,5 +289,4 @@ Monthly, meta-synthesis reads these logs and detects patterns:
 - "T1 assignments with Confidence <7 lead to GTM churn 60% of the time" → Recommend validation before full motion
 - "Eisenhower applied to launch decisions has 0% accuracy vs. RICE" → Update framework selection guide
 
-These patterns feed back into guardrail injection (Step 0) and brain updates (Section 5: Revenue Levers, Section 7: Meta-Learnings).
-
+These patterns feed back into guardrail injection (Step 0) and get logged to `/context/meta-patterns.md` for future sessions.

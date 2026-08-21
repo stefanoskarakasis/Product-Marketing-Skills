@@ -18,7 +18,7 @@ I help you design experiments that actually prove something. Before we build any
 ---
 ## Trigger
 - **When:** You have an experiment idea, want to pressure-test a hypothesis, or need to validate whether an idea is worth testing at all.
-- **Not for:** Launch planning (`go-to-market-strategy`), OKR design (`hs-brainstorm-okrs`), feature specs (`hs-product-requirement-doc`).
+- **Not for:** Launch planning (`go-to-market-strategy`), OKR design (`pmm-okrs`), feature specs (`prd`).
 - **Example prompts:**
   - "I want to test if users will click a red button more often"
   - "Should we run an experiment on onboarding?"
@@ -182,9 +182,9 @@ This feeds into `meta-synthesis` skill (monthly) which detects patterns across s
 ---
 ## Do Not Use For
 - **go-to-market-strategy** — when planning launch tier and channels (not assumption testing).
-- **hs-product-requirement-doc** — when writing feature specs (experiments inform PRDs, don't write them).
-- **hs-brainstorm-okrs** — when designing quarterly OKRs (experiments feed into OKRs, don't set them).
-- **hs-pre-mortem** — when analyzing launch risks (run pre-mortem after experiment design locked).
+- **prd** — when writing feature specs (experiments inform PRDs, don't write them).
+- **pmm-okrs** — when designing quarterly OKRs (experiments feed into OKRs, don't set them).
+- **pre-mortem** — when analyzing launch risks (run pre-mortem after experiment design locked).
 ---
 ## Commands
 ### /formulate [raw idea]

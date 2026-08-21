@@ -1,6 +1,6 @@
 # Retro.eval.md
 
-Eval test cases for `hs-retro` skill (SKILL-SPEC v2.0.0 compliance).
+Eval test cases for `retro` skill (SKILL-SPEC v2.0.0 compliance).
 
 ---
 

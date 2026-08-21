@@ -1,5 +1,5 @@
 ---
-name: hs-privacy-policy
+name: privacy-policy
 version: 2.0.0
 description: Draft a jurisdiction-aware privacy policy for any digital product — use this skill whenever a PMM or Product Manager needs to create, update, audit, or review data protection documentation, asks about GDPR, CCPA, or UK GDPR obligations, mentions "privacy policy", "cookie policy", "data retention", "right to be forgotten", "data processing agreement", or asks what their product needs to comply with applicable privacy law.
 
@@ -47,7 +47,7 @@ High-risk clauses are marked `[⚠️ LEGAL REVIEW REQUIRED]` throughout — alw
 
 **1. Load apex context**
 
-Check `.agents/product-marketing-context.md`. If found, extract silently:
+Check `/foundation/brain.md`. If found, extract silently:
 - Product name and description
 - Company name and registered address
 - Primary market / geographic focus → infer likely jurisdiction(s)
@@ -366,8 +366,8 @@ references/
 
 | Upstream | This skill | Downstream |
 |---|---|---|
-| `hs-product-marketing-context` → product, market, ICP | `hs-privacy-policy` | Legal review → published policy |
-| User confirms data types and jurisdiction | | `hs-gaccs-brief` if policy change triggers comms |
+| `product-marketing-context` → product, market, ICP | `privacy-policy` | Legal review → published policy |
+| User confirms data types and jurisdiction | | `gaccs-brief` if policy change triggers comms |
 | Legal feedback → LEARN mode | | `knowledge/` compounds across sessions |
 
 If product context changes — new market, new data type, new feature:

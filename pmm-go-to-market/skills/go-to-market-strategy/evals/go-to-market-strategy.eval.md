@@ -5,7 +5,7 @@ description: >
   Comprehensive eval suite for go-to-market-strategy skill. Tests: guardrail surfacing,
   brain context loading, four-signal tier assignment accuracy, proof point gap detection,
   leading indicator presence, channel specificity, competitive context completeness,
-  brain Section 7 updates, logging accuracy, and pattern detection for meta-synthesis.
+  session logging accuracy and pattern detection for meta-synthesis.
   8 scenarios covering real launch decisions and calibration edge cases.
 ---
 
@@ -144,9 +144,9 @@ Recommend: Gather evidence before launch or reframe claim to one you can substan
 
 ---
 
-## Eval 7: Brain Section 7 Write and Logging
+## Eval 7: Session Logging
 
-**Scenario:** Brief generated and confirmed by user. Skill should update brain Section 7 and log session to `/context/skill-sessions.md`.
+**Scenario:** Brief generated and confirmed by user. Skill should log session to `/context/skill-sessions.md` with launch entry.
 
 **Expected Brain Write:**
 ```markdown
@@ -181,14 +181,14 @@ brain_sections_referenced:
   - "Positioning (Section 3): Security + ease"
   - "Competitive (Section 4): Okta dominance"
   - "Proof points (Section 5): 30% ROI, 8-hour setup"
-  - "Launch history (Section 7): Prior T1 enterprise launches"
+  - "Launch history (/context/skill-sessions.md): Prior T1 enterprise launches"
 leading_indicators_count: 2
 proof_point_gaps: 0
 brain_write_executed: true
 ```
 
 **Pass Criteria:**
-- Brain Section 7 write asked before executing
+- Session log write asked before executing
 - Session logged to `/context/skill-sessions.md` with all metadata
 - Quality score reflects signal rigor
 - Confidence level matches signal quality
@@ -232,7 +232,7 @@ Guardrail recommendation: Keep "Launch readiness <0.5 underperforms" ACTIVE.
 Add new pattern: "T1 requires readiness >0.7 or risk delays."
 
 Emerging pattern: Proof point gaps in new markets correlate with rework + messaging delays.
-Proposed learning for brain Section 7: "New market launches need pre-brief proof point audit."
+Proposed learning for /context/meta-patterns.md: "New market launches need pre-brief proof point audit."
 ```
 
 **Pass Criteria:**
@@ -255,7 +255,7 @@ Proposed learning for brain Section 7: "New market launches need pre-brief proof
 | 4 | Proof point gap detection | Missing claims flagged explicitly in brief |
 | 5 | Leading indicator presence | ≥1 leading indicator per brief, tied to lagging metric |
 | 6 | Channel specificity | Every channel grounded in ICP, generic tactics rejected |
-| 7 | Brain Section 7 + logging | Write confirmed, session logged with all metadata |
+| 7 | Session logging | Write confirmed, session logged with all metadata |
 | 8 | End-to-end workflow | Intake→Signals→Tier→Brief→Log, patterns detected |
 
 ---

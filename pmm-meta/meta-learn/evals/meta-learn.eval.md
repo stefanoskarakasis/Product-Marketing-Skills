@@ -111,7 +111,7 @@ Pattern 3: "GTM tier assignment process missing: check win/loss data step"
 Pattern: "Champion alignment is critical to success"
 Session 1 (beachhead-segment): "Champion was misaligned with use case pain, segment underperformed"
 Session 2 (go-to-market-strategy): "Top 3 risks: lack of champion alignment pre-launch"
-Session 3 (hs-competitive-battlecard): "We lost 2 deals where champion was not champion of our solution"
+Session 3 (positioning-messaging): "We lost 2 deals where champion was not champion of our solution"
 
 Detected domains: beachhead + gtm + sales (3 domains)
 Cross-skill signal rule: champion_alignment (threshold: 2 domains) → TRIGGER ✓
@@ -268,7 +268,7 @@ Proposed content:
 ---
 # Messaging Clarity as Sales Velocity Predictor
 Date: 2026-07-21
-Skill Sources: go-to-market-strategy, hs-competitive-battlecard
+Skill Sources: go-to-market-strategy, positioning-messaging
 Confidence: MEDIUM (2 confirmations)
 
 Pattern: When positioning messaging is ambiguous or internally inconsistent,
@@ -379,7 +379,7 @@ Summary: No learnings to capture this session — that's valid.
 
 Session log entry (automatic, no approval needed):
   Date: 2026-07-21
-  Skill: hs-gaccs-brief
+  Skill: gaccs-brief
   Duration: 22 min
   Patterns: 0
   Hypothesis updates: 0
@@ -410,17 +410,17 @@ User says (Missing): "Pre-mortem asks about risks, but doesn't ask about champio
 alignment pre-execution. We should know if the champion is aligned on the use case
 BEFORE we launch. This is a pre-flight checklist item, not a post-mortem item."
 
-Skill gap identified: hs-pre-mortem missing champion-alignment pre-flight check
+Skill gap identified: pre-mortem missing champion-alignment pre-flight check
 ```
 
 **Expected Output:**
 ```
 Skill Gap Detected:
-  Skill: hs-pre-mortem
+  Skill: pre-mortem
   Gap: Missing champion alignment assessment in pre-flight
   Why it matters: Champion misalignment is a deal-killer risk (flagged in H3, high-impact)
   
-  Route: /knowledge/meta/skill-gaps/hs-pre-mortem.md
+  Route: /knowledge/meta/skill-gaps/pre-mortem.md
   
   Approval gate: REQUIRE (skill feedback should be deliberate)
   

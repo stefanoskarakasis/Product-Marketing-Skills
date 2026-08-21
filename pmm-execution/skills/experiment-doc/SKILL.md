@@ -30,12 +30,12 @@ I help you design experiments that actually prove something. Before we build any
 - **Args:** Your role, what you're trying to change, rough idea of impact you expect.
 - **Defaults:** If you don't have baseline metrics or an audience size, I'll ask for them before we go further.
 - **Context keys:**
-  - `/foundation/brain.md` — optional; ICP (Section 2), Revenue Levers (Section 5), Problems (Section 6)
+  - `/foundation/brain.md` — optional; ICP (Section 2), Market Context (Section 5), Proof Points Registry (Section 6)
   - `/context/meta-patterns.md` — optional; recurring patterns from prior experiments (guardrail prompts)
   - `knowledge/false-beliefs/catalog.md` — optional; common weak patterns in experiment thinking
   - `knowledge/craft/patterns.md` — optional; confirmed failure modes you should know about
   - `/context/knowledge/experiments/` — optional; learnings from prior experiments
-**Brain contract:** Reads: Section 2 (ICP), Section 5 (Revenue), Section 6 (Problems), `/context/meta-patterns.md`. Writes: `/context/skill-sessions.md`, `/context/knowledge/experiments/`.
+**Brain contract:** Reads: Section 2 (ICP), Section 5 (Market Context), Section 6 (Proof Points Registry), `/context/meta-patterns.md`. Writes: `/context/skill-sessions.md`, `/context/knowledge/experiments/`.
 ---
 ## Pre-flight
 - **Load guardrails first:** Check `/context/meta-patterns.md` for recurring weaknesses from prior experiments. If pattern matches (e.g., "3+ experiments rejected for missing baselines"), surface guardrail prompt before Step 1.
@@ -158,7 +158,7 @@ guardrails_triggered:
 decision: "approved"
 ```
 
-This feeds into `meta-synthesis` skill (monthly) which detects patterns across sessions and updates brain Section 7 + `/context/meta-patterns.md`.
+This feeds into `meta-synthesis` skill (monthly) which detects patterns across sessions and updates `/context/meta-patterns.md`.
 
 ---
 ## Outputs

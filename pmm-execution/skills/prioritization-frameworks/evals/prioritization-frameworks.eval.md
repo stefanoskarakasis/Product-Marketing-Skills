@@ -294,7 +294,7 @@ brain_sections_referenced:
   - "Positioning (Section 3) — outcome-first analytics"
   - "Revenue Levers (Section 5) — time-to-value"
 brain_updates_proposed:
-  - "Section 7: Emerging pattern — T2 assignments with Confidence <7 have 60% GTM churn rate. Recommend validation sprint before full motion."
+  - "Logged to /context/meta-patterns.md: T2 assignments with Confidence <7 have 60% GTM churn rate. Recommend validation sprint before full motion."
 confidence_inflation_detected: true
 gate_failures: 1
 validation_recommended: true
@@ -352,7 +352,7 @@ Framework effectiveness:
 Guardrail recommendation: Keep "RICE without customer data" ACTIVE.
 New hypothesis to track: "T2 with Confidence <7 needs validation before GTM motion" (seen in 2 sessions).
 
-Proposed learning for Section 7: "Framework selection determines data requirements. Running RICE without Reach validation costs 2 weeks of iteration post-launch; pulling data upfront costs 3 days."
+Proposed learning for /context/meta-patterns.md: "Framework selection determines data requirements. Running RICE without Reach validation costs 2 weeks of iteration post-launch; pulling data upfront costs 3 days."
 ```
 
 **Pass Criteria:**

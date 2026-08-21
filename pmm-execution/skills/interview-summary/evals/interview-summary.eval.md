@@ -82,14 +82,14 @@ Interview type: Win-loss (lost to competitor)
 - ✅ Current solution: "Salesforce (recently selected)"
 - ✅ Key Insights: "Chose competitor primarily for ERP integration and mobile-first reporting. Our strength in [X] was insufficient to overcome mobility gap."
 - ✅ Signal Quotes: Exact quote about Salesforce, ERP integration, mobile gap
-- ✅ Flags: "Competitor mentioned: Salesforce. Gap identified: Mobile reporting UX. Routing to hs-competitive-battlecard for LEARN mode."
+- ✅ Flags: "Competitor mentioned: Salesforce. Gap identified: Mobile reporting UX. No dedicated competitive-battlecard skill exists yet to route to."
 - ✅ Pattern Signal: "New signal for tracking: ERP integration as critical buying criterion in this segment"
-- ✅ Routing note: "This finding should trigger hs-competitive-battlecard LEARN mode on Salesforce mobile capabilities."
+- ✅ Routing note: "This finding is worth tracking for future competitive-battlecard work on Salesforce mobile capabilities, once that skill exists."
 
 **Expected output excludes:**
 - ❌ Competitor name buried or omitted
 - ❌ Integration gap not highlighted
-- ❌ No routing suggestion to hs-competitive-battlecard
+- ❌ No note made that this finding is worth tracking for future competitive work
 - ❌ Loss reason treated as generic ("They chose someone else")
 
 **Pass condition:** Competitor explicitly named, gap identified, routing flag created, signal logged for future learning.
@@ -180,7 +180,7 @@ Context: /context/interviews/ directory does not exist (missing on first run)
 - ❌ Synthesis blocked or incomplete
 - ❌ Attempt to force-write to missing directories
 - ❌ Silent failure (user unaware learning wasn't persisted)
-
+- ✅ Flags:
 **Pass condition:** Synthesis completes, context writes skipped gracefully, non-blocking notice surfaces, user understands why patterns not persisted.
 
 ---

@@ -1,6 +1,6 @@
 ---
 name: gaccs-brief
-version: 3.0.0
+version: 3.1.0
 description: >
   Builds, pressure-tests, and outputs a complete GACCS Brief (Goals, Audience,
   Creative, Channels, Stakeholders) for any marketing, GTM, or enablement project.
@@ -15,36 +15,14 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-06-06
----
-
-## Step 0: Pre-Flight
-
-### Load Positioning Learnings & Context
-
-1. **Load Brain** (OPTIONAL)
-   - Read `/foundation/brain.md` if available
-   - Useful sections: positioning (Section 3), proof points (Section 5)
-
-2. **Load Active Guardrails**
-   - Read `/context/meta-patterns.yml`
-   - Display: `"Campaign guardrails: [patterns]"`
-
-3. **Load Quality Learnings**
-   - Read `/sessions/quality-learnings.md`
-   - Look for "positioning" or "messaging" patterns
-   - Display: `"From positioning runs: clarity matters (+40% CTR). Applying to brief."`
-
-4. **Log Execution**
-   - Log to `/skill-sessions.md`: gaccs_brief_skill, timestamp
-  
+last_updated: 2026-08-21
 ---
 
 # gaccs-brief
 
 A sharp, pragmatic brief-builder for PMMs and GTM teams. Interrogates before it
 documents. Produces a focused GACCS Brief only when the thinking behind it is strong
-enough to act on. Compounding — accumulates judgment across sessions.
+enough to act on.
 
 ---
 
@@ -72,9 +50,6 @@ enough to act on. Compounding — accumulates judgment across sessions.
 - **Context keys:**
   - `/foundation/brain.md` — optional. Load ICP, Positioning, Voice & Tone, Proof
     Points silently if present. Pre-populate Audience and Creative sections.
-  - `knowledge/INDEX.md` — load at session start. Routes to relevant knowledge files.
-  - `craft/patterns.md` — load when generating or reviewing any section.
-  - `false-beliefs/catalog.md` — load at intake, before interrogation begins.
 
 ---
 
@@ -84,8 +59,6 @@ enough to act on. Compounding — accumulates judgment across sessions.
   Positioning (for Creative POV), Voice & Tone (for Creative requirements), Proof
   Points (for Goals evidence).
 - If brain missing: proceed without surfacing it — brief works standalone.
-- Load `knowledge/INDEX.md`. Apply confirmed rules silently.
-- Load `false-beliefs/catalog.md` before interrogation begins.
 - **Auto-detect mode** from the user's first message:
   - 1–2 sentences, vague description → **Conversational mode**
   - Paragraph or more of context pasted → **Brain-dump mode**
@@ -97,9 +70,9 @@ enough to act on. Compounding — accumulates judgment across sessions.
 
 ### Step 1: Detect Mode and Load Context
 
-Detect Conversational vs Brain-dump from first message. Load knowledge files silently.
-In Brain-dump mode: extract what's present, map to GACCS sections, identify gaps
-before asking anything. Do not re-ask what's already there.
+Detect Conversational vs Brain-dump from first message. In Brain-dump mode: extract
+what's present, map to GACCS sections, identify gaps before asking anything. Do not
+re-ask what's already there.
 
 ---
 
@@ -164,14 +137,13 @@ Signal: → [pattern observed] → [hypothesis to open] → [false belief encoun
 Ready to encode? [Yes / No]
 ```
 
+If the user says yes, ask where they'd like the note saved (e.g. their own notes
+file or a brain-adjacent doc) — this skill does not write to any file on its own.
+
 ---
 
 ## Outputs
 
-- **Files written:** `knowledge/craft/patterns.md` — confirmed patterns on approval.
-  `knowledge/hypotheses/active.md` — new hypotheses on approval.
-  `knowledge/false-beliefs/catalog.md` — false beliefs on approval.
-  All writes require explicit user approval. Never encode silently.
 - **Chat output format:** Brief in the template below. Every response ends with
   ✅ Next Step — one specific action, no exceptions.
 - **External side effects:** n.v.t.
@@ -264,16 +236,14 @@ Goals: [✅/⚠️]  Audience: [✅/⚠️]  Creative: [✅/⚠️]  Channels: [
 - **Never fill gaps with assumptions.** Surface the gap — it's the most valuable output.
 - **Every response ends with ✅ Next Step.** No exceptions.
 - **Redirects are never softened.** Clarity now saves hours of misaligned work.
-- **Knowledge writes require approval.** Never encode silently.
 
 ---
 
 ## Self-Improvement Loop
 
-### Before every session:
-1. Load `knowledge/INDEX.md` — route to relevant files.
-2. Load `craft/patterns.md` — apply confirmed patterns silently.
-3. Load `false-beliefs/catalog.md` — check before interrogation begins.
+This skill does not read or write any file on its own. Pattern-spotting happens in
+conversation only, and any update to shared guardrails or the brain goes through the
+user explicitly — never encoded silently.
 
 ### After every session:
 1. Scan for patterns: defended sections, confirmed/killed hypotheses, new false beliefs,
@@ -284,24 +254,6 @@ Goals: [✅/⚠️]  Audience: [✅/⚠️]  Creative: [✅/⚠️]  Channels: [
 🔁 SELF-IMPROVEMENT TRIGGER
 Pattern: [what was observed]
 Proposed update: [exact wording]
-Location: [file path]
+Location: [file or section the user wants it saved to]
 Awaiting approval before encoding.
 ```
-
----
-
-## Changelog
-
-### v3.0.0 — 2026-06-06
-Spec compliance pass against SKILL-SPEC v2.0.0. Score: 7/19 → 19/19.
-- Fixed: `name` changed from `hs-gaccs-brief` to `gaccs-brief`. `version` added.
-- Added: `## Trigger`, `## Inputs`, `## Pre-flight`, `## Steps`, `## Outputs`,
-  `## Verification`, `## Do Not Use For`.
-- Condensed: Interrogation framework, adversarial callouts, and output template
-  consolidated into Steps and Outputs. Brief template compressed without losing structure.
-- Restructured: Self-Improvement Loop to before/after session format with trigger format.
-- Added: `## Changelog`.
-
-### v2.0.0 — 2026-06-05
-Knowledge graph, self-improvement trigger, learning mode close, adversarial callouts,
-quality gate, two modes (Conversational / Brain-dump).

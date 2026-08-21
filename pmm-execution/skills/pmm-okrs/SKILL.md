@@ -18,10 +18,12 @@ metadata:
   logging_enabled: true
 last_updated: 2026-06-21
 ---
+
 # pmm-okrs
 A guided OKR builder for Product Marketing teams. Run it at the start of every quarter.
 Outputs a complete, review-ready OKR set you can paste directly into the PMM OKR Builder sheet.
 Learns from prior quarters to improve confidence calibration and KR quality.
+
 ---
 ## Trigger
 - **When:** Start of any quarter when setting PMM OKRs. When reviewing or stress-testing
@@ -30,7 +32,7 @@ Learns from prior quarters to improve confidence calibration and KR quality.
 - **Not for:** Company-level OKR design (not PMM-specific) → general planning tool.
   Revenue forecasting or headcount planning. OKR tooling setup (Lattice, Workday) —
   this skill produces content, not configuration. If no quarterly strategy exists yet →
-  run `hs-pmm-strategy` first, then return here.
+  build quarterly strategy context in your brain first, then return here.
 - **Example prompts:**
   - "Help me set our Q3 OKRs"
   - "Are these KRs measurable enough?"
@@ -65,15 +67,14 @@ Before starting, check `/foundation/brain.md`.
 **Confidence awareness:** If loaded sections are 🔴, flag before building OKRs:
 > "Revenue Levers is marked as Placeholder — OKRs built on this may need revisiting. Want to update it first?"
 **If missing:** Proceed. Surface once:
-> "Run `hs-product-marketing-context BUILD` first for sharper OKRs. Continuing."
+> "Run `product-marketing-context` first for sharper OKRs. Continuing."
 
 **Load prior quarter data:** Check `/context/skill-sessions.md` for last quarter's OKR results to calibrate confidence:
 > "Last quarter: confidence was 75%, actual achievement was 78%. You're well-calibrated. Recommend similar range this quarter."
 
 **Related skills — cross-reference before or after this skill:**
-- **hs-pmm-strategy** → run before this skill if no quarterly strategy exists yet
-- **hs-product-requirement-doc** → PRDs inform project OKRs; check for alignment
-- **hs-gaccs-brief** → campaign briefs should trace back to OKR project goals
+- **prd** → PRDs inform project OKRs; check for alignment
+- **gaccs-brief** → campaign briefs should trace back to OKR project goals
 - **meta-synthesis** → after 3+ quarters logged, meta-synthesis detects OKR patterns
 ---
 ## Steps
@@ -201,12 +202,9 @@ write session file → update knowledge base → log decisions → run quality g
 - Session logged to `/context/skill-sessions.md` with all metadata.
 ---
 ## Do Not Use For
-- **hs-pmm-strategy** — if no quarterly strategy exists yet, run that first. This skill
-  builds OKRs *from* a strategy, not *instead of* one.
-- **hs-prioritization-frameworks** — for prioritising *which initiatives* to include in
-  a quarter before OKRs are set. Run that upstream, then return here.
-- **hs-gaccs-brief** — for campaign planning that traces back to OKRs already set.
-  Use after `/build` to brief individual campaigns.
+- **(no dedicated quarterly-strategy skill yet)** — if no quarterly strategy exists yet, use go-to-market-strategy or build it directly in this skill's intake. This skill
+- **prioritization-frameworks** — for prioritising *which initiatives* to include in
+- **gaccs-brief** — for campaign planning that traces back to OKRs already set.
 - **Company-level OKR design** — this skill is PMM-specific. Exec team or company
   OKRs require different framing and are out of scope.
 - **OKR tooling setup** — this skill produces OKR content, not Lattice/Workday
@@ -493,8 +491,7 @@ Create: `/pmm-execution/skills/pmm-okrs/evals/pmm-okrs.eval.md`
 ---
 ## Related Skills
 Cross-reference when findings trigger downstream work:
-- **hs-pmm-strategy** → run before this skill if no quarterly strategy exists
-- **hs-product-requirement-doc** → PRDs inform project OKRs; check alignment
-- **hs-gaccs-brief** → campaign briefs should trace back to OKR projects
+- **prd** → PRDs inform project OKRs; check alignment
+- **gaccs-brief** → campaign briefs should trace back to OKR projects
 - **meta-synthesis** → after 3+ quarters logged, detects OKR patterns + confidence trends
-- **hs-retro** → after quarter closes, retro compares actual vs. predicted OKRs
+- **retro** → after quarter closes, retro compares actual vs. predicted OKRs

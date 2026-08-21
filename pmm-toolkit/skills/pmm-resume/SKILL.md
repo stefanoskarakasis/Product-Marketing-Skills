@@ -1,5 +1,5 @@
 ---
-name: hs-pmm-resume
+name: pmm-resume
 description: >
   Resume reviewer and tailoring engine for Product Marketing Managers (IC to VP, including AI PMM roles). Takes baseline resume + job description → dissects JD → ranks bullets by impact fit → rebuilds complete resume in one pass. Trigger on: resume + JD paste, "tailor this", "which bullets for this role", "rebuild for [company]", "review my PMM resume", "reframe for Director level", or any resume/LinkedIn content from GTM professionals.
 
@@ -58,7 +58,7 @@ Always load for TAILOR mode or Full Audit at Director+ level.
 ## ⓪ SKILL INITIALIZATION — RUN SILENTLY BEFORE INTAKE
 
 **Step 1 — PMM Context (if exists):**
-Check `.agents/product-marketing-context.md`. If present, load silently.
+Check `/foundation/brain.md`. If present, load silently.
 
 **Step 2 — Knowledge Retrieval (always run):**
 Check `knowledge/INDEX.md` → route to relevant files based on the goal (once stated).

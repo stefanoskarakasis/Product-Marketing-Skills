@@ -8,17 +8,11 @@ Go-to-market strategy, tier assignment, and workflow orchestration for product l
 - **go-to-market-strategy** — Assign launch tier (T1–T4) and generate a complete GTM strategy brief with positioning angles, channels, success metrics, and competitive context.
 - **workflow-orchestrator** — Orchestrate multi-skill PMM programs end-to-end with Program Charters, checkpoints, coherence checks, and master documents.
 
-## Commands (9)
+## Commands (3)
 
-- `/pmm-go-to-market:tier` — Assign a launch tier with four-signal rationale.
-- `/pmm-go-to-market:brief` — Generate a full GTM strategy brief for an initiative.
-- `/pmm-go-to-market:calibrate` — Compare a prior launch tier against what actually happened.
-- `/pmm-go-to-market:history` — Show launch history from brain Section 7.
-- `/pmm-go-to-market:score` — Score candidate segments on Burning Pain, Willingness to Pay, Winnability, and Referral Potential.
-- `/pmm-go-to-market:decompose` — Decompose a broad ICP into scoreable sub-segments.
-- `/pmm-go-to-market:audit` — Pressure-test an existing beachhead or GTM decision.
-- `/pmm-go-to-market:run` — Start a named multi-skill GTM workflow.
-- `/pmm-go-to-market:coherence` — Run a cross-skill coherence check across all program outputs.
+- `/pmm-go-to-market:beachhead-segment` — Score candidate segments and identify the first wedge to dominate.
+- `/pmm-go-to-market:go-to-market-strategy` — Assign a launch tier and generate a full GTM strategy brief.
+- `/pmm-go-to-market:workflow-orchestrator` — Orchestrate a multi-skill PMM program end-to-end.
 
 ## Author
 

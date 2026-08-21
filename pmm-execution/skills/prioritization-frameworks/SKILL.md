@@ -1,8 +1,8 @@
 ---
 name: prioritization-frameworks
-version: 2.0.0
+version: 2.1.0
 description: >
-  Selects and applies the right prioritization framework (9 frameworks: Opportunity Score, ICE, RICE, Eisenhower, Impact vs Effort, Risk vs Reward, Kano, Weighted Decision Matrix, MoSCoW) with PMM interpretation layer and GTM launch tier output (T1–T4). Reads brain context (ICP, positioning, revenue levers) and guardrails from prior scoring sessions. Logs framework selection, tier assignments, and scoring confidence to /context/skill-sessions.md for meta-synthesis pattern detection and compounds learnings over time.
+  Selects and applies the right prioritization framework (9 frameworks: Opportunity Score, ICE, RICE, Eisenhower, Impact vs Effort, Risk vs Reward, Kano, Weighted Decision Matrix, MoSCoW) with PMM interpretation layer and GTM launch tier output (T1–T4). Reads brain context (ICP, positioning, revenue levers) and, when available, guardrails from prior scoring sessions.
 ---
 
 # Prioritization-Frameworks — Skill
@@ -13,7 +13,7 @@ Prioritization frameworks are decision tools, not prescriptions. Your job is to 
 
 The skill runs in 6 core steps:
 
-**Step 0** — Load brain context (ICP, positioning, revenue levers) and guardrails from `/context/meta-patterns.md` (e.g., "frameworks without customer confidence >7 have led to 3 T1 overstatements").
+**Step 0** — Load brain context (ICP, positioning, revenue levers) and guardrails from `/context/meta-patterns.md`, if it exists (e.g., "frameworks without customer confidence >7 have led to prior T1 overstatements" — an example pattern shape, not a claim already observed).
 
 **Step 1** — Intake: Understand what you're deciding (launch tier? roadmap backlog? strategic choice?) and what signals you have.
 
@@ -27,19 +27,17 @@ The skill runs in 6 core steps:
 
 **Step 6** — Output: Tier assignment card + scoring table + next step.
 
-**Step 7** — Log session to `/context/skill-sessions.md` with quality score, framework selected, tier assigned, confidence scores, guardrails triggered, and brain updates proposed.
-
 ---
 
 ## Step 0 — Pre-Flight: Load Context & Surface Guardrails
 
 Before intake, load:
 - **Brain context** (Sections 2, 3, 5): ICP, positioning, revenue levers — these anchor how you interpret "Opportunity" and "Impact"
-- **Guardrails** from `/context/meta-patterns.md`: If a pattern fired 2+ times in prior scoring sessions (e.g., "RICE without customer data inflates Confidence," "Frameworks applied by committees lose rigor"), surface it now
+- **Guardrails** from `/context/meta-patterns.md`, if that file exists in the user's workspace: if a pattern has actually fired 2+ times in prior sessions logged there, surface it now
 
 **Surface guardrails like this:**
 
-```
+````
 🔁 PATTERN FROM PRIOR SCORING SESSIONS
 
 I've seen [pattern description] in 2 prior sessions.
@@ -48,9 +46,9 @@ Examples: [specific initiatives or decision types]
 Quick check: Are you aware of this in your current context?
 - If YES → We'll build it into the scoring
 - If NO → Let's flag it as we score
-```
+````
 
-You can skip a guardrail if you disagree, but you'll see it first.
+You can skip a guardrail if you disagree, but you'll see it first. If `/context/meta-patterns.md` doesn't exist, skip this step silently.
 
 ---
 
@@ -93,63 +91,63 @@ Run the selected framework(s).
 ### Core Frameworks (Formulas & PMM Interpretation)
 
 **Opportunity Score**
-```
+````
 Score = Importance × (1 − Satisfaction)
 Plot: Importance (y-axis) vs Satisfaction (x-axis)
 Target: Upper-left quadrant (high importance, low satisfaction)
-```
+````
 PMM use: Identifies the problems you solve best vs. competitors. If a problem scores high but you don't own it, that's a positioning gap.
 
 **ICE Framework**
-```
+````
 I = Opportunity Score × Number of customers
 C = Confidence (1–10)
 E = Ease of implementation (1–10)
 Score = I × C × E
-```
+````
 PMM use: Confidence is your integrity check. If ≥7 without customer evidence, flag it. Low Confidence drags a strong Impact to T3.
 
 **RICE Framework**
-```
+````
 R = Reach (customers affected)
 I = Impact (opportunity score)
 C = Confidence (0–100%)
 E = Effort (person-months)
 Score = (R × I × C) / E
-```
+````
 PMM use: Reach forces you to define your addressable segment explicitly. This is where PMMs should lead the conversation.
 
 **Risk vs Reward Matrix**
-```
+````
 Plot: Reward (y-axis) vs Risk (x-axis)
 High Reward / Low Risk = T1 candidate
 High Reward / High Risk = T2 or T3 with explicit Confidence thresholds
-```
+````
 PMM use: Essential for pricing, new market entry, positioning pivots. Pull win/loss data to sharpen Risk input.
 
 **Kano Model**
-```
+````
 Classify: Must-be (table stakes) / Performance (differentiator) / Attractive (delighter)
 Messaging priority: Attractive > Performance >> Must-be
-```
+````
 PMM use: Don't lead launch messaging with Must-be features — they're assumed. Lead with Attractive.
 
 **Weighted Decision Matrix**
-```
+````
 Assign weights to criteria (must sum to 100)
 Score each option 1–10 on each criterion
 Weighted score = sum(weight × score)
 Build GTM variables (pipeline impact, segment fit, competitive urgency) directly into weights
-```
+````
 PMM use: Build in cross-functional but GTM-native. Output should be tier-adjacent.
 
 **MoSCoW**
-```
+````
 Must Have (60% max)
 Should Have (20%)
 Could Have (15%)
 Won't Have (5%)
-```
+````
 PMM use: Set hard caps before you start. Use to scope launch deliverables within a tier, not to assign the tier.
 
 ### Quality Gates (Run After Scoring)
@@ -200,7 +198,7 @@ If pressure-test reveals the tier was inflated, recommend a validation step befo
 Deliver three artifacts:
 
 **Artifact 1: Tier Assignment Card (1 page)**
-```
+````
 Initiative: [Name]
 Framework: [RICE / ICE / Other]
 Tier: [T1–T4]
@@ -208,58 +206,24 @@ Rationale: [One sentence]
 Confidence: [#/10]
 Key signals: [3 strongest data points]
 Next step: [Specific action]
-```
+````
 
 **Artifact 2: Scoring Table (1 page)**
-```
+````
 | Component | Score | Source | Confidence |
 |-----------|-------|--------|------------|
 | Opportunity | [#] | [Customer research / Internal] | [🟢 🟡 🔴] |
 | Reach | [#] | [Segment size / ICP alignment] | [🟢 🟡 🔴] |
 | Confidence | [%] | [Win/loss data / Assumption] | [🟢 🟡 🔴] |
 | [Other] | [#] | [Source] | [🟢 🟡 🔴] |
-```
+````
 
 **Artifact 3: Tier Rationale (2-3 sentences)**
-```
+````
 Why this tier. What would move it up. What validation is needed before committing GTM resources.
-```
+````
 
----
-
-## Step 7 — Post-Session Logging
-
-Log to `/context/skill-sessions.md` with this YAML metadata:
-
-```yaml
-skill: prioritization-frameworks
-session_date: [YYYY-MM-DD]
-decision_type: [tier / backlog / strategic choice]
-initiatives_scored: [count]
-framework_selected: [RICE / ICE / Opportunity Score / Risk vs Reward / Kano / Weighted Matrix / MoSCoW]
-frameworks_used: [list if multiple]
-quality_score: [0-100, where 90+ = all gates passed, Confidence <7 on weak signals]
-tier_assignments:
-  - initiative: [Name]
-    tier: [T1/T2/T3/T4]
-    confidence: [#/10]
-guardrails_triggered:
-  - "[Pattern name if surfaced]"
-brain_context_loaded: true
-brain_sections_referenced:
-  - "ICP (Section 2)"
-  - "Positioning (Section 3)"
-  - "Revenue Levers (Section 5)"
-brain_updates_proposed:
-  - "[Emerging pattern or meta-learning, if any]"
-confidence_inflation_detected: [true/false, count if true]
-gate_failures: [count of Quality Gate failures caught and fixed]
-validation_recommended: [true/false, for which tiers/initiatives]
-recommendation: "[Proceed with tier / Recommend validation sprint / Recommend re-score]"
-output_path: "[Where the tier assignment cards were saved]"
-```
-
-**Quality score:** 90+ = All frameworks applied with integrity, Confidence ≥7 backed by evidence, all gates passed. 70+ = Most gates passed, some Confidence slightly inflated. <70 = Multiple gate failures or low data quality.
+If the user wants any of these saved to a file, ask where — this skill doesn't write to any file on its own.
 
 ---
 
@@ -270,23 +234,6 @@ output_path: "[Where the tier assignment cards were saved]"
 - **Framework fit matters.** Wrong tool = wrong answer. Eisenhower is not a launch decision tool.
 - **Quality Gates are not optional.** Run them before delivering any tier.
 - **Tier without rationale is incomplete.** Always output one-sentence reasoning + next step.
-- **Guardrails surface at Step 0.** If a pattern applies to your decision, you'll see it.
+- **Guardrails surface at Step 0, when available.** If `/context/meta-patterns.md` exists and a pattern applies to your decision, you'll see it.
 - **Customer evidence > assumption.** If you can't cite a source for Confidence, lower it.
 - **Validation before GTM investment.** If a tier is uncertain, recommend validation sprint first.
-
----
-
-## Self-Improvement Loop
-
-Each session logs to `/context/skill-sessions.md` with:
-- Framework selected and why
-- Confidence scores and whether they held up
-- Tier assignments and whether they were validated later
-- Quality Gates passed/failed
-
-Monthly, meta-synthesis reads these logs and detects patterns:
-- "RICE without customer data inflates Confidence by 2 points on average" → Guardrail surfaces next time
-- "T1 assignments with Confidence <7 lead to GTM churn 60% of the time" → Recommend validation before full motion
-- "Eisenhower applied to launch decisions has 0% accuracy vs. RICE" → Update framework selection guide
-
-These patterns feed back into guardrail injection (Step 0) and get logged to `/context/meta-patterns.md` for future sessions.

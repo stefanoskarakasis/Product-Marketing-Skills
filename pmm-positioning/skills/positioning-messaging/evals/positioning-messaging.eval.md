@@ -1,8 +1,6 @@
-# hs-positioning-messaging.eval.md
+# positioning-messaging.eval.md
 
-Eval test cases for `hs-positioning-messaging` skill (SKILL-SPEC v2.0.0 compliance).
-Updated v2.1.0: tests 8–12 cover Onboarding block, `/settings` command, brain-present
-path, image parsing, and Phase 2B gap block.
+Eval test cases for `positioning-messaging` skill (SKILL-SPEC v2.0.0 compliance).
 
 ---
 

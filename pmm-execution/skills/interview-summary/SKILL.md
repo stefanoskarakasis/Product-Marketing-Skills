@@ -18,11 +18,13 @@ metadata:
 last_updated: 2026-06-21
 ---
 # interview-summary — Customer Discovery Synthesis Engine
+
 Transforms raw interview transcripts into structured intelligence that compounds.
 Not a transcription service. A synthesis engine that extracts Jobs, surfaces patterns,
 flags contradictions, and writes learnings to `/context` where every other skill can read them.
 Built on JTBD theory. Anchored to the four-layer GTM system (System of Context, System of Skills, System of Orchestration, System of Integrations).
 Sharpened for B2B product and GTM contexts.
+
 ---
 ## Trigger
 - **When:** Any customer or prospect interview needs synthesis into structured discovery output.

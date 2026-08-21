@@ -268,8 +268,6 @@ Patterns feed back into guardrails (Step 0) and brain updates (Section 3, 5, 7).
 
 ## Do Not Use For
 
-- **Buyer personas** → use hs-buyer-personas
-- **Competitive intelligence** → use hs-ci-stakeholder-briefing
-- **Campaign messaging** → use hs-gaccs-brief (after stakeholder map)
-- **Risk analysis** → use hs-pre-mortem (before stakeholder map)
+- **Campaign messaging** → use gaccs-brief (after stakeholder map)
+- **Risk analysis** → use pre-mortem (before stakeholder map)
 - **GTM channel design** → use go-to-market-strategy

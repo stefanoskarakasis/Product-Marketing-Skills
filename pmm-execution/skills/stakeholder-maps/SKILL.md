@@ -1,8 +1,8 @@
 ---
 name: stakeholder-maps
-version: 2.3.0
+version: 2.4.0
 description: >
-  Builds political maps (not org charts) showing who can kill your launch, who champions it, and what to say to each stakeholder. Reads brain context (ICP, positioning, GTM motion) and guardrails from prior stakeholder mapping sessions; produces Power × Interest grid with political role assignment, conflict map, and weekly Sprint Cards for execution. Logs session data to /context/skill-sessions.md for meta-synthesis pattern detection and compounds learnings over time.
+  Builds political maps (not org charts) showing who can kill your launch, who champions it, and what to say to each stakeholder. Reads brain context (ICP, positioning, GTM motion) and guardrails from prior stakeholder mapping sessions; produces Power × Interest grid with political role assignment, conflict map, and weekly Sprint Cards for execution.
 ---
 
 # Stakeholder-Maps — Skill
@@ -11,9 +11,9 @@ description: >
 
 Stakeholder maps built in a vacuum are a waste of time. This skill builds a map anchored to political reality: who has power, who's a hidden champion, who's a silent blocker, and what to do before you're in the room.
 
-The skill runs in 7 steps:
+The skill runs in 6 steps:
 
-**Step 0** — Load brain context (ICP, positioning, GTM motion) and guardrails from `/context/meta-patterns.md` (e.g., "product launches without Sales Manage Closely engagement fail 80% of the time").
+**Step 0** — Load brain context (ICP, positioning, GTM motion) and guardrails from `/context/meta-patterns.md` if it exists (e.g., "product launches without Sales Manage Closely engagement fail 80% of the time" — an example pattern shape, not a claim this skill has already observed).
 
 **Step 1** — Intake: Initiative description, success definition, timeline, and current champions/blockers.
 
@@ -27,19 +27,17 @@ The skill runs in 7 steps:
 
 **Step 6** — Output: HTML widget (grid + comms plan + conflict map + confidence assessment) + markdown diagnostic + Sprint Cards.
 
-**Step 7** — Log session to `/context/skill-sessions.md` with quality score, stakeholder counts, Watch For patterns, confidence assessment, guardrails triggered, and brain updates proposed.
-
 ---
 
 ## Step 0 — Pre-Flight: Load Context & Surface Guardrails
 
 Before intake, load:
 - **Brain context** (Sections 2, 3, 5): ICP, positioning, GTM motion — these shape which stakeholders matter and what power they hold
-- **Guardrails** from `/context/meta-patterns.md`: If a pattern fired 2+ times in prior stakeholder mapping sessions (e.g., "Sales performers without written commitment silently resist," "Finance gatekeepers kill launches when not Manage Closely"), surface it now
+- **Guardrails** from `/context/meta-patterns.md`, if that file exists in the user's workspace: if a pattern has actually fired 2+ times in prior sessions the user has logged there, surface it now
 
 **Surface guardrails like this:**
 
-```
+````
 🔁 PATTERN FROM PRIOR STAKEHOLDER MAPS
 
 I've seen [pattern description] in 2 prior sessions.
@@ -48,9 +46,9 @@ Examples: [specific initiatives or stakeholder failure modes]
 Quick check: Does this apply to your initiative?
 - If YES → We'll build it into the Watch For signals
 - If NO → Let's flag it if it emerges during mapping
-```
+````
 
-You can skip a guardrail if you disagree, but you'll see it first.
+You can skip a guardrail if you disagree, but you'll see it first. If `/context/meta-patterns.md` doesn't exist, skip this step silently — it isn't required for the skill to run.
 
 ---
 
@@ -140,7 +138,7 @@ Deliver three artifacts:
 - PMM Confidence Assessment (six metric cards: Champion coverage, Blocker diagnosis, Frozen visibility, Silent function coverage, Comms plan completeness, Overall)
 
 **Artifact 2: Markdown Diagnostic**
-```
+````
 Initiative: [name]
 PMM Owner: [name]
 Date: [YYYY-MM-DD]
@@ -157,10 +155,10 @@ Key message: [exact framing they need — not generic positioning]
 
 Silent blockers — functions not in the room:
 [Function] — [what they control] — [when to brief] — [owner]
-```
+````
 
 **Artifact 3: Sprint Cards** (one file, one card per Manage Closely + Keep Satisfied stakeholder)
-```
+````
 Week of: [Monday date]
 PMM: [name]
 Decision gate: [date + what]
@@ -177,37 +175,9 @@ Last updated: [YYYY-MM-DD]
   _(If they push back: "[Response that holds frame]")_
 🚨 Watch for: [Specific behavioural signal that means they've shifted]
   → [Immediate action if signal fires]
-```
+````
 
----
-
-## Step 7 — Post-Session Logging
-
-Log to `/context/skill-sessions.md` with YAML metadata:
-
-```yaml
-skill: stakeholder-maps
-session_date: [YYYY-MM-DD]
-initiative_name: [Name]
-initiative_type: [product launch / pricing change / new channel / GTM pivot / new market entry / campaign / internal programme]
-quality_score: [0-100]
-stakeholder_count: [total]
-manage_closely_count: [count]
-champion_count: [count]
-blocker_count: [count]
-frozen_count: [count]
-conflicts_identified: [count]
-silent_functions_flagged: [count]
-guardrails_triggered: [list if any]
-brain_context_loaded: true
-brain_sections_referenced: [list]
-brain_updates_proposed: [list if any]
-watch_for_patterns_extracted: [count]
-confidence_score: [🟢 / 🟡 / 🔴]
-inversion_check_run: [true/false]
-decision_gate: [date + description]
-output_path: "[Where files were saved]"
-```
+If the user wants any of these three artifacts saved to a file, ask where — this skill doesn't write to any file on its own.
 
 ---
 
@@ -219,7 +189,6 @@ output_path: "[Where files were saved]"
 - **The map is a working tool.** Update after every major alignment conversation.
 - **Gatekeepers aren't blockers.** Bypassing them converts them.
 - **Sprint Cards are weekly.** If not updated in 10 days, it's wrong.
-- **Watch For signals are hypotheses.** Confirm, log, and promote to rules at 3 confirmations.
 
 ---
 
@@ -236,19 +205,6 @@ output_path: "[Where files were saved]"
 | Sprint Cards | Five fields per stakeholder, no exceptions |
 | Watch For signals | Every Manage Closely card has behavioral signal + immediate action |
 | Brain context | Map cross-referenced with ICP, GTM motion, positioning |
-
----
-
-## Self-Improvement Loop
-
-Each session logs stakeholder counts, Watch For patterns, conflicts, and confidence to `/context/skill-sessions.md`.
-
-Monthly, meta-synthesis detects patterns:
-- "Product launches without Sales Manage Closely engagement fail 80%" → Guardrail surfaces next time
-- "Frozen Finance become Blockers within 2 weeks of budget pressure" → Add to Watch For rules
-- "Champion coverage >80% = 90% launch success" → Recommend higher champion threshold
-
-Patterns feed back into guardrails (Step 0) and brain updates (Section 3, 5, 7).
 
 ---
 

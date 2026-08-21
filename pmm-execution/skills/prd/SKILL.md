@@ -53,7 +53,7 @@ Guides Product Managers and Product Marketing Managers to co-create complete Pro
 ## Trigger
 
 - **When:** User mentions PRD, product requirements, solution story, feature spec, GTM brief, launch plan, product brief, user stories, feature rollout, announcement level, or asks for help structuring a product document.
-- **Not for:** Strategic planning (use `go-to-market-strategy`), OKR design (use `hs-brainstorm-okrs`), competitive analysis (use `hs-competitive-battlecard`).
+- **Not for:** Strategic planning (use `go-to-market-strategy`), OKR design (use `pmm-okrs`), competitive analysis (no dedicated skill yet).
 - **Example prompts:**
   - "Write a PRD for our new dashboard feature"
   - "Help me structure this product initiative"
@@ -81,7 +81,7 @@ Guides Product Managers and Product Marketing Managers to co-create complete Pro
 
 - Load `/foundation/brain.md` if exists. Extract Positioning (§3), ICP (§2), Personas (§4), Revenue Levers (§5) for context.
   - If Positioning is 🔴 (Placeholder): surface "Your positioning is a draft — Solution Story may lack messaging grounding. Update brain first?"
-  - If ICP missing: "Run `/hs-icp` first — target customer clarity sharpens PRDs."
+  - If ICP missing: "Complete Section 2 (ICP Definition) of your brain via product-marketing-context first — target customer clarity sharpens PRDs."
   
 - Load `/context/meta-patterns.md` if exists. Check for guardrails that apply to PRD writing:
   - "Success metrics undefined in 2+ PRDs → Ask baseline + target upfront"
@@ -441,20 +441,20 @@ Each pattern becomes a guardrail that future PRD sessions load at pre-flight (St
 ## Do Not Use For
 
 - **Strategic planning** — use `go-to-market-strategy`
-- **OKR design** — use `hs-brainstorm-okrs`
-- **Competitive analysis** — use `hs-competitive-battlecard`
-- **Launch messaging** — use `hs-gaccs-brief` after PRD is locked
-- **Positioning** — use `hs-positioning-messaging` if core positioning undefined
+- **OKR design** — use `pmm-okrs`
+- **Competitive analysis** — no dedicated skill yet
+- **Launch messaging** — use `gaccs-brief` after PRD is locked
+- **Positioning** — use `positioning-messaging` if core positioning undefined
 
 ---
 
 ## Related Skills
 
-- **hs-brainstorm-okrs** → PRD OKR alignment
-- **hs-gaccs-brief** → GTM messaging from PRD Solution Story
+- **pmm-okrs** → PRD OKR alignment
+- **gaccs-brief** → GTM messaging from PRD Solution Story
 - **experiment-doc-builder** → Risky assumptions in PRD → suggest experiment
 - **go-to-market-strategy** → Launch tier assignment
-- **hs-pre-mortem** → Risk analysis on PRD scope
+- **pre-mortem** → Risk analysis on PRD scope
 
 ---
 

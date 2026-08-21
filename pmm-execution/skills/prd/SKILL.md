@@ -1,28 +1,27 @@
 ---
 name: prd
-version: 2.3.0
+version: 2.4.0
 description: >
   Guides Product Managers and Product Marketing Managers to co-create complete Product Requirements Documents with embedded Solution Stories.
-  Reads brain context (positioning, ICP, Revenue Levers) to anchor PRDs in strategy. Logs session data for meta-synthesis pattern detection and compounds learnings over time.
+  Reads brain context (positioning, ICP, Revenue Levers) to anchor PRDs in strategy.
   Outputs: structured Solution Story for GTM communications + full PRD for execution alignment.
 
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-  logging_enabled: true
-last_updated: 2026-06-21
+last_updated: 2026-08-21
 ---
 
 # PRD — Skill
 
-Guides Product Managers and Product Marketing Managers to co-create complete Product Requirements Documents with embedded Solution Stories. Reads your brain for strategic context, logs learnings for system-wide pattern detection.
+Guides Product Managers and Product Marketing Managers to co-create complete Product Requirements Documents with embedded Solution Stories. Reads your brain for strategic context.
 
 ---
 
 ## How It Works
 
-```
+````
 ┌─────────────────────────────────────────────────────────────────┐
 │                  PRODUCT REQUIREMENT DOC                         │
 ├─────────────────────────────────────────────────────────────────┤
@@ -31,7 +30,6 @@ Guides Product Managers and Product Marketing Managers to co-create complete Pro
 │  ✓ ICP (Section 2) → Target customer pre-fill                   │
 │  ✓ Revenue Levers (Section 5) → Feature alignment check         │
 │  ✓ Buyer Personas (Section 4) → Stakeholder mapping             │
-│  ✓ Meta-patterns (guardrails) → Flag recurring risks             │
 ├─────────────────────────────────────────────────────────────────┤
 │  STEPS 1-6: Intake → Solution Story → Full PRD → Collaboration  │
 │  ✓ Conversational intake (role detection)                        │
@@ -39,14 +37,8 @@ Guides Product Managers and Product Marketing Managers to co-create complete Pro
 │  ✓ Full PRD structure (10 sections, 2 owners)                   │
 │  ✓ PM + PMM checkpoints (collaboration gates)                   │
 │  ✓ Output format (markdown, copy-paste ready)                   │
-├─────────────────────────────────────────────────────────────────┤
-│  STEP 7: Post-session Logging (for meta-synthesis)              │
-│  ✓ Session metadata → /context/skill-sessions.md                │
-│  ✓ Pattern detection → Quality scores, guardrails triggered     │
-│  ✓ Brain updates proposed → Link to brain Section updates       │
-│  ✓ Learnings log → Feeds into meta-synthesis monthly cycle      │
 └─────────────────────────────────────────────────────────────────┘
-```
+````
 
 ---
 
@@ -67,13 +59,8 @@ Guides Product Managers and Product Marketing Managers to co-create complete Pro
 
 - **Args:** Feature/initiative name, optional existing notes or brief
 - **Context keys:**
-  - `/foundation/brain.md` — REQUIRED. Sections 2 (ICP), 3 (Positioning), 4 (Personas), 5 (Revenue Levers), 7 (Meta-Learnings)
-  - `/context/meta-patterns.md` — REQUIRED. Guardrails from meta-synthesis (flags recurring risks)
-  - `/context/skill-sessions.md` — OPTIONAL. Prior PRD sessions to detect patterns
-  - `knowledge/false-beliefs/catalog.md` — OPTIONAL. Known weak patterns in problem statements
-  - `knowledge/craft/patterns.md` — OPTIONAL. Confirmed patterns about what lands in pitches
-
-**Brain contract:** Reads: Sections 2, 3, 4, 5. Reads guardrails, logs to `/context/skill-sessions.md`.
+  - `/foundation/brain.md` — recommended. Sections 2 (ICP), 3 (Positioning), 4 (Personas), 5 (Revenue Levers)
+  - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior PRDs
 
 ---
 
@@ -82,13 +69,8 @@ Guides Product Managers and Product Marketing Managers to co-create complete Pro
 - Load `/foundation/brain.md` if exists. Extract Positioning (§3), ICP (§2), Personas (§4), Revenue Levers (§5) for context.
   - If Positioning is 🔴 (Placeholder): surface "Your positioning is a draft — Solution Story may lack messaging grounding. Update brain first?"
   - If ICP missing: "Complete Section 2 (ICP Definition) of your brain via product-marketing-context first — target customer clarity sharpens PRDs."
-  
-- Load `/context/meta-patterns.md` if exists. Check for guardrails that apply to PRD writing:
-  - "Success metrics undefined in 2+ PRDs → Ask baseline + target upfront"
-  - "Problem statements vague 3+ times → Pressure-test early"
-  - "Missing rollback criteria → Flag before launch plan"
-  
-- Check `knowledge/false-beliefs/catalog.md` for patterns user might repeat (weak problem statements, vague benefits, missing metrics).
+
+- If `/context/meta-patterns.md` exists in the user's workspace, check for guardrails they've logged that apply to PRD writing. Skip silently if it doesn't exist.
 
 **Quality gates before intake:**
 - If user has zero positioning context: surface "Consider setting positioning first — PRD reads more sharply when anchored to a 'why now' narrative."
@@ -97,24 +79,6 @@ Guides Product Managers and Product Marketing Managers to co-create complete Pro
 ---
 
 ## Steps
-
-### Step 0: Surface Guardrails (NEW)
-
-Before intake, check for patterns:
-
-If `/context/meta-patterns.md` exists and contains PRD patterns:
-```
-🔁 PATTERN DETECTED FROM PRIOR PRDS
-
-I've seen [specific weakness] in X prior PRDs this cycle.
-Examples: "missing success metrics", "vague problem statements", "undefined rollback criteria"
-
-Quick check: Do you have [specific requirement]?
-- If YES → proceed to Step 1
-- If NO → we'll fill this first
-```
-
-Surface guardrail only if pattern applies (2+ occurrences in prior 30 days).
 
 ### Step 1: Identify Starting Point
 
@@ -125,9 +89,6 @@ Ask conversationally:
 - If **scratch** → run intake interview (Step 2)
 - If **existing content** → read it, extract what's answered, ask only for gaps
 - If **specific section only** → jump to that section
-
-Before running intake, check `knowledge/false-beliefs/catalog.md`. If user's framing contains a known weak pattern, surface it immediately:
-> "Your framing: [weak pattern]. That's a common stumble — we see it when [example]. Better approach: [better framing]."
 
 ### Step 2: Intake Interview
 
@@ -148,15 +109,13 @@ Ask conversationally, grouped into two rounds.
 
 If user seems impatient, use what you have and fill gaps with clearly labelled `[TO FILL — hint]` placeholders.
 
-Consult `knowledge/craft/patterns.md` before generating — confirmed patterns about what makes problem statements and pitches land should inform every section.
-
 ### Step 3: Generate Output 1: Solution Story
 
 Once Round 1 is complete, generate the Solution Story first. This anchors the full PRD.
 
 #### Solution Story structure
 
-```
+````
 ## Solution Story — [Feature Name]
 
 ### Feature Identity
@@ -175,7 +134,7 @@ Once Round 1 is complete, generate the Solution Story first. This anchors the fu
 1. [Insight] — [supporting quote or data] (Source: [X])
 2. [Insight] — [supporting quote or data] (Source: [X])
 3. [Insight] — [supporting quote or data] (Source: [X], optional)
-```
+````
 
 **Writing rules:**
 - Start with the broken status quo — don't open with "Introducing…"
@@ -374,39 +333,10 @@ Surface these moments explicitly. Insert `🤝 PM + PMM checkpoint` at:
 - Label every placeholder: `[TO FILL — e.g. paste customer quote here]`
 - Never leave a section silently blank — either fill it or explain what's needed
 
-### Step 7: Post-Session Logging (NEW)
-
-After every session where a full PRD or Solution Story was produced, log to `/context/skill-sessions.md`:
-
-```yaml
-skill: prd
-session_date: 2026-06-21
-feature_name: "Dashboard Analytics"
-prd_sections_completed: 9
-solution_story_generated: true
-quality_score: 82
-guardrails_triggered:
-  - "Success metrics undefined" (addressed in intake)
-  - "Missing rollback criteria" (flagged, user added)
-brain_context_loaded: true
-brain_sections_referenced:
-  - "Positioning (Section 3)"
-  - "ICP (Section 2)"
-  - "Revenue Levers (Section 5)"
-brain_updates_proposed:
-  - "Logged to /context/skill-sessions.md: new learning about announcement-level timing"
-pm_pmm_collaboration: true
-collaboration_checkpoints_surfaced: 3
-output_path: "/artifacts/prd/dashboard-analytics-v1.0.md"
-decision: "approved"
-```
-
-This data feeds into meta-synthesis monthly, which detects patterns:
-- "Success metrics missing 3x → surface upfront in guardrail"
-- "Problem statements vague 2x+ → pressure-test early in intake"
-- "Missing rollback criteria 2x → add checklist"
-
-Each pattern becomes a guardrail that future PRD sessions load at pre-flight (Step 0).
+If a pattern worth remembering surfaces this session — a recurring gap in problem
+statements, a metric that consistently gets missed — name it and ask the user
+where, if anywhere, they'd like it noted. This skill does not write to any file
+on its own.
 
 ---
 
@@ -426,7 +356,7 @@ Each pattern becomes a guardrail that future PRD sessions load at pre-flight (St
 
 ## Verification
 
-- Guardrails checked before intake (Step 0) — user warned of prior patterns
+- Guardrails checked if `/context/meta-patterns.md` exists
 - Brain context loaded and referenced (Step 0) — positioning, ICP, personas inform intake
 - Role and document scope clarified (Step 1)
 - Intake interview conducted conversationally (Step 2)
@@ -434,7 +364,6 @@ Each pattern becomes a guardrail that future PRD sessions load at pre-flight (St
 - Full PRD structured with all sections (Step 4)
 - PM + PMM checkpoints surfaced (Step 5)
 - Output format matches spec (Step 6)
-- Session logged with metadata (Step 7) — feeds meta-synthesis
 
 ---
 
@@ -452,57 +381,6 @@ Each pattern becomes a guardrail that future PRD sessions load at pre-flight (St
 
 - **pmm-okrs** → PRD OKR alignment
 - **gaccs-brief** → GTM messaging from PRD Solution Story
-- **experiment-doc-builder** → Risky assumptions in PRD → suggest experiment
+- **experiment-doc** → Risky assumptions in PRD → suggest experiment
 - **go-to-market-strategy** → Launch tier assignment
 - **pre-mortem** → Risk analysis on PRD scope
-
----
-
-## Self-Improvement Loop
-
-### Before every session:
-1. Load `/foundation/brain.md` → check Positioning (§3), ICP (§2), Personas (§4), Revenue (§5)
-2. Load `/context/meta-patterns.md` → check guardrails matching this PRD context
-3. Load `knowledge/false-beliefs/catalog.md` → know weak patterns to flag upfront
-4. Check prior PRD sessions in `/context/skill-sessions.md` → detect recurring gaps
-
-### After every session:
-1. Log to `/context/skill-sessions.md` (Step 7) → Complete session metadata
-2. Extract learnings: Which guardrails proved most useful? Which gaps appeared 2+ times?
-3. Propose to `/context/meta-patterns.md`: Should we surface a new guardrail next time?
-
-**Self-Improvement Trigger:**
-```
-🔁 PRD LEARNING
-Most useful guardrail this cycle: [guardrail name]
-New pattern emerging: [pattern]
-Recommendation: [Add to meta-patterns if 2+ occurrences]
-```
-
----
-
-## Changelog
-
-### v2.3.0 — 2026-06-21
-Added full post-session logging + guardrail intake. Step 0 surfaces patterns from `/context/meta-patterns.md` before intake. Step 7 logs session data to `/context/skill-sessions.md` for meta-synthesis pattern detection. Brain context loading clarified. Quality gate updated to verify logging. Self-improvement loop integrated.
-
-Changes from v2.2.0:
-- Added Step 0: Surface guardrails before intake
-- Updated Pre-flight: Load brain context + guardrails
-- Added Step 7: Post-session logging to `/context/skill-sessions.md`
-- Updated Inputs: Now reads `/context/meta-patterns.md`
-- Updated Verification: Added guardrail + logging checks
-- Updated Self-Improvement: Tied to meta-synthesis monthly cycle
-- Version bump 2.2.0 → 2.3.0 (logging enabled)
-
-### v2.2.0 — 2026-05-21
-User-first rework. Conversational intake. Solution Story-first output. Collaboration checkpoints. Clean markdown output.
-
-### v2.1.0 — 2026-03-18
-Brain context integration. ICP pre-fill. Positioning anchor.
-
-### v2.0.0 — 2026-02-01
-Full rebuild to SKILL-SPEC v2.0.0. Structured intake. Solution Story + PRD dual output.
-
-### v1.0.0 — [date]
-Initial PRD workflow.

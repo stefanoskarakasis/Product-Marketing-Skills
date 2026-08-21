@@ -163,14 +163,11 @@ Use this template file in your repo. The `product-marketing-context` skill will 
 
 | Skill | Reads Sections | Use Case |
 |-------|---|---|
-| hs-positioning-messaging | 1, 2, 3, 4 | Generate positioning statements vs. alternatives |
-| hs-competitive-battlecard | 1, 2, 3, 5 | Build sales battlecards against named competitors |
-| hs-buyer-personas | 2 | Create detailed buyer personas (primary + economic + champion) |
-| hs-value-prop-statements | 1, 2, 3 | Write value props for each persona |
+| positioning-messaging | 1, 2, 3, 4 | Generate positioning statements vs. alternatives |
 | go-to-market-strategy | 1, 2, 5 | Scope launches with market context |
 | pre-mortem | 2 | Identify stakeholders + their concerns |
 | stakeholder-maps | 2, 4 | Map power dynamics + messaging by persona |
-| hs-gaccs-brief | 1, 2, 4, 6 | Build campaign briefs (audience, messaging, proof points) |
+| gaccs-brief | 1, 2, 4, 6 | Build campaign briefs (audience, messaging, proof points) |
 
 ---
 

@@ -1,8 +1,8 @@
 ---
 name: pre-mortem
-version: 2.3.0
+version: 2.4.0
 description: >
-  Identifies and pressure-tests failure modes for any strategic initiative (product launch, pricing change, GTM pivot, new market entry, feature rollout) by running a cross-functional risk exercise. Loads brain context (ICP, positioning, competitive landscape) and guardrails from prior pre-mortems; surfaces Tigers (deal-blocking risks) with owner-assigned action plans. Logs session data to /context/skill-sessions.md for meta-synthesis pattern detection and compounds learnings over time.
+  Identifies and pressure-tests failure modes for any strategic initiative (product launch, pricing change, GTM pivot, new market entry, feature rollout) by running a cross-functional risk exercise. Loads brain context (ICP, positioning, competitive landscape) and, when available, guardrails from prior pre-mortems; surfaces Tigers (deal-blocking risks) with owner-assigned action plans.
 ---
 
 # Pre-Mortem — Skill
@@ -13,7 +13,7 @@ A pre-mortem flips the question from "what could go wrong?" to "imagine it's 3 m
 
 The skill runs in 7 steps:
 
-**Step 0** — Load guardrails from `/context/meta-patterns.md` (e.g., "pricing changes without competitive posture cost 2 prior launches") and surface them before intake.
+**Step 0** — Load guardrails from `/context/meta-patterns.md`, if it exists (e.g., "pricing changes without competitive posture cost prior launches" — an example pattern shape) and surface them before intake.
 
 **Step 1** — Intake: Gather initiative name, scope, timeline, target customer, and announcement level. Brain-load ICP and positioning to ground discussion.
 
@@ -27,19 +27,17 @@ The skill runs in 7 steps:
 
 **Step 6** — Output structure: Deliver a one-page Tiger summary + 2-3 page full risk table + action register.
 
-**Step 7** — Log session to `/context/skill-sessions.md` with quality score, guardrails triggered, risks materialized (if prior pre-mortem), and brain updates proposed.
-
 ---
 
 ## Step 0 — Pre-Flight: Load Context & Surface Guardrails
 
 Before intake, load:
 - **Brain context** (Sections 2, 3, 5): ICP, positioning, revenue levers — you'll reference these during risk generation
-- **Guardrails** from `/context/meta-patterns.md`: If a pattern fired 2+ times in prior pre-mortems (e.g., "pricing without comp posture," "launch without sales alignment"), surface it now
+- **Guardrails** from `/context/meta-patterns.md`, if that file exists in the user's workspace: if a pattern has actually fired 2+ times in prior pre-mortems logged there, surface it now
 
 **Surface guardrails like this:**
 
-```
+````
 🔁 PATTERN FROM PRIOR PRE-MORTEMS
 
 I've seen [pattern description] in 2 prior pre-mortems.
@@ -48,9 +46,9 @@ Examples: [specific initiative names]
 Quick check: Are you aware of this risk? 
 - If YES → We'll dig into it during Tiger triage
 - If NO → Let's add it to our failure scenarios
-```
+````
 
-You can skip a guardrail if you disagree, but you'll see it first.
+You can skip a guardrail if you disagree, but you'll see it first. If `/context/meta-patterns.md` doesn't exist, skip this step silently.
 
 ---
 
@@ -161,7 +159,7 @@ State your recommendation in one paragraph. Be clear. Be direct.
 Deliver three artifacts:
 
 **Artifact 1: Tiger Summary (1 page, one-pager format)**
-```
+````
 Initiative: [Name]
 Timeline: [Key dates]
 Recommendation: [Go / Conditional Go / Hold]
@@ -170,56 +168,23 @@ Tigers (Deal-Blocking Risks):
 1. [Tiger name] — Owner: [Name]. Signal: [measurable proof]. Action: [mitigation/rollback plan]
 2. [Tiger name] — Owner: [Name]. Signal: [measurable proof]. Action: [mitigation/rollback plan]
 3. [Tiger name] — Owner: [Name]. Signal: [measurable proof]. Action: [mitigation/rollback plan]
-```
+````
 
 **Artifact 2: Full Risk Table (2-3 pages)**
-```
+````
 | Risk Name | Category | Classification | Owner | Mitigation / Rollback |
 |-----------|----------|-----------------|-------|----------------------|
 | [Risk] | [Market/GTM/Product/Exec] | Tiger/Paper Tiger/Elephant | [Name] | [Action] |
 | ... | ... | ... | ... | ... |
-```
+````
 
 **Artifact 3: Action Register (1 page)**
-```
+````
 Owner | Tiger | Signal | Action | Timeline | Status
 [Name] | [Tiger name] | [Signal definition] | [Mitigation or rollback trigger] | [Date] | [Pending/Active]
-```
+````
 
----
-
-## Step 7 — Post-Session Logging
-
-Log to `/context/skill-sessions.md` with this YAML metadata:
-
-```yaml
-skill: pre-mortem
-session_date: [YYYY-MM-DD]
-initiative_name: [Name]
-initiative_tier: [P1/P2/P3/P4]
-quality_score: [0-100, where 90+ = Tigers have owners + measurable signals]
-tigers_count: [Number of deal-blocking risks identified]
-paper_tigers_count: [Number of manageable risks]
-elephants_count: [Number of accepted trade-offs]
-guardrails_triggered:
-  - "[Pattern name if surfaced]"
-brain_context_loaded: true
-brain_sections_referenced:
-  - "ICP (Section 2)"
-  - "Positioning (Section 3)"
-  - "[Other sections loaded]"
-brain_updates_proposed:
-  - "[Emerging pattern or meta-learning, if any]"
-pre_mortem_accuracy: [If this is a follow-up, compare predicted vs. materialized risks — did the Tigers we ID'd actually happen?]
-risks_materialized_count: [Number of predicted Tigers that actually occurred]
-recommendation: "[Go / Conditional Go / Hold]"
-decision: "[User decision: approved, holding, or conditional]"
-output_path: "[Where the Tiger summary + risk table were saved]"
-```
-
-**Quality score:** 90+ = Tigers have owners, signals, and action plans. 70+ = Most Tigers defined but some actions vague. <70 = Risk analysis incomplete.
-
-**Pre-mortem accuracy tracking:** If the user has run a prior pre-mortem and we're now reviewing whether the predicted risks materialized, log `risks_materialized_count` and compare against `tigers_count`. This feeds meta-synthesis pattern detection for calibration.
+If the user wants any of these saved to a file, or wants a later retro to compare predicted vs. actual outcomes, ask where they'd like it kept — this skill doesn't write to any file on its own.
 
 ---
 
@@ -256,19 +221,3 @@ Adjust intake and scenario generation by initiative type:
 **Signals are measurable.** "We'd see low adoption" is vague. "We'd see <500 signups in the first week" is measurable.
 
 **Action plans bridge risk to decision.** If you can't mitigate a Tiger, that's fine — but then you're saying "we're accepting this risk and here's how we'll respond if it happens."
-
----
-
-## Self-Improvement Loop
-
-This skill learns from prior pre-mortems. Each session logs to `/context/skill-sessions.md` with:
-- Tigers identified
-- Risks that actually materialized
-- Guardrails that surfaced and proved useful
-
-Monthly, meta-synthesis reads these logs and detects patterns:
-- "Pricing changes without competitive posture have failed 3x" → Guardrail surfaces next time
-- "Feature launches with <2-week sales prep have 80% Tiger materialization rate" → Recommend 3-week prep
-- "Tigers with named owners have 70% mitigation success; Tigers without owners fail" → Emphasize owner assignment
-
-These patterns feed back into guardrail injection (Step 0) and brain updates (Section 2: Anti-ICP, if discovered).

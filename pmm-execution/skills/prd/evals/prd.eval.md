@@ -275,7 +275,7 @@ brain_sections_referenced:
   - "ICP (Section 2)"
   - "Revenue Levers (Section 5)"
 brain_updates_proposed:
-  - "Section 7: New pattern — announcement-level clarity in Round 1 improves PRD focus"
+  - "Logged to /context/skill-sessions.md: announcement-level clarity in Round 1 improves PRD focus"
 pm_pmm_collaboration: true
 collaboration_checkpoints_surfaced: 3
 checkpoints_approved: 2

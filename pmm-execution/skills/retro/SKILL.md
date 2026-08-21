@@ -61,7 +61,7 @@ Not a feelings circle. A diagnostic system.
   - `knowledge/retro-patterns/hypotheses.md` — note any open hypothesis testable today.
   - `decisions/` — check for prior structural decisions before making new ones.
   - `sessions/` — surface carry-over action items from the most recent session file.
-**Brain contract:** Reads: Section 2 (ICP), Section 3 (Positioning), Section 5 (Revenue), Section 7 (Launch history). Writes: `/context/skill-sessions.md`, `/foundation/brain.md` Section 7 (learnings), `/context/knowledge/retros/`.
+**Brain contract:** Reads: Section 2 (ICP), Section 3 (Alternatives & Positioning), Section 5 (Market Context). Writes: `/context/skill-sessions.md`, `/context/knowledge/retros/`.
 ---
 ## Pre-flight
 - **Load guardrails first:** Check `/context/meta-patterns.md` for recurring patterns from prior launches. If pattern matches (e.g., "champion alignment was gap in 2+ retros"), surface guardrail prompt before Step 1.
@@ -191,7 +191,7 @@ Max 3. Each must link to a KR or go to backlog.
 ### Step 8: Propose Brain & Context Updates (NEW)
 If retro surfaces learnings to encode:
 
-**Learnings to update brain Section 7 (Meta-Learnings):**
+**Learnings to log to `/context/knowledge/retros/` (no brain write — Section 7 does not exist):**
 - "Timeline assumption: +48 hours for champion alignment (confirmed 2x)"
 - "Competitive response timing: 24-48 hours (not 1 week)"
 - "Post-sales prep must be done 7 days pre-launch (confirmed 2x)"
@@ -202,7 +202,7 @@ If retro surfaces learnings to encode:
 - "Requires legal review" (if discovered)
 
 Surface explicitly with approval gates:
-> "Should we update brain Section 7 with: 'Timeline assumption: +48 hours for champion alignment'? 
+> "Should we log to `/context/knowledge/retros/` with: 'Timeline assumption: +48 hours for champion alignment'?
 > This appeared in retro #1 and #2, now confirmed."
 
 ---
@@ -249,9 +249,9 @@ guardrails_triggered:
   - "Post-sales prep gaps confirmed again. Add to pre-mortem: 'Are support docs + training ready 1 week before launch?'"
   - "Pre-mortem accuracy: 67%. We're good at identifying risks but slow at predicting timing. Recommendation: add 'What day will this happen?' to pre-mortem risk definition."
 brain_updates_proposed:
-  - "Section 7: Timeline assumption +48 hours for champion alignment"
-  - "Section 7: Post-sales prep must be done 7 days pre-launch"
-  - "Section 7: Competitive response timing is 24-48 hours (not 1 week)"
+  - "Timeline assumption +48 hours for champion alignment"
+  - "Post-sales prep must be done 7 days pre-launch"
+  - "Competitive response timing is 24-48 hours (not 1 week)"
 ```
 
 This feeds into `meta-synthesis` skill (monthly) which detects patterns across all retros and updates brain + `/context/meta-patterns.md`.
@@ -268,7 +268,6 @@ write session file → update knowledge base → log decisions → run quality g
   - `knowledge/retro-patterns/hypotheses.md` — new patterns observed 1–2 times.
   - `knowledge/retro-patterns/rules.md` — patterns confirmed 3+ times (approval required).
   - `decisions/YYYY-MM-DD-[topic].md` — structural decisions made during the session.
-  - `/foundation/brain.md` Section 7 — updated with learnings (if approved)
   - `/foundation/brain.md` Section 2 — updated with anti-ICP signals (if discovered)
 
 - **Chat output format:** Retro summary in the template below. Markdown formatted for copy-paste into Notion or Google Docs.
@@ -297,9 +296,10 @@ write session file → update knowledge base → log decisions → run quality g
 |---|---|---|---|---|---|
 | 1 | | | | | |
 
-### Brain Updates Proposed (NEW)
-- **Section 7 (Meta-Learnings):** [Learnings to encode]
+### Learnings Logged (NEW)
+- **Retro pattern:** [Learnings to encode, logged to `/context/knowledge/retros/`]
 - **Section 2 (Anti-ICP):** [Anti-signals discovered, if any]
+
 - **Status:** Awaiting approval
 
 ### Carry-over from Last Retro
@@ -384,7 +384,7 @@ Runs before final delivery. Score each criterion 1–3. Minimum 17/21 to pass.
 3. Check `knowledge/retro-patterns/hypotheses.md` — note any hypothesis testable today.
 4. Check `sessions/` — surface carry-over action items.
 5. Check `decisions/` — load prior structural decisions.
-6. Load `/foundation/brain.md` Section 7 — note prior learnings for context.
+6. Load `/context/knowledge/retros/` — note prior learnings for context.
 
 ### After every session:
 1. **Log to `/context/skill-sessions.md`:** Complete session metadata (see Step 9 schema).

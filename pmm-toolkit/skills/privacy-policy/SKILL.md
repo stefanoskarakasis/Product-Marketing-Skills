@@ -32,7 +32,7 @@ last_updated: 2026-06-05
 
 ---
 
-# hs-privacy-policy
+# privacy-policy
 
 A drafting engine for PMMs and Product Managers who need a rigorous, jurisdiction-aware
 privacy policy ready for legal review — not a generic template.

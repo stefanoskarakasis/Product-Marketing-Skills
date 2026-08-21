@@ -57,16 +57,16 @@ matters as much as each individual output.
 - **Context keys:**
   - `/foundation/brain.md` — required. All sections.
   - **Brain contract:**
-    - Reads: All sections (1–7) — checks completeness and staleness before routing.
+    - Reads: All sections (1–6) — checks completeness and staleness before routing.
     - Writes: Section 3 (after positioning refresh), Section 4 (after competitive
-      work), Section 5 (after new proof points confirmed), Section 7 (after any
-      launch or retro — marks Planned or Completed).
+      work), Section 5 (after new proof points confirmed). Launch and retro
+      history is logged to `/context/skill-sessions.md`, not the brain.
     - Never writes to: Section 1, Section 2, Section 6 (those require dedicated
-      skills: `product-marketing-context`, `hs-icp`, `hs-voice-tone`).
+      skills: `product-marketing-context`).
   - **Staleness thresholds:**
     - Section 3 (Positioning) > 6 months → flag for refresh before any launch workflow.
     - Section 4 (Competitive) > 3 months → flag for refresh before any competitive workflow.
-    - Section 7 (Launch history) empty → note; calibration will be limited.
+    - `/context/skill-sessions.md` empty → note; calibration will be limited.
 
 ---
 
@@ -185,8 +185,8 @@ After each skill produces a confirmed output:
 - **Positioning refresh:** Update Section 3 with new statement and timestamp.
 - **Competitive work:** Update Section 4 with refreshed alternative map and timestamp.
 - **New proof points:** Update Section 5 with approved new claims.
-- **Launch planned:** Add Section 7 entry as "Planned" with tier, metric, date.
-- **Retro completed:** Update Section 7 entry from "Planned" to "Completed" with actuals.
+- **Launch planned:** Log entry to `/context/skill-sessions.md` as "Planned" with tier, metric, date.
+- **Retro completed:** Update the `/context/skill-sessions.md` entry from "Planned" to "Completed" with actuals.
 
 Surface each write:
 > "Updating brain Section [X] with [what]. Confirm? [Y/N]"
@@ -249,54 +249,53 @@ Compile all skill outputs into one master document:
 **Trigger:** "run full launch workflow", "launch [product] end to end"
 1. `go-to-market-strategy` — tier + strategy brief
 2. `positioning-messaging` (if Section 3 stale or new angles needed)
-3. `hs-competitive-battlecard` (if T1/T2 or competitor mentioned)
-4. `hs-gaccs-brief` — campaign brief
-5. `hs-stakeholder-maps` — internal alignment map
-6. `hs-pre-mortem` — risk analysis before committing
+3. `(no dedicated skill yet — handle within positioning-messaging)
+4. `gaccs-brief` — campaign brief
+5. `stakeholder-maps` — internal alignment map
+6. `pre-mortem` — risk analysis before committing
 7. Set T+90 retro trigger → `retro`
 
 ### 2. Positioning Refresh
 **Trigger:** "positioning refresh", "our messaging is stale", "update positioning"
 1. `positioning-messaging` (AUDIT mode → full BUILD if audit score < 70)
-2. `hs-value-prop-statements` — persona-specific copy
-3. `hs-competitive-battlecard` — refresh differentiation for top competitors
+2. `(no dedicated skill yet — handle within positioning-messaging)
 
 ### 3. Competitive Intelligence Program
 **Trigger:** "competitive program", "build battlecards", "competitive deep-dive"
-1. `hs-alternatives-map` — if not current
-2. `hs-competitive-battlecard` — for each named competitor (run sequentially)
-3. `hs-ci-stakeholder-briefing` — exec-level competitive newsletter
+1. `(no dedicated skill yet — handle within product-marketing-context Section 3)
+2. `(no dedicated skill yet — handle within positioning-messaging)
+3. `(no dedicated skill yet)
 
 ### 4. Quarterly PMM Cycle
 **Trigger:** "quarterly PMM cycle", "Q[X] refresh", "quarterly review"
 1. `retro` — debrief all launches from prior quarter
 2. `positioning-messaging` (AUDIT mode)
-3. `hs-competitive-battlecard` — refresh top 3 competitors
-4. `hs-proof-points-claims` — audit + add new proof points
-5. `hs-brainstorm-okrs` — set next quarter OKRs
+3. `(no dedicated skill yet — handle within positioning-messaging)
+4. `(no dedicated skill yet — handle within product-marketing-context Section 6)
+5. `pmm-okrs` — set next quarter OKRs
 
 ### 5. New Market Entry Program
 **Trigger:** "enter new market", "expand to [segment]", "new vertical"
-1. `hs-icp` — define ICP for new market
-2. `hs-buyer-personas` — buying committee for new market
+1. `(no dedicated skill yet — handle within product-marketing-context Section 2)
+2. `(no dedicated skill yet)
 3. `positioning-messaging` — positioning for new segment
-4. `hs-competitive-battlecard` — top 3 competitors in new market
+4. `(no dedicated skill yet — handle within positioning-messaging)
 5. `go-to-market-strategy` — tier + strategy for market entry
-6. `hs-gaccs-brief` — campaign brief
-7. `hs-pre-mortem` — risk analysis before committing
+6. `gaccs-brief` — campaign brief
+7. `pre-mortem` — risk analysis before committing
 
 ### 6. Competitive Response (Fast)
 **Trigger:** "competitive response to [competitor]", "they just launched [X]"
-1. `hs-competitive-battlecard` — expedited for named competitor
-2. `hs-value-prop-statements` — refreshed differentiation messaging
-3. `hs-ci-stakeholder-briefing` — exec alert
+1. `(no dedicated skill yet — handle within positioning-messaging)
+2. `(no dedicated skill yet — handle within positioning-messaging)
+3. `(no dedicated skill yet)
 
 ### 7. Full PMM Onboarding / Audit
 **Trigger:** "I just joined as PMM", "PMM audit", "what's our current state"
 1. Audit brain Sections 1–7 — completeness, staleness, gaps
 2. `positioning-messaging` (AUDIT mode only)
-3. `hs-proof-points-claims` (AUDIT mode only)
-4. Produce Current State Report with prioritised gaps
+3. Produce Current State Report with prioritised gaps
+
 **Note:** Read-only. No brain writes under any circumstance.
 
 ---
@@ -426,8 +425,7 @@ Runs at program close, before Master Program Document is delivered.
 ## Self-Improvement Loop
 
 ### Before every session:
-1. Load brain Section 7 — scan for program history. Prior programs of same type
-   inform sequencing decisions and checkpoint timing.
+1. Load `/context/skill-sessions.md` — scan for program history. Prior programs of same type
 2. Check `knowledge/orchestrator/rules.md` if it exists — apply confirmed rules.
 3. Check `knowledge/orchestrator/hypotheses.md` — note any pattern testable today.
 

@@ -2,7 +2,7 @@
 name: go-to-market-strategy
 version: 2.2.0
 description: >
-  Assigns launch tier (T1–T4) using four-signal framework and generates complete GTM brief with positioning angles, channel strategy, success metrics, and competitive context; reads brain (ICP, positioning, competitive, proof points, launch history) and guardrails from prior launches; writes to brain Section 7; logs session data to /context/skill-sessions.md for meta-synthesis pattern detection and compounds learnings over time.
+    Assigns launch tier (T1–T4) using four-signal framework and generates complete GTM brief with positioning angles, channel strategy, success metrics, and competitive context; reads brain (ICP, positioning, competitive, proof points) and guardrails from prior launches; logs session data to /context/skill-sessions.md for meta-synthesis pattern detection and launch-history calibration, compounding learnings over time.
 ---
 
 # Go-to-Market-Strategy — Skill
@@ -23,7 +23,7 @@ The skill runs in 7 steps:
 
 **Step 4** — Generate full GTM brief (7 sections: strategic context, channels, metrics, competitive, proof points, timeline, next steps).
 
-**Step 5** — Update brain Section 7 with new launch entry (on user confirmation).
+**Step 5** — Log new launch entry to `/context/skill-sessions.md` (on user confirmation).
 
 **Step 6** — Output markdown brief, copy-paste ready.
 
@@ -77,9 +77,9 @@ Reflect back in 2 sentences:
 
 ## Step 2 — Load Brain Context
 
-Load silently. Extract Sections 2, 3, 4, 5, 7. Do not narrate.
+Load silently. Extract Sections 2, 3, 4, 5. Do not narrate.
 
-If launch history (Section 7) shows a tier calibration mismatch (T2 that performed like T1, or T1 that underdelivered), surface as calibration note before assigning tier.
+If `/context/skill-sessions.md` shows a tier calibration mismatch (T2 that performed like T1, or T1 that underdelivered), surface as calibration note before assigning tier.
 
 ---
 
@@ -100,7 +100,7 @@ Apply all four signals before assigning. Single signal does not override others.
 - **T3** — Routine launch. 1 week. Focused enablement. Limited external comms.
 - **T4** — Minimal lift. Internal or beta only. Changelog or in-product only.
 
-**Calibration check:** Before confirming tier, check Section 7. If similar initiative was under- or over-resourced, adjust and name precedent:
+**Calibration check:** Before confirming tier, check `/context/skill-sessions.md`. If similar initiative was under- or over-resourced, adjust and name precedent:
 > "Based on [prior launch], similar scope was assigned T2 but performed at T1. Recommending T1 here to avoid under-resourcing."
 
 Output tier with one-sentence rationale before generating brief:
@@ -163,15 +163,17 @@ Generate only after tier is assigned. Structure (7 sections):
 2. Run positioning-messaging to sharpen angles
 3. Run pre-mortem to stress-test
 4. Run stakeholder-maps for internal alignment
-5. After launch, run retro → updates brain Section 7
+5. After launch, run retro → logs learnings to `/context/knowledge/retros/`
 ```
 
 ---
 
-## Step 5 — Update Brain Section 7 (on Confirmation)
+## Step 5 — Log Launch Entry (on Confirmation)
 
 After brief confirmed by user:
-> "Logging to brain Section 7 as Planned. Run retro after launch to update with actuals."
+> "Logging to /context/skill-sessions.md as Planned. Run retro after launch to update with actuals."
+
+Log to `/context/skill-sessions.md`:
 
 Write to `/foundation/brain.md` Section 7:
 ```markdown
@@ -214,7 +216,7 @@ brain_sections_referenced:
   - "Positioning (Section 3)"
   - "Competitive (Section 4)"
   - "Proof points (Section 5)"
-  - "Launch history (Section 7)"
+  - "Launch history (/context/skill-sessions.md)"
 brain_updates_proposed:
   - "[Emerging pattern or meta-learning, if any]"
 calibration_note: "[Prior launch precedent if applicable]"
@@ -237,8 +239,8 @@ output_path: "[Where brief was saved]"
 - **Tier rationale mandatory.** One-sentence grounded reason required. "It feels big" is not a rationale.
 - **Leading indicators required.** Every brief has ≥1 leading indicator + primary metric.
 - **Channel recommendations ICP-specific.** Every channel tied to ICP + motion type, not generic.
-- **Calibration history checked.** Before confirming tier, check Section 7 for precedent.
-- **Brain write requires explicit confirmation.** Ask before writing to Section 7.
+- **Calibration history checked.** Before confirming tier, check `/context/skill-sessions.md` for precedent.
+- **Session log write requires explicit confirmation.** Ask before logging to `/context/skill-sessions.md`.
 - **Proof point gaps must be flagged.** If brief requires unverified claim, surface before launch.
 
 ---
@@ -256,7 +258,7 @@ output_path: "[Where brief was saved]"
 | Proof point check | Missing proof points flagged if brief requires them |
 | Timeline present | Tier-appropriate timeline with milestones |
 | Next steps include retro | Retro named as post-launch trigger |
-| Brain write confirmed | User accepted before writing Section 7 |
+| Session log write confirmed | User accepted before logging to /context/skill-sessions.md |
 
 ---
 
@@ -274,7 +276,7 @@ Monthly, meta-synthesis reads logs and detects patterns:
 - "Tier calibration drift: we systematically over-assign T1" → Recommend recalibration
 - "Proof point gaps in positioning cause messaging rework" → Alert positioning skill
 
-Patterns feed back into guardrail injection (Step 0) and brain updates (Section 7).
+Patterns feed back into guardrail injection (Step 0) and get logged to `/context/meta-patterns.md`.
 
 ---
 

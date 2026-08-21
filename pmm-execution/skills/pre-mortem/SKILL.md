@@ -271,5 +271,4 @@ Monthly, meta-synthesis reads these logs and detects patterns:
 - "Feature launches with <2-week sales prep have 80% Tiger materialization rate" → Recommend 3-week prep
 - "Tigers with named owners have 70% mitigation success; Tigers without owners fail" → Emphasize owner assignment
 
-These patterns feed back into guardrail injection (Step 0) and brain updates (Section 2: Anti-ICP, Section 5: Revenue Levers, Section 7: Meta-Learnings).
-
+These patterns feed back into guardrail injection (Step 0) and brain updates (Section 2: Anti-ICP, if discovered).

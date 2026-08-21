@@ -32,9 +32,9 @@ Sharpened for B2B product and GTM contexts.
 - **Not for:**
   - **interview-summary** is not a transcription tool — use Otter.ai or Fireflies for that.
   - **interview-summary** is not for analyzing *your own* positioning or messaging in isolation.
-    If you need to check whether your messaging lands with buyers, route to `hs-positioning-messaging` or `hs-gaccs-brief`.
+    If you need to check whether your messaging lands with buyers, route to `positioning-messaging` or `gaccs-brief`.
   - **interview-summary** is not for building buyer personas from scratch without interviews.
-    Use `hs-buyer-personas` for that; this skill synthesizes existing transcript data.
+    No dedicated persona-building skill exists yet; this skill synthesizes existing transcript data only.
 - **Example prompts:**
   - "Summarize this customer discovery call and flag which Jobs matter most"
   - "I have a win/loss interview — help me extract what we lost and why"
@@ -194,7 +194,7 @@ This feeds into `meta-synthesis` skill (monthly) which detects patterns across a
   All output in markdown, copy-paste ready for Notion, GitHub, or email.
 - **External side effects:** Queries brain to load context (non-blocking).
   Checks `/context/meta-patterns.md` for cross-skill patterns. May trigger routing to downstream skills 
-  (e.g., flag competitors for `hs-competitive-battlecard` LEARN mode).
+  (e.g., flag competitors for future competitive-analysis follow-up — no dedicated skill exists yet).
   Writes are always explicit and surface approval gates where applicable.
 ---
 ## Verification
@@ -219,11 +219,9 @@ This feeds into `meta-synthesis` skill (monthly) which detects patterns across a
 ## Do Not Use For
 - **Transcription** — use Otter.ai, Fireflies, or Rev. This skill synthesizes, not transcribes.
   Route: Transcription tool of choice.
-- **Building personas from scratch** — use `hs-buyer-personas`. This skill processes existing interviews.
-  Route: `hs-buyer-personas` for de novo persona work.
-- **Analyzing your own positioning in isolation** — use `hs-positioning-messaging` or `hs-gaccs-brief`.
-  This skill extracts buyer signals; those skills validate positioning.
-  Route: `hs-positioning-messaging` for positioning audit, `hs-gaccs-brief` for campaign messaging.
+- **Building personas from scratch** — no dedicated skill exists yet. This skill processes existing interviews.
+- **Analyzing your own positioning in isolation** — use `positioning-messaging` or `gaccs-brief`.
+  Route: `positioning-messaging` for positioning audit, `gaccs-brief` for campaign messaging.
 - **Automated decision-making** — approval gates are explicit. Learnings surface before encoding.
   Never silent. Route: User approves pattern promotion or decision logging.
 ---
@@ -387,12 +385,10 @@ interview-summary v2.2.0
 ---
 ## Related Skills
 Cross-reference when findings trigger downstream work:
-- **hs-product-marketing-context** → Always load first. Use to validate ICP, Positioning, Beachhead.
-- **hs-competitive-battlecard** → Competitor named as current solution → flag for LEARN mode.
-- **hs-value-prop-statements** → Strong Job discovered → pressure-test value prop against it.
-- **hs-gaccs-brief** → Messaging hypothesis surfaced → route here for campaign brief.
-- **hs-pre-mortem** → Risk or failure mode surfaced by customer → route here.
-- **hs-brainstorm-okrs** → Success metric gap surfaces → route here for KR signal.
+- **product-marketing-context** → Always load first. Use to validate ICP, Positioning, Beachhead.
+- **gaccs-brief** → Messaging hypothesis surfaced → route here for campaign brief.
+- **pre-mortem** → Risk or failure mode surfaced by customer → route here.
+- **pmm-okrs** → Success metric gap surfaces → route here for KR signal.
 - **meta-synthesis** → After 3+ interviews logged → meta-synthesis detects patterns + updates brain.
 ---
 ## Commands
@@ -417,5 +413,5 @@ This skill operates as the **System of Context layer** (Layer 1: System of Conte
 2. **Process:** JTBD synthesis, pattern matching, context validation, guardrail checking
 3. **Output:** Structured markdown summary + pattern writes to `/context/interviews/` + session logs to `/context/skill-sessions.md`
 4. **Compounds:** Every session improves pattern library, hypothesis tracking, rule confidence, and meta-synthesis visibility
-5. **Feeds:** Every other skill (hs-positioning-messaging, hs-gaccs-brief, hs-competitive-battlecard, meta-synthesis) reads from this context layer
+5. **Feeds:** Every other skill (positioning-messaging, gaccs-brief, meta-synthesis) reads from this context layer
 The skill builds the "System of Context" that powers the entire GTM orchestration engine.

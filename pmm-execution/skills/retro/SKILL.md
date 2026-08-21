@@ -43,7 +43,7 @@ Not a feelings circle. A diagnostic system.
 ---
 ## Trigger
 - **When:** Post-launch review, GTM cycle debrief, sprint retrospective with a PMM lens, or any cross-functional session where decisions are needed, not just discussion.
-- **Not for:** Pre-launch risk analysis → use `hs-pre-mortem`. OKR setting for the next quarter → use `hs-brainstorm-okrs`. Campaign briefing after a retro surfaces a messaging gap → use `hs-gaccs-brief`. Competitive root cause analysis → use `hs-competitive-battlecard`.
+- **Not for:** Pre-launch risk analysis → use `pre-mortem`. OKR setting for the next quarter → use `pmm-okrs`. Campaign briefing after a retro surfaces a messaging gap → use `gaccs-brief`. Competitive root cause analysis → no dedicated skill yet.
 - **Example prompts:**
   - "Run a retro on our Q2 product launch"
   - "We missed our pipeline KR — let's debrief"
@@ -69,7 +69,7 @@ Not a feelings circle. A diagnostic system.
 - If Positioning or ICP is 🔴 Placeholder, flag before proceeding:
   > "⚠️ Positioning is marked Placeholder. This retro may surface symptoms rather than root causes — update context first for sharper diagnosis."
 - If brain missing: proceed, surface once:
-  > "No brain found. Run `hs-product-marketing-context` for sharper root cause diagnosis. Continuing."
+  > "No brain found. Run `product-marketing-context` for sharper root cause diagnosis. Continuing."
 - Load `knowledge/retro-patterns/rules.md` — apply silently.
 - Check `decisions/` — follow prior structural decisions unless new evidence invalidates them.
 - Check `sessions/` — surface carry-over action items before intake.
@@ -324,10 +324,9 @@ write session file → update knowledge base → log decisions → run quality g
 - Quality gate scored before output delivered as final.
 ---
 ## Do Not Use For
-- **hs-pre-mortem** — for risk analysis before a launch, not after. Run this skill on a completed cycle; run `hs-pre-mortem` on the next planned one.
-- **hs-brainstorm-okrs** — if the retro surfaces KR design failure, use `hs-brainstorm-okrs` to rebuild the measurement plan. Don't rebuild OKRs inside a retro session.
-- **hs-gaccs-brief** — if the retro surfaces a campaign or messaging failure, use `hs-gaccs-brief` to rebuild the brief for the next cycle.
-- **hs-competitive-battlecard** — if competitive displacement is the root cause, route there for the battlecard work. Don't run competitive analysis inside a retro.
+- **pre-mortem** — for risk analysis before a launch, not after. Run this skill on a completed cycle; run `pre-mortem` on the next planned one.
+- **pmm-okrs** — if the retro surfaces KR design failure, use `pmm-okrs` to rebuild the measurement plan. Don't rebuild OKRs inside a retro session.
+- **gaccs-brief** — if the retro surfaces a campaign or messaging failure, use `gaccs-brief` to rebuild the brief for the next cycle.
 ---
 ## Operating Rules
 - **Guardrails first.** Load `/context/meta-patterns.md` at pre-flight. Surface guardrail prompt if pattern matches this launch type.

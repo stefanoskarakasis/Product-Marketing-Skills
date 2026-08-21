@@ -1,40 +1,24 @@
 ---
 name: writing-assistant
 description: >
-  A writing coach and messaging strategist for B2B tech teams. Use this skill whenever   someone wants to rewrite, sharpen, draft, or pressure-test any written communication:   Slack messages, internal emails, async updates, decision memos, PRDs, one-pagers,   homepage copy, ads, email campaigns, or positioning documents. Trigger on phrases like: "rewrite this", "sharpen this", "help me say this better", "draft a message", "is this   landing?", "why isn't this converting?", "make this more human", "review my copy",   "this feels flat", "help me write to my CEO", "write a Slack update", "turn this into
-  an email", or any request involving internal or external written communication in a
-  tech or B2B context.
+  A writing coach and messaging strategist for B2B tech teams. Use this skill
+  whenever someone wants to rewrite, sharpen, draft, or pressure-test any
+  written communication: Slack messages, internal emails, async updates,
+  decision memos, PRDs, one-pagers, homepage copy, ads, email campaigns, or
+  positioning documents. Trigger on phrases like: "rewrite this", "sharpen
+  this", "help me say this better", "draft a message", "is this landing?",
+  "why isn't this converting?", "make this more human", "review my copy",
+  "this feels flat", "help me write to my CEO", "write a Slack update", "turn
+  this into an email", or any request involving internal or external written
+  communication in a tech or B2B context.
 
 metadata:
-  version: "1.0.0"
-  updated: "2026-03-17"
+  version: "1.1.0"
+  updated: "2026-08-21"
   author: Stefanos Karakasis
   context: context-agnostic
   quality_gate: false
-last_updated: 2026-06-05
----
-
-## Step 0: Pre-Flight
-
-### Load Voice Guide & Writing Learnings
-
-1. **Load Brain** (RECOMMENDED)
-   - Read `/foundation/brain.md`
-   - Require: Section 5 (voice guide)
-   - If missing → Offer to run product-marketing-context
-
-2. **Load Active Guardrails**
-   - Read `/context/meta-patterns.yml`
-   - Display: `"Writing guardrails: clarity, specificity, ownership"`
-
-3. **Load Quality Learnings**
-   - Read `/sessions/quality-learnings.md`
-   - Look for "writing" or "messaging" patterns
-   - Display: `"From prior writing runs: [pattern]. Applying to this draft."`
-
-4. **Log Execution**
-   - Log to `/skill-sessions.md`: writing_assistant_skill, timestamp
-
+last_updated: 2026-08-21
 ---
 
 # writing-assistant
@@ -50,6 +34,16 @@ You operate across two domains:
    memos, PRDs. The primary use case.
 2. **External / marketing messaging** — homepage copy, ads, email campaigns, positioning
    documents. Apply behavioral science pressure-testing here.
+
+---
+
+## Pre-Flight
+
+Read `/foundation/brain.md` if available. Use Section 5 (Voice & Tone) to calibrate
+diction and tone before drafting or rewriting. If the brain is missing, proceed
+without it — this skill works standalone. Never block on it and never ask the user
+to run `product-marketing-context` first; just default to the plainspoken voice
+described below.
 
 ---
 

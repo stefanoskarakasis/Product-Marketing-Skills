@@ -1,16 +1,16 @@
 ---
 skill: product-marketing-context
-version: 2.3.0
-eval_version: 1.0.0
-last_updated: 2026-06-12
+version: 3.0.0
+eval_version: 2.0.0
+last_updated: 2026-08-22
 author: Stefanos Karakasis
 ---
 
 # Evals — product-marketing-context
 
-Scenario-based eval file for `product-marketing-context` v2.3.0. Each scenario
-states a starting condition, an input, and the exact behaviour the skill must
-produce to pass.
+Scenario-based eval file for `product-marketing-context`, testing the skill's
+real 5-step flow: detect brain state, run the wizard, write the brain file,
+run a health audit, and route without naming unverified downstream skills.
 
 **How to use this file:**
 1. Set up the starting condition (file state, prior messages) as described.
@@ -18,474 +18,205 @@ produce to pass.
 3. Check the output against the Pass criteria. Every criterion must be met.
 4. Mark ✅ PASS or ❌ FAIL. Log failures with the observed output.
 
-**Scoring threshold:** 32/37 scenarios must pass (86%) for the skill to be
-considered production-ready. Below that, identify the failing category and fix
-the operating rule or step that governs it.
-
-**Update cadence:** Add new scenarios whenever a user reports unexpected behaviour.
-Promote edge cases to core scenarios after they appear twice.
+**Scoring threshold:** 15/17 scenarios must pass (88%) for the skill to be
+considered production-ready. Below that, identify the failing category and
+fix the operating rule or step that governs it.
 
 ---
 
-## Category A — Routing and Trigger Detection (6 scenarios)
+## Category A — Brain State Detection (Step 1) (4 scenarios)
 
-These confirm the skill fires for the right prompts and routes away correctly
-for prompts that belong to other skills.
-
----
-
-### A1 — First-run trigger: no brain present
-**ID:** `routing-brain-missing-first-run`
-**Starting condition:** `/foundation/brain.md` does not exist. No `.agents/` legacy files.
+### A1 — No brain: explains value in one line before the wizard starts
+**ID:** `state-no-brain-first-run`
+**Starting condition:** `/foundation/brain.md` does not exist. No `.agents/` or `.claude/` legacy files.
 **Input:** `"Build my brain"`
 **Pass criteria:**
-- [ ] First-run hook message appears BEFORE any wizard question
-- [ ] Message explains what brain.md does for downstream skills
-- [ ] At least two downstream skills named (e.g. `hs-positioning-messaging`, `go-to-market-strategy`)
-- [ ] Three options offered: [Yes, let's build it] [Not now] [I have old files to migrate]
-- [ ] No wizard question (Q1: What's your product called?) appears in this first response
+- [ ] Response explains in one line what the brain does for downstream skills
+- [ ] Wizard starts from Section 1 in the same response or immediately after
+- [ ] No fabricated "downstream skill" is named unless the skill has genuinely verified it reads this brain's section structure (per Operating Rule 4)
 
 ---
 
-### A2 — Brain-exists routing: no wizard auto-launch
-**ID:** `routing-brain-exists-no-wizard`
-**Starting condition:** `/foundation/brain.md` exists and is populated.
+### A2 — Brain exists: offers view/edit/audit, doesn't restart
+**ID:** `state-brain-exists`
+**Starting condition:** `/foundation/brain.md` exists and all 6 sections are populated.
 **Input:** `"Build my brain"`
 **Pass criteria:**
-- [ ] Skill offers [View current] [Edit sections] [Rebuild from scratch]
-- [ ] First-run hook does NOT appear
-- [ ] Wizard does NOT auto-launch
-- [ ] No wizard question asked in this response
+- [ ] Existing sections are loaded silently, not re-asked
+- [ ] Offers [View current] [Edit a section] [Run health audit]
+- [ ] Wizard does not auto-launch from Section 1
 
 ---
 
-### A3 — Audit trigger routes correctly
-**ID:** `routing-audit-trigger`
+### A3 — Legacy files detected and offered for migration
+**ID:** `state-legacy-detected`
+**Starting condition:** No `/foundation/brain.md`. `.agents/icp.md` exists.
+**Input:** `"Build my brain"`
+**Pass criteria:**
+- [ ] Legacy file is named specifically, not just "old files found"
+- [ ] Offers to migrate, showing each extracted value before writing anything
+- [ ] Does not write `/foundation/brain.md` until extracted values are confirmed
+- [ ] Legacy file itself is not deleted after migration
+
+---
+
+### A4 — Audit trigger loads silently, doesn't restart wizard
+**ID:** `state-audit-trigger`
 **Starting condition:** `/foundation/brain.md` exists.
 **Input:** `"Check brain health"`
 **Pass criteria:**
 - [ ] Skill loads brain silently
-- [ ] Offers current state summary or health check options
-- [ ] Does NOT restart the wizard
-- [ ] Does NOT show the first-run hook
+- [ ] Runs the Step 4 health audit rather than starting the wizard
+- [ ] Does not re-ask any already-answered question
 
 ---
 
-### A4 — Single-section update routes directly
-**ID:** `routing-single-section-update`
-**Starting condition:** `/foundation/brain.md` exists.
-**Input:** `"Update my ICP"`
-**Pass criteria:**
-- [ ] Skill goes directly to Section 2 (ICP) questions
-- [ ] Does NOT re-run Section 1 questions first
-- [ ] Does NOT re-run Sections 3–6
+## Category B — The Wizard (Step 2) (5 scenarios)
 
----
-
-### A5 — Wrong-skill routing: battlecard request
-**ID:** `routing-wrong-skill-battlecard`
-**Starting condition:** Any state.
-**Input:** `"Help me build a competitive battlecard"`
-**Pass criteria:**
-- [ ] Skill routes to `hs-competitive-battlecard`
-- [ ] Brain wizard does NOT start
-- [ ] Explanation given for why this is the correct skill
-
----
-
-### A6 — Wrong-skill routing: positioning copy request
-**ID:** `routing-wrong-skill-positioning`
-**Starting condition:** Any state.
-**Input:** `"Write me positioning copy for our homepage"`
-**Pass criteria:**
-- [ ] Skill routes to `hs-positioning-messaging`
-- [ ] Brain wizard does NOT start
-- [ ] Note that positioning skill reads from brain (creating urgency to build brain first if missing)
-
----
-
-## Category B — First-Run Hook / Ramp Glass Pattern (3 scenarios)
-
-These confirm the Glass principle: show value before asking for effort.
-
----
-
-### B1 — Value shown before wizard starts
-**ID:** `hook-value-before-effort`
-**Starting condition:** No brain exists. First time this skill is triggered.
-**Input:** `"Set up my GTM foundation"`
-**Pass criteria:**
-- [ ] Response explains WHAT brain.md does — not just THAT it exists
-- [ ] At least two specific downstream skills named with what they use the brain for
-- [ ] The phrase "15 minutes" or equivalent time estimate appears
-- [ ] "You do it once" or equivalent permanence signal appears
-- [ ] Zero wizard questions in this first response
-
----
-
-### B2 — Three options always offered on first run
-**ID:** `hook-three-options-offered`
-**Starting condition:** No brain exists.
-**Input:** `"Build my brain"`
-**Pass criteria:**
-- [ ] Option 1 present: start wizard / yes / let's build it (any equivalent)
-- [ ] Option 2 present: not now / remind me later / decline (any equivalent)
-- [ ] Option 3 present: I have old files / migrate (any equivalent)
-- [ ] No option forces the user to start if they don't want to
-
----
-
-### B3 — Hook suppressed when brain already exists
-**ID:** `hook-suppressed-on-return`
-**Starting condition:** `/foundation/brain.md` exists from a prior session.
-**Input:** `"Build my brain"`
-**Pass criteria:**
-- [ ] First-run hook message absent
-- [ ] Skill immediately acknowledges the existing brain
-- [ ] Offers [View / Edit / Rebuild] in the same response
-
----
-
-## Category C — Wizard Flow and Validation (8 scenarios)
-
-These confirm section-by-section flow, confirmation gates, and specificity enforcement.
-
----
-
-### C1 — Section confirmation gate
+### B1 — Section confirmation gate
 **ID:** `wizard-section-confirm-before-next`
-**Starting condition:** No brain. User has started wizard and answered all 5 Section 1 questions.
-**Input:** User provides `product_name`, `product_description`, `product_stage`, `target_market`, `value_proposition`.
+**Starting condition:** No brain. User has answered all 5 Section 1 (Product Context) questions.
+**Input:** Product name, description, stage, target market, value proposition.
 **Pass criteria:**
 - [ ] Skill shows all 5 answers back in a summary
-- [ ] Asks "Look good? (yes / edit / skip for now)" or equivalent
-- [ ] Does NOT proceed to Section 2 until user confirms
-- [ ] Section 2 Q1 does NOT appear in the same response as the confirmation
+- [ ] Asks "Look good? (yes / edit / skip)" or equivalent
+- [ ] Does not proceed to Section 2 until the user confirms
 
 ---
 
-### C2 — Vague ICP answer rejected
-**ID:** `wizard-vague-icp-rejected`
-**Starting condition:** Wizard is on Section 2, Q1 (company size).
+### B2 — Vague ICP company size rejected
+**ID:** `wizard-vague-company-size-rejected`
+**Starting condition:** Wizard is on Section 2 (ICP), company size question.
 **Input:** `"Small to medium businesses"`
 **Pass criteria:**
-- [ ] Skill does NOT accept this answer and write it to brain
-- [ ] Skill pushes back asking for specific numbers (employee count or ARR range)
-- [ ] Provides an example of an acceptable answer (e.g. "50–500 employees" or "$5M–$50M ARR")
-- [ ] Does not move to Q2 until a specific answer is given
+- [ ] Skill does not accept and store this answer
+- [ ] Pushes back asking for specific numbers (employee count or ARR range)
+- [ ] Does not move to the next question until a specific answer is given
 
 ---
 
-### C3 — Vague value proposition rejected
+### B3 — Vague value proposition rejected
 **ID:** `wizard-vague-value-prop-rejected`
-**Starting condition:** Wizard is on Section 1, Q5 (value proposition).
+**Starting condition:** Wizard is on Section 1, value proposition question.
 **Input:** `"We help companies grow faster"`
 **Pass criteria:**
 - [ ] Skill rejects this answer
-- [ ] Prompts user to fill in the template structure: "[Product] helps [target market] to _____ so they can _____"
-- [ ] Explains why specificity matters (links output quality)
-- [ ] Does not advance until structure is followed
+- [ ] Prompts the user to use the structure: "[Product] helps [target market] to __ so they can __"
+- [ ] Does not advance until the structure is followed
 
 ---
 
-### C4 — Skip accepted without force
+### B4 — Vague alternatives rejected, named products required
+**ID:** `wizard-vague-alternatives-rejected`
+**Starting condition:** Wizard is on Section 3 (Alternatives & Positioning).
+**Input:** `"The big CRMs and some spreadsheets"`
+**Pass criteria:**
+- [ ] Skill rejects this answer
+- [ ] Asks for named products buyers actually compare the user to (e.g. "Salesforce, HubSpot, Pipedrive")
+- [ ] Once named, alternatives are stored as-is — not normalised into a category label
+
+---
+
+### B5 — Skip accepted without pushback
 **ID:** `wizard-skip-accepted`
 **Starting condition:** Wizard is on Section 4 (Voice & Tone) confirmation.
 **Input:** `"Skip for now"`
 **Pass criteria:**
-- [ ] Skill accepts the skip without pushback
-- [ ] Section marked as incomplete (not as Placeholder or error state)
+- [ ] Skill accepts the skip without guilt or repeated prompting
+- [ ] Section is marked incomplete, not silently filled with a placeholder
 - [ ] Skill continues to Section 5
-- [ ] Skill does NOT re-ask the section or guilt the user
 
 ---
 
-### C5 — Edit mid-wizard re-runs only that section
-**ID:** `wizard-edit-single-section`
-**Starting condition:** Wizard has shown Section 2 confirmation summary.
-**Input:** `"Edit"`
+## Category C — Writing the Brain File (Step 3) (3 scenarios)
+
+### C1 — Brain written only after confirmation, using the real template
+**ID:** `write-only-after-confirm`
+**Starting condition:** Wizard running. User has just confirmed Section 6 (Proof Points), the last section.
+**Input:** `"Yes, that looks good"`
 **Pass criteria:**
-- [ ] Skill returns to Section 2, Q1
-- [ ] Does NOT restart from Section 1
-- [ ] Does NOT jump to Section 3
+- [ ] `/foundation/brain.md` is written using `templates/brain-template.md`
+- [ ] All confirmed sections have real values — no `[Needs input]` left in a section the user completed
+- [ ] Any `.brain-draft.md` marker from a prior partial session is cleared
 
 ---
 
-### C6 — Partial state saved on quit
-**ID:** `wizard-partial-state-save`
+### C2 — Partial exit leaves a usable partial brain, not a blocked state
+**ID:** `write-partial-on-exit`
 **Starting condition:** Wizard running. User has confirmed Sections 1 and 2.
-**Input:** `"Stop for now, I'll come back later"` (or equivalent quit signal)
+**Input:** `"Stop for now, I'll come back later"`
 **Pass criteria:**
-- [ ] Skill acknowledges the pause and confirms progress is saved
-- [ ] Mentions `/foundation/.brain-draft.md` or equivalent save location
-- [ ] Tells user how to resume (run skill again)
-- [ ] Does NOT write `/foundation/brain.md` from incomplete answers
+- [ ] Skill confirms progress is saved and names how to resume
+- [ ] A partial, usable brain (or draft marker) exists for the confirmed sections
+- [ ] Skill does not write incomplete/unconfirmed sections as if they were final
 
 ---
 
-### C7 — Resume from draft on restart
-**ID:** `wizard-resume-from-draft`
-**Starting condition:** `/foundation/.brain-draft.md` exists with Sections 1–2 completed, stopped at Section 3 Q1.
+### C3 — Resume picks up from the correct section
+**ID:** `write-resume-from-draft`
+**Starting condition:** A draft/partial state exists with Sections 1–2 confirmed, stopped before Section 3.
 **Input:** `"Build my brain"` (new session)
 **Pass criteria:**
-- [ ] Skill detects the draft file
-- [ ] Offers to resume from where the user left off (not restart)
-- [ ] Names the section and question number where they stopped
-- [ ] Does NOT start from Section 1 Q1
+- [ ] Skill detects the partial state and offers to resume, not restart
+- [ ] Names the section where the user left off
+- [ ] Does not re-ask Section 1 or 2 questions
 
 ---
 
-### C8 — Brain written only after all confirmations
-**ID:** `wizard-brain-written-after-confirm`
-**Starting condition:** Wizard running. User has just confirmed Section 6 (Proof Points).
-**Input:** `"Yes, that looks good"` (Section 6 confirmation)
+## Category D — Health Audit (Step 4) (3 scenarios)
+
+### D1 — All 6 sections scored, with concrete fixes for gaps
+**ID:** `audit-full-scoring`
+**Starting condition:** Brain exists with a mix of specific and generic answers across sections.
+**Input:** `"Check brain health"`
 **Pass criteria:**
-- [ ] `/foundation/brain.md` written with all 31 variables populated
-- [ ] `/foundation/.brain-draft.md` deleted (or noted as deleted)
-- [ ] Success confirmation message shown (includes brain file path)
-- [ ] Step 9 routing question asked in the same or immediately following response
-- [ ] No blank or TBD values in the written brain file
+- [ ] All 6 sections (Product Context, ICP, Alternatives & Positioning, Voice & Tone, Market Context, Proof Points) are scored 0–100
+- [ ] Sections scoring below 50 get one concrete, specific fix — not "needs more detail"
+- [ ] Skill offers to jump straight into editing the weakest section
 
 ---
 
-## Category D — Legacy Migration (3 scenarios)
-
----
-
-### D1 — Legacy files detected and offered for migration
-**ID:** `legacy-detection-prompt`
-**Starting condition:** No `/foundation/brain.md`. `.agents/icp.md` and `.agents/alternatives-map.md` exist.
-**Input:** `"Build my brain"`
+### D2 — Generic field flagged even if technically non-empty
+**ID:** `audit-generic-field-flagged`
+**Starting condition:** Brain exists. ICP company size field literally contains "businesses of various sizes."
+**Input:** `"Check brain health"`
 **Pass criteria:**
-- [ ] Skill detects legacy files and names them
-- [ ] Offers [Yes, migrate] [No, start fresh] — not auto-migrating
-- [ ] First-run hook still shown (value statement), migration offer follows
-- [ ] Wizard does NOT start before user chooses an option
+- [ ] This field is flagged as a gap despite being non-empty
+- [ ] Score reflects genericness, not just presence of a value
+- [ ] Fix suggested asks for a specific number/range
 
 ---
 
-### D2 — Migration confirms field-by-field
-**ID:** `legacy-migration-field-confirm`
-**Starting condition:** User has chosen "Yes, migrate" from D1.
-**Input:** `"Yes, migrate the old files"`
+### D3 — Unquantified proof point flagged
+**ID:** `audit-unquantified-proof-point`
+**Starting condition:** Brain exists. Section 6 contains "High customer retention rate" with no number or source.
+**Input:** `"Check brain health"`
 **Pass criteria:**
-- [ ] Skill extracts fields from old files and shows them one section at a time
-- [ ] User is asked to confirm each extracted value before it's accepted
-- [ ] Skill does NOT write brain.md until all confirmations are received
-- [ ] User can correct any extracted value before it's written
+- [ ] Proof Points section score reflects the missing quantification
+- [ ] Fix suggests a specific number with a source (e.g. "89% retention, internal dashboard Q4 2025")
 
 ---
 
-### D3 — Legacy files not deleted after migration
-**ID:** `legacy-files-preserved`
-**Starting condition:** Migration completed successfully. brain.md written.
-**Input:** (Check output state after migration completes)
-**Pass criteria:**
-- [ ] `.agents/` legacy files still exist — not deleted
-- [ ] Skill confirms or notes that old files are preserved
-- [ ] No instruction to delete old files is given
+## Category E — Routing and Downstream Naming (Step 5) (2 scenarios)
 
----
-
-## Category E — Post-Setup Routing / Step 9 (9 scenarios)
-
-These confirm the skill always routes after setup and maps focus to the correct skills.
-
----
-
-### E1 — Routing always runs after full setup
-**ID:** `routing-always-after-setup`
-**Starting condition:** User has just completed a full brain build (all 6 sections).
+### E1 — Downstream skill named only if genuinely verified (Edge case)
+**ID:** `routing-only-verified-skills-named`
+**Starting condition:** Full brain build just completed.
 **Input:** Brain confirmation accepted (`"Yes"`)
 **Pass criteria:**
-- [ ] Step 9 routing question asked in the same response or immediately after
-- [ ] Question offers the 6 focus options
-- [ ] Not skipped even if brain was already partly populated
+- [ ] Skill states plainly that the brain is ready and other skills will read from it
+- [ ] Does not name a specific downstream skill unless it has been verified in this session to read the brain's real section structure correctly — per Operating Rule 4
+- [ ] If no skill is named, that's a pass, not a gap — an unverified name is a broken promise, not a helpful suggestion
 
 ---
 
-### E2 — Path 1: Launch
-**ID:** `routing-path-launch`
-**Starting condition:** Step 9 question has been shown.
-**Input:** `"Launching a product or feature"` (or option 1)
+### E2 — Wrong-skill request routed without brain wizard hijacking it
+**ID:** `routing-wrong-skill-request`
+**Starting condition:** Any state.
+**Input:** `"Help me build a competitive battlecard"`
 **Pass criteria:**
-- [ ] `go-to-market-strategy` surfaced with description
-- [ ] `hs-pre-mortem` surfaced with description
-- [ ] `hs-gaccs-brief` surfaced with description
-- [ ] No unrelated skills added (e.g. not hs-brainstorm-okrs)
-
----
-
-### E3 — Path 2: Positioning
-**ID:** `routing-path-positioning`
-**Starting condition:** Step 9 question has been shown.
-**Input:** `"Fixing or refreshing our positioning"` (or option 2)
-**Pass criteria:**
-- [ ] `hs-positioning-messaging` surfaced
-- [ ] `hs-alternatives-map` surfaced
-- [ ] `hs-value-prop-statements` surfaced
-
----
-
-### E4 — Path 3: Competitive
-**ID:** `routing-path-competitive`
-**Starting condition:** Step 9 question has been shown.
-**Input:** `"Building competitive intelligence"` (or option 3)
-**Pass criteria:**
-- [ ] `hs-competitive-battlecard` surfaced
-- [ ] `hs-ci-stakeholder-briefing` surfaced
-- [ ] `hs-alternatives-map` surfaced
-
----
-
-### E5 — Path 4: Buyers
-**ID:** `routing-path-buyers`
-**Starting condition:** Step 9 question has been shown.
-**Input:** `"Understanding our buyers better"` (or option 4)
-**Pass criteria:**
-- [ ] `hs-buyer-personas` surfaced
-- [ ] `hs-icp` surfaced
-- [ ] `hs-interview-summary` surfaced
-
----
-
-### E6 — Path 5: Sales enablement
-**ID:** `routing-path-sales`
-**Starting condition:** Step 9 question has been shown.
-**Input:** `"Enabling the sales team"` (or option 5)
-**Pass criteria:**
-- [ ] `hs-value-prop-statements` surfaced
-- [ ] `hs-competitive-battlecard` surfaced
-- [ ] `hs-stakeholder-maps` surfaced
-
----
-
-### E7 — Path 6: Quarterly planning
-**ID:** `routing-path-quarterly`
-**Starting condition:** Step 9 question has been shown.
-**Input:** `"Planning the quarter"` (or option 6)
-**Pass criteria:**
-- [ ] `hs-brainstorm-okrs` surfaced
-- [ ] `workflow-orchestrator` surfaced
-- [ ] `hs-prioritization-frameworks` surfaced
-
----
-
-### E8 — Senior/VP uplift
-**ID:** `routing-senior-uplift`
-**Starting condition:** Step 9 question shown. User has indicated VP or team-lead context earlier in session.
-**Input:** Any path choice (e.g. option 1)
-**Pass criteria:**
-- [ ] `workflow-orchestrator` surfaced in addition to path skills
-- [ ] `hs-ci-stakeholder-briefing` surfaced in addition to path skills
-- [ ] Path-specific skills still listed (not replaced by senior additions)
-
----
-
-### E9 — Routing also runs after single-section edit
-**ID:** `routing-after-edit`
-**Starting condition:** User edited only Section 2 ICP (not a full rebuild).
-**Input:** Section 2 confirmation accepted
-**Pass criteria:**
-- [ ] Step 9 routing question asked after the edit completes
-- [ ] Not skipped just because it was an edit, not a full build
-
----
-
-## Category F — Brain File Quality (5 scenarios)
-
----
-
-### F1 — No placeholders in written brain
-**ID:** `quality-no-placeholders`
-**Starting condition:** Full wizard completed with all sections confirmed.
-**Input:** (Check brain.md after write)
-**Pass criteria:**
-- [ ] brain.md contains no empty fields
-- [ ] brain.md contains no "TBD", "Placeholder", or "[fill in]" text
-- [ ] All 31 variables have non-empty values
-
----
-
-### F2 — Alternatives stored as named products
-**ID:** `quality-alternatives-named`
-**Starting condition:** Wizard on Section 3 Q1 (alternatives).
-**Input:** `"Salesforce, HubSpot, and manual spreadsheets"`
-**Pass criteria:**
-- [ ] Stored as-is: Salesforce, HubSpot, manual spreadsheets
-- [ ] Not normalised to "enterprise CRM" or "legacy tools"
-- [ ] Status quo (manual spreadsheets) recorded separately as `alternatives_status_quo`
-
----
-
-### F3 — Vague alternatives rejected
-**ID:** `quality-vague-alternatives-rejected`
-**Starting condition:** Wizard on Section 3 Q1 (alternatives).
-**Input:** `"The big CRMs and some spreadsheets"`
-**Pass criteria:**
-- [ ] Skill rejects this answer
-- [ ] Asks for named products buyers actually compare you to
-- [ ] Provides example of acceptable format (e.g. "Salesforce, HubSpot, Pipedrive")
-
----
-
-### F4 — Unquantified proof point rejected
-**ID:** `quality-proof-point-quantified`
-**Starting condition:** Wizard on Section 6 Q1 (metrics).
-**Input:** `"High customer retention rate"`
-**Pass criteria:**
-- [ ] Skill rejects "high" as non-specific
-- [ ] Asks for a number with a source (e.g. "89% retention rate, internal dashboard Q4 2025")
-- [ ] Does not proceed until a number is provided
-
----
-
-### F5 — Direct edit attempt redirected
-**ID:** `quality-no-direct-edit`
-**Starting condition:** Brain exists. User asks about editing directly.
-**Input:** `"Can I just edit brain.md directly in my text editor?"`
-**Pass criteria:**
-- [ ] Skill does NOT say "yes, go ahead"
-- [ ] Redirects to `--edit-section [1-6]` wizard flow or equivalent
-- [ ] Explains why direct edits bypass validation
-
----
-
-## Category G — Edge Cases (3 scenarios)
-
----
-
-### G1 — Foundation directory created if missing
-**ID:** `edge-foundation-dir-missing`
-**Starting condition:** No `/foundation/` directory exists at all.
-**Input:** User completes full wizard and confirms all sections.
-**Pass criteria:**
-- [ ] Skill creates `/foundation/` directory before writing brain.md
-- [ ] No error thrown about missing directory
-- [ ] brain.md written successfully
-
----
-
-### G2 — Placeholder section flagged before skill runs
-**ID:** `edge-placeholder-section-flagged`
-**Starting condition:** brain.md exists. Section 3 (Alternatives) is marked as Placeholder or empty.
-**Input:** Another skill (e.g. hs-competitive-battlecard) triggers and reads brain.
-**Pass criteria:**
-- [ ] Skill flags Section 3 as incomplete before the dependent skill runs
-- [ ] Warning includes which skill is affected and why
-- [ ] Dependent skill is not blocked — user can proceed but is warned
-
----
-
-### G3 — "Not now" exits gracefully
-**ID:** `edge-not-now-graceful-exit`
-**Starting condition:** No brain exists. First-run hook shown with three options.
-**Input:** `"Not now — remind me later"` (or option 2)
-**Pass criteria:**
-- [ ] Skill exits cleanly without starting the wizard
-- [ ] No guilt message or repeated prompt
-- [ ] Simple acknowledgement: how to restart when ready
-- [ ] Session ends without /foundation/brain.md being written
+- [ ] The brain wizard does not start in response to this request
+- [ ] Skill does not claim to handle competitive battlecard output itself
 
 ---
 
@@ -495,7 +226,7 @@ Use this table to track runs. Update after each eval session.
 
 | Run date | Version | Scenarios passed | Scenarios failed | Failed IDs | Notes |
 |---|---|---|---|---|---|
-| 2026-06-12 | v2.3.0 | — | — | — | Initial eval file created — not yet run |
+| 2026-08-22 | v3.0.0 | — | — | — | Eval file fully rewritten against the real 5-step SKILL.md — the prior 37-scenario version tested a first-run-hook/wizard/migration/Step-9-routing design that no longer exists in SKILL.md, and used skill names from an old naming convention throughout |
 
 ---
 
@@ -504,12 +235,3 @@ Use this table to track runs. Update after each eval session.
 | Gap ID | Description | Scenario to add | Priority |
 |---|---|---|---|
 | — | — | — | — |
-
----
-
-## Changelog
-
-### v1.0.0 — 2026-06-12
-Initial eval file. 37 scenarios across 7 categories: Routing (6), First-Run Hook (3),
-Wizard Flow (8), Legacy Migration (3), Post-Setup Routing (9), Brain File Quality (5),
-Edge Cases (3). Threshold set at 32/37 (86%).

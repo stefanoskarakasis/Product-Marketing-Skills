@@ -19,34 +19,23 @@ This repo also serves as a **Claude Code plugin marketplace** via
 ```
 Product-Marketing-Skills/
 ├── .claude-plugin/
-│   └── marketplace.json        # Claude Code plugin marketplace manifest
+│   ├── marketplace.json        # Claude Code plugin marketplace manifest
+│   └── plugin.json             # Root plugin manifest
+├── product-marketing-context/  # The brain — pmm-foundation plugin
 ├── pmm-go-to-market/           # Go-to-market strategy + workflow orchestration
 ├── pmm-positioning/            # Positioning & messaging
 ├── pmm-execution/              # Day-to-day PMM execution
 ├── pmm-toolkit/                # PMM utilities
+├── pmm-meta/                   # Meta skills (skill quality, learning, verification)
+├── context/                    # Guardrails: meta-patterns.md, read by every skill's pre-flight
 ├── CONTRIBUTING.md
+├── SKILL-SPEC.md                # Skill authoring standard
 ├── LICENSE
 ├── README.md
-├── AGENTS.md                   # AI agent guidelines
-└── VERSIONS.md                 # Skill version tracking
+├── QUICK-START.md
+├── CHANGELOG.md                 # Repo-wide release log — see Versioning below
+└── AGENTS.md                    # AI agent guidelines
 ```
-
-Product-Marketing-Skills/ 
-├── .claude-plugin/ │ 
-├── marketplace.json # Claude Code plugin marketplace manifest 
-│ └── plugin.json # Root plugin manifest 
-├── product-marketing-context/ # The brain — pmm-foundation plugin 
-├── pmm-go-to-market/ # Go-to-market strategy + workflow orchestration 
-├── pmm-positioning/ # Positioning & messaging ├── pmm-execution/ # Day-to-day PMM execution 
-├── pmm-toolkit/ # PMM utilities 
-├── pmm-meta/ # Meta skills (skill quality, learning, verification) 
-├── context/ # Shared guardrail/pattern files (scaffolding, not yet populated) 
-├── sessions/ # Shared session-learning files (scaffolding, not yet populated) 
-├── CONTRIBUTING.md ├── SKILL-SPEC.md # Skill authoring standard 
-├── LICENSE 
-├── README.md 
-├── QUICK-START.md 
-└── AGENTS.md
 
 
 ## Build / Lint / Test Commands
@@ -80,24 +69,29 @@ description: What this skill does and when to use it. Include trigger phrases.
 - No consecutive hyphens (`--`)
 - Must match parent directory name exactly
 
-**Known exceptions in this repo today, being corrected:** several skill
-folders (`retro`, `positioning-messaging`, `pmm-resume`, `privacy-policy`,
-`writing-assistant`, `experiment-doc`) currently have a `name:` field in
-their frontmatter that doesn't match their folder name. This is a tracked
-issue, not an intentional pattern — new skills must match exactly.
+**Known exception in this repo today:** the `experiment-doc` skill folder
+has a `name:` field of `experiment-doc-builder` in its frontmatter, which
+doesn't match the folder name. Structure resolution in this repo is by
+directory (via each plugin's `plugin.json` `"skills"` pointer), not by the
+frontmatter `name:` field, so this doesn't break anything functionally —
+but it should still be fixed to match exactly. No other skill in the repo
+currently has this mismatch.
 
 ## Brain Integration
 
 Brain-dependent skills read from `/foundation/brain.md` — a shared context
-layer built by the `product-marketing-context` skill. It has 6 core
-sections (Product Context, ICP, Alternatives & Positioning, Voice & Tone,
-Market Context, Proof Points) plus an optional Section 7 (Strategy Layer:
-advantages, perceptions, revenue levers).
+layer built by the `product-marketing-context` skill. It has exactly 6
+sections: Product Context, ICP Definition, Alternatives & Positioning,
+Voice & Tone, Market Context, and Proof Points Registry. There is no
+Section 7 — earlier drafts of several skills invented one (variously
+called "Strategy Layer," "Launch History," or "Meta-Learnings") and every
+instance found has been removed. If you see a skill reference a brain
+Section 7, that's a bug — file it or fix it, don't treat it as real.
 
-**Status:** not every skill's brain-read/write claims have been verified
-against this schema yet — see `product-marketing-context/ROADMAP.md` for
-the correction plan in progress. Don't assume a skill's stated brain
-section references are accurate until that work is marked done there.
+**Status:** every skill's brain-read/write claims have been verified
+against this 6-section schema as of Workstream 4b. If a skill you're
+touching cites a section number that doesn't match this list, treat that
+as a bug in the skill, not in this document.
 
 When using brain-dependent skills, ensure `/foundation/brain.md` exists.
 If not, run `product-marketing-context` to build it.

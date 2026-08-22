@@ -1,6 +1,6 @@
 ---
 name: positioning-messaging
-version: 2.1.0
+version: 2.2.0
 description: >
   Use for positioning statement, messaging hierarchy, homepage copy, persona cards,
   messaging audit, value prop, or elevator pitch. Trigger when user says "we sound
@@ -14,29 +14,23 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-06-15
+last_updated: 2026-08-22
 ---
 
 ## Step 0: Pre-Flight
 
-### Load Context & Learnings
+### Load Context & Guardrails
 
 1. **Load Brain** (REQUIRED)
    - Read `/foundation/brain.md`
-   - Require: Section 1 (strategy), Section 2 (ICP), Section 4 (alternatives)
+   - Require: Section 1 (Product Context), Section 2 (ICP), Section 3 (Alternatives & Positioning)
    - If missing → Offer to run product-marketing-context
 
 2. **Load Active Guardrails**
-   - Read `/context/meta-patterns.yml`
-   - Display: `"Positioning guardrails: [patterns]"`
-
-3. **Load Quality Learnings**
-   - Read `/sessions/quality-learnings.md`
-   - Look for "positioning" or "messaging" patterns
-   - Display: `"From prior positioning runs: clarity matters (+40% CTR). Applying to this brief."`
-
-4. **Log Execution**
-   - Log to `/skill-sessions.md`: positioning_skill, timestamp
+   - If `/context/meta-patterns.md` exists in the user's workspace: if a pattern
+     has actually fired 2+ times in prior positioning runs logged there, surface
+     it now
+   - If it doesn't exist, skip this step silently
 
 ---
 
@@ -128,12 +122,7 @@ implied category. Report as: `"Your current materials say: [findings]"`
 
 - **Context keys:**
   - `/foundation/brain.md` — preferred. Sections 1 (product), 2 (ICP),
-    3 (alternatives), 5 (voice) if available
-  - `knowledge/rules.md` — load at session start; apply confirmed patterns
-  - `knowledge/hypotheses.md` — load at Phase 5; check for active tests
-  - `references/positioning-worksheet.md` — load at Phase 3
-  - `references/example-messaging-doc.md` — load at Phase 6 as quality bar
-  - `references/validation-playbook.md` — load at Phase 6 or on request
+    3 (alternatives), 4 (voice) if available
 
 ---
 
@@ -235,9 +224,7 @@ Present to user. Await selection. Do not proceed to Phase 3 without a chosen dir
 
 ### Phase 3: Positioning Development
 
-Load `references/positioning-worksheet.md`. Follow it exactly.
-
-Dunford sequence:
+Follow the Dunford sequence:
 
 1. Competitive alternatives (from Phase 2B)
 2. Unique attributes — specific only ("3-click onboarding" not "better UX")
@@ -281,9 +268,6 @@ one objection pre-handled verbatim · stage-appropriate CTA
 
 ### Phase 5: Differentiation Stress-Test
 
-Load `knowledge/rules.md` and `knowledge/hypotheses.md`. Apply confirmed rules
-first, then check hypotheses for active tests.
-
 4-question test per differentiator. YES or NO only:
 
 1. **TRUE?** — Provable with evidence a skeptical buyer accepts
@@ -301,10 +285,8 @@ Scoring (no exceptions):
 
 ### Phase 6: Output Packaging
 
-Load `references/example-messaging-doc.md`. That is the quality bar.
-
-**Self-Verification Gate** — binary pass/fail. Re-enter named phase on any failure.
-Do not deliver with a caveat instead of a fix.
+**Self-Verification Gate** — binary pass/fail, 7 checks. Re-enter named phase on
+any failure. Do not deliver with a caveat instead of a fix.
 
 | Check | Pass condition | Fail → |
 |---|---|---|
@@ -337,13 +319,15 @@ competitive playbook with "never say" column
 No placeholders.
 
 **All modes include:** Approved language · Forbidden language + reason ·
-Version + review date · Next steps from `references/validation-playbook.md`
+Version + review date · Next steps
 
 ---
 
 ## Outputs
 
-- **Files written:** n.v.t. — outputs delivered in chat only
+- **Files written:** n.v.t. — outputs delivered in chat only. If the user wants
+  this output saved anywhere, ask where — this skill doesn't write to any file
+  on its own.
 
 - **Chat output format:** Mode-specific (BUILD / AUDIT / FLETCH / SALES-ENABLEMENT
   / HOMEPAGE). All modes include approved/forbidden language list, version, review
@@ -366,16 +350,15 @@ Version + review date · Next steps from `references/validation-playbook.md`
 
 ## Do Not Use For
 
-- **product-marketing-context** — when the task is buyer profiling or market
+- **product-marketing-context** — when the task is buyer profiling, ICP
+  definition (Section 2), or mapping competitive alternatives (Section 3)
+  rather than producing positioning output
 
 - **value-proposition** — when you only need segment-specific value props
   without a full messaging hierarchy
 
-- **(no dedicated skill yet)** — when building sales competitive response cards;
-
-- **product-marketing-context** — when the primary need is ICP definition (Section 2), not positioning output
-
-- **product-marketing-context** — when the primary need is mapping competitive
+- **(no dedicated skill yet)** — sales competitive response cards; handle
+  within this skill's SALES-ENABLEMENT mode instead
 
 - **experiment-doc-builder** — when testing messaging assumptions; this skill
   builds messaging, not validates it experimentally
@@ -402,41 +385,6 @@ Run HOMEPAGE mode: production-ready hero + subhead + pillars + CTA.
 ### /settings
 Re-run the Onboarding block. Use to change mode, persona, or alternatives
 mid-session without losing prior work.
-
----
-
-## Learning Mode Close
-
-At session end:
-
-> "Run Learning Mode close? I'll log what worked and update the skill's memory."
-
-If yes, in order:
-
-1. Check `knowledge/rules.md` — demote any rule contradicted this session
-2. Check `knowledge/hypotheses.md` — promote any confirmed 3+ times; log new
-   observations
-3. Check `decisions/INDEX.md` — log any structural decision made this session
-4. Append to `sessions/log.md` using the session format
-5. Update `knowledge/INDEX.md` status counts if rules/hypotheses changed
-
-**No file is written without explicit user approval. No updates mid-session.**
-
----
-
-## Reference Files
-
-| File | Load when |
-|---|---|
-| `knowledge/INDEX.md` | Session start. Always first. |
-| `knowledge/rules.md` | Session start + Phase 5 |
-| `knowledge/hypotheses.md` | Phase 5 + Learning Mode close |
-| `knowledge/false-beliefs/catalog.md` | AUDIT mode + diagnosing weak positioning |
-| `decisions/INDEX.md` | Before any structural decision (category, segment, evidence tier) |
-| `references/positioning-worksheet.md` | Phase 3 |
-| `references/example-messaging-doc.md` | Phase 6 |
-| `references/validation-playbook.md` | Phase 6 + on request |
-| `sessions/log.md` | Learning Mode close only |
 
 ---
 
@@ -484,71 +432,3 @@ incomplete output.
 | Jargon free | Zero forbidden terms | Yes |
 | Vision flags resolved | All `[VISION FLAG]` items addressed or rejected | Yes |
 | Mode format correct | Output matches expected format for selected mode | Yes |
-
----
-
-## Self-Improvement Loop
-
-### Before every session:
-
-1. Load `knowledge/INDEX.md` — load `knowledge/rules.md` and
-   `knowledge/hypotheses.md`
-
-2. Check `decisions/INDEX.md` for any prior structural decisions relevant to
-   this product/domain
-
-3. Parse all attached images before reading the user's text
-
-4. Run Onboarding block
-
-### After every session where output was produced:
-
-1. Extract any positioning pattern → `knowledge/positioning/patterns.md`
-
-2. If the same stress-test failure appears 3+ times → propose rule addition
-   to `knowledge/rules.md`
-
-3. If a competitor alternative was underestimated 3+ times → propose update
-   to `knowledge/competitive-blind-spots.md`
-
-4. Append session summary to `sessions/log.md`
-
-**Self-Improvement Trigger format — surface before encoding, never silently:**
-
-```
-🔁 SELF-IMPROVEMENT TRIGGER
-Pattern: [what was observed this session]
-Proposed update: [exact wording of what would be added or changed]
-Location: [file path]
-Awaiting approval before encoding.
-```
-
----
-
-## Changelog
-
-### v2.1.0 — 2026-06-15
-Added Onboarding block (setup wizard) as a standalone section before Trigger.
-Added `/settings` command to re-run Onboarding mid-session. Updated Operating
-Rules to 10 rules (was 8) — added onboarding enforcement and settings reset rule.
-Added Quality Gate row for Onboarding completion check. Fixed Self-Improvement
-Trigger format. Description expanded with additional trigger phrases. Evals file
-added at `evals/evals.json`. Added Step 0 pre-flight to load brain, guardrails,
-and learnings from prior positioning runs.
-
-Architecture decisions:
-- Onboarding runs before Phase 1, not inside it — separates configuration from
-  discovery
-- `/settings` command preserves session work while resetting configuration
-- Trigger format block is a standalone declared section per spec requirement
-- Onboarding block checks brain, sets mode, confirms persona, confirms alternatives,
-  and parses images — 5 explicit steps
-- Step 0 validates learning infrastructure and loads prior positioning patterns
-
-### v2.0.0 — 2026-06-11
-Full rebuild. Added all 7 required sections. 6-phase discovery flow formalized.
-Stress-test 4-question rubric. 5 output modes. Evidence tier classification.
-Operating rules + Quality Gate + Self-Improvement Loop.
-
-### v1.0.0 — [date]
-Initial build. Phase-based positioning framework.

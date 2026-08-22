@@ -1,209 +1,168 @@
 ---
 name: meta-verify
-version: 2.0.0
-description: Predicts success confidence for GTM outputs, scores collaboration readiness (ownership/shareability/learnings), suggests scope expansion (T2→T1), and calibrates predictions over time—enabling multiplayer adoption and self-improving GTM systems.
+version: 3.0.0
+description: >
+  Runs a second-pass quality check on a skill's output before it goes out —
+  re-checks it against the originating skill's own Quality Gate and
+  Operating Rules, and returns specific fixes rather than a pass/fail
+  verdict alone. Trigger on: "verify this", "check this before I send it",
+  "second-pass this brief", "did that pass quality gate", or any request to
+  re-check a skill's output before it's delivered externally.
 metadata:
-  phase: 1D
-  frameworks: ["Positioning rigor", "2026 GTM adoption lens", "Multiplayer Claude framework"]
-  last_updated: 2026-08-04
+  author: Stefanos Karakasis
+  context: context-agnostic
+  quality_gate: true
+last_updated: 2026-08-22
 ---
 
-# Meta-Verify
+# meta-verify
 
-Closes the compounding loop. Predicts success confidence, scores collaboration readiness, suggests scope expansion, calibrates predictions over time.
+A second pair of eyes on a skill's output, applying the exact standard the
+originating skill already committed to — its own `## Quality Gate` table and
+`## Operating Rules`. Catches what the first pass missed, especially when
+the same session that produced the output is also the one that's about to
+mark it done.
 
----
+This isn't a second opinion using a different, invented rubric — it's a
+faithful re-application of the standard that skill already declared for
+itself. If a skill's own Quality Gate is weak, that's a `meta-review`
+finding against that skill's `SKILL.md`, not something this skill
+compensates for by inventing its own scoring.
 
-## When to Use
+## Trigger
 
-**Trigger:** After quality review completes. Use meta-verify to:
-- Predict success confidence (will this output hit targets at its tier?)
-- Score collaboration readiness (is this shareable? will team adopt?)
-- Suggest scope expansion (should we upgrade T2 to T1?)
-- Track calibration (are our predictions improving?)
+- **When:** A skill has produced output and it's about to be delivered
+  externally (sent to sales, shared with leadership, published) — a second
+  pass before it leaves the building.
 
-**Manual trigger:** User says "verify this", "will this succeed?", "check collaboration", "should we go T1?"
+- **Not for:** Auditing a `SKILL.md`'s own structure → use `meta-review`.
+  Extracting learnings from a completed session → use `meta-learn`.
+  Detecting patterns across sessions → use `meta-synthesis`.
 
----
+- **Example prompts:**
+  - "Check this positioning brief before I send it"
+  - "Verify the last GTM strategy output"
+  - "Did this retro actually pass its own quality gate?"
+  - "Second-pass this before it goes to leadership"
 
-## Input
+## Inputs
 
-From quality review output:
-- Skill output (brief, positioning, beachhead, pre-mortem, etc.)
-- Quality score (0-100)
-- Launch tier (T1/T2/T3/T4)
-- Guardrails triggered (count, severity)
-- Team learnings applied (yes/no)
+- **Args:** The output to verify, and which skill produced it. `n.v.t.` if
+  invoked immediately after that skill's own session — infer both from
+  context.
+- **Defaults:** If the originating skill isn't obvious from the output
+  itself, ask.
+- **Context keys:** The originating skill's own `SKILL.md` — specifically
+  its `## Quality Gate` and `## Operating Rules` sections. No brain context
+  needed beyond what the originating skill itself required.
 
-Context files (pre-flight load):
-- `/config/confidence-model.yml` — Base confidences, quality adjustments, guardrail penalties
-- `/config/collaboration-signals.yml` — Ownership/shareability/learnings patterns
-- `/sessions/quality-learnings.md` — Team insights
-- `/sessions/collaboration-log.md` — Adoption tracking
-- `/context/skill-sessions.md` — Execution history
+## Pre-flight
 
----
+- Load the originating skill's `SKILL.md`. If it doesn't exist or doesn't
+  declare `quality_gate: true`, say so — there's no standard to re-check
+  against, and this skill isn't the place to invent one on the spot.
+- This skill is context-agnostic. It applies the originating skill's own
+  declared standard; it does not load `/foundation/brain.md` independently.
 
-## Output
+## Steps
 
-**Confidence Prediction:**
+### Step 1: Load the Originating Standard
+
+Read the originating skill's `## Quality Gate` table and `## Operating
+Rules` in full. These are the only standard this pass applies — not a
+generic rubric, not this skill's own opinion of what "good" looks like.
+
+### Step 2: Re-run Every Quality Gate Check
+
+For each row in the originating skill's Quality Gate table, check the actual
+output against it independently — don't trust that the first pass marked it
+correctly. Mark each pass/fail with the specific evidence.
+
+```markdown
+## Second-Pass Verification — [skill-name] output
+
+| Check (from [skill-name]'s own Quality Gate) | Pass? | Evidence |
+|---|---|---|
+| [Check name] | ✅ / ❌ | [Specific quote or observation] |
 ```
-Success confidence: 72% ± 12% (60-84% range)
-Reasoning: Base T2 (70%) + Quality (78>75: +2%) - Guardrail hit (-3%) + Team strong (+3%)
-Recommendation: Proceed with launch
+
+### Step 3: Spot-Check Operating Rules
+
+Operating Rules aren't a checklist — they're standing constraints. Scan the
+output against each rule from the originating skill and flag any it appears
+to violate, even if the Quality Gate table doesn't have a matching row for
+it.
+
+### Step 4: Report
+
+```markdown
+## meta-verify — [skill-name] output
+
+**Quality Gate:** [N]/[total] passed
+**Operating Rules:** [clean / N flagged]
+
+### Failed checks
+- [Check] — [specific evidence of the gap, and what would fix it]
+
+### Rule flags
+- [Rule] — [where the output appears to violate it]
+
+### Verdict
+[CLEARS SECOND PASS / NEEDS FIXES BEFORE DELIVERY] — [one sentence]
 ```
 
-**Collaboration Readiness:**
-```
-Collaboration score: 78% (35/45 points)
-  Ownership clarity: 12/15 (owner explicit, handoff clear)
-  Skill-shareability: 13/15 (modular, evals exist, interface mostly clear)
-  Learnings hooks: 10/15 (meta-learn can extract patterns, partially updates quality-learnings)
-Recommendation: SHAREABLE — push to GitHub with minor fixes
-```
+If everything passes, say so plainly. Don't invent soft findings to seem
+thorough — a clean pass is a legitimate, useful result.
 
-**Scope Expansion:**
-```
-Current: T2 at 78 quality, 72% confidence
-T1 thresholds: 90 quality (gap: -12), 75% confidence (gap: -3)
-Recommendation: Stay T2. Fix now, resubmit for T1 evaluation in 30 days.
-```
+## Outputs
 
----
+- **Files written:** n.v.t. — this skill produces a report only.
+- **Chat output format:** The verification report from Step 4.
+- **External side effects:** n.v.t.
 
-## Steps (14 Total)
+## Verification
 
-### STEP 0: PRE-FLIGHT (Load Context)
+- Every row of the originating skill's actual Quality Gate table was
+  re-checked, not assumed passed from the first run.
+- Operating Rules were scanned even where no Quality Gate row corresponds
+  to them.
+- Every failed check has specific evidence, not a generic "doesn't meet
+  standard."
 
-Load: confidence-model.yml, collaboration-signals.yml, quality-learnings.md, collaboration-log.md, confidence-log.md, skill-sessions.md
+## Do Not Use For
 
-Gate check: If no output provided, ask user for quality review output.
-
----
-
-### STEP 1: Load Historical Predictions (1 min)
-
-Load `/sessions/confidence-log.md` (last 30 days). Calculate % of predictions within ±10% of actual. Check for calibration drift.
-
----
-
-### STEP 2: Assess Output Quality + Context (2 min)
-
-Load: quality score, tier, guardrails triggered, team learnings applied, team track record.
-
----
-
-### STEP 3: Predict Success Confidence (3 min)
-
-Load confidence model. Base T2 confidence: 70%. Adjustments: Quality +/-2-5%, Guardrails -3% each, Team capability ±3%. Result: 72% ± 12%.
-
----
-
-### STEP 4: Suggest Scope Expansion (2 min)
-
-Check: quality vs. T1 min (90), confidence vs. T1 min (75%), collaboration vs. T1 min (65). Decision: Upgrade to T1 / On fence / Stay current.
-
----
-
-### STEP 5: Assess Collaboration Readiness (3 min)
-
-Score three dimensions:
-- **A. Ownership Clarity (0-15 pts):** Owner explicit? Handoff clear? Maintenance plan?
-- **B. Skill-Shareability (0-15 pts):** Modular? Evals exist? Interface clear?
-- **C. Learnings Hooks (0-15 pts):** Meta-learn hook? Will quality-learnings update? Structure consistent?
-
-Total: 0-45 pts (0-100%).
-
----
-
-### STEP 6: Assess Context-Engineering Rigor (2 min)
-
-Check: Does skill pull from MCPs? Update /foundation/brain.md? Become guardrail material? Score: 0-15 pts.
-
----
-
-### STEP 7: Assess Multiplayer Adoption Curve (2 min)
-
-Score three adoption dimensions:
-- **A. Multiplayer Reach (0-15 pts):** 8-10 people (14-15), 4-7 people (10-13), 1-3 people (5-9), just creator (0-4)
-- **B. Skill Multiplier (0-15 pts):** 3+ skills (15), 1-2 skills (5-10), 0 skills (0)
-- **C. Model Fit (0-15 pts):** Team GitHub + packaged + adoption pattern (15), partial (9-14), none (0-8)
-
-Total: 0-45 pts (0-100%).
-
----
-
-### STEP 8: Benchmark Comparison (1 min)
-
-Compare quality, confidence, collaboration to T2 averages. Flag if above/below.
-
----
-
-### STEP 9: Flag Calibration Drift (1 min)
-
-Check 30-day calibration trends. Calculate over-prediction %, under-prediction %. Flag if drift > 5%.
-
----
-
-### STEP 10: Surface Risk Factors + Opportunities (1 min)
-
-Review guardrails. Identify what pushes confidence down (to 60%) and up (to 84%).
-
----
-
-### STEP 11: Recommend Next Action (1 min)
-
-If confidence > 75%: "Proceed with launch". If 60-74%: "Proceed with monitoring" or "Consider fixes". If < 60%: "Block and fix". If collaboration < 65: "Fix before sharing" or "Push as-is, flag for rework".
-
----
-
-### STEP 12: Update Calibration Model (1 min)
-
-When actual outcome known: Update confidence-log.md and collaboration-log.md. Model improves 1-2% accuracy/week.
-
----
-
-### STEP 13: Feed Back to Meta-Learn (1 min)
-
-Log prediction to confidence-log.md and collaboration-log.md. Will update when outcome known.
-
----
-
-### STEP 14: Close + Link to Meta-Learn (1 min)
-
-Summarize: confidence, collaboration, scope, adoption. Next action: launch/monitor/fix. Re-verify in 30 days.
-
----
+- **meta-review** — when the task is auditing the *skill file itself*
+  (`SKILL.md` structure) rather than one piece of output it produced
+- **meta-learn** — when the task is capturing what the session taught the
+  user, not re-checking output correctness
+- **meta-synthesis** — when the task is finding a pattern across multiple
+  sessions, not a single output's quality
 
 ## Operating Rules
 
-1. Confidence is probabilistic, not point estimate.
-2. Calibration improves with data.
-3. Each guardrail ≈ 3% penalty.
-4. Strong team → +3%, weak → -3%.
-5. Quality below tier minimum → confidence capped.
-6. Scope expansion requires quality 85+, confidence 75+, collaboration 65+.
-7. Collaboration independent of confidence (high quality ≠ high adoption).
-8. Ownership explicit required (no owner → collab capped at 50%).
-9. Multiplayer adoption compounds (3+ skills = flywheel).
-10. Context-engineering rigor feeds the brain.
-11. Predictions feed meta-learn for continuous improvement.
-12. Collaboration model calibrates (35+ → 80%+ adoption, <25 → <30%).
-
----
+- **Apply the originating skill's own standard — never a substitute one.**
+  This skill has no independent rubric. If the originating skill's Quality
+  Gate is thin, that's a finding for `meta-review` against that skill, not
+  something to paper over here with invented criteria.
+- **Re-check independently, don't trust the first pass.** The value of a
+  second pass is that it doesn't inherit the first pass's blind spots.
+- **Evidence, not adjectives.** Every fail cites the specific text or gap —
+  "positioning statement absent" not "positioning could be stronger."
+- **Operating Rules matter even without a matching gate row.** A skill's
+  rules are binding regardless of whether its own Quality Gate table
+  happens to test each one.
+- **A clean pass is a real result.** Don't manufacture findings to justify
+  having run. If nothing failed, report that plainly.
+- **No skill has a quality gate → no verification possible.** If
+  `quality_gate: false` or the section is missing, say clearly that there's
+  no standard to check against rather than inventing one.
 
 ## Quality Gate
 
-Before finalizing, verify all 15 checkpoints: quality loaded, tier identified, guardrails assessed, team capability considered, confidence calculated, confidence band set, scope expansion logic applied, collaboration scored, context rigor assessed, adoption curve evaluated, calibration drift checked, risk factors surfaced, collaboration history reviewed, meta-learn linkage made, next action clear.
-
----
-
-## Related Files
-
-- `/config/confidence-model.yml` — Prediction model with tier baselines
-- `/config/collaboration-signals.yml` — Ownership/shareability/learnings rubrics
-- `/context/quality-trends.md` — Quality baseline by tier
-- `/context/skill-sessions.md` — Execution log
-- `/sessions/quality-learnings.md` — Team insights
-- `/sessions/confidence-log.md` — Predictions + actual outcomes
-- `/sessions/collaboration-log.md` — Adoption tracking
+| Check | Standard | Pass = |
+|---|---|---|
+| Originating skill loaded | `SKILL.md` and its own Quality Gate read before scoring | Yes |
+| Every gate row re-checked | No row skipped or assumed from first pass | Yes |
+| Operating Rules scanned | Checked even without a matching gate row | Yes |
+| Evidence specific | Every fail cites the actual gap, not a vague label | Yes |
+| Verdict stated plainly | Clear pass/needs-fixes call, not just a score | Yes |

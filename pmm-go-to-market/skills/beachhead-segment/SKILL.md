@@ -1,8 +1,8 @@
 ---
 name: beachhead-segment
-version: 2.0.0
+version: 2.1.0
 description: >
-  Identifies and scores your highest-priority beachhead segment using four-dimension scoring (Burning Pain, Willingness to Pay, Winnability, Referral Potential) with blocking gates; reads brain context (ICP, positioning, competitive landscape, proof points) and guardrails from prior beachhead decisions; writes confirmed beachhead to brain Section 2; logs session data to /context/skill-sessions.md for meta-synthesis pattern detection and compounds learnings over time.
+  Identifies and scores your highest-priority beachhead segment using four-dimension scoring (Burning Pain, Willingness to Pay, Winnability, Referral Potential) with blocking gates. Reads brain context (ICP, positioning, competitive landscape, proof points) and, when available, guardrails from prior beachhead decisions the user has logged. Writes confirmed beachhead to brain Section 2, on explicit confirmation.
 ---
 
 # Beachhead-Segment — Skill
@@ -11,9 +11,9 @@ description: >
 
 Identifies the highest-probability segment to dominate first — before expanding. This is the wedge. Everything else (positioning, GTM strategy, proof points) follows from getting this right.
 
-The skill runs in 7 steps:
+The skill runs in 6 steps:
 
-**Step 0** — Load brain context (ICP, positioning, competitive landscape, proof points) and guardrails from `/context/meta-patterns.md` (e.g., "segments with Burning Pain <3 have never produced sustainable beachheads").
+**Step 0** — Load brain context (ICP, positioning, competitive landscape, proof points) and, if the user maintains `/context/meta-patterns.md`, guardrails logged there.
 
 **Step 1** — Identify candidates: Name 2–5 segments or ask user to decompose current ICP.
 
@@ -27,15 +27,13 @@ The skill runs in 7 steps:
 
 **Step 6** — Update brain Section 2 with confirmed beachhead (on user confirmation).
 
-**Step 7** — Log session to `/context/skill-sessions.md` with quality score, assumption flags, confidence assessment, guardrails triggered, and brain updates proposed.
-
 ---
 
 ## Step 0 — Pre-Flight: Load Context & Surface Guardrails
 
 Before intake, load:
 - **Brain context** (Sections 2, 3, 4, 5): ICP, positioning, competitive landscape, proof points — these anchor all four-dimension scoring
-- **Guardrails** from `/context/meta-patterns.md`: If a pattern fired 2+ times in prior beachhead decisions (e.g., "Referral Potential <3 with high Pain often fails in year 2," "Winnability <3 despite Pain ≥4 leads to resource churn"), surface it now
+- **Guardrails** from `/context/meta-patterns.md`, if that file exists in the user's workspace: if a pattern has actually fired 2+ times in prior beachhead decisions logged there, surface it now
 
 **Surface guardrails like this:**
 
@@ -50,7 +48,7 @@ Quick check: Does this apply to your candidates?
 - If NO → Let's flag it if it emerges
 ```
 
-You can skip a guardrail if you disagree, but you'll see it first.
+You can skip a guardrail if you disagree, but you'll see it first. If `/context/meta-patterns.md` doesn't exist, skip this step silently.
 
 **Gate check — block if brain is missing:**
 If `/foundation/brain.md` is absent or Section 2 (ICP) is empty, block and surface:
@@ -212,50 +210,7 @@ Write to `/foundation/brain.md` Section 2:
 - **Status:** Active beachhead
 ```
 
----
-
-## Step 6 — Post-Session Logging
-
-Log to `/context/skill-sessions.md` with YAML metadata:
-
-```yaml
-skill: beachhead-segment
-session_date: [YYYY-MM-DD]
-decision_type: [new beachhead / audit / expansion]
-segments_scored: [count]
-top_segment: [Name]
-quality_score: [0-100]
-burning_pain_score: [1-5]
-willingness_to_pay_score: [1-5]
-winnability_score: [1-5]
-referral_potential_score: [1-5]
-total_score: [X/20]
-assumption_flags: [count]
-assumptions_flagged: [list if any]
-gates_applied:
-  - "Gate 1 (Pain floor): [passed / failed count]"
-  - "Gate 2 (Winnability floor): [passed / failed count]"
-  - "Gate 3 (Assumption density): [passed / capped at 🟡]"
-confidence_score: [🟢 / 🟡 / 🔴]
-eliminated_segments:
-  - "[Segment name]: [Gate + reason]"
-guardrails_triggered:
-  - "[Pattern name if surfaced]"
-brain_context_loaded: true
-brain_sections_referenced:
-  - "ICP (Section 2)"
-  - "Positioning (Section 3)"
-  - "Competitive (Section 4)"
-  - "Proof points (Section 5)"
-brain_updates_proposed:
-  - "[Emerging pattern or meta-learning, if any]"
-expansion_pathway: "[Beachhead] → [Adjacent 1] → [Adjacent 2]"
-brain_write_executed: [true/false]
-recommendation: [Beachhead confirmed / Conditional / Hold]
-output_path: "[Where scorecard was saved]"
-```
-
-**Quality score:** 90+ = All gates passed, assumptions minimal, expansion pathway clear. 70+ = Most gates passed, some assumptions flagged, pathway defined. <70 = Gaps in scoring or unresolved conflicts.
+Never write without this explicit confirmation.
 
 ---
 
@@ -325,27 +280,8 @@ Explicitly eliminate a segment. Documents reason.
 
 ---
 
-## Self-Improvement Loop
-
-Each session logs to `/context/skill-sessions.md` with:
-- Segments scored and scores
-- Gates applied and results
-- Assumption flags and confidence assessment
-- Guardrails triggered
-- Brain updates proposed
-
-Monthly, meta-synthesis reads these logs and detects patterns:
-- "Segments with Burning Pain <3 never produce beachheads" → Guardrail surfaces next time
-- "Referral Potential >Pain patterns → emerging rule for tiebreaker logic"
-- "Assumption density >2 leads to rework in Q2" → Recommend validation sprint before scoring
-
-Patterns feed back into guardrail injection (Step 0) and brain updates (Section 2, 3, 5).
-
----
-
 ## Do Not Use For
 
 - **go-to-market-strategy** — after beachhead confirmed, use this to build full GTM brief
 - **positioning-messaging** — for messaging for confirmed beachhead (run after)
 - **workflow-orchestrator** — to chain this with above for full market entry program
-

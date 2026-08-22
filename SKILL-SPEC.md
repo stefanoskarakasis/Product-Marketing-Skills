@@ -1,15 +1,15 @@
 # SKILL-SPEC.md
 ## Product Marketing Skills — Skill Authoring Standard
 
-**Version:** 2.0.0  
-**Last updated:** 2026-06-05  
+**Version:** 2.1.0  
+**Last updated:** 2026-08-22  
 **Applies to:** All skills in this repository  
 **Owner:** Stefanos Karakasis
 
 This is the canonical standard every skill in this repo must meet.  
 The `meta-review` skill enforces it. New skills ship only when they pass it.  
-Existing skills are upgraded to it on the improvement schedule in
-`product-marketing-context/ROADMAP.md`.
+There is no separate improvement-schedule document — this spec itself is
+the record of what's required, and it's updated in place as standards change.
 
 ---
 
@@ -267,42 +267,40 @@ Runs after output generation. Surface failures before delivering — never after
 
 Minimum 5 checks. Each check must be binary (pass/fail), not subjective.
 
-### `## Self-Improvement Loop`
+### `## Self-Improvement Loop` — not required yet
 
-Required for all T1 strategic skills.
+**As of v2.1.0 of this spec, no skill is required to have this section.**
+The version this spec previously mandated described a per-skill promotion
+pipeline (`knowledge/rules.md`, `knowledge/hypotheses.md`, a "confirmed
+3+ times" graduation rule, session logs to files no skill actually wrote
+to) that was never real anywhere in this repo — it existed only as
+prose, not as working behaviour, and was removed skill-by-skill across
+Workstream 4b.
 
-```markdown
-## Self-Improvement Loop
+The repo's actual, working compounding mechanism today is simpler and
+already real: any skill can read `/context/meta-patterns.md` at its own
+Pre-flight step for guardrails that apply to it, and `meta-synthesis`
+periodically scans `/context/skill-sessions.md` for repeated patterns
+and proposes new guardrails or brain updates, gated on explicit user
+approval. See the `meta-synthesis` skill for the reference
+implementation.
 
-### Before every session:
-1. [What to read]
-2. [What to check]
+A real, repo-wide self-improvement design — one where skills actually
+log sessions, meta-synthesis actually has something to read, and this
+spec can honestly require it again — is planned as a deliberate, later
+pass across every skill, not something to bolt back on piecemeal per
+skill. Until that pass happens, do not add a `## Self-Improvement Loop`
+section to any skill; it would describe behaviour the skill doesn't
+perform.
 
-### After every session:
-1. [What to capture and where]
+### `## Changelog` — not required
 
-**Self-Improvement Trigger format — surface before encoding, never silently:**
-
-> 🔁 SELF-IMPROVEMENT TRIGGER
-> Pattern: [what was observed]
-> Proposed update: [exact change]
-> Location: [file path]
-> Awaiting approval before encoding.
-```
-
-### `## Changelog`
-
-Most recent first.
-
-```markdown
-## Changelog
-
-### v[X.Y.Z] — YYYY-MM-DD
-[What changed and why. Not just "updated" — what specifically changed and why.]
-
-### v1.0.0 — YYYY-MM-DD
-Initial release.
-```
+**As of v2.1.0 of this spec, no skill should have a `## Changelog`
+section.** Version history belongs in this repo's git log, which is
+the actual audit trail — a hand-maintained changelog duplicates it,
+drifts from it, and was removed from every `SKILL.md` in the repo
+across Workstream 4b. `metadata.last_updated` in frontmatter is
+sufficient for "when did this last change" at a glance.
 
 ---
 
@@ -392,7 +390,7 @@ For every brain-dependent skill, declare exactly what it reads and writes. Add t
 ```markdown
 **Brain contract:**
 - Reads: Section 2 (ICP) — [what specifically], Section 3 (Positioning) — [what specifically]
-- Writes: Section 7 (Launch History) — [what is written and when]
+- Writes: Section 2 (ICP) — [what is written and when]
 - Never writes to: Section 1, Section 6
 ```
 
@@ -443,9 +441,9 @@ One test case must test the **quality gate** specifically.
 
 | Tier | Description | Examples | Requirements |
 |---|---|---|---|
-| **T1 — Strategic** | High-stakes, executive or customer-facing output | pre-mortem, positioning-messaging, competitive-battlecard, go-to-market-strategy | All 7 sections + operating rules + quality gate + self-improvement loop + changelog |
-| **T2 — Execution** | Day-to-day PMM work, high frequency, medium stakes | experiment-doc, prd, retro, stakeholder-maps, gaccs-brief, pmm-okrs, buyer-personas | All 7 sections + quality gate + changelog |
-| **T3 — Utility** | Tactical outputs, lower stakes | writing-assistant, pmm-resume, privacy-policy, interview-summary, prioritization-frameworks | All 7 sections + changelog. Quality gate optional. |
+| **T1 — Strategic** | High-stakes, executive or customer-facing output | pre-mortem, positioning-messaging, competitive-battlecard, go-to-market-strategy | All 7 sections + operating rules + quality gate |
+| **T2 — Execution** | Day-to-day PMM work, high frequency, medium stakes | experiment-doc, prd, retro, stakeholder-maps, gaccs-brief, pmm-okrs, buyer-personas | All 7 sections + quality gate |
+| **T3 — Utility** | Tactical outputs, lower stakes | writing-assistant, pmm-resume, privacy-policy, interview-summary, prioritization-frameworks | All 7 sections. Quality gate optional. |
 | **T4 — Meta** | Skills that operate on other skills | meta-review, meta-learn, meta-verify, meta-synthesis, workflow-orchestrator, product-marketing-context | Custom per meta skill. All 7 sections still required. |
 
 ---
@@ -470,18 +468,20 @@ When the `review` meta skill audits a `SKILL.md`, it checks these in order. Use 
 - [ ] `## Verification` — concrete and checkable (or explicit `n.v.t.`)
 - [ ] `## Do Not Use For` — present with routing (or explicit `n.v.t.`)
 
-**Tier-appropriate sections (4 checks):**
+**Tier-appropriate sections (2 checks):**
 - [ ] `## Operating Rules` present with ≥6 rules (T1/T2)
 - [ ] `## Quality Gate` present with ≥5 binary checks (T1/T2 where `quality_gate: true`)
-- [ ] `## Self-Improvement Loop` present (T1)
-- [ ] `## Changelog` present with ≥1 entry
 
 **Quality (3 checks):**
 - [ ] `SKILL.md` is ≤500 lines
 - [ ] Output template is in a code fence (not raw markdown headers)
 - [ ] Evals file exists with ≥3 test cases including one edge case
 
-**Pass threshold:** 17/19 checks. Skills below this are flagged for improvement before next use.
+**Pass threshold:** 15/17 checks. Skills below this are flagged for improvement before next use.
+
+**Not checked (by design):** `## Self-Improvement Loop` and `## Changelog`
+are not part of this checklist. See Section 5 — neither is required
+under this version of the spec.
 
 ---
 
@@ -495,7 +495,7 @@ A best-in-class skill has five properties:
 
 **3. It knows its boundaries.** The `## Do Not Use For` section names where the skill ends and routes clearly to what comes next. Users never wonder whether they're in the right skill.
 
-**4. It gets smarter over time.** The self-improvement loop is not cosmetic. Patterns surface, get approved, get encoded. Session 10 is measurably sharper than session 1.
+**4. It compounds through the shared system, not its own private loop.** No individual skill runs its own self-improvement pipeline. `meta-synthesis` is where patterns get detected across sessions and skills, and any resulting guardrail or brain update goes live for every skill to read at Pre-flight. A skill gets smarter over time by being part of that shared system — not by inventing its own memory.
 
 **5. It hands off cleanly.** The `## Trigger` section names specific routing conditions — not vague "you could also run X." The handoff is precise enough that the user never wonders what to do next.
 
@@ -588,26 +588,10 @@ immediately whether this is the right skill.
 | Check | Standard | Pass = |
 |---|---|---|
 | [Check] | [What it tests] | [Pass condition] |
-
-## Self-Improvement Loop
-
-### Before every session:
-1. [What to read]
-
-### After every session:
-1. [What to capture and where]
-
-> 🔁 SELF-IMPROVEMENT TRIGGER
-> Pattern: [observed]
-> Proposed update: [exact change]
-> Location: [file path]
-> Awaiting approval before encoding.
-
-## Changelog
-
-### v1.0.0 — YYYY-MM-DD
-Initial release.
 ```
+
+No `## Self-Improvement Loop` or `## Changelog` section — neither is
+required under this version of the spec. See Section 5.
 
 ---
 

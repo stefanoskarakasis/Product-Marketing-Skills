@@ -151,5 +151,4 @@ After any completed setup, edit, or audit, tell the user plainly that the brain 
 This skill is upstream of everything else in this stack — it doesn't need a
 Related Skills section pointing out to its dependents. Every other skill that
 reads or writes `/foundation/brain.md` should name this skill and its exact
-section numbers in its own file instead. See `ROADMAP.md` in this folder for
-which skills currently do that correctly.
+section numbers in its own file instead.

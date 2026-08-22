@@ -1,6 +1,6 @@
 ---
 name: meta-synthesis
-version: 3.0.0
+version: 3.1.0
 description: >
     Reads /context/skill-sessions.md (the session log every execution skill writes to) to detect patterns that repeat across 2+ sessions, proposes new guardrails for /context/meta-patterns.md, and proposes brain updates for confirmed learnings. Run on-demand or roughly weekly — not a scheduled background job. Trigger on: "run meta-synthesis", "what patterns are emerging", "detect cross-skill signals", "update guardrails", "compound our learnings", "what should we remember".
 ---
@@ -134,12 +134,6 @@ Close by telling the user plainly what changed: how many guardrails are now live
 | Cross-skill patterns flagged | Patterns spanning 2+ skills marked as priority |
 | Proposals gated | All guardrails and brain updates shown for approval before writing |
 | Session logged | Metadata appended to `/context/skill-sessions.md` |
-
----
-
-## Self-Improvement Loop
-
-After each run, note in the session log which prior guardrails actually got triggered by execution skills since the last synthesis run (checkable from their own session logs). A guardrail proposed 3+ runs ago that's never once triggered a "pattern from prior sessions" surfacing in another skill is a candidate to flag as low-value next time it comes up for review — not auto-removed, just flagged for the user to decide.
 
 ---
 

@@ -1,6 +1,6 @@
 # pmm-positioning
 
-Strategic positioning and messaging using April Dunford's framework — with five output modes and a self-improving memory loop.
+Strategic positioning and messaging using April Dunford's framework — with five output modes.
 
 ## Skills (1)
 

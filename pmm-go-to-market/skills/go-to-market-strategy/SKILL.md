@@ -125,6 +125,16 @@ Generate only after tier is assigned. Structure (7 sections):
 | [Primary] | [Specific reason tied to ICP] | [Concrete tactic] | [Function] |
 | [Secondary] | [Specific reason] | [Concrete tactic] | [Function] |
 
+**Tier-appropriate channel mix and tone** — match investment to tier, don't
+default every launch to the T1 playbook:
+
+| Tier | Typical channels | Headline style | Tone |
+|---|---|---|---|
+| T1 | Press release, analyst briefing, webinar, multi-touch email, sales deck refresh, full landing page | Customer outcome, not feature | Strategic, confident |
+| T2 | Email announcement, sales one-pager, webinar or lunch-and-learn, community/Slack post | Problem statement as hook | Professional, benefit-focused |
+| T3 | Release notes, opt-in email, in-app notification, Slack | What/why/who in 1-2 sentences each | Direct, informative |
+| T4 | Release notes only, internal Slack | Feature name + one-sentence benefit | Matter-of-fact |
+
 ### Success Metrics
 | Metric | Type | Target | Timeframe | Measurement |
 |---|---|---|---|---|

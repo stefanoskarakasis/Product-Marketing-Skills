@@ -382,20 +382,3 @@ Eval test cases for `positioning-messaging` skill (SKILL-SPEC v2.0.0 compliance)
 - Once gap is provided, skill continues normally
 
 **Test Pass:** Skill refuses to produce positioning built on relative, unanchored claims
-
----
-
-## Changelog
-
-### v2.1.0 — 2026-06-15
-Added Tests 8–12 covering new Onboarding block and `/settings` command introduced
-in SKILL.md v2.1.0:
-- Test 8: Onboarding block fires before Phase 1, confirms mode/persona/alternatives
-- Test 9: Brain-present path uses stored ICP and alternatives, reduces setup friction
-- Test 10: `/settings` re-runs Onboarding only, preserves prior phase work
-- Test 11: Image parsing runs in Onboarding Step 5 before discovery questions
-- Test 12: Phase 2B hard stop when gap sentence cannot be completed with specificity
-
-### v2.0.0 — 2026-06-11
-Initial 7 tests covering BUILD, AUDIT, evidence tiers, SALES-ENABLEMENT, refusal
-behavior, FLETCH, and jargon detection.

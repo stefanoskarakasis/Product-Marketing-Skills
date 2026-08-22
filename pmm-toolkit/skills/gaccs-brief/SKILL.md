@@ -1,6 +1,6 @@
 ---
 name: gaccs-brief
-version: 3.1.0
+version: 3.2.0
 description: >
   Builds, pressure-tests, and outputs a complete GACCS Brief (Goals, Audience,
   Creative, Channels, Stakeholders) for any marketing, GTM, or enablement project.
@@ -236,24 +236,3 @@ Goals: [✅/⚠️]  Audience: [✅/⚠️]  Creative: [✅/⚠️]  Channels: [
 - **Never fill gaps with assumptions.** Surface the gap — it's the most valuable output.
 - **Every response ends with ✅ Next Step.** No exceptions.
 - **Redirects are never softened.** Clarity now saves hours of misaligned work.
-
----
-
-## Self-Improvement Loop
-
-This skill does not read or write any file on its own. Pattern-spotting happens in
-conversation only, and any update to shared guardrails or the brain goes through the
-user explicitly — never encoded silently.
-
-### After every session:
-1. Scan for patterns: defended sections, confirmed/killed hypotheses, new false beliefs,
-   instructions that produced bad output.
-2. Surface any finding before closing — never encode without approval.
-
-```
-🔁 SELF-IMPROVEMENT TRIGGER
-Pattern: [what was observed]
-Proposed update: [exact wording]
-Location: [file or section the user wants it saved to]
-Awaiting approval before encoding.
-```

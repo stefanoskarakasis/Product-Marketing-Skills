@@ -84,7 +84,7 @@ every other skill reads from it.
 | [go-to-market-strategy](pmm-go-to-market/skills/go-to-market-strategy/) | pmm-go-to-market | Launch tier assignment, GTM strategy briefs |
 | [beachhead-segment](pmm-go-to-market/skills/beachhead-segment/) | pmm-go-to-market | First customer wedge scoring |
 | [workflow-orchestrator](pmm-go-to-market/skills/workflow-orchestrator/) | pmm-go-to-market | Chains multiple skills into full GTM programs |
-| [meta-synthesis](pmm-meta/meta-synthesis/) | pmm-meta | Pattern detection across skill sessions (in development) |
+| [meta-synthesis](pmm-meta/meta-synthesis/) | pmm-meta | Pattern detection across skill sessions |
 | [meta-learn](pmm-meta/meta-learn/) | pmm-meta | Captures post-session learnings |
 | [meta-review](pmm-meta/meta-review/) | pmm-meta | Audits skills against `SKILL-SPEC.md` |
 | [meta-verify](pmm-meta/meta-verify/) | pmm-meta | Quality gate on skill output |
@@ -135,7 +135,7 @@ Once installed, ask your agent to help with PMM tasks:
 
 ```
 "Build my brain"
-→ Uses go-to-market-strategy skill
+→ Uses product-marketing-context skill
 
 "Generate positioning for our platform"
 → Uses positioning-messaging skill
@@ -165,8 +165,8 @@ You can also invoke skills directly with commands:
 "Generate Q4 OKRs"
 /pmm-okrs 
 
-"Run monthly meta-synthesis"
-/pmm-meta:synthesis
+"Run meta-synthesis"
+/pmm-meta:meta-synthesis
 ```
 
 

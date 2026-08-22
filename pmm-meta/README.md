@@ -1,13 +1,13 @@
 # pmm-meta
 
-Meta skills that operate on the skill system itself. Install alongside any PMM plugin to improve skill quality and compound learnings across sessions.
+Meta skills that operate on the skill system itself. Install alongside any PMM plugin to check skill quality and verify output before it goes out.
 
 ## Skills (4)
 
-- **meta-learn** — Captures post-session patterns, routes them to the correct knowledge files, and compounds intelligence across all skills over time.
-- **meta-review** — Audits any SKILL.md against SKILL-SPEC v2.0.0 — a full checklist with prioritised fixes.
-- **meta-synthesis** — Detects cross-skill patterns from session logs and proposes brain updates for approval.
-- **meta-verify** — Second-pass quality check on skill output before delivery.
+- **meta-learn** — Captures what a completed session actually taught you and logs it to the shared session log for meta-synthesis to read later.
+- **meta-review** — Audits any SKILL.md against SKILL-SPEC.md — the repo's authoring standard — with a scored 17-point checklist and prioritised fixes.
+- **meta-synthesis** — Detects cross-skill patterns from the session log and proposes guardrails or brain updates for approval.
+- **meta-verify** — Second-pass quality check on skill output, re-applying the originating skill's own Quality Gate before delivery.
 
 ## Commands (4)
 

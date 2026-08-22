@@ -1,6 +1,6 @@
 ---
 name: workflow-orchestrator
-version: 2.1.0
+version: 2.2.0
 description: >
   Orchestrates multi-skill PMM programs end-to-end — chains positioning,
   competitive, GTM strategy, campaign briefs, stakeholder maps, and retros into
@@ -14,7 +14,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-06-12
+last_updated: 2026-08-21
 ---
 
 # PMM Workflow Orchestrator
@@ -57,16 +57,14 @@ matters as much as each individual output.
 - **Context keys:**
   - `/foundation/brain.md` — required. All sections.
   - **Brain contract:**
-    - Reads: All sections (1–6) — checks completeness and staleness before routing.
+    - Reads: Sections 1–6 — checks completeness and staleness before routing.
     - Writes: Section 3 (after positioning refresh), Section 4 (after competitive
-      work), Section 5 (after new proof points confirmed). Launch and retro
-      history is logged to `/context/skill-sessions.md`, not the brain.
+      work), Section 5 (after new proof points confirmed).
     - Never writes to: Section 1, Section 2, Section 6 (those require dedicated
       skills: `product-marketing-context`).
   - **Staleness thresholds:**
     - Section 3 (Positioning) > 6 months → flag for refresh before any launch workflow.
     - Section 4 (Competitive) > 3 months → flag for refresh before any competitive workflow.
-    - `/context/skill-sessions.md` empty → note; calibration will be limited.
 
 ---
 
@@ -139,7 +137,6 @@ For each brain section relevant to the workflow, assess:
 |---|---|---|---|
 | 3 — Positioning | [date or unknown] | 🟢 Current / 🟡 Aging / 🔴 Stale | Run / Skip / Flag |
 | 4 — Competitive | [date or unknown] | 🟢 / 🟡 / 🔴 | Run / Skip / Flag |
-| 7 — Launch history | [date or count] | 🟢 / 🟡 / 🔴 | Note calibration quality |
 
 Surface as part of the Program Charter — do not run silently.
 
@@ -185,11 +182,12 @@ After each skill produces a confirmed output:
 - **Positioning refresh:** Update Section 3 with new statement and timestamp.
 - **Competitive work:** Update Section 4 with refreshed alternative map and timestamp.
 - **New proof points:** Update Section 5 with approved new claims.
-- **Launch planned:** Log entry to `/context/skill-sessions.md` as "Planned" with tier, metric, date.
-- **Retro completed:** Update the `/context/skill-sessions.md` entry from "Planned" to "Completed" with actuals.
 
 Surface each write:
 > "Updating brain Section [X] with [what]. Confirm? [Y/N]"
+
+If the user wants launch or retro history tracked somewhere, ask where they'd
+like it kept — this skill doesn't maintain its own log automatically.
 
 ---
 
@@ -228,14 +226,14 @@ Compile all skill outputs into one master document:
 [When to run the next cycle]
 ```
 
+If the user wants this document saved somewhere, ask where.
+
 ---
 
 ### Step 7: Close
 
 1. Run `/coherence` across all completed outputs — resolve any remaining conflicts.
-2. Propose Self-Improvement Triggers for structural observations (see Self-Improvement Loop).
-3. Log session to `sessions/log.md`.
-4. Surface next program trigger date:
+2. Surface next program trigger date:
    - Full launch → retro in 90 days
    - Quarterly cycle → next cycle in 13 weeks
    - Positioning refresh → re-audit in 6 months
@@ -249,50 +247,44 @@ Compile all skill outputs into one master document:
 **Trigger:** "run full launch workflow", "launch [product] end to end"
 1. `go-to-market-strategy` — tier + strategy brief
 2. `positioning-messaging` (if Section 3 stale or new angles needed)
-3. `(no dedicated skill yet — handle within positioning-messaging)
-4. `gaccs-brief` — campaign brief
-5. `stakeholder-maps` — internal alignment map
-6. `pre-mortem` — risk analysis before committing
-7. Set T+90 retro trigger → `retro`
+3. `gaccs-brief` — campaign brief
+4. `stakeholder-maps` — internal alignment map
+5. `pre-mortem` — risk analysis before committing
+6. Set T+90 retro trigger → `retro`
 
 ### 2. Positioning Refresh
 **Trigger:** "positioning refresh", "our messaging is stale", "update positioning"
 1. `positioning-messaging` (AUDIT mode → full BUILD if audit score < 70)
-2. `(no dedicated skill yet — handle within positioning-messaging)
 
 ### 3. Competitive Intelligence Program
 **Trigger:** "competitive program", "build battlecards", "competitive deep-dive"
-1. `(no dedicated skill yet — handle within product-marketing-context Section 3)
-2. `(no dedicated skill yet — handle within positioning-messaging)
-3. `(no dedicated skill yet)
+No dedicated competitive-intelligence skill exists yet in this repo. Handle
+within `positioning-messaging`'s competitive alternatives work, or flag to the
+user that this workflow is a placeholder pending a dedicated skill.
 
 ### 4. Quarterly PMM Cycle
 **Trigger:** "quarterly PMM cycle", "Q[X] refresh", "quarterly review"
 1. `retro` — debrief all launches from prior quarter
 2. `positioning-messaging` (AUDIT mode)
-3. `(no dedicated skill yet — handle within positioning-messaging)
-4. `(no dedicated skill yet — handle within product-marketing-context Section 6)
-5. `pmm-okrs` — set next quarter OKRs
+3. `pmm-okrs` — set next quarter OKRs
 
 ### 5. New Market Entry Program
 **Trigger:** "enter new market", "expand to [segment]", "new vertical"
-1. `(no dedicated skill yet — handle within product-marketing-context Section 2)
-2. `(no dedicated skill yet)
-3. `positioning-messaging` — positioning for new segment
-4. `(no dedicated skill yet — handle within positioning-messaging)
-5. `go-to-market-strategy` — tier + strategy for market entry
-6. `gaccs-brief` — campaign brief
-7. `pre-mortem` — risk analysis before committing
+1. `beachhead-segment` — score and confirm the target segment
+2. `positioning-messaging` — positioning for new segment
+3. `go-to-market-strategy` — tier + strategy for market entry
+4. `gaccs-brief` — campaign brief
+5. `pre-mortem` — risk analysis before committing
 
 ### 6. Competitive Response (Fast)
 **Trigger:** "competitive response to [competitor]", "they just launched [X]"
-1. `(no dedicated skill yet — handle within positioning-messaging)
-2. `(no dedicated skill yet — handle within positioning-messaging)
-3. `(no dedicated skill yet)
+No dedicated skill exists yet for this workflow. Handle within
+`positioning-messaging`'s competitive work, or flag to the user that this
+workflow is a placeholder pending a dedicated skill.
 
 ### 7. Full PMM Onboarding / Audit
 **Trigger:** "I just joined as PMM", "PMM audit", "what's our current state"
-1. Audit brain Sections 1–7 — completeness, staleness, gaps
+1. Audit brain Sections 1–6 — completeness, staleness, gaps
 2. `positioning-messaging` (AUDIT mode only)
 3. Produce Current State Report with prioritised gaps
 
@@ -339,13 +331,13 @@ and estimated session time.
 
 ## Outputs
 
-- **Files written:** `/foundation/brain.md` — Sections 3, 4, 5, 7 updated on
-  confirmation after relevant skills complete. Master Program Document saved to
-  `sessions/[program-name]-[date].md`.
+- **Files written:** `/foundation/brain.md` — Sections 3, 4, 5 updated on
+  confirmation after relevant skills complete. Master Program Document is
+  produced in chat; ask the user where, if anywhere, to save it.
 - **Chat output format:** Program Charter → sequential skill outputs with
   checkpoints → coherence check results → Master Program Document.
   Each skill output is clearly delimited with skill name and date.
-- **External side effects:** n.v.t.
+- **External side effects:** None beyond confirmed brain writes.
 
 ---
 
@@ -399,7 +391,7 @@ Runs at program close, before Master Program Document is delivered.
 - **One DRI per program.** If no DRI is named at intake, ask before confirming
   the charter. A program with no single owner has no owner.
 - **Next program trigger at close.** Every completed program ends with a recommended
-  date for the next cycle. Compounding only works if the loop closes.
+  date for the next cycle.
 
 ---
 
@@ -419,55 +411,3 @@ Runs at program close, before Master Program Document is delivered.
 | Next trigger surfaced | Next program cycle date recommended at close | Yes |
 | No orphaned outputs | Every skill output referenced in master document | Yes |
 | DRI named | Program Charter includes a named DRI | Yes |
-
----
-
-## Self-Improvement Loop
-
-### Before every session:
-1. Load `/context/skill-sessions.md` — scan for program history. Prior programs of same type
-2. Check `knowledge/orchestrator/rules.md` if it exists — apply confirmed rules.
-3. Check `knowledge/orchestrator/hypotheses.md` — note any pattern testable today.
-
-### After every completed program:
-1. Extract 1–3 observations:
-   - Which skill produced the highest-leverage output?
-   - Which checkpoint took longest — and why?
-   - Which coherence conflict was most expensive to resolve?
-2. Log observations to `knowledge/orchestrator/hypotheses.md`.
-3. If same pattern observed 3+ times → propose promotion to `knowledge/orchestrator/rules.md`.
-4. Log session summary to `sessions/log.md`: workflow type, duration, skills run,
-   brain sections updated, open items count.
-
-**Self-Improvement Trigger format — surface before encoding, never silently:**
-
-```
-🔁 SELF-IMPROVEMENT TRIGGER
-Pattern: [what was observed this program]
-Proposed update: [exact wording — what would be added or changed]
-Location: [file path]
-Awaiting approval before encoding.
-```
-
----
-
-## Changelog
-
-### v2.1.0 — 2026-06-12
-Spec compliance fixes from 16/19 audit. Zero failures, one permanent partial (Q3).
-
-- **F1:** Fixed `Metadata:` → `metadata:` (lowercase) — YAML parsers are case-sensitive.
-- **S6:** Verification converted from bullet list to binary table (6 checks).
-- **Q1:** Reduced from 612 → 499 lines. Cuts: Commands output blocks stripped
-  (signatures kept), Step 7 consolidated, Changelog v2.0.0 compressed, Supported
-  Workflows stripped of redundant brain-writes lines (covered in Inputs contract).
-
-### v2.0.0 — 2026-06-06
-Full rebuild to SKILL-SPEC v2.0.0. Added all 7 required sections, mandatory brain
-enforcement, Program Charter (Step 1), per-skill checkpoints, coherence checks
-across skill pairs, /run /status /skip /coherence /compile /next commands, brain
-contract with staleness thresholds, operating rules (10), quality gate (10 checks),
-self-improvement loop, read-only audit workflow.
-
-### v1.0.0 — 2026-04-01
-Initial build. Workflow list and brain integration concept. README-grade.

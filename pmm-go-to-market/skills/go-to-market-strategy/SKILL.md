@@ -1,8 +1,13 @@
 ---
 name: go-to-market-strategy
-version: 2.4.0
+version: 3.0.0
 description: >
     Assigns launch tier (T1–T4) using a four-signal framework and generates a complete GTM brief with positioning angles, channel strategy, success metrics, and competitive context. Reads brain (ICP, positioning, competitive, proof points) and, when available, guardrails from prior launches the user has logged.
+metadata:
+  author: Stefanos Karakasis
+  context: brain-dependent
+  quality_gate: true
+last_updated: 2026-08-24
 ---
 
 # Go-to-Market-Strategy — Skill
@@ -27,7 +32,41 @@ The skill runs in 6 steps:
 
 ---
 
-## Step 0 — Pre-Flight: Load Context & Surface Guardrails
+## Trigger
+
+- **When:** Assigning a launch tier and building a full GTM strategy brief for a product, feature, pricing change, or market expansion.
+- **Not for:** Chaining this with other skills into one program → use `workflow-orchestrator`. Messaging and positioning work itself → use `positioning-messaging` after this skill. Risk analysis → use `pre-mortem` after this skill. Post-launch review → use `retro`.
+- **Example prompts:**
+  - "What tier is this launch?"
+  - "GTM strategy for our new pricing page"
+  - "Help me scope this feature launch"
+  - "How should we launch this?"
+  - "Plan my launch"
+
+---
+
+## Inputs
+
+- **Args:** Initiative name, 90-day success metric, timeline. Free format — Step 1 intake fills gaps conversationally.
+- **Defaults:** If brain is missing or Section 2 (ICP) is empty, this skill blocks and directs the user to `product-marketing-context` first — see Pre-flight.
+- **Context keys:**
+  - `/foundation/brain.md` — required. Sections 2 (ICP), 3 (Positioning), 4 (Competitive), 5 (Proof Points).
+  - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior GTM briefs.
+  - **Brain contract:** Reads Sections 2, 3, 4, 5. Writes: none — this skill does not write to `/foundation/brain.md` on its own.
+
+---
+
+## Pre-flight
+
+- Load `/foundation/brain.md` Sections 2, 3, 4, 5 if it exists — see Step 0 for the full sequence.
+- Load `/context/meta-patterns.md` if it exists, and surface any guardrail that has fired 2+ times in prior GTM briefs — see Step 0.
+- **Hard block:** if `/foundation/brain.md` is absent or Section 2 (ICP) is empty, stop and direct the user to run `product-marketing-context` first — GTM strategy without ICP and positioning produces generic output, not defensible strategy.
+
+---
+
+## Steps
+
+### Step 0 — Pre-Flight: Load Context & Surface Guardrails
 
 Before intake, load:
 - **Brain context** (Sections 2, 3, 4, 5): ICP, positioning, competitive landscape, proof points — these anchor all tier signals
@@ -54,7 +93,7 @@ If `/foundation/brain.md` is absent or Section 2 (ICP) is empty, block and surfa
 
 ---
 
-## Step 1 — Intake (Conversational, One Round)
+### Step 1 — Intake (Conversational, One Round)
 
 Ask in one message. Never generate brief before this is complete.
 
@@ -71,7 +110,7 @@ Reflect back in 2 sentences:
 
 ---
 
-## Step 2 — Load Brain Context
+### Step 2 — Load Brain Context
 
 Load silently. Extract Sections 2, 3, 4, 5. Do not narrate.
 
@@ -79,7 +118,7 @@ If the user has prior launches they can share (with tiers assigned and how they 
 
 ---
 
-## Step 3 — Assign Tier
+### Step 3 — Assign Tier
 
 Apply all four signals before assigning. Single signal does not override others.
 
@@ -104,7 +143,7 @@ Output tier with one-sentence rationale before generating brief:
 
 ---
 
-## Step 4 — Generate Full GTM Brief
+### Step 4 — Generate Full GTM Brief
 
 Generate only after tier is assigned. Structure (7 sections):
 
@@ -192,6 +231,29 @@ Write this row directly — do not ask the user for permission. This is an
 observational log entry, separate from the GTM brief above, which still
 requires the user's go-ahead on where to save it. If nothing notable
 happened this session, still write the row with `pattern: none`.
+
+---
+
+## Outputs
+
+- **Files written:** `/context/skill-sessions.md` — one appended row per
+  session, per Step 5. The GTM brief itself is delivered in chat only;
+  if the user wants it saved anywhere, ask where — this skill doesn't
+  write the brief to any file on its own.
+- **Chat output format:** Tier assignment with one-sentence rationale
+  (Step 3), followed by the full 7-section GTM brief (Step 4).
+- **External side effects:** None beyond the session log above.
+
+---
+
+## Verification
+
+- Guardrails checked at Step 0 if `/context/meta-patterns.md` exists.
+- Brain blocked and directed to `product-marketing-context` if ICP is missing — never generated on assumption alone.
+- All four tier signals reasoned through before a tier is assigned (Step 3).
+- Tier stated with a one-sentence, signal-grounded rationale — not "it feels big."
+- Full 7-section brief generated only after the tier is assigned.
+- Session logged to `/context/skill-sessions.md` (Step 5).
 
 ---
 

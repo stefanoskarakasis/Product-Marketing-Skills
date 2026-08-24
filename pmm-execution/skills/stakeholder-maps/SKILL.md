@@ -1,6 +1,6 @@
 ---
 name: stakeholder-maps
-version: 2.4.0
+version: 2.5.0
 description: >
   Builds political maps (not org charts) showing who can kill your launch, who champions it, and what to say to each stakeholder. Reads brain context (ICP, positioning, GTM motion) and guardrails from prior stakeholder mapping sessions; produces Power × Interest grid with political role assignment, conflict map, and weekly Sprint Cards for execution.
 ---
@@ -11,7 +11,7 @@ description: >
 
 Stakeholder maps built in a vacuum are a waste of time. This skill builds a map anchored to political reality: who has power, who's a hidden champion, who's a silent blocker, and what to do before you're in the room.
 
-The skill runs in 6 steps:
+The skill runs in 7 steps:
 
 **Step 0** — Load brain context (ICP, positioning, GTM motion) and guardrails from `/context/meta-patterns.md` if it exists (e.g., "product launches without Sales Manage Closely engagement fail 80% of the time" — an example pattern shape, not a claim this skill has already observed).
 
@@ -26,6 +26,8 @@ The skill runs in 6 steps:
 **Step 5** — Silent blocker scan: Which functions/roles aren't in the room but should be?
 
 **Step 6** — Output: HTML widget (grid + comms plan + conflict map + confidence assessment) + markdown diagnostic + Sprint Cards.
+
+**Step 7** — Learning Close: log the session to `/context/skill-sessions.md`.
 
 ---
 
@@ -177,7 +179,26 @@ Last updated: [YYYY-MM-DD]
   → [Immediate action if signal fires]
 ````
 
-If the user wants any of these three artifacts saved to a file, ask where — this skill doesn't write to any file on its own.
+If the user wants any of these three artifacts saved to a file, ask where — this skill doesn't write those artifacts to any file on its own.
+
+---
+
+## Step 7 — Learning Close
+
+End every completed session by appending one row to `/context/skill-sessions.md`
+(create the file with a header row if it doesn't exist yet):
+
+````yaml
+skill: stakeholder-maps
+session_date: [YYYY-MM-DD]
+pattern: [one falsifiable statement about what happened this session, or "none"]
+source: [surprised / wrong / missing / n.v.t.]
+````
+
+Write this row directly — do not ask the user for permission. This is an
+observational log entry, separate from the three artifacts above, which
+still require the user's go-ahead on where to save them. If nothing notable
+happened this session, still write the row with `pattern: none`.
 
 ---
 
@@ -205,6 +226,7 @@ If the user wants any of these three artifacts saved to a file, ask where — th
 | Sprint Cards | Five fields per stakeholder, no exceptions |
 | Watch For signals | Every Manage Closely card has behavioral signal + immediate action |
 | Brain context | Map cross-referenced with ICP, GTM motion, positioning |
+| Learning Close ran | `/context/skill-sessions.md` has a new row for this session |
 
 ---
 

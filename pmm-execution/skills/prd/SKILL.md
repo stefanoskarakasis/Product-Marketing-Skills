@@ -1,6 +1,6 @@
 ---
 name: prd
-version: 2.5.0
+version: 2.6.0
 description: >
   Guides Product Managers and Product Marketing Managers to co-create complete Product Requirements Documents with embedded Solution Stories.
   Reads brain context (positioning, ICP, Revenue Levers) to anchor PRDs in strategy.
@@ -10,7 +10,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-08-21
+last_updated: 2026-08-24
 ---
 
 # PRD — Skill
@@ -383,9 +383,17 @@ session, still write the row with `pattern: none`.
 - Output format matches spec (Step 6)
 - Session logged to `/context/skill-sessions.md` (Step 7)
 
-**Note (2026-08-22):** `metadata.quality_gate: true` is set in this skill's
-frontmatter, but no `## Quality Gate` section exists — a pre-existing gap,
-flagged here rather than fixed in this pass.
+---
+
+## Outputs
+
+- **Files written:** `/context/skill-sessions.md` — one appended row per
+  session, per Step 7. The Solution Story and full PRD are delivered in
+  chat only; the user chooses where to save them (Notion, Google Docs,
+  or export via `docx`).
+- **Chat output format:** Solution Story first (Step 3), then the full
+  10-section PRD (Step 4), both in copy-paste-ready markdown per Step 6.
+- **External side effects:** None beyond the session log above.
 
 ---
 
@@ -396,6 +404,35 @@ flagged here rather than fixed in this pass.
 - **Competitive analysis** — no dedicated skill yet
 - **Launch messaging** — use `gaccs-brief` after PRD is locked
 - **Positioning** — use `positioning-messaging` if core positioning undefined
+
+---
+
+## Operating Rules
+
+- **Brain context loads before intake.** Positioning, ICP, and Revenue Levers shape what the Solution Story emphasizes — never ask for context already available in the brain.
+- **Solution Story before full PRD.** Round 1 intake must complete and the Solution Story must be confirmed before Section 02 onward is generated — the PMM framing anchors the rest of the document.
+- **No silent blanks.** Every PRD section is either filled with real content or marked `[TO FILL — hint]`. A blank section with no marker is a defect, not a placeholder.
+- **Collaboration checkpoints are not optional.** All three `🤝 PM + PMM checkpoint` moments (Step 5) must be surfaced, even if the user tries to skip ahead.
+- **Problem statements must be specific.** Vague framing ("users churn") gets pushed back on per the Writing Principles — a PRD built on a vague problem produces a vague spec.
+- **Metrics need causal logic.** One output metric, 2–3 inputs the team can explain a causal path for. An input with no stated mechanism is the wrong input.
+- **Both outputs by default.** Solution Story and full PRD are always produced together unless the user explicitly asks for only one.
+
+---
+
+## Quality Gate
+
+Runs after the full PRD is generated (Step 4), before delivery. Surface
+failures — do not deliver an incomplete document as if it were final.
+
+| Check | Standard | Pass = |
+|---|---|---|
+| Brain context loaded | Positioning, ICP, Personas, Revenue Levers extracted at Step 0 if available | Yes |
+| Solution Story confirmed first | Step 3 output confirmed before Step 4 begins | Yes |
+| No unmarked blanks | Every section filled or carries `[TO FILL — hint]` | Yes |
+| Checkpoints surfaced | All 3 collaboration checkpoints present (Step 5) | Yes |
+| Problem statement specific | Names who, what, evidence, and secondary issues — not a generic complaint | Yes |
+| Metrics causally linked | Each input metric has a stated reason it should move the output | Yes |
+| Learning Close ran | `/context/skill-sessions.md` has a new row for this session | Yes |
 
 ---
 

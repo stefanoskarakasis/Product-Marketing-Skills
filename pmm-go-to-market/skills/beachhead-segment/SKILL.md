@@ -1,8 +1,13 @@
 ---
 name: beachhead-segment
-version: 2.2.0
+version: 3.0.0
 description: >
   Identifies and scores your highest-priority beachhead segment using four-dimension scoring (Burning Pain, Willingness to Pay, Winnability, Referral Potential) with blocking gates. Reads brain context (ICP, positioning, competitive landscape, proof points) and, when available, guardrails from prior beachhead decisions the user has logged. Writes confirmed beachhead to brain Section 2, on explicit confirmation.
+metadata:
+  author: Stefanos Karakasis
+  context: brain-dependent
+  quality_gate: true
+last_updated: 2026-08-24
 ---
 
 # Beachhead-Segment — Skill
@@ -21,17 +26,59 @@ The skill runs in 7 steps:
 
 **Step 3** — Apply blocking gates: Pain floor (≥3), Winnability floor (≥3), assumption density check.
 
-**Step 4** — Recommend beachhead with expansion pathway and 90-day activation plan.
+**Step 4** — Recommend beachhead with expansion pathway, 90-day activation plan, and specific rejection reasons for every eliminated segment.
 
-**Step 5** — Pressure-test eliminated segments with specific reasons.
+**Step 5** — Update brain Section 2 with confirmed beachhead (on user confirmation).
 
-**Step 6** — Update brain Section 2 with confirmed beachhead (on user confirmation).
+**Step 6** — Learning Close: log the session to `/context/skill-sessions.md`.
 
-**Step 7** — Learning Close: log the session to `/context/skill-sessions.md`.
+**Correction (2026-08-24):** this summary previously listed 8 entries
+(Step 0 through Step 7) under "runs in 7 steps," and named a standalone
+"Step 5 — Pressure-test eliminated segments" that never existed as its
+own section in the body — the body always went straight from Step 4
+(Recommend) to what it labeled Step 5 (Update Brain). Rejection reasons
+for eliminated segments were already produced inside Step 4's own output
+template ("Why not Segment B/C" lines and the Eliminated Segments table)
+— that was real, just mislabeled as a separate step. The step count and
+numbering above now match the body exactly: 7 steps, numbered 0–6.
 
 ---
 
-## Step 0 — Pre-Flight: Load Context & Surface Guardrails
+## Trigger
+
+- **When:** Choosing which customer segment to focus on first, before scaling GTM investment across multiple segments at once — narrowing a broad ICP down to the first wedge.
+- **Not for:** Full ICP definition from scratch → use `product-marketing-context`. Launch tier assignment once the beachhead is already confirmed → use `go-to-market-strategy`. Messaging for a confirmed beachhead → use `positioning-messaging`.
+- **Example prompts:**
+  - "Which segment should we focus on first?"
+  - "Our ICP is too broad — help me narrow it"
+  - "Pick a beachhead for us"
+  - "Where do we win first?"
+  - "What's our wedge?"
+
+---
+
+## Inputs
+
+- **Args:** 2–5 candidate segments, or a description of the current customer base to decompose. Free format.
+- **Defaults:** If only one segment is named, this skill challenges it before scoring — a single segment isn't a choice, it's an assumption (Step 1). Never scores fewer than 2 candidates.
+- **Context keys:**
+  - `/foundation/brain.md` — recommended. Sections 2 (ICP), 3 (Positioning), 4 (Competitive), 5 (Proof Points) loaded silently at Step 0.
+  - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior beachhead decisions.
+  - **Brain contract:** Reads Sections 2, 3, 4, 5. Writes Section 2 — the confirmed beachhead, expansion pathway, and scores (Step 5), only after explicit user confirmation. Never writes to any other section.
+
+---
+
+## Pre-flight
+
+- Load `/foundation/brain.md` Sections 2, 3, 4, 5 if it exists — see Step 0 for the full sequence.
+- Load `/context/meta-patterns.md` if it exists, and surface any guardrail that has fired 2+ times in prior beachhead decisions — see Step 0.
+- **Hard block:** if `/foundation/brain.md` is absent or Section 2 (ICP) is empty, stop and surface the message in Step 0's Gate check before proceeding — beachhead scoring without ICP, positioning, and competitive context produces guesswork, not a defensible recommendation.
+
+---
+
+## Steps
+
+### Step 0 — Pre-Flight: Load Context & Surface Guardrails
 
 Before intake, load:
 - **Brain context** (Sections 2, 3, 4, 5): ICP, positioning, competitive landscape, proof points — these anchor all four-dimension scoring
@@ -58,7 +105,7 @@ If `/foundation/brain.md` is absent or Section 2 (ICP) is empty, block and surfa
 
 ---
 
-## Step 1 — Candidate Identification
+### Step 1 — Candidate Identification
 
 Ask in one message. Never score before candidates are confirmed.
 
@@ -81,7 +128,7 @@ Reflect back candidates and evidence:
 
 ---
 
-## Step 2 — Score Each Segment on Four Dimensions
+### Step 2 — Score Each Segment on Four Dimensions
 
 Score each independently before comparing. Mark any dimension without evidence as `[A]` (assumption).
 
@@ -143,7 +190,7 @@ This is what separates a beachhead from any other segment.
 
 ---
 
-## Step 3 — Apply Blocking Gates
+### Step 3 — Apply Blocking Gates
 
 **Gate 1 — Pain floor (≥3):** Any segment scoring <3 on Burning Pain is eliminated.
 > "❌ [Segment] eliminated — Burning Pain [X]. No urgency signal. GTM investment will be slow."
@@ -156,7 +203,7 @@ This is what separates a beachhead from any other segment.
 
 ---
 
-## Step 4 — Recommend Beachhead
+### Step 4 — Recommend Beachhead
 
 After gates pass, state recommendation with rationale and expansion pathway.
 
@@ -195,7 +242,7 @@ Trigger to move Adjacent 1 → Adjacent 2: [specific milestone]
 
 ---
 
-## Step 5 — Update Brain Section 2 (on Confirmation)
+### Step 5 — Update Brain Section 2 (on Confirmation)
 
 After recommendation confirmed:
 > "Updating brain Section 2 with [Segment] as confirmed beachhead. Confirm? [Y/N]"
@@ -216,7 +263,7 @@ Never write without this explicit confirmation.
 
 ---
 
-## Step 6 — Learning Close
+### Step 6 — Learning Close
 
 End every completed session by appending one row to `/context/skill-sessions.md`
 (create the file with a header row if it doesn't exist yet):
@@ -232,6 +279,31 @@ Write this row directly — do not ask the user for permission. This is a
 separate, mechanical log entry from the brain Section 2 write above, which
 still requires the user's explicit confirmation. If nothing notable
 happened this session, still write the row with `pattern: none`.
+
+---
+
+## Outputs
+
+- **Files written:** `/foundation/brain.md` Section 2 — the confirmed
+  beachhead, scores, and expansion pathway (Step 5), only after explicit
+  confirmation. `/context/skill-sessions.md` — one appended row per
+  session (Step 6).
+- **Chat output format:** Scorecard across four dimensions → blocking
+  gate results → recommendation with expansion pathway, 90-day plan,
+  and eliminated-segment reasons (Step 4 template).
+- **External side effects:** None beyond the brain write and session log above.
+
+---
+
+## Verification
+
+- Guardrails checked at Step 0 if `/context/meta-patterns.md` exists.
+- At least 2 candidate segments scored — never a single segment in isolation.
+- All 4 dimensions scored for every candidate, with `[A]` marking any dimension lacking evidence.
+- Both blocking gates applied: Pain floor and Winnability floor.
+- Every eliminated segment has a specific reason, not "didn't score well."
+- Brain Section 2 write shown to the user and confirmed before it happens (Step 5).
+- Session logged to `/context/skill-sessions.md` (Step 6).
 
 ---
 
@@ -299,13 +371,6 @@ Explicitly eliminate a segment. Documents reason.
 | Confidence level stated | 🟢 / 🟡 / 🔴 with reason |
 | Brain write confirmed | Section 2 update shown to user |
 | Learning Close ran | `/context/skill-sessions.md` has a new row for this session |
-
-**Note (2026-08-22):** This skill is missing `## Trigger`, `## Inputs`,
-`## Outputs`, and `## Verification` — required sections per `SKILL-SPEC.md`
-Section 4. It's also missing from the Section 12 tier table entirely
-despite meeting every T1/T2 structural requirement (brain write, 9
-Operating Rules, 10-row Quality Gate) — both gaps flagged here; the tier
-table is fixed in this same batch, the missing sections are not.
 
 ---
 

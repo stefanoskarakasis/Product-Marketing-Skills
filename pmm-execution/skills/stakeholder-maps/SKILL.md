@@ -1,8 +1,13 @@
 ---
 name: stakeholder-maps
-version: 2.5.0
+version: 3.0.0
 description: >
   Builds political maps (not org charts) showing who can kill your launch, who champions it, and what to say to each stakeholder. Reads brain context (ICP, positioning, GTM motion) and guardrails from prior stakeholder mapping sessions; produces Power × Interest grid with political role assignment, conflict map, and weekly Sprint Cards for execution.
+metadata:
+  author: Stefanos Karakasis
+  context: brain-dependent
+  quality_gate: true
+last_updated: 2026-08-24
 ---
 
 # Stakeholder-Maps — Skill
@@ -31,7 +36,40 @@ The skill runs in 7 steps:
 
 ---
 
-## Step 0 — Pre-Flight: Load Context & Surface Guardrails
+## Trigger
+
+- **When:** Building a political stakeholder map for an initiative — who can kill it, who champions it, and what to say to each person.
+- **Not for:** Campaign messaging → use `gaccs-brief` after this skill. Risk analysis → use `pre-mortem` before this skill. GTM channel design → use `go-to-market-strategy`.
+- **Example prompts:**
+  - "Who are the stakeholders for this launch?"
+  - "Map the politics on this initiative"
+  - "Who could block this internally?"
+  - "Build a stakeholder map"
+
+---
+
+## Inputs
+
+- **Args:** Initiative description, success definition, timeline, current champions/blockers. Free format — Step 1 intake fills gaps conversationally.
+- **Defaults:** If brain context is unavailable, this skill still runs — brain sharpens which stakeholders matter and what power they hold, but is not a hard blocker the way it is for `go-to-market-strategy`.
+- **Context keys:**
+  - `/foundation/brain.md` — optional but recommended. Sections 2 (ICP), 3 (Positioning), 5 (GTM Motion).
+  - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior stakeholder mapping sessions.
+  - **Brain contract:** Reads Sections 2, 3, 5. Writes: none — this skill does not write to `/foundation/brain.md`.
+
+---
+
+## Pre-flight
+
+- Load `/foundation/brain.md` Sections 2, 3, 5 if it exists — see Step 0 for the full sequence.
+- Load `/context/meta-patterns.md` if it exists, and surface any guardrail that has fired 2+ times in prior stakeholder mapping sessions — see Step 0.
+- No hard block: this skill runs without brain context, with reduced calibration.
+
+---
+
+## Steps
+
+### Step 0 — Pre-Flight: Load Context & Surface Guardrails
 
 Before intake, load:
 - **Brain context** (Sections 2, 3, 5): ICP, positioning, GTM motion — these shape which stakeholders matter and what power they hold
@@ -54,7 +92,7 @@ You can skip a guardrail if you disagree, but you'll see it first. If `/context/
 
 ---
 
-## Step 1 — Intake (Conversational, One Round)
+### Step 1 — Intake (Conversational, One Round)
 
 Ask 6 questions in one conversational block:
 
@@ -69,7 +107,7 @@ If they share a brief or plan, read it fully. Extract stakeholder names, decisio
 
 ---
 
-## Step 2 — Inversion: Who Could Sink This?
+### Step 2 — Inversion: Who Could Sink This?
 
 After intake, ask:
 
@@ -80,7 +118,7 @@ If they can't answer clearly, flag it: "If you can't name who could sink this, t
 
 ---
 
-## Step 3 — Classification: Power × Interest Grid + Political Roles
+### Step 3 — Classification: Power × Interest Grid + Political Roles
 
 Place each stakeholder on a 2×2 grid:
 
@@ -100,7 +138,7 @@ For each stakeholder, assign a **political role** (beyond quadrant placement):
 
 ---
 
-## Step 4 — Conflict Mapping
+### Step 4 — Conflict Mapping
 
 Identify stakeholder conflicts. For each conflict:
 
@@ -113,7 +151,7 @@ Unresolved conflicts compound. Assign resolution explicitly.
 
 ---
 
-## Step 5 — Silent Blocker Scan
+### Step 5 — Silent Blocker Scan
 
 Ask: Which functions/roles aren't in the room but could kill this?
 
@@ -129,7 +167,7 @@ For each silent function: what do they control? When to brief them? Who owns out
 
 ---
 
-## Step 6 — Output Structure
+### Step 6 — Output Structure
 
 Deliver three artifacts:
 
@@ -183,7 +221,7 @@ If the user wants any of these three artifacts saved to a file, ask where — th
 
 ---
 
-## Step 7 — Learning Close
+### Step 7 — Learning Close
 
 End every completed session by appending one row to `/context/skill-sessions.md`
 (create the file with a header row if it doesn't exist yet):
@@ -202,7 +240,32 @@ happened this session, still write the row with `pattern: none`.
 
 ---
 
-## Operating Rules (Condensed)
+## Outputs
+
+- **Files written:** `/context/skill-sessions.md` — one appended row per
+  session, per Step 7. The HTML widget, markdown diagnostic, and Sprint
+  Cards are delivered in chat only; if the user wants any saved to a file,
+  ask where — this skill doesn't write those artifacts to any file on its
+  own.
+- **Chat output format:** HTML widget (grid + comms plan + conflict map +
+  confidence assessment), followed by the markdown diagnostic and Sprint
+  Cards (Step 6).
+- **External side effects:** None beyond the session log above.
+
+---
+
+## Verification
+
+- Guardrails checked at Step 0 if `/context/meta-patterns.md` exists.
+- Inversion question asked and answered before classification (Step 2).
+- Every stakeholder placed on the grid and assigned a political role (Step 3).
+- Every conflict has a second-order risk and a named resolution owner (Step 4).
+- Silent blocker scan run across all seven functions (Step 5).
+- Session logged to `/context/skill-sessions.md` (Step 7).
+
+---
+
+## Operating Rules
 
 - **Silence is not alignment.** Frozen until proven otherwise.
 - **Name the Performers.** Verbal yes without written commitment = it didn't happen.

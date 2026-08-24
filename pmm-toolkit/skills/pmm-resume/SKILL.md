@@ -1,8 +1,13 @@
 ---
 name: pmm-resume
-version: 2.0.0
+version: 3.0.0
 description: >
   Resume reviewer and tailoring engine for Product Marketing Managers (IC to VP, including AI PMM roles). Takes baseline resume + job description → dissects JD → ranks bullets by impact fit → rebuilds complete resume in one pass. Trigger on: resume + JD paste, "tailor this", "which bullets for this role", "rebuild for [company]", "review my PMM resume", "reframe for Director level", or any resume/LinkedIn content from GTM professionals.
+metadata:
+  author: Stefanos Karakasis
+  context: context-agnostic
+  quality_gate: false
+last_updated: 2026-08-24
 ---
 
 # PMM Resume Review
@@ -18,7 +23,39 @@ This skill is standalone — it doesn't depend on the brain or any other skill i
 
 ---
 
-## Always Open Here
+## Trigger
+
+- **When:** Reviewing, tailoring, or rebuilding a resume for a Product Marketing role (IC to VP), or any resume/LinkedIn content from a GTM professional.
+- **Not for:** Non-PMM resumes — the frameworks here are PMM-specific. Cover letters — this skill's structure is built around resume bullets and section order, not narrative prose.
+- **Example prompts:**
+  - "Tailor my resume to this JD"
+  - "Review my PMM resume"
+  - "Which bullets should I use for this role?"
+  - "Rebuild my resume for [company]"
+  - "Reframe this for Director level"
+
+---
+
+## Inputs
+
+- **Args:** A baseline resume, and optionally a job description. Free format — Always Open Here below fills gaps conversationally.
+- **Defaults:** Resume + JD provided together auto-activates TAILOR mode (confirmed with the user). Resume only → ask which mode before starting. Never infer the goal without confirming it.
+- **Context keys:**
+  - `/foundation/brain.md` — optional. Section 3 (Alternatives & Positioning) can add brand-context calibration. This skill is fully useful without it.
+  - **Brain contract:** Reads Section 3 only, if present. Writes: none.
+
+---
+
+## Pre-flight
+
+- No hard block: this skill is standalone and does not depend on the brain or any other skill.
+- If the user has a bullet bank, check for it — see Bullet Bank section below.
+
+---
+
+## Steps
+
+### Step 1: Always Open Here
 
 **Open with this — no exceptions, even if the user pastes a resume immediately.**
 
@@ -53,7 +90,7 @@ Confirm with the user before proceeding on any inferred level.
 
 ---
 
-## Bullet Bank (Optional)
+### Step 2: Check Bullet Bank (Optional)
 
 A bullet bank is a running file of the user's achievements, written once and reused across tailoring sessions. It's optional — most users won't have one on a first session.
 
@@ -63,6 +100,14 @@ Check whether the user has mentioned or attached one:
 - **Don't have one** → proceed normally; offer to build one from this session's output at the end
 
 Never add to a bullet bank without the user's approval of the specific new entry.
+
+---
+
+### Step 3: Run the Selected Mode
+
+Dispatch to the mode selected in Step 1. Every mode is documented in full below —
+this step exists so "run the right mode" appears as an explicit, named action in
+the skill's sequence, not an implicit jump.
 
 ---
 
@@ -406,6 +451,27 @@ If the user wants a polished HTML or PDF version, use the `docx` or `pdf` skill 
 ## Self-Improvement
 
 This skill doesn't depend on any shared knowledge base or external file — its expertise lives directly in this file. If a session surfaces a genuinely new, durable pattern (a rewrite approach that consistently lands, or a piece of conventional resume advice that's actively wrong at senior PMM level), say so explicitly and ask whether to fold it into this file directly, the same way any other change to this skill would be made — not into a separate knowledge store this skill would need to remember to check.
+
+---
+
+## Outputs
+
+- **Files written:** None — this skill does not write to `/context/skill-sessions.md`
+  or any other file on its own. If the user wants a bullet bank saved, ask where.
+- **Chat output format:** Varies by mode — see Operating Modes above. TAILOR and
+  Full Audit both close with Resume Build Mode's clean formatted document once
+  the user confirms the rewritten content.
+- **External side effects:** None.
+
+---
+
+## Verification
+
+- Goal confirmed with the user before any mode runs (Step 1) — never inferred silently.
+- XYZ+S formula applied and shown as a labeled before/after for rewritten bullets.
+- No fabricated achievements — every rewrite reframes something real.
+- Level calibration matches the stated target level.
+- Final resume built only after the user has confirmed the rewritten content (Resume Build Mode).
 
 ---
 

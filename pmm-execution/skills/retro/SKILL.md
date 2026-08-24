@@ -1,6 +1,6 @@
 ---
 name: retro
-version: 1.3.0
+version: 1.4.0
 description: >
   Structured GTM retrospective for cross-functional squads anchored to OKRs and launch
   outcomes. Produces diagnostic root causes and actionable decisions, not venting. Loads
@@ -13,10 +13,40 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-08-21
+last_updated: 2026-08-24
 ---
 
-## Pre-Flight
+# retro — GTM Retrospective Engine for PMMs
+
+Runs a structured retrospective for cross-functional squads that produces OKR-linked
+decisions. Not a feelings circle. A diagnostic system.
+
+---
+
+## Trigger
+
+- **When:** Post-launch review, GTM cycle debrief, sprint retrospective with a PMM lens, or any cross-functional session where decisions are needed, not just discussion.
+- **Not for:** Pre-launch risk analysis → use `pre-mortem`. OKR setting for the next quarter → use `pmm-okrs`. Campaign briefing after a retro surfaces a messaging gap → use `gaccs-brief`. Competitive root cause analysis → no dedicated skill yet.
+- **Example prompts:**
+  - "Run a retro on our Q2 product launch"
+  - "We missed our pipeline KR — let's debrief"
+  - "What went wrong with the enterprise campaign?"
+  - "Facilitate our post-launch review for the analytics dashboard"
+  - "Our last sprint ended badly — help us figure out why"
+
+---
+
+## Inputs
+
+- **Args:** Cycle name or launch name (required). Free format — one sentence minimum.
+- **Defaults:** If no cycle named, run intake before proceeding. Never generate a retro output without a named cycle and at least one OKR to anchor to.
+- **Context keys:**
+  - `/foundation/brain.md` — optional but recommended. Load ICP, Positioning, Revenue Levers, GTM Motion, Launch Tier Definitions silently if present.
+  - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from all skills.
+
+---
+
+## Pre-flight
 
 Before anything else, check `/foundation/brain.md`.
 
@@ -40,30 +70,8 @@ from prior retros they've logged there. If a pattern applies, surface it before 
 
 If that file doesn't exist, skip silently — it isn't required for the skill to run.
 
---
+---
 
-# retro — GTM Retrospective Engine for PMMs
-
-Runs a structured retrospective for cross-functional squads that produces OKR-linked
-decisions. Not a feelings circle. A diagnostic system.
----
-## Trigger
-- **When:** Post-launch review, GTM cycle debrief, sprint retrospective with a PMM lens, or any cross-functional session where decisions are needed, not just discussion.
-- **Not for:** Pre-launch risk analysis → use `pre-mortem`. OKR setting for the next quarter → use `pmm-okrs`. Campaign briefing after a retro surfaces a messaging gap → use `gaccs-brief`. Competitive root cause analysis → no dedicated skill yet.
-- **Example prompts:**
-  - "Run a retro on our Q2 product launch"
-  - "We missed our pipeline KR — let's debrief"
-  - "What went wrong with the enterprise campaign?"
-  - "Facilitate our post-launch review for the analytics dashboard"
-  - "Our last sprint ended badly — help us figure out why"
----
-## Inputs
-- **Args:** Cycle name or launch name (required). Free format — one sentence minimum.
-- **Defaults:** If no cycle named, run intake before proceeding. Never generate a retro output without a named cycle and at least one OKR to anchor to.
-- **Context keys:**
-  - `/foundation/brain.md` — optional but recommended. Load ICP, Positioning, Revenue Levers, GTM Motion, Launch Tier Definitions silently if present.
-  - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from all skills.
----
 ## Steps
 ### Step 1: Run Intake
 Ask in one message. Never generate before OKRs are confirmed.
@@ -271,3 +279,4 @@ Runs before final delivery. Score each criterion 1–3. Minimum 12/15 to pass.
 | Learning Close ran | `/context/skill-sessions.md` has a new row for this session | |
 
 **On failure:** Identify which criterion failed, revise, do not present as final.
+Show full file

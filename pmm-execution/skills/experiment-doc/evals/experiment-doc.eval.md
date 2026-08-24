@@ -1,4 +1,4 @@
-# Evals — experiment-doc-builder skill v2.2.0
+# Evals — experiment-doc skill v2.2.0
 
 Testing user onboarding, statistical literacy, and rigorous gatekeeping. Does the skill teach users what they need to know before building an experiment?
 

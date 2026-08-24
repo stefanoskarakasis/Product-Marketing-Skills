@@ -1,8 +1,13 @@
 ---
 name: pre-mortem
-version: 2.5.0
+version: 3.0.0
 description: >
   Identifies and pressure-tests failure modes for any strategic initiative (product launch, pricing change, GTM pivot, new market entry, feature rollout) by running a cross-functional risk exercise. Loads brain context (ICP, positioning, competitive landscape) and, when available, guardrails from prior pre-mortems; surfaces Tigers (deal-blocking risks) with owner-assigned action plans.
+metadata:
+  author: Stefanos Karakasis
+  context: brain-dependent
+  quality_gate: true
+last_updated: 2026-08-24
 ---
 
 # Pre-Mortem — Skill
@@ -27,9 +32,44 @@ The skill runs in 7 steps:
 
 **Step 6** — Output structure: Deliver a one-page Tiger summary + 2-3 page full risk table + action register.
 
+**Step 7** — Learning Close: log the session to `/context/skill-sessions.md`.
+
 ---
 
-## Step 0 — Pre-Flight: Load Context & Surface Guardrails
+## Trigger
+
+- **When:** Any strategic initiative that needs cross-functional risk analysis before committing resources — a product launch, pricing change, GTM pivot, new market entry, or feature rollout.
+- **Not for:** Post-launch diagnosis of what actually happened → use `retro`. Stakeholder alignment planning → use `stakeholder-maps`. Prioritization or tier scoring → use `prioritization-frameworks` or `go-to-market-strategy`.
+- **Example prompts:**
+  - "Run a pre-mortem on our Q3 pricing change"
+  - "What could go wrong with this launch?"
+  - "Stress-test our market entry plan before we commit"
+  - "I need a risk analysis before this goes to leadership"
+  - "Pressure-test this GTM pivot"
+
+---
+
+## Inputs
+
+- **Args:** Initiative name and scope. Free format — one sentence minimum; Step 1 intake fills in the rest conversationally.
+- **Defaults:** If no initiative is named, run Step 1 intake before proceeding. Never generate failure scenarios without a named initiative and scope.
+- **Context keys:**
+  - `/foundation/brain.md` — recommended. Sections 2 (ICP), 3 (Positioning), 5 (Revenue Levers) loaded silently at Step 0.
+  - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior pre-mortems.
+
+---
+
+## Pre-flight
+
+- Load `/foundation/brain.md` Sections 2, 3, 5 (ICP, positioning, revenue levers) if it exists — see Step 0 for the full sequence.
+- Load `/context/meta-patterns.md` if it exists, and surface any guardrail that has fired 2+ times in prior pre-mortems — see Step 0.
+- No hard block: this skill runs with or without brain context, though output is sharper with it.
+
+---
+
+## Steps
+
+### Step 0 — Pre-Flight: Load Context & Surface Guardrails
 
 Before intake, load:
 - **Brain context** (Sections 2, 3, 5): ICP, positioning, revenue levers — you'll reference these during risk generation
@@ -52,7 +92,7 @@ You can skip a guardrail if you disagree, but you'll see it first. If `/context/
 
 ---
 
-## Step 1 — Intake (Conversational, One Round)
+### Step 1 — Intake (Conversational, One Round)
 
 Ask 6 questions, grouped into one conversational block:
 
@@ -67,7 +107,7 @@ Adjust depth based on user input. If they're verbose, you have rich context. If 
 
 ---
 
-## Step 2 — Failure Scenario Generation
+### Step 2 — Failure Scenario Generation
 
 **Frame it:** "Imagine it's 3 months from launch. Revenue is down 20%. Customer churn spiked. The team is frustrated. Walk me through what happened."
 
@@ -97,7 +137,7 @@ Generate 8–12 failure narratives across these categories. Use brain context (I
 
 ---
 
-## Step 3 — Risk Classification
+### Step 3 — Risk Classification
 
 For each failure scenario, place it in one of three buckets:
 
@@ -119,7 +159,7 @@ For each failure scenario, place it in one of three buckets:
 
 ---
 
-## Step 4 — Tiger Triage
+### Step 4 — Tiger Triage
 
 For each Tiger, define three things:
 
@@ -138,7 +178,7 @@ Write this as a short narrative (3-4 sentences). Avoid bullet lists here — nar
 
 ---
 
-## Step 5 — PMM Recommendation
+### Step 5 — PMM Recommendation
 
 After Tiger triage, answer: **Can we go, or should we hold?**
 
@@ -154,7 +194,7 @@ State your recommendation in one paragraph. Be clear. Be direct.
 
 ---
 
-## Step 6 — Output Structure
+### Step 6 — Output Structure
 
 Deliver three artifacts:
 
@@ -188,7 +228,7 @@ If the user wants any of these saved to a file, or wants a later retro to compar
 
 ---
 
-## Step 7 — Learning Close
+### Step 7 — Learning Close
 
 End every completed session by appending one row to `/context/skill-sessions.md`
 (create the file with a header row if it doesn't exist yet):
@@ -204,6 +244,38 @@ Write this row directly — do not ask the user for permission. This is an
 observational log entry, separate from the three artifacts above, which
 still require the user's go-ahead on where to save them. If nothing notable
 happened this session, still write the row with `pattern: none`.
+
+---
+
+## Outputs
+
+- **Files written:** `/context/skill-sessions.md` — one appended row per
+  session, per Step 7. The three artifacts (Tiger Summary, Full Risk
+  Table, Action Register) are delivered in chat only; if the user wants
+  any of them saved to a file, ask where — this skill doesn't write
+  those artifacts to any file on its own.
+- **Chat output format:** Three artifacts per Step 6 — Tiger Summary
+  (1 page), Full Risk Table (2–3 pages), Action Register (1 page).
+- **External side effects:** None beyond the session log above.
+
+---
+
+## Verification
+
+- Guardrails checked at Step 0 if `/context/meta-patterns.md` exists.
+- Every failure scenario classified as Tiger, Paper Tiger, or Elephant before Tiger triage begins.
+- Every Tiger has a named owner (person + role, not "we" or "TBD"), a measurable signal, and an action plan.
+- Recommendation stated as Go / Conditional Go / Hold, in one direct paragraph.
+- All three output artifacts delivered together (Step 6).
+- Session logged to `/context/skill-sessions.md` (Step 7).
+
+---
+
+## Do Not Use For
+
+- **retro** — for diagnosing what actually happened after a launch. This skill runs before commitment; `retro` runs after.
+- **stakeholder-maps** — for political stakeholder alignment planning. This skill's Tiger owners are risk-mitigation owners, not a full stakeholder map.
+- **prioritization-frameworks** — for scoring and tiering initiatives against each other. This skill assumes the initiative is already committed to and stress-tests execution risk, not whether it should happen at all.
 
 ---
 
@@ -229,17 +301,14 @@ Adjust intake and scenario generation by initiative type:
 
 ---
 
-## Rules of Engagement
+## Operating Rules
 
-**Surface Tigers first.** After classification, discuss Tigers before Paper Tigers — they're the ones with owners and action plans.
-
-**Assume worst-case thinking.** Don't be optimistic. If you say "the team will figure it out," that's not a plan. Make it concrete.
-
-**Owners are required.** Every Tiger gets a person's name and role. "Marketing owns it" is not an owner.
-
-**Signals are measurable.** "We'd see low adoption" is vague. "We'd see <500 signups in the first week" is measurable.
-
-**Action plans bridge risk to decision.** If you can't mitigate a Tiger, that's fine — but then you're saying "we're accepting this risk and here's how we'll respond if it happens."
+- **Surface Tigers first.** After classification, discuss Tigers before Paper Tigers — they're the ones with owners and action plans.
+- **Assume worst-case thinking.** Don't be optimistic. If you say "the team will figure it out," that's not a plan. Make it concrete.
+- **Owners are required.** Every Tiger gets a person's name and role. "Marketing owns it" is not an owner.
+- **Signals are measurable.** "We'd see low adoption" is vague. "We'd see <500 signups in the first week" is measurable.
+- **Action plans bridge risk to decision.** If you can't mitigate a Tiger, that's fine — but then you're saying "we're accepting this risk and here's how we'll respond if it happens."
+- **Guardrails surface before scenarios, when available.** If `/context/meta-patterns.md` has a pattern that's fired 2+ times, the user sees it at Step 0 — not buried after the fact.
 
 ---
 
@@ -252,10 +321,3 @@ Adjust intake and scenario generation by initiative type:
 | Every Tiger has owner + signal + action | No "TBD" or "we" as owner |
 | Recommendation stated | Go / Conditional Go / Hold, one paragraph |
 | Learning Close ran | `/context/skill-sessions.md` has a new row for this session |
-
-**Note (2026-08-22):** This skill is missing `## Trigger`, `## Inputs`,
-`## Outputs`, `## Verification`, and `## Do Not Use For` — the seven
-required sections per `SKILL-SPEC.md` Section 4. This Quality Gate and
-the new Learning Close step (Step 7) close the T1 minimum for this batch;
-the missing sections are a separate, larger compliance gap flagged here,
-not fixed in this pass.

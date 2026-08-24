@@ -1,6 +1,6 @@
 ---
 name: beachhead-segment
-version: 2.1.0
+version: 2.2.0
 description: >
   Identifies and scores your highest-priority beachhead segment using four-dimension scoring (Burning Pain, Willingness to Pay, Winnability, Referral Potential) with blocking gates. Reads brain context (ICP, positioning, competitive landscape, proof points) and, when available, guardrails from prior beachhead decisions the user has logged. Writes confirmed beachhead to brain Section 2, on explicit confirmation.
 ---
@@ -11,7 +11,7 @@ description: >
 
 Identifies the highest-probability segment to dominate first — before expanding. This is the wedge. Everything else (positioning, GTM strategy, proof points) follows from getting this right.
 
-The skill runs in 6 steps:
+The skill runs in 7 steps:
 
 **Step 0** — Load brain context (ICP, positioning, competitive landscape, proof points) and, if the user maintains `/context/meta-patterns.md`, guardrails logged there.
 
@@ -27,6 +27,8 @@ The skill runs in 6 steps:
 
 **Step 6** — Update brain Section 2 with confirmed beachhead (on user confirmation).
 
+**Step 7** — Learning Close: log the session to `/context/skill-sessions.md`.
+
 ---
 
 ## Step 0 — Pre-Flight: Load Context & Surface Guardrails
@@ -37,7 +39,7 @@ Before intake, load:
 
 **Surface guardrails like this:**
 
-```
+````
 🔁 PATTERN FROM PRIOR BEACHHEAD DECISIONS
 
 I've seen [pattern description] in 2 prior sessions.
@@ -46,7 +48,7 @@ Examples: [specific segments or outcomes]
 Quick check: Does this apply to your candidates?
 - If YES → We'll watch for this during scoring
 - If NO → Let's flag it if it emerges
-```
+````
 
 You can skip a guardrail if you disagree, but you'll see it first. If `/context/meta-patterns.md` doesn't exist, skip this step silently.
 
@@ -158,7 +160,7 @@ This is what separates a beachhead from any other segment.
 
 After gates pass, state recommendation with rationale and expansion pathway.
 
-```markdown
+````markdown
 ## Recommended Beachhead: [Segment Name]
 **Rationale:** [2–3 sentences grounded in four dimensions]
 **Why not [Segment B]:** [One sentence specific reason]
@@ -189,7 +191,7 @@ Trigger to move Adjacent 1 → Adjacent 2: [specific milestone]
 |---|---|---|
 | [X] | Pain floor | Burning Pain [score]: no urgency |
 | [Y] | Winnability | Incumbent [name] entrenched |
-```
+````
 
 ---
 
@@ -199,7 +201,7 @@ After recommendation confirmed:
 > "Updating brain Section 2 with [Segment] as confirmed beachhead. Confirm? [Y/N]"
 
 Write to `/foundation/brain.md` Section 2:
-```markdown
+````markdown
 ## Beachhead Segment (last updated: [date])
 - **Segment:** [name]
 - **Scores:** Pain [X] / WTP [X] / Winnability [X] / Referral [X] — Total [X/20]
@@ -208,9 +210,28 @@ Write to `/foundation/brain.md` Section 2:
 - **Expansion pathway:** [Beachhead] → [Adjacent 1] → [Adjacent 2]
 - **90-day trigger:** [first milestone]
 - **Status:** Active beachhead
-```
+````
 
 Never write without this explicit confirmation.
+
+---
+
+## Step 6 — Learning Close
+
+End every completed session by appending one row to `/context/skill-sessions.md`
+(create the file with a header row if it doesn't exist yet):
+
+````yaml
+skill: beachhead-segment
+session_date: [YYYY-MM-DD]
+pattern: [one falsifiable statement about what happened this session, or "none"]
+source: [surprised / wrong / missing / n.v.t.]
+````
+
+Write this row directly — do not ask the user for permission. This is a
+separate, mechanical log entry from the brain Section 2 write above, which
+still requires the user's explicit confirmation. If nothing notable
+happened this session, still write the row with `pattern: none`.
 
 ---
 
@@ -218,34 +239,34 @@ Never write without this explicit confirmation.
 
 ### /score [segment A] vs [segment B] vs [segment C]
 Score named segments immediately. Skips intake.
-```
+````
 /score fintech vs healthcare vs logistics
-```
+````
 Output: Scorecard → gates → recommendation.
 
 ### /decompose
 Decompose current ICP into 2–4 scoreable sub-segments.
-```
+````
 /decompose
-```
+````
 
 ### /audit [segment name]
 Pressure-test existing beachhead. Compares original vs. current scores. Surfaces expansion trigger status.
-```
+````
 /audit
-```
+````
 
 ### /pathway
 Show full expansion pathway from confirmed beachhead.
-```
+````
 /pathway
-```
+````
 
 ### /eliminate [segment name]
 Explicitly eliminate a segment. Documents reason.
-```
+````
 /eliminate enterprise — too entrenched
-```
+````
 
 ---
 
@@ -277,6 +298,14 @@ Explicitly eliminate a segment. Documents reason.
 | 90-day plan has specific trigger | Measurable milestone |
 | Confidence level stated | 🟢 / 🟡 / 🔴 with reason |
 | Brain write confirmed | Section 2 update shown to user |
+| Learning Close ran | `/context/skill-sessions.md` has a new row for this session |
+
+**Note (2026-08-22):** This skill is missing `## Trigger`, `## Inputs`,
+`## Outputs`, and `## Verification` — required sections per `SKILL-SPEC.md`
+Section 4. It's also missing from the Section 12 tier table entirely
+despite meeting every T1/T2 structural requirement (brain write, 9
+Operating Rules, 10-row Quality Gate) — both gaps flagged here; the tier
+table is fixed in this same batch, the missing sections are not.
 
 ---
 

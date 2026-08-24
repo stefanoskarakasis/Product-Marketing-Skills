@@ -1,6 +1,6 @@
 ---
 name: positioning-messaging
-version: 2.3.0
+version: 2.4.0
 description: >
   Use for positioning statement, messaging hierarchy, homepage copy, persona cards,
   messaging audit, value prop, or elevator pitch. Trigger when user says "we sound
@@ -10,28 +10,12 @@ description: >
   HOMEPAGE modes. Refuses to generate without named primary persona and 3+
   alternatives including status quo. Blocks output until 7-point verification
   gate passes.
+
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-08-22
----
-
-## Step 0: Pre-Flight
-
-### Load Context & Guardrails
-
-1. **Load Brain** (REQUIRED)
-   - Read `/foundation/brain.md`
-   - Require: Section 1 (Product Context), Section 2 (ICP), Section 3 (Alternatives & Positioning)
-   - If missing → Offer to run product-marketing-context
-
-2. **Load Active Guardrails**
-   - If `/context/meta-patterns.md` exists in the user's workspace: if a pattern
-     has actually fired 2+ times in prior positioning runs logged there, surface
-     it now
-   - If it doesn't exist, skip this step silently
-
+last_updated: 2026-08-24
 ---
 
 # positioning-messaging
@@ -128,8 +112,12 @@ implied category. Report as: `"Your current materials say: [findings]"`
 
 ## Pre-flight
 
-- Load `/foundation/brain.md` if it exists. Extract ICP, positioning hypothesis,
-  competitive alternatives silently.
+- Load `/foundation/brain.md` if it exists. Extract Section 1 (Product Context),
+  Section 2 (ICP), and Section 3 (Alternatives & Positioning) silently.
+
+- If `/context/meta-patterns.md` exists in the user's workspace: if a pattern
+  has actually fired 2+ times in prior positioning runs logged there, surface
+  it now. If it doesn't exist, skip this step silently.
 
 - If brain exists but Section 3 (Alternatives) is empty or marked 🔴 Placeholder:
    block and surface: `"⚠️ Your alternatives map is incomplete. Complete Section 3
@@ -380,7 +368,7 @@ happened this session, still write the row with `pattern: none`.
 - **(no dedicated skill yet)** — sales competitive response cards; handle
   within this skill's SALES-ENABLEMENT mode instead
 
-- **experiment-doc-builder** — when testing messaging assumptions; this skill
+- **experiment-doc** — when testing messaging assumptions; this skill
   builds messaging, not validates it experimentally
 
 ---
@@ -453,3 +441,8 @@ incomplete output.
 | Vision flags resolved | All `[VISION FLAG]` items addressed or rejected | Yes |
 | Mode format correct | Output matches expected format for selected mode | Yes |
 | Learning Close ran | `/context/skill-sessions.md` has a new row for this session | Yes |
+Show full file
+8
+pmm-execution/skills/pre-mortem/SKILL.md
+B10
+324 lines

@@ -1,6 +1,6 @@
 ---
 name: retro
-version: 1.2.0
+version: 1.3.0
 description: >
   Structured GTM retrospective for cross-functional squads anchored to OKRs and launch
   outcomes. Produces diagnostic root causes and actionable decisions, not venting. Loads
@@ -162,9 +162,29 @@ any file on its own.
 ### Step 9: Deliver Output
 Deliver the retro summary (see Outputs section).
 ---
+### Step 10: Learning Close
+
+End every completed session by appending one row to `/context/skill-sessions.md`
+(create the file with a header row if it doesn't exist yet):
+
+````yaml
+skill: retro
+session_date: [YYYY-MM-DD]
+pattern: [one falsifiable statement about what happened this session, or "none"]
+source: [surprised / wrong / missing / n.v.t.]
+````
+
+Write this row directly — do not ask the user for permission. This is a
+separate, mechanical row from Step 8's Learnings to Remember, which is a
+user-facing summary of what to carry forward, not a file write. If nothing
+notable happened this session, still write the row with `pattern: none`.
+
+---
 ## Outputs
 - **Chat output format:** Retro summary in the template below. Markdown formatted for copy-paste into Notion or Google Docs.
-- **External side effects:** None. This skill does not write to any file on its own.
+- **Files written:** `/context/skill-sessions.md` — one appended row per
+  session, per Step 10.
+- **External side effects:** None beyond the session log above.
 
 ````markdown
 ## GTM Retrospective — [Cycle Name] — [Date]
@@ -209,6 +229,7 @@ Deliver the retro summary (see Outputs section).
 - Tier assessment run and gap stated.
 - Pre-mortem correlation checked if a prior pre-mortem is available.
 - Learnings surfaced with the user, not written anywhere without asking.
+- Session logged to `/context/skill-sessions.md` (Step 10), separate from Step 8's user-facing learnings.
 ---
 ## Do Not Use For
 - **pre-mortem** — for risk analysis before a launch, not after. Run this skill on a completed cycle; run `pre-mortem` on the next planned one.
@@ -247,5 +268,6 @@ Runs before final delivery. Score each criterion 1–3. Minimum 12/15 to pass.
 | Root cause depth | No theme stops at "communication" — structural cause named for each | |
 | Action item quality | Max 3, single owner, measurable metric, OKR-linked | |
 | Tier diagnosis | Launch tier assessed and compared to warranted | |
+| Learning Close ran | `/context/skill-sessions.md` has a new row for this session | |
 
 **On failure:** Identify which criterion failed, revise, do not present as final.

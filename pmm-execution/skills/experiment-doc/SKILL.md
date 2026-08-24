@@ -1,6 +1,6 @@
 ---
 name: experiment-doc-builder
-version: 2.4.0
+version: 2.5.0
 description: >
   Guides you through building high-rigor experiment briefs by first understanding your role,
   what you're testing, and what scale you need to detect real results statistically. Pressure-tests
@@ -103,12 +103,32 @@ Your brief includes:
 
 If a pattern worth remembering surfaces — a variable tested before with weak
 isolation, a recurring rigor gap — name it and ask the user where, if anywhere,
-they'd like it noted. This skill does not write to any file on its own.
+they'd like it noted for their own use. Separately, this skill always logs the
+session itself; see Step 7.
+
+### Step 7: Learning Close
+
+End every completed session by appending one row to `/context/skill-sessions.md`
+(create the file with a header row if it doesn't exist yet):
+
+````yaml
+skill: experiment-doc
+session_date: [YYYY-MM-DD]
+pattern: [one falsifiable statement about what happened this session, or "none"]
+source: [surprised / wrong / missing / n.v.t.]
+````
+
+Write this row directly — do not ask the user for permission. This is an
+observational log entry, distinct from any pattern the user separately asks
+to have noted for their own reference. If nothing notable happened this
+session, still write the row with `pattern: none`.
 
 ---
 ## Outputs
 - **Chat output:** Experiment Brief (if approved) OR rejection with specific gaps and next steps.
-- **External side effects:** None. This skill does not write to any file on its own.
+- **Files written:** `/context/skill-sessions.md` — one appended row per
+  session, per Step 7.
+- **External side effects:** None beyond the session log above.
 ---
 ## Verification
 - Guardrails checked if `/context/meta-patterns.md` exists.
@@ -157,6 +177,7 @@ You want to test something. I'll calculate the sample size needed and timeline r
 | Hypothesis causal | If X then Y because Z explicit | Yes |
 | Confounders named | Every confounder has mitigation | Yes |
 | Success criteria explicit | Big success, minor success, failure defined | Yes |
+| Learning Close ran | `/context/skill-sessions.md` has a new row for this session | Yes |
 **On flag:** Surface the gap. Don't let it pass.
 ---
 ## Guardrails
@@ -165,5 +186,5 @@ You want to test something. I'll calculate the sample size needed and timeline r
 - **Stop if hypothesis is vague.** "Your hypothesis is 'increase engagement.' That's not specific enough. What behaviour must change?"
 - **Stop if scale is impossible.** "You'd need 50k users per variant. At 100/week, that's a year of testing. Is this worth it?"
 - **No weak experiments ship.** I won't generate a brief if score <70, period.
-Never propose learnings mid-task. Learning happens at close only.
+Never propose learnings mid-task. Learning happens at close only, via Step 7.
 **Optimising for truth > speed. Always.**

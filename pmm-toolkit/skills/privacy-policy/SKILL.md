@@ -1,13 +1,12 @@
 ---
 name: privacy-policy
-version: 2.1.0
+version: 3.0.0
 description: Draft a jurisdiction-aware privacy policy for any digital product — use this skill whenever a PMM or Product Manager needs to create, update, audit, or review data protection documentation, asks about GDPR, CCPA, or UK GDPR obligations, mentions "privacy policy", "cookie policy", "data retention", "right to be forgotten", "data processing agreement", or asks what their product needs to comply with applicable privacy law.
-
 metadata:
   author: Stefanos Karakasis
   context: context-agnostic
   quality_gate: false
-last_updated: 2026-08-21
+last_updated: 2026-08-24
 ---
 
 # privacy-policy
@@ -21,7 +20,30 @@ High-risk clauses are marked `[⚠️ LEGAL REVIEW REQUIRED]` throughout — alw
 
 ---
 
-## Pre-Flight
+## Trigger
+
+- **When:** Creating, updating, auditing, or reviewing a privacy policy or other data protection documentation, or answering what a product needs to comply with applicable privacy law.
+- **Not for:** n.v.t. — this skill has no overlap with another skill in this stack; overlap was considered and there is none.
+- **Example prompts:**
+  - "Draft a privacy policy"
+  - "Are we GDPR compliant?"
+  - "Update our cookie policy"
+  - "Review our data retention policy"
+  - "What does our product need for CCPA compliance?"
+
+---
+
+## Inputs
+
+- **Args:** Product name, company legal name and address, privacy contact, user location(s), data types collected, third-party tools in use, and optionally an existing policy to refresh. Free format — Step 1 (Intake) fills gaps conversationally.
+- **Defaults:** If the user skips intake, default to broadest jurisdiction coverage and flag all inferred inputs.
+- **Context keys:**
+  - `/foundation/brain.md` — optional. Product name/description, company name/address, primary market, data types, and ICP can all be inferred from it.
+  - **Brain contract:** Reads brain content opportunistically (no fixed section numbers — this skill infers from whatever's present). Writes: none.
+
+---
+
+## Pre-flight
 
 Read `/foundation/brain.md` if available. Extract silently:
 - Product name and description
@@ -33,11 +55,13 @@ Read `/foundation/brain.md` if available. Extract silently:
 If missing, proceed without it and collect everything through Intake instead.
 
 Even with brain context loaded, surface what was inferred and require explicit
-confirmation in Section ①. Legal documents cannot be built on silent assumptions.
+confirmation in Step 1. Legal documents cannot be built on silent assumptions.
 
 ---
 
-## ① Intake
+## Steps
+
+### Step 1: Intake
 
 Present as a single message — not a question drip.
 
@@ -73,7 +97,7 @@ If the user skips intake → default to broadest jurisdiction coverage; flag all
 
 ---
 
-## ② Jurisdiction Baseline
+### Step 2: Jurisdiction Baseline
 
 Derive applicable laws from confirmed inputs — never assume. Apply the relevant
 baseline below. These are the core obligations to draft from; treat every specific
@@ -106,7 +130,7 @@ knowledge, not a loaded authoritative source) and mark it `[⚠️ LEGAL REVIEW 
 
 ---
 
-## ③ Operating Modes
+### Step 3: Select Operating Mode
 
 | Mode | Trigger | Output |
 |---|---|---|
@@ -120,10 +144,10 @@ Default: **DRAFT**.
 
 ---
 
-## ④ The Twelve-Section Policy Architecture
+### Step 4: Draft the Twelve-Section Policy Architecture
 
 Draft every DRAFT and REFRESH policy in this order. This is the baseline structure —
-adapt section depth to what Section ① and ② actually surfaced, and drop a section
+adapt section depth to what Step 1 and Step 2 actually surfaced, and drop a section
 only if it is genuinely inapplicable (state why, briefly, rather than deleting silently).
 
 1. **Overview and scope** — who this policy covers, what product/service it applies to.
@@ -142,7 +166,7 @@ only if it is genuinely inapplicable (state why, briefly, rather than deleting s
    adequacy decision) for every processor outside the user's primary jurisdiction.
 8. **Data retention** — a stated period or deletion trigger per data type. Every
    period gets `[⚠️ LEGAL REVIEW REQUIRED]` — no exceptions.
-9. **Your rights** — the specific rights from the Section ② baseline for the user's
+9. **Your rights** — the specific rights from the Step 2 baseline for the user's
    confirmed jurisdiction(s), plus how to exercise each one.
 10. **Security measures** — a general, honest description of safeguards in place.
     Never overstate; never make an unverifiable claim (e.g. "military-grade").
@@ -153,18 +177,18 @@ only if it is genuinely inapplicable (state why, briefly, rather than deleting s
 
 ---
 
-## ⑤ Drafting Protocol
+### Step 5: Follow the Drafting Protocol
 
 Follow this sequence — it prevents confident-sounding errors.
 
 1. Confirm all inputs are verified, not inferred.
-2. Apply the Section ② jurisdiction baseline for every confirmed location.
+2. Apply the Step 2 jurisdiction baseline for every confirmed location.
 3. Identify special categories and industry overlays.
 4. List every named third-party processor before drafting Section 6 of the policy.
-5. Draft all twelve sections from Section ④, in order.
-6. Run self-audit (Section ⑧) — all four layers must pass before output.
-7. Deliver three-part output (Section ⑥).
-8. Run self-improvement loop (Section ⑨).
+5. Draft all twelve sections from Step 4, in order.
+6. Run self-audit (Step 8) — all four layers must pass before output.
+7. Deliver three-part output (Step 6).
+8. Run the legal feedback check (Step 9).
 
 **The specificity rule** — apply to every clause:
 
@@ -177,7 +201,7 @@ If a clause could appear in any product's privacy policy unchanged, rewrite it.
 
 ---
 
-## ⑥ Output Format
+### Step 6: Deliver Output Format
 
 Deliver in three parts every session, every mode.
 
@@ -196,7 +220,7 @@ MODE:                [DRAFT / REFRESH / AUDIT / CLAUSE / LEARN]
 **Part 2 — Full Policy Document**
 
 Complete, ready-to-send-to-legal policy using the twelve-section architecture in
-Section ④. Write in plain English. No legalese. Define technical terms on first use.
+Step 4. Write in plain English. No legalese. Define technical terms on first use.
 Every `[⚠️ LEGAL REVIEW REQUIRED]` marker visible inline.
 
 **Part 3 — Compliance Notes and Next Steps**
@@ -217,7 +241,7 @@ Every `[⚠️ LEGAL REVIEW REQUIRED]` marker visible inline.
 
 ---
 
-## ⑦ Hard Rules
+### Step 7: Apply Hard Rules
 
 **Never present output as a finished legal document.**
 The disclaimer is mandatory. Remove or soften it at user request: not permitted.
@@ -235,13 +259,13 @@ Retention periods are a primary enforcement target. Every stated period gets
 **Never describe third-party processors generically.**
 Name them, or state "processors are listed at [URL]" with a maintained live list.
 
-**Never present the Section ② baseline as confirmed law for the user's situation.**
+**Never present the Step 2 baseline as confirmed law for the user's situation.**
 It is model knowledge (`[M]`), not a verified legal source. Flag every clause drawn
 from it.
 
 ---
 
-## ⑧ Self-Audit
+### Step 8: Run Self-Audit
 
 Run internally before producing any output. All four layers must pass.
 
@@ -263,9 +287,13 @@ Only after all four layers pass: produce output.
 
 ---
 
-## ⑨ Self-Improvement Loop
+### Step 9: Legal Feedback Check
 
-Run at end of every session, after output delivered and audit passed.
+Run at end of every session, after output delivered and audit passed. This is
+a bespoke feedback loop for this skill only — distinct from the repo's
+standard Learning Close (Section 5.1 of `SKILL-SPEC.md`), which does not
+apply here since this is a T3 skill with `quality_gate: false`. This step
+never writes to `/context/skill-sessions.md` or any other file on its own.
 
 **Why this matters**
 
@@ -292,7 +320,7 @@ and let them confirm the destination.
 
 ---
 
-## ⑩ Ecosystem Integration
+### Step 10: Ecosystem Integration
 
 | Upstream | This skill | Downstream |
 |---|---|---|
@@ -301,3 +329,31 @@ and let them confirm the destination.
 
 If product context changes — new market, new data type, new feature:
 → Re-run in **REFRESH** mode.
+
+---
+
+## Outputs
+
+- **Files written:** None — this skill does not write to `/context/skill-sessions.md`
+  or any other file on its own. If the user wants a policy or its notes saved
+  anywhere, ask where.
+- **Chat output format:** Three-part output every session — Intake
+  Confirmation, Full Policy Document, and Compliance Notes and Next Steps
+  (Step 6).
+- **External side effects:** None.
+
+---
+
+## Verification
+
+- All inputs confirmed or explicitly flagged as inferred (Part 1 of output).
+- Jurisdiction baseline applied for every confirmed location, with `[M]` and `[⚠️ LEGAL REVIEW REQUIRED]` tags on every clause drawn from it.
+- Self-Audit (Step 8) passed on all four layers before output was produced.
+- Every retention period and high-risk clause carries `[⚠️ LEGAL REVIEW REQUIRED]`.
+- Disclaimer present and not softened or removed at user request.
+
+---
+
+## Do Not Use For
+
+- n.v.t. — this skill has no overlap with another skill in this stack; overlap was considered and there is none.

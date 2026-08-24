@@ -1,6 +1,6 @@
 ---
 name: go-to-market-strategy
-version: 2.3.0
+version: 2.4.0
 description: >
     Assigns launch tier (T1–T4) using a four-signal framework and generates a complete GTM brief with positioning angles, channel strategy, success metrics, and competitive context. Reads brain (ICP, positioning, competitive, proof points) and, when available, guardrails from prior launches the user has logged.
 ---
@@ -11,7 +11,7 @@ description: >
 
 Assigns a launch tier and generates a complete GTM strategy brief grounded in your brain. Not a template-filler. A strategic thinking partner that interrogates scope before recommending resource investment.
 
-The skill runs in 5 steps:
+The skill runs in 6 steps:
 
 **Step 0** — Load brain context (ICP, positioning, competitive landscape, proof points) and, if the user maintains `/context/meta-patterns.md`, guardrails logged there.
 
@@ -23,6 +23,8 @@ The skill runs in 5 steps:
 
 **Step 4** — Generate full GTM brief (7 sections: strategic context, channels, metrics, competitive, proof points, timeline, next steps).
 
+**Step 5** — Learning Close: log the session to `/context/skill-sessions.md`.
+
 ---
 
 ## Step 0 — Pre-Flight: Load Context & Surface Guardrails
@@ -33,7 +35,7 @@ Before intake, load:
 
 **Surface guardrails like this:**
 
-```
+````
 🔁 PATTERN FROM PRIOR GTM BRIEFS
 
 I've seen [pattern description] in 2+ prior sessions.
@@ -42,7 +44,7 @@ Examples: [specific launches or outcomes]
 Quick check: Does this apply to your initiative?
 - If YES → We'll watch for this during brief generation
 - If NO → Let's flag it if it emerges
-```
+````
 
 You can skip a guardrail if you disagree, but you'll see it first. If `/context/meta-patterns.md` doesn't exist, skip this step silently.
 
@@ -106,7 +108,7 @@ Output tier with one-sentence rationale before generating brief:
 
 Generate only after tier is assigned. Structure (7 sections):
 
-```markdown
+````markdown
 ## GTM Brief — [Initiative Name]
 **Tier:** [T1 / T2 / T3 / T4]
 **Rationale:** [one sentence — four signals applied]
@@ -168,9 +170,28 @@ default every launch to the T1 playbook:
 3. Run pre-mortem to stress-test
 4. Run stakeholder-maps for internal alignment
 5. After launch, run retro
-```
+````
 
-If the user wants this brief saved anywhere, ask where — this skill doesn't write to any file on its own.
+If the user wants this brief saved anywhere, ask where — this skill doesn't write the brief itself to any file on its own.
+
+---
+
+### Step 5 — Learning Close
+
+End every completed session by appending one row to `/context/skill-sessions.md`
+(create the file with a header row if it doesn't exist yet):
+
+````yaml
+skill: go-to-market-strategy
+session_date: [YYYY-MM-DD]
+pattern: [one falsifiable statement about what happened this session, or "none"]
+source: [surprised / wrong / missing / n.v.t.]
+````
+
+Write this row directly — do not ask the user for permission. This is an
+observational log entry, separate from the GTM brief above, which still
+requires the user's go-ahead on where to save it. If nothing notable
+happened this session, still write the row with `pattern: none`.
 
 ---
 
@@ -200,6 +221,7 @@ If the user wants this brief saved anywhere, ask where — this skill doesn't wr
 | Proof point check | Missing proof points flagged if brief requires them |
 | Timeline present | Tier-appropriate timeline with milestones |
 | Next steps include retro | Retro named as post-launch trigger |
+| Learning Close ran | `/context/skill-sessions.md` has a new row for this session |
 
 ---
 

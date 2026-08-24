@@ -1,8 +1,9 @@
 # SKILL-SPEC.md
+
 ## Product Marketing Skills — Skill Authoring Standard
 
-**Version:** 2.3.0
-**Last updated:** 2026-08-24
+**Version:** 2.2.0
+**Last updated:** 2026-08-22
 **Applies to:** All skills in this repository
 **Owner:** Stefanos Karakasis
 
@@ -488,23 +489,6 @@ Every skill needs `evals/skill-name.eval.md`. Minimum 3 test cases.
 One test case must be an **edge case** (missing context, ambiguous input, conflicting signals).
 One test case must test the **quality gate** specifically.
 
-**No `## Changelog` section in an eval file** — same rule as `SKILL.md`
-(Section 5). An eval file that invents a version history is fabricating
-a release record, not documenting one.
-
-**Test the skill's real output shape, not an aspirational one.** A
-Session Logging or Learning Close eval must assert against the exact
-YAML fields the skill's own `SKILL.md` actually writes — for a T1/T2
-skill (or a T3 skill that has chosen to add one), that's the four-field
-Learning Close row from Section 5.1 (`skill`, `session_date`, `pattern`,
-`source`), nothing richer. An eval that tests fields the skill doesn't
-produce (invented scores, counts, or metadata) will pass or fail
-independent of what the skill actually does — it stops being a test.
-If a skill has no session-logging mechanism at all, its eval suite
-should not contain a Session Logging test case; write a short note
-instead of a fabricated one. **Found and fixed across 6 eval files on
-2026-08-24** — see `CHANGELOG.md` for the full list.
-
 ---
 
 ## 12. Skill Tiers
@@ -532,15 +516,6 @@ sections, had non-canonical header casing or numbering, or had `version`
 and `metadata` fields misplaced or absent entirely. All 21 skills in this
 repo now pass a full-section audit against this table. See each skill's
 own `last_updated` date for when its fix landed.
-
-**Note on prioritization-frameworks (2026-08-24):** This T3 skill's eval
-suite tested a Learning Close mechanism the skill didn't actually have —
-a mismatch found while auditing eval files for fabricated content (see
-Section 11). Rather than delete the eval to match the skill, the skill was
-given a real Learning Close (Step 7, T3's optional case exercised
-deliberately) so the eval could test something true. This is the one skill
-in T3 that now writes to `/context/skill-sessions.md`; every other T3
-skill remains log-free by design.
 
 ---
 

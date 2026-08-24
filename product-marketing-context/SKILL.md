@@ -1,11 +1,49 @@
 ---
 name: product-marketing-context
+version: 2.0.0
 description: Build and maintain the shared GTM brain — product context, ICP, positioning, voice, market context, and proof points — that every other skill in this stack reads before producing output. Works standalone with your own answers, supercharged when you connect docs or a CRM. Trigger with "build my brain", "set up my GTM foundation", "audit my brain", "update my ICP", or "check brain health".
+metadata:
+  author: Stefanos Karakasis
+  context: context-agnostic
+  quality_gate: true
+last_updated: 2026-08-24
 ---
 
 # Product Marketing Context (The Brain)
 
 Stop re-explaining your company, your buyer, and your competitors to every tool you use. Answer these questions once, in about 15 minutes, and every other skill in this stack reads the answers automatically instead of asking again.
+
+---
+
+## Trigger
+
+- **When:** Building the GTM brain for the first time, editing a section, or running a health audit on the existing brain.
+- **Not for:** Any skill that reads the brain rather than builds it — every brain-dependent skill in this stack routes here first if the brain is missing, then uses its own Trigger. This skill has no downstream overlap since it is upstream of everything else.
+- **Example prompts:**
+  - "Build my brain"
+  - "Set up my GTM foundation"
+  - "Audit my brain"
+  - "Update my ICP"
+  - "Check brain health"
+
+---
+
+## Inputs
+
+- **Args:** None required — the wizard (Step 2) asks one question at a time. A pitch deck, pricing page, or win/loss doc pasted in advance speeds this up but isn't required.
+- **Defaults:** No brain found → start the wizard from Section 1. Brain exists → load silently and offer [View current] [Edit a section] [Run health audit].
+- **Context keys:**
+  - `/foundation/brain.md` — read if it exists (load silently, skip answered sections); written to, section by section, only after user confirmation.
+  - `.agents/*.md`, `.claude/*.md` — optional legacy files; offered for migration if found.
+  - **Brain contract:** Reads all 6 sections if present. Writes: any section, but only after explicit user confirmation of the exact before/after (Operating Rule 1).
+
+---
+
+## Pre-flight
+
+- Check `/foundation/brain.md` — see Step 1 (Detect Brain State).
+- Check for legacy files (`.agents/*.md`, `.claude/*.md`) and offer migration if found.
+- No hard block: this skill is the entry point for users with no brain at all.
 
 ---
 
@@ -90,7 +128,7 @@ _Brain update proposed: [Yes — exact section and field / No — audit or view 
 
 ---
 
-## Execution Flow
+## Steps
 
 ### Step 1: Detect Brain State
 
@@ -122,6 +160,34 @@ Score each of the 6 sections 0-100 on: does the field exist, and is it specific 
 ### Step 5: Route to What's Next
 
 After any completed setup, edit, or audit, tell the user plainly that the brain is ready and other skills in the stack will read from it automatically. Do not name a specific downstream skill unless you have verified, in this session, that it reads this brain's real section structure correctly — an unverified skill name is a broken promise.
+
+---
+
+## Outputs
+
+- **Files written:** `/foundation/brain.md` — written section by section,
+  only after user confirmation (Step 3). `.brain-draft.md` — a resume
+  marker left behind if the wizard exits mid-session.
+- **Chat output format:** The Output Format template above — Brain Update
+  header, What Changed, Section Status, Health Score if an audit ran, Next
+  Step.
+- **External side effects:** None beyond the files above.
+
+---
+
+## Verification
+
+- Brain state checked (existing vs missing vs legacy) before any question is asked (Step 1).
+- No section written to `/foundation/brain.md` without the user confirming the exact before/after (Step 3).
+- Vague answers challenged inline, not silently accepted (Step 2).
+- Health audit, when run, scores all 6 sections and names a concrete fix for every gap under 50 (Step 4).
+- Downstream skill names mentioned only if their write-back to this brain has been verified correct this session (Step 5).
+
+---
+
+## Do Not Use For
+
+- n.v.t. — this skill is upstream of everything else in this stack; overlap was considered and there is none.
 
 ---
 

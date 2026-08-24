@@ -1,8 +1,13 @@
 ---
 name: meta-synthesis
-version: 3.1.0
+version: 3.2.0
 description: >
     Reads /context/skill-sessions.md (the session log every execution skill writes to) to detect patterns that repeat across 2+ sessions, proposes new guardrails for /context/meta-patterns.md, and proposes brain updates for confirmed learnings. Run on-demand or roughly weekly — not a scheduled background job. Trigger on: "run meta-synthesis", "what patterns are emerging", "detect cross-skill signals", "update guardrails", "compound our learnings", "what should we remember".
+metadata:
+  author: Stefanos Karakasis
+  context: brain-dependent
+  quality_gate: true
+last_updated: 2026-08-24
 ---
 
 # meta-synthesis — Skill
@@ -25,7 +30,43 @@ The skill runs in 5 steps:
 
 ---
 
-## Step 0 — Pre-Flight
+## Trigger
+
+- **When:** Detecting patterns across 2+ prior sessions logged by other skills, and turning confirmed patterns into guardrails or brain updates.
+- **Not for:** Real-time feedback during a session — execution skills already check `/context/meta-patterns.md` at their own Step 0. Auditing a single skill's output quality → use `meta-review`. One-off pattern lookups — this skill's value is in running it repeatedly.
+- **Example prompts:**
+  - "run meta-synthesis"
+  - "what patterns are emerging"
+  - "detect cross-skill signals"
+  - "update guardrails"
+  - "compound our learnings"
+  - "what should we remember"
+
+---
+
+## Inputs
+
+- **Args:** Timeframe to analyze — all sessions, or a specific window (e.g. last 30 days). Asked in Step 0 if not specified.
+- **Defaults:** All sessions in `/context/skill-sessions.md` if no timeframe is given.
+- **Context keys:**
+  - `/context/skill-sessions.md` — required. The session log every execution skill writes to.
+  - `/context/meta-patterns.md` — optional; loaded if it exists, treated as empty otherwise.
+  - `/foundation/brain.md` — optional; Sections 1-6 loaded silently as baseline context for proposed updates.
+  - **Brain contract:** Reads Sections 1-6. Writes: Section named in an approved brain-update proposal only, after explicit user approval (Step 3).
+
+---
+
+## Pre-flight
+
+- Load `/context/skill-sessions.md` — see Step 0.
+- **Hard block:** if `/context/skill-sessions.md` is missing or has zero rows, stop and tell the user there's nothing to synthesize yet.
+- Load `/context/meta-patterns.md` and `/foundation/brain.md` if they exist — see Step 0.
+
+---
+
+## Steps
+
+### Step 0 — Pre-Flight
 
 Load:
 - `/context/skill-sessions.md` — required. If missing or has zero rows, stop and tell the user there's nothing to synthesize yet.
@@ -36,7 +77,7 @@ Ask, if not specified: "Look at all sessions, or a specific timeframe (e.g. last
 
 ---
 
-## Step 1 — Scan for Repeated Patterns
+### Step 1 — Scan for Repeated Patterns
 
 Read every row in `/context/skill-sessions.md` for the chosen timeframe. Group by two lenses:
 
@@ -48,7 +89,7 @@ For each candidate pattern, capture: what it is in one sentence, which sessions 
 
 ---
 
-## Step 2 — Rank and Recommend
+### Step 2 — Rank and Recommend
 
 Classify each pattern by occurrence count:
 
@@ -62,7 +103,7 @@ If a pattern points at something durable about the business rather than a proces
 
 ---
 
-## Step 3 — Propose and Gate
+### Step 3 — Propose and Gate
 
 Surface every High and Medium confidence pattern together, in one message, for approval:
 
@@ -89,7 +130,7 @@ Never write anything without this gate. If the user rejects a pattern, log it as
 
 ---
 
-## Step 4 — Write and Log
+### Step 4 — Write and Log
 
 For each approved item:
 - Guardrail → append to `/context/meta-patterns.md` with the pattern text, occurrence count, and date added.
@@ -115,6 +156,30 @@ Close by telling the user plainly what changed: how many guardrails are now live
 
 ---
 
+## Outputs
+
+- **Files written:** `/context/meta-patterns.md` — approved guardrails
+  appended (Step 4). `/foundation/brain.md` — approved updates written to
+  the named section (Step 4). `/context/skill-sessions.md` — one appended
+  row per session (Step 4).
+- **Chat output format:** Numbered list of proposed patterns with
+  confidence tier and exact guardrail/brain-update text (Step 3), followed
+  by a plain-language close summarizing what changed (Step 4).
+- **External side effects:** None beyond the three files above, and only
+  after explicit user approval.
+
+---
+
+## Verification
+
+- `/context/skill-sessions.md` has at least one row before proceeding past Step 0.
+- Every candidate pattern classified by occurrence count (Step 2).
+- No guardrail or brain update written without explicit approval shown as exact text first (Step 3).
+- Rejected patterns logged with reason, not silently dropped (Step 3).
+- Session logged to `/context/skill-sessions.md` (Step 4).
+
+---
+
 ## Operating Rules
 
 - **Session log is the only input.** No integrations, no scheduler, no separate memory store — everything this skill needs, every other skill already writes to `/context/skill-sessions.md`.
@@ -122,6 +187,7 @@ Close by telling the user plainly what changed: how many guardrails are now live
 - **Cross-skill patterns take priority.** They're invisible from inside any one skill, which is the entire reason this skill exists.
 - **Every write is gated.** No guardrail or brain update happens without explicit approval, shown as exact text before it's written.
 - **Rejected patterns aren't silently dropped.** Log the rejection so the same pattern isn't re-proposed next run without new evidence.
+- **Durable signals go to the brain, not a guardrail.** A pattern about the business itself (buying trigger, market shift, proof point) is a brain update, not a process guardrail.
 
 ---
 

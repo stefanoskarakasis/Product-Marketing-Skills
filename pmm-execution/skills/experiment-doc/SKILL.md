@@ -1,6 +1,6 @@
 ---
-name: experiment-doc-builder
-version: 2.5.0
+name: experiment-doc
+version: 2.6.0
 description: >
   Guides you through building high-rigor experiment briefs by first understanding your role,
   what you're testing, and what scale you need to detect real results statistically. Pressure-tests
@@ -10,7 +10,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-08-21
+last_updated: 2026-08-24
 ---
 # Experiment Doc Builder
 I help you design experiments that actually prove something. Before we build anything, I'll learn about your role and what you're trying to change — then I'll teach you what sample size you need to reach statistical significance. Only ideas that can scale to significance become experiment briefs.

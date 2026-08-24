@@ -1,8 +1,13 @@
 ---
 name: prioritization-frameworks
-version: 2.1.0
+version: 3.0.0
 description: >
   Selects and applies the right prioritization framework (9 frameworks: Opportunity Score, ICE, RICE, Eisenhower, Impact vs Effort, Risk vs Reward, Kano, Weighted Decision Matrix, MoSCoW) with PMM interpretation layer and GTM launch tier output (T1–T4). Reads brain context (ICP, positioning, revenue levers) and, when available, guardrails from prior scoring sessions.
+metadata:
+  author: Stefanos Karakasis
+  context: brain-dependent
+  quality_gate: true
+last_updated: 2026-08-24
 ---
 
 # Prioritization-Frameworks — Skill
@@ -29,7 +34,40 @@ The skill runs in 6 core steps:
 
 ---
 
-## Step 0 — Pre-Flight: Load Context & Surface Guardrails
+## Trigger
+
+- **When:** Choosing and applying a prioritization framework to score initiatives, backlog items, or strategic choices, and translating the result into a launch tier (T1–T4).
+- **Not for:** Assigning a launch tier directly from a GTM brief without a scoring pass → use `go-to-market-strategy`. Messaging hierarchy specifically → run Kano here, then hand off to `positioning-messaging`.
+- **Example prompts:**
+  - "Help me prioritize this backlog"
+  - "What framework should I use to decide between these two initiatives?"
+  - "Score this with RICE"
+  - "Which of these should we do first?"
+
+---
+
+## Inputs
+
+- **Args:** What's being decided (launch tier, backlog, strategic choice), number of initiatives being compared, available signals, timeline, audience for the output. Free format — Step 1 intake fills gaps conversationally.
+- **Defaults:** If brain context is unavailable, this skill still runs — brain sharpens how "Opportunity" and "Impact" are interpreted, but is not a hard blocker.
+- **Context keys:**
+  - `/foundation/brain.md` — optional but recommended. Sections 2 (ICP), 3 (Positioning), 5 (Revenue Levers).
+  - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior scoring sessions.
+  - **Brain contract:** Reads Sections 2, 3, 5. Writes: none — this skill does not write to `/foundation/brain.md`.
+
+---
+
+## Pre-flight
+
+- Load `/foundation/brain.md` Sections 2, 3, 5 if it exists — see Step 0 for the full sequence.
+- Load `/context/meta-patterns.md` if it exists, and surface any guardrail that has fired 2+ times in prior scoring sessions — see Step 0.
+- No hard block: this skill runs without brain context, with reduced calibration.
+
+---
+
+## Steps
+
+### Step 0 — Pre-Flight: Load Context & Surface Guardrails
 
 Before intake, load:
 - **Brain context** (Sections 2, 3, 5): ICP, positioning, revenue levers — these anchor how you interpret "Opportunity" and "Impact"
@@ -52,7 +90,7 @@ You can skip a guardrail if you disagree, but you'll see it first. If `/context/
 
 ---
 
-## Step 1 — Intake (Conversational, One Round)
+### Step 1 — Intake (Conversational, One Round)
 
 Ask 5 questions, grouped into one conversational block:
 
@@ -66,7 +104,7 @@ Adjust depth based on user input. If they're detailed, you have rich context. If
 
 ---
 
-## Step 2 — Framework Selection
+### Step 2 — Framework Selection
 
 Based on intake, recommend the right framework. Here's the selection logic:
 
@@ -84,11 +122,11 @@ Based on intake, recommend the right framework. Here's the selection logic:
 
 ---
 
-## Step 3 — Scoring
+### Step 3 — Scoring
 
 Run the selected framework(s).
 
-### Core Frameworks (Formulas & PMM Interpretation)
+#### Core Frameworks (Formulas & PMM Interpretation)
 
 **Opportunity Score**
 ````
@@ -150,7 +188,7 @@ Won't Have (5%)
 ````
 PMM use: Set hard caps before you start. Use to scope launch deliverables within a tier, not to assign the tier.
 
-### Quality Gates (Run After Scoring)
+#### Quality Gates (Run After Scoring)
 
 Before delivering any tier recommendation, validate:
 
@@ -164,7 +202,7 @@ If any gate fails, flag it with an ADVERSARIAL CALLOUT and rewrite before delive
 
 ---
 
-## Step 4 — Tier Translation
+### Step 4 — Tier Translation
 
 Convert framework output to a T1–T4 tier with one-sentence rationale.
 
@@ -181,7 +219,7 @@ Example: `T2 — Strong customer pain signal in upper-left Opportunity quadrant,
 
 ---
 
-## Step 5 — Audit & Pressure-Test
+### Step 5 — Audit & Pressure-Test
 
 After assigning tier, ask:
 
@@ -193,7 +231,7 @@ If pressure-test reveals the tier was inflated, recommend a validation step befo
 
 ---
 
-## Step 6 — Output Structure
+### Step 6 — Output Structure
 
 Deliver three artifacts:
 
@@ -227,6 +265,26 @@ If the user wants any of these saved to a file, ask where — this skill doesn't
 
 ---
 
+## Outputs
+
+- **Files written:** None — this skill does not write a session log or any
+  other file on its own. If the user wants any artifact saved, ask where.
+- **Chat output format:** Tier Assignment Card, Scoring Table, and Tier
+  Rationale (Step 6).
+- **External side effects:** None.
+
+---
+
+## Verification
+
+- Guardrails checked at Step 0 if `/context/meta-patterns.md` exists.
+- Framework selected matches the decision type from Step 1, not defaulted.
+- Quality Gates (Step 3) run before any tier is delivered — Confidence honesty checked explicitly.
+- Tier assigned with a one-sentence, signal-grounded rationale (Step 4).
+- Pressure-test (Step 5) run before the tier is presented as final.
+
+---
+
 ## Operating Rules
 
 - **Load brain context first.** ICP and revenue levers shape how you interpret "Opportunity" and "Reach."
@@ -237,3 +295,23 @@ If the user wants any of these saved to a file, ask where — this skill doesn't
 - **Guardrails surface at Step 0, when available.** If `/context/meta-patterns.md` exists and a pattern applies to your decision, you'll see it.
 - **Customer evidence > assumption.** If you can't cite a source for Confidence, lower it.
 - **Validation before GTM investment.** If a tier is uncertain, recommend validation sprint first.
+
+---
+
+## Quality Gate
+
+| Check | Pass = |
+|---|---|
+| Framework fit | Recommended framework matches decision type from intake |
+| Confidence honesty | Confidence ≥7 without evidence flagged, not accepted |
+| Quality Gates run | All 5 Step 3 gates checked before tier delivered |
+| Tier rationale present | One-sentence, signal-grounded reasoning + next step |
+| Pressure-test run | Step 5 audit completed before tier presented as final |
+
+---
+
+## Do Not Use For
+
+- **Assigning a launch tier directly from a GTM brief, no scoring pass** → use `go-to-market-strategy`
+- **Messaging hierarchy specifically** → run Kano here, then hand off to `positioning-messaging`
+- **Risk analysis on a single initiative** → use `pre-mortem`

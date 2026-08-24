@@ -1,6 +1,6 @@
 ---
 name: prd
-version: 2.4.0
+version: 2.5.0
 description: >
   Guides Product Managers and Product Marketing Managers to co-create complete Product Requirements Documents with embedded Solution Stories.
   Reads brain context (positioning, ICP, Revenue Levers) to anchor PRDs in strategy.
@@ -335,8 +335,25 @@ Surface these moments explicitly. Insert `🤝 PM + PMM checkpoint` at:
 
 If a pattern worth remembering surfaces this session — a recurring gap in problem
 statements, a metric that consistently gets missed — name it and ask the user
-where, if anywhere, they'd like it noted. This skill does not write to any file
-on its own.
+where, if anywhere, they'd like it noted for their own use. Separately, this
+skill always logs the session itself; see Step 7.
+
+### Step 7: Learning Close
+
+End every completed session by appending one row to `/context/skill-sessions.md`
+(create the file with a header row if it doesn't exist yet):
+
+````yaml
+skill: prd
+session_date: [YYYY-MM-DD]
+pattern: [one falsifiable statement about what happened this session, or "none"]
+source: [surprised / wrong / missing / n.v.t.]
+````
+
+Write this row directly — do not ask the user for permission. This is an
+observational log entry, distinct from any pattern the user separately asks
+to have noted for their own reference. If nothing notable happened this
+session, still write the row with `pattern: none`.
 
 ---
 
@@ -364,6 +381,11 @@ on its own.
 - Full PRD structured with all sections (Step 4)
 - PM + PMM checkpoints surfaced (Step 5)
 - Output format matches spec (Step 6)
+- Session logged to `/context/skill-sessions.md` (Step 7)
+
+**Note (2026-08-22):** `metadata.quality_gate: true` is set in this skill's
+frontmatter, but no `## Quality Gate` section exists — a pre-existing gap,
+flagged here rather than fixed in this pass.
 
 ---
 

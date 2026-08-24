@@ -1,6 +1,6 @@
 ---
 name: pre-mortem
-version: 2.4.0
+version: 2.5.0
 description: >
   Identifies and pressure-tests failure modes for any strategic initiative (product launch, pricing change, GTM pivot, new market entry, feature rollout) by running a cross-functional risk exercise. Loads brain context (ICP, positioning, competitive landscape) and, when available, guardrails from prior pre-mortems; surfaces Tigers (deal-blocking risks) with owner-assigned action plans.
 ---
@@ -184,7 +184,26 @@ Owner | Tiger | Signal | Action | Timeline | Status
 [Name] | [Tiger name] | [Signal definition] | [Mitigation or rollback trigger] | [Date] | [Pending/Active]
 ````
 
-If the user wants any of these saved to a file, or wants a later retro to compare predicted vs. actual outcomes, ask where they'd like it kept — this skill doesn't write to any file on its own.
+If the user wants any of these saved to a file, or wants a later retro to compare predicted vs. actual outcomes, ask where they'd like it kept — this skill doesn't write output files on its own.
+
+---
+
+## Step 7 — Learning Close
+
+End every completed session by appending one row to `/context/skill-sessions.md`
+(create the file with a header row if it doesn't exist yet):
+
+````yaml
+skill: pre-mortem
+session_date: [YYYY-MM-DD]
+pattern: [one falsifiable statement about what happened this session, or "none"]
+source: [surprised / wrong / missing / n.v.t.]
+````
+
+Write this row directly — do not ask the user for permission. This is an
+observational log entry, separate from the three artifacts above, which
+still require the user's go-ahead on where to save them. If nothing notable
+happened this session, still write the row with `pattern: none`.
 
 ---
 
@@ -221,3 +240,22 @@ Adjust intake and scenario generation by initiative type:
 **Signals are measurable.** "We'd see low adoption" is vague. "We'd see <500 signups in the first week" is measurable.
 
 **Action plans bridge risk to decision.** If you can't mitigate a Tiger, that's fine — but then you're saying "we're accepting this risk and here's how we'll respond if it happens."
+
+---
+
+## Quality Gate
+
+| Check | Pass = |
+|---|---|
+| Guardrails surfaced | `/context/meta-patterns.md` checked if it exists |
+| Tigers classified before Paper Tigers | Order followed in Step 6 output |
+| Every Tiger has owner + signal + action | No "TBD" or "we" as owner |
+| Recommendation stated | Go / Conditional Go / Hold, one paragraph |
+| Learning Close ran | `/context/skill-sessions.md` has a new row for this session |
+
+**Note (2026-08-22):** This skill is missing `## Trigger`, `## Inputs`,
+`## Outputs`, `## Verification`, and `## Do Not Use For` — the seven
+required sections per `SKILL-SPEC.md` Section 4. This Quality Gate and
+the new Learning Close step (Step 7) close the T1 minimum for this batch;
+the missing sections are a separate, larger compliance gap flagged here,
+not fixed in this pass.

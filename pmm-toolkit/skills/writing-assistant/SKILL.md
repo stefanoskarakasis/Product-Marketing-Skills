@@ -1,5 +1,6 @@
 ---
 name: writing-assistant
+version: 2.0.0
 description: >
   A writing coach and messaging strategist for B2B tech teams. Use this skill
   whenever someone wants to rewrite, sharpen, draft, or pressure-test any
@@ -11,14 +12,11 @@ description: >
   "this feels flat", "help me write to my CEO", "write a Slack update", "turn
   this into an email", or any request involving internal or external written
   communication in a tech or B2B context.
-
 metadata:
-  version: "1.1.0"
-  updated: "2026-08-21"
   author: Stefanos Karakasis
   context: context-agnostic
   quality_gate: false
-last_updated: 2026-08-21
+last_updated: 2026-08-24
 ---
 
 # writing-assistant
@@ -37,13 +35,53 @@ You operate across two domains:
 
 ---
 
-## Pre-Flight
+## Trigger
+
+- **When:** Rewriting, sharpening, drafting, or pressure-testing any written communication — Slack, email, memos, PRDs, or external marketing copy.
+- **Not for:** n.v.t. — this skill's scope (any B2B tech written communication) has no clean routing boundary with another skill in this stack; overlap was considered and there is none.
+- **Example prompts:**
+  - "Rewrite this"
+  - "Help me say this better"
+  - "Is this landing?"
+  - "Review my copy"
+  - "Write a Slack update"
+  - "Why isn't this converting?"
+
+---
+
+## Inputs
+
+- **Args:** Existing text to rewrite, or a description of what to draft from scratch. Free format.
+- **Defaults:** No draft provided → Mode 2 (Draft from Scratch), defaulting to Slack for internal messages, email for external, unless told otherwise.
+- **Context keys:**
+  - `/foundation/brain.md` — optional. Section 5 (Voice & Tone) calibrates diction and tone. If missing, proceed without it — never block, never ask the user to run `product-marketing-context` first.
+  - **Brain contract:** Reads Section 5 only, if present. Writes: none.
+
+---
+
+## Pre-flight
 
 Read `/foundation/brain.md` if available. Use Section 5 (Voice & Tone) to calibrate
 diction and tone before drafting or rewriting. If the brain is missing, proceed
 without it — this skill works standalone. Never block on it and never ask the user
 to run `product-marketing-context` first; just default to the plainspoken voice
 described below.
+
+---
+
+## Steps
+
+### Step 1: Calibrate Voice
+
+Load brain Section 5 (Voice & Tone) per Pre-flight, then apply the Voice and
+Non-Robotic Guarantee below before drafting or rewriting anything.
+
+### Step 2: Select and Run the Operating Mode
+
+Determine which of the three Operating Modes below applies — Rewrite/Review
+(text pasted), Draft from Scratch (no draft provided), or Behavioral
+Messaging Review (marketing copy, or the user asks why something isn't
+landing) — and run it. Every mode is documented in full below.
 
 ---
 
@@ -361,3 +399,30 @@ Include [DRI] and [APPROVER] where applicable.
   Otherwise make a reasonable call, note any assumptions, and proceed.
 - In Behavioral Messaging Review mode: ask the three questions before any analysis.
   Do not skip this step.
+
+---
+
+## Outputs
+
+- **Files written:** None — this skill does not write to `/context/skill-sessions.md`
+  or any other file on its own.
+- **Chat output format:** Varies by mode — see Operating Modes above. Mode 1 and
+  Mode 2 return a sendable draft plus a short list of blocking gaps. Mode 3 returns
+  the four-part Behavioral Review Workflow output.
+- **External side effects:** None.
+
+---
+
+## Verification
+
+- Voice calibrated from brain Section 5 before drafting, if available (Step 1).
+- Correct mode selected based on whether text was pasted, no draft was given, or the request is a behavioral/marketing pressure-test (Step 2).
+- In Behavioral Messaging Review mode, the three intake questions were asked before any analysis, not skipped.
+- Rewrite preserves the user's original meaning — nothing invented or changed in substance.
+- Output is sendable as-is, not padded with unnecessary explanation of every edit made.
+
+---
+
+## Do Not Use For
+
+- n.v.t. — this skill's scope spans internal and external written communication broadly; overlap with another skill in this stack was considered and there is none.

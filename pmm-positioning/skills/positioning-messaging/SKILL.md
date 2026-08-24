@@ -1,6 +1,6 @@
 ---
 name: positioning-messaging
-version: 2.2.0
+version: 2.3.0
 description: >
   Use for positioning statement, messaging hierarchy, homepage copy, persona cards,
   messaging audit, value prop, or elevator pitch. Trigger when user says "we sound
@@ -48,11 +48,11 @@ positioning through a 6-phase discovery and stress-test process.
 
 **Step 1 — Check brain:**
 
-```
+````
 Does /foundation/brain.md exist?
   YES → Load silently. Note ICP, alternatives, energy state. Proceed.
   NO  → Surface once: "No brain found. You can still run this skill, but output will be less precise. Run product-marketing-context first for sharper results. Continuing."
-```
+````
 
 **Step 2 — Select mode:**
 
@@ -323,11 +323,31 @@ Version + review date · Next steps
 
 ---
 
+### Phase 7: Learning Close
+
+End every completed session by appending one row to `/context/skill-sessions.md`
+(create the file with a header row if it doesn't exist yet):
+
+````yaml
+skill: positioning-messaging
+session_date: [YYYY-MM-DD]
+pattern: [one falsifiable statement about what happened this session, or "none"]
+source: [surprised / wrong / missing / n.v.t.]
+````
+
+Write this row directly — do not ask the user for permission. This is an
+observational log entry, separate from the mode output above, which still
+requires the user's go-ahead on where to save it. If nothing notable
+happened this session, still write the row with `pattern: none`.
+
+---
+
 ## Outputs
 
-- **Files written:** n.v.t. — outputs delivered in chat only. If the user wants
-  this output saved anywhere, ask where — this skill doesn't write to any file
-  on its own.
+- **Files written:** `/context/skill-sessions.md` — one appended row per
+  session, per Phase 7. Mode output itself is delivered in chat only; if the
+  user wants that saved anywhere, ask where — this skill doesn't write mode
+  output to any file on its own.
 
 - **Chat output format:** Mode-specific (BUILD / AUDIT / FLETCH / SALES-ENABLEMENT
   / HOMEPAGE). All modes include approved/forbidden language list, version, review
@@ -432,3 +452,4 @@ incomplete output.
 | Jargon free | Zero forbidden terms | Yes |
 | Vision flags resolved | All `[VISION FLAG]` items addressed or rejected | Yes |
 | Mode format correct | Output matches expected format for selected mode | Yes |
+| Learning Close ran | `/context/skill-sessions.md` has a new row for this session | Yes |

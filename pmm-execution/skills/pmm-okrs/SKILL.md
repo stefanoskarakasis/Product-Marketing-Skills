@@ -1,6 +1,6 @@
 ---
 name: pmm-okrs
-version: 2.3.0
+version: 2.4.0
 description: >
   Guides Product Marketing leaders and individual PMMs through building a complete,
   export-ready OKR set for their quarter — including Objective, Key Results, Projects,
@@ -99,13 +99,33 @@ Before starting, check `/foundation/brain.md`.
 ### Step 7: Deliver Output
 Deliver the OKR set. If the session surfaced a pattern worth remembering for next
 quarter (a confidence calibration lesson, a recurring KR-design mistake), name it
-explicitly and ask the user where — if anywhere — they'd like it saved.
+explicitly and ask the user where — if anywhere — they'd like it saved for their
+own reference.
+
+### Step 8: Learning Close
+
+End every completed session by appending one row to `/context/skill-sessions.md`
+(create the file with a header row if it doesn't exist yet):
+
+````yaml
+skill: pmm-okrs
+session_date: [YYYY-MM-DD]
+pattern: [one falsifiable statement about what happened this session, or "none"]
+source: [surprised / wrong / missing / n.v.t.]
+````
+
+Write this row directly — do not ask the user for permission. This is an
+observational log entry, distinct from any pattern the user separately asks
+to have noted for their own reference. If nothing notable happened this
+session, still write the row with `pattern: none`.
 ---
 ## Outputs
 - **Chat output format:** Three OKR option blocks in code-fence structured output,
   each with Quality Gate results inline. Scorecard table. Exec Summary paragraph.
   All formatted for direct paste into the PMM OKR Builder spreadsheet.
-- **External side effects:** None. This skill does not write to any file on its own.
+- **Files written:** `/context/skill-sessions.md` — one appended row per
+  session, per Step 8.
+- **External side effects:** None beyond the session log above.
 ---
 ## Verification
 - Guardrails checked before intake, if `/context/meta-patterns.md` exists.
@@ -218,6 +238,7 @@ Runs before final delivery. Score each criterion 1–3. Minimum 12/15 to pass.
 | Independent evaluation | All output reviewed cold before delivery | |
 | Adversarial callouts | All gate failures surfaced inline with rewrites | |
 | Scorecard validation | Weight totals 100% confirmed before delivery | |
+| Learning Close ran | `/context/skill-sessions.md` has a new row for this session | |
 
 **On failure:** Identify which criterion failed, revise, do not present as final.
 ---

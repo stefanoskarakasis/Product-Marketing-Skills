@@ -1,6 +1,6 @@
 ---
 name: gaccs-brief
-version: 3.3.0
+version: 3.4.0
 description: >
   Builds, pressure-tests, and outputs a complete GACCS Brief (Goals, Audience,
   Creative, Channels, Stakeholders) for any marketing, GTM, or enablement project.
@@ -15,7 +15,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-08-21
+last_updated: 2026-08-24
 ---
 
 # gaccs-brief
@@ -219,10 +219,6 @@ Goals: [✅/⚠️]  Audience: [✅/⚠️]  Creative: [✅/⚠️]  Channels: [
 - DRI named before brief is produced.
 - Session logged to `/context/skill-sessions.md` (Step 5).
 
-**Note (2026-08-22):** `metadata.quality_gate: true` is set in this skill's
-frontmatter, but no `## Quality Gate` section exists — a pre-existing gap,
-flagged here rather than fixed in this pass.
-
 ---
 
 ## Do Not Use For
@@ -248,3 +244,20 @@ flagged here rather than fixed in this pass.
 - **Never fill gaps with assumptions.** Surface the gap — it's the most valuable output.
 - **Every response ends with ✅ Next Step.** No exceptions.
 - **Redirects are never softened.** Clarity now saves hours of misaligned work.
+
+---
+
+## Quality Gate
+
+Runs before the brief is generated (Step 3), and again as a final check
+before delivery. Surface failures — do not deliver incomplete output.
+
+| Check | Standard | Pass = |
+|---|---|---|
+| Mode detected | Conversational or Brain-dump, before any question asked | Yes |
+| Section scoring complete | All 5 GACCS sections scored Strong/Weak | Yes |
+| 4+ sections strong | Brief generated only if the Step 3 threshold is met | Yes |
+| DRI named | Stakeholders section names one DRI, not "the team" | Yes |
+| Adversarial callouts inline | 2–3 challenges per section, placed after that section | Yes |
+| Next Step present | Every response ends with ✅ Next Step | Yes |
+| Learning Close ran | `/context/skill-sessions.md` has a new row for this session | Yes |

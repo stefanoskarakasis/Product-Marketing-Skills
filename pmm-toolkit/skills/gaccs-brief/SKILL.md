@@ -1,6 +1,6 @@
 ---
 name: gaccs-brief
-version: 3.2.0
+version: 3.3.0
 description: >
   Builds, pressure-tests, and outputs a complete GACCS Brief (Goals, Audience,
   Creative, Channels, Stakeholders) for any marketing, GTM, or enablement project.
@@ -129,26 +129,33 @@ Only after quality gate passes. Use the output template in Outputs.
 
 ### Step 5: Learning Close
 
-End every completed session with:
-```
-📊 Learning Mode
-Session: [one-line description]
-Signal: → [pattern observed] → [hypothesis to open] → [false belief encountered]
-Ready to encode? [Yes / No]
-```
+End every completed session by appending one row to `/context/skill-sessions.md`
+(create the file with a header row if it doesn't exist yet):
 
-If the user says yes, ask where they'd like the note saved (e.g. their own notes
-file or a brain-adjacent doc) — this skill does not write to any file on its own.
+````yaml
+skill: gaccs-brief
+session_date: [YYYY-MM-DD]
+pattern: [one falsifiable statement about what happened this session, or "none"]
+source: [surprised / wrong / missing / n.v.t.]
+````
+
+Write this row directly — do not ask the user for permission. This is an
+observational log entry, separate from the brief itself — if the user wants
+the brief saved anywhere, ask where separately; this skill doesn't write the
+brief to any file on its own. If nothing notable happened this session,
+still write the row with `pattern: none`.
 
 ---
 
 ## Outputs
 
+- **Files written:** `/context/skill-sessions.md` — one appended row per
+  session, per Step 5.
 - **Chat output format:** Brief in the template below. Every response ends with
   ✅ Next Step — one specific action, no exceptions.
-- **External side effects:** n.v.t.
+- **External side effects:** None beyond the session log above.
 
-```markdown
+````markdown
 ═══════════════════════════════════════════════════════════
 GACCS BRIEF — [Project / Campaign / Asset Name]
 Type: [Campaign / Launch / Event / Content / Enablement / Other]
@@ -196,7 +203,7 @@ Goals: [✅/⚠️]  Audience: [✅/⚠️]  Creative: [✅/⚠️]  Channels: [
 
 ✅ NEXT STEP: [One specific, non-negotiable action]
 ═══════════════════════════════════════════════════════════
-```
+````
 
 ---
 
@@ -210,6 +217,11 @@ Goals: [✅/⚠️]  Audience: [✅/⚠️]  Creative: [✅/⚠️]  Channels: [
 - No section filled with assumptions — gaps surfaced explicitly.
 - Brief not generated unless 4+ sections are strong.
 - DRI named before brief is produced.
+- Session logged to `/context/skill-sessions.md` (Step 5).
+
+**Note (2026-08-22):** `metadata.quality_gate: true` is set in this skill's
+frontmatter, but no `## Quality Gate` section exists — a pre-existing gap,
+flagged here rather than fixed in this pass.
 
 ---
 

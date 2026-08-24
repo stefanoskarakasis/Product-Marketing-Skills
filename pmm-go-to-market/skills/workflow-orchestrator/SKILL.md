@@ -1,6 +1,6 @@
 ---
 name: workflow-orchestrator
-version: 2.2.0
+version: 2.3.0
 description: >
   Orchestrates multi-skill PMM programs end-to-end — chains positioning,
   competitive, GTM strategy, campaign briefs, stakeholder maps, and retros into
@@ -110,7 +110,7 @@ Ask in one message. Adapt based on which workflow type is named.
 
 Reflect back as a Program Charter before proceeding:
 
-```
+````
 PROGRAM CHARTER
 ───────────────────────────────────────
 Initiative:       [name]
@@ -123,7 +123,7 @@ Skills to run:    [ordered list]
 Skills to skip:   [list with reason]
 ───────────────────────────────────────
 Confirm to start? [Y/N]
-```
+````
 
 Do not proceed until confirmed.
 
@@ -173,6 +173,14 @@ Invoke each skill in sequence. Between each skill:
 If coherence fails: surface the conflict, ask which output to trust, re-run
 the downstream skill with corrected input.
 
+**Learning Close per chained skill:** Every T1/T2 skill invoked in this
+sequence runs its own Learning Close step as the last step of its own
+`## Steps` — logging one row to `/context/skill-sessions.md` before control
+returns to the orchestrator. Do not skip or short-circuit a skill's own
+Learning Close when chaining; the orchestrator does not log on a skill's
+behalf, it only confirms the skill completed all its own steps, including
+that one.
+
 ---
 
 ### Step 5: Brain Update
@@ -195,7 +203,7 @@ like it kept — this skill doesn't maintain its own log automatically.
 
 Compile all skill outputs into one master document:
 
-```markdown
+````markdown
 # [Program Name] — Master Document
 **Workflow type:** [named]
 **DRI:** [name]
@@ -224,7 +232,7 @@ Compile all skill outputs into one master document:
 
 ## Next Program Trigger
 [When to run the next cycle]
-```
+````
 
 If the user wants this document saved somewhere, ask where.
 
@@ -297,7 +305,7 @@ workflow is a placeholder pending a dedicated skill.
 ### /run [workflow-type]
 Start a named workflow. Runs Steps 1–7 with checkpoints.
 
-```
+````
 /run full-launch
 /run positioning-refresh
 /run competitive-program
@@ -305,7 +313,7 @@ Start a named workflow. Runs Steps 1–7 with checkpoints.
 /run market-entry
 /run competitive-response [competitor name]
 /run audit
-```
+````
 
 ### /status
 Show current program state: skills completed, skills pending, next skill,

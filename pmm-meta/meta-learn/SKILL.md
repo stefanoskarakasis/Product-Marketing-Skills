@@ -1,14 +1,16 @@
 ---
 name: meta-learn
-version: 3.0.0
+version: 3.1.0
 description: >
-  Captures what a completed skill session actually taught you — asks three
-  extraction questions (what surprised you, what was wrong, what was missing),
-  turns real answers into specific, falsifiable pattern statements, and logs
-  the session to /context/skill-sessions.md so meta-synthesis can detect
-  repeats later. Trigger on: "capture what we learned", "log this session",
-  "save the learnings", "what did we learn", or any request to encode
-  insights from a completed skill session.
+  Deliberate deep-dive capture for a completed skill session that deserves
+  more than the automatic one-line row every T1/T2 skill already logs at its
+  own close — asks three extraction questions (what surprised you, what was
+  wrong, what was missing), turns real answers into specific, falsifiable
+  pattern statements, and logs the session to /context/skill-sessions.md in
+  the same format so meta-synthesis reads one consistent log either way.
+  Trigger on: "capture what we learned", "log this session", "save the
+  learnings", "what did we learn", or any request to encode deeper insights
+  from a completed skill session.
 metadata:
   author: Stefanos Karakasis
   context: context-agnostic
@@ -18,18 +20,23 @@ last_updated: 2026-08-22
 
 # meta-learn
 
-Closes out a completed skill session by asking what it actually taught the
-user — not what the skill's output said, but what surprised them, what they
-disagreed with, or what was missing. Turns real answers into a specific,
-falsifiable statement and logs the session. That log is the only input
-`meta-synthesis` reads to detect patterns across sessions later — this skill
-exists to make sure that log has something worth reading.
+The deliberate, on-demand deep-dive into a completed skill session — for
+when the automatic one-line Learning Close every T1/T2 skill already writes
+isn't enough. Asks what the session actually taught the user — not what the
+skill's output said, but what surprised them, what they disagreed with, or
+what was missing. Turns real answers into a specific, falsifiable statement
+and logs it to the same file, in the same format, every T1/T2 skill's own
+Learning Close writes to — so `meta-synthesis` reads one consistent log
+regardless of which produced any given row.
 
 ## Trigger
 
-- **When:** A skill session just produced output and is closing — right
-  after a brief, positioning statement, retro, or any other skill's output
-  is delivered and the user is ready to move on.
+- **When:** The user wants a deeper capture of a completed skill session
+  than the automatic one-line row every T1/T2 skill already logs at its own
+  close (see that skill's Learning Close step). Use this for a session that
+  deserves real reflection — something surprised the user, a recommendation
+  felt wrong, or important context was missing — and a structured
+  three-question interview is worth the extra few minutes.
 
 - **Not for:** Auditing a `SKILL.md`'s structure → use `meta-review`.
   Checking whether a skill's output itself is correct → use `meta-verify`.
@@ -101,7 +108,7 @@ false-precision statement.
 
 Before writing, show the user the exact log entry:
 
-```
+````
 🔁 SESSION LEARNING
 
 Skill: [name]
@@ -110,7 +117,7 @@ Pattern: [falsifiable statement, or "none — clean session"]
 Source: [surprised / wrong / missing]
 
 Log this? (yes / edit / skip)
-```
+````
 
 Never log a pattern without this confirmation. A clean close (no pattern)
 logs automatically without this gate — there's nothing to approve.
@@ -120,12 +127,12 @@ logs automatically without this gate — there's nothing to approve.
 Append one row to `/context/skill-sessions.md` (create the file with a
 header row if it doesn't exist yet):
 
-```yaml
+````yaml
 skill: [name]
 session_date: [YYYY-MM-DD]
 pattern: [falsifiable statement, or "none"]
 source: [surprised / wrong / missing / n.v.t.]
-```
+````
 
 This is the only file this skill writes to. `meta-synthesis` is what reads
 across many of these rows later to find what repeats — this skill's only

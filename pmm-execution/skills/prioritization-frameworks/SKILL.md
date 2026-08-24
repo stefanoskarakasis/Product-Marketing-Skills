@@ -1,6 +1,6 @@
 ---
 name: prioritization-frameworks
-version: 3.0.0
+version: 3.1.0
 description: >
   Selects and applies the right prioritization framework (9 frameworks: Opportunity Score, ICE, RICE, Eisenhower, Impact vs Effort, Risk vs Reward, Kano, Weighted Decision Matrix, MoSCoW) with PMM interpretation layer and GTM launch tier output (T1–T4). Reads brain context (ICP, positioning, revenue levers) and, when available, guardrails from prior scoring sessions.
 metadata:
@@ -16,7 +16,7 @@ last_updated: 2026-08-24
 
 Prioritization frameworks are decision tools, not prescriptions. Your job is to pick the right one for the question, apply it with integrity, and translate the output into a tier recommendation (T1–T4) that drives GTM resource allocation.
 
-The skill runs in 6 core steps:
+The skill runs in 7 core steps:
 
 **Step 0** — Load brain context (ICP, positioning, revenue levers) and guardrails from `/context/meta-patterns.md`, if it exists (e.g., "frameworks without customer confidence >7 have led to prior T1 overstatements" — an example pattern shape, not a claim already observed).
 
@@ -31,6 +31,8 @@ The skill runs in 6 core steps:
 **Step 5** — Audit & recommendation: Pressure-test the tier assignment; deliver go/no-go on tier or recommend additional validation.
 
 **Step 6** — Output: Tier assignment card + scoring table + next step.
+
+**Step 7** — Learning Close: log the session to `/context/skill-sessions.md`.
 
 ---
 
@@ -265,13 +267,33 @@ If the user wants any of these saved to a file, ask where — this skill doesn't
 
 ---
 
+### Step 7 — Learning Close
+
+End every completed session by appending one row to `/context/skill-sessions.md`
+(create the file with a header row if it doesn't exist yet):
+
+````yaml
+skill: prioritization-frameworks
+session_date: [YYYY-MM-DD]
+pattern: [one falsifiable statement about what happened this session, or "none"]
+source: [surprised / wrong / missing / n.v.t.]
+````
+
+Write this row directly — do not ask the user for permission. This is an
+observational log entry, separate from the three artifacts above, which
+still require the user's go-ahead on where to save them. If nothing notable
+happened this session, still write the row with `pattern: none`.
+
+---
+
 ## Outputs
 
-- **Files written:** None — this skill does not write a session log or any
-  other file on its own. If the user wants any artifact saved, ask where.
+- **Files written:** `/context/skill-sessions.md` — one appended row per
+  session, per Step 7. The three artifacts above are delivered in chat
+  only; if the user wants any saved to a file, ask where.
 - **Chat output format:** Tier Assignment Card, Scoring Table, and Tier
   Rationale (Step 6).
-- **External side effects:** None.
+- **External side effects:** None beyond the session log above.
 
 ---
 
@@ -282,6 +304,7 @@ If the user wants any of these saved to a file, ask where — this skill doesn't
 - Quality Gates (Step 3) run before any tier is delivered — Confidence honesty checked explicitly.
 - Tier assigned with a one-sentence, signal-grounded rationale (Step 4).
 - Pressure-test (Step 5) run before the tier is presented as final.
+- Session logged to `/context/skill-sessions.md` (Step 7).
 
 ---
 
@@ -307,6 +330,7 @@ If the user wants any of these saved to a file, ask where — this skill doesn't
 | Quality Gates run | All 5 Step 3 gates checked before tier delivered |
 | Tier rationale present | One-sentence, signal-grounded reasoning + next step |
 | Pressure-test run | Step 5 audit completed before tier presented as final |
+| Learning Close ran | `/context/skill-sessions.md` has a new row for this session |
 
 ---
 

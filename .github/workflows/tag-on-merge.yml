@@ -1,0 +1,180 @@
+name: Tag and release from CHANGELOG
+
+# Runs after each push to main. If CHANGELOG.md gained a new ## vX.Y.Z heading
+# anywhere in this push's commit range (compared to the push's `before` SHA):
+#   1. gate the release — the version in .claude-plugin/marketplace.json must
+#      match the new heading, and the structure check + consistency tests
+#      must pass, then
+#   2. create a lightweight tag with that version name at the pushed commit, and
+#   3. publish a GitHub Release for that tag with the matching CHANGELOG
+#      section as the notes.
+#
+# CHANGELOG is the source of truth; the tag and the Release are deterministic
+# projections of it. Adapted from phuryn/pm-skills's tag-on-merge workflow.
+# Added headings whose tag already exists are treated as backfilled history
+# and skipped, so importing old releases is safe.
+#
+# No action when CHANGELOG wasn't touched, when an existing version heading was
+# edited (not added), or when the tag/release already exists. Safe to re-run on
+# force-pushes and amends.
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Need enough history to diff the whole push range (`before..after`),
+          # not just the tip commit. Small repo; a full clone is cheap.
+          fetch-depth: 0
+
+      - name: Detect new version heading in CHANGELOG
+        id: detect
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER:  ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          # On a brand-new branch (first push), before is all zeros.
+          zeros="0000000000000000000000000000000000000000"
+          if [ "$BEFORE" = "$zeros" ] || [ -z "$BEFORE" ]; then
+            echo "version=" >> "$GITHUB_OUTPUT"
+            echo "Brand-new branch push; nothing to compare."
+            exit 0
+          fi
+
+          # Lines added to CHANGELOG.md across the entire pushed range that
+          # look like a version heading. Format: `## vX.Y.Z` (semver triplet
+          # required). The trailing-boundary group prevents `## v2.1.0a` from
+          # matching `v2.1.0`.
+          added_versions=$(git diff "$BEFORE..$AFTER" -- CHANGELOG.md \
+            | grep -E '^\+## v[0-9]+\.[0-9]+\.[0-9]+([[:space:]]|$)' \
+            | sed -E 's/^\+## (v[0-9]+\.[0-9]+\.[0-9]+)([[:space:]]|$).*/\1/' \
+            || true)
+
+          if [ -z "$added_versions" ]; then
+            echo "version=" >> "$GITHUB_OUTPUT"
+            echo "No new ## vX.Y.Z heading added to CHANGELOG; nothing to tag."
+            exit 0
+          fi
+
+          # Headings whose tag already exists on origin are backfilled history,
+          # not new releases — skip them.
+          new_versions=""
+          for v in $added_versions; do
+            if git ls-remote --tags origin "refs/tags/$v" | grep -q .; then
+              echo "$v is already tagged; treating as backfill."
+            else
+              new_versions="${new_versions}${v}"$'\n'
+            fi
+          done
+          new_versions=$(printf '%s' "$new_versions" | sed '/^$/d')
+
+          if [ -z "$new_versions" ]; then
+            echo "version=" >> "$GITHUB_OUTPUT"
+            echo "All added headings are already tagged (backfill); nothing to do."
+            exit 0
+          fi
+
+          # If multiple new untagged headings were added in one push, fail
+          # loudly — ambiguous which one to tag, and shipping two releases in
+          # one merge is almost certainly not intended.
+          count=$(echo "$new_versions" | wc -l)
+          if [ "$count" -gt 1 ]; then
+            echo "::error::Multiple new untagged version headings detected; refusing to auto-tag. Versions: $new_versions"
+            exit 1
+          fi
+
+          version=$(echo "$new_versions" | head -1)
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "Detected new release: $version"
+
+      # ── Release gates ────────────────────────────────────────────────────
+      # Everything below is gated on a new version being detected, so ordinary
+      # pushes to main (docs, typo fixes) incur no setup or test cost.
+
+      - name: "Gate: marketplace.json version matches the CHANGELOG"
+        if: steps.detect.outputs.version != ''
+        env:
+          VERSION: ${{ steps.detect.outputs.version }}
+        run: |
+          set -euo pipefail
+          want="${VERSION#v}"
+          have=$(python3 -c "import json; print(json.load(open('.claude-plugin/marketplace.json'))['metadata']['version'])")
+          if [ "$have" != "$want" ]; then
+            echo "::error::marketplace.json metadata.version is $have but CHANGELOG released $VERSION. Bump the manifests before the release push."
+            exit 1
+          fi
+          echo "marketplace.json at $have."
+
+      - name: Set up Python
+        if: steps.detect.outputs.version != ''
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: "Gate: structure check + consistency tests"
+        if: steps.detect.outputs.version != ''
+        run: |
+          set -euo pipefail
+          python3 .github/scripts/check_structure.py
+          python3 -m unittest discover -s tests -v
+
+      - name: Create and push tag if it doesn't already exist
+        if: steps.detect.outputs.version != ''
+        env:
+          VERSION: ${{ steps.detect.outputs.version }}
+        run: |
+          set -euo pipefail
+
+          # Tag may already exist if someone tagged manually before the
+          # workflow caught up, or on a re-push of the same commit. Idempotent.
+          if git ls-remote --tags origin "refs/tags/$VERSION" | grep -q .; then
+            echo "Tag $VERSION already exists on origin; nothing to do."
+            exit 0
+          fi
+
+          git tag "$VERSION"
+          git push origin "$VERSION"
+          echo "Tagged $VERSION at $(git rev-parse HEAD)."
+
+      - name: Create GitHub Release with the CHANGELOG section as notes
+        if: steps.detect.outputs.version != ''
+        env:
+          VERSION: ${{ steps.detect.outputs.version }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          # Idempotent: a re-push of the same release commit shouldn't error.
+          if gh release view "$VERSION" >/dev/null 2>&1; then
+            echo "Release $VERSION already exists; nothing to do."
+            exit 0
+          fi
+
+          # Extract this version's CHANGELOG section (heading through the line
+          # before the next `## vX` heading) as the release notes. $2 is the
+          # version token: `## v2.1.0 — 2026-07-03` → $2 == "v2.1.0".
+          notes="$(mktemp)"
+          awk -v ver="$VERSION" '
+            /^## v[0-9]/ { if (started) exit; if ($2 == ver) started=1 }
+            started { print }
+          ' CHANGELOG.md > "$notes"
+          if [ ! -s "$notes" ]; then
+            echo "::error::No '## $VERSION' section found in CHANGELOG.md."
+            exit 1
+          fi
+
+          gh release create "$VERSION" \
+            --title "$VERSION" \
+            --notes-file "$notes"
+          echo "Released $VERSION."

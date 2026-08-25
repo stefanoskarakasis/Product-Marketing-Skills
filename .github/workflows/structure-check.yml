@@ -20,3 +20,6 @@ jobs:
 
       - name: Run structure check
         run: python3 .github/scripts/check_structure.py
+
+      - name: Run consistency tests
+        run: python3 -m unittest discover -s tests -v

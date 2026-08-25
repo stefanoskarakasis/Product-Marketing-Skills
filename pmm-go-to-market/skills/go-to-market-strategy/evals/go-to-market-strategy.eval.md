@@ -1,11 +1,11 @@
 ---
 name: go-to-market-strategy.eval
-version: 2.2.0
+version: 2.3.0
 description: >
   Comprehensive eval suite for go-to-market-strategy skill. Tests: guardrail surfacing,
   brain context loading, four-signal tier assignment accuracy, proof point gap detection,
-  leading indicator presence, channel specificity, competitive context completeness,
-  session logging accuracy and pattern detection for meta-synthesis.
+  leading indicator presence, channel specificity, competitive context completeness, and
+  Learning Close accuracy against the skill's real four-field session-log shape.
   8 scenarios covering real launch decisions and calibration edge cases.
 ---
 
@@ -16,9 +16,9 @@ description: >
 Each eval:
 1. Populates `/foundation/brain.md` with baseline PMM context (Sections 2, 3, 4, 5, 7)
 2. Populates `/context/meta-patterns.md` with guardrails (if testing guardrail surfacing)
-3. Populates `/context/skill-sessions.md` with prior GTM briefs (if testing pattern detection)
+3. Populates `/context/skill-sessions.md` with prior GTM sessions in the skill's real four-field shape (if testing Step 0 guardrail recall)
 4. Runs go-to-market-strategy skill for given initiative
-5. Validates outputs: tier accuracy, signal application, brief quality, logging
+5. Validates outputs: tier accuracy, signal application, brief quality, Learning Close accuracy
 
 ---
 
@@ -42,7 +42,7 @@ Quick check: Is your team launch-ready for this initiative?
 - Guardrail surfaces before tier assignment
 - Pattern linked to specific tier (T2) and metric (launch readiness <0.5)
 - User can acknowledge or skip
-- Guardrail logged in Step 6
+- Session logged at Step 5 per the skill's real Learning Close shape — see Eval 7
 
 ---
 
@@ -144,104 +144,76 @@ Recommend: Gather evidence before launch or reframe claim to one you can substan
 
 ---
 
-## Eval 7: Session Logging
+## Eval 7: Learning Close Accuracy (Step 5)
 
-**Scenario:** Brief generated and confirmed by user. Skill should log session to `/context/skill-sessions.md` with launch entry.
+**Scenario:** Go-to-market-strategy skill session completes with four-signal reasoning → tier assignment → full 7-section GTM brief. Skill logs to `/context/skill-sessions.md` per its Step 5 Learning Close.
 
-**Expected Brain Write:**
-```markdown
-## Launch: SSO Integration Feature
-- **Date planned:** 2026-Q3
-- **Tier assigned:** T1
-- **Tier rationale:** Closes feature gap vs Okta, high revenue potential in enterprise segment
-- **Primary metric:** 200 net-new enterprise customers by Q3 end
-- **Status:** Planned
-- **Actuals:** [Updated after retro]
-```
-
-**Expected Session Log (Step 6):**
+**Expected Output - Session Log:**
 ```yaml
 skill: go-to-market-strategy
 session_date: 2026-06-21
-decision_type: "new brief"
-initiative_name: "SSO Integration Feature"
-initiative_type: "product launch"
-quality_score: 89
-tier_assigned: "T1"
-four_signals:
-  - "Market impact: Enterprise ops leaders, existing strong segment"
-  - "Revenue potential: High (customer research shows strong ROI)"
-  - "Competitive urgency: Closes gap vs Okta (3 competitive threats)"
-  - "Resource requirement: Full team investment, 12 weeks"
-confidence_score: 🟢
-guardrails_triggered: []
-brain_context_loaded: true
-brain_sections_referenced:
-  - "ICP (Section 2): Enterprise ops"
-  - "Positioning (Section 3): Security + ease"
-  - "Competitive (Section 4): Okta dominance"
-  - "Proof points (Section 5): 30% ROI, 8-hour setup"
-  - "Launch history (/context/skill-sessions.md): Prior T1 enterprise launches"
-leading_indicators_count: 2
-proof_point_gaps: 0
-brain_write_executed: true
+pattern: "T1 tier assigned on strong revenue + competitive urgency signals despite moderate launch readiness — worth watching whether readiness undercuts this tier call, as it has on prior T1 launches."
+source: surprised
 ```
 
 **Pass Criteria:**
-- Session log write asked before executing
-- Session logged to `/context/skill-sessions.md` with all metadata
-- Quality score reflects signal rigor
-- Confidence level matches signal quality
-- All four signals documented with reasoning
+- Session logged to `/context/skill-sessions.md` with exactly these four fields — `skill`, `session_date`, `pattern`, `source` — matching Step 5's template in `SKILL.md` verbatim. No additional fields.
+- `pattern` is a single falsifiable statement about what happened this session, or the literal string `"none"` if nothing notable occurred — not a multi-field summary object.
+- `source` is one of `surprised / wrong / missing / n.v.t.`
+- The row is written directly, without asking the user for permission — this is a separate, mechanical write from anything the skill asks the user's go-ahead on (like where to save the GTM brief, per Outputs).
+- If nothing notable happened this session, the row is still written with `pattern: none` — the log entry is never skipped.
+- The tier assignment, four-signal reasoning, and full GTM brief are delivered in chat only (Steps 3-4) — none of that detail is duplicated into the session-log row.
 
 ---
 
-## Eval 8: End-to-End Brief Generation with Pattern Detection
+## Eval 8: End-to-End GTM Brief, Full Workflow
 
-**Scenario:** Full GTM brief session end-to-end. Test detects if guardrails are useful and whether tier calibration is improving over time.
+**Scenario:** User runs go-to-market-strategy end-to-end: intake → brain context → four-signal tier assignment → full 7-section brief → Learning Close.
 
 **Test Data:**
 ```yaml
-# /context/skill-sessions.md (3 prior GTM briefs)
-Session 1: T1 assigned with readiness 0.6 → Launch delayed 4 weeks
-Session 2: T2 assigned with readiness 0.4 → Launch on time but under-resourced
-Session 3: T1 assigned with readiness 0.8 → Launch on schedule
+# /context/skill-sessions.md (3 prior go-to-market-strategy rows, real shape)
+skill: go-to-market-strategy
+session_date: 2026-05-02
+pattern: "T1 assigned with launch readiness ~0.6 — launch slipped 4 weeks"
+source: wrong
+
+skill: go-to-market-strategy
+session_date: 2026-05-20
+pattern: "T2 assigned with launch readiness ~0.4 — launched on time but under-resourced"
+source: wrong
+
+skill: go-to-market-strategy
+session_date: 2026-06-08
+pattern: "T1 assigned with launch readiness ~0.8 — launched on schedule, no rework"
+source: surprised
 
 # Current session:
-Initiative: New market entry (healthcare)
-Signals applied → Tier assigned → Brief generated → Logged
+Initiative: New market entry (healthcare) → four signals applied → T2 assigned → full brief generated
 ```
 
-**Expected Output - Pattern Recognition:**
+**Expected Output - Full Workflow:**
 ```
-✓ Session completed: Healthcare market entry GTM brief
-✓ Quality score: 87/100
 ✓ Tier assigned: T2 (New market, moderate resource, strong ROI signal)
-✓ Four signals applied with reasoning
-✓ Leading indicators: 2 present (Week 1 pilot signups, Week 2 sales meetings)
-✓ Proof points: 1 gap flagged (ROI in healthcare untested)
-
-🔁 PATTERN FOR META-SYNTHESIS:
-
-Tier calibration accuracy (last 3 sessions):
-  - T1 with readiness >0.7: 100% on-schedule delivery
-  - T1 with readiness 0.5–0.7: 0% on-schedule (delayed 3–4 weeks)
-  - T2 with readiness <0.5: 100% under-resourced
-
-Guardrail recommendation: Keep "Launch readiness <0.5 underperforms" ACTIVE.
-Add new pattern: "T1 requires readiness >0.7 or risk delays."
-
-Emerging pattern: Proof point gaps in new markets correlate with rework + messaging delays.
-Proposed learning for /context/meta-patterns.md: "New market launches need pre-brief proof point audit."
+✓ Four signals applied with reasoning (Step 3)
+✓ Full 7-section GTM brief delivered (Step 4), including:
+  - Leading indicators: 2 present (Week 1 pilot signups, Week 2 sales meetings)
+  - Proof points: 1 gap flagged (ROI in healthcare untested)
+✓ Session logged (Step 5):
+  skill: go-to-market-strategy
+  session_date: 2026-06-21
+  pattern: "Third consecutive session where launch readiness below 0.7 tracked with either delay or under-resourcing at the assigned tier — worth watching as a candidate guardrail."
+  source: surprised
 ```
+
+Note that pattern-across-sessions detection (comparing this session's row against the three prior rows to spot a recurring readiness/tier theme) is the job of `meta-synthesis`, run separately against the full `/context/skill-sessions.md` log — go-to-market-strategy's own Step 5 only ever writes its own single row. This skill does not itself detect or report cross-session patterns; it just logs an honest, falsifiable observation about this one session.
 
 **Pass Criteria:**
-- Full workflow completes (intake → four signals → tier → brief → log)
-- Quality score reflects signal rigor + proof point gap handling
-- Guardrails surfaced and proven useful or not
-- Tier calibration patterns detected (readiness vs. on-time delivery)
-- Brain updates proposed for meta-synthesis
-- Proof point gaps handled explicitly
+- Full workflow completes (intake → brain context → four signals → tier → brief → Learning Close)
+- Guardrails surfaced at Step 0 (if `/context/meta-patterns.md` has an applicable, 2+-occurrence pattern)
+- Tier assignment, four-signal reasoning, and full 7-section brief are delivered in chat only
+- Session logged to `/context/skill-sessions.md` with the real four-field shape — not a richer schema
+- The skill does not attempt cross-session pattern synthesis itself — that's `meta-synthesis`'s job, not go-to-market-strategy's
 
 ---
 
@@ -255,21 +227,22 @@ Proposed learning for /context/meta-patterns.md: "New market launches need pre-b
 | 4 | Proof point gap detection | Missing claims flagged explicitly in brief |
 | 5 | Leading indicator presence | ≥1 leading indicator per brief, tied to lagging metric |
 | 6 | Channel specificity | Every channel grounded in ICP, generic tactics rejected |
-| 7 | Session logging | Write confirmed, session logged with all metadata |
-| 8 | End-to-end workflow | Intake→Signals→Tier→Brief→Log, patterns detected |
+| 7 | Learning Close accuracy | Real four-field row (`skill`/`session_date`/`pattern`/`source`) logged to `/context/skill-sessions.md` |
+| 8 | End-to-end workflow | Intake→Signals→Tier→Brief→Learning Close, no cross-session synthesis attempted by this skill |
 
 ---
 
-## Changelog
+## Running Evals
 
-### v2.2.0 — 2026-06-22
-Major refactor for MCP-ready architecture: Added Step 0 guardrail loading from `/context/meta-patterns.md`. Added Step 6 session logging to `/context/skill-sessions.md` with 20+ metadata fields (signals reasoning, readiness score, proof gaps, brain updates). Integrated four-signal tier assignment with explicit reasoning for each signal. Weight-cut from v2.1.0 (~600 lines) to ~450 lines. Updated description to 1 sentence. Added 8 comprehensive evals covering guardrail surfacing, four-signal accuracy, proof point detection, leading indicators, channel specificity, brain writes, and pattern detection. Full 19/19 SKILL-SPEC compliance.
+```bash
+# Run all evals
+for i in {1..8}; do
+  echo "Running eval $i..."
+  # [invoke go-to-market-strategy with test data]
+  # [validate outputs against pass criteria]
+done
 
-### v2.1.0 — 2026-06-12
-Spec compliance audit. Brain-missing now triggers onboarding. First-run check added.
-
-### v2.0.0 — 2026-06-06
-Full rebuild to SKILL-SPEC v2.0.0.
-
-### v1.0.0 — 2026-04-01
-Initial build.
+# Run single eval
+# [invoke go-to-market-strategy with eval N test data]
+# [validate against eval N pass criteria]
+```

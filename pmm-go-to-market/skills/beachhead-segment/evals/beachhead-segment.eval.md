@@ -1,12 +1,13 @@
 ---
 name: beachhead-segment.eval
-version: 2.0.0
+version: 2.1.0
 description: >
   Comprehensive eval suite for beachhead-segment skill. Tests: guardrail surfacing,
   brain context loading, candidate decomposition, four-dimension scoring accuracy,
   blocking gate enforcement, assumption flagging, expansion pathway completeness,
-  elimination documentation, logging accuracy, and pattern detection for meta-synthesis.
-  8 scenarios covering real beachhead decisions and edge cases.
+  elimination documentation, and Learning Close accuracy against the skill's real
+  four-field session-log shape. 8 scenarios covering real beachhead decisions and
+  edge cases.
 ---
 
 # Beachhead-Segment — Eval Suite
@@ -16,9 +17,9 @@ description: >
 Each eval:
 1. Populates `/foundation/brain.md` with baseline PMM context (Sections 2, 3, 4, 5)
 2. Populates `/context/meta-patterns.md` with guardrails (if testing guardrail surfacing)
-3. Populates `/context/skill-sessions.md` with prior beachhead sessions (if testing pattern detection)
+3. Populates `/context/skill-sessions.md` with prior beachhead rows in the skill's real four-field shape (if testing Step 0 guardrail recall)
 4. Runs beachhead-segment skill for given decision scenario
-5. Validates outputs: scoring accuracy, gate enforcement, assumption handling, logging
+5. Validates outputs: scoring accuracy, gate enforcement, assumption handling, Learning Close accuracy
 
 ---
 
@@ -39,15 +40,13 @@ guardrail_1:
 # /context/skill-sessions.md
 skill: beachhead-segment
 session_date: 2026-06-10
-segments_scored: 3
-burning_pain_score: 2
-outcome: "Segment recommended but never scaled"
+pattern: "Segment recommended with Burning Pain 2 never scaled past initial rollout"
+source: wrong
 
 skill: beachhead-segment
 session_date: 2026-06-15
-segments_scored: 2
-burning_pain_score: 2
-outcome: "Segment recommended but churned in year 2"
+pattern: "Same pattern recurred — low-Pain segment recommended, churned in year 2"
+source: wrong
 ```
 
 **Expected Output - Guardrail Surfaced:**
@@ -66,7 +65,7 @@ Quick check: Do your candidates have acute pain signals?
 - Guardrail surfaces before scoring starts
 - Pattern count accurate (2+ prior occurrences)
 - User can acknowledge or skip
-- Guardrail logged in Step 6 (guardrails_triggered field)
+- Session logged at Step 6 per the skill's real Learning Close shape — see Eval 7
 
 ---
 
@@ -279,110 +278,74 @@ Conditional: Logistics (14/20, confidence 🟡 — validate assumptions first)
 
 ---
 
-## Eval 7: Session Logging Accuracy (Step 6)
+## Eval 7: Learning Close Accuracy (Step 6)
 
-**Scenario:** Beachhead scoring session completes with recommendation, gates applied, brain write executed. Skill logs to `/context/skill-sessions.md`.
+**Scenario:** Beachhead-segment skill session completes with four-dimension scoring → gates → recommendation → (optional) brain write. Skill logs to `/context/skill-sessions.md` per its Step 6 Learning Close.
 
 **Expected Output - Session Log:**
 ```yaml
 skill: beachhead-segment
 session_date: 2026-06-21
-decision_type: "new beachhead"
-segments_scored: 3
-top_segment: "Mid-market ops teams"
-quality_score: 87
-burning_pain_score: 4
-willingness_to_pay_score: 4
-winnability_score: 4
-referral_potential_score: 3
-total_score: 15/20
-assumption_flags: 0
-gates_applied:
-  - "Gate 1 (Pain floor): 1 eliminated (Enterprise)"
-  - "Gate 2 (Winnability floor): 1 flagged (Healthcare)"
-  - "Gate 3 (Assumption density): passed"
-confidence_score: 🟢
-eliminated_segments:
-  - "Enterprise: Gate 1 (Pain 2) — chronic problem"
-  - "Healthcare: Gate 2 (Winnability 2) — incumbent dominance"
-guardrails_triggered:
-  - "Low Pain segment risk" (pre-flagged)
-brain_context_loaded: true
-brain_sections_referenced:
-  - "ICP (Section 2)"
-  - "Positioning (Section 3)"
-  - "Competitive (Section 4)"
-  - "Proof points (Section 5)"
-brain_updates_proposed:
-  - "Section 2: Update beachhead to Mid-market ops, scores 4/4/4/3"
-expansion_pathway: "Mid-market → Enterprise → SMB"
-brain_write_executed: true
-recommendation: "Beachhead approved"
-output_path: "/artifacts/beachhead/mid-market-ops-v1.md"
+pattern: "Mid-market ops teams scored 4/4/4/3 and passed both gates cleanly — Referral Potential (3, not the top dimension) still carried the recommendation over a higher-Winnability segment, worth watching whether that trade-off holds."
+source: surprised
 ```
 
 **Pass Criteria:**
-- All metadata fields populated (scores, gates, flags, context)
-- Guardrails triggered listed
-- Brain updates logged
-- Quality score reflects gate enforcement
-- Elimination reasons preserved
-- Brain write status recorded
+- Session logged to `/context/skill-sessions.md` with exactly these four fields — `skill`, `session_date`, `pattern`, `source` — matching Step 6's template in `SKILL.md` verbatim. No additional fields.
+- `pattern` is a single falsifiable statement about what happened this session, or the literal string `"none"` if nothing notable occurred — not a multi-field summary object.
+- `source` is one of `surprised / wrong / missing / n.v.t.`
+- The row is written directly, without asking the user for permission — this is a separate, mechanical write from the brain Section 2 write (Step 5), which does require explicit user confirmation.
+- If nothing notable happened this session, the row is still written with `pattern: none` — the log entry is never skipped.
 
 ---
 
-## Eval 8: End-to-End Beachhead Decision with Pattern Detection
+## Eval 8: End-to-End Beachhead Decision, Full Workflow
 
-**Scenario:** User runs full beachhead session: candidate identification → four-dimension scoring → gates → recommendation → brain write → logging. Test detects patterns (guardrails useful? Assumptions predicted correctly?).
+**Scenario:** User runs full beachhead session: candidate identification → four-dimension scoring → gates → recommendation → brain write (on confirmation) → Learning Close.
 
 **Test Data:**
 ```yaml
-# /context/skill-sessions.md (3 prior beachhead sessions)
-Session 1: Enterprise rejected (Pain 2), Mid-market chosen (Pain 4) → Expanded 18 months later
-Session 2: Fintech rejected (Winnability 2), SMB chosen (Winnability 4) → Stalled at 12 months
-Session 3: Healthcare chosen (Assumptions 3) → Struggled first 6 months
+# /context/skill-sessions.md (3 prior beachhead rows, real shape)
+skill: beachhead-segment
+session_date: 2026-05-05
+pattern: "Enterprise rejected at Gate 1 (Pain 2); Mid-market chosen (Pain 4) — segment expanded successfully 18 months later"
+source: n.v.t.
+
+skill: beachhead-segment
+session_date: 2026-05-20
+pattern: "Fintech rejected at Gate 2 (Winnability 2); SMB chosen (Winnability 4) — SMB motion stalled at 12 months despite passing gates"
+source: wrong
+
+skill: beachhead-segment
+session_date: 2026-06-05
+pattern: "Healthcare chosen with 3 of 4 dimensions marked [A] — struggled with adoption friction in first 6 months, consistent with the assumption-density warning"
+source: surprised
 
 # Current session:
 Segments: Fintech vs Healthcare vs Logistics
-Scores generated → Gates applied → Recommendation made → Logging
+Scores generated → Gates applied → Recommendation made → Brain write confirmed → Learning Close
 ```
 
-**Expected Output - Pattern Recognition:**
+**Expected Output - Full Workflow:**
 ```
-✓ Session completed: Beachhead decision
-✓ Quality score: 85/100
+✓ Session completed: Beachhead decision (Fintech vs Healthcare vs Logistics)
 ✓ Gates applied: Pain floor (1 eliminated), Winnability floor (0 flagged), Assumption density (passed)
-✓ Guardrails triggered: 1 (Low Pain segment risk)
-
-🔁 PATTERN FOR META-SYNTHESIS:
-
-Burning Pain accuracy tracking (last 3 sessions):
-  - Segments with Pain ≥4: 100% sustained past 18 months
-  - Segments with Pain 2–3: 50% stalled or churned
-
-Winnability accuracy tracking:
-  - Segments with Winnability ≥4: 100% achieved dominance trajectory
-  - Segments with Winnability 2–3: 0% achieved dominance
-
-Assumption handling:
-  - Sessions with >2 assumptions: 100% hit friction in Q1 post-launch
-  - Sessions with ≤2 assumptions: 100% on track
-
-Guardrail recommendation: Keep "Low Pain risk" ACTIVE. Promote "High assumptions = Q1 friction" to RULE.
-
-Emerging pattern: Pain ≥4 + Winnability ≥4 = 90% launch success. Pain ≥4 + Winnability <3 = 40% success (resource churn, long expansion).
-Proposed learning for brain Section 2: "2x2 scoring combo (Pain × Winnability) is better predictor than total score."
+✓ Recommendation: Logistics (14/20, confidence 🟢)
+✓ Brain Section 2 updated (confirmed)
+✓ Session logged (Step 6):
+  skill: beachhead-segment
+  session_date: 2026-06-21
+  pattern: "Third consecutive session where the passing segment had a Winnability score below the highest-scored alternative on other dimensions — worth watching as a candidate guardrail."
+  source: surprised
 ```
+
+Note that pattern-across-sessions detection (comparing this session's row against the three prior rows to spot a recurring theme) is the job of `meta-synthesis`, run separately against the full `/context/skill-sessions.md` log — beachhead-segment's own Step 6 only ever writes its own single row. This skill does not itself detect or report cross-session patterns; it just logs an honest, falsifiable observation about this one session. The rich scoring output (four dimensions, gates, elimination reasons, expansion pathway) is delivered in chat per Step 4's template — none of that detail is duplicated into the session log.
 
 **Pass Criteria:**
-- Full workflow completes (intake → scoring → gates → recommendation → log)
-- Quality score reflects gate enforcement rigor
-- Guardrails surfaced and proven useful or not
-- Assumption density handled correctly
-- Session logged to `/context/skill-sessions.md` with all metadata
-- Pattern signals extracted (Pain/Winnability accuracy, assumption friction)
-- Brain updates proposed for meta-synthesis
-- Expansion pathway validated
+- Full workflow completes (candidates → scoring → gates → recommendation → brain write on confirmation → Learning Close)
+- Guardrails surfaced at Step 0 (if `/context/meta-patterns.md` has an applicable, 2+-occurrence pattern)
+- Session logged to `/context/skill-sessions.md` with the real four-field shape — not a richer schema
+- The skill does not attempt cross-session pattern synthesis itself — that's `meta-synthesis`'s job, not beachhead-segment's
 
 ---
 
@@ -396,8 +359,8 @@ Proposed learning for brain Section 2: "2x2 scoring combo (Pain × Winnability) 
 | 4 | Assumption flagging & confidence | `[A]` marks visible, confidence capped at 🟡 if >2 assumptions |
 | 5 | Expansion pathway completeness | ≥2 stages beyond beachhead, explicit triggers |
 | 6 | Elimination documentation | Every eliminated segment has specific gate + reason |
-| 7 | Session logging accuracy | Complete metadata logged to `/context/skill-sessions.md` |
-| 8 | End-to-end workflow | Intake→Scoring→Gates→Recommendation→Log, patterns detected |
+| 7 | Learning Close accuracy | Real four-field row (`skill`/`session_date`/`pattern`/`source`) logged to `/context/skill-sessions.md` |
+| 8 | End-to-end workflow | Candidates→Scoring→Gates→Recommendation→Brain write→Learning Close, no cross-session synthesis attempted by this skill |
 
 ---
 
@@ -415,13 +378,3 @@ done
 # [invoke beachhead-segment with eval N test data]
 # [validate against eval N pass criteria]
 ```
-
----
-
-## Changelog
-
-### v2.0.0 — 2026-06-22
-Major refactor for MCP-ready architecture: Added Step 0 guardrail loading from `/context/meta-patterns.md`. Added Step 7 session logging to `/context/skill-sessions.md` with 20+ metadata fields (segment scores, gate results, assumptions, confidence). Integrated brain context loading (Sections 2, 3, 4, 5). Consolidated Self-Improvement Loop into logging layer. Weight-cut from v1.0.0 (~600 lines) to ~450 lines while preserving four-dimension scoring model and blocking gate logic. Updated description to 1 sentence. Added 8 comprehensive evals covering guardrail surfacing, brain context loading, gate enforcement, assumption flagging, expansion pathway, elimination documentation, logging, and pattern detection. Full 19/19 SKILL-SPEC compliance.
-
-### v1.0.0 — 2026-06-06
-Initial build: Four-dimension scoring (Burning Pain, WTP, Winnability, Referral Potential). Two hard gates (Pain floor ≥3, Winnability floor ≥3). Assumption marking `[A]`. Expansion pathway mandatory. 90-day activation plan. Commands: /score, /decompose, /audit, /pathway, /eliminate.

@@ -63,7 +63,7 @@ understand your product, ICP, positioning, and competitive landscape before
 doing anything. Build it once with the `product-marketing-context` skill;
 every other skill reads from it.
 
-## Available Skills (21 Total)
+## Available Skills (22 Total)
 
 | Skill | Plugin | Description |
 |-------|--------|-------------|
@@ -82,6 +82,7 @@ every other skill reads from it.
 | [stakeholder-maps](pmm-execution/skills/stakeholder-maps/) | pmm-execution | Political maps: champions, blockers |
 | [prioritization-frameworks](pmm-execution/skills/prioritization-frameworks/) | pmm-execution | Score initiatives (RICE, ICE, Kano, and more) |
 | [go-to-market-strategy](pmm-go-to-market/skills/go-to-market-strategy/) | pmm-go-to-market | Launch tier assignment, GTM strategy briefs |
+| [gtm-motions](pmm-go-to-market/skills/gtm-motions/) | pmm-go-to-market | GTM motion stack selection scored against ICP deal economics |
 | [beachhead-segment](pmm-go-to-market/skills/beachhead-segment/) | pmm-go-to-market | First customer wedge scoring |
 | [workflow-orchestrator](pmm-go-to-market/skills/workflow-orchestrator/) | pmm-go-to-market | Chains multiple skills into full GTM programs |
 | [meta-synthesis](pmm-meta/meta-synthesis/) | pmm-meta | Pattern detection across skill sessions |

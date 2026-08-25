@@ -1,11 +1,12 @@
 ---
 name: pre-mortem.eval
-version: 2.3.0
+version: 2.4.0
 description: >
   Comprehensive eval suite for pre-mortem skill. Tests: guardrail surfacing,
   brain context loading, failure scenario generation quality, Tiger/Paper Tiger/Elephant classification accuracy,
-  Tiger triage completeness (owner + signal + action plan), PMM recommendation clarity, logging accuracy,
-  and pattern detection for meta-synthesis. 8 scenarios covering real initiative types and edge cases.
+  Tiger triage completeness (owner + signal + action plan), PMM recommendation clarity, and Learning Close
+  accuracy against the skill's real four-field session-log shape. 8 scenarios covering real initiative types
+  and edge cases.
 ---
 
 # Pre-Mortem — Eval Suite
@@ -15,9 +16,9 @@ description: >
 Each eval:
 1. Populates `/foundation/brain.md` with baseline PMM context (Sections 2, 3, 4, 5)
 2. Populates `/context/meta-patterns.md` with guardrails (if testing guardrail surfacing)
-3. Populates `/context/skill-sessions.md` with prior pre-mortem sessions (if testing pattern detection)
+3. Populates `/context/skill-sessions.md` with prior pre-mortem rows in the skill's real four-field shape (if testing Step 0 guardrail recall)
 4. Runs pre-mortem skill for given initiative
-5. Validates outputs: risk classification quality, Tiger triage completeness, recommendation clarity, session logging
+5. Validates outputs: risk classification quality, Tiger triage completeness, recommendation clarity, Learning Close accuracy
 
 ---
 
@@ -37,15 +38,13 @@ guardrail_1:
 # /context/skill-sessions.md
 skill: pre-mortem
 session_date: 2026-06-10
-initiative_name: "Price Optimization Q2"
-recommendation: "Hold"
-tigers_count: 4
+pattern: "Pricing initiative without a competitive posture check surfaced a Tiger that could have been caught earlier"
+source: wrong
 
 skill: pre-mortem
 session_date: 2026-06-15
-initiative_name: "Enterprise Tier Launch"
-recommendation: "Hold"
-tigers_count: 3
+pattern: "Same pattern recurred on Enterprise Tier Launch — pricing pre-mortems keep missing competitive posture until Tiger triage"
+source: wrong
 ```
 
 **Expected Output - Guardrail Surfaced:**
@@ -64,7 +63,7 @@ Quick check: Are you aware of this risk?
 - Guardrail surfaces before Step 1 intake
 - Pattern count accurate (2 prior occurrences)
 - User can approve/skip guardrail
-- Guardrail logged in Step 7 (guardrails_triggered field)
+- Session logged at Step 7 per the skill's real Learning Close shape — see Eval 7
 
 ---
 
@@ -175,7 +174,7 @@ Scenario 5: "Rollback decision took 3 weeks; customer churn started"
 - Classification aligns with user's risk appetite (Tigers = must-mitigate, Paper Tigers = monitor, Elephants = accept)
 - Skill asks clarifying question if ambiguous: "Is this deal-blocking, or manageable?"
 - User can reclass if disagree ("Actually, that's an Elephant — we decided to accept it")
-- Classification count logged in Step 7 (tigers_count, paper_tigers_count, elephants_count)
+- Classification counts appear in the chat-delivered Tiger triage output (not in the session log — the Learning Close row logged at Step 7 carries only `skill`, `session_date`, `pattern`, `source`, not per-session counts)
 
 ---
 
@@ -208,7 +207,7 @@ Skill generates / elicits:
 - All Tigers have measurable signals (e.g., "churn >15%", "<50% adoption")
 - All Tigers have mitigation or rollback actions (not "hope it doesn't happen")
 - Actions are specific enough to execute (owner knows what to do)
-- Signal + Action logged in Step 7
+- Owner + Signal + Action appear in the chat-delivered Tiger triage output — the Step 7 Learning Close row is a separate, minimal log entry, not a place this detail is duplicated
 
 ---
 
@@ -235,98 +234,71 @@ Condition: "Go if Tiger 5 (exec alignment) gets an owner and decision by Friday.
 - If Conditional Go: Explicit condition stated ("if X happens by Y date")
 - If Hold: Clear reason given ("unmitigated Tigers: X, Y, Z")
 - Recommendation is 1-2 paragraphs max (clear, direct)
-- Recommendation logged in Step 7
+- Recommendation is delivered in chat as part of the triage output; the Step 7 Learning Close row does not duplicate it
 
 ---
 
-## Eval 7: Session Logging Accuracy (Step 7)
+## Eval 7: Learning Close Accuracy (Step 7)
 
-**Scenario:** Pre-mortem skill session completes with failure scenarios → classification → Tiger triage → recommendation. Skill logs to `/context/skill-sessions.md`.
+**Scenario:** Pre-mortem skill session completes with failure scenarios → classification → Tiger triage → recommendation. Skill logs to `/context/skill-sessions.md` per its Step 7 Learning Close.
 
 **Expected Output - Session Log:**
 ```yaml
 skill: pre-mortem
 session_date: 2026-06-21
-initiative_name: "Bulk User Imports Feature"
-initiative_tier: P2
-quality_score: 88
-tigers_count: 5
-paper_tigers_count: 3
-elephants_count: 2
-guardrails_triggered:
-  - "Sales alignment risk" (pre-flagged from prior pre-mortems)
-brain_context_loaded: true
-brain_sections_referenced:
-  - "ICP (Section 2) — mid-market ops teams"
-  - "Positioning (Section 3) — outcome-first analytics"
-  - "Revenue Levers (Section 5) — time-to-value"
-brain_updates_proposed:
-  - "Section 5: Emerging pattern — feature launches without sales alignment have 80% Tiger materialization. Recommend 3-week sales prep minimum."
-  - "Section 2: Anti-ICP signal — ops teams without process maturity churn 2x post-launch. Tighten ICP on process sophistication."
-recommendation: "Conditional Go — proceed if Tiger 2 (adoption friction) has owner assigned by Friday"
-decision: "approved"
-risks_materialized_count: null
-output_path: "/artifacts/pre-mortem/bulk-imports-tiger-summary-v1.md"
+pattern: "Feature launches without a named sales-alignment owner correlated with Tiger risks materializing in this session's triage — worth watching across future launches."
+source: surprised
 ```
 
 **Pass Criteria:**
-- Session logged to `/context/skill-sessions.md`
-- All metadata fields populated (initiative name, tier, counts, quality score, guardrails)
-- Tigers/Paper Tigers/Elephants accurately counted
-- Guardrails triggered listed (if any)
-- Brain context loaded and sections referenced
-- Brain updates proposed (for meta-synthesis)
-- Recommendation field matches Step 5 output
-- Quality score reflects Tiger completeness (90+ = all Tigers have owners + signals + actions)
+- Session logged to `/context/skill-sessions.md` with exactly these four fields — `skill`, `session_date`, `pattern`, `source` — matching Step 7's template in `SKILL.md` verbatim. No additional fields.
+- `pattern` is a single falsifiable statement about what happened this session, or the literal string `"none"` if nothing notable occurred — not a multi-field summary object.
+- `source` is one of `surprised / wrong / missing / n.v.t.`
+- The row is written directly, without asking the user for permission — this is a separate, mechanical write from anything the skill asks the user's go-ahead on (like where to save the Tiger triage output, per Outputs).
+- If nothing notable happened this session, the row is still written with `pattern: none` — the log entry is never skipped.
 
 ---
 
-## Eval 8: End-to-End Pre-Mortem with Pattern Detection
+## Eval 8: End-to-End Pre-Mortem, Full Workflow
 
-**Scenario:** User runs pre-mortem end-to-end: intake → failure scenarios → classification → Tiger triage → recommendation → logging. Test detects patterns (guardrails useful? Tigers materialized in follow-up?).
+**Scenario:** User runs pre-mortem end-to-end: intake → failure scenarios → classification → Tiger triage → recommendation → Learning Close.
 
 **Test Data:**
 ```yaml
-# /context/skill-sessions.md (3 prior pre-mortems)
-Session 1: Feature launch, 4 Tigers, recommendation "Go"
-  → Follow-up 3 months later: 3 of 4 Tigers materialized (accuracy: 75%)
-Session 2: Pricing change, 5 Tigers, recommendation "Hold"
-  → User proceeded anyway; 4 Tigers materialized immediately (accuracy: 80%)
-Session 3: GTM pivot, 3 Tigers, recommendation "Conditional Go"
-  → Condition met; 1 Tiger materialized (accuracy: 67%)
+# /context/skill-sessions.md (2 prior pre-mortem rows, real shape)
+skill: pre-mortem
+session_date: 2026-05-10
+pattern: "Feature launch pre-mortem — sales-alignment Tiger was under-scoped, materialized as a launch blocker"
+source: wrong
+
+skill: pre-mortem
+session_date: 2026-06-01
+pattern: "Pricing-change pre-mortem — same sales-alignment Tiger pattern recurred"
+source: wrong
 
 # Current session:
 Feature launch intake → 6 Tigers identified → owners assigned → signals clear → recommendation "Go"
 ```
 
-**Expected Output - Pattern Recognition:**
+**Expected Output - Full Workflow:**
 ```
 ✓ Session completed: Feature launch pre-mortem
-✓ Quality score: 87/100 (all Tigers have owners + signals + actions)
-✓ Guardrails triggered: 2 ("Sales alignment", "Adoption friction")
-
-🔁 PATTERN FOR META-SYNTHESIS:
-
-Pre-mortem accuracy tracking (last 3 sessions):
-  - Tiger materialization rate: 75–80% (model is well-calibrated)
-  - "Sales alignment" Tigers have 100% materialization (strong signal)
-  - "Adoption friction" Tigers have 67% materialization (less predictive)
-
-Guardrail recommendation: Keep "Sales alignment" ACTIVE. Downgrade "Adoption friction" (false alarm rate too high).
-
-Emerging pattern: Pre-mortems with named owners have 85% Tiger mitigation success.
-Proposed learning for /context/meta-patterns.md: "Named owner accountability in pre-mortem action plans drives 85% execution success vs. 40% when ownership is vague."
+✓ Tiger triage: 6 Tigers, all with named owner + measurable signal + action plan
+✓ Recommendation: Go
+✓ Session logged (Step 7):
+  skill: pre-mortem
+  session_date: 2026-06-21
+  pattern: "Third consecutive session where sales-alignment was the highest-risk Tiger — recommend surfacing this as a candidate guardrail."
+  source: surprised
 ```
 
+Note that pattern-across-sessions detection (comparing this session's row against the two prior rows to spot a recurring theme) is the job of `meta-synthesis`, run separately against the full `/context/skill-sessions.md` log — pre-mortem's own Step 7 only ever writes its own single row. This skill does not itself detect or report cross-session patterns; it just logs an honest, falsifiable observation about this one session.
+
 **Pass Criteria:**
-- Full workflow completes (intake → scenarios → triage → recommendation → log)
-- Quality score calculated and reflects Tiger completeness
-- Guardrails surfaced at Step 0 (if applicable)
-- Guardrails triggered count matches usage in session
-- Session logged to `/context/skill-sessions.md` with all metadata
-- Brain updates proposed for meta-synthesis
-- Pattern signals extracted for pattern detection (if follow-up session exists, compare predicted vs. materialized Tigers)
-- Output path recorded
+- Full workflow completes (intake → scenarios → triage → recommendation → Learning Close)
+- Guardrails surfaced at Step 0 (if `/context/meta-patterns.md` has an applicable, 2+-occurrence pattern)
+- Session logged to `/context/skill-sessions.md` with the real four-field shape — not a richer schema
+- The skill does not attempt cross-session pattern synthesis itself — that's `meta-synthesis`'s job, not pre-mortem's
 
 ---
 
@@ -340,8 +312,8 @@ Proposed learning for /context/meta-patterns.md: "Named owner accountability in 
 | 4 | Risk classification | Tigers/Paper Tigers/Elephants aligned with risk appetite |
 | 5 | Tiger triage completeness | All Tigers have named owner, signal, action plan |
 | 6 | PMM recommendation clarity | Go / Conditional Go / Hold with clear reasoning |
-| 7 | Session logging accuracy | Complete metadata logged to `/context/skill-sessions.md` |
-| 8 | End-to-end workflow | Intake→Scenarios→Triage→Recommendation→Log, patterns detected |
+| 7 | Learning Close accuracy | Real four-field row (`skill`/`session_date`/`pattern`/`source`) logged to `/context/skill-sessions.md` |
+| 8 | End-to-end workflow | Intake→Scenarios→Triage→Recommendation→Learning Close, no cross-session synthesis attempted by this skill |
 
 ---
 
@@ -359,13 +331,3 @@ done
 # [invoke pre-mortem with eval N test data]
 # [validate against eval N pass criteria]
 ```
-
----
-
-## Changelog
-
-### v2.3.0 — 2026-06-22
-Initial release: 8 comprehensive scenarios covering guardrail surfacing, brain context loading, failure scenario generation (initiative-specific), Tiger/Paper Tiger/Elephant classification, Tiger triage completeness (owner + signal + action), PMM recommendation clarity, logging accuracy, and end-to-end pattern detection for meta-synthesis.
-
-Tests guardrail pre-flight, brain context integration, logging to `/context/skill-sessions.md`, and pattern signals for meta-synthesis monthly cycle. Includes pre-mortem accuracy tracking (comparing predicted vs. materialized Tigers) for calibration.
-

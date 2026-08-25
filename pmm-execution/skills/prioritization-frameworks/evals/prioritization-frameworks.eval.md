@@ -1,11 +1,13 @@
 ---
 name: prioritization-frameworks.eval
-version: 2.0.0
+version: 3.0.0
 description: >
   Comprehensive eval suite for prioritization-frameworks skill. Tests: guardrail surfacing,
   brain context loading, framework selection accuracy, scoring integrity, Quality Gate enforcement,
-  tier assignment accuracy, confidence score honesty, logging accuracy,
-  and pattern detection for meta-synthesis. 8 scenarios covering real prioritization scenarios and edge cases.
+  tier assignment accuracy, confidence score honesty, and Learning Close accuracy against the
+  skill's real four-field session-log shape (Step 7 — new as of this skill version; the skill
+  previously had no Learning Close step). 8 scenarios covering real prioritization scenarios and
+  edge cases.
 ---
 
 # Prioritization-Frameworks — Eval Suite
@@ -15,9 +17,9 @@ description: >
 Each eval:
 1. Populates `/foundation/brain.md` with baseline PMM context (Sections 2, 3, 5)
 2. Populates `/context/meta-patterns.md` with guardrails (if testing guardrail surfacing)
-3. Populates `/context/skill-sessions.md` with prior scoring sessions (if testing pattern detection)
+3. Populates `/context/skill-sessions.md` with prior prioritization-frameworks rows in the skill's real four-field shape (if testing Step 0 guardrail recall)
 4. Runs prioritization-frameworks skill for given decision scenario
-5. Validates outputs: framework selection, scoring quality, Quality Gate enforcement, tier assignment accuracy, session logging
+5. Validates outputs: framework selection, scoring quality, Quality Gate enforcement, tier assignment accuracy, Learning Close accuracy
 
 ---
 
@@ -37,24 +39,18 @@ guardrail_1:
 # /context/skill-sessions.md
 skill: prioritization-frameworks
 session_date: 2026-06-10
-decision_type: "tier"
-framework_selected: "RICE"
-confidence_inflation_detected: true
-gate_failures: 1
+pattern: "RICE scoring without win/loss data inflated Impact — Confidence corrected down from 85% to 55% during Quality Gates"
+source: wrong
 
 skill: prioritization-frameworks
 session_date: 2026-06-12
-decision_type: "tier"
-framework_selected: "RICE"
-confidence_inflation_detected: true
-gate_failures: 1
+pattern: "Same RICE-without-evidence Confidence inflation recurred on a second launch tier decision"
+source: wrong
 
 skill: prioritization-frameworks
 session_date: 2026-06-15
-decision_type: "tier"
-framework_selected: "RICE"
-confidence_inflation_detected: true
-gate_failures: 1
+pattern: "Third consecutive session where RICE Confidence was inflated absent win/loss data"
+source: wrong
 ```
 
 **Expected Output - Guardrail Surfaced:**
@@ -73,7 +69,7 @@ Quick check: Do you have win/loss data or customer research for this launch?
 - Guardrail surfaces before Step 1 intake
 - Pattern count accurate (3 prior occurrences)
 - User can acknowledge or skip guardrail
-- Guardrail logged in Step 7 (guardrails_triggered field)
+- Session logged at Step 7 per the skill's real Learning Close shape — see Eval 7
 
 ---
 
@@ -238,7 +234,7 @@ Acceptable: T3 if customer research is in flight
 - Tier rationale is one-sentence and specific (not "strong signal")
 - Confidence score stated and influences tier (Confidence <7 caps tier at T2)
 - Tier includes "next step" (validation, data gathering, GTM readiness)
-- Tier logged in Step 7 with all supporting scores
+- Tier Assignment Card and Scoring Table appear in the chat-delivered Step 6 output — the Step 7 Learning Close row is a separate, minimal log entry, not a place these scores are duplicated
 
 ---
 
@@ -269,102 +265,76 @@ Quality issue to catch:
 
 ---
 
-## Eval 7: Session Logging Accuracy (Step 7)
+## Eval 7: Learning Close Accuracy (Step 7)
 
-**Scenario:** Framework skill session completes with framework selected → scoring → tier assigned → Quality Gates passed. Skill logs to `/context/skill-sessions.md`.
+**Scenario:** Prioritization-frameworks skill session completes with framework selection → scoring → Quality Gates → tier translation → audit. Skill logs to `/context/skill-sessions.md` per its Step 7 Learning Close.
 
 **Expected Output - Session Log:**
 ```yaml
 skill: prioritization-frameworks
 session_date: 2026-06-21
-decision_type: "tier"
-initiatives_scored: 1
-framework_selected: "RICE"
-frameworks_used: ["RICE"]
-quality_score: 87
-tier_assignments:
-  - initiative: "Bulk User Imports Feature"
-    tier: "T2"
-    confidence: 7
-guardrails_triggered:
-  - "RICE without customer data" (addressed by recommending win/loss pull)
-brain_context_loaded: true
-brain_sections_referenced:
-  - "ICP (Section 2) — mid-market ops teams"
-  - "Positioning (Section 3) — outcome-first analytics"
-  - "Revenue Levers (Section 5) — time-to-value"
-brain_updates_proposed:
-  - "Logged to /context/meta-patterns.md: T2 assignments with Confidence <7 have 60% GTM churn rate. Recommend validation sprint before full motion."
-confidence_inflation_detected: true
-gate_failures: 1
-validation_recommended: true
-recommendation: "Proceed with T2, but recommend customer validation on Impact before committing full GTM resources"
-output_path: "/artifacts/prioritization/bulk-imports-tier-card-v1.md"
+pattern: "RICE Confidence was self-assessed at 85% with no win/loss data — Quality Gate 2 caught the inflation and the tier was revised from T1 to T2."
+source: surprised
 ```
 
 **Pass Criteria:**
-- Session logged to `/context/skill-sessions.md`
-- All metadata fields populated (framework, tiers, confidence, quality score)
-- Guardrails triggered listed (if any)
-- Brain context loaded and sections referenced
-- Brain updates proposed (for meta-synthesis)
-- Confidence inflation detection logged (true/false + count)
-- Gate failures tracked
-- Recommendation field reflects Quality Gate outcomes (not ideal tier, but realistic one)
-- Quality score reflects gate passes (90+ = all gates passed)
+- Session logged to `/context/skill-sessions.md` with exactly these four fields — `skill`, `session_date`, `pattern`, `source` — matching Step 7's template in `SKILL.md` verbatim. No additional fields.
+- `pattern` is a single falsifiable statement about what happened this session, or the literal string `"none"` if nothing notable occurred — not a multi-field summary object.
+- `source` is one of `surprised / wrong / missing / n.v.t.`
+- The row is written directly, without asking the user for permission — this is a separate, mechanical write from anything the skill asks the user's go-ahead on (like where to save the Tier Assignment Card, Scoring Table, or Tier Rationale, per Outputs).
+- If nothing notable happened this session, the row is still written with `pattern: none` — the log entry is never skipped.
+- Neither the Quality Gate results, the tier assignment, nor the scoring table are duplicated into the log row — those live in the Step 6 chat output only.
 
 ---
 
-## Eval 8: End-to-End Prioritization with Pattern Detection
+## Eval 8: End-to-End Prioritization, Full Workflow
 
-**Scenario:** User runs prioritization end-to-end: intake → framework selection → scoring → Quality Gates → tier assignment → logging. Test detects patterns (guardrails useful? tier assignments accurate after validation?).
+**Scenario:** User runs prioritization-frameworks end-to-end: intake → framework selection → scoring → Quality Gates → tier translation → audit → Learning Close.
 
 **Test Data:**
 ```yaml
-# /context/skill-sessions.md (3 prior scoring sessions)
-Session 1: RICE without win/loss data, Confidence inflated 3 points → Tier revised down after validation
-Session 2: ICE framework applied, all gates passed → Tier held up post-launch
-Session 3: Risk vs Reward for new market, no local knowledge → Recommended validation sprint (followed advice)
+# /context/skill-sessions.md (3 prior prioritization-frameworks rows, real shape)
+skill: prioritization-frameworks
+session_date: 2026-06-10
+pattern: "RICE without win/loss data inflated Confidence — tier revised down from T1 to T2 after Quality Gates"
+source: wrong
+
+skill: prioritization-frameworks
+session_date: 2026-06-12
+pattern: "ICE framework applied with full evidence trail — all Quality Gates passed on first pass"
+source: n.v.t.
+
+skill: prioritization-frameworks
+session_date: 2026-06-15
+pattern: "Risk vs Reward used for new-market entry with no local data — recommended a validation sprint before scoring"
+source: surprised
 
 # Current session:
-Framework selection → Scoring with Quality Gates → Tier assignment → Logging
+Feature launch intake → RICE selected → Confidence self-assessed 85% with no win/loss data →
+Quality Gate 2 flags inflation → tier revised T1 → T2
 ```
 
-**Expected Output - Pattern Recognition:**
+**Expected Output - Full Workflow:**
 ```
-✓ Session completed: Prioritization scoring
-✓ Quality score: 85/100
-✓ Guardrails triggered: 1 ("RICE without customer data")
-✓ Gate failures: 1 (Confidence inflation caught and corrected)
-
-🔁 PATTERN FOR META-SYNTHESIS:
-
-Tier assignment accuracy tracking (last 3 sessions):
-  - T1 assignments: 100% accuracy (1 of 1 validated as T1+)
-  - T2 assignments: 80% accuracy (1 of 1 held, 1 revised down post-validation)
-  - T3 assignments: Not yet tested
-
-Framework effectiveness:
-  - RICE with good data: High accuracy, requires win/loss pull
-  - ICE for quick triage: 100% accuracy, lower confidence ceiling
-  - Risk vs Reward for high-uncertainty: Accuracy pending validation
-
-Guardrail recommendation: Keep "RICE without customer data" ACTIVE.
-New hypothesis to track: "T2 with Confidence <7 needs validation before GTM motion" (seen in 2 sessions).
-
-Proposed learning for /context/meta-patterns.md: "Framework selection determines data requirements. Running RICE without Reach validation costs 2 weeks of iteration post-launch; pulling data upfront costs 3 days."
+✓ Session completed: Feature launch prioritization
+✓ Framework: RICE
+✓ Quality Gates: Gate 1 and Gate 2 failed, corrected before delivery
+✓ Tier: T2 (revised down from T1 after Confidence correction)
+✓ Session logged (Step 7):
+  skill: prioritization-frameworks
+  session_date: 2026-06-21
+  pattern: "Third consecutive session where RICE Confidence needed correction absent win/loss data — recommend surfacing this as a candidate guardrail."
+  source: surprised
 ```
+
+Note that pattern-across-sessions detection (comparing this session's row against the three prior rows to spot a recurring theme) is the job of `meta-synthesis`, run separately against the full `/context/skill-sessions.md` log — prioritization-frameworks' own Step 7 only ever writes its own single row. This skill does not itself detect or report cross-session patterns; it just logs an honest, falsifiable observation about this one session.
 
 **Pass Criteria:**
-- Full workflow completes (intake → selection → scoring → gates → tier → log)
-- Quality score reflects gate enforcement (no inflated tiers delivered)
-- Guardrails surfaced at Step 0 (if applicable)
-- Framework selected matches decision type
-- Quality Gates caught issues before tier delivery
-- Session logged to `/context/skill-sessions.md` with all metadata
-- Brain updates proposed for meta-synthesis
-- Pattern signals extracted (tier accuracy, framework effectiveness, guardrail usefulness)
-- Output includes next step (validation, data gathering, GTM readiness)
+- Full workflow completes (intake → selection → scoring → gates → tier → audit → Learning Close)
+- Guardrails surfaced at Step 0 (if `/context/meta-patterns.md` has an applicable, 2+-occurrence pattern)
+- Quality Gates caught issues before tier delivery (Step 3), tier revised before Step 4 output
+- Session logged to `/context/skill-sessions.md` with the real four-field shape — not a richer schema
+- The skill does not attempt cross-session pattern synthesis itself — that's `meta-synthesis`'s job, not prioritization-frameworks'
 
 ---
 
@@ -378,8 +348,8 @@ Proposed learning for /context/meta-patterns.md: "Framework selection determines
 | 4 | Scoring integrity & Confidence honesty | Quality Gates catch inflation, missing evidence, assumptions |
 | 5 | Tier assignment accuracy | Tier aligns with scoring output, Confidence <7 caps tier |
 | 6 | Framework application consistency | Formulas correct, scoring consistent, evidence standards aligned |
-| 7 | Session logging accuracy | Complete metadata logged to `/context/skill-sessions.md` |
-| 8 | End-to-end workflow | Intake→Selection→Scoring→Gates→Tier→Log, patterns detected |
+| 7 | Learning Close accuracy | Real four-field row (`skill`/`session_date`/`pattern`/`source`) logged to `/context/skill-sessions.md` |
+| 8 | End-to-end workflow | Intake→Selection→Scoring→Gates→Tier→Audit→Learning Close, no cross-session synthesis attempted by this skill |
 
 ---
 
@@ -397,14 +367,3 @@ done
 # [invoke prioritization-frameworks with eval N test data]
 # [validate against eval N pass criteria]
 ```
-
----
-
-## Changelog
-
-### v2.0.0 — 2026-06-22
-Major refactor: Consolidated knowledge architecture (Blocks 1–3) into Step 7 logging. Removed `/workshop` and `/learn` commands (feature-rich but non-core). Added full MCP-ready architecture: Step 0 guardrail loading, Step 7 session logging to `/context/skill-sessions.md`, brain context integration (ICP, positioning, revenue levers). Added 8 comprehensive evals covering guardrail surfacing, framework selection, scoring integrity, Quality Gate enforcement, confidence honesty, tier assignment accuracy, logging, and pattern detection. Weight-cut framework reference (removed verbose prose, kept formula + PMM Use + Tier Signal). Quality score now reflects gate enforcement. All 19/19 SKILL-SPEC compliant.
-
-### v1.0.0 — 2026-06-05
-Initial build: 9 frameworks with formulas, PMM interpretation, tier output logic (T1–T4). Commands: /score, /tier, /compare, /audit. Knowledge architecture (Blocks 1–3) with persistent files for rules, hypotheses, decisions. Quality Gate with 5 independent checks.
-

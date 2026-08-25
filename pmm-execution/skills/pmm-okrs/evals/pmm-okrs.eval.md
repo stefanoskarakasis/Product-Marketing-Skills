@@ -28,16 +28,16 @@
 - Gate results binary (✅/❌)? YES/NO
 - No narrative substitutions? YES/NO
 
-## Eval 4: Session logged to /context/skill-sessions.md
+## Eval 4: Learning Close accuracy (Step 8)
 **Scenario:** User completes `/build` and `/scorecard`
-**Expected:** Entry written to `/context/skill-sessions.md` with full metadata
+**Expected:** Entry written to `/context/skill-sessions.md` per Step 8's real Learning Close template — exactly four fields, matching `SKILL.md` verbatim
 **Input:** `/build` + `/scorecard`
 **Output check:**
 - Session logged? YES/NO
-- Contains: quarter, objectives_count, krs_with_baseline_metrics? YES/NO
-- Contains: prior_quarter_okrs data? YES/NO
-- Contains: guardrails_triggered? YES/NO
-- Contains: confidence_calibration_delta? YES/NO
+- Row contains exactly these four fields: `skill`, `session_date`, `pattern`, `source`? YES/NO — no additional fields (no `quarter`, `objectives_count`, `guardrails_triggered`, or similar; those are chat-output details from `/build` and `/scorecard`, not part of the log row)
+- `pattern` is a single falsifiable statement about this session, or the literal `"none"`? YES/NO
+- `source` is one of `surprised / wrong / missing / n.v.t.`? YES/NO
+- Row written directly, without asking the user for permission? YES/NO
 
 ## Eval 5: Adversarial callouts surface inline
 **Scenario:** User submits OKRs with vague KR ("improve adoption")
@@ -68,11 +68,11 @@
 - Specific to external dependencies? YES/NO
 - Asks user to accept risk? YES/NO
 
-## Eval 8: Decision logging on strategic choice
+## Eval 8: Option selection reflected in Learning Close
 **Scenario:** User selects Option B from `/build` (not Option A)
-**Expected:** Decision logged to `decisions/YYYY-MM-DD-{topic}.md`
+**Expected:** Per `SKILL.md`'s real `Outputs` section, this skill writes nothing beyond the Step 8 session-log row — there is no separate `decisions/` file. The choice of Option B over Option A should be reflected, if notable, in that row's `pattern` field.
 **Input:** User selects Option B
 **Output check:**
-- Decision file created? YES/NO
-- Contains: Decision / Context / Alternatives / Reasoning? YES/NO
-- References Option A as alternative? YES/NO
+- No file created at any `decisions/` path — that mechanism does not exist in this skill? YES/NO
+- If the Option B choice was a genuine surprise or worth remembering, `pattern` in the Step 8 row names it (e.g. "User picked the higher-risk option over the calibration-recommended one")? YES/NO
+- If not notable, `pattern: none` is still written — the row is never skipped? YES/NO

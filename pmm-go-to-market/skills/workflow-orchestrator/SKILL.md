@@ -34,9 +34,9 @@ matters as much as each individual output.
 - **When:** Any request for a multi-step PMM program spanning two or more skills,
   or any named workflow type below.
 - **Not for:** Single-skill tasks — route directly to the relevant skill instead:
-  `go-to-market-strategy` for tier + brief only, `positioning-messaging` for
-  positioning work only, `pre-mortem` for risk analysis only, `retro` for
-  post-launch review only.
+  `go-to-market-strategy` for tier + brief only, `gtm-motions` for motion
+  selection only, `positioning-messaging` for positioning work only,
+  `pre-mortem` for risk analysis only, `retro` for post-launch review only.
 - **Example prompts:**
   - "Run a full launch workflow for our analytics dashboard"
   - "We're doing a positioning refresh — orchestrate the full program"
@@ -166,6 +166,7 @@ Invoke each skill in sequence. Between each skill:
 
 **Coherence checks between skills:**
 - Positioning → GTM strategy: do channel recommendations match the positioned segment?
+- GTM motions → GTM strategy: does the Channel Strategy table reflect the selected motion stack, not a leftover tier-default?
 - GTM strategy → Stakeholder maps: does the tier align with stakeholder weight?
 - Competitive → GTM strategy: does the attack angle match the battlecard?
 - Personas → Proof points: does the proof point set address the persona's primary objection?
@@ -254,11 +255,12 @@ If the user wants this document saved somewhere, ask where.
 ### 1. Full Product Launch
 **Trigger:** "run full launch workflow", "launch [product] end to end"
 1. `go-to-market-strategy` — tier + strategy brief
-2. `positioning-messaging` (if Section 3 stale or new angles needed)
-3. `gaccs-brief` — campaign brief
-4. `stakeholder-maps` — internal alignment map
-5. `pre-mortem` — risk analysis before committing
-6. Set T+90 retro trigger → `retro`
+2. `gtm-motions` — select acquisition motion stack, fold into Channel Strategy
+3. `positioning-messaging` (if Section 3 stale or new angles needed)
+4. `gaccs-brief` — campaign brief
+5. `stakeholder-maps` — internal alignment map
+6. `pre-mortem` — risk analysis before committing
+7. Set T+90 retro trigger → `retro`
 
 ### 2. Positioning Refresh
 **Trigger:** "positioning refresh", "our messaging is stale", "update positioning"
@@ -279,10 +281,11 @@ user that this workflow is a placeholder pending a dedicated skill.
 ### 5. New Market Entry Program
 **Trigger:** "enter new market", "expand to [segment]", "new vertical"
 1. `beachhead-segment` — score and confirm the target segment
-2. `positioning-messaging` — positioning for new segment
-3. `go-to-market-strategy` — tier + strategy for market entry
-4. `gaccs-brief` — campaign brief
-5. `pre-mortem` — risk analysis before committing
+2. `gtm-motions` — select acquisition motion stack for the confirmed segment
+3. `positioning-messaging` — positioning for new segment
+4. `go-to-market-strategy` — tier + strategy for market entry
+5. `gaccs-brief` — campaign brief
+6. `pre-mortem` — risk analysis before committing
 
 ### 6. Competitive Response (Fast)
 **Trigger:** "competitive response to [competitor]", "they just launched [X]"

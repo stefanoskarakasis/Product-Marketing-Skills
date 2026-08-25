@@ -10,7 +10,7 @@ metadata:
 last_updated: 2026-08-24
 ---
 
-# Go-to-Market-Strategy — Skill
+# Go-to-Market-Strategy
 
 ## How This Works
 
@@ -35,7 +35,7 @@ The skill runs in 6 steps:
 ## Trigger
 
 - **When:** Assigning a launch tier and building a full GTM strategy brief for a product, feature, pricing change, or market expansion.
-- **Not for:** Chaining this with other skills into one program → use `workflow-orchestrator`. Messaging and positioning work itself → use `positioning-messaging` after this skill. Risk analysis → use `pre-mortem` after this skill. Post-launch review → use `retro`.
+- **Not for:** Chaining this with other skills into one program → use `workflow-orchestrator`. Choosing which acquisition motion(s) to invest in → use `gtm-motions` before this skill if Channel Strategy needs real motion-fit backing. Messaging and positioning work itself → use `positioning-messaging` after this skill. Risk analysis → use `pre-mortem` after this skill. Post-launch review → use `retro`.
 - **Example prompts:**
   - "What tier is this launch?"
   - "GTM strategy for our new pricing page"
@@ -166,6 +166,13 @@ Generate only after tier is assigned. Structure (7 sections):
 | [Primary] | [Specific reason tied to ICP] | [Concrete tactic] | [Function] |
 | [Secondary] | [Specific reason] | [Concrete tactic] | [Function] |
 
+If the primary/secondary channels above were chosen by tier convention
+alone rather than a real motion-fit scoring pass, flag it:
+> "Channel Strategy below uses tier-standard channels. For a motion
+> selection backed by ACV, sales-cycle, and readiness scoring instead of
+> convention, run `gtm-motions` and fold its primary/secondary into this
+> table before finalizing."
+
 **Tier-appropriate channel mix and tone** — match investment to tier, don't
 default every launch to the T1 playbook:
 
@@ -205,10 +212,11 @@ default every launch to the T1 playbook:
 
 ### Next Steps
 1. Confirm tier and brief with [stakeholder] by [date]
-2. Run positioning-messaging to sharpen angles
-3. Run pre-mortem to stress-test
-4. Run stakeholder-maps for internal alignment
-5. After launch, run retro
+2. Run gtm-motions if Channel Strategy above needs real motion-fit backing, not the tier-standard default
+3. Run positioning-messaging to sharpen angles
+4. Run pre-mortem to stress-test
+5. Run stakeholder-maps for internal alignment
+6. After launch, run retro
 ````
 
 If the user wants this brief saved anywhere, ask where — this skill doesn't write the brief itself to any file on its own.
@@ -290,6 +298,8 @@ happened this session, still write the row with `pattern: none`.
 ## Do Not Use For
 
 - **workflow-orchestrator** — for chaining multiple skills end-to-end
+- **gtm-motions** — for scoring and selecting acquisition motions against ICP deal economics (run before this skill for real Channel Strategy backing)
+- **beachhead-segment** — for choosing the target segment itself (run before this skill if no beachhead is confirmed yet)
 - **positioning-messaging** — for messaging work (use after this skill)
 - **pre-mortem** — for risk analysis (use after this skill)
 - **retro** — for post-launch review (run after)

@@ -1,12 +1,13 @@
 ---
 name: stakeholder-maps.eval
-version: 2.3.0
+version: 2.4.0
 description: >
   Comprehensive eval suite for stakeholder-maps skill. Tests: guardrail surfacing,
   brain context loading, inversion check quality, Power × Interest classification accuracy,
   political role assignment rigor, conflict mapping completeness, silent blocker identification,
-  sprint card execution clarity, logging accuracy, and pattern detection for meta-synthesis.
-  8 scenarios covering real GTM initiative types and stakeholder political dynamics.
+  sprint card execution clarity, and Learning Close accuracy against the skill's real
+  four-field session-log shape. 9 scenarios covering real GTM initiative types and
+  stakeholder political dynamics.
 ---
 
 # Stakeholder-Maps — Eval Suite
@@ -16,9 +17,9 @@ description: >
 Each eval:
 1. Populates `/foundation/brain.md` with baseline PMM context (Sections 2, 3, 5)
 2. Populates `/context/meta-patterns.md` with guardrails (if testing guardrail surfacing)
-3. Populates `/context/skill-sessions.md` with prior stakeholder maps (if testing pattern detection)
+3. Populates `/context/skill-sessions.md` with prior stakeholder-maps rows in the skill's real four-field shape (if testing Step 0 guardrail recall)
 4. Runs stakeholder-maps skill for given initiative
-5. Validates outputs: inversion check rigor, classification accuracy, role assignment, conflict mapping, logging
+5. Validates outputs: inversion check rigor, classification accuracy, role assignment, conflict mapping, Learning Close accuracy
 
 ---
 
@@ -36,24 +37,21 @@ guardrail_1:
   status: ACTIVE
   confirmation_count: 3
 
-# /context/skill-sessions.md (3 prior product launch maps)
+# /context/skill-sessions.md (3 prior product launch maps, real shape)
 skill: stakeholder-maps
 session_date: 2026-06-10
-initiative_type: "product launch"
-sales_performer_count: 1
-outcome: "launch delayed"
+pattern: "Product launch stakeholder map — Sales VP was a Performer (verbal yes, no written enablement commitment), launch slipped"
+source: wrong
 
 skill: stakeholder-maps
 session_date: 2026-06-12
-initiative_type: "product launch"
-sales_performer_count: 1
-outcome: "launch delayed"
+pattern: "Same Sales Performer pattern recurred on a second product launch — verbal commitment without enablement follow-through"
+source: wrong
 
 skill: stakeholder-maps
 session_date: 2026-06-15
-initiative_type: "product launch"
-sales_performer_count: 1
-outcome: "launch delayed"
+pattern: "Third consecutive product launch where an unwritten Sales commitment preceded a launch delay"
+source: wrong
 ```
 
 **Expected Output - Guardrail Surfaced:**
@@ -72,7 +70,7 @@ Quick check: Do you have written Sales VP buy-in on this launch?
 - Guardrail surfaces before Step 1 intake
 - Pattern count accurate (3 prior occurrences)
 - User can acknowledge or skip
-- Guardrail logged in Step 7 (guardrails_triggered field)
+- Session logged at Step 7 per the skill's real Learning Close shape — see Eval 7
 
 ---
 
@@ -144,7 +142,6 @@ Expected: Skill validates these as load-bearing. Adds them to Manage Closely for
 - Inversion check surfaces concrete stakeholders (not generic "leadership")
 - Skill surfaces flag if user can't name blockers
 - Named blockers flow into Manage Closely quadrant in mapping step
-- Quality score reflects whether inversion was run and quality of blocker identification
 
 ---
 
@@ -283,58 +280,74 @@ Security — Must review data import validation security — 3 weeks pre-launch 
 
 ---
 
-## Eval 8: End-to-End Stakeholder Mapping with Pattern Detection
+## Eval 8: Learning Close Accuracy (Step 7)
 
-**Scenario:** User runs stakeholder map end-to-end: intake → inversion check → classification → conflict mapping → silent blocker scan → output → logging. Test detects patterns (Watch For signals useful? Inversion checks catching risks?).
+**Scenario:** Stakeholder-maps skill session completes with intake → inversion check → classification → conflict mapping → silent blocker scan → output. Skill logs to `/context/skill-sessions.md` per its Step 7 Learning Close.
 
-**Test Data:**
+**Expected Output - Session Log:**
 ```yaml
-# /context/skill-sessions.md (3 prior stakeholder maps)
-Session 1 (product launch): Sales Performer identified, Watch For signal fired (stopped initiating contact) → caught early
-Session 2 (pricing change): Finance Gatekeeper as Keep Satisfied → silent blocker emerged Day 3 → should have been Manage Closely
-Session 3 (GTM pivot): Inversion check named 3 potential blockers; 2 materialized; 1 was red herring
-
-# Current session (campaign launch):
-Inversion check → identifies 4 potential blockers
-Classification → places them in quadrants
-Conflict mapping → 2 conflicts identified
-Silent blocker scan → flags Legal for contract review
-Logging → all steps captured
-```
-
-**Expected Output - Pattern Recognition:**
-```
-✓ Session completed: Campaign launch stakeholder map
-✓ Quality score: 88/100
-✓ Inversion check run: 4 blockers named and placed in map
-✓ Watch For patterns extracted: 2 patterns identified (Sales Performers going dark, Finance gatekeepers hiding)
-
-🔁 PATTERN FOR META-SYNTHESIS:
-
-Inversion check accuracy tracking (last 3 sessions):
-  - Blockers named: average 3.3 per session
-  - Blockers that materialized: ~67% accuracy
-  - False alarms: ~33% (red herrings that never moved)
-
-Watch For signal effectiveness:
-  - Sales Performer silence signal: 100% accuracy (when signal fires, they've shifted)
-  - Finance Gatekeeper hiding signal: 50% accuracy (signal sometimes indicates nothing, sometimes indicates blocker)
-
-Emerging pattern: Finance stakeholders should be Manage Closely if >$100K budget impact.
-Proposed rule: "If Finance controls >$50K, move from Keep Satisfied to Manage Closely."
-
-Guardrail recommendation: Keep "Sales Performer risk" ACTIVE. Downgrade "Finance hidden blocker" to conditional (add budget threshold).
+skill: stakeholder-maps
+session_date: 2026-06-21
+pattern: "Finance Controller was classified Keep Satisfied but behaved like a silent blocker once budget scope became clear — worth watching across future pricing-change maps."
+source: surprised
 ```
 
 **Pass Criteria:**
-- Full workflow completes (intake → inversion → classification → conflicts → silent blockers → output → log)
-- Quality score reflects rigor (inversion check run? All roles assigned? Conflicts resolved?)
-- Inversion check resulted in named blockers (not abstract risks)
-- Watch For signals captured in Sprint Cards
-- Session logged to `/context/skill-sessions.md` with all metadata
-- Stakeholder counts accurate
-- Brain updates proposed (if pattern suggests ICP or GTM Motion shifts needed)
-- Pattern signals extracted (Watch For effectiveness, inversion accuracy, role distributions)
+- Session logged to `/context/skill-sessions.md` with exactly these four fields — `skill`, `session_date`, `pattern`, `source` — matching Step 7's template in `SKILL.md` verbatim. No additional fields.
+- `pattern` is a single falsifiable statement about what happened this session, or the literal string `"none"` if nothing notable occurred — not a multi-field summary object.
+- `source` is one of `surprised / wrong / missing / n.v.t.`
+- The row is written directly, without asking the user for permission — this is a separate, mechanical write from anything the skill asks the user's go-ahead on (like where to save the HTML widget, markdown diagnostic, or Sprint Cards, per Outputs).
+- If nothing notable happened this session, the row is still written with `pattern: none` — the log entry is never skipped.
+
+---
+
+## Eval 9: End-to-End Stakeholder Mapping, Full Workflow
+
+**Scenario:** User runs stakeholder map end-to-end: intake → inversion check → classification → conflict mapping → silent blocker scan → output → Learning Close.
+
+**Test Data:**
+```yaml
+# /context/skill-sessions.md (3 prior stakeholder-maps rows, real shape)
+skill: stakeholder-maps
+session_date: 2026-05-12
+pattern: "Product launch — Sales Performer said yes verbally, no written enablement commitment; launch slipped"
+source: wrong
+
+skill: stakeholder-maps
+session_date: 2026-06-01
+pattern: "Pricing change — Finance Gatekeeper classified Keep Satisfied, silent blocker emerged Day 3; should have been Manage Closely"
+source: wrong
+
+skill: stakeholder-maps
+session_date: 2026-06-15
+pattern: "GTM pivot — inversion check named 3 potential blockers; 2 materialized, 1 was a red herring"
+source: n.v.t.
+
+# Current session:
+Campaign launch intake → inversion check names 4 blockers → classification → 2 conflicts mapped → silent blocker scan flags Legal for contract review
+```
+
+**Expected Output - Full Workflow:**
+```
+✓ Session completed: Campaign launch stakeholder map
+✓ Inversion check run: 4 blockers named and placed on the grid
+✓ Every stakeholder classified with quadrant + political role
+✓ Conflict mapping: 2 conflicts, each with second-order risk + resolution owner
+✓ Silent blocker scan: Legal flagged for contract review
+✓ Session logged (Step 7):
+  skill: stakeholder-maps
+  session_date: 2026-06-21
+  pattern: "Third consecutive session where an unwritten Sales or Finance commitment was the highest-risk stakeholder signal — recommend surfacing this as a candidate guardrail."
+  source: surprised
+```
+
+Note that pattern-across-sessions detection (comparing this session's row against the three prior rows to spot a recurring theme, or tracking Watch For signal effectiveness across sessions) is the job of `meta-synthesis`, run separately against the full `/context/skill-sessions.md` log — stakeholder-maps' own Step 7 only ever writes its own single row. This skill does not itself detect or report cross-session patterns; it just logs an honest, falsifiable observation about this one session.
+
+**Pass Criteria:**
+- Full workflow completes (intake → inversion → classification → conflicts → silent blockers → output → Learning Close)
+- Guardrails surfaced at Step 0 (if `/context/meta-patterns.md` has an applicable, 2+-occurrence pattern)
+- Session logged to `/context/skill-sessions.md` with the real four-field shape — not a richer schema
+- The skill does not attempt cross-session pattern synthesis itself — that's `meta-synthesis`'s job, not stakeholder-maps'
 
 ---
 
@@ -349,7 +362,8 @@ Guardrail recommendation: Keep "Sales Performer risk" ACTIVE. Downgrade "Finance
 | 5 | Conflict mapping completeness | Every conflict has second-order risk + resolution owner + deadline |
 | 6 | Silent blocker identification | Functions identified with implication + brief timing + owner |
 | 7 | Sprint Card execution clarity | Five fields, no exceptions; execution notes, asks, Watch For all explicit |
-| 8 | End-to-end workflow | Intake→Inversion→Classification→Conflicts→Silent blockers→Output→Log, patterns detected |
+| 8 | Learning Close accuracy | Real four-field row (`skill`/`session_date`/`pattern`/`source`) logged to `/context/skill-sessions.md` |
+| 9 | End-to-end workflow | Intake→Inversion→Classification→Conflicts→Silent blockers→Output→Learning Close, no cross-session synthesis attempted by this skill |
 
 ---
 
@@ -357,7 +371,7 @@ Guardrail recommendation: Keep "Sales Performer risk" ACTIVE. Downgrade "Finance
 
 ```bash
 # Run all evals
-for i in {1..8}; do
+for i in {1..9}; do
   echo "Running eval $i..."
   # [invoke stakeholder-maps with test data]
   # [validate outputs against pass criteria]
@@ -367,22 +381,3 @@ done
 # [invoke stakeholder-maps with eval N test data]
 # [validate against eval N pass criteria]
 ```
-
----
-
-## Changelog
-
-### v2.3.0 — 2026-06-22
-Major refactor for MCP-ready architecture: Added Step 0 guardrail loading from `/context/meta-patterns.md`. Added Step 7 session logging to `/context/skill-sessions.md` with 15+ metadata fields (stakeholder counts, role distributions, Watch For patterns, confidence assessment). Integrated brain context loading (Sections 2, 3, 5). Consolidated Operating Rules and Self-Improvement Loop into logging layer. Weight-cut from v2.2.0 (~850 lines) to ~550 lines while preserving visual-first output architecture. Added 8 comprehensive evals covering guardrail surfacing, inversion check quality, classification accuracy, conflict mapping, silent blocker identification, Sprint Card clarity, logging, and pattern detection. Full 19/19 SKILL-SPEC compliance.
-
-### v2.2.0 — 2026-06-11
-Spec compliance update: added Trigger, Inputs, Pre-flight, Outputs, Verification sections.
-
-### v2.1.0 — 2026-04-17
-Visual-first architecture introduced. HTML widget with Power × Interest grid, stakeholder chips, communication table, conflict map cards.
-
-### v2.0.0 — 2026-04-17
-Two-phase output: Map + Sprint Card as separate documents. Five-field Sprint Card format. Watch For observations wired to knowledge/ learning loop.
-
-### v1.0.0 — 2026-04-17
-Initial build.

@@ -1,11 +1,11 @@
 ---
 name: prd.eval
-version: 2.3.0
+version: 2.4.0
 description: >
   Comprehensive eval suite for prd skill. Tests: guardrail surfacing,
   brain context loading, intake quality, Solution Story generation, PRD structure completeness,
-  PM+PMM collaboration checkpoints, logging accuracy, and pattern detection for meta-synthesis.
-  8 scenarios covering real PRD workflows and edge cases.
+  PM+PMM collaboration checkpoints, and Learning Close accuracy against the skill's real
+  four-field session-log shape. 8 scenarios covering real PRD workflows and edge cases.
 ---
 
 # PRD — Eval Suite
@@ -15,9 +15,9 @@ description: >
 Each eval:
 1. Populates `/foundation/brain.md` with baseline PMM context (Sections 2, 3, 4, 5, 7)
 2. Populates `/context/meta-patterns.md` with guardrails (if testing guardrail surfacing)
-3. Populates `/context/skill-sessions.md` with prior PRD sessions (if testing pattern detection)
+3. Populates `/context/skill-sessions.md` with prior PRD rows in the skill's real four-field shape (if testing Step 0 guardrail recall)
 4. Runs prd skill for given scenario
-5. Validates outputs: Solution Story quality, PRD completeness, session logging, guardrail triggers
+5. Validates outputs: Solution Story quality, PRD completeness, Learning Close accuracy, guardrail triggers
 
 ---
 
@@ -37,13 +37,13 @@ guardrail_1:
 # /context/skill-sessions.md
 skill: prd
 session_date: 2026-06-10
-feature_name: "User Dashboard"
-success_metrics_defined: false
+pattern: "PRD intake for User Dashboard proceeded without a defined success metric until Section 03"
+source: wrong
 
 skill: prd
 session_date: 2026-06-15
-feature_name: "Analytics Export"
-success_metrics_defined: false
+pattern: "Same pattern recurred on Analytics Export — success metrics stayed undefined through intake"
+source: wrong
 ```
 
 **Expected Output - Guardrail Surfaced:**
@@ -62,6 +62,7 @@ Quick check: Do you have a baseline and target metric in mind?
 - Guardrail surface before Step 1 intake
 - Pattern count accurate (2 prior occurrences)
 - User can approve/skip guardrail
+- Session logged at Step 7 per the skill's real Learning Close shape — see Eval 7
 
 ---
 
@@ -252,89 +253,71 @@ Align on: Go/no-go criteria + success definitions
 - Each checkpoint names what PM and PMM must discuss
 - Checkpoints create deliberate sync points, not suggestions
 - Outcome of checkpoint is explicit (approval before next step)
+- Checkpoints surfaced and approvals happen in the chat-delivered PRD workflow; the Step 7 Learning Close row does not duplicate checkpoint counts
 
 ---
 
-## Eval 7: Session Logging Accuracy (Step 7)
+## Eval 7: Learning Close Accuracy (Step 7)
 
-**Scenario:** PRD skill session completes with full PRD generated, Solution Story approved, 2 collaboration checkpoints surfaced, brain context loaded. Skill logs to `/context/skill-sessions.md`.
+**Scenario:** PRD skill session completes with full PRD generated, Solution Story approved, collaboration checkpoints surfaced. Skill logs to `/context/skill-sessions.md` per its Step 7 Learning Close.
 
 **Expected Output - Session Log:**
 ```yaml
 skill: prd
 session_date: 2026-06-21
-feature_name: "Bulk User Imports"
-prd_sections_completed: 10
-solution_story_generated: true
-quality_score: 85
-guardrails_triggered:
-  - "Success metrics undefined" (addressed in intake Round 1)
-brain_context_loaded: true
-brain_sections_referenced:
-  - "Positioning (Section 3)"
-  - "ICP (Section 2)"
-  - "Revenue Levers (Section 5)"
-brain_updates_proposed:
-  - "Logged to /context/skill-sessions.md: announcement-level clarity in Round 1 improves PRD focus"
-pm_pmm_collaboration: true
-collaboration_checkpoints_surfaced: 3
-checkpoints_approved: 2
-output_path: "/artifacts/prd/bulk-user-imports-v1.0.md"
-decision: "approved"
+pattern: "PRD intake surfaced the announcement-level question late — pulling it into Round 1 would have sharpened scope earlier."
+source: surprised
 ```
 
 **Pass Criteria:**
-- Session logged to `/context/skill-sessions.md`
-- All metadata fields populated (feature name, sections, quality score, guardrails, brain refs)
-- Guardrails triggered listed
-- Brain updates proposed
-- Collaboration checkpoints counted
-- Output path recorded
-- Decision field shows "approved" or "draft"
+- Session logged to `/context/skill-sessions.md` with exactly these four fields — `skill`, `session_date`, `pattern`, `source` — matching Step 7's template in `SKILL.md` verbatim. No additional fields.
+- `pattern` is a single falsifiable statement about what happened this session, or the literal string `"none"` if nothing notable occurred — not a multi-field summary object.
+- `source` is one of `surprised / wrong / missing / n.v.t.`
+- The row is written directly, without asking the user for permission — this is a separate, mechanical write from anything the skill asks the user's go-ahead on (like where to save the PRD or Solution Story output).
+- If nothing notable happened this session, the row is still written with `pattern: none` — the log entry is never skipped.
 
 ---
 
-## Eval 8: End-to-End PRD Workflow with Pattern Detection
+## Eval 8: End-to-End PRD Workflow, Full Workflow
 
-**Scenario:** User runs PRD skill end-to-end: scratch intake → Solution Story → Full PRD → Collaboration checkpoints → Logging. Test detects that guardrails surfaced were useful, and logs pattern for meta-synthesis.
+**Scenario:** User runs PRD skill end-to-end: scratch intake → Solution Story → Full PRD → Collaboration checkpoints → Learning Close.
 
 **Test Data:**
 ```yaml
-# /context/skill-sessions.md (3 prior PRD sessions)
-Session 1: Success metrics undefined → surfaced guardrail, user fixed in intake
-Session 2: Problem statement vague → surfaced guardrail, user sharpened
-Session 3: Missing rollback criteria → NOT surfaced, discovered in review
+# /context/skill-sessions.md (2 prior PRD rows, real shape)
+skill: prd
+session_date: 2026-05-10
+pattern: "PRD intake for User Dashboard proceeded without a defined success metric until Section 03"
+source: wrong
+
+skill: prd
+session_date: 2026-06-15
+pattern: "Same pattern recurred on Analytics Export — success metrics stayed undefined through intake"
+source: wrong
 
 # Current session:
-Step 0: Guardrail surfaces 2 matches
-Step 2: Intake runs, addresses both guardrails
-Step 7: Log session with pattern signals
+Feature intake → Solution Story approved → Full PRD (10 sections) → 3 checkpoints surfaced → Learning Close
 ```
 
-**Expected Output - Pattern Recognition:**
+**Expected Output - Full Workflow:**
 ```
 ✓ Session completed: Bulk User Imports PRD
-✓ Quality score: 85/100
-✓ Guardrails triggered: 2 (success metrics, problem statement)
-✓ Both guardrails useful: User proactively addressed before Session Review
-
-🔁 PATTERN FOR META-SYNTHESIS:
-Guardrail "Success metrics undefined" has fired 3x this cycle.
-Guardrail "Problem statement vague" has fired 2x this cycle.
-Recommendation: Keep both ACTIVE for next quarter.
-
-Emerging pattern: When guardrails surface early (pre-flight), PRD quality improves 12-15 points.
-Proposed learning: "Guardrail intake is worth 1-2 hours of rework later"
+✓ Full PRD generated: 10 sections, all placeholders labeled
+✓ PM + PMM checkpoints surfaced: 3 (§01, §04, §07)
+✓ Session logged (Step 7):
+  skill: prd
+  session_date: 2026-06-21
+  pattern: "Third consecutive PRD session where success-metric clarity came in late — worth watching as a candidate guardrail."
+  source: surprised
 ```
 
+Note that pattern-across-sessions detection (comparing this session's row against the two prior rows to spot a recurring theme) is the job of `meta-synthesis`, run separately against the full `/context/skill-sessions.md` log — prd's own Step 7 only ever writes its own single row. This skill does not itself detect or report cross-session patterns; it just logs an honest, falsifiable observation about this one session.
+
 **Pass Criteria:**
-- Full workflow completes (scratch → Story → PRD → Checkpoints → Log)
-- Quality score calculated and logged
-- Guardrails surfaced at Step 0
-- Guardrails triggered count matches usage in session
-- Session logged to `/context/skill-sessions.md` with all metadata
-- Pattern signals extracted for meta-synthesis
-- Output path recorded
+- Full workflow completes (intake → Story → PRD → Checkpoints → Learning Close)
+- Guardrails surfaced at Step 0 (if `/context/meta-patterns.md` has an applicable, 2+-occurrence pattern)
+- Session logged to `/context/skill-sessions.md` with the real four-field shape — not a richer schema
+- The skill does not attempt cross-session pattern synthesis itself — that's `meta-synthesis`'s job, not prd's
 
 ---
 
@@ -348,8 +331,8 @@ Proposed learning: "Guardrail intake is worth 1-2 hours of rework later"
 | 4 | Solution Story generation | Status quo first, causal logic, outcome-focused |
 | 5 | Full PRD structure | 10 sections, clear ownership, labeled placeholders |
 | 6 | PM + PMM checkpoints | 3 checkpoints surfaced, explicit approval gates |
-| 7 | Session logging accuracy | Complete metadata logged to `/context/skill-sessions.md` |
-| 8 | End-to-end workflow | Scratch→Story→PRD→Checkpoints→Log complete, patterns detected |
+| 7 | Learning Close accuracy | Real four-field row (`skill`/`session_date`/`pattern`/`source`) logged to `/context/skill-sessions.md` |
+| 8 | End-to-end workflow | Intake→Story→PRD→Checkpoints→Learning Close, no cross-session synthesis attempted by this skill |
 
 ---
 
@@ -367,12 +350,3 @@ done
 # [invoke prd with eval N test data]
 # [validate against eval N pass criteria]
 ```
-
----
-
-## Changelog
-
-### v2.3.0 — 2026-06-21
-Initial release: 8 comprehensive scenarios covering guardrail surfacing, brain context loading, conversational intake, Solution Story quality, PRD completeness, PM+PMM checkpoints, logging accuracy, and end-to-end pattern detection for meta-synthesis.
-
-Tests guardrail pre-flight, brain context integration, logging to `/context/skill-sessions.md`, and pattern signals for meta-synthesis monthly cycle.

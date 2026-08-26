@@ -336,12 +336,13 @@ happened this session, still write the row with `pattern: none`.
   session, per Phase 7. Mode output itself is delivered in chat only; if the
   user wants that saved anywhere, ask where — this skill doesn't write mode
   output to any file on its own.
-
 - **Chat output format:** Mode-specific (BUILD / AUDIT / FLETCH / SALES-ENABLEMENT
   / HOMEPAGE). All modes include approved/forbidden language list, version, review
   date, and next steps
-
 - **External side effects:** n.v.t.
+- **Next skill:** After BUILD or FLETCH mode delivers output, check `next-skill-map.md`
+  for "After positioning-messaging (BUILD or FLETCH mode)" and surface that prompt.
+  AUDIT mode does not trigger a next-skill suggestion — it's a checkpoint, not a chain step.
 
 ---
 

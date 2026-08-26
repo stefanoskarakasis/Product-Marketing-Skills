@@ -329,6 +329,10 @@ happened this session, still write the row with `pattern: none`.
   gate results → recommendation with expansion pathway, 90-day plan,
   and eliminated-segment reasons (Step 4 template).
 - **External side effects:** None beyond the brain write and session log above.
+- **Next skill:** After confirmed recommendation is written to brain, check
+  `product-marketing-context/.claude-plugin/next-skill-map.md` for "After
+  beachhead-segment" and surface that prompt. Do not auto-run the next skill —
+  surface it as a question, wait for the user to say yes.
 
 ---
 

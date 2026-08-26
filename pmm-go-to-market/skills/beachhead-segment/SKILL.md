@@ -99,9 +99,46 @@ Quick check: Does this apply to your candidates?
 
 You can skip a guardrail if you disagree, but you'll see it first. If `/context/meta-patterns.md` doesn't exist, skip this step silently.
 
-**Gate check — block if brain is missing:**
-If `/foundation/brain.md` is absent or Section 2 (ICP) is empty, block and surface:
-> "Brain not found. Run `product-marketing-context` first. Beachhead scoring without ICP, positioning, and competitive context produces guesswork, not defensible recommendation."
+**Gate check — brain is missing or ICP is empty:**
+
+Do not block and redirect. Instead, run the Quick-Brain flow inline:
+
+> "I need three things before I can score beachhead candidates — this takes about
+> 3 minutes. (Prefer the full 15-minute brain build instead? Run
+> `product-marketing-context` and come back.)
+>
+> 1. **Who's your best-fit customer today?** One sentence — company type, size,
+>    and the pain that made them buy.
+> 2. **When they don't buy you, what do they do instead?** Name the top 2–3
+>    alternatives, including 'do nothing' if that's real.
+> 3. **What's the one thing you do that those alternatives can't?**"
+
+Wait for all three answers. Do not proceed to candidate identification until answered.
+
+Write these three answers to `/foundation/brain.md` as a **partial** Section 2 (ICP)
+and Section 3 (Alternatives), tagged with a placeholder marker:
+
+```markdown
+## Section 2: ICP Definition
+🟡 Quick-Brain — built via beachhead-segment on [date]. Run `product-marketing-context`
+to expand this into the full ICP profile (buying triggers, disqualifiers, willingness
+to pay signals).
+
+[user's answer to Q1]
+
+## Section 3: Alternatives & Positioning
+🟡 Quick-Brain — built via beachhead-segment on [date]. Run `product-marketing-context`
+to expand into full competitive positioning.
+
+Alternatives: [user's answer to Q2]
+Differentiation: [user's answer to Q3]
+```
+
+Confirm before writing: "Here's what I'll save to your brain: [show exact text].
+Save this?" Only write on explicit yes — same confirmation discipline as the full
+brain build (Operating Rule 1 in `product-marketing-context`).
+
+Once written, proceed to Step 1 (Candidate Identification) using these answers.
 
 ---
 

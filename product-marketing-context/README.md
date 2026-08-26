@@ -14,7 +14,7 @@ producing output. Install this first.
 
 ## Commands (1)
 
-- `/pmm-foundation:build-brain` — Build or audit your PMM brain.
+- `/product-marketing-context:build-brain` — Build or audit your PMM brain.
 
 ## Why This Comes First
 

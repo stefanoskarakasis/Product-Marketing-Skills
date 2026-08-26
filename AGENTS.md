@@ -21,7 +21,7 @@ Product-Marketing-Skills/
 ├── .claude-plugin/
 │   ├── marketplace.json        # Claude Code plugin marketplace manifest
 │   └── plugin.json             # Root plugin manifest
-├── product-marketing-context/  # The brain — pmm-foundation plugin
+├── product-marketing-context/  # The brain — product-marketing-context plugin
 ├── pmm-go-to-market/           # Go-to-market strategy + workflow orchestration
 ├── pmm-positioning/            # Positioning & messaging
 ├── pmm-execution/              # Day-to-day PMM execution

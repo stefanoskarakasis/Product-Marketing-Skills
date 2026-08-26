@@ -259,6 +259,10 @@ happened this session, still write the row with `pattern: none`.
 - **Chat output format:** Tier assignment with one-sentence rationale
   (Step 3), followed by the full 7-section GTM brief (Step 4).
 - **External side effects:** None beyond the session log above.
+- **Next skill:** After tier is assigned and brief delivered, check `next-skill-map.md`
+  for "After go-to-market-strategy" and surface the three-option prompt. Do not pick
+  one automatically — this is a branch, not a chain, and the right next step depends
+  on launch tier and whether risk review has already happened.
 
 ---
 

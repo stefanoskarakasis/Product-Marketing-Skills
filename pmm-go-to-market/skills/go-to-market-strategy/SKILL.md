@@ -87,9 +87,17 @@ Quick check: Does this apply to your initiative?
 
 You can skip a guardrail if you disagree, but you'll see it first. If `/context/meta-patterns.md` doesn't exist, skip this step silently.
 
-**Gate check — block if brain is missing:**
-If `/foundation/brain.md` is absent or Section 2 (ICP) is empty, block and surface:
-> "Brain not found. Run `product-marketing-context` first. GTM strategy without ICP and positioning produces generic output, not defensible strategy."
+**Gate check — brain is missing or ICP is empty:**
+
+If `/foundation/brain.md` is absent or Section 2 is empty:
+> "GTM strategy needs your ICP and positioning to produce a defensible plan — not
+> a generic one. Run `beachhead-segment` first (it'll build a quick brain for you
+> in ~3 minutes as part of finding your target segment), then come back here."
+
+If brain exists but only has 🟡 Quick-Brain sections (not full):
+> "Your brain has quick-start answers from beachhead but hasn't been expanded.
+> That's enough to proceed — flagging that a fuller `product-marketing-context`
+> pass would sharpen this GTM plan. Continue with current brain? [Yes / expand first]"
 
 ---
 

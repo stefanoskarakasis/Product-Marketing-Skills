@@ -37,7 +37,6 @@ Product-Marketing-Skills/
 └── AGENTS.md                    # AI agent guidelines
 ```
 
-
 ## Build / Lint / Test Commands
 
 Skills are content-only (no build step). Verify manually:
@@ -101,7 +100,7 @@ This repo serves as a plugin marketplace via
 
 ```bash
 claude plugin marketplace add stefanoskarakasis/Product-Marketing-Skills
-claude plugin install pmm-foundation
+claude plugin install product-marketing-context
 claude plugin install pmm-go-to-market
 claude plugin install pmm-positioning
 claude plugin install pmm-execution

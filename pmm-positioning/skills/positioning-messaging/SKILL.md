@@ -80,9 +80,11 @@ implied category. Report as: `"Your current materials say: [findings]"`
   homepage copy, messaging audit, or any request involving how a product should
   be described to buyers
 
-- **Not for:** Product specification → use `prd`. Buyer persona building or
-  alternatives mapping in isolation → no dedicated skill exists for these yet;
-  handle within this skill's own intake instead.
+- **Not for:** Product specification → use `prd`. Building the ICP itself
+  — demographics, behaviors, JTBD, needs — before positioning work
+  → `ideal-customer-profile`, run first if Section 2 is still
+  firmographic-only. Alternatives mapping in isolation → no dedicated
+  skill exists for this yet; handle within this skill's own intake instead.
 
 - **Example prompts:**
   - "Build positioning for [product]"

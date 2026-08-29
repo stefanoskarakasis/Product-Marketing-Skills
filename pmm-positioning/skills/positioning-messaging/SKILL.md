@@ -361,9 +361,13 @@ happened this session, still write the row with `pattern: none`.
 
 ## Do Not Use For
 
-- **product-marketing-context** — when the task is buyer profiling, ICP
-  definition (Section 2), or mapping competitive alternatives (Section 3)
-  rather than producing positioning output
+- **ideal-customer-profile** — when the task is building the ICP itself
+  (demographics, behaviors, JTBD, needs) rather than producing positioning
+  output. Run that skill first, then this one.
+
+- **product-marketing-context** — when the task is the full brain build
+  from zero, or mapping competitive alternatives (Section 3) rather than
+  producing positioning output
 
 - **value-proposition** — when you only need segment-specific value props
   without a full messaging hierarchy

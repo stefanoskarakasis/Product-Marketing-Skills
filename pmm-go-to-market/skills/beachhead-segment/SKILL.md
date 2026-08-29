@@ -47,7 +47,7 @@ numbering above now match the body exactly: 7 steps, numbered 0–6.
 ## Trigger
 
 - **When:** Choosing which customer segment to focus on first, before scaling GTM investment across multiple segments at once — narrowing a broad ICP down to the first wedge.
-- **Not for:** Full ICP definition from scratch → use `product-marketing-context`. Building the ICP with real demographic, behavioral, and JTBD data before scoring segments → `ideal-customer-profile`, run first for sharper inputs. Launch tier assignment once the beachhead is already confirmed → use `go-to-market-strategy`. Messaging for a confirmed beachhead → use `positioning-messaging`.
+- **Not for:** Full ICP definition from scratch → use `product-marketing-context`. Launch tier assignment once the beachhead is already confirmed → use `go-to-market-strategy`. Mapping the buying committee inside a confirmed beachhead → use `buyer-personas`. Messaging for a confirmed beachhead → use `positioning-messaging`.
 - **Example prompts:**
   - "Which segment should we focus on first?"
   - "Our ICP is too broad — help me narrow it"

@@ -54,8 +54,10 @@ Present options (let user pick one — no typing required):
 
 Ask: `"Which persona are we positioning for today?"`
 
-- If brain has ICP: surface it — `"Based on your brain: [ICP]. Is this correct?"`
-- If no brain: ask for title, company type, and triggering situation
+- If a `buyer-personas` session ran recently and named a primary persona:
+  surface it — `"Based on your last committee map: [primary persona]. Use this?"`
+- Else if brain has ICP: surface it — `"Based on your brain: [ICP]. Is this correct?"`
+- If neither: ask for title, company type, and triggering situation
 
 **Step 4 — Confirm alternatives:**
 

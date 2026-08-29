@@ -83,8 +83,9 @@ implied category. Report as: `"Your current materials say: [findings]"`
 - **Not for:** Product specification → use `prd`. Building the ICP itself
   — demographics, behaviors, JTBD, needs — before positioning work
   → `ideal-customer-profile`, run first if Section 2 is still
-  firmographic-only. Alternatives mapping in isolation → no dedicated
-  skill exists for this yet; handle within this skill's own intake instead.
+  firmographic-only. Mapping the buying committee or building persona
+  cards → `buyer-personas`, run first for a real primary-persona pick
+  instead of guessing.
 
 - **Example prompts:**
   - "Build positioning for [product]"

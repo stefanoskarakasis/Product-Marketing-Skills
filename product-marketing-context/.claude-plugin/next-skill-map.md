@@ -10,10 +10,17 @@ profile — real inputs for scoring candidate segments instead of guessing.
 **Prompt to surface:** "Next: score candidate segments against this ICP?"
 
 ## After beachhead-segment (confirmed segment written to brain)
+**Next options (not a single path — ask which applies):**
+- buyer-personas — if the deal involves an actual buying committee worth mapping (most B2B/enterprise cases)
+- positioning-messaging — if the committee is simple/known and you're ready to build messaging directly
+**Prompt to surface:** "Next, pick one: map the buying committee first (buyer-personas), or go straight to positioning (positioning-messaging)?"
+
+## After buyer-personas (committee mapped, personas built)
 **Next:** positioning-messaging
-**Because:** You have a target and rough alternatives. Positioning turns that into
-a statement you can put in front of buyers and sales.
-**Prompt to surface:** "Next: build positioning for [confirmed segment name]?"
+**Because:** You now know who's in the room and what each role needs to
+hear. Positioning turns that into the actual statement and messaging
+hierarchy.
+**Prompt to surface:** "Next: build positioning using [primary persona] as the lead?"
 
 ## After positioning-messaging (BUILD or FLETCH mode completed)
 **Next:** go-to-market-strategy

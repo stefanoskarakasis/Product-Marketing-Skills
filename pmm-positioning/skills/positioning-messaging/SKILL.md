@@ -370,8 +370,9 @@ happened this session, still write the row with `pattern: none`.
   from zero, or mapping competitive alternatives (Section 3) rather than
   producing positioning output
 
-- **value-proposition** — when you only need segment-specific value props
-  without a full messaging hierarchy
+- **buyer-personas** — when the task is mapping the buying committee or
+  building persona cards, not producing the positioning statement or
+  messaging hierarchy itself. Run that skill first, then this one.
 
 - **(no dedicated skill yet)** — sales competitive response cards; handle
   within this skill's SALES-ENABLEMENT mode instead

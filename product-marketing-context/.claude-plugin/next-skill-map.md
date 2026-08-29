@@ -3,6 +3,12 @@
 Read by any skill's final output step to surface what to run next. Not a skill itself —
 a lookup table. Update this file, not the individual skills, when sequencing changes.
 
+## After ideal-customer-profile (brain Section 2 deepened)
+**Next:** beachhead-segment
+**Because:** You now have a research-backed demographic, behavioral, and JTBD
+profile — real inputs for scoring candidate segments instead of guessing.
+**Prompt to surface:** "Next: score candidate segments against this ICP?"
+
 ## After beachhead-segment (confirmed segment written to brain)
 **Next:** positioning-messaging
 **Because:** You have a target and rough alternatives. Positioning turns that into

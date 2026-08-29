@@ -63,7 +63,7 @@ understand your product, ICP, positioning, and competitive landscape before
 doing anything. Build it once with the `product-marketing-context` skill;
 every other skill reads from it.
 
-## Available Skills
+## Available Skills (24 Total)
 
 | Skill | Plugin | Description |
 |-------|--------|-------------|

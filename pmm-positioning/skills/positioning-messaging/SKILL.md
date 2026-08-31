@@ -2,20 +2,18 @@
 name: positioning-messaging
 version: 2.4.0
 description: >
-  Use for positioning statement, messaging hierarchy, homepage copy, persona cards,
-  messaging audit, value prop, or elevator pitch. Trigger when user says "we sound
-  like everyone else," "messaging is not landing," or mentions April Dunford or
-  Obviously Awesome. Also trigger when user pastes copy for review.
-  Runs full Dunford sequence across BUILD / AUDIT / FLETCH / SALES-ENABLEMENT /
-  HOMEPAGE modes. Refuses to generate without named primary persona and 3+
-  alternatives including status quo. Blocks output until 7-point verification
-  gate passes.
+  Builds or audits positioning statements, messaging hierarchies, homepage
+  copy, and persona cards using April Dunford's Obviously Awesome
+  framework across five modes (build, audit, fletch, sales-enablement,
+  homepage). Refuses to generate without a named primary persona and 3+
+  alternatives including status quo, and blocks output until a 7-point
+  verification gate passes.
 
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-08-24
+last_updated: 2026-08-31
 ---
 
 # positioning-messaging
@@ -34,9 +32,14 @@ positioning through a 6-phase discovery and stress-test process.
 
 ````
 Does /foundation/brain.md exist?
-  YES → Load silently. Note ICP, alternatives, energy state. Proceed.
+  YES → Load silently. Note ICP, alternatives, market context, voice guide, energy state. Proceed.
   NO  → Surface once: "No brain found. You can still run this skill, but output will be less precise. Run product-marketing-context first for sharper results. Continuing."
 ````
+
+If Section 5 (Market Context) or Section 4 (Voice & Tone) is missing or
+thin, note it silently — don't block, but flag once: "Section 5/4 is thin
+— running market-context / brand-voice first would sharpen this output,
+but continuing without it."
 
 **Step 2 — Select mode:**
 
@@ -87,7 +90,9 @@ implied category. Report as: `"Your current materials say: [findings]"`
   → `ideal-customer-profile`, run first if Section 2 is still
   firmographic-only. Mapping the buying committee or building persona
   cards → `buyer-personas`, run first for a real primary-persona pick
-  instead of guessing.
+  instead of guessing. The "why now" narrative → `market-context`, run
+  first if Section 5 is thin. How the brand should sound → `brand-voice`,
+  run first if Section 4 is thin.
 
 - **Example prompts:**
   - "Build positioning for [product]"
@@ -376,6 +381,14 @@ happened this session, still write the row with `pattern: none`.
   building persona cards, not producing the positioning statement or
   messaging hierarchy itself. Run that skill first, then this one.
 
+- **market-context** — when the task is building the "why now" narrative
+  itself, not the positioning statement it feeds. Run that skill first if
+  Section 5 is thin, then this one.
+
+- **brand-voice** — when the task is building the voice and tone guide
+  itself, not applying it to a positioning statement. Run that skill
+  first if Section 4 is thin, then this one.
+
 - **(no dedicated skill yet)** — sales competitive response cards; handle
   within this skill's SALES-ENABLEMENT mode instead
 
@@ -452,8 +465,3 @@ incomplete output.
 | Vision flags resolved | All `[VISION FLAG]` items addressed or rejected | Yes |
 | Mode format correct | Output matches expected format for selected mode | Yes |
 | Learning Close ran | `/context/skill-sessions.md` has a new row for this session | Yes |
-Show full file
-8
-pmm-execution/skills/pre-mortem/SKILL.md
-B10
-324 lines

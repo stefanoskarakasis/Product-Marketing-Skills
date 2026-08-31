@@ -63,13 +63,16 @@ understand your product, ICP, positioning, and competitive landscape before
 doing anything. Build it once with the `product-marketing-context` skill;
 every other skill reads from it.
 
-## Available Skills (24 Total)
+## Available Skills (26 Total)
 
 | Skill | Plugin | Description |
 |-------|--------|-------------|
 | [product-marketing-context](product-marketing-context/) | product-marketing-context | Build or audit your GTM brain |
 | [ideal-customer-profile](pmm-positioning/skills/ideal-customer-profile/) | pmm-positioning | ICP from research: demographics, behaviors, JTBD, needs |
 | [buyer-personas](pmm-positioning/skills/buyer-personas/) | pmm-positioning | Buying committee map + alternatives-anchored persona cards |
+| [market-context](pmm-positioning/skills/market-context/) | pmm-positioning | "Why now" narrative: market maturity, macro forces, category moment |
+| [brand-voice](pmm-positioning/skills/brand-voice/) | pmm-positioning | Persona-adaptive voice guide: tone by buyer and channel |
+| [positioning-messaging](pmm-positioning/skills/positioning-messaging/) | pmm-positioning | Positioning statements, message house, homepage copy |
 | [positioning-messaging](pmm-positioning/skills/positioning-messaging/) | pmm-positioning | Positioning statements, message house, homepage copy |
 | [gaccs-brief](pmm-toolkit/skills/gaccs-brief/) | pmm-toolkit | Campaign briefs (Goals, Audience, Creative, Channels, Stakeholders) |
 | [writing-assistant](pmm-toolkit/skills/writing-assistant/) | pmm-toolkit | Sharpen any written communication |

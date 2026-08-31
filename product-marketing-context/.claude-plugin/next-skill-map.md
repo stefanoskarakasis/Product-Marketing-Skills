@@ -16,11 +16,23 @@ profile — real inputs for scoring candidate segments instead of guessing.
 **Prompt to surface:** "Next, pick one: map the buying committee first (buyer-personas), or go straight to positioning (positioning-messaging)?"
 
 ## After buyer-personas (committee mapped, personas built)
+**Next options (not a single path — ask which applies):**
+- market-context — if the "why now" narrative hasn't been built or feels stale
+- brand-voice — if tone hasn't been mapped to this committee yet
+- positioning-messaging — if narrative and voice are already solid and you're ready to write
+**Prompt to surface:** "Next, pick one: build the market narrative (market-context), map voice to this committee (brand-voice), or go straight to positioning (positioning-messaging)?"
+
+## After market-context (brain Section 5 deepened)
 **Next:** positioning-messaging
-**Because:** You now know who's in the room and what each role needs to
-hear. Positioning turns that into the actual statement and messaging
-hierarchy.
-**Prompt to surface:** "Next: build positioning using [primary persona] as the lead?"
+**Because:** You now know why this moment matters — the narrative arc feeds
+directly into how positioning frames the "why now."
+**Prompt to surface:** "Next: build positioning using this narrative as the frame?"
+
+## After brand-voice (brain Section 4 deepened)
+**Next:** positioning-messaging
+**Because:** You now know how to sound for each persona and channel —
+positioning and messaging output should be written in this voice from the start.
+**Prompt to surface:** "Next: build positioning and messaging in this voice?"
 
 ## After positioning-messaging (BUILD or FLETCH mode completed)
 **Next:** go-to-market-strategy

@@ -116,13 +116,6 @@ Install `product-marketing-context` first — every other plugin reads the brain
 builds. `pmm-meta` can be installed alongside any combination of the
 others; it doesn't depend on which ones you have.
 
-## Workflow Intelligence
-
-`workflow-orchestrator` (in `pmm-go-to-market`) chains multiple skills
-into one coherent, end-to-end program — a Program Charter, sequenced
-skill runs, coherence checks between their outputs, and one master
-document at the end.
-
 ### Option 2: Clone and Copy
 
 ```bash
@@ -137,6 +130,13 @@ Adjust the source path per plugin depending on which skills you want.
 1. Fork this repository
 2. Customize skills for your specific PMM needs
 3. Clone your fork into your projects
+
+## Workflow Intelligence
+
+`workflow-orchestrator` (in `pmm-go-to-market`) chains multiple skills
+into one coherent, end-to-end program — a Program Charter, sequenced
+skill runs, coherence checks between their outputs, and one master
+document at the end.
 
 ## Usage
 

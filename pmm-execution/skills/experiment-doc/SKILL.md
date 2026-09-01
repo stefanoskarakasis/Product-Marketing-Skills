@@ -17,7 +17,7 @@ I help you design experiments that actually prove something. Before we build any
 ---
 ## Trigger
 - **When:** You have an experiment idea, want to pressure-test a hypothesis, or need to validate whether an idea is worth testing at all.
-- **Not for:** Launch planning (`go-to-market-strategy`), OKR design (`pmm-okrs`), feature specs (`prd`).
+- **Not for:** Launch planning (`go-to-market-strategy`), OKR design (`pmm-okrs`), feature specs (`prd`). Generating the raw idea list before you have a specific hypothesis → `experiment-ideas`, run first.
 - **Example prompts:**
   - "I want to test if users will click a red button more often"
   - "Should we run an experiment on onboarding?"

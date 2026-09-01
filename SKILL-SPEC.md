@@ -512,18 +512,20 @@ instead of a fabricated one. **Found and fixed across 6 eval files on
 | Tier | Description | Examples | Requirements |
 |---|---|---|---|
 | **T1 — Strategic** | High-stakes, executive or customer-facing output | pre-mortem, positioning-messaging, go-to-market-strategy | All 7 sections + operating rules + quality gate + Learning Close |
-| **T2 — Execution** | Day-to-day PMM work, high frequency, medium stakes | experiment-doc, prd, retro, stakeholder-maps, gaccs-brief, pmm-okrs, beachhead-segment | All 7 sections + quality gate + Learning Close |
+| **T2 — Execution** | Day-to-day PMM work, high frequency, medium stakes | experiment-doc, prd, retro, stakeholder-maps, gaccs-brief, pmm-okrs, beachhead-segment, buyer-personas | All 7 sections + quality gate + Learning Close |
 | **T3 — Utility** | Tactical outputs, lower stakes | writing-assistant, pmm-resume, privacy-policy, interview-summary, prioritization-frameworks | All 7 sections. Quality gate optional. Learning Close optional. |
 | **T4 — Meta** | Skills that operate on other skills | meta-review, meta-learn, meta-verify, meta-synthesis, workflow-orchestrator, product-marketing-context | Custom per meta skill. All 7 sections still required. |
 
-**Note on this table (2026-08-22):** `competitive-battlecard` and
-`buyer-personas` were removed from the T1/T2 examples above — both were
-named here as if they were live skills, but neither exists in this repo.
-`beachhead-segment` was added to T2 — it was previously missing from this
-table entirely despite being a fully built, brain-writing skill that meets
-every T1/T2 structural requirement. If either phantom skill is built later,
-re-add it here at that time; until then, naming it here was a standing
-inaccuracy this table shouldn't carry forward.
+**Note on this table (2026-08-22, updated 2026-09-01):** `competitive-battlecard`
+and `buyer-personas` were removed from the T1/T2 examples in this table's
+original version — both were named as if they were live skills, but
+neither existed in this repo at the time. `beachhead-segment` was added
+to T2 that same day — it was previously missing despite being a fully
+built, brain-writing skill that meets every T1/T2 structural requirement.
+`buyer-personas` was built on 2026-08-29 (`quality_gate: true`, full
+Operating Rules and Quality Gate sections) and is re-added to the T2 row
+above as of this update. `competitive-battlecard` still does not exist in
+this repo — if it's built later, add it to the table at that time.
 
 **Note on enforcement (2026-08-24):** This table's "All 7 sections still
 required" language for every tier, including T3 and T4, was accurate but

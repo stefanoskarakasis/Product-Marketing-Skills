@@ -1,0 +1,12 @@
+{
+  "name": "pmm-growth",
+  "description": "Growth ideation and iteration for PMMs: brain-grounded campaign and channel ideas, plus fast segment-specific value-prop variants of an already-set positioning. Ranked, trace-checked, ready to hand off to experiment-doc or positioning-messaging.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Stefanos Karakasis"
+  },
+  "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-growth",
+  "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
+  "license": "MIT",
+  "skills": "./skills"
+}

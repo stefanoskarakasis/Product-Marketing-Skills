@@ -107,6 +107,7 @@ every other skill reads from it.
 /plugin install pmm-toolkit
 /plugin install pmm-execution
 /plugin install pmm-go-to-market
+/plugin install pmm-growth
 /plugin install pmm-meta
 ```
 

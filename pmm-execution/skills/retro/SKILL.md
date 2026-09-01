@@ -279,4 +279,3 @@ Runs before final delivery. Score each criterion 1–3. Minimum 12/15 to pass.
 | Learning Close ran | `/context/skill-sessions.md` has a new row for this session | |
 
 **On failure:** Identify which criterion failed, revise, do not present as final.
-Show full file

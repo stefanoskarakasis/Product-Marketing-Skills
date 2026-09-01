@@ -26,6 +26,11 @@
       "source": "./pmm-execution"
     },
     {
+      "name": "pmm-growth",
+      "description": "Growth ideation and iteration: brain-grounded campaign ideas and fast, trace-checked value-prop variants of an already-set positioning",
+      "source": "./pmm-growth"
+    },
+    {
       "name": "pmm-toolkit",
       "description": "PMM utilities: writing assistant, resume review, privacy policy generator, GACCS briefs",
       "source": "./pmm-toolkit"

@@ -45,7 +45,7 @@ of asking again.
 knowledge, a framework, or a guided workflow for a specific PMM task.
 
 **Plugins** group related skills into installable packages, one per GTM
-domain. This repo has six plugins:
+domain. This repo has seven plugins:
 
 | Plugin | What it covers |
 |---|---|
@@ -53,6 +53,7 @@ domain. This repo has six plugins:
 | `pmm-positioning` | Positioning and messaging |
 | `pmm-go-to-market` | GTM strategy, launch tiering, workflow orchestration |
 | `pmm-execution` | Day-to-day PMM work: PRDs, OKRs, retros, pre-mortems |
+| `pmm-growth` | Growth ideation: brain-grounded campaign ideas and value-prop variants |
 | `pmm-toolkit` | Utilities: writing assistant, resume review, privacy policy, GACCS briefs |
 | `pmm-meta` | Skills that operate on the skill system itself |
 

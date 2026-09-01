@@ -39,6 +39,20 @@ positioning and messaging output should be written in this voice from the start.
 **Because:** Positioning is set. GTM strategy sequences the launch around it.
 **Prompt to surface:** "Next: build the GTM plan for [product/segment]?"
 
+## After experiment-ideas (ideas generated, ranked, handoff stated)
+**Next:** experiment-doc
+**Because:** You have a ranked idea list, but nothing has been
+pressure-tested yet — experiment-doc scores the strongest candidate
+before it gets real budget or engineering time.
+**Prompt to surface:** "Next: pressure-test [strongest idea] with experiment-doc?"
+
+## After value-prop-statements (variants generated, trace-checked)
+**Next options (not a single path — ask which applies):**
+- experiment-doc — if a variant should become a real A/B test, not just shipped copy
+- (no automatic next skill) — if variants are going straight into a sales deck or onboarding flow as-is
+**Prompt to surface:** "Next: turn one of these variants into a real
+A/B test with experiment-doc, or are these ready to ship as-is?"
+
 ## After positioning-messaging (AUDIT mode completed)
 **Next:** none — audit is a checkpoint, not a chain step.
 **Prompt to surface:** n.v.t.

@@ -389,6 +389,12 @@ happened this session, still write the row with `pattern: none`.
   itself, not applying it to a positioning statement. Run that skill
   first if Section 4 is thin, then this one.
 
+- **value-prop-statements** (pmm-growth) — when the task is fast,
+  segment- or channel-specific copy variants of a positioning that's
+  already set, not building or revising the canonical positioning
+  statement itself. Send the user there once this skill's output is
+  confirmed.
+
 - **(no dedicated skill yet)** — sales competitive response cards; handle
   within this skill's SALES-ENABLEMENT mode instead
 

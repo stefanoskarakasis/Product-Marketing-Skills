@@ -22,9 +22,9 @@ See also [AGENTS.md](AGENTS.md) for skill-authoring conventions and
 
 1. Rename `## Unreleased` in `CHANGELOG.md` to `## vX.Y.Z — YYYY-MM-DD`.
 2. Set that same version number in `.claude-plugin/marketplace.json` and
-   every `plugin.json` file in the repo (currently six: root,
+   every `plugin.json` file in the repo (currently seven: root,
    `product-marketing-context`, `pmm-positioning`, `pmm-go-to-market`,
-   `pmm-execution`, `pmm-toolkit`, `pmm-meta`).
+   `pmm-execution`, `pmm-toolkit`, `pmm-growth`, `pmm-meta`).
 3. Commit all of the above together in one commit.
 
 ## After Any Repo Change

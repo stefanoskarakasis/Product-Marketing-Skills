@@ -58,6 +58,13 @@ A/B test with experiment-doc, or are these ready to ship as-is?"
 **Next:** none — audit is a checkpoint, not a chain step.
 **Prompt to surface:** n.v.t.
 
+## After gtm-motions (stack selected, 90-day plan delivered)
+**Next:** go-to-market-strategy
+**Because:** gtm-motions' output feeds directly into go-to-market-strategy's
+Channel Strategy section — this skill selects the motion, that skill
+builds the full tiered launch brief around it.
+**Prompt to surface:** "Next: build the full GTM strategy brief using this motion stack?"
+
 ## After go-to-market-strategy (tier assigned, brief delivered)
 **Next options (not a single path — ask which applies):**
 - stakeholder-maps — if the launch needs cross-functional alignment before it ships

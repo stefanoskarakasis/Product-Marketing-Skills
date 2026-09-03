@@ -11,9 +11,10 @@ profile — real inputs for scoring candidate segments instead of guessing.
 
 ## After beachhead-segment (confirmed segment written to brain)
 **Next options (not a single path — ask which applies):**
+- gtm-motions — if which channels/motions to invest in isn't decided yet (recommended before positioning, since positioning-messaging's SALES-ENABLEMENT mode benefits from a chosen motion)
 - buyer-personas — if the deal involves an actual buying committee worth mapping (most B2B/enterprise cases)
-- positioning-messaging — if the committee is simple/known and you're ready to build messaging directly
-**Prompt to surface:** "Next, pick one: map the buying committee first (buyer-personas), or go straight to positioning (positioning-messaging)?"
+- positioning-messaging — if the committee is simple/known, motions are already decided, and you're ready to build messaging directly
+**Prompt to surface:** "Next, pick one: score acquisition motions first (gtm-motions), map the buying committee (buyer-personas), or go straight to positioning (positioning-messaging)?"
 
 ## After buyer-personas (committee mapped, personas built)
 **Next options (not a single path — ask which applies):**

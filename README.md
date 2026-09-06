@@ -53,7 +53,7 @@ domain. This repo has seven plugins:
 | `pmm-positioning` | Positioning and messaging |
 | `pmm-go-to-market` | GTM strategy, launch tiering, workflow orchestration |
 | `pmm-execution` | Day-to-day PMM work: PRDs, OKRs, retros, pre-mortems |
-| `pmm-growth` | Growth ideation: brain-grounded campaign ideas and value-prop variants |
+| `pmm-growth` | Growth ideation: pre-commitment positioning angles, brain-grounded campaign ideas, and value-prop variants |
 | `pmm-toolkit` | Utilities: writing assistant, resume review, privacy policy, GACCS briefs |
 | `pmm-meta` | Skills that operate on the skill system itself |
 
@@ -64,7 +64,7 @@ understand your product, ICP, positioning, and competitive landscape before
 doing anything. Build it once with the `product-marketing-context` skill;
 every other skill reads from it.
 
-## Available Skills (28 Total)
+## Available Skills (29 Total)
 
 | Skill | Plugin | Description |
 |-------|--------|-------------|
@@ -79,6 +79,7 @@ every other skill reads from it.
 | [pmm-resume](pmm-toolkit/skills/pmm-resume/) | pmm-toolkit | Resume tailoring for PMM roles |
 | [privacy-policy](pmm-toolkit/skills/privacy-policy/) | pmm-toolkit | GDPR/CCPA-aware privacy policies |
 | [experiment-doc](pmm-execution/skills/experiment-doc/) | pmm-execution | Growth experiments, A/B tests, hypotheses |
+| [positioning-ideas](pmm-growth/skills/positioning-ideas/) | pmm-growth | Divergent, ungated positioning angles before committing to positioning-messaging |
 | [experiment-ideas](pmm-growth/skills/experiment-ideas/) | pmm-growth | Brain-grounded growth ideas: channel, message, cost-efficiency, ranked |
 | [value-prop-statements](pmm-growth/skills/value-prop-statements/) | pmm-growth | Segment-specific value-prop variants of an already-set positioning |
 | [interview-summary](pmm-execution/skills/interview-summary/) | pmm-execution | Customer discovery synthesis using JTBD |

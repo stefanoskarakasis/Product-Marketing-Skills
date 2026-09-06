@@ -9,11 +9,19 @@ a lookup table. Update this file, not the individual skills, when sequencing cha
 profile — real inputs for scoring candidate segments instead of guessing.
 **Prompt to surface:** "Next: score candidate segments against this ICP?"
 
+## After positioning-ideas (options generated, strongest identified)
+**Next:** positioning-messaging (BUILD mode)
+**Because:** positioning-ideas produces disposable, ungated options —
+none of them are shippable copy until the chosen direction passes
+positioning-messaging's 7-point verification gate.
+**Prompt to surface:** "Next: run [chosen option] through positioning-messaging's BUILD mode to make it real, gated copy?"
+
 ## After beachhead-segment (confirmed segment written to brain)
 **Next options (not a single path — ask which applies):**
 - gtm-motions — if which channels/motions to invest in isn't decided yet (recommended before positioning, since positioning-messaging's SALES-ENABLEMENT mode benefits from a chosen motion)
 - buyer-personas — if the deal involves an actual buying committee worth mapping (most B2B/enterprise cases)
-- positioning-messaging — if the committee is simple/known, motions are already decided, and you're ready to build messaging directly
+- positioning-messaging — if the committee is simple/known, you already have a direction, and you're ready to build messaging directly
+- positioning-ideas — if you want to see a few divergent positioning angles before committing to one (run this first, then positioning-messaging on the winner)
 **Prompt to surface:** "Next, pick one: score acquisition motions first (gtm-motions), map the buying committee (buyer-personas), or go straight to positioning (positioning-messaging)?"
 
 ## After buyer-personas (committee mapped, personas built)

@@ -5,8 +5,7 @@ for Product Marketing Managers, founders, and marketing leaders who want AI
 agents to help with positioning, competitive intelligence, launch planning,
 OKRs, experiments, and GTM strategy.
 
-Works with Claude Code, Claude Cowork, Cursor, Windsurf, and any agent that
-supports the [Agent Skills spec](https://agentskills.io/).
+Designed for Claude Code and Cowork. Skills compatible with other AI assistants.
 
 Built by [Stefanos Karakasis](https://heystefanos.gumroad.com/).
 

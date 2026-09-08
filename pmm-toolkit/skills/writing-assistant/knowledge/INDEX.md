@@ -11,8 +11,11 @@ loading irrelevant files wastes attention.
 ### craft/
 **Load when:** Running a Behavioral Messaging Review (Mode 3), or when the user asks
 why something isn't landing and you need confirmed patterns to draw from.
-**Contains:** `patterns.md` — messaging moves with evidence behind them. These are
-promoted from hypotheses that have been confirmed across 3+ sessions.
+**Contains:**
+- `patterns.md` — messaging moves with evidence behind them. These are promoted from
+  hypotheses that have been confirmed across 3+ sessions.
+- `behavioral-science.md` — the full principles reference (Loss Aversion, Social
+  Proof, Identity, and 15+ others). Load this at Mode 3 Step 3, not before.
 
 ### false-beliefs/
 **Load when:** The user references conventional writing advice, asks "should I..." or

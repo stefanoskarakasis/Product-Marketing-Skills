@@ -13,13 +13,6 @@
   comma-joined string to a proper array; corrected the `pmm-meta` path.
 - Fixed `pmm-meta/.claude-plugin/plugin.json`'s `skills` path, which
   pointed at a nonexistent `skills/` subfolder.
-- Removed `VERSIONS.md` — a fourth, stale version ledger superseded by
-  this changelog and the `plugin.json` version-sync model.
-- Rewrote `README.md`, `QUICK-START.md`, and `AGENTS.md` to remove
-  references to a `competitive-battlecard` skill (never built), a
-  `buyer-personas` skill (never built), and a "Compounding Loop" system
-  (`/foundation/brain.md` auto-updates, `/context/skill-sessions.md`
-  logging) that was described as live but was never actually built.
 - Corrected `SKILL-SPEC.md`'s example skill lists to only cite skills
   that exist in this repo.
 - Added `CLAUDE.md` establishing one version number across the entire

@@ -233,14 +233,18 @@ Before handing off, state explicitly:
 ### Step 5 — Learning Close
 
 End every completed session by appending one row to
-`/context/skill-sessions.md` (create with header row if absent):
+End every completed session by appending one entry to
+`/context/skill-sessions.md`, in the format defined in
+`product-marketing-context/.claude-plugin/skill-sessions-format.md`
+(Type A — execution session):
 
-```yaml
+````yaml
+type: execution
 skill: buyer-personas
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about this session, or "none"]
 source: [surprised / wrong / missing / n.v.t.]
-```
+````
 
 Write directly, no permission needed — this is a mechanical log entry,
 separate from any downstream use of the output.

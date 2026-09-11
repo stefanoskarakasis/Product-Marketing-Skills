@@ -129,10 +129,12 @@ Only after quality gate passes. Use the output template in Outputs.
 
 ### Step 5: Learning Close
 
-End every completed session by appending one row to `/context/skill-sessions.md`
-(create the file with a header row if it doesn't exist yet):
+End every completed session by appending one entry to `/context/skill-sessions.md`,
+in the format defined in `product-marketing-context/.claude-plugin/skill-sessions-format.md`
+(Type A — execution session):
 
 ````yaml
+type: execution
 skill: gaccs-brief
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about what happened this session, or "none"]

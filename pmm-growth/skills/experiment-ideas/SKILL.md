@@ -144,15 +144,18 @@ stated constraints, not by generation order. State the ranking rationale
 in one line per idea.
 
 **Step 5 — Learning Close.**
-Append a row to `/context/skill-sessions.md`:
+Append an entry to `/context/skill-sessions.md`, in the format defined in
+`product-marketing-context/.claude-plugin/skill-sessions-format.md`
+(Type A — execution session):
 
-```yaml
+````yaml
+type: execution
 skill: experiment-ideas
 session_date: {{date}}
 pattern: "{{what surprised you, a recurring weak-idea pattern, or 'none'
   if nothing notable happened — never skip the row}}"
 source: {{surprised/wrong/missing/n.v.t.}}
-```
+````
 
 State explicitly which idea(s), if any, look strong enough to send to
 `experiment-doc` for real pressure-testing — this skill's output is a

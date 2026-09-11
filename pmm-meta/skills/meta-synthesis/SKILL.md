@@ -59,7 +59,7 @@ The skill runs in 5 steps:
 ## Pre-flight
 
 - Load `/context/skill-sessions.md` — see Step 0.
-- **Hard block:** if `/context/skill-sessions.md` is missing or has zero rows, stop and tell the user there's nothing to synthesize yet.
+- **Hard block:** if `/context/skill-sessions.md` is missing, or contains zero `type: execution` entries, stop and tell the user there's nothing to synthesize yet.
 - Load `/context/meta-patterns.md` and `/foundation/brain.md` if they exist — see Step 0.
 
 ---
@@ -69,7 +69,7 @@ The skill runs in 5 steps:
 ### Step 0 — Pre-Flight
 
 Load:
-- `/context/skill-sessions.md` — required. If missing or has zero rows, stop and tell the user there's nothing to synthesize yet.
+- `/context/skill-sessions.md` — required. If missing, or contains zero `type: execution` entries, stop and tell the user there's nothing to synthesize yet.
 - `/context/meta-patterns.md` — load if it exists; if missing, treat as empty (this run may create it).
 - `/foundation/brain.md` — load Sections 1-6 silently, as baseline context for any proposed updates.
 
@@ -79,7 +79,10 @@ Ask, if not specified: "Look at all sessions, or a specific timeframe (e.g. last
 
 ### Step 1 — Scan for Repeated Patterns
 
-Read every row in `/context/skill-sessions.md` for the chosen timeframe. Group by two lenses:
+Read every entry in `/context/skill-sessions.md` for the chosen timeframe
+where `type: execution`. Skip `type: synthesis` entries — those are this
+skill's own prior output, not raw material for pattern detection. Group
+the remaining entries by two lenses:
 
 **Within one skill** — the same issue showing up 2+ times in sessions from the same skill (e.g. `retro` logging "champion alignment gap" in two different launches).
 
@@ -172,7 +175,7 @@ Close by telling the user plainly what changed: how many guardrails are now live
 
 ## Verification
 
-- `/context/skill-sessions.md` has at least one row before proceeding past Step 0.
+- `/context/skill-sessions.md` has at least one `type: execution` entry before proceeding past Step 0.
 - Every candidate pattern classified by occurrence count (Step 2).
 - No guardrail or brain update written without explicit approval shown as exact text first (Step 3).
 - Rejected patterns logged with reason, not silently dropped (Step 3).

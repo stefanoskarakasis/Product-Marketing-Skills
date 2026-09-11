@@ -145,15 +145,18 @@ same unclaimed territory, collapse them into one or flag the weaker as
 as if they were real alternatives.
 
 **Step 5 — Learning Close.**
-Append a row to `/context/skill-sessions.md`:
+Append an entry to `/context/skill-sessions.md`, in the format defined in
+`product-marketing-context/.claude-plugin/skill-sessions-format.md`
+(Type A — execution session):
 
-```yaml
+````yaml
+type: execution
 skill: positioning-ideas
 session_date: {{date}}
 pattern: "{{what surprised you, a recurring redundancy pattern, or
   'none' if nothing notable happened — never skip the row}}"
 source: {{surprised/wrong/missing/n.v.t.}}
-```
+````
 
 State explicitly which option (or blend) is strongest, and that the
 next step is running it through `positioning-messaging` BUILD mode's

@@ -124,10 +124,12 @@ logs automatically without this gate — there's nothing to approve.
 
 ### Step 5: Append to the Session Log
 
-Append one row to `/context/skill-sessions.md` (create the file with a
-header row if it doesn't exist yet):
+Append one entry to `/context/skill-sessions.md`, in the format defined in
+`product-marketing-context/.claude-plugin/skill-sessions-format.md`
+(Type A — execution session):
 
 ````yaml
+type: execution
 skill: [name]
 session_date: [YYYY-MM-DD]
 pattern: [falsifiable statement, or "none"]

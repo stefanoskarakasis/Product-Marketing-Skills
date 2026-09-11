@@ -157,15 +157,18 @@ Never write silently — this is a shared source of truth every downstream
 writing skill reads.
 
 **Step 5 — Learning Close.**
-Append a row to `/context/skill-sessions.md`:
+Append an entry to `/context/skill-sessions.md`, in the format defined in
+`product-marketing-context/.claude-plugin/skill-sessions-format.md`
+(Type A — execution session):
 
-```yaml
+````yaml
+type: execution
 skill: brand-voice
 session_date: {{date}}
 pattern: "{{what surprised you, a tone-drift pattern AUDIT caught, or
   'none' if nothing notable happened — never skip the row}}"
 source: {{surprised/wrong/missing/n.v.t.}}
-```
+````
 
 ---
 

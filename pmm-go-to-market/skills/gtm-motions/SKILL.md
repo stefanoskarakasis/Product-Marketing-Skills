@@ -145,14 +145,17 @@ If a secondary was selected, repeat at roughly half scope.
 
 ### Step 6 — Learning Close
 
-Append one row to `/context/skill-sessions.md` (create with header row if absent):
+Append one entry to `/context/skill-sessions.md`, in the format defined in
+`product-marketing-context/.claude-plugin/skill-sessions-format.md`
+(Type A — execution session):
 
-```yaml
+````yaml
+type: execution
 skill: gtm-motions
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about this session, or "none"]
 source: [surprised / wrong / missing / n.v.t.]
-```
+````
 
 Write directly, no permission needed. Not a brain write — still needs
 separate confirmation if the user wants the stack saved elsewhere.

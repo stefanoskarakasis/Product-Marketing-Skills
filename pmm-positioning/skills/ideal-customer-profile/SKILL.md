@@ -201,15 +201,17 @@ Never write without this explicit confirmation.
 
 ### Step 4 — Learning Close
 
-Append one row to `/context/skill-sessions.md` (create with header row if
-absent):
+Append one entry to `/context/skill-sessions.md`, in the format defined in
+`product-marketing-context/.claude-plugin/skill-sessions-format.md`
+(Type A — execution session):
 
-```yaml
+````yaml
+type: execution
 skill: ideal-customer-profile
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about this session, or "none"]
 source: [surprised / wrong / missing / n.v.t.]
-```
+````
 
 Write directly, no permission needed — separate from the brain write
 above, which still requires explicit confirmation.

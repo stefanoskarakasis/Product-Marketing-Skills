@@ -146,16 +146,18 @@ one batch is a signal the canonical positioning itself may be stale —
 surface that directly rather than continuing to patch variants around it.
 
 **Step 5 — Learning Close.**
-Append a row to `/context/skill-sessions.md`:
+Append an entry to `/context/skill-sessions.md`, in the format defined in
+`product-marketing-context/.claude-plugin/skill-sessions-format.md`
+(Type A — execution session):
 
-```yaml
+````yaml
+type: execution
 skill: value-prop-statements
 session_date: {{date}}
 pattern: "{{what surprised you, a recurring drift pattern, or 'none' if
   nothing notable happened — never skip the row}}"
 source: {{surprised/wrong/missing/n.v.t.}}
-```
-
+````
 ---
 
 ## Outputs

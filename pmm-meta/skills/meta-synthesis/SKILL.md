@@ -142,6 +142,7 @@ For each approved item:
 Log this session to `/context/skill-sessions.md`:
 
 ```yaml
+type: synthesis
 skill: meta-synthesis
 session_date: [YYYY-MM-DD]
 sessions_analyzed: [count]

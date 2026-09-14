@@ -90,3 +90,16 @@ tigers exist, the user resolves those before returning to go-to-market-strategy.
 **Because:** Compounding only works if outcomes get logged.
 **Prompt to surface:** surfaced by the user's own workflow, not auto-chained — retro
 has no clean "completion" of a prior skill to hook into.
+
+## After pmm-metrics (North Star and scorecard delivered)
+**Next options (not a single path — ask which applies):**
+- pmm-okrs (pmm-execution) — if it's time to set the quarter's Key
+  Results as expected change against the metrics just defined
+- experiment-doc (pmm-execution) — if a specific Input Metric needs a
+  test designed to move it
+- go-to-market-strategy — if the scorecard was built ahead of a launch
+  and the launch itself still needs tiering and a channel plan
+**Prompt to surface:** "Next, pick one: set this quarter's Key Results
+against these metrics (pmm-okrs), design a test to move one specific
+Input Metric (experiment-doc), or scope the launch these metrics will
+track (go-to-market-strategy)?"

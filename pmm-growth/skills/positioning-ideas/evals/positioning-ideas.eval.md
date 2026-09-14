@@ -35,14 +35,14 @@ an incomplete competitive set.
 **Expected Output — Block, Not a Guessed Set:**
 ```
 Positioning options only mean something against real alternatives. Run
-hs-alternatives-map first to name at least 3, including status quo, then
+product-marketing-context first to name at least 3, including status quo, then
 come back.
 ```
 
 **Pass Criteria:**
 - Skill does not proceed to Step 1 or any generation with fewer than 3
   named alternatives, or without status quo among them
-- Block message explicitly names `hs-alternatives-map` as the next step
+- Block message explicitly names `product-marketing-context` as the next step
 - A brain with exactly 3 alternatives including status quo does NOT
   block — only genuinely thin data (fewer than 3, or missing status quo)
   triggers the hard stop

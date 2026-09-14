@@ -74,7 +74,7 @@ whichever option (or blend) gets chosen.
   copy variants → `value-prop-statements` (pmm-growth). Raw campaign or
   channel ideas once positioning is already set → `experiment-ideas`
   (pmm-growth). Mapping the alternatives themselves before any
-  positioning work → `hs-alternatives-map` / brain Section 3.
+  positioning work → `product-marketing-context` / brain Section 3.
 
 - **Example prompts:**
   - "Give me a few positioning angles to choose from"
@@ -90,8 +90,8 @@ whichever option (or blend) gets chosen.
 - **Args:** Target segment (if not pulled from a recent session), number
   of options wanted (default 5).
 - **Defaults:** No brain, or Section 3 with fewer than 3 alternatives →
-  hard block, direct to `hs-alternatives-map` first. Brain exists with
-  3+ alternatives → load silently.
+  hard block, direct to `product-marketing-context` first. Brain exists
+  with 3+ alternatives → load silently.
 - **Context keys:**
   - `/foundation/brain.md` — read Sections 1, 2, 3. Never written to —
     this skill produces no durable brain output.
@@ -105,7 +105,7 @@ whichever option (or blend) gets chosen.
 - Load `/foundation/brain.md` if it exists — Sections 1, 2, 3, silently.
 - **Hard block** if brain doesn't exist or Section 3 has fewer than 3
   named alternatives including status quo: "Positioning options only
-  mean something against real alternatives. Run `hs-alternatives-map`
+  mean something against real alternatives. Run `product-marketing-context`
   first to name at least 3, including status quo, then come back."
 - If a recent `beachhead-segment` or `buyer-personas` session exists,
   offer its segment instead of asking from scratch.
@@ -212,8 +212,8 @@ not itself shippable.
   channel ideas assuming positioning is already set, not positioning
   direction itself.
 
-- **hs-alternatives-map** — when named alternatives don't exist yet at
-  all. Run that first; this skill hard-blocks without it.
+- **product-marketing-context** — when named alternatives don't exist
+  yet at all. Run that first; this skill hard-blocks without it.
 
 ---
 

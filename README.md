@@ -52,7 +52,7 @@ domain. This repo has seven plugins:
 | `pmm-positioning` | Positioning and messaging |
 | `pmm-go-to-market` | GTM strategy, launch tiering, workflow orchestration |
 | `pmm-execution` | Day-to-day PMM work: PRDs, OKRs, retros, pre-mortems |
-| `pmm-growth` | Growth ideation: pre-commitment positioning angles, brain-grounded campaign ideas, and value-prop variants |
+| `pmm-growth` | Growth ideation and measurement: a North Star Metric and capped scorecard, pre-commitment positioning angles, brain-grounded campaign ideas, and value-prop variants |
 | `pmm-toolkit` | Utilities: writing assistant, resume review, privacy policy, GACCS briefs |
 | `pmm-meta` | Skills that operate on the skill system itself |
 
@@ -63,7 +63,7 @@ understand your product, ICP, positioning, and competitive landscape before
 doing anything. Build it once with the `product-marketing-context` skill;
 every other skill reads from it.
 
-## Available Skills (29 Total)
+## Available Skills (30 Total)
 
 | Skill | Plugin | Description |
 |-------|--------|-------------|
@@ -81,6 +81,7 @@ every other skill reads from it.
 | [positioning-ideas](pmm-growth/skills/positioning-ideas/) | pmm-growth | Divergent, ungated positioning angles before committing to positioning-messaging |
 | [experiment-ideas](pmm-growth/skills/experiment-ideas/) | pmm-growth | Brain-grounded growth ideas: channel, message, cost-efficiency, ranked |
 | [value-prop-statements](pmm-growth/skills/value-prop-statements/) | pmm-growth | Segment-specific value-prop variants of an already-set positioning |
+| [pmm-metrics](pmm-growth/skills/pmm-metrics/) | pmm-growth | North Star Metric (7-criteria validated) + capped scorecard across 4 categories |
 | [interview-summary](pmm-execution/skills/interview-summary/) | pmm-execution | Customer discovery synthesis using JTBD |
 | [prd](pmm-execution/skills/prd/) | pmm-execution | Product requirements docs with embedded Solution Stories |
 | [pre-mortem](pmm-execution/skills/pre-mortem/) | pmm-execution | Cross-functional risk analysis |

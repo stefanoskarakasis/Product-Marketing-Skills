@@ -65,8 +65,6 @@ missing, apply general B2B principles and surface once: "Run
 **Related skills** — cross-reference when the copy calls for it:
 - **value-prop-statements** → for positioning-grounded copy, run value props first
 - **gaccs-brief** → for campaign copy, ensure a brief exists before writing at scale
-- **hs-competitive-battlecard** → for competitive copy, ensure battlecard language is
-  consistent
 
 ---
 

@@ -74,7 +74,9 @@ whichever option (or blend) gets chosen.
   copy variants → `value-prop-statements` (pmm-growth). Raw campaign or
   channel ideas once positioning is already set → `experiment-ideas`
   (pmm-growth). Mapping the alternatives themselves before any
-  positioning work → `product-marketing-context` / brain Section 3.
+  positioning work → `alternatives-map` (pmm-positioning), from real
+  research; or `product-marketing-context` / brain Section 3 for a
+  quicker manual pass.
 
 - **Example prompts:**
   - "Give me a few positioning angles to choose from"
@@ -105,8 +107,10 @@ whichever option (or blend) gets chosen.
 - Load `/foundation/brain.md` if it exists — Sections 1, 2, 3, silently.
 - **Hard block** if brain doesn't exist or Section 3 has fewer than 3
   named alternatives including status quo: "Positioning options only
-  mean something against real alternatives. Run `product-marketing-context`
-  first to name at least 3, including status quo, then come back."
+  mean something against real alternatives. Run `alternatives-map` first
+  to name at least 3 from real research, including status quo, then come
+  back. No research handy? `product-marketing-context` covers a quicker
+  manual pass."
 - If a recent `beachhead-segment` or `buyer-personas` session exists,
   offer its segment instead of asking from scratch.
 

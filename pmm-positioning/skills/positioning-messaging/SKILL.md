@@ -130,8 +130,10 @@ implied category. Report as: `"Your current materials say: [findings]"`
   it now. If it doesn't exist, skip this step silently.
 
 - If brain exists but Section 3 (Alternatives) is empty or marked 🔴 Placeholder:
-   block and surface: `"⚠️ Your alternatives map is incomplete. Complete Section 3
-  (Alternatives & Positioning) of your brain via product-marketing-context
+   block and surface: `"⚠️ Your alternatives map is incomplete. Run
+  alternatives-map to build it from real win/loss data — or, for a quick
+  manual pass, complete Section 3 (Alternatives & Positioning) via
+  product-marketing-context
 
 - If fewer than 3 alternatives provided by user and not found in brain: block intake
   and ask for status quo + do-nothing before proceeding. Hard stop.
@@ -376,8 +378,11 @@ happened this session, still write the row with `pattern: none`.
   output. Run that skill first, then this one.
 
 - **product-marketing-context** — when the task is the full brain build
-  from zero, or mapping competitive alternatives (Section 3) rather than
-  producing positioning output
+  from zero.
+
+- **alternatives-map** — when the task is mapping competitive alternatives
+  (Section 3) itself, from real research, rather than producing
+  positioning output. Run that skill first, then this one.
 
 - **buyer-personas** — when the task is mapping the buying committee or
   building persona cards, not producing the positioning statement or
@@ -396,9 +401,6 @@ happened this session, still write the row with `pattern: none`.
   already set, not building or revising the canonical positioning
   statement itself. Send the user there once this skill's output is
   confirmed.
-
-- **(no dedicated skill yet)** — sales competitive response cards; handle
-  within this skill's SALES-ENABLEMENT mode instead
 
 - **experiment-doc** — when testing messaging assumptions; this skill
   builds messaging, not validates it experimentally

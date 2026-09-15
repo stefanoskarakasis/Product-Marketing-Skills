@@ -32,14 +32,15 @@ sound, not just firmographics.
   decks using the full Dunford sequence.
 - **message-house** — Formats already-built positioning (brain or a positioning-messaging output) into a Roof + Value Pillars table, messagehouse.org format. Does not derive positioning itself.
 
-## Commands (6)
+## Commands (7)
 
 - `/pmm-positioning:ideal-customer-profile` — Build your ICP from research data.
-- `/pmm-positioning:alternatives-map` — Build or deepen your competitive   alternatives map — direct competitors, adjacent tools, DIY, and status   quo — from win/loss notes, call transcripts, or reviews.
+- `/pmm-positioning:alternatives-map` — Build or deepen your competitive alternatives map — direct competitors, adjacent tools, DIY, and status   quo — from win/loss notes, call transcripts, or reviews.
 - `/pmm-positioning:buyer-personas` — Map the buying committee and build personas.
 - `/pmm-positioning:market-context` — Build the market narrative and "why now" arc.
 - `/pmm-positioning:brand-voice` — Build or audit the voice and tone guide.
 - `/pmm-positioning:positioning-messaging` — Build or audit positioning and messaging. Supports five modes (build, audit, fletch, sales-enablement, homepage) — the right one runs based on what you ask for.
+- `/pmm-positioning:message-house` — Format existing positioning into a Roof + Value Pillars table.
 
 ## Author
 

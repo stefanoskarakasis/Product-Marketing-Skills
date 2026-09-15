@@ -103,3 +103,14 @@ has no clean "completion" of a prior skill to hook into.
 against these metrics (pmm-okrs), design a test to move one specific
 Input Metric (experiment-doc), or scope the launch these metrics will
 track (go-to-market-strategy)?"
+
+## After alternatives-map (brain Section 3 deepened)
+**Next options (not a single path — ask which applies):**
+- positioning-ideas (pmm-growth) — if a direction hasn't been chosen yet
+  and divergent options against the mapped alternatives would help
+- positioning-messaging (pmm-positioning) BUILD mode — if a direction is
+  already clear and it's time for gated, shippable copy
+**Prompt to surface:** "Next, pick one: generate a few divergent
+positioning angles against these alternatives (positioning-ideas), or go
+straight to a gated positioning statement if you already know the
+direction (positioning-messaging)?"

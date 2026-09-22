@@ -1,13 +1,11 @@
 ---
 name: message-house
-version: 1.1.1
+version: 1.3.0
 description: >
-  Turns your existing positioning into a Message House — a Roof table
-  plus up to 3 Value Pillars, in the messagehouse.org format. Pulls from
-  your brain or a pasted positioning-messaging output and flags gaps
-  instead of inventing content. Use when someone asks to "build a message
-  house," "put our messaging in a message house," or wants positioning
-  laid out as one scannable table.
+  Turns your existing positioning into one clean table: your core story
+  at the top, your 3 supporting reasons to believe it below. Use when
+  someone asks to "build a message house," "put our messaging in a
+  message house," or wants positioning laid out as one scannable page.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
@@ -57,6 +55,9 @@ Walk every Roof and Pillar field. For each one with no traceable source (brain s
 ### Step 2 — Build the Roof
 One table, one row per field, in this exact order:
 Product name · Tagline · Use case · Short description (≤25 words) · Long description (≤150 words) · Positioning statement · Key features (used) · Benefits (max 5) · Target audience · User persona · Buyer persona.
+Apply the cell-formatting rules below — a multi-item field is never one run-on line.
+
+**Description length is a hard requirement, not a suggestion.** Count the words in Short description and Long description before finalizing the table. If Short description exceeds 25 words, cut it down before it ships — don't ship an over-length draft with a caveat. If Long description exceeds 150 words, cut it down the same way. If the sourced brain content is already over-length, trim it for the deliverable (never fabricate a shorter version's content — cut redundant clauses, don't rewrite the substance) and do not mark it `[MISSING]` solely for being long; only mark it `[MISSING]` if there's no source content at all.
 
 ### Step 3 — Select Value Pillars (max 3)
 Pull candidate pillars from brain Section 3 (named differentiators/messaging hierarchy tiers) or the pasted positioning output. Cap at 3 — more than 3 pillars means nothing is actually a pillar. If more than 3 credible candidates exist, ask the user to rank or merge before building the table; do not silently pick.
@@ -64,10 +65,20 @@ Pull candidate pillars from brain Section 3 (named differentiators/messaging hie
 ### Step 4 — Build the Pillars Table
 One column per pillar (max 3), one row per field, in this exact order:
 Key value (label) · Promise · Customer pain · Product promise · Product proof points · Customer examples.
-Every proof point and customer example must trace to brain Section 6 or an explicit user statement this session — cite the source inline in parentheses if it's not obviously the company's own name.
+Every proof point and customer example must trace to brain Section 6 or an explicit user statement this session — cite the source inline in parentheses if it's not obviously the company's own name. Apply the cell-formatting rules below.
+
+**Cell formatting (Steps 2 and 4, every table cell):**
+- A field with 2+ items (Key features, Benefits, Product proof points) renders as one bulleted line per item inside the cell, using the `•` bullet character — never a hyphen/dash — separated by `<br>` so each renders as a real line break (`<br>• ` between items in the raw markdown), never packed onto one visual line.
+- **Key features specifically: bold the feature name.** Each bullet is `• **Feature name** — one-sentence explanation.` The name is the short label (2–4 words), bolded; everything after the em dash is plain text. Benefits and Product proof points stay plain bullets — no bolding — since they're outcomes, not named things.
+- A field with one idea but multiple clauses (Long description, Customer pain, Product promise) breaks at sentence boundaries onto separate lines when it's more than one sentence — no bullet character on these, just a line break; don't force a single-sentence field onto its own line.
+- A quote (Customer examples) stays on its own line, attribution on the line directly below it, not inline after an em dash mid-paragraph. No bullet on the quote or attribution line.
+- No dashes anywhere in the deliverable as a bullet marker — `•` is the only bullet character this skill uses, matching this repo's existing convention (`beachhead-segment` and others use `•`, not `-`, for list content).
+- No emoji inside table cells or bullets — content stays plain. Reserve emoji for section-level scannability only (see Step 5).
 
 ### Step 5 — Assemble & Deliver
 Combine the Roof table and Pillars table into a single markdown deliverable. List every `[MISSING]` field together at the end under "Still needed" so the user has one punch list, not scattered flags.
+
+**Section headers get one functional emoji each, matching this repo's existing convention (status/gate markers, never decoration):** 🏠 Roof, 🏛️ Value Pillars, 📋 Still needed (omit this marker entirely when the list is empty — an empty "Still needed" needs no icon). Do not add emoji anywhere else — not per-bullet, not per-row, not in the Roof/Pillars table content itself. One marker per section heading is the ceiling, not a starting point to build on.
 
 ### Step 6 — Learning Close
 Log to `/context/skill-sessions.md`:
@@ -112,7 +123,7 @@ Build only the Pillars table (Steps 0, 1, 3, 4). Useful after a `positioning-mes
 
 ## Outputs
 
-A single markdown document containing the Roof table and the Pillars table (side by side, up to 3 pillar columns), plus a "Still needed" list of any `[MISSING]` fields with what's required to fill each. No files are written to the brain or filesystem by this skill — the deliverable is returned in chat/as a document for the user to save or paste into Notion, Slides, or Confluence themselves.
+A single markdown document containing the Roof table and the Pillars table (side by side, up to 3 pillar columns), plus a "Still needed" list of any `[MISSING]` fields with what's required to fill each. Section headers carry one functional emoji each (🏠 / 🏛️ / 📋, per Step 5) — nothing decorative inside the tables themselves. Multi-item cells are line-broken per Step 2/4's cell-formatting rules, not packed onto one line. No files are written to the brain or filesystem by this skill — the deliverable is returned in chat/as a document for the user to save or paste into Notion, Slides, or Confluence themselves.
 
 ## Verification
 
@@ -121,6 +132,11 @@ A single markdown document containing the Roof table and the Pillars table (side
 - Every proof point and customer example in the Pillars table traces to brain Section 6 or an explicit statement made this session — none copied through from a placeholder.
 - The "Still needed" list accounts for every `[MISSING]` cell in the tables — no silent gaps.
 - Output is a single deliverable (one document, two tables), not fragmented across multiple messages.
+- No cell contains 2+ items run together on one visual line — each item or sentence is on its own line per the cell-formatting rules.
+- Every bulleted item uses `•`, never `-` or `*`.
+- Emoji appear only on the three section headers, never inside a table cell or bullet.
+- Short description is ≤25 words and Long description is ≤150 words — actually counted, not eyeballed. Neither ships over-length.
+- Every Key features bullet has a bolded feature name before the em dash; Benefits and Product proof points bullets are plain, unbolded.
 
 ## Do Not Use For
 
@@ -148,6 +164,11 @@ A single markdown document containing the Roof table and the Pillars table (side
 | Proof points traceable | Every proof point/example cites brain Section 6 or explicit user input | No placeholder text carried through as real |
 | Missing-field list complete | "Still needed" accounts for every `[MISSING]` cell | Counts match |
 | Single deliverable | One document, two tables | Not fragmented |
+| Cell formatting applied | No multi-item cell packed onto one line | Each item/sentence on its own line |
+| Bullet character correct | `•` used for every bulleted list item, never `-` or `*` | Zero dash/asterisk bullets anywhere in the deliverable |
+| Emoji restrained | Only the 3 section headers carry a marker | None inside tables or bullets |
+| Description length enforced | Short ≤25 words, Long ≤150 words, actually counted | Both under cap, neither shipped over-length |
+| Feature names bolded | Every Key features bullet has a bolded name before the em dash | Benefits/proof points stay plain |
 | Learning Close logged | Step 6 YAML appended | Row present in `/context/skill-sessions.md` |
 
 ## Self-Improvement Loop

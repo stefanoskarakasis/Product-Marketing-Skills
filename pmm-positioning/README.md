@@ -30,7 +30,7 @@ sound, not just firmographics.
 - **positioning-messaging** — Build or audit positioning statements,
   messaging hierarchies, homepage copy, sales persona cards, and competitive
   decks using the full Dunford sequence.
-- **message-house** — Formats already-built positioning (brain or a positioning-messaging output) into a Roof + Value Pillars table, messagehouse.org format. Does not derive positioning itself.
+- **message-house** — Turns your existing positioning into one clean table: your core story at the top, your 3 supporting reasons to believe it below. Formats what already exists — does not derive positioning itself.
 
 ## Commands (7)
 

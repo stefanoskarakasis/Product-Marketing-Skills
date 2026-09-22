@@ -81,3 +81,38 @@ Setup populates `/foundation/brain.md` with a baseline PMM context (Sections 1�
 **Prompt:** "/house"
 
 **Expect:** Identical output shape to Eval 1's plain-language prompt — full Roof + Pillars table, "Still needed" section (empty here), and a Learning Close row logged. Confirms the shortcut is not a different code path with different guarantees, just a faster entry point into the same Steps 0–6.
+
+## Eval 11 — Cell formatting: multi-item fields are line-broken, not run together
+
+**Setup:** Eval 1's fully-populated brain, with Key features containing 4 named features and Product proof points containing 3 items for at least one pillar.
+
+**Prompt:** "Build our message house."
+
+**Expect:** The Key features cell shows each feature on its own line (real line break, not comma-separated or packed onto one visual line), each prefixed with `•`. Every Product proof points cell with 2+ items does the same. Long description and any multi-sentence Pillar field (Customer pain, Product promise) break at sentence boundaries when more than one sentence is present, with no bullet character on those lines (they're prose, not a list). Customer examples show the quote on one line and the attribution on the line below it, not inline after an em dash, and neither line carries a bullet. No table cell contains 2+ distinct items or sentences run together on one line. No `-` or `*` appears as a bullet marker anywhere in the deliverable — `•` is the only bullet character used.
+
+## Eval 12 — Emoji restraint: section headers only
+
+**Setup:** Eval 1's fully-populated brain.
+
+**Prompt:** "Build our message house."
+
+**Expect:** Exactly three emoji markers appear in the output, one each on the Roof heading (🏠), the Value Pillars heading (🏛️), and — only if "Still needed" is non-empty — that heading (📋). Zero emoji appear inside any table cell, bullet, or the "Still needed" list items themselves. Re-run against Eval 3's partial-brain setup (non-empty "Still needed") to confirm the 📋 marker appears there and is absent when the list is empty (as in this eval's fully-populated case).
+
+## Eval 13 — Key feature names are bolded, Benefits/proof points are not
+
+**Setup:** Eval 1's fully-populated brain, Key features containing at least 3 named features, at least one pillar with 2+ Product proof points.
+
+**Prompt:** "Build our message house."
+
+**Expect:** Every Key features bullet has its feature name bolded (`**Name**`) before the em dash, with the explanation after it left plain. Benefits bullets and Product proof points bullets carry no bolding anywhere — they're outcome statements, not named things. A run where a Key features bullet is missing its bold, or where a Benefits/proof-points bullet is incorrectly bolded, fails this eval.
+
+## Eval 14 — Description word limits are counted and enforced, not just stated
+
+**Setup A (source within limit):** Brain Section 1 has a Short description under 25 words and a Long description under 150 words.
+**Expect A:** Both ship as-is, unmodified in substance.
+
+**Setup B (source over limit):** Brain Section 1 has a Short description of 35 words and a Long description of 180 words.
+**Expect B:** Both are trimmed to fit under 25/150 words respectively before shipping — the skill does not ship an over-length draft, does not add a caveat instead of trimming, and does not mark either field `[MISSING]` solely for being over-length (that flag is reserved for absent source content, per Step 1). The trimmed version preserves the source's actual claims — no invented replacement sentences standing in for cut content.
+
+**Setup C (no source at all):** Brain Section 1 has no Short description and no Long description, and nothing was pasted this session.
+**Expect C:** Both fields are marked `[MISSING — ...]`, listed under "Still needed." This confirms Eval 14's word-count enforcement didn't get confused with Step 1's separate "no source" gap-flagging.

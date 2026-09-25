@@ -1,6 +1,6 @@
 ---
 name: workflow-orchestrator
-version: 2.3.0
+version: 2.3.1
 description: >
   Orchestrates multi-skill PMM programs end-to-end — chains positioning,
   competitive, GTM strategy, campaign briefs, stakeholder maps, and retros into
@@ -14,7 +14,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-08-21
+last_updated: 2026-09-25
 ---
 
 # PMM Workflow Orchestrator
@@ -58,13 +58,19 @@ matters as much as each individual output.
   - `/foundation/brain.md` — required. All sections.
   - **Brain contract:**
     - Reads: Sections 1–6 — checks completeness and staleness before routing.
-    - Writes: Section 3 (after positioning refresh), Section 4 (after competitive
-      work), Section 5 (after new proof points confirmed).
-    - Never writes to: Section 1, Section 2, Section 6 (those require dedicated
-      skills: `product-marketing-context`).
-  - **Staleness thresholds:**
-    - Section 3 (Positioning) > 6 months → flag for refresh before any launch workflow.
-    - Section 4 (Competitive) > 3 months → flag for refresh before any competitive workflow.
+    - Writes: Section 3 (after positioning or alternatives refresh, via
+       `alternatives-map` or `positioning-messaging`), Section 6 (after new proof
+       points confirmed, via `proof-points`).
+    - Never writes to: Section 1, Section 2, Section 4, Section 5 (those require
+       dedicated skills: `product-marketing-context`). The orchestrator itself
+       never writes brain content directly in any section — every write above is
+       performed by the named downstream skill and only confirmed here.
+   - **Staleness thresholds:**
+     - Section 3 (Alternatives & Positioning) > 6 months → flag for refresh before
+       any launch workflow.
+     - Section 6 (Proof Points) containing unresolved `[NEEDS PROOF]` /
+       `[NEEDS APPROVAL]` entries → flag for a `proof-points` Audit pass before
+       any workflow that cites claims externally (sales enablement, launch brief).
 
 ---
 
@@ -78,10 +84,11 @@ matters as much as each individual output.
   > Unlike individual skills, the orchestrator does not degrade gracefully without
   > brain. A program of disconnected outputs is worse than no program.
 - Audit brain sections before confirming workflow:
-  - Section 3 > 6 months old → "Positioning is [N] months old. This workflow will
-    include a positioning refresh step."
-  - Section 4 > 3 months old → "Competitive intel is [N] months old. Will refresh
-    as part of this program."
+   - Section 3 > 6 months old → "Positioning is [N] months old. This workflow will
+       include a positioning refresh step."
+  - Section 6 has unresolved `[NEEDS PROOF]` / `[NEEDS APPROVAL]` entries → "Proof
+       points registry has [N] unconfirmed claims. Will run `proof-points` Audit
+       mode before any step that cites claims externally."
   - Any section 🔴 Placeholder → flag: "Section [X] is Placeholder. This limits
     [specific skill] output quality. Recommend completing before running."
 - Confirm Program Charter with user before invoking any skill. No skill runs
@@ -188,9 +195,8 @@ that one.
 
 After each skill produces a confirmed output:
 
-- **Positioning refresh:** Update Section 3 with new statement and timestamp.
-- **Competitive work:** Update Section 4 with refreshed alternative map and timestamp.
-- **New proof points:** Update Section 5 with approved new claims.
+- **Positioning or alternatives refresh:** Update Section 3 with new statement and timestamp (via `positioning-messaging` or `alternatives-map`).
+- **New proof points:** Update Section 6 with approved new claims (via `proof-points` — Add mode for a single sourced claim, Extract mode if pulling from a deck or battlecard, Audit mode to re-flag stale or unsupported entries).
 
 Surface each write:
 > "Updating brain Section [X] with [what]. Confirm? [Y/N]"
@@ -268,9 +274,7 @@ If the user wants this document saved somewhere, ask where.
 
 ### 3. Competitive Intelligence Program
 **Trigger:** "competitive program", "build battlecards", "competitive deep-dive"
-No dedicated competitive-intelligence skill exists yet in this repo. Handle
-within `positioning-messaging`'s competitive alternatives work, or flag to the
-user that this workflow is a placeholder pending a dedicated skill.
+No dedicated competitive-intelligence skill exists yet in this repo. Handle within `positioning-messaging`'s competitive alternatives work, or flag to the user that this workflow is a placeholder pending a dedicated skill (a `competitive-battlecard` skill, not yet built). In the meantime, `proof-points` can source and verify individual competitive claims (win/loss stats, analyst citations) as they come up — it does not build a battlecard or replace the missing skill, but it stops unsourced competitive claims from shipping while the gap exists.
 
 ### 4. Quarterly PMM Cycle
 **Trigger:** "quarterly PMM cycle", "Q[X] refresh", "quarterly review"
@@ -289,9 +293,7 @@ user that this workflow is a placeholder pending a dedicated skill.
 
 ### 6. Competitive Response (Fast)
 **Trigger:** "competitive response to [competitor]", "they just launched [X]"
-No dedicated skill exists yet for this workflow. Handle within
-`positioning-messaging`'s competitive work, or flag to the user that this
-workflow is a placeholder pending a dedicated skill.
+No dedicated competitive-intelligence skill exists yet in this repo. Handle within `positioning-messaging`'s competitive alternatives work, or flag to the user that this workflow is a placeholder pending a dedicated skill (a `competitive-battlecard` skill, not yet built). In the meantime, `proof-points` can source and verify individual competitive claims (win/loss stats, analyst citations) as they come up — it does not build a battlecard or replace the missing skill, but it stops unsourced competitive claims from shipping while the gap exists.
 
 ### 7. Full PMM Onboarding / Audit
 **Trigger:** "I just joined as PMM", "PMM audit", "what's our current state"

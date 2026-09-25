@@ -196,15 +196,4 @@ source: surprised
 
 ## Running Evals
 
-```bash
-# Run all evals
-for i in {1..6}; do
-  echo "Running eval $i..."
-  # [invoke market-context with test data]
-  # [validate outputs against pass criteria]
-done
-
-# Run single eval
-# [invoke market-context with eval N test data]
-# [validate against eval N pass criteria]
-```
+Run each of the 6 cases above by invoking `market-context` with that case's test data, then checking the output against that case's pass criteria. Run all 6 in sequence to cover the full suite, or run a single case in isolation to check one behavior.

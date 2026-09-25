@@ -42,11 +42,11 @@ Setup populates `/foundation/brain.md` with a baseline PMM context (Sections 1�
 
 **Expect:** Roof's Positioning statement row and the Pillars table reflect the pasted output, not the stale brain content. The one-line conflict note is surfaced to the user (e.g. "used your pasted positioning over the brain's older Section 3 statement").
 
-## Eval 6 — Learning Close logs the real shape, no permission asked
+## Eval 6 — Learning Close logs the canonical shape, no permission asked
 
 **Setup:** Any successful run (e.g. Eval 1's setup).
 
-**Expect:** After delivering the message house, the skill appends one row to `/context/skill-sessions.md` with exactly these fields — `skill`, `session_date`, `source`, `pillars_built`, `missing_fields`, `missing_field_names`, `pattern` — matching Step 6 of `SKILL.md` verbatim. No additional fields. Logged directly, without asking the user to confirm the log entry (only brain writes require confirmation, and this skill makes none).
+**Expect:** After delivering the message house, the skill appends one entry to `/context/skill-sessions.md` matching the canonical Type A format from `product-marketing-context/.claude-plugin/skill-sessions-format.md` — exactly these fields, in this order: `type: execution`, `skill`, `session_date`, `pattern`, `source`. No additional fields (no `pillars_built`, `missing_fields`, or `missing_field_names` as separate keys — that detail belongs inside the free-text `pattern` line, e.g. "Built 3 pillars from brain; Target audience and Buyer persona both missing"). `source` is one of `surprised / wrong / missing / n.v.t.`, never a description of where the input data came from. Logged directly, without asking the user to confirm the log entry (only brain writes require confirmation, and this skill makes none). A run that omits `type: execution` fails this eval even if every other field is correct — `meta-synthesis` silently skips any entry without it.
 
 ## Eval 7 — End-to-end, single deliverable
 

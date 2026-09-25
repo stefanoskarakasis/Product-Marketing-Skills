@@ -114,3 +114,9 @@ track (go-to-market-strategy)?"
 positioning angles against these alternatives (positioning-ideas), or go
 straight to a gated positioning statement if you already know the
 direction (positioning-messaging)?"
+
+## After proof-points (brain Section 6 deepened)
+**Next options (not a single path — ask which applies):**
+- message-house — if the goal is a one-page formatted deliverable and positioning is already set; the Pillars table can now cite sourced, gated proof instead of pulling from a thin, unenforced registry
+- positioning-messaging — if positioning itself still needs building or auditing, now with a real claims registry to cite from
+**Prompt to surface:** "Next, pick one: format this into a message house (message-house), or build/audit positioning with this registry backing it (positioning-messaging)?"

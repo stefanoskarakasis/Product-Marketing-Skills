@@ -1,6 +1,7 @@
 {
   "name": "pmm-positioning",
-  "description": "Positioning and messaging using April Dunford's framework, plus ICP, alternatives, buying-committee, market-narrative, and voice depth. Build ICP demographic/behavioral/JTBD profiles, a named alternatives map, buying committee maps and personas, market context and narrative arc, voice and tone guides, positioning statements, message houses, value propositions by segment, and homepage copy.",
+  "displayName": "Product Marketing",
+  "description": "Build positioning and messaging that actually lands. Define your ideal customer, map the competitive landscape, and keep your team's story consistent everywhere it's told.",ve arc, voice and tone guides, positioning statements, message houses, value propositions by segment, and homepage copy.",
   "author": {
     "name": "Stefanos Karakasis"
   },

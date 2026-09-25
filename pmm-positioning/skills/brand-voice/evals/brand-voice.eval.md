@@ -191,4 +191,4 @@ source: surprised
 
 ## Running Evals
 
-Run each of the 7 cases above by invoking `buyer-personas` with that case's test data, then checking the output against that case's pass criteria. Run all 7 in sequence to cover the full suite, or run a single case in isolation to check one behavior.
+Run each of the 6 cases above by invoking `brand-voice` with that case's test data, then checking the output against that case's pass criteria. Run all 6 in sequence to cover the full suite, or run a single case in isolation to check one behavior.

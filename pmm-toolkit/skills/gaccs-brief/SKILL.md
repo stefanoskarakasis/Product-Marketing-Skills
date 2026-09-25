@@ -1,6 +1,6 @@
 ---
 name: gaccs-brief
-version: 3.4.0
+version: 3.4.1
 description: >
   Builds, pressure-tests, and outputs a complete GACCS Brief (Goals, Audience,
   Creative, Channels, Stakeholders) for any marketing, GTM, or enablement project.
@@ -15,7 +15,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-08-24
+last_updated: 2026-09-25
 ---
 
 # gaccs-brief
@@ -30,9 +30,9 @@ enough to act on.
 
 - **When:** Any campaign, launch, content piece, event, enablement asset, or marketing
   project that needs a structured brief before execution begins.
-- **Not for:** Full GTM strategy and tier assignment → use `go-to-market-strategy`.
-  Stakeholder alignment for a launch → use `stakeholder-maps`. Post-launch diagnosis
-  → use `retro`. OKR setting → use `pmm-okrs`.
+- **Not for:** Full GTM strategy and tier assignment → use `go-to-market-strategy`. Stakeholder alignment for a launch → use `stakeholder-maps`. Post-launch diagnosis
+     → use `retro`. OKR setting → use `pmm-okrs`. Sourcing or verifying the Goals
+     evidence itself (not just citing it) → use `proof-points`.
 - **Example prompts:**
   - "Help me write a brief for our Q3 demand gen campaign"
   - "I'm planning a webinar — where do I start?"
@@ -56,8 +56,14 @@ enough to act on.
 ## Pre-flight
 
 - Load `/foundation/brain.md` silently if present. Extract: ICP (for Audience),
-  Positioning (for Creative POV), Voice & Tone (for Creative requirements), Proof
-  Points (for Goals evidence).
+     Positioning (for Creative POV), Voice & Tone (for Creative requirements), Proof
+     Points (for Goals evidence).
+- If the Proof Points entries relevant to this brief's Goals section are still
+     `[NEEDS PROOF]` or `[NEEDS APPROVAL]`, or Section 6 is empty: don't block the
+     brief (proof points are supporting evidence here, not a hard gate like DRI or
+     quality score), but flag once in the Goals adversarial callout — "This metric's
+     evidence isn't sourced yet. Run `proof-points` to confirm it before this brief
+     goes external."
 - If brain missing: proceed without surfacing it — brief works standalone.
 - **Auto-detect mode** from the user's first message:
   - 1–2 sentences, vague description → **Conversational mode**
@@ -232,6 +238,9 @@ Goals: [✅/⚠️]  Audience: [✅/⚠️]  Creative: [✅/⚠️]  Channels: [
 - **pmm-okrs** — if the Goals section reveals OKRs haven't been set yet, route there
   first. Don't set OKRs inside a brief session.
 - **retro** — for post-launch diagnosis. Build the brief before; run the retro after.
+- **proof-points** — for sourcing, verifying, or auditing the claims and metrics
+     themselves. `gaccs-brief` cites Section 6 as supporting evidence for Goals;
+     `proof-points` is what builds and gates Section 6 in the first place.
 
 ---
 

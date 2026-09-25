@@ -17,7 +17,7 @@ last_updated: 2026-09-15
 
 Use when the user asks to "build a message house," "put our messaging in a message house," "give me the roof and pillars," references messagehouse.org, or wants their positioning and value pillars laid out as a single scannable table for sales, leadership, or a new hire.
 
-Not for: building positioning or a messaging hierarchy from scratch (route to `positioning-messaging`), building personas from scratch (route to `buyer-personas`), or sourcing a new proof point or stat (route to `hs-proof-points-claims`). This skill formats what already exists — it does not derive strategy.
+Not for: building positioning or a messaging hierarchy from scratch (route to positioning-messaging), or building personas from scratch (route to buyer-personas). This skill formats what already exists — it does not derive strategy.
 
 Example prompts:
 - "Build our message house"
@@ -143,7 +143,7 @@ A single markdown document containing the Roof table and the Pillars table (side
 - **positioning-messaging** — to build or audit the underlying positioning statement, messaging hierarchy, or homepage copy from scratch. Run this first if brain Section 3 is empty or thin.
 - **product-marketing-context** — to build or audit the brain itself.
 - **buyer-personas** — to build user/buyer personas from scratch, not just restate existing ones in the Roof.
-- **hs-proof-points-claims** — to add, verify, or source a new metric, quote, or case study. Run first, then message-house pulls from the registry.
+- **product-marketing-context** — to add or update proof points and metrics; they live in brain Section 6, not a separate skill. Run first if Section 6 is thin, then message-house pulls from it.
 
 ## Operating Rules
 

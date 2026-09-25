@@ -1,6 +1,6 @@
 ---
 name: gtm-motions
-version: 1.0.0
+version: 1.0.1
 description: >
   Scores your GTM motion stack (Inbound, Outbound, Paid, Community, Partner, ABM, PLG)
   against ICP deal economics with blocking gates, then selects one primary and at most
@@ -10,7 +10,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-08-25
+last_updated: 2026-09-25
 ---
 
 # GTM Motions
@@ -41,15 +41,15 @@ attached to it; this skill replaces that guess with gates and scores.
 - **Args:** Initiative/segment, ACV band, target sales-cycle length, current motion if any. Free format — Step 1 fills gaps conversationally.
 - **Defaults:** If ACV and sales-cycle length are both unknown, block scoring and ask for a rough band first — motion fit runs on deal economics, not preference.
 - **Context keys:**
-  - `/foundation/brain.md` — required. Sections 2 (ICP), 3 (Positioning), 4 (Competitive).
+  - `/foundation/brain.md` — required. Sections 2 (ICP), 3 (Alternatives & Positioning).
   - `/context/meta-patterns.md` — optional; guardrails from prior motion decisions.
-  - **Brain contract:** Reads Sections 2, 3, 4. Writes: none.
+  - **Brain contract:** Reads Sections 2, 3. Writes: none.
 
 ---
 
 ## Pre-flight
 
-- Load `/foundation/brain.md` Sections 2, 3, 4 if present — see Step 0.
+- Load `/foundation/brain.md` Sections 2, 3 if present — see Step 0.
 - Load `/context/meta-patterns.md` if present; surface any guardrail fired 2+ times.
 - **Hard block:** brain absent or Section 2 (ICP) empty → stop, direct to `product-marketing-context` first.
 
@@ -59,9 +59,7 @@ attached to it; this skill replaces that guess with gates and scores.
 
 ### Step 0 — Load Context & Surface Guardrails
 
-Load brain Sections 2–4, the confirmed beachhead if `beachhead-segment`
-already wrote one, and any guardrail from `/context/meta-patterns.md`
-that has fired 2+ times.
+Load brain Sections 2–3, the confirmed beachhead if `beachhead-segment` already wrote one, and any guardrail from `/context/meta-patterns.md` that has fired 2+ times.
 
 **Gate check:** if brain is absent or Section 2 is empty, block and surface:
 > "Brain not found. Run `product-marketing-context` first — motion fit is scored against ICP deal size, buyer type, and self-serve capability."

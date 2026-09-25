@@ -1,6 +1,6 @@
 ---
 name: message-house
-version: 1.3.0
+version: 1.4.0
 description: >
   Turns your existing positioning into one clean table: your core story
   at the top, your 3 supporting reasons to believe it below. Use when
@@ -10,14 +10,14 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-09-15
+last_updated: 2026-09-25
 ---
 
 ## Trigger
 
 Use when the user asks to "build a message house," "put our messaging in a message house," "give me the roof and pillars," references messagehouse.org, or wants their positioning and value pillars laid out as a single scannable table for sales, leadership, or a new hire.
 
-Not for: building positioning or a messaging hierarchy from scratch (route to positioning-messaging), or building personas from scratch (route to buyer-personas). This skill formats what already exists — it does not derive strategy.
+Not for: building positioning or a messaging hierarchy from scratch (route to `positioning-messaging`), building personas from scratch (route to `buyer-personas`), or sourcing a new proof point or stat (route to `hs-proof-points-claims`). This skill formats what already exists — it does not derive strategy.
 
 Example prompts:
 - "Build our message house"
@@ -81,16 +81,19 @@ Combine the Roof table and Pillars table into a single markdown deliverable. Lis
 **Section headers get one functional emoji each, matching this repo's existing convention (status/gate markers, never decoration):** 🏠 Roof, 🏛️ Value Pillars, 📋 Still needed (omit this marker entirely when the list is empty — an empty "Still needed" needs no icon). Do not add emoji anywhere else — not per-bullet, not per-row, not in the Roof/Pillars table content itself. One marker per section heading is the ceiling, not a starting point to build on.
 
 ### Step 6 — Learning Close
-Log to `/context/skill-sessions.md`:
+Append one entry to `/context/skill-sessions.md`, in the canonical format defined in
+`product-marketing-context/.claude-plugin/skill-sessions-format.md` (Type A —
+execution session). This is the only entry shape `meta-synthesis` reads — do not
+add skill-specific fields to it:
 
 ```yaml
+type: execution
 skill: message-house
 session_date: [YYYY-MM-DD]
-source: [brain / positioning-messaging output / both]
-pillars_built: [count, max 3]
-missing_fields: [count]
-missing_field_names: [list, or "none"]
-pattern: [falsifiable statement about what happened this session, or "none"]
+pattern: [one falsifiable statement about this session, or "none" — fold in what's
+  useful from this run: source used, pillar count, any missing fields, e.g. "Built
+  3 pillars from brain; Target audience and Buyer persona both missing"]
+source: [surprised / wrong / missing / n.v.t.]
 ```
 
 Written directly, no permission required — observational log, not content approval.
@@ -143,7 +146,7 @@ A single markdown document containing the Roof table and the Pillars table (side
 - **positioning-messaging** — to build or audit the underlying positioning statement, messaging hierarchy, or homepage copy from scratch. Run this first if brain Section 3 is empty or thin.
 - **product-marketing-context** — to build or audit the brain itself.
 - **buyer-personas** — to build user/buyer personas from scratch, not just restate existing ones in the Roof.
-- **product-marketing-context** — to add or update proof points and metrics; they live in brain Section 6, not a separate skill. Run first if Section 6 is thin, then message-house pulls from it.
+- **hs-proof-points-claims** — to add, verify, or source a new metric, quote, or case study. Run first, then message-house pulls from the registry.
 
 ## Operating Rules
 
@@ -169,10 +172,10 @@ A single markdown document containing the Roof table and the Pillars table (side
 | Emoji restrained | Only the 3 section headers carry a marker | None inside tables or bullets |
 | Description length enforced | Short ≤25 words, Long ≤150 words, actually counted | Both under cap, neither shipped over-length |
 | Feature names bolded | Every Key features bullet has a bolded name before the em dash | Benefits/proof points stay plain |
-| Learning Close logged | Step 6 YAML appended | Row present in `/context/skill-sessions.md` |
+| Learning Close logged | `/context/skill-sessions.md` has a new `type: execution` row for this session | Yes |
 
 ## Self-Improvement Loop
 
-Each session logs to `/context/skill-sessions.md`: source used, pillar count, missing-field count and names, and one falsifiable pattern statement.
+Each session logs to `/context/skill-sessions.md` in the canonical Type A format (`type: execution`, `skill`, `session_date`, `pattern`, `source`) defined in `product-marketing-context/.claude-plugin/skill-sessions-format.md`. Source used, pillar count, and missing-field detail live inside the free-text `pattern` line, not as separate fields — this schema is shared across every skill in the repo, not owned per-skill.
 
 Monthly, `meta-synthesis` reads these logs for patterns such as: "Target audience is missing more often than any other Roof field → brain Section 2 is chronically thin" or "Users consistently request 4+ pillars → reconsider whether the 3-pillar cap needs an explicit override path." Patterns feed back into brain-quality guardrails surfaced by `product-marketing-context`, not into this skill's own logic — message-house stays a formatter.

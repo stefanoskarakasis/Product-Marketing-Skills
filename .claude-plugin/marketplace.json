@@ -6,8 +6,7 @@
   },
   "metadata": {
     "description": "Product Marketing Skills for B2B SaaS PMMs — positioning, GTM strategy, competitive intelligence, execution frameworks, and workflow orchestration",
-    "version": "1.0.0",
-    "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills"
+    "version": "1.0.0"
   },
   "plugins": [
     {
@@ -17,8 +16,11 @@
     },
     {
       "name": "pmm-positioning",
-      "description": "Strategic positioning and messaging using April Dunford's framework",
-      "source": "./pmm-positioning"
+      "description": "Build your positioning from scratch or sharpen what you have — ICP, named alternatives, buying-committee personas, a Dunford-framework positioning statement, and a one-page message house — all grounded in one shared GTM brain instead of re-explaining your company every time.",
+      "source": "./pmm-positioning",
+      "category": "product-marketing",
+      "tags": ["positioning", "messaging", "gtm", "competitive-intelligence", "b2b-saas", "icp", "product-marketing"],
+      "dependencies": ["product-marketing-context"]
     },
     {
       "name": "pmm-execution",
@@ -42,8 +44,10 @@
     },
     {
       "name": "product-marketing-context",
-      "description": "The PMM brain — builds and maintains /foundation/brain.md, the GTM context file every other plugin in this stack reads before producing output",
-      "source": "./product-marketing-context"
+      "description": "The PMM brain — builds and maintains /foundation/brain.md, the GTM context file every other plugin in this stack reads before producing output. Install this alongside pmm-positioning; it's the shared foundation the other skills require.",
+      "source": "./product-marketing-context",
+      "category": "product-marketing",
+      "tags": ["gtm", "foundation", "icp", "positioning", "b2b-saas", "product-marketing"]
     }
   ]
 }

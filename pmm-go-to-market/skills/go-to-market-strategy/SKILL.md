@@ -18,11 +18,11 @@ Assigns a launch tier and generates a complete GTM strategy brief grounded in yo
 
 The skill runs in 6 steps:
 
-**Step 0** — Load brain context (ICP, positioning, competitive landscape, proof points) and, if the user maintains `/context/meta-patterns.md`, guardrails logged there.
+**Step 0** — Load brain context (ICP, alternatives & positioning, proof points) and, if the user maintains `/context/meta-patterns.md`, guardrails logged there.
 
 **Step 1** — Intake: Initiative name, success metric (90 days), timeline.
 
-**Step 2** — Load brain silently (Sections 2, 3, 4, 5).
+**Step 2** — Load brain silently (Sections 2, 3, 6).
 
 **Step 3** — Apply four-signal tier assignment (market impact, revenue potential, competitive urgency, resource requirement).
 
@@ -50,15 +50,15 @@ The skill runs in 6 steps:
 - **Args:** Initiative name, 90-day success metric, timeline. Free format — Step 1 intake fills gaps conversationally.
 - **Defaults:** If brain is missing or Section 2 (ICP) is empty, this skill blocks and directs the user to `product-marketing-context` first — see Pre-flight.
 - **Context keys:**
-  - `/foundation/brain.md` — required. Sections 2 (ICP), 3 (Positioning), 4 (Competitive), 5 (Proof Points).
-  - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior GTM briefs.
-  - **Brain contract:** Reads Sections 2, 3, 4, 5. Writes: none — this skill does not write to `/foundation/brain.md` on its own.
+   - `/foundation/brain.md` — required. Sections 2 (ICP), 3 (Alternatives & Positioning), 6 (Proof Points Registry).
+   - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior GTM briefs.
+   - **Brain contract:** Reads Sections 2, 3, 6. Writes: none — this skill does not write to `/foundation/brain.md` on its own. If Section 6 is thin or unsourced, route to `proof-points` (Add or Audit mode) rather than treating flagged claims as usable.
 
 ---
 
 ## Pre-flight
 
-- Load `/foundation/brain.md` Sections 2, 3, 4, 5 if it exists — see Step 0 for the full sequence.
+- Load `/foundation/brain.md` Sections 2, 3, 6 if it exists — see Step 0 for the full sequence.
 - Load `/context/meta-patterns.md` if it exists, and surface any guardrail that has fired 2+ times in prior GTM briefs — see Step 0.
 - **Hard block:** if `/foundation/brain.md` is absent or Section 2 (ICP) is empty, stop and direct the user to run `product-marketing-context` first — GTM strategy without ICP and positioning produces generic output, not defensible strategy.
 
@@ -69,7 +69,7 @@ The skill runs in 6 steps:
 ### Step 0 — Pre-Flight: Load Context & Surface Guardrails
 
 Before intake, load:
-- **Brain context** (Sections 2, 3, 4, 5): ICP, positioning, competitive landscape, proof points — these anchor all tier signals
+- **Brain context** (Sections 2, 3, 6): ICP, alternatives & positioning, proof points — these anchor all tier signals
 - **Guardrails** from `/context/meta-patterns.md`, if that file exists in the user's workspace: if a pattern has actually fired 2+ times in prior GTM briefs logged there, surface it now
 
 **Surface guardrails like this:**
@@ -199,13 +199,16 @@ default every launch to the T1 playbook:
 | [Leading indicator 2] | Leading | [number] | [earlier date] | [where] |
 
 ### Competitive Context
-**Primary alternative:** [From brain Section 4]
+**Primary alternative:** [From brain Section 3]
 **Defensive angle:** [What you say when they bring it up]
 **Attack angle:** [Specific gap the alternative has]
 
 ### Proof Points
-- [Claim + metric or quote]
-- [Claim + metric or quote]
+- [Claim + metric or quote — sourced from brain Section 6]
+- [Claim + metric or quote — sourced from brain Section 6]
+⚠️ [If missing proof points, or if Section 6 entries are still `[NEEDS PROOF]` /
+`[NEEDS APPROVAL]`: flag, and route to `proof-points` (Add mode to source a new
+claim, Verify mode to check one already in hand) rather than shipping the brief with an unconfirmed claim.]
 
 ⚠️ [If missing proof points: flag]
 
@@ -297,7 +300,7 @@ happened this session, still write the row with `pattern: none`.
 | Check | Pass = |
 |---|---|
 | Four signals applied | All signals reasoned through before tier assigned |
-| Brain loaded | Sections 2, 3, 4, 5 extracted before brief |
+| Brain loaded | Sections 2, 3, 6 extracted before brief |
 | Intake complete | Initiative reflected back and confirmed |
 | Leading indicator present | ≥1 leading indicator + primary metric |
 | Channel specificity | Every channel has ICP-specific reason |

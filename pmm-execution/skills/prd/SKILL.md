@@ -1,16 +1,16 @@
 ---
 name: prd
-version: 2.6.0
+version: 2.7.0
 description: >
   Guides Product Managers and Product Marketing Managers to co-create complete Product Requirements Documents with embedded Solution Stories.
-  Reads brain context (positioning, ICP, Revenue Levers) to anchor PRDs in strategy.
+  Reads brain context (positioning, ICP) to anchor PRDs in strategy.
   Outputs: structured Solution Story for GTM communications + full PRD for execution alignment.
 
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-08-24
+last_updated: 2026-09-25
 ---
 
 # PRD — Skill
@@ -23,16 +23,16 @@ Guides Product Managers and Product Marketing Managers to co-create complete Pro
 
 ````
 ┌─────────────────────────────────────────────────────────────────┐
-│                  PRODUCT REQUIREMENT DOC                         │
+│                  PRODUCT REQUIREMENT DOC                        │
 ├─────────────────────────────────────────────────────────────────┤
 │  STEP 0: Load Brain Context (pre-flight)                        │
 │  ✓ Positioning (Section 3) → Solution Story framing             │
 │  ✓ ICP (Section 2) → Target customer pre-fill                   │
-│  ✓ Revenue Levers (Section 5) → Feature alignment check         │
-│  ✓ Buyer Personas (Section 4) → Stakeholder mapping             │
+│  ✓ Buyer Personas (recent buyer-personas session, if any) →     │
+│    Stakeholder mapping                                          │
 ├─────────────────────────────────────────────────────────────────┤
 │  STEPS 1-6: Intake → Solution Story → Full PRD → Collaboration  │
-│  ✓ Conversational intake (role detection)                        │
+│  ✓ Conversational intake (role detection)                       │
 │  ✓ Solution Story generation (PMM-first)                        │
 │  ✓ Full PRD structure (10 sections, 2 owners)                   │
 │  ✓ PM + PMM checkpoints (collaboration gates)                   │
@@ -59,14 +59,16 @@ Guides Product Managers and Product Marketing Managers to co-create complete Pro
 
 - **Args:** Feature/initiative name, optional existing notes or brief
 - **Context keys:**
-  - `/foundation/brain.md` — recommended. Sections 2 (ICP), 3 (Positioning), 4 (Personas), 5 (Revenue Levers)
+  - `/foundation/brain.md` — recommended. Sections 2 (ICP), 3 (Alternatives & Positioning).
+  - `/context/skill-sessions.md` — optional; check for a recent `buyer-personas` session to pull real committee/persona detail instead of asking from scratch. `buyer-personas` does not write to the brain, so this is a session-log lookup, not a brain section.
   - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior PRDs
 
 ---
 
 ## Pre-flight
 
-- Load `/foundation/brain.md` if exists. Extract Positioning (§3), ICP (§2), Personas (§4), Revenue Levers (§5) for context.
+- Load `/foundation/brain.md` if exists. Extract Positioning (§3) and ICP (§2) for context.
+- Check `/context/skill-sessions.md` for a recent `buyer-personas` session. If one exists, pull its persona detail for Solution Story stakeholder mapping. If none exists, proceed without it — do not block, and do not claim persona data was loaded when it wasn't.
   - If Positioning is 🔴 (Placeholder): surface "Your positioning is a draft — Solution Story may lack messaging grounding. Update brain first?"
   - If ICP missing: "Complete Section 2 (ICP Definition) of your brain via product-marketing-context first — target customer clarity sharpens PRDs."
 
@@ -411,7 +413,7 @@ session, still write the row with `pattern: none`.
 
 ## Operating Rules
 
-- **Brain context loads before intake.** Positioning, ICP, and Revenue Levers shape what the Solution Story emphasizes — never ask for context already available in the brain.
+- **Brain context loads before intake.** Positioning and ICP shape what the Solution Story emphasizes — never ask for context already available in the brain.
 - **Solution Story before full PRD.** Round 1 intake must complete and the Solution Story must be confirmed before Section 02 onward is generated — the PMM framing anchors the rest of the document.
 - **No silent blanks.** Every PRD section is either filled with real content or marked `[TO FILL — hint]`. A blank section with no marker is a defect, not a placeholder.
 - **Collaboration checkpoints are not optional.** All three `🤝 PM + PMM checkpoint` moments (Step 5) must be surfaced, even if the user tries to skip ahead.
@@ -428,7 +430,7 @@ failures — do not deliver an incomplete document as if it were final.
 
 | Check | Standard | Pass = |
 |---|---|---|
-| Brain context loaded | Positioning, ICP, Personas, Revenue Levers extracted at Step 0 if available | Yes |
+| Brain context loaded | Positioning and ICP extracted at Step 0 if available; recent buyer-personas session checked | Yes |
 | Solution Story confirmed first | Step 3 output confirmed before Step 4 begins | Yes |
 | No unmarked blanks | Every section filled or carries `[TO FILL — hint]` | Yes |
 | Checkpoints surfaced | All 3 collaboration checkpoints present (Step 5) | Yes |

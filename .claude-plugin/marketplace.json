@@ -16,7 +16,8 @@
     },
     {
       "name": "pmm-positioning",
-      "description": "Build your positioning from scratch or sharpen what you have — ICP, named alternatives, buying-committee personas, a Dunford-framework positioning statement, and a one-page message house — all grounded in one shared GTM brain instead of re-explaining your company every time.",
+      "displayName": "Product Marketing",
+      "description": "Build positioning and messaging that actually lands. Define your ideal customer, map the competitive landscape, and keep your team's story consistent everywhere it's told.",
       "source": "./pmm-positioning",
       "category": "product-marketing",
       "tags": ["positioning", "messaging", "gtm", "competitive-intelligence", "b2b-saas", "icp", "product-marketing"],

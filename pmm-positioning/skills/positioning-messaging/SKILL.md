@@ -1,6 +1,6 @@
 ---
 name: positioning-messaging
-version: 2.4.0
+version: 2.4.1
 description: >
   Builds or audits positioning statements, messaging hierarchies, homepage
   copy, and persona cards using April Dunford's Obviously Awesome
@@ -11,9 +11,9 @@ description: >
 
 metadata:
   author: Stefanos Karakasis
-  context: brain-dependent
+  context: brain-dependentContext keys
   quality_gate: true
-last_updated: 2026-08-31
+last_updated: 2026-09-25
 ---
 
 # positioning-messaging
@@ -115,15 +115,25 @@ implied category. Report as: `"Your current materials say: [findings]"`
   alternatives, block and ask before proceeding.
 
 - **Context keys:**
-  - `/foundation/brain.md` — preferred. Sections 1 (product), 2 (ICP),
-    3 (alternatives), 4 (voice) if available
+  - `/foundation/brain.md` — preferred. Sections 1 (product), 2 (ICP), 3 (alternatives), 4 (voice) if available; 6 (proof points) for SALES-ENABLEMENT mode's proof and "never say" components — see Pre-flight.
 
 ---
 
 ## Pre-flight
 
 - Load `/foundation/brain.md` if it exists. Extract Section 1 (Product Context),
-  Section 2 (ICP), and Section 3 (Alternatives & Positioning) silently.
+     Section 2 (ICP), and Section 3 (Alternatives & Positioning) silently.
+
+- If mode is `SALES-ENABLEMENT`: also extract Section 6 (Proof Points Registry)
+     silently. Use only entries with a confirmed source for the persona cards'
+     "proof" field and the competitive playbook's claims — never cite a
+     `[NEEDS PROOF]` or `[NEEDS APPROVAL]` entry as if it were approved. Populate
+     the "never say" column from Section 6's Forbidden Claims list, each with its
+     stated reason. If Section 6 is empty, thin, or every relevant entry is still
+     flagged: note it once — "Proof points registry is thin or unsourced. Persona
+     cards will ship without a proof field / competitive playbook will ship without
+     a 'never say' column until `proof-points` sources these claims." — and proceed
+     without blocking; SALES-ENABLEMENT is still useful without proof, just weaker.
 
 - If `/context/meta-patterns.md` exists in the user's workspace: if a pattern
   has actually fired 2+ times in prior positioning runs logged there, surface
@@ -311,8 +321,7 @@ buyer language) + P1/P2/P3 rewrite queue + before/after for P1 items
 `FLETCH` — 6 slides: segment + trigger · alternatives map · gap ·
 positioning statement · pillars + proof · homepage wireframe with copy
 
-`SALES-ENABLEMENT` — Persona cards (pain / promise / proof / objection / CTA) +
-competitive playbook with "never say" column
+`SALES-ENABLEMENT` — Persona cards (pain / promise / proof / objection / CTA) + competitive playbook with "never say" column. Proof field sourced from brain Section 6 (approved claims only); "never say" column sourced from Section 6's Forbidden Claims list. If Section 6 is thin, both ship with a flagged gap instead of an invented or unsourced claim.
 
 `HOMEPAGE` — Hero headline <8 words · subhead <20 words · 3 pillar headlines
 + 1-sentence descriptions · primary + secondary CTA · 2 proof strip options.
@@ -389,12 +398,17 @@ happened this session, still write the row with `pattern: none`.
   messaging hierarchy itself. Run that skill first, then this one.
 
 - **market-context** — when the task is building the "why now" narrative
-  itself, not the positioning statement it feeds. Run that skill first if
-  Section 5 is thin, then this one.
+     itself, not the positioning statement it feeds. Run that skill first if
+     Section 5 is thin, then this one.
 
 - **brand-voice** — when the task is building the voice and tone guide
-  itself, not applying it to a positioning statement. Run that skill
-  first if Section 4 is thin, then this one.
+     itself, not applying it to a positioning statement. Run that skill
+     first if Section 4 is thin, then this one.
+
+- **proof-points** — when the task is sourcing, verifying, or auditing a claim
+     itself, not applying already-approved claims to persona cards or a
+     competitive playbook. Run that skill first (Add, Extract, or Audit mode) if
+     Section 6 is thin or unsourced, then run SALES-ENABLEMENT mode here.
 
 - **value-prop-statements** (pmm-growth) — when the task is fast,
   segment- or channel-specific copy variants of a positioning that's

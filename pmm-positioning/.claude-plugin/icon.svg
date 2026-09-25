@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <rect width="128" height="128" rx="24" fill="#1E293B"/>
+  <!-- Roof (positioning statement) -->
+  <path d="M64 28L96 52H32L64 28Z" fill="#38BDF8"/>
+  <!-- Pillars (3 supporting reasons to believe) -->
+  <rect x="36" y="58" width="16" height="42" rx="3" fill="#7DD3FC"/>
+  <rect x="56" y="58" width="16" height="42" rx="3" fill="#38BDF8"/>
+  <rect x="76" y="58" width="16" height="42" rx="3" fill="#7DD3FC"/>
+  <!-- Foundation (brain / shared context) -->
+  <rect x="30" y="104" width="68" height="10" rx="3" fill="#E0F2FE"/>
+</svg>

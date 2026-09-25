@@ -1,13 +1,13 @@
 ---
 name: beachhead-segment
-version: 3.0.0
+version: 3.0.1
 description: >
-  Identifies and scores your highest-priority beachhead segment using four-dimension scoring (Burning Pain, Willingness to Pay, Winnability, Referral Potential) with blocking gates. Reads brain context (ICP, positioning, competitive landscape, proof points) and, when available, guardrails from prior beachhead decisions the user has logged. Writes confirmed beachhead to brain Section 2, on explicit confirmation.
+    Identifies and scores your highest-priority beachhead segment using four-dimension scoring (Burning Pain, Willingness to Pay, Winnability, Referral Potential) with blocking gates. Reads brain context (ICP, alternatives & positioning, proof points) and, when available, guardrails from prior beachhead decisions the user has logged. Writes confirmed beachhead to brain Section 2, on explicit confirmation.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-08-24
+last_updated: 2026-09-25
 ---
 
 # Beachhead-Segment — Skill
@@ -62,15 +62,15 @@ numbering above now match the body exactly: 7 steps, numbered 0–6.
 - **Args:** 2–5 candidate segments, or a description of the current customer base to decompose. Free format.
 - **Defaults:** If only one segment is named, this skill challenges it before scoring — a single segment isn't a choice, it's an assumption (Step 1). Never scores fewer than 2 candidates.
 - **Context keys:**
-  - `/foundation/brain.md` — recommended. Sections 2 (ICP), 3 (Positioning), 4 (Competitive), 5 (Proof Points) loaded silently at Step 0.
+  - `/foundation/brain.md` — recommended. Sections 2 (ICP), 3 (Alternatives & Positioning), 6 (Proof Points) loaded silently at Step 0.
   - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior beachhead decisions.
-  - **Brain contract:** Reads Sections 2, 3, 4, 5. Writes Section 2 — the confirmed beachhead, expansion pathway, and scores (Step 5), only after explicit user confirmation. Never writes to any other section.
+  - **Brain contract:** Reads Sections 2, 3, 6. Writes Section 2 — the confirmed beachhead, expansion pathway, and scores (Step 5), only after explicit user confirmation. Never writes to any other section. If Section 6 entries relevant to ROI evidence are still `[NEEDS PROOF]`, route to `proof-points` rather than treating them as usable.
 
----
+---Cross-reference brain
 
 ## Pre-flight
 
-- Load `/foundation/brain.md` Sections 2, 3, 4, 5 if it exists — see Step 0 for the full sequence.
+- Load `/foundation/brain.md` Sections 2, 3, 6 if it exists — see Step 0 for the full sequence.
 - Load `/context/meta-patterns.md` if it exists, and surface any guardrail that has fired 2+ times in prior beachhead decisions — see Step 0.
 - **Hard block:** if `/foundation/brain.md` is absent or Section 2 (ICP) is empty, stop and surface the message in Step 0's Gate check before proceeding — beachhead scoring without ICP, positioning, and competitive context produces guesswork, not a defensible recommendation.
 
@@ -195,7 +195,7 @@ Evidence required: named customer signal, sales call pattern, win/loss data, or 
 | 2 | Budget scarce or controlled elsewhere. Price sensitivity high. Discounting required. |
 | 1 | No budget. Segment relies on free tools. |
 
-Cross-reference brain Section 5 proof points for ROI evidence. If missing: mark `[A]`.
+Cross-reference brain Section 6 proof points for ROI evidence. If missing, or if the relevant entries are still `[NEEDS PROOF]`: mark `[A]` and note that `proof-points` can source this ROI evidence if it exists but hasn't been registered yet.
 
 ### Dimension 3: Winnability (1–5)
 
@@ -209,7 +209,7 @@ Cross-reference brain Section 5 proof points for ROI evidence. If missing: mark 
 | 2 | Incumbent entrenched. Switching costs high. Can win occasionally, can't dominate. |
 | 1 | Segment owned. Switching costs prohibitive. |
 
-Cross-reference brain Section 4 (Competitive landscape). If stale or empty: mark `[A]` — competitive positions cannot be inferred.
+Cross-reference brain Section 3 (Alternatives & Positioning) for competitive landscape. If stale or empty: mark `[A]` — competitive positions cannot be inferred.
 
 ### Dimension 4: Referral Potential (1–5)
 

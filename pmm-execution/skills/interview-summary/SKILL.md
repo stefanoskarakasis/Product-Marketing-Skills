@@ -1,6 +1,6 @@
 ---
 name: interview-summary
-version: 2.3.1
+version: 2.4.0
 description: >
   Customer interview synthesis engine for PMMs, Product Managers, and UX Researchers.
   Transforms raw transcripts into structured discovery outputs anchored in JTBD theory,

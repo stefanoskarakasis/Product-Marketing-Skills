@@ -1,6 +1,6 @@
 ---
 name: interview-summary
-version: 2.3.0
+version: 2.3.1
 description: >
   Customer interview synthesis engine for PMMs, Product Managers, and UX Researchers.
   Transforms raw transcripts into structured discovery outputs anchored in JTBD theory,
@@ -13,7 +13,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-08-21
+last_updated: 2026-09-25
 ---
 # interview-summary — Customer Discovery Synthesis Engine
 
@@ -98,13 +98,26 @@ Built on JTBD theory. Sharpened for B2B product and GTM contexts.
 - Ask: "What surprised you most? Wish I'd flagged anything else?"
 - Ask: "Does this change your view of the most important Job?"
 - Ask: "Does this change how you want to describe the problem?"
+- Append one entry to `/context/skill-sessions.md`, in the format defined in `product-marketing-context/.claude-plugin/skill-sessions-format.md` (Type A — execution session), folding the answers to the three questions above into `pattern`:
+
+````yaml
+     type: execution
+     skill: interview-summary
+     session_date: [YYYY-MM-DD]
+     pattern: [one falsifiable statement drawn from the three questions above,
+       or "none" if nothing notable surfaced]
+     source: [surprised / wrong / missing / n.v.t.]
+````
+
+Write this row directly — do not ask the user for permission. This is a separate, mechanical log entry, distinct from the interview summary itself.
+
 ---
 ## Outputs
 - **Chat output format:** Structured markdown summary with Metadata, Background, Current Solution, What they like, Problems (JTBD blocks),
   Key Insights, Action Items table, Flags, Signal Quotes, Pattern Signal.
   All output in markdown, copy-paste ready for Notion, GitHub, or email.
-- **External side effects:** None. This skill does not write to any file on its own — any
-  saves happen only if the user asks and confirms where.
+- **Files written:** `/context/skill-sessions.md` — one appended row per session, per Step 7.
+- **External side effects:** None beyond the session log above. The interview summary itself is never written to a file unless the user asks and confirms where.
 ---
 ## Verification
 - [ ] Guardrails checked if `/context/meta-patterns.md` exists
@@ -114,6 +127,7 @@ Built on JTBD theory. Sharpened for B2B product and GTM contexts.
 - [ ] Signal Quotes are verbatim, not paraphrased. Include speaker name and context.
 - [ ] Action Items table has named owners (not placeholders) and real dates (YYYY-MM-DD format).
 - [ ] Flags section is populated with contradictions, or explicitly states "None detected".
+- [ ] Session logged to `/context/skill-sessions.md` (Step 7).
 - [ ] ICP match is assessed (not defaulted to "Yes") — reasoning included if "Partial" or "No".
 - [ ] Anti-ICP signals are flagged and surfaced to the user, not silently dropped.
 - [ ] Positioning signals are noted in Key Insights or Flags, not omitted.

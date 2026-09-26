@@ -1,13 +1,13 @@
 ---
 name: prioritization-frameworks
-version: 3.1.0
+version: 3.1.1
 description: >
   Selects and applies the right prioritization framework (9 frameworks: Opportunity Score, ICE, RICE, Eisenhower, Impact vs Effort, Risk vs Reward, Kano, Weighted Decision Matrix, MoSCoW) with PMM interpretation layer and GTM launch tier output (T1–T4). Reads brain context (ICP, positioning, revenue levers) and, when available, guardrails from prior scoring sessions.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-08-24
+last_updated: 2026-09-25
 ---
 
 # Prioritization-Frameworks — Skill
@@ -53,15 +53,15 @@ The skill runs in 7 core steps:
 - **Args:** What's being decided (launch tier, backlog, strategic choice), number of initiatives being compared, available signals, timeline, audience for the output. Free format — Step 1 intake fills gaps conversationally.
 - **Defaults:** If brain context is unavailable, this skill still runs — brain sharpens how "Opportunity" and "Impact" are interpreted, but is not a hard blocker.
 - **Context keys:**
-  - `/foundation/brain.md` — optional but recommended. Sections 2 (ICP), 3 (Positioning), 5 (Revenue Levers).
-  - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior scoring sessions.
-  - **Brain contract:** Reads Sections 2, 3, 5. Writes: none — this skill does not write to `/foundation/brain.md`.
+  - `/foundation/brain.md` — optional but recommended. Sections 2 (ICP), 3 (Alternatives & Positioning).
+ - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior scoring sessions.
+- **Brain contract:** Reads Sections 2, 3. Writes: none — this skill does not write to `/foundation/brain.md`.
 
 ---
 
 ## Pre-flight
 
-- Load `/foundation/brain.md` Sections 2, 3, 5 if it exists — see Step 0 for the full sequence.
+- Load `/foundation/brain.md` Sections 2, 3 if it exists — see Step 0 for the full sequence.
 - Load `/context/meta-patterns.md` if it exists, and surface any guardrail that has fired 2+ times in prior scoring sessions — see Step 0.
 - No hard block: this skill runs without brain context, with reduced calibration.
 

@@ -2,7 +2,7 @@
 name: prioritization-frameworks
 version: 3.1.1
 description: >
-  Selects and applies the right prioritization framework (9 frameworks: Opportunity Score, ICE, RICE, Eisenhower, Impact vs Effort, Risk vs Reward, Kano, Weighted Decision Matrix, MoSCoW) with PMM interpretation layer and GTM launch tier output (T1–T4). Reads brain context (ICP, positioning, revenue levers) and, when available, guardrails from prior scoring sessions.
+  Selects and applies the right prioritization framework (9 frameworks: Opportunity Score, ICE, RICE, Eisenhower, Impact vs Effort, Risk vs Reward, Kano, Weighted Decision Matrix, MoSCoW) with PMM interpretation layer and GTM launch tier output (T1–T4). Reads brain context (ICP, alternatives & positioning) and, when available, guardrails from prior scoring sessions.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
@@ -18,7 +18,7 @@ Prioritization frameworks are decision tools, not prescriptions. Your job is to 
 
 The skill runs in 7 core steps:
 
-**Step 0** — Load brain context (ICP, positioning, revenue levers) and guardrails from `/context/meta-patterns.md`, if it exists (e.g., "frameworks without customer confidence >7 have led to prior T1 overstatements" — an example pattern shape, not a claim already observed).
+**Step 0** — Load brain context (ICP, alternatives & positioning) and guardrails from `/context/meta-patterns.md`, if it exists (e.g., "frameworks without customer confidence >7 have led to prior T1 overstatements" — an example pattern shape, not a claim already observed).
 
 **Step 1** — Intake: Understand what you're deciding (launch tier? roadmap backlog? strategic choice?) and what signals you have.
 
@@ -72,7 +72,7 @@ The skill runs in 7 core steps:
 ### Step 0 — Pre-Flight: Load Context & Surface Guardrails
 
 Before intake, load:
-- **Brain context** (Sections 2, 3, 5): ICP, positioning, revenue levers — these anchor how you interpret "Opportunity" and "Impact"
+- **Brain context** (Sections 2, 3): ICP, alternatives & positioning — these anchor how you interpret "Opportunity" and "Impact"
 - **Guardrails** from `/context/meta-patterns.md`, if that file exists in the user's workspace: if a pattern has actually fired 2+ times in prior sessions logged there, surface it now
 
 **Surface guardrails like this:**
@@ -312,7 +312,7 @@ happened this session, still write the row with `pattern: none`.
 
 ## Operating Rules
 
-- **Load brain context first.** ICP and revenue levers shape how you interpret "Opportunity" and "Reach."
+- **Load brain context first.** ICP and alternatives & positioning shape how you interpret "Opportunity" and "Reach."
 - **Confidence is your integrity check.** ≥7 without evidence = inflation. Call it.
 - **Framework fit matters.** Wrong tool = wrong answer. Eisenhower is not a launch decision tool.
 - **Quality Gates are not optional.** Run them before delivering any tier.

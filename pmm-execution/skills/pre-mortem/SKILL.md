@@ -1,13 +1,13 @@
 ---
 name: pre-mortem
-version: 3.0.0
+version: 3.0.1
 description: >
   Identifies and pressure-tests failure modes for any strategic initiative (product launch, pricing change, GTM pivot, new market entry, feature rollout) by running a cross-functional risk exercise. Loads brain context (ICP, positioning, competitive landscape) and, when available, guardrails from prior pre-mortems; surfaces Tigers (deal-blocking risks) with owner-assigned action plans.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-08-24
+last_updated: 2026-09-25
 ---
 
 # Pre-Mortem — Skill
@@ -54,14 +54,14 @@ The skill runs in 7 steps:
 - **Args:** Initiative name and scope. Free format — one sentence minimum; Step 1 intake fills in the rest conversationally.
 - **Defaults:** If no initiative is named, run Step 1 intake before proceeding. Never generate failure scenarios without a named initiative and scope.
 - **Context keys:**
-  - `/foundation/brain.md` — recommended. Sections 2 (ICP), 3 (Positioning), 5 (Revenue Levers) loaded silently at Step 0.
+  - `/foundation/brain.md` — recommended. Sections 2 (ICP), 3 (Alternatives & Positioning) loaded silently at Step 0.
   - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior pre-mortems.
 
 ---
 
 ## Pre-flight
 
-- Load `/foundation/brain.md` Sections 2, 3, 5 (ICP, positioning, revenue levers) if it exists — see Step 0 for the full sequence.
+- Load `/foundation/brain.md` Sections 2, 3 (ICP, alternatives & positioning) if it exists — see Step 0 for the full sequence.
 - Load `/context/meta-patterns.md` if it exists, and surface any guardrail that has fired 2+ times in prior pre-mortems — see Step 0.
 - No hard block: this skill runs with or without brain context, though output is sharper with it.
 

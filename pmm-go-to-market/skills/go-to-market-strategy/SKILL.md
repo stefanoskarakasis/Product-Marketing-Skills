@@ -1,13 +1,13 @@
 ---
 name: go-to-market-strategy
-version: 3.0.0
+version: 3.0.1
 description: >
     Assigns launch tier (T1–T4) using a four-signal framework and generates a complete GTM brief with positioning angles, channel strategy, success metrics, and competitive context. Reads brain (ICP, positioning, competitive, proof points) and, when available, guardrails from prior launches the user has logged.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-08-24
+last_updated: 2026-09-26
 ---
 
 # Go-to-Market-Strategy
@@ -120,7 +120,7 @@ Reflect back in 2 sentences:
 
 ### Step 2 — Load Brain Context
 
-Load silently. Extract Sections 2, 3, 4, 5. Do not narrate.
+Load silently. Extract Sections 2, 3, 6. Do not narrate.
 
 If the user has prior launches they can share (with tiers assigned and how they actually performed), ask for that context to sharpen the calibration.
 

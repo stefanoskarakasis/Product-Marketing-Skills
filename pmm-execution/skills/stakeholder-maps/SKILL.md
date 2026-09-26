@@ -1,6 +1,6 @@
 ---
 name: stakeholder-maps
-version: 3.0.1
+version: 3.1.0
 description: >
   Builds political maps (not org charts) showing who can kill your launch, who champions it, and what to say to each stakeholder. Reads brain context (ICP, positioning, GTM motion) and guardrails from prior stakeholder mapping sessions; produces Power × Interest grid with political role assignment, conflict map, and weekly Sprint Cards for execution.
 metadata:
@@ -63,7 +63,7 @@ The skill runs in 7 steps:
 ## Pre-flight
 
 - Load `/foundation/brain.md` Sections 2, 3 if it exists — see Step 0 for the full sequence.
--  - Check `/context/skill-sessions.md` for a recent `gtm-motions` session. If one exists, use its confirmed motion to ground stakeholder power (who owns the primary channel, who's affected by the secondary). If none exists, proceed without it — don't block, and don't claim motion context was loaded when it wasn't.
+- Check `/context/skill-sessions.md` for a recent `gtm-motions` session. If one exists, use its confirmed motion to ground stakeholder power (who owns the primary channel, who's affected by the secondary). If none exists, proceed without it — don't block, and don't claim motion context was loaded when it wasn't.
 - Load `/context/meta-patterns.md` if it exists, and surface any guardrail that has fired 2+ times in prior stakeholder mapping sessions — see Step 0.
 - No hard block: this skill runs without brain context, with reduced calibration.
 

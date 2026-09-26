@@ -1,6 +1,6 @@
 ---
 name: workflow-orchestrator
-version: 2.3.1
+version: 2.4.0
 description: >
   Orchestrates multi-skill PMM programs end-to-end — chains positioning,
   competitive, GTM strategy, campaign briefs, stakeholder maps, and retros into
@@ -249,10 +249,24 @@ If the user wants this document saved somewhere, ask where.
 
 1. Run `/coherence` across all completed outputs — resolve any remaining conflicts.
 2. Surface next program trigger date:
-   - Full launch → retro in 90 days
-   - Quarterly cycle → next cycle in 13 weeks
-   - Positioning refresh → re-audit in 6 months
-   - Competitive program → re-run in 3 months
+ - Full launch → retro in 90 days
+ - Quarterly cycle → next cycle in 13 weeks
+ - Positioning refresh → re-audit in 6 months
+ - Competitive program → re-run in 3 months
+3. Append one entry to `/context/skill-sessions.md` for the orchestration itself
+ — separate from, and in addition to, each chained skill's own Learning Close row (per Step 4's delegation, unchanged):
+
+````yaml
+      type: execution
+      skill: workflow-orchestrator
+      session_date: [YYYY-MM-DD]
+      pattern: [one falsifiable statement about the orchestration — workflow type,
+        number of skills chained, whether coherence check passed clean or needed
+        conflict resolution, or "none"]
+      source: [surprised / wrong / missing / n.v.t.]
+````
+
+      Write this row directly — do not ask the user for permission.
 
 ---
 
@@ -344,9 +358,11 @@ and estimated session time.
 
 ## Outputs
 
-- **Files written:** `/foundation/brain.md` — Sections 3, 4, 5 updated on
-  confirmation after relevant skills complete. Master Program Document is
-  produced in chat; ask the user where, if anywhere, to save it.
+- **Files written:** `/foundation/brain.md` — Sections 3 and 6 updated on confirmation after relevant skills complete (Section 3 via `positioning-messaging`
+     or `alternatives-map`; Section 6 via `proof-points`). `/context/skill-sessions.md`
+     — one row per chained skill's own Learning Close, plus one row for the
+     orchestration itself (Step 7). Master Program Document is produced in chat;
+     ask the user where, if anywhere, to save it.
 - **Chat output format:** Program Charter → sequential skill outputs with
   checkpoints → coherence check results → Master Program Document.
   Each skill output is clearly delimited with skill name and date.

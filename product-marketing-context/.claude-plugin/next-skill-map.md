@@ -44,9 +44,10 @@ positioning and messaging output should be written in this voice from the start.
 **Prompt to surface:** "Next: build positioning and messaging in this voice?"
 
 ## After positioning-messaging (BUILD or FLETCH mode completed)
-**Next:** go-to-market-strategy
-**Because:** Positioning is set. GTM strategy sequences the launch around it.
-**Prompt to surface:** "Next: build the GTM plan for [product/segment]?"
+**Next options (not a single path — ask which applies):**
+- go-to-market-strategy — if the launch itself still needs tiering and a channel plan
+- product-messaging-playbook — if Sales/CS need a handoff document now (problem, story, named-competitor comparison, discovery/objection script), independent of whether the full GTM brief has been built yet
+**Prompt to surface:** "Next, pick one: build the GTM plan for [product/segment] (go-to-market-strategy), or assemble a Sales/CS handoff doc now (product-messaging-playbook)?"
 
 ## After experiment-ideas (ideas generated, ranked, handoff stated)
 **Next:** experiment-doc
@@ -80,6 +81,11 @@ builds the full tiered launch brief around it.
 - experiment-doc — if part of the launch is a testable hypothesis, not a full commit
 **Prompt to surface:** "Next, pick one: stakeholder alignment (stakeholder-maps),
 risk review (pre-mortem), or scope a test first (experiment-doc)?"
+
+## After product-messaging-playbook (playbook delivered)
+**Next:** conditional — only if Step 2's success targets were later measured, or the Sales Enablement Kit shipped with a `[MISSING]` objection-handling subsection.
+**Because:** A `[TARGET — not yet measured]` number becomes a real proof-points candidate only once the feature has shipped and the result is actual, not projected. A missing objection subsection means no sourced SALES-ENABLEMENT output existed yet at assembly time.
+**Prompt to surface:** "Now that this has shipped and you have real numbers: register the measured result with proof-points (Add mode)?" — or, if objection handling shipped MISSING — "Run positioning-messaging SALES-ENABLEMENT mode to get sourced objection handling, then re-run this playbook?"
 
 ## After pre-mortem (action plans delivered)
 **Next:** none automatically — pre-mortem is a gate, not a chain link. If launch-blocking

@@ -318,5 +318,6 @@ happened this session, still write the row with `pattern: none`.
 - **gtm-motions** — for scoring and selecting acquisition motions against ICP deal economics (run before this skill for real Channel Strategy backing)
 - **beachhead-segment** — for choosing the target segment itself (run before this skill if no beachhead is confirmed yet)
 - **positioning-messaging** — for messaging work (use after this skill)
+- **product-messaging-playbook** — for the Sales/CS-ready handoff document itself (problem, story, competitor comparison, discovery/objection script); this skill sequences the launch, it doesn't produce that document
 - **pre-mortem** — for risk analysis (use after this skill)
 - **retro** — for post-launch review (run after)

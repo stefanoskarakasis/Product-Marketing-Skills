@@ -1,12 +1,8 @@
 # pmm-positioning
 
-Strategic positioning and messaging using April Dunford's framework —
-with five output modes — plus ICP, alternatives, buying-committee,
-market-narrative, and voice depth to ground it in real research, real
-competitive evidence, real power dynamics, real timing, and a consistent
-sound, not just firmographics.
+Strategic positioning and messaging using April Dunford's framework — with five output modes — plus ICP, alternatives, buying-committee, market-narrative, and voice depth to ground it in real research, real competitive evidence, real power dynamics, real timing, and a consistent sound, not just firmographics.
 
-## Skills (8)
+## Skills (9)
 
 - **ideal-customer-profile** — Turn scattered signals (surveys, interviews, usage data, win/loss notes) into a clear picture of who you should be selling to — demographics, behaviors, jobs to be done, and needs. Use when your ICP is fuzzy, your pipeline quality is off, or you need to pressure-test who you're actually targeting.
 - **alternatives-map** — Turn research (win/loss notes, sales call transcripts, reviews, analyst reports) into a map of everything buyers actually compare you to — direct competitors, adjacent tools, DIY, and doing nothing. Use before you write a word of positioning, so your story is built against real alternatives instead of guesses.
@@ -16,6 +12,9 @@ sound, not just firmographics.
 - **positioning-messaging** — Build or audit your positioning statement, messaging hierarchy, homepage copy, sales persona cards, and competitive decks — all from one consistent story. Use when your messaging feels scattered, sales can't explain what you do in one sentence, or you're refreshing positioning from scratch.
 - **proof-points** — Register, verify, or audit the claims, metrics, quotes, and case studies your messaging relies on.
 - **message-house** — Turn your existing positioning into one clean, one-page table: your core story at the top, your 3 supporting reasons to believe it below. Use when you need a single scannable reference for sales, leadership, or a new hire — not to create positioning, only to format what already exists.
+- **product-messaging-playbook** — Assemble a Sales/CS-ready messaging playbook for a new product or feature — problem framing, story, one named competitive comparison, discovery questions, and objection handling. Use when Sales or CS needs a handoff document they can use cold, not just brain output or a formatted Roof and Pillars table.
+
+## Commands (9)
 
 ## Commands (9)
 

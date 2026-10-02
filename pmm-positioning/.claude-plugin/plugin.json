@@ -1,14 +1,14 @@
 {
   "name": "pmm-positioning",
   "displayName": "Product Marketing",
-     "description": "Build positioning and messaging that actually lands. Define your ideal customer, map the competitive landscape, keep your team's story consistent everywhere it's told, and back every claim with a sourced, gated proof point.",
+  "description": "Build positioning and messaging that actually lands. Define your ideal customer, map the competitive landscape, keep your team's story consistent everywhere it's told, back every claim with a sourced, gated proof point, and hand Sales and CS a playbook they can use the day it ships.",
   "author": {
     "name": "Stefanos Karakasis"
   },
   "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-positioning",
   "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
   "license": "MIT",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "skills": "./skills",
   "dependencies": ["product-marketing-context"],
   "keywords": [

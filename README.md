@@ -63,7 +63,7 @@ understand your product, ICP, positioning, and competitive landscape before
 doing anything. Build it once with the `product-marketing-context` skill;
 every other skill reads from it.
 
-## Available Skills (33 Total)
+## Available Skills (34 Total)
 
 | Skill | Plugin | Description |
 |-------|--------|-------------|
@@ -76,6 +76,7 @@ every other skill reads from it.
 | [positioning-messaging](pmm-positioning/skills/positioning-messaging/) | pmm-positioning | Positioning statements, messaging hierarchy, homepage copy |
 | [proof-points](pmm-positioning/skills/proof-points/) | pmm-positioning | Sourced, gated claims registry — approved metrics, quotes, forbidden claims |
 | [message-house](pmm-positioning/skills/message-house/) | pmm-positioning | Formats existing positioning into a Roof + Value Pillars table |
+| [product-messaging-playbook](pmm-positioning/skills/product-messaging-playbook/) | pmm-positioning | Sales/CS-ready messaging playbook: problem, story, one named competitive comparison, discovery/objection script |
 | [gaccs-brief](pmm-toolkit/skills/gaccs-brief/) | pmm-toolkit | Campaign briefs (Goals, Audience, Creative, Channels, Stakeholders) |
 | [writing-assistant](pmm-toolkit/skills/writing-assistant/) | pmm-toolkit | Sharpen any written communication |
 | [pmm-resume](pmm-toolkit/skills/pmm-resume/) | pmm-toolkit | Resume tailoring for PMM roles |

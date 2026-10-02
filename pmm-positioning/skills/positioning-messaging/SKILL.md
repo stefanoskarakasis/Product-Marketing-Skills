@@ -419,6 +419,13 @@ happened this session, still write the row with `pattern: none`.
 - **experiment-doc** — when testing messaging assumptions; this skill
   builds messaging, not validates it experimentally
 
+- **product-messaging-playbook** — when the task is assembling a single
+  Sales/CS-facing handoff document (problem framing, story, named
+  competitor, discovery/objection script) rather than producing the
+  underlying positioning statement or SALES-ENABLEMENT persona cards
+  themselves. Run SALES-ENABLEMENT mode here first, then hand its output
+  to that skill.
+
 ---
 
 ## Commands

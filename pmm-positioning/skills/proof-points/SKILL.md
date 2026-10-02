@@ -406,4 +406,8 @@ which still requires explicit confirmation.
 - **`positioning-messaging`** — building the positioning statement or
   messaging hierarchy itself. Run this skill first so positioning has a
   gated, sourced registry to cite from.
+- **`product-messaging-playbook`** — packaging Section 6 evidence into a
+  rep-ready handoff document. Run this skill first so that assembler has
+  clean, sourced proof to pull from instead of a thin or unsourced
+  registry.
 - n.v.t.

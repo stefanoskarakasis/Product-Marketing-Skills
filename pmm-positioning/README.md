@@ -17,7 +17,7 @@ sound, not just firmographics.
 - **proof-points** — Register, verify, or audit the claims, metrics, quotes, and case studies your messaging relies on.
 - **message-house** — Turn your existing positioning into one clean, one-page table: your core story at the top, your 3 supporting reasons to believe it below. Use when you need a single scannable reference for sales, leadership, or a new hire — not to create positioning, only to format what already exists.
 
-## Commands (8)
+## Commands (9)
 
 - `/pmm-positioning:ideal-customer-profile` — Build your ICP from research data.
 - `/pmm-positioning:alternatives-map` — Build or deepen your competitive alternatives map — direct competitors, adjacent tools, DIY, and status   quo — from win/loss notes, call transcripts, or reviews.
@@ -27,6 +27,7 @@ sound, not just firmographics.
 - `/pmm-positioning:positioning-messaging` — Build or audit positioning and messaging. Supports five modes (build, audit, fletch, sales-enablement, homepage) — the right one runs based on what you ask for.
 - `/pmm-positioning:proof-points` — Add, verify, or audit the sourced claims registry your messaging draws from.
 - `/pmm-positioning:message-house` — Format existing positioning into a Roof + Value Pillars table.
+- `/pmm-positioning:product-messaging-playbook` — Assemble a Sales/CS-ready playbook: problem, story, named competitive comparison, and a discovery/objection script.
 
 ## Author
 

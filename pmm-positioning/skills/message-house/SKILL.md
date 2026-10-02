@@ -146,7 +146,8 @@ A single markdown document containing the Roof table and the Pillars table (side
 - **positioning-messaging** — to build or audit the underlying positioning statement, messaging hierarchy, or homepage copy from scratch. Run this first if brain Section 3 is empty or thin.
 - **product-marketing-context** — to build or audit the brain itself.
 - **buyer-personas** — to build user/buyer personas from scratch, not just restate existing ones in the Roof.
-- **hs-proof-points-claims** — to add, verify, or source a new metric, quote, or case study. Run first, then message-house pulls from the registry.
+- **proof-points** — to add, verify, or source a new metric, quote, or case study. Run first, then message-house pulls from the registry.
+- **product-messaging-playbook** — when the ask includes discovery questions, objection handling, or a named-competitor comparison, not just a formatted Roof + Pillars reference. Use that skill instead; it reuses this skill's output rather than replacing it.
 
 ## Operating Rules
 

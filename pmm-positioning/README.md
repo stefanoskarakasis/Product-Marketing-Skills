@@ -16,8 +16,6 @@ Strategic positioning and messaging using April Dunford's framework — with fiv
 
 ## Commands (9)
 
-## Commands (9)
-
 - `/pmm-positioning:ideal-customer-profile` — Build your ICP from research data.
 - `/pmm-positioning:alternatives-map` — Build or deepen your competitive alternatives map — direct competitors, adjacent tools, DIY, and status   quo — from win/loss notes, call transcripts, or reviews.
 - `/pmm-positioning:buyer-personas` — Map the buying committee and build personas.

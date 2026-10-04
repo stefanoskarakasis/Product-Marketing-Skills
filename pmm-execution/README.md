@@ -24,6 +24,19 @@ Day-to-day PMM execution: PRDs, growth experiments, OKRs, pre-mortems, retrospec
 - `/pmm-execution:retro` — Facilitate a post-launch or sprint retrospective.
 - `/pmm-execution:stakeholder-map` — Build a stakeholder map for a launch or initiative.
 
+## Connectors (Optional)
+
+Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`.
+
+| Category | What it adds | Tools |
+|---|---|---|
+| `~~call recordings` | interview and call transcripts for summaries | Fireflies, Gong |
+| `~~knowledge base` | retro, PRD and OKR source docs | Notion, Atlassian |
+| `~~project tracker` | launch tasks and ticket context | Linear |
+| `~~design` | design files referenced in PRDs | Figma |
+
+Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
+
 ## Author
 
 Stefanos Karakasis — [Product Marketing Skills](https://heystefanos.gumroad.com/)

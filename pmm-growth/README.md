@@ -46,6 +46,19 @@ other three have a real target to aim at instead of guessing.
   measurement scorecard from scratch, or audit an existing metrics list
   for sprawl and vanity metrics.
 
+## Connectors (Optional)
+
+Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`.
+
+| Category | What it adds | Tools |
+|---|---|---|
+| `~~product analytics` | activation, adoption and retention metrics | Amplitude, Pendo |
+| `~~market data` | traffic and market benchmarks | SimilarWeb |
+| `~~SEO` | keyword and content demand signals | Ahrefs |
+| `~~CRM` | funnel and conversion data | HubSpot |
+
+Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
+
 ## Author
 
 Stefanos Karakasis — [Product Marketing Skills](https://heystefanos.gumroad.com/)

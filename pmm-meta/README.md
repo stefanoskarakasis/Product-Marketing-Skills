@@ -16,6 +16,10 @@ Meta skills that operate on the skill system itself. Install alongside any PMM p
 - `/pmm-meta:meta-synthesis` — Detect cross-skill patterns and propose brain updates.
 - `/pmm-meta:meta-verify` — Run a second-pass quality check on skill output.
 
+## Connectors
+
+None. This plugin works on your own outputs and needs no external tools.
+
 ## Author
 
 Stefanos Karakasis — [Product Marketing Skills](https://heystefanos.gumroad.com/)

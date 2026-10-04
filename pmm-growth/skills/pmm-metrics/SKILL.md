@@ -109,6 +109,18 @@ themselves — this skill has no durable output file of its own.
 
 ---
 
+## Connectors (Optional)
+
+| Connector | What it adds |
+|---|---|
+| `~~product analytics` | Activation and adoption metrics |
+| `~~CRM` | Funnel conversion data |
+
+> **No connectors?** Paste the material and I'll work from that. The output has the same shape.
+> Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.
+
+---
+
 ## Pre-flight
 
 - Load `/foundation/brain.md` Sections 1, 2 if it exists — silently.

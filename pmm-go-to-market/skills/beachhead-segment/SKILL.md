@@ -68,6 +68,19 @@ numbering above now match the body exactly: 7 steps, numbered 0–6.
 
 ---Cross-reference brain
 
+## Connectors (Optional)
+
+| Connector | What it adds |
+|---|---|
+| `~~CRM` | Win rate by segment |
+| `~~market data` | Segment size and growth |
+| `~~call recordings` | Pain intensity in buyer words |
+
+> **No connectors?** Paste the material and I'll work from that. The output has the same shape.
+> Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.
+
+---
+
 ## Pre-flight
 
 - Load `/foundation/brain.md` Sections 2, 3, 6 if it exists — see Step 0 for the full sequence.

@@ -52,6 +52,17 @@ Built on JTBD theory. Sharpened for B2B product and GTM contexts.
   - `/foundation/brain.md` (ICP, Positioning, Beachhead Segment sections) — optional, if exists: load for validation
   - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior interviews
 ---
+## Connectors (Optional)
+
+| Connector | What it adds |
+|---|---|
+| `~~call recordings` | Transcripts pulled instead of pasted |
+
+> **No connectors?** Paste the material and I'll work from that. The output has the same shape.
+> Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.
+
+---
+
 ## Pre-flight
 - If `/context/meta-patterns.md` exists in the user's workspace, check for recurring patterns they've logged from prior interviews. If one applies, surface a guardrail prompt before Step 1. Skip silently if the file doesn't exist.
 - Load `/foundation/brain.md` if it exists. Extract: ICP Prioritisation, Positioning, Beachhead Segment, Revenue Levers.

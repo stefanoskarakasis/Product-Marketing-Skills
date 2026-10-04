@@ -16,6 +16,19 @@ Go-to-market strategy, tier assignment, and workflow orchestration for product l
 - `/pmm-go-to-market:workflow-orchestrator` — Orchestrate a multi-skill PMM program end-to-end.
 - `/pmm-go-to-market:gtm-motions` — Score and select a GTM motion stack
 
+## Connectors (Optional)
+
+Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`.
+
+| Category | What it adds | Tools |
+|---|---|---|
+| `~~CRM` | segment performance and pipeline context | HubSpot |
+| `~~market data` | segment sizing and competitor signals | SimilarWeb |
+| `~~call recordings` | buyer language for beachhead and motion choices | Fireflies, Gong |
+| `~~team chat` | launch coordination context | Slack |
+
+Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
+
 ## Author
 
 Stefanos Karakasis — [Product Marketing Skills](https://heystefanos.gumroad.com/)

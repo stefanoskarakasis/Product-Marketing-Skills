@@ -16,6 +16,17 @@ PMM utilities: writing assistant, resume reviewer, privacy policy generator, and
 - `/pmm-toolkit:privacy` — Draft a jurisdiction-aware privacy policy.
 - `/pmm-toolkit:write` — Rewrite or draft a communication in your voice.
 
+## Connectors (Optional)
+
+Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`.
+
+| Category | What it adds | Tools |
+|---|---|---|
+| `~~knowledge base` | source material for briefs and writing | Notion, Atlassian |
+| `~~team chat` | thread context for briefs | Slack |
+
+Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
+
 ## Author
 
 Stefanos Karakasis — [Product Marketing Skills](https://heystefanos.gumroad.com/)

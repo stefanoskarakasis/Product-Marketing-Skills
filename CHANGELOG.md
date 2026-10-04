@@ -1,6 +1,13 @@
 # Changelog
 
-## v1.0.0 — 2026-08-25
+### Connectors
+
+- Added per-plugin `.mcp.json` and `CONNECTORS.md` for six plugins, a root
+  `CONNECTORS.md` category registry, and `docs/connect-your-tools.md`.
+- Added optional Connectors blocks and evals to the brain and ten skills.
+- Added structure Check 5 for connector files.
+
+## v1.0.0
 
 ### Repo-wide
 

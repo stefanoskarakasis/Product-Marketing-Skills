@@ -117,7 +117,7 @@ every other skill reads from it.
 /plugin install pmm-meta
 ```
 
-Install `product-marketing-context` first — every other plugin reads the brain it
+Connectors load per plugin, so install the plugins individually as above. Install product-marketing-context first — every other plugin reads the brain it
 builds. `pmm-meta` can be installed alongside any combination of the
 others; it doesn't depend on which ones you have.
 
@@ -135,6 +135,24 @@ Adjust the source path per plugin depending on which skills you want.
 1. Fork this repository
 2. Customize skills for your specific PMM needs
 3. Clone your fork into your projects
+
+## Connectors (Optional)
+
+Skills work without connectors. Connect tools and they pull candidate facts for you to confirm instead of asking you to type them.
+
+| Plugin | Connectors wired |
+|---|---|
+| product-marketing-context | Notion, Atlassian, HubSpot, Fireflies, Gong, SimilarWeb, Intercom |
+| pmm-positioning | Fireflies, Gong, HubSpot, SimilarWeb, Intercom |
+| pmm-execution | Fireflies, Gong, Notion, Atlassian, Linear, Figma |
+| pmm-go-to-market | HubSpot, SimilarWeb, Fireflies, Gong, Slack |
+| pmm-growth | Amplitude, Pendo, SimilarWeb, Ahrefs, HubSpot |
+| pmm-toolkit | Notion, Atlassian, Slack |
+| pmm-meta | None |
+
+Install each plugin on its own to load its connectors (see Installation). Sign-in steps: [docs/connect-your-tools.md](docs/connect-your-tools.md). Category registry: [CONNECTORS.md](CONNECTORS.md).
+
+## Workflow Intelligence
 
 ## Workflow Intelligence
 

@@ -164,3 +164,19 @@ matching the canonical Type A format exactly: `type: execution`, `skill`,
 description of where the proof-point data came from. Logged directly,
 without asking the user to confirm the log entry separately from the
 brain-write confirmation already given in Step 6.
+
+## Eval 14 — Connector present: pulled facts are tagged drafts
+
+**Setup:** The `call recordings` connector is available and returns relevant material.
+
+**Prompt:** "Find proof points in our recent customer calls."
+
+**Expect:** Facts are pulled and each is shown tagged with category, tool and date. Nothing is written to the brain or any external tool until the user confirms. Pulled quotes and proof points are marked unverified.
+
+## Eval 15 — No connectors: paste fallback, same output shape
+
+**Setup:** No connectors are available.
+
+**Prompt:** "Find proof points for our messaging."
+
+**Expect:** The skill asks the user to paste the material, then produces the same output format as with a connector. It does not claim to have pulled anything.

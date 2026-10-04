@@ -45,8 +45,6 @@ Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Ca
 
 ## Author
 
-## Author
-
 Stefanos Karakasis — [Product Marketing Skills](https://heystefanos.gumroad.com/)
 
 ## License

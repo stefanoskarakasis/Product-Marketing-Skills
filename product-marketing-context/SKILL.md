@@ -51,9 +51,9 @@ Stop re-explaining your company, your buyer, and your competitors to every tool 
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    PRODUCT MARKETING CONTEXT                     │
+│                    PRODUCT MARKETING CONTEXT                    │
 ├─────────────────────────────────────────────────────────────────┤
-│  ALWAYS (works standalone)                                       │
+│  ALWAYS (works standalone)                                      │
 │  ✓ You tell me: product, ICP, alternatives, voice, market,      │
 │    proof points — one section at a time                         │
 │  ✓ Output: /foundation/brain.md, confirmed section by section   │
@@ -98,6 +98,7 @@ Connect your tools to supercharge this skill:
 | `~~support` | Pain-point and churn language for Sections 2 and 4 |
 
 > **No connectors?** No problem. Paste what you have — a deck excerpt, a pricing page, a win/loss doc — and I'll work from that.
+>
 > **Connector pre-fill.** With a connector available, I pull candidate answers first and show each one tagged with category, tool and date. You confirm, edit or reject before anything is written to `/foundation/brain.md`.
 
 ---

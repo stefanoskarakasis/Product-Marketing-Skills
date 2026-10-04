@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "amplitude": { "type": "http", "url": "https://mcp.amplitude.com/mcp" },
+    "pendo": { "type": "http", "url": "https://app.pendo.io/mcp/v0/shttp" },
+    "similarweb": { "type": "http", "url": "https://mcp.similarweb.com" },
+    "ahrefs": { "type": "http", "url": "https://api.ahrefs.com/mcp/mcp" },
+    "hubspot": { "type": "http", "url": "https://mcp.hubspot.com/anthropic" }
+  }
+}

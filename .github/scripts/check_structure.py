@@ -211,14 +211,57 @@ for dirpath, dirnames, filenames in os.walk(ROOT):
                 f"reference to the real current skill name, or remove it"
             )
 
-# ---- Report -----------------------------------------------------------
+# ---- Check 5: connector placeholders ------------------------------------
+# Every `~~category` used in a plugin's SKILL.md files must be listed in that
+# plugin's CONNECTORS.md; every category there must exist in the root
+# CONNECTORS.md; every .mcp.json server needs type + url and must be named
+# in the plugin's CONNECTORS.md.
 
-if problems:
-    print(f"FAIL — {len(problems)} structural problem(s) found:\n")
-    for p in problems:
-        print(f"  - {p}")
-    sys.exit(1)
+placeholder_pattern = re.compile(r"`(~~[A-Za-z][A-Za-z -]*[A-Za-z])`")
+
+
+def read_text(rel):
+    with open(os.path.join(ROOT, rel), "r", encoding="utf-8", errors="replace") as fh:
+        return fh.read()
+
+
+root_cats = set()
+if not os.path.isfile(os.path.join(ROOT, "CONNECTORS.md")):
+    problems.append("CONNECTORS.md: root connector registry is missing")
 else:
-    print("PASS — marketplace.json, root plugin.json, all plugin.json "
-          "skills paths, and all skill cross-references are consistent.")
-    sys.exit(0)
+    root_cats = set(placeholder_pattern.findall(read_text("CONNECTORS.md")))
+
+for plugin_dir in sorted(on_disk_plugin_dirs):
+    used = set()
+    for dirpath, _dirs, files in os.walk(os.path.join(ROOT, plugin_dir)):
+        for fn in files:
+            if fn == "SKILL.md":
+                used |= set(placeholder_pattern.findall(
+                    read_text(os.path.relpath(os.path.join(dirpath, fn), ROOT))))
+    mcp_rel = f"{plugin_dir}/.mcp.json"
+    mcp_data, mcp_err = load_json(mcp_rel)
+    has_mcp = os.path.isfile(os.path.join(ROOT, mcp_rel))
+    if has_mcp and mcp_err:
+        problems.append(mcp_err)
+        mcp_data = None
+    conn_rel = f"{plugin_dir}/CONNECTORS.md"
+    has_conn = os.path.isfile(os.path.join(ROOT, conn_rel))
+    if (used or has_mcp) and not has_conn:
+        problems.append(f"{conn_rel}: missing, but {plugin_dir} uses connector placeholders or ships a .mcp.json")
+        continue
+    if not has_conn:
+        continue
+    conn_text = read_text(conn_rel)
+    listed = set(placeholder_pattern.findall(conn_text))
+    for ph in sorted(used - listed):
+        problems.append(f"{conn_rel}: placeholder `{ph}` is used in a SKILL.md but not listed here")
+    for ph in sorted(listed - root_cats):
+        problems.append(f"{conn_rel}: placeholder `{ph}` is not in the root CONNECTORS.md registry")
+    if mcp_data is not None:
+        for name, cfg in (mcp_data.get("mcpServers") or {}).items():
+            if not isinstance(cfg, dict) or "type" not in cfg or "url" not in cfg:
+                problems.append(f"{mcp_rel}: server '{name}' needs both 'type' and 'url'")
+            if name.lower() not in conn_text.lower():
+                problems.append(f"{conn_rel}: server '{name}' is in .mcp.json but not named here")
+
+# ---- Report

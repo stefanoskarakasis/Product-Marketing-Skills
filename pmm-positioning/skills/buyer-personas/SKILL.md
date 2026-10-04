@@ -90,6 +90,19 @@ with an explicit note on which persona is primary.
 
 ---
 
+## Connectors (Optional)
+
+| Connector | What it adds |
+|---|---|
+| `~~call recordings` | Real buyer language and objections by role |
+| `~~CRM` | Titles and roles on closed deals |
+| `~~support` | Pain points from tickets |
+
+> **No connectors?** Paste the material and I'll work from that. The output has the same shape.
+> Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.
+
+---
+
 ## Pre-flight
 
 - Load `/foundation/brain.md` Sections 2, 3 if present.

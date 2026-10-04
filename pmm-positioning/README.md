@@ -26,6 +26,25 @@ Strategic positioning and messaging using April Dunford's framework — with fiv
 - `/pmm-positioning:message-house` — Format existing positioning into a Roof + Value Pillars table.
 - `/pmm-positioning:product-messaging-playbook` — Assemble a Sales/CS-ready playbook: problem, story, named competitive comparison, and a discovery/objection script.
 
+## Connectors (Optional)
+
+Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`.
+
+| Category | What it adds | Tools |
+|---|---|---|
+| `~~call recordings` | buyer language, objections, alternatives named on calls | Fireflies, Gong |
+| `~~CRM` | win/loss reasons and segment data | HubSpot |
+| `~~market data` | competitor and market signals | SimilarWeb |
+| `~~support` | pain points and churn language | Intercom |
+| `~~knowledge base` | internal market notes | Notion, Atlassian |
+| `~~reviews` | public review themes (paste only today) | none wired |
+| `~~SEO` | keyword demand and competitor organic positioning | paste only today |
+| `~~product analytics` | usage evidence for proof points | paste only today |
+
+Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
+
+## Author
+
 ## Author
 
 Stefanos Karakasis — [Product Marketing Skills](https://heystefanos.gumroad.com/)

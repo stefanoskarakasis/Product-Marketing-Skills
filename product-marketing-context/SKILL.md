@@ -59,9 +59,9 @@ Stop re-explaining your company, your buyer, and your competitors to every tool 
 │  ✓ Output: /foundation/brain.md, confirmed section by section   │
 │  ✓ Pushes back on vague answers before storing them             │
 ├─────────────────────────────────────────────────────────────────┤
-│  SUPERCHARGED (when you connect your tools)                      │
-│  + Docs/Drive: pulls company overview and product facts          │
-│  + CRM: pulls win/loss reasons and deal data to sharpen ICP      │
+│  SUPERCHARGED (when you connect your tools)                     │
+│  + Knowledge base: pulls company overview and key facts         │
+│  + CRM: pulls win/loss reasons and deal data to sharpen ICP     │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -91,10 +91,14 @@ Connect your tools to supercharge this skill:
 
 | Connector | What It Adds |
 |-----------|--------------|
-| **Docs/Drive** | Company overview, pricing, and product docs — instead of typing them in |
-| **CRM** (e.g. HubSpot, Salesforce) | Win/loss reasons and deal velocity to sharpen ICP and buying triggers |
+| `~~knowledge base` | Company overview, pricing and product docs for Sections 1 and 5 |
+| `~~CRM` | Win/loss reasons and deal data for Section 2 (ICP) |
+| `~~call recordings` | Buyer language and objections for Sections 2, 3 and 6 |
+| `~~market data` | Competitor and market signals for Sections 3 and 5 |
+| `~~support` | Pain-point and churn language for Sections 2 and 4 |
 
 > **No connectors?** No problem. Paste what you have — a deck excerpt, a pricing page, a win/loss doc — and I'll work from that.
+> **Connector pre-fill.** With a connector available, I pull candidate answers first and show each one tagged with category, tool and date. You confirm, edit or reject before anything is written to `/foundation/brain.md`.
 
 ---
 
@@ -211,6 +215,7 @@ After any completed setup, edit, or audit, tell the user plainly that the brain 
 2. **Never re-ask what the brain already knows.** Load existing sections silently and skip any question already answered.
 3. **Push back on vague answers inline.** "We sell to businesses" gets "what size, industry, role?" before it's accepted, not after.
 4. **Don't name a downstream skill unless its write-back is verified correct.** A routing suggestion that writes to the wrong section is worse than no suggestion.
+5. **Pulled facts are drafts.** Anything pulled from a connector is tagged with category, tool and date, shown for confirmation, and never written to the brain unconfirmed. Pulled proof points and quotes enter Section 6 as unverified.
 
 ---
 

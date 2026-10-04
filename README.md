@@ -154,8 +154,6 @@ Install each plugin on its own to load its connectors (see Installation). Sign-i
 
 ## Workflow Intelligence
 
-## Workflow Intelligence
-
 `workflow-orchestrator` (in `pmm-go-to-market`) chains multiple skills
 into one coherent, end-to-end program — a Program Charter, sequenced
 skill runs, coherence checks between their outputs, and one master

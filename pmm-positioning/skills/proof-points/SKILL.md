@@ -113,6 +113,19 @@ dates, undocumented customer names, and unsupported superlatives.
 
 ---
 
+## Connectors (Optional)
+
+| Connector | What it adds |
+|---|---|
+| `~~call recordings` | Customer quotes (enter as unverified) |
+| `~~CRM` | Metric candidates (enter as unverified) |
+| `~~product analytics` | Usage evidence (paste export) |
+
+> **No connectors?** Paste the material and I'll work from that. The output has the same shape.
+> Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.
+
+---
+
 ## Pre-flight
 
 - Load `/foundation/brain.md` Section 6 if it exists.

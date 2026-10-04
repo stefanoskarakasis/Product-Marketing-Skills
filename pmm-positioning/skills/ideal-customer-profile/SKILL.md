@@ -82,6 +82,19 @@ Needs.
 
 ---
 
+## Connectors (Optional)
+
+| Connector | What it adds |
+|---|---|
+| `~~CRM` | Win/loss reasons and segment performance |
+| `~~call recordings` | Buying triggers in buyer words |
+| `~~support` | Churn and pain-point language |
+
+> **No connectors?** Paste the material and I'll work from that. The output has the same shape.
+> Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.
+
+---
+
 ## Pre-flight
 
 - Load `/foundation/brain.md` Section 2 if it exists.

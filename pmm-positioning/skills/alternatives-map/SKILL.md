@@ -90,6 +90,18 @@ stated one.
     unclaimed territory, appended on explicit confirmation. Never
     creates a separate competitive file.
 
+## Connectors (Optional)
+
+| Connector | What it adds |
+|---|---|
+| `~~call recordings` | Alternatives buyers named on calls |
+| `~~CRM` | Competitor fields from lost deals |
+| `~~market data` | Competitor traffic and audience signals |
+| `~~reviews` | Review themes (paste export) |
+
+> **No connectors?** Paste the material and I'll work from that. The output has the same shape.
+> Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.
+
 ---
 
 ## Pre-flight

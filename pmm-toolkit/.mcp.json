@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "notion": { "type": "http", "url": "https://mcp.notion.com/mcp" },
+    "atlassian": { "type": "http", "url": "https://mcp.atlassian.com/v1/mcp" },
+    "slack": { "type": "http", "url": "https://mcp.slack.com/mcp" }
+  }
+}

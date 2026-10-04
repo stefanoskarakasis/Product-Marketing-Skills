@@ -13,7 +13,7 @@
 - Fixed the dead `hs-proof-points-claims` reference in message-house and
   reset the pmm-positioning version to match the CHANGELOG.
 
-## v1.0.0 — 2026-08-25
+## v1.1.0 — 2026-08-25
 
 ### Repo-wide
 

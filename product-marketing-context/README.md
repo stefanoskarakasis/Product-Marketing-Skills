@@ -24,6 +24,20 @@ Every other plugin in this marketplace — `pmm-positioning`,
 Building it once here means you never re-explain your product, ICP, or
 positioning to another skill again.
 
+## Connectors (Optional)
+
+Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`.
+
+| Category | What it adds | Tools |
+|---|---|---|
+| `~~knowledge base` | Product Context, Market Context | Notion, Atlassian |
+| `~~CRM` | ICP Definition (win/loss, deal data) | HubSpot |
+| `~~call recordings` | ICP, Alternatives, Proof Points (buyer language, objections) | Fireflies, Gong |
+| `~~market data` | Alternatives and Market Context | SimilarWeb |
+| `~~support` | ICP pain points, Voice and Tone | Intercom |
+
+Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
+
 ## Author
 
 Stefanos Karakasis — [Product Marketing Skills](https://heystefanos.gumroad.com/)

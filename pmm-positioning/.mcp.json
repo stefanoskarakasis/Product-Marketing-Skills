@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "fireflies": {
+      "type": "http",
+      "url": "https://api.fireflies.ai/mcp"
+    },
+    "gong": {
+      "type": "http",
+      "url": "https://mcp.gong.io/mcp"
+    },
+    "hubspot": {
+      "type": "http",
+      "url": "https://mcp.hubspot.com/anthropic"
+    },
+    "similarweb": {
+      "type": "http",
+      "url": "https://mcp.similarweb.com"
+    },
+    "intercom": {
+      "type": "http",
+      "url": "https://mcp.intercom.com/mcp"
+    }
+  }
+}

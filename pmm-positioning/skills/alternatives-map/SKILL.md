@@ -90,6 +90,8 @@ stated one.
     unclaimed territory, appended on explicit confirmation. Never
     creates a separate competitive file.
 
+---
+
 ## Connectors (Optional)
 
 | Connector | What it adds |

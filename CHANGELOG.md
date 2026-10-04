@@ -1,13 +1,15 @@
 # Changelog
 
-## Unreleased
+## v1.1.0 — 2026-10-04
 
 ### Connectors
 
 - Added per-plugin `.mcp.json` and `CONNECTORS.md` for six plugins, a root
   `CONNECTORS.md` category registry, and `docs/connect-your-tools.md`.
-- Added optional Connectors blocks and evals to the brain and ten skills.
+- Added optional Connectors blocks and evals to the brain and fifteen skills.
 - Added structure Check 5 for connector files.
+- Added a Connectors section to `CLAUDE.md` and `CONTRIBUTING.md`, a connect
+  step in `QUICK-START.md`, and an access-requirements note in the README.
 - Fixed the dead `hs-proof-points-claims` reference in message-house and
   reset the pmm-positioning version to match the CHANGELOG.
 

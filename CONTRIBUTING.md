@@ -26,6 +26,10 @@ it's a bug fix, a typo, or a new skill idea.
   language only.
 - Every contributor will be listed publicly.
 
+- Skills refer to tools by connector category, not vendor. See the
+  Connectors section of [CLAUDE.md](CLAUDE.md) before adding or changing a
+  connector block.
+
 ## Releases and Versioning
 
 See [CLAUDE.md](CLAUDE.md) for how this repo versions releases — one

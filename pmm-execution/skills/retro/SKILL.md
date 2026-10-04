@@ -46,6 +46,18 @@ decisions. Not a feelings circle. A diagnostic system.
 
 ---
 
+## Connectors (Optional)
+
+| Connector | What it adds |
+|---|---|
+| `~~project tracker` | Launch tasks and outcomes |
+| `~~knowledge base` | Launch docs and OKRs |
+
+> **No connectors?** Paste the material and I'll work from that. The output has the same shape.
+> Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.
+
+---
+
 ## Pre-flight
 
 Before anything else, check `/foundation/brain.md`.

@@ -65,6 +65,19 @@ Guides Product Managers and Product Marketing Managers to co-create complete Pro
 
 ---
 
+## Connectors (Optional)
+
+| Connector | What it adds |
+|---|---|
+| `~~knowledge base` | Source docs and prior specs |
+| `~~project tracker` | Ticket and roadmap context |
+| `~~design` | Design files referenced in the spec |
+
+> **No connectors?** Paste the material and I'll work from that. The output has the same shape.
+> Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.
+
+---
+
 ## Pre-flight
 
 - Load `/foundation/brain.md` if exists. Extract Positioning (§3) and ICP (§2) for context.

@@ -1,6 +1,6 @@
 # Connectors
 
-Skills in this repo refer to tools by **category**, written as `~~category`,
+Skills in this repo refer to tools by **category**, written with two tildes before the category name,
 never by vendor. Each plugin ships its own `.mcp.json` that wires the
 vendors it supports, and its own `CONNECTORS.md` that lists which categories
 it uses. This file is the master list of categories. Every category used in a
@@ -32,11 +32,9 @@ have and the output has the same shape.
 | `~~team chat` | Team threads, launch coordination, field feedback | Slack |
 | `~~project tracker` | Launch tasks, roadmap items, ticket context | Linear, Asana |
 | `~~design` | Design files and prototypes referenced in specs | Figma |
-| `~~email` | Customer and stakeholder email context | Gmail (first-party Claude connector) |
-| `~~calendar` | Meeting and launch scheduling context | Google Calendar (first-party Claude connector) |
-| `~~cloud storage` | Decks, docs and spreadsheets in Drive | Google Drive (first-party Claude connector) |
 
-First-party Claude connectors (Gmail, Google Calendar, Google Drive) are
-enabled in Claude settings, not in `.mcp.json`.
+Gmail, Google Calendar and Google Drive are first-party Claude connectors.
+They are enabled in Claude settings, not in `.mcp.json`, and no skill uses
+them yet.
 
 See `docs/connect-your-tools.md` for sign-in steps per tool.

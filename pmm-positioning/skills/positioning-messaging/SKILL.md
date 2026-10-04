@@ -119,6 +119,20 @@ implied category. Report as: `"Your current materials say: [findings]"`
 
 ---
 
+## Connectors (Optional)
+
+| Connector | What it adds |
+|---|---|
+| `~~call recordings` | Buyer language to ground the positioning |
+| `~~CRM` | Win/loss reasons |
+| `~~market data` | Competitor and market signals |
+| `~~knowledge base` | Existing positioning docs |
+
+> **No connectors?** Paste the material and I'll work from that. The output has the same shape.
+> Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.
+
+---
+
 ## Pre-flight
 
 - Load `/foundation/brain.md` if it exists. Extract Section 1 (Product Context),

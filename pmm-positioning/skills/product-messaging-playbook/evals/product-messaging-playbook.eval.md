@@ -35,3 +35,19 @@
 ## Eval 9 — Learning Close always runs
 **Input:** Any completed session, including one that hits the hard block in Eval 1.
 **Expected:** A hard-blocked session (Eval 1) does not log a Learning Close entry — no session actually ran. Every session that proceeds past Pre-flight, including one that skips Comparative Positioning (Eval 2) or ships several `[MISSING]` fields, appends exactly one `type: execution` entry to `/context/skill-sessions.md` with the canonical 5-field shape.
+
+## Eval 10 — Connector present: pulled facts are tagged drafts
+
+**Setup:** The `call recordings` connector is available and returns relevant material.
+
+**Prompt:** "Build the messaging playbook and pull objections from our calls."
+
+**Expect:** Facts are pulled and each is shown tagged with category, tool and date. Nothing is written to the brain or any external tool until the user confirms. Pulled quotes and proof points are marked unverified.
+
+## Eval 11 — No connectors: paste fallback, same output shape
+
+**Setup:** No connectors are available.
+
+**Prompt:** "Build the messaging playbook."
+
+**Expect:** The skill asks the user to paste the material, then produces the same output format as with a connector. It does not claim to have pulled anything.

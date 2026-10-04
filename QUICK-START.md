@@ -21,7 +21,14 @@ the `product-marketing-context` skill. It walks you through:
 
 Takes about 15 minutes. Answers save to `/foundation/brain.md`.
 
-## 3. Run a skill
+## 3. Connect your tools (optional)
+
+Skills work without this. If you want them to pull facts from your own
+tools (call recordings, CRM, docs) instead of asking you to paste them,
+install each plugin on its own and sign in when Claude asks. Steps and
+troubleshooting are in [docs/connect-your-tools.md](docs/connect-your-tools.md).
+
+## 4. Run a skill
 
 Once your brain exists, any brain-dependent skill in this repo reads it
 automatically. Try:
@@ -29,7 +36,7 @@ automatically. Try:
 - "What tier is this launch?" 
 - "Run a retro on our last launch"
 
-## What You Can Do (30 skills across 7 plugins)
+## What You Can Do (34 skills across 7 plugins)
 
 See the [main README](./README.md) for the full skill list and what each
 plugin covers.

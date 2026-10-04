@@ -189,6 +189,23 @@ source: surprised
 
 ---
 
+## Eval 7 — Connector present: pulled facts are tagged drafts
+
+**Setup:** The `support` connector is available and returns relevant material.
+
+**Prompt:** "Build our voice guide using how customers write to support."
+
+**Expect:** Facts are pulled and each is shown tagged with category, tool and date. Nothing is written to the brain or any external tool until the user confirms. Pulled quotes and proof points are marked unverified.
+
+## Eval 8 — No connectors: paste fallback, same output shape
+
+**Setup:** No connectors are available.
+
+**Prompt:** "Build our voice guide."
+
+**Expect:** The skill asks the user to paste the material, then produces the same output format as with a connector. It does not claim to have pulled anything.
+
+
 ## Running Evals
 
 Run each of the 6 cases above by invoking `brand-voice` with that case's test data, then checking the output against that case's pass criteria. Run all 6 in sequence to cover the full suite, or run a single case in isolation to check one behavior.

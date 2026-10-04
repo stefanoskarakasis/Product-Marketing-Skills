@@ -382,3 +382,19 @@ Eval test cases for `positioning-messaging` skill (SKILL-SPEC v2.0.0 compliance)
 - Once gap is provided, skill continues normally
 
 **Test Pass:** Skill refuses to produce positioning built on relative, unanchored claims
+
+## Eval 1 — Connector present: pulled facts are tagged drafts
+
+**Setup:** The `call recordings` connector is available and returns relevant material.
+
+**Prompt:** "Audit our positioning against how buyers talk on calls."
+
+**Expect:** Facts are pulled and each is shown tagged with category, tool and date. Nothing is written to the brain or any external tool until the user confirms. Pulled quotes and proof points are marked unverified.
+
+## Eval 2 — No connectors: paste fallback, same output shape
+
+**Setup:** No connectors are available.
+
+**Prompt:** "Audit our positioning."
+
+**Expect:** The skill asks the user to paste the material, then produces the same output format as with a connector. It does not claim to have pulled anything.

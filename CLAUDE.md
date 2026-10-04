@@ -27,6 +27,20 @@ See also [AGENTS.md](AGENTS.md) for skill-authoring conventions and
    `pmm-execution`, `pmm-toolkit`, `pmm-growth`, `pmm-meta`).
 3. Commit all of the above together in one commit.
 
+## Connectors
+
+- Skills name tools by category, written with two tildes before the name
+  and wrapped in backticks, never by vendor. Example: the call recordings
+  category, not a specific recording product.
+- Every category used in a skill must be listed in that plugin's
+  `CONNECTORS.md`, and every category there must exist in the root
+  `CONNECTORS.md`. The structure check enforces this.
+- A plugin that ships a `.mcp.json` must name each of its servers in its
+  `CONNECTORS.md`. Each server needs `type` and `url`.
+- Connectors are read-only by default, pulled facts are drafts until the
+  user confirms, and every skill with a connector block must still work by
+  paste when no connector is present.
+
 ## After Any Repo Change
 
 Before committing, ask: does this change reference a skill, command, or

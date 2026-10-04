@@ -150,7 +150,9 @@ Skills work without connectors. Connect tools and they pull candidate facts for 
 | pmm-toolkit | Notion, Atlassian, Slack |
 | pmm-meta | None |
 
-Install each plugin on its own to load its connectors (see Installation). Sign-in steps: [docs/connect-your-tools.md](docs/connect-your-tools.md). Category registry: [CONNECTORS.md](CONNECTORS.md).
+Some connectors need extra access: SimilarWeb and Ahrefs need an API plan,
+Gong usually needs an admin to enable it, and G2 and other review sites are
+paste-only. Install each plugin on its own to load its connectors (see Installation). Sign-in steps: [docs/connect-your-tools.md](docs/connect-your-tools.md). Category registry: [CONNECTORS.md](CONNECTORS.md).
 
 ## Workflow Intelligence
 

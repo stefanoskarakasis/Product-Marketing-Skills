@@ -28,7 +28,7 @@ Installing the whole bundle through the root `pmm-skills` entry may not load the
 | Linear | project tracker | Linear login | Launch tasks | Check workspace access |
 | Figma | design | Figma login | Design files for PRDs | Share the file |
 | Ahrefs | SEO | Ahrefs API access | Keyword demand | Needs a plan with API access |
-| Gmail, Google Calendar, Google Drive | email, calendar, cloud storage | Enable in Claude settings | Mail, calendar, Drive context | These are first-party Claude connectors, not in `.mcp.json` |
+| Gmail, Google Calendar, Google Drive | none yet | Enable in Claude settings | Not used by any skill yet | First-party Claude connectors, not in `.mcp.json` |
 
 G2 and other review sites: no server is wired. Paste an export.
 

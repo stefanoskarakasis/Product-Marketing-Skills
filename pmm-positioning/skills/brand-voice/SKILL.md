@@ -86,6 +86,19 @@ then run the one-sentence voice test against both.
 
 ---
 
+## Connectors (Optional)
+
+| Connector | What it adds |
+|---|---|
+| `~~call recordings` | How buyers actually talk |
+| `~~support` | Customer wording and tone |
+| `~~knowledge base` | Existing style guides |
+
+> **No connectors?** Paste the material and I'll work from that. The output has the same shape.
+> Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.
+
+---
+
 ## Pre-flight
 
 - Check `/foundation/brain.md` Section 4 — if populated, this is an

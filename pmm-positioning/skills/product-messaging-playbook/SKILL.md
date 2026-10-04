@@ -79,6 +79,19 @@ assembles the rest into one document a rep can open cold.
 
 ---
 
+## Connectors (Optional)
+
+| Connector | What it adds |
+|---|---|
+| `~~call recordings` | Real objections and discovery questions from calls |
+| `~~CRM` | The competitor named in lost deals |
+| `~~support` | Customer pain-point language |
+
+> **No connectors?** Paste the material and I'll work from that. The output has the same shape.
+> Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.
+
+---
+
 ## Pre-flight
 
 - Load `/foundation/brain.md` if present. If absent, check for a pasted

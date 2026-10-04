@@ -117,7 +117,7 @@ every other skill reads from it.
 /plugin install pmm-meta
 ```
 
-Connectors load per plugin, so install the plugins individually as above. Install product-marketing-context first — every other plugin reads the brain it
+Connectors load per plugin, so install the plugins individually as above. Install `product-marketing-context` first — every other plugin reads the brain it
 builds. `pmm-meta` can be installed alongside any combination of the
 others; it doesn't depend on which ones you have.
 

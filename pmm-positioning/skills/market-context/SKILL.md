@@ -89,6 +89,19 @@ confirmation).
 
 ---
 
+## Connectors (Optional)
+
+| Connector | What it adds |
+|---|---|
+| `~~market data` | Market and traffic signals |
+| `~~SEO` | Demand trends (paste export) |
+| `~~knowledge base` | Internal market notes |
+
+> **No connectors?** Paste the material and I'll work from that. The output has the same shape.
+> Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.
+
+---
+
 ## Pre-flight
 
 - Check `/foundation/brain.md` Section 5 — if populated, this is an

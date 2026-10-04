@@ -17,7 +17,7 @@ last_updated: 2026-10-02
 
 Use when the user asks to "build a message house," "put our messaging in a message house," "give me the roof and pillars," references messagehouse.org, or wants their positioning and value pillars laid out as a single scannable table for sales, leadership, or a new hire.
 
-Not for: building positioning or a messaging hierarchy from scratch (route to `positioning-messaging`), building personas from scratch (route to `buyer-personas`), or sourcing a new proof point or stat (route to `hs-proof-points-claims`). This skill formats what already exists — it does not derive strategy.
+Not for: building positioning or a messaging hierarchy from scratch (route to `positioning-messaging`), building personas from scratch (route to `buyer-personas`), or sourcing a new proof point or stat (route to `proof-points`). This skill formats what already exists — it does not derive strategy.
 
 Example prompts:
 - "Build our message house"

@@ -264,4 +264,14 @@ for plugin_dir in sorted(on_disk_plugin_dirs):
             if name.lower() not in conn_text.lower():
                 problems.append(f"{conn_rel}: server '{name}' is in .mcp.json but not named here")
 
-# ---- Report
+# ---- Report -----------------------------------------------------------
+
+if problems:
+    print(f"FAIL — {len(problems)} structural problem(s) found:\n")
+    for p in problems:
+        print(f"  - {p}")
+    sys.exit(1)
+else:
+    print("PASS — marketplace.json, root plugin.json, all plugin.json "
+          "skills paths, all skill cross-references and connector files are consistent.")
+    sys.exit(0)

@@ -1,5 +1,6 @@
 {
   "name": "pmm-meta",
+  "displayName": "PMM Meta",
   "description": "Meta skills that operate on the skill system itself — quality review, session learning, and output verification. Install alongside any PMM plugin.",
   "version": "1.1.0",
   "author": {

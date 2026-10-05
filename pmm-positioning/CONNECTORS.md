@@ -10,12 +10,14 @@ and the output has the same shape. Category definitions live in the root
 | `~~CRM` | win/loss reasons and segment data | HubSpot |
 | `~~market data` | competitor and market signals | SimilarWeb |
 | `~~support` | pain points and churn language | Intercom |
-| `~~knowledge base` | internal market notes | Notion, Atlassian |
+| `~~knowledge base` | internal positioning and market notes | Notion, Atlassian |
+| `~~SEO` | keyword demand and competitor organic positioning | Ahrefs |
+| `~~team chat` | win threads and field feedback | Slack |
+| `~~cloud storage` | existing decks and case studies | Google Drive |
 | `~~reviews` | public review themes (paste only today) | none wired |
-| `~~SEO` | keyword demand and competitor organic positioning | paste only today |
-| `~~product analytics` | usage evidence for proof points | paste only today |
+| `~~product analytics` | usage evidence for proof points (paste only today) | none wired |
 
-Servers in this plugin's `.mcp.json`: fireflies, gong, hubspot, similarweb, intercom.
+Servers in this plugin's `.mcp.json`: fireflies, gong, hubspot, similarweb, intercom, notion, atlassian, ahrefs, slack, google-drive.
 
 Rules: read-only by default, ask before writing, tag every pulled fact with
 category, tool and date, treat pulled facts as drafts until confirmed, and

@@ -36,10 +36,12 @@ Every skill works without connectors. Install this plugin on its own to load its
 | `~~CRM` | win/loss reasons and segment data | HubSpot |
 | `~~market data` | competitor and market signals | SimilarWeb |
 | `~~support` | pain points and churn language | Intercom |
-| `~~knowledge base` | internal market notes | Notion, Atlassian |
+| `~~knowledge base` | internal positioning and market notes | Notion, Atlassian |
+| `~~SEO` | keyword demand and competitor organic positioning | Ahrefs |
+| `~~team chat` | win threads and field feedback | Slack |
+| `~~cloud storage` | existing decks and case studies | Google Drive |
 | `~~reviews` | public review themes (paste only today) | none wired |
-| `~~SEO` | keyword demand and competitor organic positioning | paste only today |
-| `~~product analytics` | usage evidence for proof points | paste only today |
+| `~~product analytics` | usage evidence for proof points (paste only today) | none wired |
 
 Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
 

@@ -60,6 +60,19 @@ The skill runs in 7 steps:
 
 ---
 
+## Connectors (Optional)
+
+| Connector | What it adds |
+|---|---|
+| `~~team chat` | Who is active in launch threads |
+| `~~email` | Stakeholder email threads |
+| `~~calendar` | Meeting cadence and attendees |
+
+> **No connectors?** Paste the material and I'll work from that. The output has the same shape.
+> Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.
+
+---
+
 ## Pre-flight
 
 - Load `/foundation/brain.md` Sections 2, 3 if it exists — see Step 0 for the full sequence.

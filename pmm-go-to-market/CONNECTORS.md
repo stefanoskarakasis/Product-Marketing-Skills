@@ -10,8 +10,14 @@ and the output has the same shape. Category definitions live in the root
 | `~~market data` | segment sizing and competitor signals | SimilarWeb |
 | `~~call recordings` | buyer language for beachhead and motion choices | Fireflies, Gong |
 | `~~team chat` | launch coordination context | Slack |
+| `~~email marketing` | lifecycle and campaign performance | Klaviyo |
+| `~~marketing analytics` | cross-channel performance | Supermetrics |
+| `~~design` | launch assets | Canva |
+| `~~email` | stakeholder and customer email threads | Gmail |
+| `~~calendar` | launch dates and milestones | Google Calendar |
+| `~~cloud storage` | launch docs and decks | Google Drive |
 
-Servers in this plugin's `.mcp.json`: hubspot, similarweb, fireflies, gong, slack.
+Servers in this plugin's `.mcp.json`: hubspot, similarweb, fireflies, gong, slack, klaviyo, supermetrics, canva, gmail, google-calendar, google-drive.
 
 Rules: read-only by default, ask before writing, tag every pulled fact with
 category, tool and date, treat pulled facts as drafts until confirmed, and

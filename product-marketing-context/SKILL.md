@@ -96,6 +96,8 @@ Connect your tools to supercharge this skill:
 | `~~call recordings` | Buyer language and objections for Sections 2, 3 and 6 |
 | `~~market data` | Competitor and market signals for Sections 3 and 5 |
 | `~~support` | Pain-point and churn language for Sections 2 and 4 |
+| `~~cloud storage` | Decks, pricing and case studies for Sections 1 and 6 |
+| `~~team chat` | Field feedback and win threads for Sections 4 and 6 |
 
 > **No connectors?** No problem. Paste what you have — a deck excerpt, a pricing page, a win/loss doc — and I'll work from that.
 >

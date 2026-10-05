@@ -8,14 +8,20 @@
   `CONNECTORS.md` category registry, and `docs/connect-your-tools.md`.
 - Added optional Connectors blocks and evals to the brain and fifteen skills.
 - Added structure Check 5 for connector files.
-- Added a Connectors section to `CLAUDE.md` and `CONTRIBUTING.md`, a connect
-  step in `QUICK-START.md`, and an access-requirements note in the README.
+- Wired Canva, Klaviyo, Supermetrics, Amplitude EU, Gmail, Google Calendar and
+  Google Drive, and added Slack, Ahrefs and Notion to more plugins. Added
+  `~~email marketing` and `~~marketing analytics` categories.
+- Added the Slack OAuth client settings that Slack's MCP server needs.
+- Added structure Check 6 that blocks credentials in `.mcp.json`, a
+  "personal setup" section in the connect guide, `docs/make-it-yours.md`, and
+  an "other tools that work" column in `CONNECTORS.md`.
+- Added consistent display names for all plugins in the marketplace listing.
 - Added a Connectors section to `CLAUDE.md` and `CONTRIBUTING.md`, a connect
   step in `QUICK-START.md`, and an access-requirements note in the README.
 - Fixed the dead `hs-proof-points-claims` reference in message-house and
   reset the pmm-positioning version to match the CHANGELOG.
 
-## v1.1.0 — 2026-08-25
+## v1.0.0 — 2026-08-25
 
 ### Repo-wide
 

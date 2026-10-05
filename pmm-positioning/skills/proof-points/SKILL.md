@@ -120,6 +120,8 @@ dates, undocumented customer names, and unsupported superlatives.
 | `~~call recordings` | Customer quotes (enter as unverified) |
 | `~~CRM` | Metric candidates (enter as unverified) |
 | `~~product analytics` | Usage evidence (paste export) |
+| `~~team chat` | Win announcements and customer praise (enter as unverified) |
+| `~~cloud storage` | Case studies and decks in Drive |
 
 > **No connectors?** Paste the material and I'll work from that. The output has the same shape.
 > Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.

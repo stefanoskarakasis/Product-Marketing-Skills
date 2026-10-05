@@ -8,8 +8,12 @@ and the output has the same shape. Category definitions live in the root
 |---|---|---|
 | `~~knowledge base` | source material for briefs and writing | Notion, Atlassian |
 | `~~team chat` | thread context for briefs | Slack |
+| `~~email` | email context for drafts and briefs | Gmail |
+| `~~calendar` | project dates and stakeholder meetings | Google Calendar |
+| `~~cloud storage` | source docs and decks | Google Drive |
+| `~~design` | creative assets referenced in briefs | Canva |
 
-Servers in this plugin's `.mcp.json`: notion, atlassian, slack.
+Servers in this plugin's `.mcp.json`: notion, atlassian, slack, gmail, google-calendar, google-drive, canva.
 
 Rules: read-only by default, ask before writing, tag every pulled fact with
 category, tool and date, treat pulled facts as drafts until confirmed, and

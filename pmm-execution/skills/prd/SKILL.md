@@ -71,7 +71,8 @@ Guides Product Managers and Product Marketing Managers to co-create complete Pro
 |---|---|
 | `~~knowledge base` | Source docs and prior specs |
 | `~~project tracker` | Ticket and roadmap context |
-| `~~design` | Design files referenced in the spec |
+| `~~design` | Design files and assets referenced in the spec |
+| `~~cloud storage` | Specs and decks in Drive |
 
 > **No connectors?** Paste the material and I'll work from that. The output has the same shape.
 > Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.

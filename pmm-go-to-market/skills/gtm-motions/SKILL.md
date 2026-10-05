@@ -47,6 +47,19 @@ attached to it; this skill replaces that guess with gates and scores.
 
 ---
 
+## Connectors (Optional)
+
+| Connector | What it adds |
+|---|---|
+| `~~CRM` | Which motions closed deals |
+| `~~email marketing` | Lifecycle motion performance |
+| `~~marketing analytics` | Channel performance |
+
+> **No connectors?** Paste the material and I'll work from that. The output has the same shape.
+> Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.
+
+---
+
 ## Pre-flight
 
 - Load `/foundation/brain.md` Sections 2, 3 if present — see Step 0.

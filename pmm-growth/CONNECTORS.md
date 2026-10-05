@@ -6,12 +6,14 @@ and the output has the same shape. Category definitions live in the root
 
 | Placeholder | What it adds here | Wired today |
 |---|---|---|
-| `~~product analytics` | activation, adoption and retention metrics | Amplitude, Pendo |
+| `~~product analytics` | activation, adoption and retention metrics | Amplitude (US and EU), Pendo |
 | `~~market data` | traffic and market benchmarks | SimilarWeb |
 | `~~SEO` | keyword and content demand signals | Ahrefs |
 | `~~CRM` | funnel and conversion data | HubSpot |
+| `~~email marketing` | lifecycle email performance | Klaviyo |
+| `~~marketing analytics` | cross-channel campaign and spend performance | Supermetrics |
 
-Servers in this plugin's `.mcp.json`: amplitude, pendo, similarweb, ahrefs, hubspot.
+Servers in this plugin's `.mcp.json`: amplitude, amplitude-eu, pendo, similarweb, ahrefs, hubspot, klaviyo, supermetrics.
 
 Rules: read-only by default, ask before writing, tag every pulled fact with
 category, tool and date, treat pulled facts as drafts until confirmed, and

@@ -94,7 +94,7 @@ confirmation).
 | Connector | What it adds |
 |---|---|
 | `~~market data` | Market and traffic signals |
-| `~~SEO` | Demand trends (paste export) |
+| `~~SEO` | Demand trends |
 | `~~knowledge base` | Internal market notes |
 
 > **No connectors?** Paste the material and I'll work from that. The output has the same shape.

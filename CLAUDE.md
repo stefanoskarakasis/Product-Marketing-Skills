@@ -37,6 +37,9 @@ See also [AGENTS.md](AGENTS.md) for skill-authoring conventions and
   `CONNECTORS.md`. The structure check enforces this.
 - A plugin that ships a `.mcp.json` must name each of its servers in its
   `CONNECTORS.md`. Each server needs `type` and `url`.
+- Never commit credentials. A `.mcp.json` must not contain keys, tokens,
+  passwords, `headers`, `env` or authorization values. Each user signs in
+  with their own account. The structure check enforces this.
 - Connectors are read-only by default, pulled facts are drafts until the
   user confirms, and every skill with a connector block must still work by
   paste when no connector is present.

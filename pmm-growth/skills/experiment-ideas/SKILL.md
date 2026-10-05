@@ -97,6 +97,8 @@ does gets flagged, not silently kept.
 |---|---|
 | `~~product analytics` | Where users drop off |
 | `~~SEO` | Keyword demand signals |
+| `~~email marketing` | What lifecycle email already tests |
+| `~~marketing analytics` | Channel efficiency |
 
 > **No connectors?** Paste the material and I'll work from that. The output has the same shape.
 > Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.

@@ -52,6 +52,8 @@ decisions. Not a feelings circle. A diagnostic system.
 |---|---|
 | `~~project tracker` | Launch tasks and outcomes |
 | `~~knowledge base` | Launch docs and OKRs |
+| `~~team chat` | Launch threads |
+| `~~calendar` | Retro scheduling and attendees |
 
 > **No connectors?** Paste the material and I'll work from that. The output has the same shape.
 > Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.

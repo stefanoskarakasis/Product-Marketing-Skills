@@ -57,6 +57,7 @@ Built on JTBD theory. Sharpened for B2B product and GTM contexts.
 | Connector | What it adds |
 |---|---|
 | `~~call recordings` | Transcripts pulled instead of pasted |
+| `~~email` | Customer email threads |
 
 > **No connectors?** Paste the material and I'll work from that. The output has the same shape.
 > Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.

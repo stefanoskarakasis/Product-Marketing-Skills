@@ -317,6 +317,23 @@ Note that pattern-across-sessions detection (comparing this session's row agains
 
 ---
 
+## Eval 9 — Connector present: pulled facts are tagged drafts
+
+**Setup:** The `project tracker` connector is available and returns relevant material.
+
+**Prompt:** "Run a pre-mortem using the open launch tickets."
+
+**Expect:** Facts are pulled and each is shown tagged with category, tool and date. Nothing is written to the brain or any external tool until the user confirms. Pulled quotes and proof points are marked unverified.
+
+## Eval 10 — No connectors: paste fallback, same output shape
+
+**Setup:** No connectors are available.
+
+**Prompt:** "Run a pre-mortem."
+
+**Expect:** The skill asks the user to paste the material, then produces the same output format as with a connector. It does not claim to have pulled anything.
+
+
 ## Running Evals
 
 ```bash

@@ -24,6 +24,10 @@ Every skill works without connectors. Install this plugin on its own to load its
 |---|---|---|
 | `~~knowledge base` | source material for briefs and writing | Notion, Atlassian |
 | `~~team chat` | thread context for briefs | Slack |
+| `~~email` | email context for drafts and briefs | Gmail |
+| `~~calendar` | project dates and stakeholder meetings | Google Calendar |
+| `~~cloud storage` | source docs and decks | Google Drive |
+| `~~design` | creative assets referenced in briefs | Canva |
 
 Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
 

@@ -33,7 +33,11 @@ Every skill works without connectors. Install this plugin on its own to load its
 | `~~call recordings` | interview and call transcripts for summaries | Fireflies, Gong |
 | `~~knowledge base` | retro, PRD and OKR source docs | Notion, Atlassian |
 | `~~project tracker` | launch tasks and ticket context | Linear |
-| `~~design` | design files referenced in PRDs | Figma |
+| `~~design` | design files and assets referenced in PRDs | Figma, Canva |
+| `~~team chat` | stakeholder and launch threads | Slack |
+| `~~email` | customer and stakeholder email threads | Gmail |
+| `~~calendar` | meeting cadence and attendees | Google Calendar |
+| `~~cloud storage` | specs, decks and spreadsheets | Google Drive |
 
 Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
 

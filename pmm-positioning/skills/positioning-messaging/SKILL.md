@@ -127,6 +127,7 @@ implied category. Report as: `"Your current materials say: [findings]"`
 | `~~CRM` | Win/loss reasons |
 | `~~market data` | Competitor and market signals |
 | `~~knowledge base` | Existing positioning docs |
+| `~~cloud storage` | Existing decks and messaging in Drive |
 
 > **No connectors?** Paste the material and I'll work from that. The output has the same shape.
 > Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.

@@ -171,6 +171,23 @@ source: surprised
 
 ---
 
+## Eval 7 — Connector present: pulled facts are tagged drafts
+
+**Setup:** The `CRM` connector is available and returns relevant material.
+
+**Prompt:** "Choose our GTM motion using which motions closed deals."
+
+**Expect:** Facts are pulled and each is shown tagged with category, tool and date. Nothing is written to the brain or any external tool until the user confirms. Pulled quotes and proof points are marked unverified.
+
+## Eval 8 — No connectors: paste fallback, same output shape
+
+**Setup:** No connectors are available.
+
+**Prompt:** "Choose our GTM motion."
+
+**Expect:** The skill asks the user to paste the material, then produces the same output format as with a connector. It does not claim to have pulled anything.
+
+
 ## Running Evals
 
 ```bash

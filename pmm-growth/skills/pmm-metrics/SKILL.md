@@ -115,6 +115,8 @@ themselves — this skill has no durable output file of its own.
 |---|---|
 | `~~product analytics` | Activation and adoption metrics |
 | `~~CRM` | Funnel conversion data |
+| `~~marketing analytics` | Cross-channel performance |
+| `~~email marketing` | Lifecycle email metrics |
 
 > **No connectors?** Paste the material and I'll work from that. The output has the same shape.
 > Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.

@@ -53,6 +53,21 @@ enough to act on.
 
 ---
 
+## Connectors (Optional)
+
+| Connector | What it adds |
+|---|---|
+| `~~knowledge base` | Source material for the brief |
+| `~~cloud storage` | Existing decks and plans |
+| `~~calendar` | Project dates |
+| `~~team chat` | Stakeholder threads |
+| `~~email` | Stakeholder email threads |
+
+> **No connectors?** Paste the material and I'll work from that. The output has the same shape.
+> Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.
+
+---
+
 ## Pre-flight
 
 - Load `/foundation/brain.md` silently if present. Extract: ICP (for Audience),

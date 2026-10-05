@@ -26,6 +26,12 @@ Every skill works without connectors. Install this plugin on its own to load its
 | `~~market data` | segment sizing and competitor signals | SimilarWeb |
 | `~~call recordings` | buyer language for beachhead and motion choices | Fireflies, Gong |
 | `~~team chat` | launch coordination context | Slack |
+| `~~email marketing` | lifecycle and campaign performance | Klaviyo |
+| `~~marketing analytics` | cross-channel performance | Supermetrics |
+| `~~design` | launch assets | Canva |
+| `~~email` | stakeholder and customer email threads | Gmail |
+| `~~calendar` | launch dates and milestones | Google Calendar |
+| `~~cloud storage` | launch docs and decks | Google Drive |
 
 Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
 

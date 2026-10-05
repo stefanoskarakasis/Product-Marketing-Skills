@@ -59,6 +59,19 @@ The skill runs in 7 steps:
 
 ---
 
+## Connectors (Optional)
+
+| Connector | What it adds |
+|---|---|
+| `~~project tracker` | Open launch risks and blockers |
+| `~~knowledge base` | Launch plan and prior post-mortems |
+| `~~team chat` | Concerns raised in threads |
+
+> **No connectors?** Paste the material and I'll work from that. The output has the same shape.
+> Pulled facts are drafts: each is tagged with category, tool and date, and nothing is written until you confirm.
+
+---
+
 ## Pre-flight
 
 - Load `/foundation/brain.md` Sections 2, 3 (ICP, alternatives & positioning) if it exists — see Step 0 for the full sequence.

@@ -11,6 +11,7 @@
   "plugins": [
     {
       "name": "pmm-go-to-market",
+      "displayName": "PMM Go-to-Market",
       "description": "Go-to-market strategy, tier assignment, and workflow orchestration for product launches, positioning refresh, competitive programs, and quarterly PMM cycles",
       "source": "./pmm-go-to-market"
     },
@@ -20,35 +21,57 @@
       "description": "Build positioning and messaging that actually lands. Define your ideal customer, map the competitive landscape, and keep your team's story consistent everywhere it's told.",
       "source": "./pmm-positioning",
       "category": "product-marketing",
-      "tags": ["positioning", "messaging", "gtm", "competitive-intelligence", "b2b-saas", "icp", "product-marketing"],
-      "dependencies": ["product-marketing-context"]
+      "tags": [
+        "positioning",
+        "messaging",
+        "gtm",
+        "competitive-intelligence",
+        "b2b-saas",
+        "icp",
+        "product-marketing"
+      ],
+      "dependencies": [
+        "product-marketing-context"
+      ]
     },
     {
       "name": "pmm-execution",
+      "displayName": "PMM Execution",
       "description": "Day-to-day PMM execution: PRDs, OKRs, pre-mortems, retros, stakeholder maps, interviews, experiments, and prioritization",
       "source": "./pmm-execution"
     },
     {
       "name": "pmm-growth",
+      "displayName": "PMM Growth",
       "description": "Growth ideation and measurement: a North Star Metric and capped scorecard to aim at, brain-grounded campaign ideas, and fast, trace-checked value-prop variants of an already-set positioning",
       "source": "./pmm-growth"
     },
     {
       "name": "pmm-toolkit",
+      "displayName": "PMM Toolkit",
       "description": "PMM utilities: writing assistant, resume review, privacy policy generator, GACCS briefs",
       "source": "./pmm-toolkit"
     },
     {
       "name": "pmm-meta",
+      "displayName": "PMM Meta",
       "description": "Meta skills for skill quality, session learning, and output verification: meta-review, meta-learn, meta-synthesis, meta-verify",
       "source": "./pmm-meta"
     },
     {
       "name": "product-marketing-context",
+      "displayName": "PMM Brain",
       "description": "The PMM brain — builds and maintains /foundation/brain.md, the GTM context file every other plugin in this stack reads before producing output. Install this alongside pmm-positioning; it's the shared foundation the other skills require.",
       "source": "./product-marketing-context",
       "category": "product-marketing",
-      "tags": ["gtm", "foundation", "icp", "positioning", "b2b-saas", "product-marketing"]
+      "tags": [
+        "gtm",
+        "foundation",
+        "icp",
+        "positioning",
+        "b2b-saas",
+        "product-marketing"
+      ]
     }
   ]
 }

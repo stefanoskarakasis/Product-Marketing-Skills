@@ -52,6 +52,7 @@ Built on JTBD theory. Sharpened for B2B product and GTM contexts.
   - `/foundation/brain.md` (ICP, Positioning, Beachhead Segment sections) — optional, if exists: load for validation
   - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior interviews
 ---
+
 ## Connectors (Optional)
 
 | Connector | What it adds |

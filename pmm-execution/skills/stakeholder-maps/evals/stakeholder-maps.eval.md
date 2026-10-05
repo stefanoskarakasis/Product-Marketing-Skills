@@ -383,6 +383,7 @@ Note that pattern-across-sessions detection (comparing this session's row agains
 
 **Expect:** The skill asks the user to paste the material, then produces the same output format as with a connector. It does not claim to have pulled anything.
 
+---
 
 ## Running Evals
 

@@ -1,5 +1,6 @@
 {
   "name": "pmm-toolkit",
+  "displayName": "PMM Toolkit",
   "description": "PMM utilities: writing assistant, resume review, privacy policy generator, GACCS briefs. Essential tools for product marketers.",
   "version": "1.1.0",
   "author": {

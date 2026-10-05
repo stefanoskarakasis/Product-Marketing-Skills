@@ -164,3 +164,43 @@ document at the end.
 ## Usage
 
 Once installed, ask your agent to help with PMM tasks:
+
+- "Build my ICP from these customer interviews"
+- "Map the alternatives my buyers consider and how we compare"
+- "Plan the launch for our new feature as a Tier 2 launch"
+- "Run a retro on last quarter's launch"
+
+Or call a skill directly, for example `/pmm-positioning:ideal-customer-profile`.
+
+## Making Them Yours
+
+The skills use `~~category` placeholders (like `~~CRM`) instead of vendor names, so you can swap in your own stack. Use the defaults, add a different tool in the same category, or fork the repo and edit the skills to fit your company. Full guide: [docs/make-it-yours.md](docs/make-it-yours.md).
+
+## Contributing
+
+Contributions are welcome: new skills, better frameworks, fixes, and connector ideas.
+
+- Read [CONTRIBUTING.md](CONTRIBUTING.md) and [SKILL-SPEC.md](SKILL-SPEC.md) first.
+- Connector rules (placeholders only, never commit credentials) are in [CLAUDE.md](CLAUDE.md).
+- A structure check runs on every change. Locally: `python3 .github/scripts/check_structure.py`.
+- Found a bug or have an idea? [Open an issue](https://github.com/stefanoskarakasis/Product-Marketing-Skills/issues).
+
+## About
+
+This marketplace evolves with practice and AI capabilities.
+
+Selected skills based on the work of:
+
+- **April Dunford**, *Obviously Awesome*: positioning
+- **Jobs to Be Done** theory: customer needs and switching behavior
+- **Intercom**: RICE prioritization
+- **Noriaki Kano**: the Kano model
+- **ICE scoring**: lightweight experiment prioritization
+- **Paweł Huryn**: the self-improving memory loop, and the plugin structure of [pm-skills](https://github.com/phuryn/pm-skills)
+- **Anthropic**: [knowledge-work-plugins](https://github.com/anthropics/knowledge-work-plugins), the model for plugin and connector layout
+
+Curated by [Stefanos Karakasis](https://stefanoskarakasis.substack.com/). Subscribe to the newsletter for new skills, templates, and PMM playbooks.
+
+## License
+
+[MIT](LICENSE)

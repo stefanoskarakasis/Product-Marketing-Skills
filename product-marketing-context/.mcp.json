@@ -27,6 +27,18 @@
     "intercom": {
       "type": "http",
       "url": "https://mcp.intercom.com/mcp"
+    },
+    "google-drive": {
+      "type": "http",
+      "url": "https://drivemcp.googleapis.com/mcp/v1"
+    },
+    "slack": {
+      "type": "http",
+      "url": "https://mcp.slack.com/mcp",
+      "oauth": {
+        "clientId": "1601185624273.8899143856786",
+        "callbackPort": 3118
+      }
     }
   }
 }

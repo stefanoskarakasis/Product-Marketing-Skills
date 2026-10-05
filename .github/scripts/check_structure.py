@@ -264,6 +264,37 @@ for plugin_dir in sorted(on_disk_plugin_dirs):
             if name.lower() not in conn_text.lower():
                 problems.append(f"{conn_rel}: server '{name}' is in .mcp.json but not named here")
 
+# ---- Check 6: no credentials in .mcp.json files ------------------------
+# Each product marketer signs in with their own account. A .mcp.json must
+# never carry keys, tokens, passwords, headers or env values. (oauth clientId
+# is a public identifier and is allowed.)
+
+FORBIDDEN_KEYS = {"headers", "env", "token", "apikey", "api_key", "secret",
+                  "password", "authorization", "bearer", "accesstoken"}
+FORBIDDEN_URL_BITS = ("key=", "token=", "apikey=", "secret=", "password=")
+
+
+def _scan_mcp(node, where, rel):
+    if isinstance(node, dict):
+        for k, v in node.items():
+            if str(k).lower() in FORBIDDEN_KEYS:
+                problems.append(f"{rel}: '{k}' found at {where or 'top level'}; "
+                                f"credentials must not be stored in .mcp.json")
+            elif k == "url" and isinstance(v, str) and any(b in v.lower() for b in FORBIDDEN_URL_BITS):
+                problems.append(f"{rel}: url at {where or 'top level'} looks like it carries a credential")
+            _scan_mcp(v, f"{where}.{k}" if where else str(k), rel)
+    elif isinstance(node, list):
+        for i, v in enumerate(node):
+            _scan_mcp(v, f"{where}[{i}]", rel)
+
+
+for plugin_dir in sorted(on_disk_plugin_dirs):
+    mcp_rel = f"{plugin_dir}/.mcp.json"
+    if os.path.isfile(os.path.join(ROOT, mcp_rel)):
+        data6, err6 = load_json(mcp_rel)
+        if data6 is not None:
+            _scan_mcp(data6, "", mcp_rel)
+
 # ---- Report -----------------------------------------------------------
 
 if problems:

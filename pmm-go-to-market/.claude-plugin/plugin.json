@@ -1,5 +1,6 @@
 {
   "name": "pmm-go-to-market",
+  "displayName": "PMM Go-to-Market",
   "description": "Go-to-market strategy and workflow orchestration for product launches, GTM programs, positioning refresh, and market expansion",
   "version": "1.1.0",
   "author": {

@@ -13,7 +13,9 @@ metadata:
 last_updated: 2026-08-24
 ---
 # Experiment Doc Builder
+
 I help you design experiments that actually prove something. Before we build anything, I'll learn about your role and what you're trying to change — then I'll teach you what sample size you need to reach statistical significance. Only ideas that can scale to significance become experiment briefs.
+
 ---
 ## Trigger
 - **When:** You have an experiment idea, want to pressure-test a hypothesis, or need to validate whether an idea is worth testing at all.

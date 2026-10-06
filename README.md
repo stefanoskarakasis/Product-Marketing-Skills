@@ -22,6 +22,7 @@ marketing tasks. The system operates on a foundational principle:
 reads it. Zero repetition."
 
 **The Brain System:**
+
 Users establish a single context document — `/foundation/brain.md` —
 that stores product context, ICP, positioning, voice and tone, market
 context, and proof points across 6 sections. Every skill in this

@@ -1,9 +1,14 @@
 # Changelog
 
+## Unreleased
+
 ### Connectors
 
-- Added Google Docs, Google Sheets and Google Slides servers, and added Gmail,
-  Google Calendar and Google Drive to every plugin that uses connectors.
+- Added Google Docs, Google Sheets and Google Slides servers. Each plugin wires only
+  the Google servers its skills use: Gmail and Calendar in execution,
+  go-to-market and toolkit; Drive, Docs, Sheets and Slides in the brain; Drive,
+  Docs and Slides in positioning; Drive and Sheets in growth. `pmm-meta` has none.
+- Added `~~cloud storage` to the pmm-metrics and experiment-ideas connector blocks.
 
 ## v1.1.0 — 2026-10-04
 

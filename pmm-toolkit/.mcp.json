@@ -31,6 +31,18 @@
     "canva": {
       "type": "http",
       "url": "https://mcp.canva.com/mcp"
+    },
+    "google-docs": {
+      "type": "http",
+      "url": "https://docsmcp.googleapis.com/mcp/v1"
+    },
+    "google-sheets": {
+      "type": "http",
+      "url": "https://sheetsmcp.googleapis.com/mcp/v1"
+    },
+    "google-slides": {
+      "type": "http",
+      "url": "https://slidesmcp.googleapis.com/mcp/v1"
     }
   }
 }

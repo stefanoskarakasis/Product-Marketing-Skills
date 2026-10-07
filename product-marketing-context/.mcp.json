@@ -28,10 +28,6 @@
       "type": "http",
       "url": "https://mcp.intercom.com/mcp"
     },
-    "google-drive": {
-      "type": "http",
-      "url": "https://drivemcp.googleapis.com/mcp/v1"
-    },
     "slack": {
       "type": "http",
       "url": "https://mcp.slack.com/mcp",
@@ -40,13 +36,9 @@
         "callbackPort": 3118
       }
     },
-    "gmail": {
+    "google-drive": {
       "type": "http",
-      "url": "https://gmailmcp.googleapis.com/mcp/v1"
-    },
-    "google-calendar": {
-      "type": "http",
-      "url": "https://calendarmcp.googleapis.com/mcp/v1"
+      "url": "https://drivemcp.googleapis.com/mcp/v1"
     },
     "google-docs": {
       "type": "http",

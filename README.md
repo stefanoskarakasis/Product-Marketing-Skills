@@ -35,8 +35,7 @@ need to re-explain context across sessions.
 battlecards, or briefs, you re-explain your company. By the fifth
 conversation, you're copy-pasting from old chats.
 
-**The solution:** build your brain once with `product-marketing-context`.
-Every other skill in this stack reads from `/foundation/brain.md` instead
+**The solution:** build your brain once with `product-marketing-context`. Every other skill in this stack reads from `/foundation/brain.md` instead
 of asking again.
 
 ## How It Works: Skills and Plugins

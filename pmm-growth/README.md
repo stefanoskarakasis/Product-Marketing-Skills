@@ -58,6 +58,9 @@ Every skill works without connectors. Install this plugin on its own to load its
 | `~~CRM` | funnel and conversion data | HubSpot |
 | `~~email marketing` | lifecycle email performance | Klaviyo |
 | `~~marketing analytics` | cross-channel campaign and spend performance | Supermetrics |
+| `~~cloud storage` | experiment docs, metric sheets and decks | Google Drive, Google Docs, Google Sheets, Google Slides |
+| `~~email` | stakeholder and experiment-readout threads | Gmail |
+| `~~calendar` | experiment review dates and stakeholders | Google Calendar |
 
 Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
 

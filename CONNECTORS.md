@@ -36,9 +36,9 @@ have and the output has the same shape.
 | `~~design` | Design files, prototypes and launch assets | Figma, Canva | Adobe Creative Cloud |
 | `~~email` | Customer and stakeholder email context | Gmail | Outlook |
 | `~~calendar` | Meeting cadence, launch dates and attendees | Google Calendar | Outlook Calendar |
-| `~~cloud storage` | Decks, docs and spreadsheets in Drive | Google Drive | OneDrive, SharePoint, Dropbox, Box |
+| `~~cloud storage` | Decks, docs and spreadsheets in Drive | Google Drive, Docs, Sheets, Slides | OneDrive, SharePoint, Dropbox, Box |
 
-Gmail, Google Calendar and Google Drive can also be enabled as built-in
+Gmail, Google Calendar, Google Drive, Docs, Sheets and Slides can also be enabled as built-in
 Claude connectors in Claude settings. If sign-in through a plugin fails,
 use the built-in connector instead.
 

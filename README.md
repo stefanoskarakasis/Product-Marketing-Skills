@@ -142,12 +142,12 @@ Skills work without connectors. Connect tools and they pull candidate facts for 
 
 | Plugin | Connectors wired |
 |---|---|
-| product-marketing-context | Notion, Atlassian, HubSpot, Fireflies, Gong, SimilarWeb, Intercom, Google Drive, Slack |
-| pmm-positioning | Fireflies, Gong, HubSpot, SimilarWeb, Intercom, Notion, Atlassian, Ahrefs, Slack, Google Drive |
-| pmm-execution | Fireflies, Gong, Notion, Atlassian, Linear, Figma, Canva, Slack, Gmail, Google Calendar, Google Drive |
-| pmm-go-to-market | HubSpot, SimilarWeb, Fireflies, Gong, Slack, Klaviyo, Supermetrics, Canva, Gmail, Google Calendar, Google Drive |
-| pmm-growth | Amplitude (US and EU), Pendo, SimilarWeb, Ahrefs, HubSpot, Klaviyo, Supermetrics |
-| pmm-toolkit | Notion, Atlassian, Slack, Gmail, Google Calendar, Google Drive, Canva |
+| product-marketing-context | Notion, Atlassian, HubSpot, Fireflies, Gong, SimilarWeb, Intercom, Slack, Gmail, Google Calendar, Google Drive, Google Docs, Google Sheets, Google Slides |
+| pmm-positioning | Fireflies, Gong, HubSpot, SimilarWeb, Intercom, Notion, Atlassian, Ahrefs, Slack, Gmail, Google Calendar, Google Drive, Google Docs, Google Sheets, Google Slides |
+| pmm-execution | Fireflies, Gong, Notion, Atlassian, Linear, Figma, Canva, Slack, Gmail, Google Calendar, Google Drive, Google Docs, Google Sheets, Google Slides |
+| pmm-go-to-market | HubSpot, SimilarWeb, Fireflies, Gong, Slack, Klaviyo, Supermetrics, Canva, Gmail, Google Calendar, Google Drive, Google Docs, Google Sheets, Google Slides |
+| pmm-growth | Amplitude (US and EU), Pendo, SimilarWeb, Ahrefs, HubSpot, Klaviyo, Supermetrics, Gmail, Google Calendar, Google Drive, Google Docs, Google Sheets, Google Slides |
+| pmm-toolkit | Notion, Atlassian, Slack, Canva, Gmail, Google Calendar, Google Drive, Google Docs, Google Sheets, Google Slides |
 | pmm-meta | None |
 
 Some connectors need extra access: SimilarWeb and Ahrefs need an API plan,

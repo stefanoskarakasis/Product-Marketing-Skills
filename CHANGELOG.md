@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Connectors
+
+- Added Google Docs, Google Sheets and Google Slides servers, and added Gmail,
+  Google Calendar and Google Drive to every plugin that uses connectors.
+
 ## v1.1.0 — 2026-10-04
 
 ### Connectors

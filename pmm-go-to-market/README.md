@@ -31,7 +31,7 @@ Every skill works without connectors. Install this plugin on its own to load its
 | `~~design` | launch assets | Canva |
 | `~~email` | stakeholder and customer email threads | Gmail |
 | `~~calendar` | launch dates and milestones | Google Calendar |
-| `~~cloud storage` | launch docs and decks | Google Drive |
+| `~~cloud storage` | launch docs, sheets and decks | Google Drive, Google Docs, Google Sheets, Google Slides |
 
 Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
 

@@ -35,7 +35,9 @@ Every skill works without connectors. Install this plugin on its own to load its
 | `~~call recordings` | ICP, Alternatives, Proof Points (buyer language, objections) | Fireflies, Gong |
 | `~~market data` | Alternatives and Market Context | SimilarWeb |
 | `~~support` | ICP pain points, Voice and Tone | Intercom |
-| `~~cloud storage` | Product Context and Proof Points (decks, pricing, case studies) | Google Drive |
+| `~~cloud storage` | Product Context, Proof Points and working docs, sheets and decks | Google Drive, Google Docs, Google Sheets, Google Slides |
+| `~~email` | email context for voice and objections | Gmail |
+| `~~calendar` | meeting context for launches and stakeholders | Google Calendar |
 | `~~team chat` | Voice and Tone, Proof Points (field feedback, win threads) | Slack |
 
 Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).

@@ -15,9 +15,9 @@ and the output has the same shape. Category definitions live in the root
 | `~~design` | launch assets | Canva |
 | `~~email` | stakeholder and customer email threads | Gmail |
 | `~~calendar` | launch dates and milestones | Google Calendar |
-| `~~cloud storage` | launch docs and decks | Google Drive |
+| `~~cloud storage` | launch docs, sheets and decks | Google Drive, Google Docs, Google Sheets, Google Slides |
 
-Servers in this plugin's `.mcp.json`: hubspot, similarweb, fireflies, gong, slack, klaviyo, supermetrics, canva, gmail, google-calendar, google-drive.
+Servers in this plugin's `.mcp.json`: hubspot, similarweb, fireflies, gong, slack, klaviyo, supermetrics, canva, gmail, google-calendar, google-drive, google-docs, google-sheets, google-slides.
 
 Rules: read-only by default, ask before writing, tag every pulled fact with
 category, tool and date, treat pulled facts as drafts until confirmed, and

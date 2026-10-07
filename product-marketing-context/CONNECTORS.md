@@ -11,10 +11,12 @@ and the output has the same shape. Category definitions live in the root
 | `~~call recordings` | ICP, Alternatives, Proof Points (buyer language, objections) | Fireflies, Gong |
 | `~~market data` | Alternatives and Market Context | SimilarWeb |
 | `~~support` | ICP pain points, Voice and Tone | Intercom |
-| `~~cloud storage` | Product Context and Proof Points (decks, pricing, case studies) | Google Drive |
+| `~~cloud storage` | Product Context, Proof Points and working docs, sheets and decks | Google Drive, Google Docs, Google Sheets, Google Slides |
+| `~~email` | email context for voice and objections | Gmail |
+| `~~calendar` | meeting context for launches and stakeholders | Google Calendar |
 | `~~team chat` | Voice and Tone, Proof Points (field feedback, win threads) | Slack |
 
-Servers in this plugin's `.mcp.json`: notion, atlassian, hubspot, fireflies, gong, similarweb, intercom, google-drive, slack.
+Servers in this plugin's `.mcp.json`: notion, atlassian, hubspot, fireflies, gong, similarweb, intercom, google-drive, slack, gmail, google-calendar, google-docs, google-sheets, google-slides.
 
 Rules: read-only by default, ask before writing, tag every pulled fact with
 category, tool and date, treat pulled facts as drafts until confirmed, and

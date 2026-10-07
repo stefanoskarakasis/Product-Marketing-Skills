@@ -37,7 +37,7 @@ Every skill works without connectors. Install this plugin on its own to load its
 | `~~team chat` | stakeholder and launch threads | Slack |
 | `~~email` | customer and stakeholder email threads | Gmail |
 | `~~calendar` | meeting cadence and attendees | Google Calendar |
-| `~~cloud storage` | specs, decks and spreadsheets | Google Drive |
+| `~~cloud storage` | specs, decks, docs and spreadsheets | Google Drive, Google Docs, Google Sheets, Google Slides |
 
 Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
 

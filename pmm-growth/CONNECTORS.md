@@ -12,8 +12,11 @@ and the output has the same shape. Category definitions live in the root
 | `~~CRM` | funnel and conversion data | HubSpot |
 | `~~email marketing` | lifecycle email performance | Klaviyo |
 | `~~marketing analytics` | cross-channel campaign and spend performance | Supermetrics |
+| `~~cloud storage` | experiment docs, metric sheets and decks | Google Drive, Google Docs, Google Sheets, Google Slides |
+| `~~email` | stakeholder and experiment-readout threads | Gmail |
+| `~~calendar` | experiment review dates and stakeholders | Google Calendar |
 
-Servers in this plugin's `.mcp.json`: amplitude, amplitude-eu, pendo, similarweb, ahrefs, hubspot, klaviyo, supermetrics.
+Servers in this plugin's `.mcp.json`: amplitude, amplitude-eu, pendo, similarweb, ahrefs, hubspot, klaviyo, supermetrics, gmail, google-calendar, google-drive, google-docs, google-sheets, google-slides.
 
 Rules: read-only by default, ask before writing, tag every pulled fact with
 category, tool and date, treat pulled facts as drafts until confirmed, and

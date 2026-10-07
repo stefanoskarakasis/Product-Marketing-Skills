@@ -43,7 +43,10 @@ that account can see. No keys, tokens or passwords live in this repo.
 | Ahrefs | SEO | Ahrefs API access | Keyword demand | Needs a plan with API access |
 | Gmail | email | Google login | Customer and stakeholder email threads | If sign-in fails, enable the built-in Claude Gmail connector in Claude settings instead |
 | Google Calendar | calendar | Google login | Meeting cadence, launch dates | Same: use the built-in Claude connector if the plugin sign-in fails |
-| Google Drive | cloud storage | Google login | Decks, docs and spreadsheets | Same: use the built-in Claude connector if the plugin sign-in fails |
+| Google Drive | cloud storage | Google login | Find and read files, decks and PDFs | Same: use the built-in Claude connector if the plugin sign-in fails |
+| Google Docs | cloud storage | Google login | Read and draft documents | Google lists this server as Developer Preview. If sign-in fails, use Drive or paste the text |
+| Google Sheets | cloud storage | Google login | Read metric and planning sheets | Same Developer Preview note. If sign-in fails, export to CSV and paste |
+| Google Slides | cloud storage | Google login | Read existing decks | Same Developer Preview note. If sign-in fails, use Drive or paste the text |
 
 G2 and other review sites: no server is wired. Paste an export.
 

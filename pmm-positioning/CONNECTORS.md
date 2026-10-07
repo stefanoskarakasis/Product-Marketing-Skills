@@ -13,11 +13,13 @@ and the output has the same shape. Category definitions live in the root
 | `~~knowledge base` | internal positioning and market notes | Notion, Atlassian |
 | `~~SEO` | keyword demand and competitor organic positioning | Ahrefs |
 | `~~team chat` | win threads and field feedback | Slack |
-| `~~cloud storage` | existing decks and case studies | Google Drive |
+| `~~cloud storage` | existing decks, case studies, docs and sheets | Google Drive, Google Docs, Google Sheets, Google Slides |
+| `~~email` | customer and stakeholder email language for positioning | Gmail |
+| `~~calendar` | stakeholder meetings and customer call dates | Google Calendar |
 | `~~reviews` | public review themes (paste only today) | none wired |
 | `~~product analytics` | usage evidence for proof points (paste only today) | none wired |
 
-Servers in this plugin's `.mcp.json`: fireflies, gong, hubspot, similarweb, intercom, notion, atlassian, ahrefs, slack, google-drive.
+Servers in this plugin's `.mcp.json`: fireflies, gong, hubspot, similarweb, intercom, notion, atlassian, ahrefs, slack, google-drive, gmail, google-calendar, google-docs, google-sheets, google-slides.
 
 Rules: read-only by default, ask before writing, tag every pulled fact with
 category, tool and date, treat pulled facts as drafts until confirmed, and

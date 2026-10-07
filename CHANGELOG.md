@@ -1,7 +1,5 @@
 # Changelog
 
-## Unreleased
-
 ### Connectors
 
 - Added Google Docs, Google Sheets and Google Slides servers, and added Gmail,

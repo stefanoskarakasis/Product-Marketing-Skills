@@ -2,7 +2,7 @@
   "name": "pmm-go-to-market",
   "displayName": "PMM Go-to-Market",
   "description": "Go-to-market strategy and workflow orchestration for product launches, GTM programs, positioning refresh, and market expansion",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "author": {
     "name": "Stefanos Karakasis"
   },

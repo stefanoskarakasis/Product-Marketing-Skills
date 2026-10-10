@@ -2,7 +2,7 @@
   "name": "product-marketing-context",
   "displayName": "PMM Brain",
   "description": "The PMM brain — builds and maintains /foundation/brain.md, the GTM context file every other plugin in this stack reads before producing output.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": {
     "name": "Stefanos Karakasis"
   },

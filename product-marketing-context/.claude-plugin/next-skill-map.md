@@ -126,3 +126,9 @@ direction (positioning-messaging)?"
 - message-house — if the goal is a one-page formatted deliverable and positioning is already set; the Pillars table can now cite sourced, gated proof instead of pulling from a thin, unenforced registry
 - positioning-messaging — if positioning itself still needs building or auditing, now with a real claims registry to cite from
 **Prompt to surface:** "Next, pick one: format this into a message house (message-house), or build/audit positioning with this registry backing it (positioning-messaging)?"
+
+## After customer-stories (story drafted or audited, packet saved)
+**Next options (not a single path — ask which applies):**
+- proof-points — to register the stats and approved quotes from the packet in brain Section 6, once the customer and legal have signed off
+- writing-assistant — if the story now needs a LinkedIn post, press release, newsletter item or other format built from it
+**Prompt to surface:** "Next, pick one: register the confirmed stats and quotes (proof-points), or turn this story into another format (writing-assistant)?"

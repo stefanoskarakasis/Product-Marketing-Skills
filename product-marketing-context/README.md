@@ -4,6 +4,13 @@ The PMM brain. Builds and maintains `/foundation/brain.md` — the shared
 GTM context file every other plugin in this marketplace reads before
 producing output. Install this first.
 
+## Start here
+
+- **You get:** one file, `/foundation/brain.md`, that the other plugins read instead of asking you the same questions again.
+- **First command:** `/product-marketing-context:build-brain`
+- **Try:** "Build my PMM brain for [product]. We sell to [buyer]."
+- **Want to see it first?** Open the [example brain](../examples/example-brain.md), a finished brain for a fictional company.
+
 ## Skills (1)
 
 - **product-marketing-context** — Guided setup wizard for building your

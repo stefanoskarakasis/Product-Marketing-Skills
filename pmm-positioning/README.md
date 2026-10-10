@@ -2,6 +2,13 @@
 
 Strategic positioning and messaging using April Dunford's framework — with five output modes — plus ICP, alternatives, buying-committee, market-narrative, and voice depth to ground it in real research, real competitive evidence, real power dynamics, real timing, and a consistent sound, not just firmographics.
 
+## Start here
+
+- **You get:** positioning and messaging built against the alternatives your buyers actually compare you to.
+- **First command:** `/pmm-positioning:alternatives-map`
+- **Try:** "Map our alternatives from these win/loss notes: [paste]"
+- **The brain:** `alternatives-map`, `ideal-customer-profile` and `proof-points` work from your notes and start your brain with their section. `product-messaging-playbook` asks five questions if there is no brain. The brain-building skill is a separate plugin, `product-marketing-context`.
+
 ## Skills (9)
 
 - **ideal-customer-profile** — Turn scattered signals (surveys, interviews, usage data, win/loss notes) into a clear picture of who you should be selling to — demographics, behaviors, jobs to be done, and needs. Use when your ICP is fuzzy, your pipeline quality is off, or you need to pressure-test who you're actually targeting.

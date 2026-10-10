@@ -1,7 +1,7 @@
 # SKILL-SPEC.md
 ## Product Marketing Skills — Skill Authoring Standard
 
-**Version:** 2.3.1
+**Version:** 2.4.0
 **Last updated:** 2026-10-10
 **Applies to:** All skills in this repository
 **Owner:** Stefanos Karakasis
@@ -149,6 +149,14 @@ Dependency checks and early-exit conditions. Running before anything else.
 ````
 
 **The `n.v.t.` rule applies here most often.** Simple utility skills genuinely have no pre-flight. Write `n.v.t.` explicitly so reviewers know it was considered.
+
+**Missing-brain rule (brain-dependent skills).** A plugin can be installed on its own, so a skill must not assume `product-marketing-context` is present. When the brain is absent, a brain-dependent skill must take one of these paths and must never end the session with a redirect alone:
+
+1. **Continue and start the brain.** For skills that work from evidence the user supplies (research, notes, source documents): proceed, and on the user's confirmation create `/foundation/brain.md` holding only that skill's section, marked `🟡 Cold start`.
+2. **Quick-Brain intake.** For skills that assemble from existing positioning: ask the shortest set of questions that makes the output usable (five or fewer), hold the answers for the session, and label the output as built from them.
+3. **Block with a working path.** Only when the skill's purpose is to format content that does not exist yet. The message must offer an action that works inside the same plugin (paste the content, or run a sibling skill), and any mention of `product-marketing-context` must say it is a separate plugin.
+
+If the environment cannot write files, show the block to save and never claim it was saved.
 
 ---
 

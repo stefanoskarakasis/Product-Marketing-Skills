@@ -21,6 +21,8 @@ the `product-marketing-context` skill. It walks you through:
 
 Takes about 15 minutes. Answers save to `/foundation/brain.md`.
 
+**No time for 15 minutes?** Copy [`examples/example-brain.md`](examples/example-brain.md) to `/foundation/brain.md` to see what the skills produce, or start with `alternatives-map`, `ideal-customer-profile` or `proof-points` in `pmm-positioning`: each works from your own notes and starts your brain.
+
 ## 3. Connect your tools (optional)
 
 Skills work without this. If you want them to pull facts from your own

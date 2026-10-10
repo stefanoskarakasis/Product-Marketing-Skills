@@ -16,7 +16,7 @@ Setup populates `/foundation/brain.md` with a baseline PMM context (Sections 1â€
 
 **Prompt:** "Give me a message house for our product."
 
-**Expect:** Skill blocks before building any table. Response redirects to `product-marketing-context` or `positioning-messaging` (BUILD mode), matching the Pre-flight gate language. No table is produced.
+**Expect:** Skill blocks before building any table. Response offers two working paths: paste the positioning statement and differentiators so it can format them, or run `positioning-messaging` (BUILD mode) first, matching the Pre-flight gate language. It does not send the user to a plugin they may not have. No table is produced.
 
 ## Eval 3 â€” Partial brain: gaps flagged, never fabricated
 

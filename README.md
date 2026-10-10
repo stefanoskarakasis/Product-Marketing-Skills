@@ -97,10 +97,10 @@ every other skill reads from it.
 | [gtm-motions](pmm-go-to-market/skills/gtm-motions/) | pmm-go-to-market | GTM motion stack selection scored against ICP deal economics |
 | [beachhead-segment](pmm-go-to-market/skills/beachhead-segment/) | pmm-go-to-market | First customer wedge scoring |
 | [workflow-orchestrator](pmm-go-to-market/skills/workflow-orchestrator/) | pmm-go-to-market | Chains multiple skills into full GTM programs |
-| [meta-synthesis](pmm-meta/meta-synthesis/) | pmm-meta | Pattern detection across skill sessions |
-| [meta-learn](pmm-meta/meta-learn/) | pmm-meta | Captures post-session learnings |
-| [meta-review](pmm-meta/meta-review/) | pmm-meta | Audits skills against `SKILL-SPEC.md` |
-| [meta-verify](pmm-meta/meta-verify/) | pmm-meta | Quality gate on skill output |
+| [meta-synthesis](pmm-meta/skills/meta-synthesis/) | pmm-meta | Pattern detection across skill sessions |
+| [meta-learn](pmm-meta/skills/meta-learn/) | pmm-meta | Captures post-session learnings |
+| [meta-review](pmm-meta/skills/meta-review/) | pmm-meta | Audits skills against `SKILL-SPEC.md` |
+| [meta-verify](pmm-meta/skills/meta-verify/) | pmm-meta | Quality gate on skill output |
 
 ## Installation
 
@@ -120,6 +120,8 @@ every other skill reads from it.
 Connectors load per plugin, so install the plugins individually as above. Install `product-marketing-context` first — every other plugin reads the brain it
 builds. `pmm-meta` can be installed alongside any combination of the
 others; it doesn't depend on which ones you have.
+
+**Want to see output before you build a brain?** Open [`examples/`](examples/): a finished brain for a fictional company and five prompts to try.
 
 ### Option 2: Clone and Copy
 

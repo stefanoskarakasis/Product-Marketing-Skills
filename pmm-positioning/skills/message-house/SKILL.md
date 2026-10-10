@@ -1,6 +1,6 @@
 ---
 name: message-house
-version: 1.4.0
+version: 1.4.1
 description: >
   Turns your existing positioning into one clean table: your core story
   at the top, your 3 supporting reasons to believe it below. Use when
@@ -10,7 +10,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-02
+last_updated: 2026-10-10
 ---
 
 ## Trigger
@@ -40,9 +40,9 @@ Example prompts:
 Load `/foundation/brain.md` if present. If absent, check whether the user has pasted a `positioning-messaging` output this session.
 
 **Gate check — block if both are missing:**
-> "No brain and no positioning output found. A message house formats existing positioning — it doesn't create it. Run `product-marketing-context` to build the brain, or `positioning-messaging` (BUILD mode) first, then come back."
+> "No brain and no positioning output found. A message house formats existing positioning — it doesn't create it. Paste your positioning statement and your key differentiators here and I'll format them, or run `positioning-messaging` (BUILD mode) first, then come back."
 
-**Gate check — block if positioning is present but too thin:** if Section 3 has no positioning statement and no named differentiators/pillars, do not proceed to Step 2. Surface the same redirect.
+**Gate check — block if positioning is present but too thin:** if Section 3 has no positioning statement and no named differentiators/pillars, do not proceed to Step 2. Surface the same prompt: paste the positioning here, or run `positioning-messaging` (BUILD mode) first.
 
 ## Steps
 
@@ -130,6 +130,7 @@ A single markdown document containing the Roof table and the Pillars table (side
 
 ## Verification
 
+- With no brain, the gate offered a working path: pasted positioning or `positioning-messaging`. It named no plugin the user may not have installed.
 - Every Roof row is either populated with sourced content or explicitly `[MISSING — ...]` — no blank cells, no invented copy.
 - No more than 3 pillar columns.
 - Every proof point and customer example in the Pillars table traces to brain Section 6 or an explicit statement made this session — none copied through from a placeholder.

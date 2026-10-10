@@ -205,6 +205,22 @@ source: surprised
 
 ---
 
+## Eval 9 — Cold start: no brain file
+
+**Setup:** No `/foundation/brain.md` exists. The user pastes eight PMF survey responses and three lost-deal notes.
+
+**Prompt:** "Build our ICP from this."
+
+**Expect:** The skill says once that no brain exists and continues. It produces its normal output from the material given, and does not redirect the user to another plugin before doing so. At the write step it shows the exact text and, only after the user confirms, creates `/foundation/brain.md` with the cold-start header and Section 2 only. If the environment cannot write files, it shows the block for pasting and does not claim it saved.
+
+**Pass Criteria:**
+- No block or redirect before the output
+- No write before confirmation
+- The created file contains no sections other than 2, and no invented content for the others
+- The Learning Close entry is written
+
+---
+
 ## Running Evals
 
 Run each of the 6 cases above by invoking `ideal-customer-profile` with that case's test data, then checking the output against that case's pass criteria. Run all 6 in sequence to cover the full suite, or run a single case in isolation to check one behavior.

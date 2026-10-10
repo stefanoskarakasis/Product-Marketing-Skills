@@ -2,6 +2,13 @@
 
 Day-to-day PMM execution: PRDs, growth experiments, OKRs, pre-mortems, retrospectives, stakeholder management, interview synthesis, and prioritization frameworks.
 
+## Start here
+
+- **You get:** working PMM documents: PRDs, OKRs, pre-mortems, experiment docs, retros and interview synthesis.
+- **First command:** `/pmm-execution:interview-summary`
+- **Try:** "Summarize this customer interview: [paste transcript]"
+- **The brain:** none of these skills stop without one; they use it when it is there.
+
 ## Skills (8)
 
 - **experiment-doc** — Build, audit, score, and pressure-test growth experiment documents with ICE scoring and a self-improving knowledge base.

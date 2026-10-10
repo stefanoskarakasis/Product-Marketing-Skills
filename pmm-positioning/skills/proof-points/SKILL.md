@@ -1,6 +1,6 @@
 ---
 name: proof-points
-version: 1.0.0
+version: 1.1.0
 description: >
   Build and maintain a sourced, gated registry of the proof points your
   messaging relies on — metrics, customer quotes, case study results, and
@@ -12,7 +12,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-09-25
+last_updated: 2026-10-10
 ---
 
 # Proof Points
@@ -103,13 +103,15 @@ dates, undocumented customer names, and unsupported superlatives.
   claims will be added one at a time — most first-time registries start
   from Extract mode, not Add mode.
 - **Context keys:**
-  - `/foundation/brain.md` — required. Section 6 (Proof Points Registry).
+  - `/foundation/brain.md` — optional (created on the first confirmed
+    write if missing). Section 6 (Proof Points Registry).
     Section 1 (Product Context) read for plausibility only — never to
     invent a claim the user didn't supply.
   - **Brain contract:** Reads Section 6, and Section 1 for context only.
     Writes Section 6 only — approved metrics, customer quotes/case
     studies, and forbidden claims, appended on explicit confirmation.
-    Never writes to any other section.
+    Never writes to any other section. If no brain exists, creates
+    `/foundation/brain.md` holding Section 6 alone (cold start).
 
 ---
 
@@ -131,9 +133,7 @@ dates, undocumented customer names, and unsupported superlatives.
 ## Pre-flight
 
 - Load `/foundation/brain.md` Section 6 if it exists.
-- **Hard block:** brain entirely absent → stop, direct to
-  `product-marketing-context` first. A thin or empty Section 6 is not a
-  block — that's what Extract mode exists to fix.
+- **Brain absent: continue, don't block.** This skill works from the evidence you give it. Say once: "No PMM brain found, so I'll work from your material and start the brain with this section only. Run `product-marketing-context` later (a separate plugin) to build the rest." The write step handles the cold start.
 - **Soft block:** request doesn't clearly state Extract, Add, Verify, or
   Audit → ask which applies. If Section 6 is empty and the user just says
   "build our proof points," default the question toward Extract mode first:
@@ -305,6 +305,18 @@ content, do not create a separate file:
 - [entry] — [NEEDS PROOF / NEEDS APPROVAL / STALE / unsupported superlative]
 ```
 
+**Cold start (no brain file yet).** If `/foundation/brain.md` does not exist, create it after the same confirmation, containing only this section:
+
+```markdown
+# PMM Brain — [product name, or "not set"]
+🟡 Cold start — built via proof-points on [date]. Run `product-marketing-context` to build the other sections.
+
+## Section 6: Proof Points Registry
+[the addition shown above]
+```
+
+Do not invent content for the other sections. If this environment cannot write files, show the block and tell the user to save it as `brain.md` in their working folder or Project knowledge so later sessions can read it. Never say it was saved unless the write succeeded.
+
 Never write without this explicit confirmation.
 
 ### Step 7 — Learning Close
@@ -344,6 +356,7 @@ which still requires explicit confirmation.
 
 ## Verification
 
+- Cold start: with no brain file, the skill proceeded without redirecting, and the only file it created held this section alone (or the block was shown for pasting).
 - Every approved claim traces to a stated source — no exceptions.
 - Every extracted candidate starts `[NEEDS PROOF]`, even when the source
   material cited its own source — no extraction shortcut to "approved."

@@ -2,6 +2,13 @@
 
 PMM utilities: writing assistant (internal messages plus marketing content), resume reviewer, privacy policy generator, and GACCS campaign briefs.
 
+## Start here
+
+- **You get:** everyday PMM tools: rewrite a message, draft marketing content, build a campaign brief, tailor a resume.
+- **First command:** `/pmm-toolkit:write`
+- **Try:** "Rewrite this message to my VP so the ask comes first: [paste]"
+- **The brain:** `pmm-resume` and `privacy-policy` do not use it; `write` and `brief` use it when it is there.
+
 ## Skills (4)
 
 - **gaccs-brief** — Build and pressure-test a complete GACCS Brief (Goals, Audience, Creative, Channels, Stakeholders) for any marketing or GTM project.

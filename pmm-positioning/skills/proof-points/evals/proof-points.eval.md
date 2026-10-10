@@ -129,16 +129,19 @@ recheck]` on the 18-month-old metric, and an unsupported-superlative flag
 on the "best-in-class" entry — the fully sourced, current entry is left
 unflagged. No entry is skipped.
 
-## Eval 11 — Edge case: brain entirely absent → hard block
+## Eval 11 — Edge case: brain entirely absent → cold start
 
-**Setup:** No `/foundation/brain.md` file exists.
+**Setup:** No `/foundation/brain.md` exists. The user pastes one claim with its source.
 
-**Prompt:** "Add a proof point: 4.2 stars on G2."
+**Prompt:** "Add a proof point: 4.2 stars on G2 (source: G2 profile page, checked today)."
 
-**Expect:** Skill blocks before registering anything. Response redirects to
-`product-marketing-context`, matching the Pre-flight gate language. No
-Section 6 write is attempted, and no Learning Close entry is required for
-this test (the session never reached Step 7).
+**Expect:** The skill says once that no brain exists and continues. It produces its normal output from the material given, and does not redirect the user to another plugin before doing so. At the write step it shows the exact text and, only after the user confirms, creates `/foundation/brain.md` with the cold-start header and Section 6 only. If the environment cannot write files, it shows the block for pasting and does not claim it saved.
+
+**Pass Criteria:**
+- No block or redirect before the output
+- No write before confirmation
+- The created file contains no sections other than 6, and no invented content for the others
+- The Learning Close entry is written
 
 ## Eval 12 — Quality gate specifically: forbidden claim with no reason is not allowed to ship
 

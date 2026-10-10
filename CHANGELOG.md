@@ -1,5 +1,34 @@
 # Changelog
 
+## v1.4.0 — 2026-10-10
+
+### Works without a brain
+
+- `alternatives-map`, `ideal-customer-profile` and `proof-points` no longer stop when
+  there is no brain. They work from the material you paste and, after you confirm,
+  start `/foundation/brain.md` with their own section only. If files cannot be
+  written, they show the block to save and never claim it was saved.
+- `product-messaging-playbook` asks five Quick-Brain questions when there is no brain
+  and nothing pasted, builds the playbook from the answers and labels it as such.
+  It still never writes to the brain.
+- `message-house` now offers two paths that work inside the plugin when there is no
+  positioning: paste it, or run `positioning-messaging`.
+- `SKILL-SPEC.md` v2.4.0: new missing-brain rule for brain-dependent skills.
+
+### Try it first
+
+- New `examples/example-brain.md`: a finished brain for a fictional company, with
+  `examples/README.md` listing five prompts to try before building your own.
+- The `brain-template.md` reference example no longer attributes invented numbers and
+  quotes to a real company; it points to the fictional example instead.
+- Each plugin README opens with a "Start here" block: the outcome, the first command,
+  a prompt to try, and whether it needs the brain.
+
+### Evidence
+
+- New `docs/eval-results.md` records which evals have been run. Nothing is marked as
+  passed yet.
+
 ## v1.3.0 — 2026-10-10
 
 ### Customer stories

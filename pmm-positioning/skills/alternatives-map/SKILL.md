@@ -1,6 +1,6 @@
 ---
 name: alternatives-map
-version: 2.0.0
+version: 2.1.0
 description: >
   Synthesizes research data — win/loss notes, sales call transcripts,
   G2/Capterra reviews, analyst reports — into a named alternatives map
@@ -14,7 +14,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-09-15
+last_updated: 2026-10-10
 ---
 
 # Alternatives Map
@@ -81,14 +81,15 @@ stated one.
   why-they-leave or unclaimed-territory layer, treat this as additive —
   map the missing layers, don't re-litigate a settled alternative list.
 - **Context keys:**
-  - `/foundation/brain.md` — required. Section 3 (Alternatives &
+  - `/foundation/brain.md` — optional (created on the first confirmed
+    write if missing). Section 3 (Alternatives &
     Positioning).
   - `/context/meta-patterns.md` — optional; guardrails from prior
     sessions.
   - **Brain contract:** Reads Section 3. Writes Section 3 only — named
     alternatives across all four types, status quo, why-they-leave, and
-    unclaimed territory, appended on explicit confirmation. Never
-    creates a separate competitive file.
+    unclaimed territory, appended on explicit confirmation. Never creates a separate competitive file. If no brain exists, creates
+    `/foundation/brain.md` holding this section alone (cold start).
 
 ---
 
@@ -111,9 +112,7 @@ stated one.
 - Load `/foundation/brain.md` Section 3 if it exists.
 - Load `/context/meta-patterns.md` if present; surface any guardrail
   fired 2+ times in prior alternatives-mapping sessions.
-- **Hard block:** brain entirely absent → stop, direct to
-  `product-marketing-context` first. A thin Section 3 is not a block —
-  that's what this skill exists to fix.
+- **Brain absent: continue, don't block.** This skill works from the evidence you give it. Say once: "No PMM brain found, so I'll work from your material and start the brain with this section only. Run `product-marketing-context` later (a separate plugin) to build the rest." The write step handles the cold start.
 - **Soft block:** no research data provided and none referenced from
   brain → ask for it before mapping. A map built on assumption alone
   should say so explicitly, not pass as evidence-based.
@@ -230,6 +229,18 @@ content, do not create a separate file:
 [reason], and leaves [top alternative] because [friction].
 ```
 
+**Cold start (no brain file yet).** If `/foundation/brain.md` does not exist, create it after the same confirmation, containing only this section:
+
+```markdown
+# PMM Brain — [product name, or "not set"]
+🟡 Cold start — built via alternatives-map on [date]. Run `product-marketing-context` to build the other sections.
+
+## Section 3: Alternatives & Positioning
+[the addition shown above]
+```
+
+Do not invent content for the other sections. If this environment cannot write files, show the block and tell the user to save it as `brain.md` in their working folder or Project knowledge so later sessions can read it. Never say it was saved unless the write succeeded.
+
 Never write without this explicit confirmation.
 
 ### Step 4 — Learning Close
@@ -271,6 +282,7 @@ above, which still requires explicit confirmation.
 
 ## Verification
 
+- Cold start: with no brain file, the skill proceeded without redirecting, and the only file it created held this section alone (or the block was shown for pasting).
 - All four alternative types considered — status quo always present,
   DIY marked `n.v.t.` explicitly if genuinely absent, never silently
   skipped.

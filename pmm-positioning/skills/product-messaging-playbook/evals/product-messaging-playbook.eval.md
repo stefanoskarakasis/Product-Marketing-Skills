@@ -1,8 +1,8 @@
 # Eval: product-messaging-playbook
 
-## Eval 1 — No brain, no pasted output → hard block
+## Eval 1 — No brain, no pasted output → Quick-Brain
 **Input:** "Build a messaging playbook for our new automations feature." No brain exists, nothing pasted this session.
-**Expected:** Hard block per Pre-flight. Directs to `product-marketing-context` or `positioning-messaging` BUILD mode. No document assembled.
+**Expected:** The skill does not block. It asks the five Quick-Brain questions, waits for all five, then builds the playbook from the answers. The playbook is labelled "Built from Quick-Brain answers, not a full brain"; unanswered fields ship as `[MISSING — ...]`; the single proof point is `[NEEDS PROOF]` unless the source was given. Nothing is written to the brain. The Feature-Specific Intake (Step 2) still runs separately.
 
 ## Eval 2 — Full run with message-house + proof-points populated, no competitor named
 **Input:** Brain exists, Section 6 has 3 clean approved entries, user pastes a `message-house` output, doesn't name a competitor.
@@ -33,8 +33,8 @@
 **Expected:** Both ship as `[MISSING — <what's needed>]` in Messaging Foundation, both appear in the final "Still needed / not yet measurable" list — not silently dropped, not guessed from Section 1 product description.
 
 ## Eval 9 — Learning Close always runs
-**Input:** Any completed session, including one that hits the hard block in Eval 1.
-**Expected:** A hard-blocked session (Eval 1) does not log a Learning Close entry — no session actually ran. Every session that proceeds past Pre-flight, including one that skips Comparative Positioning (Eval 2) or ships several `[MISSING]` fields, appends exactly one `type: execution` entry to `/context/skill-sessions.md` with the canonical 5-field shape.
+**Input:** Any completed session, including a Quick-Brain session (Eval 1).
+**Expected:** Every session that proceeds past Pre-flight, including a Quick-Brain session, including one that skips Comparative Positioning (Eval 2) or ships several `[MISSING]` fields, appends exactly one `type: execution` entry to `/context/skill-sessions.md` with the canonical 5-field shape.
 
 ## Eval 10 — Connector present: pulled facts are tagged drafts
 

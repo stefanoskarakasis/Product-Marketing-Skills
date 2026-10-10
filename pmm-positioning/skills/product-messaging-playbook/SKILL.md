@@ -1,6 +1,6 @@
 ---
 name: product-messaging-playbook
-version: 1.0.0
+version: 1.1.0
 description: >
   Assembles a single Sales/CS-ready Product Messaging Playbook for a new
   product or feature — problem, story, one named competitive comparison,
@@ -13,7 +13,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-09-26
+last_updated: 2026-10-10
 ---
 
 # Product Messaging Playbook
@@ -70,7 +70,8 @@ assembles the rest into one document a rep can open cold.
   brain Section 3 to compare against, or proceed without that section if
   the user declines.
 - **Context keys:**
-  - `/foundation/brain.md` — required. Sections 1 (Product), 2 (ICP), 3
+  - `/foundation/brain.md` — optional (Quick-Brain answers stand in
+    when missing). Sections 1 (Product), 2 (ICP), 3
     (Alternatives & Positioning), 5 (Market Context), 6 (Proof Points
     Registry).
   - **Brain contract:** Reads Sections 1, 2, 3, 5, 6. Writes: none. This
@@ -96,11 +97,24 @@ assembles the rest into one document a rep can open cold.
 
 - Load `/foundation/brain.md` if present. If absent, check for a pasted
   `message-house` and/or `positioning-messaging` output this session.
-- **Hard block:** both brain and pasted output are missing →
-  *"No brain and no message-house/positioning-messaging output found. This
-  skill assembles a playbook from existing positioning — it doesn't create
-  one. Run `product-marketing-context` to build the brain, or
-  `positioning-messaging` (BUILD mode) first, then come back."*
+- **Brain and pasted output both missing: run Quick-Brain, don't block.**
+  Say: *"No brain found. Five quick answers let me build this now (about
+  4 minutes). Run `product-marketing-context` later (a separate plugin)
+  and I'll use the full brain."* Ask all five, then wait:
+  1. What are you launching, in one sentence?
+  2. Who is the best-fit buyer, and what pain pushes them to act?
+  3. What do they do instead of buying this? Name two alternatives,
+     including doing nothing.
+  4. Which one competitor should the comparison use, and what can you do
+     that they can't?
+  5. One proof point you can source: a metric or customer quote, and
+     where it comes from.
+
+  Use the answers as stand-ins for Sections 1, 2, 3 and 6 for this
+  session only. Do not write the brain (this skill is read-only). Label
+  the playbook "Built from Quick-Brain answers, not a full brain", mark
+  every unanswered field `[MISSING — <what's needed>]`, and treat the one
+  proof point as `[NEEDS PROOF]` unless the user gave its source.
 - **Soft block:** brain exists but Section 3 (Alternatives) is empty or a
   competitor was named that isn't in Section 3 → surface once, don't
   block: *"[Competitor] isn't in your alternatives map. I can still build
@@ -286,6 +300,7 @@ approval.
 
 ## Verification
 
+- Quick-Brain: with no brain and nothing pasted, the skill asked the five questions, built the playbook from the answers, labelled it as such, and wrote nothing to the brain.
 - Every field in Messaging Foundation and Story is sourced (brain,
   pasted skill output, or explicit user statement this session) or
   explicitly flagged `[MISSING]` — no invented copy.

@@ -1,6 +1,6 @@
 ---
 name: ideal-customer-profile
-version: 1.0.0
+version: 1.1.0
 description: >
   Synthesizes research data — surveys, interviews, usage data, win/loss
   notes — into an Ideal Customer Profile across demographics, behaviors,
@@ -12,7 +12,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-08-27
+last_updated: 2026-10-10
 ---
 
 # Ideal Customer Profile 
@@ -74,11 +74,12 @@ Needs.
   behavioral, JTBD, or needs layer, treat this as additive — profile the
   missing layers, don't re-litigate settled firmographics.
 - **Context keys:**
-  - `/foundation/brain.md` — required. Section 2 (ICP).
+  - `/foundation/brain.md` — optional (created on the first confirmed
+    write if missing). Section 2 (ICP).
   - `/context/meta-patterns.md` — optional; guardrails from prior sessions.
   - **Brain contract:** Reads Section 2. Writes Section 2 only — the four
-    profile layers, appended on explicit confirmation. Never creates a
-    separate ICP file.
+    profile layers, appended on explicit confirmation. Never creates a separate ICP file. If no brain exists, creates
+    `/foundation/brain.md` holding this section alone (cold start).
 
 ---
 
@@ -100,9 +101,7 @@ Needs.
 - Load `/foundation/brain.md` Section 2 if it exists.
 - Load `/context/meta-patterns.md` if present; surface any guardrail fired
   2+ times in prior ICP sessions.
-- **Hard block:** brain entirely absent → stop, direct to
-  `product-marketing-context` first. A thin Section 2 is not a block —
-  that's what this skill exists to fix.
+- **Brain absent: continue, don't block.** This skill works from the evidence you give it. Say once: "No PMM brain found, so I'll work from your material and start the brain with this section only. Run `product-marketing-context` later (a separate plugin) to build the rest." The write step handles the cold start.
 - **Soft block:** no research data provided and none referenced from
   brain → ask for it before profiling. A profile built on assumption
   alone should say so explicitly, not pass as evidence-based.
@@ -210,6 +209,18 @@ content, do not create a separate file:
 [functional job] because [top pain point].
 ```
 
+**Cold start (no brain file yet).** If `/foundation/brain.md` does not exist, create it after the same confirmation, containing only this section:
+
+```markdown
+# PMM Brain — [product name, or "not set"]
+🟡 Cold start — built via ideal-customer-profile on [date]. Run `product-marketing-context` to build the other sections.
+
+## Section 2: ICP Definition
+[the addition shown above]
+```
+
+Do not invent content for the other sections. If this environment cannot write files, show the block and tell the user to save it as `brain.md` in their working folder or Project knowledge so later sessions can read it. Never say it was saved unless the write succeeded.
+
 Never write without this explicit confirmation.
 
 ### Step 4 — Learning Close
@@ -248,6 +259,7 @@ above, which still requires explicit confirmation.
 
 ## Verification
 
+- Cold start: with no brain file, the skill proceeded without redirecting, and the only file it created held this section alone (or the block was shown for pasting).
 - Cohort being profiled is stated and justified, not just "our customers."
 - All four layers profiled: Demographics, Behaviors, JTBD, Needs.
 - Every claim without a cited source flagged `[A]`.

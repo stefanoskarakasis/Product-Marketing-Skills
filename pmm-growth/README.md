@@ -12,6 +12,13 @@ the first place — a North Star Metric and a capped scorecard — so the others
 `customer-stories` turns customer calls into stories whose stats and quotes
 are checked before they ship.
 
+## Start here
+
+- **You get:** campaign ideas, value-prop variants, a metrics scorecard and customer stories that stay tied to your real positioning.
+- **First command:** `/pmm-growth:customer-stories` (needs no brain)
+- **Try:** "I have a call with [customer] on Thursday. What do I ask?"
+- **The brain:** `positioning-ideas` needs a brain; the other idea skills are sharper with one. The brain-building skill is a separate plugin, `product-marketing-context`.
+
 ## Skills (5)
 
 - **positioning-ideas** — Generate 3-5 divergent positioning angle

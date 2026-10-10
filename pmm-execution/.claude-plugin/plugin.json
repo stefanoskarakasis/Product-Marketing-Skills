@@ -2,7 +2,7 @@
   "name": "pmm-execution",
   "displayName": "PMM Execution",
   "description": "Day-to-day PMM execution: PRDs, OKRs, pre-mortems, retros, stakeholder maps, interview synthesis, experiments, and prioritization frameworks.",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "author": {
     "name": "Stefanos Karakasis"
   },

@@ -49,7 +49,7 @@
     {
       "name": "pmm-toolkit",
       "displayName": "PMM Toolkit",
-      "description": "PMM utilities: writing assistant, resume review, privacy policy generator, GACCS briefs",
+      "description": "PMM utilities: writing assistant (internal messages plus marketing content), resume review, privacy policy generator, GACCS briefs",
       "source": "./pmm-toolkit"
     },
     {

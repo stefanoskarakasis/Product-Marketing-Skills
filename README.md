@@ -193,15 +193,12 @@ This marketplace evolves with practice and AI capabilities.
 
 Selected skills based on the work of:
 
-- **April Dunford**, *Obviously Awesome*: positioning
-- **Jobs to Be Done** theory: customer needs and switching behavior
-- **Intercom**: RICE prioritization
-- **Noriaki Kano**: the Kano model
-- **ICE scoring**: lightweight experiment prioritization
-- **Paweł Huryn**: the self-improving memory loop, and the plugin structure of [pm-skills](https://github.com/phuryn/pm-skills)
-- **Anthropic**: [knowledge-work-plugins](https://github.com/anthropics/knowledge-work-plugins), the model for plugin and connector layout
+- Marty Cagan — [*INSPIRED*](https://www.amazon.com/INSPIRED-Create-Tech-Products-Customers/dp/1119387507/) and [*TRANSFORMED*](https://www.amazon.com/dp/1119697336/)
+- Ash Maurya — [*Running Lean*](https://www.amazon.com/dp/B004J4XGN6/)
+- Anthony W. Ulwick — [*Jobs to Be Done*](https://jobs-to-be-done-book.com/)
+- Alistair Croll & Benjamin Yoskovitz — [*Lean Analytics*](https://www.amazon.com/Lean-Analytics-Better-Startup-Faster/dp/1449335675/)
 
-Curated by [Stefanos Karakasis](https://stefanoskarakasis.substack.com/). Subscribe to the newsletter for new skills, templates, and PMM playbooks.
+Curated by Stefanos Karakasis from Stefanos's Stack: [https://stefanoskarakasis.substack.com/](https://stefanoskarakasis.substack.com/)
 
 ## License
 

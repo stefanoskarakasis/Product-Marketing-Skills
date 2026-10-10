@@ -2,6 +2,18 @@
 
 ## v1.2.0 — 2026-10-10
 
+### pmm-positioning
+
+- Removed the hard `dependencies: ["product-marketing-context"]` entry from
+  `pmm-positioning`'s `plugin.json` and `marketplace.json` entry. That
+  dependency lived in a different marketplace than the one `pmm-positioning`
+  is submitted to, which Claude Code can't auto-resolve across marketplaces —
+  the result was a silent `dependency-unsatisfied` disable: the whole plugin
+  loaded with zero skills and zero commands, with no visible error. All
+  eight skills already handle a missing brain gracefully (hard-block and
+  redirect, or soft-warn and continue); this fix lets that logic actually
+  run. Fixes #1.
+
 ### Writing assistant
 
 - `writing-assistant` v2.4.0 drafts marketing content: blog posts, landing pages,

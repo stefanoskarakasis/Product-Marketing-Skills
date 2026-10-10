@@ -6,7 +6,7 @@ description: >
   North Star Metric rejection on failed criteria, Input Metric causal
   rigor, scorecard sprawl capping, vanity-metric flagging, no-brain
   fallback, and Learning Close accuracy against the skill's real
-  four-field session-log shape. 7 scenarios covering real metrics
+  five-field session-log shape. 7 scenarios covering real metrics
   sessions and edge cases.
 ---
 
@@ -219,7 +219,7 @@ Weights: assigned by user across the 12, must sum to 100%
 - Full workflow completes in order: classification → NSM (scored on all 7 criteria) → Input Metrics → scorecard → self-check → delivery → Learning Close
 - Weights explicitly shown summing to exactly 100%, not left unstated
 - No brain write is attempted anywhere in the session — output exists only in chat
-- Session logged to `/context/skill-sessions.md` with exactly the real four fields (plus `type: execution`) — no richer schema
+- Session logged to `/context/skill-sessions.md` with exactly the five real fields (`type: execution` first) — no richer schema
 - If nothing notable happened, `pattern: none` is still written — the row is never skipped
 
 ---
@@ -234,7 +234,7 @@ Weights: assigned by user across the 12, must sum to 100%
 | 4 | Scorecard sprawl capping | ≤16 metrics delivered; overlaps merged, cuts negotiated not silent |
 | 5 | Vanity-metric flagging | Unowned metrics explicitly flagged, alternative offered |
 | 6 | No-brain fallback | Non-blocking surface, then direct ask, never refuses |
-| 7 | Full workflow + Learning Close | Complete sequence, weights sum to 100%, real four-field session-log row, no brain write attempted |
+| 7 | Full workflow + Learning Close | Complete sequence, weights sum to 100%, real five-field session-log row, no brain write attempted |
 
 ---
 

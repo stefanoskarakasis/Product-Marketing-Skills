@@ -182,7 +182,7 @@ source: {{surprised/wrong/missing/n.v.t.}}
   differentiator, or is explicitly flagged as drift
 - A drift rate of 3+ in one batch triggers a surfaced recommendation, not
   silent continuation
-- Session logged with all four fields, `pattern: none` written explicitly
+- Session logged with all five fields, `pattern: none` written explicitly
   if nothing notable happened — the row is never skipped
 
 ---
@@ -233,7 +233,7 @@ source: {{surprised/wrong/missing/n.v.t.}}
 | Trace-check run | Every statement checked against canonical differentiator | Yes |
 | Drift flagged, not hidden | Any statement failing trace-check marked explicitly | Yes |
 | Escalation triggered at 3+ drift | AUDIT recommendation surfaced, not silently absorbed | Yes |
-| Learning Close complete | Four-field row appended, never skipped | Yes |
+| Learning Close complete | Five-field row appended, never skipped | Yes |
 
 ---
 

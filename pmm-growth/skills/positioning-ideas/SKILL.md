@@ -195,7 +195,7 @@ not itself shippable.
   flagged or collapsed, not delivered as false choices
 - Handoff explicitly states these are pre-gate options, not finished
   positioning copy
-- Session logged with all four fields, `pattern: none` written explicitly
+- Session logged with all five fields, `pattern: none` written explicitly
   if nothing notable happened — the row is never skipped
 
 ---
@@ -250,7 +250,7 @@ not itself shippable.
 | Tied to specific alternative | Each option names the specific gap it exploits, not a generic claim | Yes |
 | Divergence self-check run | Every pair compared; redundant options flagged or collapsed | Yes |
 | Handoff states pre-gate status | Explicit statement that BUILD mode's gate still applies | Yes |
-| Learning Close complete | Four-field row appended, never skipped | Yes |
+| Learning Close complete | Five-field row appended, never skipped | Yes |
 
 ---
 

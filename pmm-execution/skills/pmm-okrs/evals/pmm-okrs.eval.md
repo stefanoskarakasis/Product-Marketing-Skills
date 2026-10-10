@@ -30,11 +30,11 @@
 
 ## Eval 4: Learning Close accuracy (Step 8)
 **Scenario:** User completes `/build` and `/scorecard`
-**Expected:** Entry written to `/context/skill-sessions.md` per Step 8's real Learning Close template — exactly four fields, matching `SKILL.md` verbatim
+**Expected:** Entry written to `/context/skill-sessions.md` per Step 8's real Learning Close template — exactly five fields, matching `SKILL.md` verbatim
 **Input:** `/build` + `/scorecard`
 **Output check:**
 - Session logged? YES/NO
-- Row contains exactly these four fields: `skill`, `session_date`, `pattern`, `source`? YES/NO — no additional fields (no `quarter`, `objectives_count`, `guardrails_triggered`, or similar; those are chat-output details from `/build` and `/scorecard`, not part of the log row)
+- Row contains exactly these five fields: `type: execution`, `skill`, `session_date`, `pattern`, `source`? YES/NO — no additional fields (no `quarter`, `objectives_count`, `guardrails_triggered`, or similar; those are chat-output details from `/build` and `/scorecard`, not part of the log row)
 - `pattern` is a single falsifiable statement about this session, or the literal `"none"`? YES/NO
 - `source` is one of `surprised / wrong / missing / n.v.t.`? YES/NO
 - Row written directly, without asking the user for permission? YES/NO

@@ -8,7 +8,7 @@ description: >
   or converting, or says "write a blog post", "landing page copy", "press release",
   "case study", "LinkedIn post", "draft the newsletter", or "does this sound like AI?"
 metadata:
-  version: "2.4.0"
+  version: "2.4.1"
   updated: "2026-10-10"
 conversation_starters:
   - "Write a blog post about our new feature"
@@ -423,6 +423,11 @@ check each item:
 Each format also has extras (platform for social, keyword and search intent for blog,
 news hook for press release, customer approval for case study, main alternative and
 objections for landing page). They are listed in that format's reference file.
+
+For a case study, check `/context/customer-stories.md` (read only). If it holds a packet
+for this customer, draft from it and keep its `[NEEDS APPROVAL]` flags. If not, offer
+`customer-stories` once for the interview and the stat and quote checks, then continue
+here if the user declines.
 
 **Step 2: Ask once, or assume.** If nothing needs asking, go on. If something does, send
 ONE message that lists only the missing items, numbered and short. Never ask about tone

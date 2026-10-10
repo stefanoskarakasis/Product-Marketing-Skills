@@ -211,7 +211,7 @@ source: {{surprised/wrong/missing/n.v.t.}}
 - Durability rated and a review date set
 - Brain Section 5 write shown to the user before it happens, written only
   on confirmation
-- Session logged with all four fields, `pattern: none` written explicitly
+- Session logged with all five fields, `pattern: none` written explicitly
   if nothing notable happened — the row is never skipped
 
 ---
@@ -260,7 +260,7 @@ source: {{surprised/wrong/missing/n.v.t.}}
 | Category moment named | Creation / redefinition / differentiation stated | Yes |
 | Durability rated | durable / at-risk / short-window + review date | Yes |
 | Confirmation before write | Exact before/after shown, user confirmed | Yes |
-| Learning Close complete | Four-field row appended, never skipped | Yes |
+| Learning Close complete | Five-field row appended, never skipped | Yes |
 
 ---
 

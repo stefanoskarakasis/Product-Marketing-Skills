@@ -143,6 +143,7 @@ what threshold, ends this motion if unmet?
 
 **Expected Output — Session Log:**
 ```yaml
+type: execution
 skill: gtm-motions
 session_date: 2026-09-01
 pattern: "First activation draft had milestones but no kill criterion —
@@ -154,7 +155,7 @@ source: surprised
 **Pass Criteria:**
 - A 90-day plan without a stated numeric kill criterion is not delivered as final — the skill catches this per its own Quality Gate row, not just relies on the template
 - The activation plan covers ONLY the selected primary (and secondary, if any) — never includes rejected motions, per "a plan covering rejected motions signals the rejection wasn't real"
-- Session logged to `/context/skill-sessions.md` with exactly four fields, no brain write attempted (the stack is explicitly never written to `/foundation/brain.md` per Operating Rules)
+- Session logged to `/context/skill-sessions.md` with exactly five fields, no brain write attempted (the stack is explicitly never written to `/foundation/brain.md` per Operating Rules)
 
 ---
 
@@ -167,7 +168,7 @@ source: surprised
 | 3 | All 7 motions scored before gating | Every motion scored on all 4 signals before any exclusion |
 | 4 | Blocking gate enforcement | Gate failures exclude regardless of raw score — never averaged away |
 | 5 | Single primary, funnel-distinct secondary | Secondary chosen by funnel-distinctness + score proximity, not score alone |
-| 6 | Kill-criterion + Learning Close | Numeric kill criterion required; real four-field session-log row; no brain write |
+| 6 | Kill-criterion + Learning Close | Numeric kill criterion required; real five-field session-log row; no brain write |
 
 ---
 

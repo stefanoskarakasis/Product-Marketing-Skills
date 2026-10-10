@@ -105,6 +105,7 @@ who gets the Slack message? I need one name.
 
 **Expected Output — Session Log:**
 ```yaml
+type: execution
 skill: gaccs-brief
 session_date: 2026-09-01
 pattern: "none"
@@ -112,7 +113,7 @@ source: n.v.t.
 ```
 
 **Pass Criteria:**
-- Session logged to `/context/skill-sessions.md` with exactly four fields, even when nothing notable happened — `pattern: none` is written explicitly, the row is never skipped
+- Session logged to `/context/skill-sessions.md` with exactly five fields, even when nothing notable happened — `pattern: none` is written explicitly, the row is never skipped
 - No separate knowledge or decisions file written — matches this repo's single compounding mechanism used by every other skill
 - Learning Close runs regardless of whether the session needed adversarial pushback — it's not conditional on friction having occurred
 
@@ -128,7 +129,7 @@ source: n.v.t.
 | 4 | 4+ strong sections threshold | Generation blocked below threshold, missing sections named |
 | 5 | DRI named, not "the team" | Vague ownership rejected, one name required |
 | 6 | Next Step on every response | Present mid-session, not just at completion |
-| 7 | Learning Close | Real four-field row, `pattern: none` written when nothing notable happened |
+| 7 | Learning Close | Real five-field row, `pattern: none` written when nothing notable happened |
 
 ---
 

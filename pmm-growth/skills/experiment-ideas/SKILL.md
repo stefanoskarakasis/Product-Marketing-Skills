@@ -199,7 +199,7 @@ starting list, not a validated plan.
 - Every Cost Efficiency claim names a specific reason, not an assertion
 - Every idea has passed or been flagged by the alternatives self-check
 - Final list is ranked by effort-vs-impact, not left in generation order
-- Session logged with all four fields, `pattern: none` written explicitly
+- Session logged with all five fields, `pattern: none` written explicitly
   if nothing notable happened — the row is never skipped
 
 ---
@@ -254,7 +254,7 @@ starting list, not a validated plan.
 | Alternatives self-check run | Every idea checked; generic ones flagged, not hidden | Yes |
 | Ranked by effort/impact | Final order isn't generation order | Yes |
 | Handoff stated | Explicit line naming candidate(s) for experiment-doc | Yes |
-| Learning Close complete | Four-field row appended, never skipped | Yes |
+| Learning Close complete | Five-field row appended, never skipped | Yes |
 
 ---
 

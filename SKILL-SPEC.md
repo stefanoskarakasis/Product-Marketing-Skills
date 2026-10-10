@@ -1,8 +1,8 @@
 # SKILL-SPEC.md
 ## Product Marketing Skills — Skill Authoring Standard
 
-**Version:** 2.3.0
-**Last updated:** 2026-08-24
+**Version:** 2.3.1
+**Last updated:** 2026-10-10
 **Applies to:** All skills in this repository
 **Owner:** Stefanos Karakasis
 
@@ -302,6 +302,7 @@ End every completed session by appending one row to `/context/skill-sessions.md`
 (create the file with a header row if it doesn't exist yet):
 
 ```yaml
+type: execution
 skill: [this skill's name]
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about what happened this session, or "none"]
@@ -497,9 +498,9 @@ a release record, not documenting one.
 **Test the skill's real output shape, not an aspirational one.** A
 Session Logging or Learning Close eval must assert against the exact
 YAML fields the skill's own `SKILL.md` actually writes — for a T1/T2
-skill (or a T3 skill that has chosen to add one), that's the four-field
-Learning Close row from Section 5.1 (`skill`, `session_date`, `pattern`,
-`source`), nothing richer. An eval that tests fields the skill doesn't
+skill (or a T3 skill that has chosen to add one), that's the five-field
+Learning Close row from Section 5.1 (`type: execution`, `skill`,
+`session_date`, `pattern`, `source`), nothing richer. An eval that tests fields the skill doesn't
 produce (invented scores, counts, or metadata) will pass or fail
 independent of what the skill actually does — it stops being a test.
 If a skill has no session-logging mechanism at all, its eval suite

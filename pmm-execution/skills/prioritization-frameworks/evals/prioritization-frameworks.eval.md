@@ -5,7 +5,7 @@ description: >
   Comprehensive eval suite for prioritization-frameworks skill. Tests: guardrail surfacing,
   brain context loading, framework selection accuracy, scoring integrity, Quality Gate enforcement,
   tier assignment accuracy, confidence score honesty, and Learning Close accuracy against the
-  skill's real four-field session-log shape (Step 7 — new as of this skill version; the skill
+  skill's real five-field session-log shape (Step 7 — new as of this skill version; the skill
   previously had no Learning Close step). 8 scenarios covering real prioritization scenarios and
   edge cases.
 ---
@@ -17,7 +17,7 @@ description: >
 Each eval:
 1. Populates `/foundation/brain.md` with baseline PMM context (Sections 2, 3, 5)
 2. Populates `/context/meta-patterns.md` with guardrails (if testing guardrail surfacing)
-3. Populates `/context/skill-sessions.md` with prior prioritization-frameworks rows in the skill's real four-field shape (if testing Step 0 guardrail recall)
+3. Populates `/context/skill-sessions.md` with prior prioritization-frameworks rows in the skill's real five-field shape (if testing Step 0 guardrail recall)
 4. Runs prioritization-frameworks skill for given decision scenario
 5. Validates outputs: framework selection, scoring quality, Quality Gate enforcement, tier assignment accuracy, Learning Close accuracy
 
@@ -37,16 +37,19 @@ guardrail_1:
   status: ACTIVE
 
 # /context/skill-sessions.md
+type: execution
 skill: prioritization-frameworks
 session_date: 2026-06-10
 pattern: "RICE scoring without win/loss data inflated Impact — Confidence corrected down from 85% to 55% during Quality Gates"
 source: wrong
 
+type: execution
 skill: prioritization-frameworks
 session_date: 2026-06-12
 pattern: "Same RICE-without-evidence Confidence inflation recurred on a second launch tier decision"
 source: wrong
 
+type: execution
 skill: prioritization-frameworks
 session_date: 2026-06-15
 pattern: "Third consecutive session where RICE Confidence was inflated absent win/loss data"
@@ -271,6 +274,7 @@ Quality issue to catch:
 
 **Expected Output - Session Log:**
 ```yaml
+type: execution
 skill: prioritization-frameworks
 session_date: 2026-06-21
 pattern: "RICE Confidence was self-assessed at 85% with no win/loss data — Quality Gate 2 caught the inflation and the tier was revised from T1 to T2."
@@ -278,7 +282,7 @@ source: surprised
 ```
 
 **Pass Criteria:**
-- Session logged to `/context/skill-sessions.md` with exactly these four fields — `skill`, `session_date`, `pattern`, `source` — matching Step 7's template in `SKILL.md` verbatim. No additional fields.
+- Session logged to `/context/skill-sessions.md` with exactly these five fields — `type: execution`, `skill`, `session_date`, `pattern`, `source` — matching Step 7's template in `SKILL.md` verbatim. No additional fields.
 - `pattern` is a single falsifiable statement about what happened this session, or the literal string `"none"` if nothing notable occurred — not a multi-field summary object.
 - `source` is one of `surprised / wrong / missing / n.v.t.`
 - The row is written directly, without asking the user for permission — this is a separate, mechanical write from anything the skill asks the user's go-ahead on (like where to save the Tier Assignment Card, Scoring Table, or Tier Rationale, per Outputs).
@@ -294,16 +298,19 @@ source: surprised
 **Test Data:**
 ```yaml
 # /context/skill-sessions.md (3 prior prioritization-frameworks rows, real shape)
+type: execution
 skill: prioritization-frameworks
 session_date: 2026-06-10
 pattern: "RICE without win/loss data inflated Confidence — tier revised down from T1 to T2 after Quality Gates"
 source: wrong
 
+type: execution
 skill: prioritization-frameworks
 session_date: 2026-06-12
 pattern: "ICE framework applied with full evidence trail — all Quality Gates passed on first pass"
 source: n.v.t.
 
+type: execution
 skill: prioritization-frameworks
 session_date: 2026-06-15
 pattern: "Risk vs Reward used for new-market entry with no local data — recommended a validation sprint before scoring"
@@ -321,6 +328,7 @@ Quality Gate 2 flags inflation → tier revised T1 → T2
 ✓ Quality Gates: Gate 1 and Gate 2 failed, corrected before delivery
 ✓ Tier: T2 (revised down from T1 after Confidence correction)
 ✓ Session logged (Step 7):
+  type: execution
   skill: prioritization-frameworks
   session_date: 2026-06-21
   pattern: "Third consecutive session where RICE Confidence needed correction absent win/loss data — recommend surfacing this as a candidate guardrail."
@@ -333,7 +341,7 @@ Note that pattern-across-sessions detection (comparing this session's row agains
 - Full workflow completes (intake → selection → scoring → gates → tier → audit → Learning Close)
 - Guardrails surfaced at Step 0 (if `/context/meta-patterns.md` has an applicable, 2+-occurrence pattern)
 - Quality Gates caught issues before tier delivery (Step 3), tier revised before Step 4 output
-- Session logged to `/context/skill-sessions.md` with the real four-field shape — not a richer schema
+- Session logged to `/context/skill-sessions.md` with the real five-field shape — not a richer schema
 - The skill does not attempt cross-session pattern synthesis itself — that's `meta-synthesis`'s job, not prioritization-frameworks'
 
 ---
@@ -348,7 +356,7 @@ Note that pattern-across-sessions detection (comparing this session's row agains
 | 4 | Scoring integrity & Confidence honesty | Quality Gates catch inflation, missing evidence, assumptions |
 | 5 | Tier assignment accuracy | Tier aligns with scoring output, Confidence <7 caps tier |
 | 6 | Framework application consistency | Formulas correct, scoring consistent, evidence standards aligned |
-| 7 | Learning Close accuracy | Real four-field row (`skill`/`session_date`/`pattern`/`source`) logged to `/context/skill-sessions.md` |
+| 7 | Learning Close accuracy | Real five-field row (`type`/`skill`/`session_date`/`pattern`/`source`) logged to `/context/skill-sessions.md` |
 | 8 | End-to-end workflow | Intake→Selection→Scoring→Gates→Tier→Audit→Learning Close, no cross-session synthesis attempted by this skill |
 
 ---

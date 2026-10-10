@@ -8,10 +8,11 @@ list and hands off to `pmm-execution`'s `experiment-doc` for
 pressure-testing; `value-prop-statements` fans an already-set positioning
 out into segment- and channel-specific copy without re-running the full
 positioning process each time; `pmm-metrics` defines what to measure in
-the first place — a North Star Metric and a capped scorecard — so the
-other three have a real target to aim at instead of guessing.
+the first place — a North Star Metric and a capped scorecard — so the others have a real target to aim at instead of guessing.
+`customer-stories` turns customer calls into stories whose stats and quotes
+are checked before they ship.
 
-## Skills (4)
+## Skills (5)
 
 - **positioning-ideas** — Generate 3-5 divergent positioning angle
   options, each tied to a specific named alternative's unclaimed
@@ -33,8 +34,12 @@ other three have a real target to aim at instead of guessing.
   scorecard across Financial, Customer, Product & GTM, and Process &
   Growth. Rejects revenue-shaped metrics as North Star candidates and
   flags vanity metrics nobody can move.
+- **customer-stories** — Interview for, draft and audit B2B customer
+  stories in one fixed seven-block structure. You pick the depth and the
+  angle; every stat needs a baseline, period, denominator and source,
+  every quote a named speaker and a job, and nothing is invented.
 
-## Commands (4)
+## Commands (5)
 
 - `/pmm-growth:positioning-ideas` — Brainstorm divergent positioning
   angles grounded in your named alternatives, before committing to one.
@@ -45,6 +50,8 @@ other three have a real target to aim at instead of guessing.
 - `/pmm-growth:pmm-metrics` — Build a North Star Metric and a capped
   measurement scorecard from scratch, or audit an existing metrics list
   for sprawl and vanity metrics.
+- `/pmm-growth:customer-stories` — Interview questions for a customer call,
+  a draft story from your notes, or an audit of a finished one.
 
 ## Connectors (Optional)
 
@@ -56,6 +63,7 @@ Every skill works without connectors. Install this plugin on its own to load its
 | `~~market data` | traffic and market benchmarks | SimilarWeb |
 | `~~SEO` | keyword and content demand signals | Ahrefs |
 | `~~CRM` | funnel and conversion data | HubSpot |
+| `~~call recordings` | customer calls and quotes to build stories from | Fireflies, Gong |
 | `~~email marketing` | lifecycle email performance | Klaviyo |
 | `~~marketing analytics` | cross-channel campaign and spend performance | Supermetrics |
 | `~~cloud storage` | metric sheets, past reports and experiment logs | Google Drive, Google Sheets |

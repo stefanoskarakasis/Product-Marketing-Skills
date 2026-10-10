@@ -6,7 +6,7 @@ description: >
   specificity rejection, no-pre-fill committee mapping, example-required
   Do/Don't discipline, persona-over-channel precedence, voice test
   enforcement, and Learning Close accuracy against the skill's real
-  four-field session-log shape. 6 scenarios covering real voice builds
+  five-field session-log shape. 6 scenarios covering real voice builds
   and audits.
 ---
 
@@ -30,6 +30,7 @@ Each eval:
 **Test Data:**
 ```yaml
 # /context/skill-sessions.md
+type: execution
 skill: buyer-personas
 session_date: 2026-08-29
 pattern: "Champion and Economic Buyer were the same person — smaller org."
@@ -160,6 +161,7 @@ Confirm before I save this?
 
 **Expected Output — Session Log:**
 ```yaml
+type: execution
 skill: brand-voice
 session_date: 2026-08-31
 pattern: "Persona/channel tone conflicted on LinkedIn for the Economic
@@ -171,7 +173,7 @@ source: surprised
 **Pass Criteria:**
 - Section 4 write is shown in full before being committed — no silent write
 - An incomplete Do/Don't (missing example) is flagged rather than written as a hard rule without evidence
-- Session logged to `/context/skill-sessions.md` with exactly four fields — no separate knowledge/decisions file written
+- Session logged to `/context/skill-sessions.md` with exactly five fields — no separate knowledge/decisions file written
 - If nothing notable happened, `pattern: none` is still written — the row is never skipped
 
 ---
@@ -185,7 +187,7 @@ source: surprised
 | 3 | No pre-fill on committee | Skill asks directly, never assumes a generic committee template |
 | 4 | Example-required Do/Don't discipline | Abstract instructions rejected without a concrete example pair |
 | 5 | Persona-over-channel precedence + voice test | Persona tone wins conflicts; voice test applied before acceptance |
-| 6 | Learning Close + confirmation gate | Section 4 shown before write; incomplete items flagged not hard-coded; real four-field session-log row |
+| 6 | Learning Close + confirmation gate | Section 4 shown before write; incomplete items flagged not hard-coded; real five-field session-log row |
 
 ---
 

@@ -1,5 +1,7 @@
 # Case study
 
+Need a customer-approved story with checked stats and quotes? Use `customer-stories`. If `/context/customer-stories.md` has a packet for this customer, draft from it and keep its flags. This skill reads that file and never writes it.
+
 Customer proof. This is the format where invented results do the most damage.
 
 ## Gate

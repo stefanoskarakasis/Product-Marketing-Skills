@@ -5,7 +5,7 @@ description: >
   Comprehensive eval suite for pre-mortem skill. Tests: guardrail surfacing,
   brain context loading, failure scenario generation quality, Tiger/Paper Tiger/Elephant classification accuracy,
   Tiger triage completeness (owner + signal + action plan), PMM recommendation clarity, and Learning Close
-  accuracy against the skill's real four-field session-log shape. 8 scenarios covering real initiative types
+  accuracy against the skill's real five-field session-log shape. 8 scenarios covering real initiative types
   and edge cases.
 ---
 
@@ -16,7 +16,7 @@ description: >
 Each eval:
 1. Populates `/foundation/brain.md` with baseline PMM context (Sections 2, 3, 4, 5)
 2. Populates `/context/meta-patterns.md` with guardrails (if testing guardrail surfacing)
-3. Populates `/context/skill-sessions.md` with prior pre-mortem rows in the skill's real four-field shape (if testing Step 0 guardrail recall)
+3. Populates `/context/skill-sessions.md` with prior pre-mortem rows in the skill's real five-field shape (if testing Step 0 guardrail recall)
 4. Runs pre-mortem skill for given initiative
 5. Validates outputs: risk classification quality, Tiger triage completeness, recommendation clarity, Learning Close accuracy
 
@@ -36,11 +36,13 @@ guardrail_1:
   status: ACTIVE
 
 # /context/skill-sessions.md
+type: execution
 skill: pre-mortem
 session_date: 2026-06-10
 pattern: "Pricing initiative without a competitive posture check surfaced a Tiger that could have been caught earlier"
 source: wrong
 
+type: execution
 skill: pre-mortem
 session_date: 2026-06-15
 pattern: "Same pattern recurred on Enterprise Tier Launch — pricing pre-mortems keep missing competitive posture until Tiger triage"
@@ -174,7 +176,7 @@ Scenario 5: "Rollback decision took 3 weeks; customer churn started"
 - Classification aligns with user's risk appetite (Tigers = must-mitigate, Paper Tigers = monitor, Elephants = accept)
 - Skill asks clarifying question if ambiguous: "Is this deal-blocking, or manageable?"
 - User can reclass if disagree ("Actually, that's an Elephant — we decided to accept it")
-- Classification counts appear in the chat-delivered Tiger triage output (not in the session log — the Learning Close row logged at Step 7 carries only `skill`, `session_date`, `pattern`, `source`, not per-session counts)
+- Classification counts appear in the chat-delivered Tiger triage output (not in the session log — the Learning Close row logged at Step 7 carries only `type`, `skill`, `session_date`, `pattern`, `source`, not per-session counts)
 
 ---
 
@@ -244,6 +246,7 @@ Condition: "Go if Tiger 5 (exec alignment) gets an owner and decision by Friday.
 
 **Expected Output - Session Log:**
 ```yaml
+type: execution
 skill: pre-mortem
 session_date: 2026-06-21
 pattern: "Feature launches without a named sales-alignment owner correlated with Tiger risks materializing in this session's triage — worth watching across future launches."
@@ -251,7 +254,7 @@ source: surprised
 ```
 
 **Pass Criteria:**
-- Session logged to `/context/skill-sessions.md` with exactly these four fields — `skill`, `session_date`, `pattern`, `source` — matching Step 7's template in `SKILL.md` verbatim. No additional fields.
+- Session logged to `/context/skill-sessions.md` with exactly these five fields — `type: execution`, `skill`, `session_date`, `pattern`, `source` — matching Step 7's template in `SKILL.md` verbatim. No additional fields.
 - `pattern` is a single falsifiable statement about what happened this session, or the literal string `"none"` if nothing notable occurred — not a multi-field summary object.
 - `source` is one of `surprised / wrong / missing / n.v.t.`
 - The row is written directly, without asking the user for permission — this is a separate, mechanical write from anything the skill asks the user's go-ahead on (like where to save the Tiger triage output, per Outputs).
@@ -266,11 +269,13 @@ source: surprised
 **Test Data:**
 ```yaml
 # /context/skill-sessions.md (2 prior pre-mortem rows, real shape)
+type: execution
 skill: pre-mortem
 session_date: 2026-05-10
 pattern: "Feature launch pre-mortem — sales-alignment Tiger was under-scoped, materialized as a launch blocker"
 source: wrong
 
+type: execution
 skill: pre-mortem
 session_date: 2026-06-01
 pattern: "Pricing-change pre-mortem — same sales-alignment Tiger pattern recurred"
@@ -286,6 +291,7 @@ Feature launch intake → 6 Tigers identified → owners assigned → signals cl
 ✓ Tiger triage: 6 Tigers, all with named owner + measurable signal + action plan
 ✓ Recommendation: Go
 ✓ Session logged (Step 7):
+  type: execution
   skill: pre-mortem
   session_date: 2026-06-21
   pattern: "Third consecutive session where sales-alignment was the highest-risk Tiger — recommend surfacing this as a candidate guardrail."
@@ -297,7 +303,7 @@ Note that pattern-across-sessions detection (comparing this session's row agains
 **Pass Criteria:**
 - Full workflow completes (intake → scenarios → triage → recommendation → Learning Close)
 - Guardrails surfaced at Step 0 (if `/context/meta-patterns.md` has an applicable, 2+-occurrence pattern)
-- Session logged to `/context/skill-sessions.md` with the real four-field shape — not a richer schema
+- Session logged to `/context/skill-sessions.md` with the real five-field shape — not a richer schema
 - The skill does not attempt cross-session pattern synthesis itself — that's `meta-synthesis`'s job, not pre-mortem's
 
 ---
@@ -312,7 +318,7 @@ Note that pattern-across-sessions detection (comparing this session's row agains
 | 4 | Risk classification | Tigers/Paper Tigers/Elephants aligned with risk appetite |
 | 5 | Tiger triage completeness | All Tigers have named owner, signal, action plan |
 | 6 | PMM recommendation clarity | Go / Conditional Go / Hold with clear reasoning |
-| 7 | Learning Close accuracy | Real four-field row (`skill`/`session_date`/`pattern`/`source`) logged to `/context/skill-sessions.md` |
+| 7 | Learning Close accuracy | Real five-field row (`type`/`skill`/`session_date`/`pattern`/`source`) logged to `/context/skill-sessions.md` |
 | 8 | End-to-end workflow | Intake→Scenarios→Triage→Recommendation→Learning Close, no cross-session synthesis attempted by this skill |
 
 ---

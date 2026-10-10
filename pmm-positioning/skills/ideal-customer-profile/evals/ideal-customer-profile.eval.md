@@ -158,6 +158,7 @@ before/after shown, all four layers]. Confirm before I save this?
 
 **Expected Output — Session Log:**
 ```yaml
+type: execution
 skill: ideal-customer-profile
 session_date: 2026-09-01
 pattern: "Usage data initially given unsegmented — worth checking
@@ -168,7 +169,7 @@ source: surprised
 
 **Pass Criteria:**
 - Section 2 write is shown in full before being committed — no silent write
-- Session logged to `/context/skill-sessions.md` with exactly four fields — no separate memory file written
+- Session logged to `/context/skill-sessions.md` with exactly five fields — no separate memory file written
 - If nothing notable happened, `pattern: none` is still written — the row is never skipped
 
 ---
@@ -182,7 +183,7 @@ source: surprised
 | 3 | Four-layer discipline | All four layers present; gaps flagged, not fabricated or skipped |
 | 4 | Unsourced-claim tagging | `[A]` flag applied consistently to every unvalidated claim |
 | 5 | One-Line ICP Test exit check | Vague drafts rejected; specific drafts pass explicitly |
-| 6 | Confirmation gate + Learning Close | Section 2 shown before write; real four-field session-log row |
+| 6 | Confirmation gate + Learning Close | Section 2 shown before write; real five-field session-log row |
 
 ---
 

@@ -1,5 +1,38 @@
 # Changelog
 
+## v1.3.0 — 2026-10-10
+
+### Customer stories
+
+- New skill `customer-stories` in `pmm-growth`: runs a story from kickoff to customer
+  approval. Kickoff questions and an internal brief, interview questions, a draft in
+  one fixed seven-block structure (before, decision, rollout, results, people, limit,
+  next), the customer review pack, and an audit of a finished story. You choose the
+  depth (short, standard, deep) and the angle before drafting.
+- Asks for the names and departments of everyone involved and never assumes them. A
+  stage and next action are tracked per story. Permission is recorded per use, and a
+  cannot-say list is binding on every draft.
+- Every stat needs a baseline, period, denominator, source and status; every quote
+  needs a named speaker, title and job. Gaps become placeholders; nothing is invented.
+  "Up to" claims need the typical value. Runs an 8-point gate on its own draft before handover.
+- Keeps a story ledger at `/context/customer-stories.md` and logs each session to
+  `/context/skill-sessions.md`. Confirmed claims are handed to `proof-points`.
+- Added `/pmm-growth:customer-stories`, a `~~call recordings` connector category
+  (Fireflies, Gong) to `pmm-growth`, and a next-skill-map entry.
+- `writing-assistant` v2.4.1 points case-study requests to the ledger and to
+  `customer-stories` when a verified story is needed.
+- `SKILL-SPEC.md` v2.3.1: the Learning Close template now includes `type: execution`
+  and the five-field shape, matching `skill-sessions-format.md`.
+
+### Cleanup
+
+- Reworded "four-field" session-log language to the five-field shape (`type`, `skill`,
+  `session_date`, `pattern`, `source`) in 5 skills' Verification and Quality Gate lines
+  and in 18 eval files. The skills already wrote `type: execution`; only the wording and
+  eval checks were stale.
+- Removed the `google-prune-upload/` staging folder. Every file in it was identical to,
+  or older than, the live copy.
+
 ## v1.2.0 — 2026-10-10
 
 ### pmm-positioning

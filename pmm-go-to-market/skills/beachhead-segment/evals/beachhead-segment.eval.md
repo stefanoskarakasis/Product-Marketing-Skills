@@ -6,7 +6,7 @@ description: >
   brain context loading, candidate decomposition, four-dimension scoring accuracy,
   blocking gate enforcement, assumption flagging, expansion pathway completeness,
   elimination documentation, and Learning Close accuracy against the skill's real
-  four-field session-log shape. 8 scenarios covering real beachhead decisions and
+  five-field session-log shape. 8 scenarios covering real beachhead decisions and
   edge cases.
 ---
 
@@ -17,7 +17,7 @@ description: >
 Each eval:
 1. Populates `/foundation/brain.md` with baseline PMM context (Sections 2, 3, 4, 5)
 2. Populates `/context/meta-patterns.md` with guardrails (if testing guardrail surfacing)
-3. Populates `/context/skill-sessions.md` with prior beachhead rows in the skill's real four-field shape (if testing Step 0 guardrail recall)
+3. Populates `/context/skill-sessions.md` with prior beachhead rows in the skill's real five-field shape (if testing Step 0 guardrail recall)
 4. Runs beachhead-segment skill for given decision scenario
 5. Validates outputs: scoring accuracy, gate enforcement, assumption handling, Learning Close accuracy
 
@@ -38,11 +38,13 @@ guardrail_1:
   confirmation_count: 2
 
 # /context/skill-sessions.md
+type: execution
 skill: beachhead-segment
 session_date: 2026-06-10
 pattern: "Segment recommended with Burning Pain 2 never scaled past initial rollout"
 source: wrong
 
+type: execution
 skill: beachhead-segment
 session_date: 2026-06-15
 pattern: "Same pattern recurred — low-Pain segment recommended, churned in year 2"
@@ -284,6 +286,7 @@ Conditional: Logistics (14/20, confidence 🟡 — validate assumptions first)
 
 **Expected Output - Session Log:**
 ```yaml
+type: execution
 skill: beachhead-segment
 session_date: 2026-06-21
 pattern: "Mid-market ops teams scored 4/4/4/3 and passed both gates cleanly — Referral Potential (3, not the top dimension) still carried the recommendation over a higher-Winnability segment, worth watching whether that trade-off holds."
@@ -291,7 +294,7 @@ source: surprised
 ```
 
 **Pass Criteria:**
-- Session logged to `/context/skill-sessions.md` with exactly these four fields — `skill`, `session_date`, `pattern`, `source` — matching Step 6's template in `SKILL.md` verbatim. No additional fields.
+- Session logged to `/context/skill-sessions.md` with exactly these five fields — `type: execution`, `skill`, `session_date`, `pattern`, `source` — matching Step 6's template in `SKILL.md` verbatim. No additional fields.
 - `pattern` is a single falsifiable statement about what happened this session, or the literal string `"none"` if nothing notable occurred — not a multi-field summary object.
 - `source` is one of `surprised / wrong / missing / n.v.t.`
 - The row is written directly, without asking the user for permission — this is a separate, mechanical write from the brain Section 2 write (Step 5), which does require explicit user confirmation.
@@ -306,16 +309,19 @@ source: surprised
 **Test Data:**
 ```yaml
 # /context/skill-sessions.md (3 prior beachhead rows, real shape)
+type: execution
 skill: beachhead-segment
 session_date: 2026-05-05
 pattern: "Enterprise rejected at Gate 1 (Pain 2); Mid-market chosen (Pain 4) — segment expanded successfully 18 months later"
 source: n.v.t.
 
+type: execution
 skill: beachhead-segment
 session_date: 2026-05-20
 pattern: "Fintech rejected at Gate 2 (Winnability 2); SMB chosen (Winnability 4) — SMB motion stalled at 12 months despite passing gates"
 source: wrong
 
+type: execution
 skill: beachhead-segment
 session_date: 2026-06-05
 pattern: "Healthcare chosen with 3 of 4 dimensions marked [A] — struggled with adoption friction in first 6 months, consistent with the assumption-density warning"
@@ -333,6 +339,7 @@ Scores generated → Gates applied → Recommendation made → Brain write confi
 ✓ Recommendation: Logistics (14/20, confidence 🟢)
 ✓ Brain Section 2 updated (confirmed)
 ✓ Session logged (Step 6):
+  type: execution
   skill: beachhead-segment
   session_date: 2026-06-21
   pattern: "Third consecutive session where the passing segment had a Winnability score below the highest-scored alternative on other dimensions — worth watching as a candidate guardrail."
@@ -344,7 +351,7 @@ Note that pattern-across-sessions detection (comparing this session's row agains
 **Pass Criteria:**
 - Full workflow completes (candidates → scoring → gates → recommendation → brain write on confirmation → Learning Close)
 - Guardrails surfaced at Step 0 (if `/context/meta-patterns.md` has an applicable, 2+-occurrence pattern)
-- Session logged to `/context/skill-sessions.md` with the real four-field shape — not a richer schema
+- Session logged to `/context/skill-sessions.md` with the real five-field shape — not a richer schema
 - The skill does not attempt cross-session pattern synthesis itself — that's `meta-synthesis`'s job, not beachhead-segment's
 
 ---
@@ -359,7 +366,7 @@ Note that pattern-across-sessions detection (comparing this session's row agains
 | 4 | Assumption flagging & confidence | `[A]` marks visible, confidence capped at 🟡 if >2 assumptions |
 | 5 | Expansion pathway completeness | ≥2 stages beyond beachhead, explicit triggers |
 | 6 | Elimination documentation | Every eliminated segment has specific gate + reason |
-| 7 | Learning Close accuracy | Real four-field row (`skill`/`session_date`/`pattern`/`source`) logged to `/context/skill-sessions.md` |
+| 7 | Learning Close accuracy | Real five-field row (`type`/`skill`/`session_date`/`pattern`/`source`) logged to `/context/skill-sessions.md` |
 | 8 | End-to-end workflow | Candidates→Scoring→Gates→Recommendation→Brain write→Learning Close, no cross-session synthesis attempted by this skill |
 
 ---

@@ -233,6 +233,7 @@ Confirm before I save this?
 
 **Expected Output — Session Log:**
 ```yaml
+type: execution
 skill: alternatives-map
 session_date: 2026-09-15
 pattern: "Status quo wasn't mentioned in the win/loss notes provided —
@@ -245,7 +246,7 @@ source: surprised
 **Pass Criteria:**
 - Section 3 write is shown in full before being committed — no silent
   write
-- Session logged to `/context/skill-sessions.md` with exactly four
+- Session logged to `/context/skill-sessions.md` with exactly five
   fields — no separate memory file written
 - If nothing notable happened, `pattern: none` is still written — the
   row is never skipped
@@ -262,7 +263,7 @@ source: surprised
 | 4 | Status quo's four elements | Named, cost, real reason, trigger — gaps flagged, not fabricated |
 | 5 | Unsourced-claim tagging | `[A]` flag applied consistently to every unvalidated claim |
 | 6 | Named-Not-Abstract + gap-credibility test | Vague or non-unique gaps rejected; specific, tested gaps pass |
-| 7 | Confirmation gate + Learning Close | Section 3 shown before write; real four-field session-log row |
+| 7 | Confirmation gate + Learning Close | Section 3 shown before write; real five-field session-log row |
 
 ---
 

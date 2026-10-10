@@ -6,7 +6,7 @@ description: >
   intake sequencing, committee role identification by behavior, confidence
   tagging discipline, quality gate enforcement, persona-alternatives
   anchoring, handoff completeness, and Learning Close accuracy against the
-  skill's real four-field session-log shape. 7 scenarios covering real
+  skill's real five-field session-log shape. 7 scenarios covering real
   committee-mapping sessions and edge cases.
 ---
 
@@ -181,6 +181,7 @@ Still [HYPOTHESIS], don't let these drive final copy yet: End User's primary mot
 
 **Expected Output — Session Log:**
 ```yaml
+type: execution
 skill: buyer-personas
 session_date: 2026-08-29
 pattern: "Champion and Economic Buyer were the same person in this deal — smaller org than usual, worth checking whether that collapses the committee below 200 employees as a pattern."
@@ -189,7 +190,7 @@ source: surprised
 
 **Pass Criteria:**
 - Handoff note explicitly states the primary persona, which need separate content, and which claims are still unvalidated — not left implicit in the persona cards alone
-- Session logged to `/context/skill-sessions.md` with exactly four fields (`skill`, `session_date`, `pattern`, `source`) — no separate knowledge/decisions file written
+- Session logged to `/context/skill-sessions.md` with exactly five fields (`type: execution`, `skill`, `session_date`, `pattern`, `source`) — no separate knowledge/decisions file written
 - No brain write attempted at any point in the session — the committee map and personas exist only in chat output and the handoff note
 - If nothing notable happened, `pattern: none` is still written — the row is never skipped
 
@@ -205,7 +206,7 @@ source: surprised
 | 4 | Confidence tagging discipline | CONFIRMED/INFERRED/HYPOTHESIS applied correctly, never blended |
 | 5 | Quality gate enforcement | Blocks without Economic Buyer + Champion + named alternatives |
 | 6 | Persona-alternatives anchoring | Competitor-swap test applied; generic pains rejected |
-| 7 | Handoff completeness + Learning Close | Explicit handoff note; real four-field session-log row; no brain write |
+| 7 | Handoff completeness + Learning Close | Explicit handoff note; real five-field session-log row; no brain write |
 
 ---
 

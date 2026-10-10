@@ -57,6 +57,7 @@ positioning options without naming a segment.
 
 **Test Data:**
 ```yaml
+type: execution
 skill: beachhead-segment
 session_date: 2026-08-20
 pattern: "none"
@@ -167,6 +168,7 @@ segment pulled cleanly from a prior session, nothing notable happened.
 
 **Expected Output — Session Log:**
 ```yaml
+type: execution
 skill: positioning-ideas
 session_date: 2026-09-06
 pattern: "none"
@@ -174,7 +176,7 @@ source: n.v.t.
 ```
 
 **Pass Criteria:**
-- Session logged to `/context/skill-sessions.md` with exactly four
+- Session logged to `/context/skill-sessions.md` with exactly five
   fields, even when nothing notable happened — `pattern: none` is
   written explicitly, the row is never skipped
 - No separate knowledge/decisions file written — matches this repo's
@@ -193,7 +195,7 @@ source: n.v.t.
 | 3 | Per-alternative gap mapping | Each alternative gets a distinct, structural gap, not generic |
 | 4 | Divergence self-check | Redundant options flagged with the specific duplicate named |
 | 5 | Pre-gate handoff framing | Explicit statement that BUILD mode's gate still applies |
-| 6 | Learning Close | Real four-field row; no brain write; `pattern: none` never skipped |
+| 6 | Learning Close | Real five-field row; no brain write; `pattern: none` never skipped |
 
 ---
 

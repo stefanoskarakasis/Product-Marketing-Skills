@@ -10,11 +10,12 @@ and the output has the same shape. Category definitions live in the root
 | `~~market data` | traffic and market benchmarks | SimilarWeb |
 | `~~SEO` | keyword and content demand signals | Ahrefs |
 | `~~CRM` | funnel and conversion data | HubSpot |
+| `~~call recordings` | customer calls and quotes to build stories from | Fireflies, Gong |
 | `~~email marketing` | lifecycle email performance | Klaviyo |
 | `~~marketing analytics` | cross-channel campaign and spend performance | Supermetrics |
 | `~~cloud storage` | metric sheets, past reports and experiment logs | Google Drive, Google Sheets |
 
-Servers in this plugin's `.mcp.json`: amplitude, amplitude-eu, pendo, similarweb, ahrefs, hubspot, klaviyo, supermetrics, google-drive, google-sheets.
+Servers in this plugin's `.mcp.json`: fireflies, gong, amplitude, amplitude-eu, pendo, similarweb, ahrefs, hubspot, klaviyo, supermetrics, google-drive, google-sheets.
 
 Rules: read-only by default, ask before writing, tag every pulled fact with
 category, tool and date, treat pulled facts as drafts until confirmed, and

@@ -6,7 +6,7 @@ description: >
   canonical positioning, buyer-personas segment inheritance, segment/channel
   specificity, drift trace-check flagging, the 3+-drift escalation
   threshold, and Learning Close accuracy against the skill's real
-  four-field session-log shape. 6 scenarios covering real variant-generation
+  five-field session-log shape. 6 scenarios covering real variant-generation
   sessions and edge cases.
 ---
 
@@ -47,6 +47,7 @@ positioning-messaging first, then come back.
 **Test Data:**
 ```yaml
 # /context/skill-sessions.md
+type: execution
 skill: buyer-personas
 session_date: 2026-08-29
 pattern: "Champion and Economic Buyer were the same person — smaller org."
@@ -147,6 +148,7 @@ positioning that isn't holding.
 
 **Expected Output — Session Log:**
 ```yaml
+type: execution
 skill: value-prop-statements
 session_date: 2026-09-01
 pattern: "The Procurement-facing variant kept drifting toward compliance
@@ -157,7 +159,7 @@ source: surprised
 ```
 
 **Pass Criteria:**
-- Session logged to `/context/skill-sessions.md` with exactly four fields — no separate memory or decisions file written
+- Session logged to `/context/skill-sessions.md` with exactly five fields — no separate memory or decisions file written
 - No brain write attempted at any point in the session — variants exist only in chat output
 - If nothing notable happened, `pattern: none` is still written — the row is never skipped
 
@@ -172,7 +174,7 @@ source: surprised
 | 3 | Segment/channel specificity | Generic, audience-agnostic statements rejected |
 | 4 | Drift trace-check flagging | Statements contradicting canonical positioning explicitly flagged |
 | 5 | 3+-drift escalation threshold | Systemic drift triggers an explicit AUDIT recommendation |
-| 6 | Learning Close, no brain write | Real four-field session-log row; no durable brain write |
+| 6 | Learning Close, no brain write | Real five-field session-log row; no durable brain write |
 
 ---
 

@@ -6,7 +6,7 @@ description: >
   specificity rejection of generic macro forces, confidence tagging
   discipline, narrative arc coherence, category moment accuracy,
   durability rating, and Learning Close accuracy against the skill's
-  real four-field session-log shape. 6 scenarios covering real narrative
+  real five-field session-log shape. 6 scenarios covering real narrative
   builds and audits.
 ---
 
@@ -165,6 +165,7 @@ shown]. Confirm before I save this?
 
 **Expected Output — Session Log:**
 ```yaml
+type: execution
 skill: market-context
 session_date: 2026-08-31
 pattern: "User's initial category-moment read (creation) contradicted the
@@ -176,7 +177,7 @@ source: surprised
 **Pass Criteria:**
 - Section 5 write is shown in full before being committed — no silent write
 - Durability is rated (durable/at-risk/short-window) with a review date set, not left unrated
-- Session logged to `/context/skill-sessions.md` with exactly four fields — no separate knowledge/decisions file written
+- Session logged to `/context/skill-sessions.md` with exactly five fields — no separate knowledge/decisions file written
 - If nothing notable happened, `pattern: none` is still written — the row is never skipped
 
 ---
@@ -190,7 +191,7 @@ source: surprised
 | 3 | Confidence tagging discipline | CONFIRMED/INFERRED/HYPOTHESIS applied correctly, never blended |
 | 4 | Narrative arc coherence | Broken chains rejected; full chains pass |
 | 5 | Category moment accuracy | Contradicting evidence overrides user's initial assumption |
-| 6 | Learning Close + durability | Section 5 shown before write; durability rated; real four-field session-log row |
+| 6 | Learning Close + durability | Section 5 shown before write; durability rated; real five-field session-log row |
 
 ---
 

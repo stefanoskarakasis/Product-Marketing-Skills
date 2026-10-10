@@ -5,7 +5,7 @@ description: >
   Comprehensive eval suite for prd skill. Tests: guardrail surfacing,
   brain context loading, intake quality, Solution Story generation, PRD structure completeness,
   PM+PMM collaboration checkpoints, and Learning Close accuracy against the skill's real
-  four-field session-log shape. 8 scenarios covering real PRD workflows and edge cases.
+  five-field session-log shape. 8 scenarios covering real PRD workflows and edge cases.
 ---
 
 # PRD — Eval Suite
@@ -15,7 +15,7 @@ description: >
 Each eval:
 1. Populates `/foundation/brain.md` with baseline PMM context (Sections 2, 3, 4, 5, 7)
 2. Populates `/context/meta-patterns.md` with guardrails (if testing guardrail surfacing)
-3. Populates `/context/skill-sessions.md` with prior PRD rows in the skill's real four-field shape (if testing Step 0 guardrail recall)
+3. Populates `/context/skill-sessions.md` with prior PRD rows in the skill's real five-field shape (if testing Step 0 guardrail recall)
 4. Runs prd skill for given scenario
 5. Validates outputs: Solution Story quality, PRD completeness, Learning Close accuracy, guardrail triggers
 
@@ -35,11 +35,13 @@ guardrail_1:
   status: ACTIVE
 
 # /context/skill-sessions.md
+type: execution
 skill: prd
 session_date: 2026-06-10
 pattern: "PRD intake for User Dashboard proceeded without a defined success metric until Section 03"
 source: wrong
 
+type: execution
 skill: prd
 session_date: 2026-06-15
 pattern: "Same pattern recurred on Analytics Export — success metrics stayed undefined through intake"
@@ -263,6 +265,7 @@ Align on: Go/no-go criteria + success definitions
 
 **Expected Output - Session Log:**
 ```yaml
+type: execution
 skill: prd
 session_date: 2026-06-21
 pattern: "PRD intake surfaced the announcement-level question late — pulling it into Round 1 would have sharpened scope earlier."
@@ -270,7 +273,7 @@ source: surprised
 ```
 
 **Pass Criteria:**
-- Session logged to `/context/skill-sessions.md` with exactly these four fields — `skill`, `session_date`, `pattern`, `source` — matching Step 7's template in `SKILL.md` verbatim. No additional fields.
+- Session logged to `/context/skill-sessions.md` with exactly these five fields — `type: execution`, `skill`, `session_date`, `pattern`, `source` — matching Step 7's template in `SKILL.md` verbatim. No additional fields.
 - `pattern` is a single falsifiable statement about what happened this session, or the literal string `"none"` if nothing notable occurred — not a multi-field summary object.
 - `source` is one of `surprised / wrong / missing / n.v.t.`
 - The row is written directly, without asking the user for permission — this is a separate, mechanical write from anything the skill asks the user's go-ahead on (like where to save the PRD or Solution Story output).
@@ -285,11 +288,13 @@ source: surprised
 **Test Data:**
 ```yaml
 # /context/skill-sessions.md (2 prior PRD rows, real shape)
+type: execution
 skill: prd
 session_date: 2026-05-10
 pattern: "PRD intake for User Dashboard proceeded without a defined success metric until Section 03"
 source: wrong
 
+type: execution
 skill: prd
 session_date: 2026-06-15
 pattern: "Same pattern recurred on Analytics Export — success metrics stayed undefined through intake"
@@ -305,6 +310,7 @@ Feature intake → Solution Story approved → Full PRD (10 sections) → 3 chec
 ✓ Full PRD generated: 10 sections, all placeholders labeled
 ✓ PM + PMM checkpoints surfaced: 3 (§01, §04, §07)
 ✓ Session logged (Step 7):
+  type: execution
   skill: prd
   session_date: 2026-06-21
   pattern: "Third consecutive PRD session where success-metric clarity came in late — worth watching as a candidate guardrail."
@@ -316,7 +322,7 @@ Note that pattern-across-sessions detection (comparing this session's row agains
 **Pass Criteria:**
 - Full workflow completes (intake → Story → PRD → Checkpoints → Learning Close)
 - Guardrails surfaced at Step 0 (if `/context/meta-patterns.md` has an applicable, 2+-occurrence pattern)
-- Session logged to `/context/skill-sessions.md` with the real four-field shape — not a richer schema
+- Session logged to `/context/skill-sessions.md` with the real five-field shape — not a richer schema
 - The skill does not attempt cross-session pattern synthesis itself — that's `meta-synthesis`'s job, not prd's
 
 ---
@@ -331,7 +337,7 @@ Note that pattern-across-sessions detection (comparing this session's row agains
 | 4 | Solution Story generation | Status quo first, causal logic, outcome-focused |
 | 5 | Full PRD structure | 10 sections, clear ownership, labeled placeholders |
 | 6 | PM + PMM checkpoints | 3 checkpoints surfaced, explicit approval gates |
-| 7 | Learning Close accuracy | Real four-field row (`skill`/`session_date`/`pattern`/`source`) logged to `/context/skill-sessions.md` |
+| 7 | Learning Close accuracy | Real five-field row (`type`/`skill`/`session_date`/`pattern`/`source`) logged to `/context/skill-sessions.md` |
 | 8 | End-to-end workflow | Intake→Story→PRD→Checkpoints→Learning Close, no cross-session synthesis attempted by this skill |
 
 ---

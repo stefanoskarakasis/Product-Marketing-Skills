@@ -208,7 +208,7 @@ source: {{surprised/wrong/missing/n.v.t.}}
 - One-sentence voice test passes across every profile before delivery
 - Brain Section 4 write shown to the user before it happens, written only
   on confirmation
-- Session logged with all four fields, `pattern: none` written explicitly
+- Session logged with all five fields, `pattern: none` written explicitly
   if nothing notable happened — the row is never skipped
 
 ---
@@ -258,7 +258,7 @@ source: {{surprised/wrong/missing/n.v.t.}}
 | Forbidden language explicit | Named list, not implied | Yes |
 | Voice test passes | Every profile passes the one-sentence test | Yes |
 | Confirmation before write | Exact before/after shown, user confirmed | Yes |
-| Learning Close complete | Four-field row appended, never skipped | Yes |
+| Learning Close complete | Five-field row appended, never skipped | Yes |
 
 ---
 

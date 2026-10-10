@@ -52,7 +52,7 @@ domain. This repo has seven plugins:
 | `pmm-positioning` | Positioning and messaging |
 | `pmm-go-to-market` | GTM strategy, launch tiering, workflow orchestration |
 | `pmm-execution` | Day-to-day PMM work: PRDs, OKRs, retros, pre-mortems |
-| `pmm-growth` | Growth ideation and measurement: a North Star Metric and capped scorecard, pre-commitment positioning angles, brain-grounded campaign ideas, and value-prop variants |
+| `pmm-growth` | Growth ideation and measurement: a North Star Metric and capped scorecard, pre-commitment positioning angles, brain-grounded campaign ideas, value-prop variants, and customer stories |
 | `pmm-toolkit` | Utilities: writing assistant (internal and marketing content), resume review, privacy policy, GACCS briefs |
 | `pmm-meta` | Skills that operate on the skill system itself |
 
@@ -63,7 +63,7 @@ understand your product, ICP, positioning, and competitive landscape before
 doing anything. Build it once with the `product-marketing-context` skill;
 every other skill reads from it.
 
-## Available Skills (34 Total)
+## Available Skills (35 Total)
 
 | Skill | Plugin | Description |
 |-------|--------|-------------|
@@ -86,6 +86,7 @@ every other skill reads from it.
 | [experiment-ideas](pmm-growth/skills/experiment-ideas/) | pmm-growth | Brain-grounded growth ideas: channel, message, cost-efficiency, ranked |
 | [value-prop-statements](pmm-growth/skills/value-prop-statements/) | pmm-growth | Segment-specific value-prop variants of an already-set positioning |
 | [pmm-metrics](pmm-growth/skills/pmm-metrics/) | pmm-growth | North Star Metric (7-criteria validated) + capped scorecard across 4 categories |
+| [customer-stories](pmm-growth/skills/customer-stories/) | pmm-growth | Kickoff to customer approval for customer stories in one fixed structure; every stat and quote checked |
 | [interview-summary](pmm-execution/skills/interview-summary/) | pmm-execution | Customer discovery synthesis using JTBD |
 | [prd](pmm-execution/skills/prd/) | pmm-execution | Product requirements docs with embedded Solution Stories |
 | [pre-mortem](pmm-execution/skills/pre-mortem/) | pmm-execution | Cross-functional risk analysis |
@@ -146,7 +147,7 @@ Skills work without connectors. Connect tools and they pull candidate facts for 
 | pmm-positioning | Fireflies, Gong, HubSpot, SimilarWeb, Intercom, Notion, Atlassian, Ahrefs, Slack, Google Drive, Google Docs, Google Slides |
 | pmm-execution | Fireflies, Gong, Notion, Atlassian, Linear, Figma, Canva, Slack, Gmail, Google Calendar, Google Drive, Google Docs, Google Sheets, Google Slides |
 | pmm-go-to-market | HubSpot, SimilarWeb, Fireflies, Gong, Slack, Klaviyo, Supermetrics, Canva, Gmail, Google Calendar, Google Drive, Google Docs, Google Sheets, Google Slides |
-| pmm-growth | Amplitude (US and EU), Pendo, SimilarWeb, Ahrefs, HubSpot, Klaviyo, Supermetrics, Google Drive, Google Sheets |
+| pmm-growth | Fireflies, Gong, Amplitude (US and EU), Pendo, SimilarWeb, Ahrefs, HubSpot, Klaviyo, Supermetrics, Google Drive, Google Sheets |
 | pmm-toolkit | Notion, Atlassian, Slack, Canva, Gmail, Google Calendar, Google Drive, Google Docs, Google Sheets, Google Slides |
 | pmm-meta | None |
 

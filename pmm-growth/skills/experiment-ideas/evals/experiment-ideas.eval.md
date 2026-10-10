@@ -5,7 +5,7 @@ description: >
   Eval suite for experiment-ideas skill. Tests: brain context loading,
   no-brain direct-ask fallback, idea differentiation, cost-efficiency
   concreteness, alternatives self-check flagging, and Learning Close
-  accuracy against the skill's real four-field session-log shape. 6
+  accuracy against the skill's real five-field session-log shape. 6
   scenarios covering real brainstorm sessions and edge cases.
 ---
 
@@ -161,6 +161,7 @@ dead — just not this quarter's bet.
 
 **Expected Output — Session Log:**
 ```yaml
+type: execution
 skill: experiment-ideas
 session_date: 2026-09-01
 pattern: "User's initial channel list skewed heavily paid-social despite
@@ -172,7 +173,7 @@ source: surprised
 **Pass Criteria:**
 - Handoff note explicitly names which idea(s) are strong enough for `experiment-doc`, not left implicit in the ranked list alone
 - Lower-ranked ideas are framed as backlog, not silently dropped
-- Session logged to `/context/skill-sessions.md` with exactly four fields — no separate memory file written
+- Session logged to `/context/skill-sessions.md` with exactly five fields — no separate memory file written
 - No brain write attempted at any point — ideas exist only in chat output and the handoff note
 - If nothing notable happened, `pattern: none` is still written — the row is never skipped
 
@@ -187,7 +188,7 @@ source: surprised
 | 3 | Idea differentiation | Same-channel-same-message duplicates caught and regenerated |
 | 4 | Cost-efficiency concreteness | Vague claims rejected, concrete substitutes required |
 | 5 | Alternatives self-check | Indistinguishable-from-status-quo ideas explicitly flagged |
-| 6 | Handoff + Learning Close | Explicit experiment-doc handoff; real four-field session-log row |
+| 6 | Handoff + Learning Close | Explicit experiment-doc handoff; real five-field session-log row |
 
 ---
 

@@ -34,10 +34,11 @@ are checked before they ship.
   scorecard across Financial, Customer, Product & GTM, and Process &
   Growth. Rejects revenue-shaped metrics as North Star candidates and
   flags vanity metrics nobody can move.
-- **customer-stories** — Interview for, draft and audit B2B customer
-  stories in one fixed seven-block structure. You pick the depth and the
-  angle; every stat needs a baseline, period, denominator and source,
-  every quote a named speaker and a job, and nothing is invented.
+- **customer-stories** — Run a B2B customer story from kickoff to
+  customer approval in one fixed seven-block structure. You pick the
+  depth and the angle; every stat needs a baseline, period, denominator
+  and source, every quote a named speaker and a job, and nothing is
+  invented. Roles are asked for, never assumed.
 
 ## Commands (5)
 
@@ -50,8 +51,9 @@ are checked before they ship.
 - `/pmm-growth:pmm-metrics` — Build a North Star Metric and a capped
   measurement scorecard from scratch, or audit an existing metrics list
   for sprawl and vanity metrics.
-- `/pmm-growth:customer-stories` — Interview questions for a customer call,
-  a draft story from your notes, or an audit of a finished one.
+- `/pmm-growth:customer-stories` — Kickoff and internal brief, interview
+  questions, a draft from your notes, the customer review pack, or an
+  audit of a finished story.
 
 ## Connectors (Optional)
 

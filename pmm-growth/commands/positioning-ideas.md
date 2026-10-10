@@ -12,3 +12,17 @@ including status quo — hard-blocks and directs to
 `product-marketing-context` if that isn't in place yet.
 
 ## Invocation
+
+/pmm-growth:positioning-ideas [product or segment]
+/pmm-growth:positioning-ideas our automations feature
+
+## Workflow
+
+Uses the `positioning-ideas` skill. Runs the full flow: confirm segment
+(pulled from a recent `beachhead-segment`/`buyer-personas` session if one
+exists) → map unclaimed territory per alternative → generate options →
+check for real divergence, flagging near-duplicates → Learning Close.
+
+Output is disposable brainstorm breadth, not shippable copy — the
+strongest option still needs `positioning-messaging` BUILD mode's
+7-point gate before it becomes real positioning.

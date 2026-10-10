@@ -23,7 +23,7 @@ flagged, not silently shipped.
 
 Uses the `value-prop-statements` skill. Confirms a canonical positioning
 statement exists (from brain Section 3 or a pasted `positioning-messaging`
-output) — hard blocks and routes to `positioning-messaging` if none does.
+output) — asks you to paste one if none does, and never invents it.
 Identifies target segments/channels, pulling real committee roles from a
 recent `buyer-personas` session when available. Generates one statement
 per segment/channel, then trace-checks each against the canonical

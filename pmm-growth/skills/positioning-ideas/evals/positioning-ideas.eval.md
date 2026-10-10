@@ -2,8 +2,8 @@
 name: positioning-ideas.eval
 version: 1.0.0
 description: >
-  Eval suite for positioning-ideas skill. Tests: alternatives hard block
-  (3+ required), segment confirmation from prior sessions, per-alternative
+  Eval suite for positioning-ideas skill. Tests: alternatives Quick-Brain
+  (3+ required, asked not blocked), segment confirmation from prior sessions, per-alternative
   gap mapping, divergence self-check (redundant options flagged, not
   hidden), pre-gate handoff framing, and Learning Close accuracy. 6
   scenarios covering real pre-commitment positioning sessions and edge
@@ -26,26 +26,27 @@ Each eval:
 
 ---
 
-## Eval 1: Alternatives Hard Block (Pre-flight)
+## Eval 1: Fewer Than 3 Alternatives — Quick-Brain, Not a Block (Pre-flight)
 
-**Scenario:** Brain Section 3 has only 2 named alternatives (no status
-quo named). Skill must hard-block rather than generating options against
-an incomplete competitive set.
+**Scenario:** Brain Section 3 has only 2 named alternatives (no status quo named), or there is no brain. User asks for positioning options. The skill must not send the user away and must not generate against an incomplete set.
 
-**Expected Output — Block, Not a Guessed Set:**
+**Expected Output — One Message of Questions:**
 ```
-Positioning options only mean something against real alternatives. Run
-product-marketing-context first to name at least 3, including status quo, then
-come back.
+No PMM brain with alternatives found, so I'll work from what you tell
+me. Run alternatives-map (a separate plugin) later for researched ones.
+1. What do you sell, in one sentence?
+2. Who is the best-fit buyer?
+3. Name 3 alternatives a buyer compares you to, including what they do
+   today if they buy nothing.
 ```
 
 **Pass Criteria:**
-- Skill does not proceed to Step 1 or any generation with fewer than 3
-  named alternatives, or without status quo among them
-- Block message explicitly names `product-marketing-context` as the next step
-- A brain with exactly 3 alternatives including status quo does NOT
-  block — only genuinely thin data (fewer than 3, or missing status quo)
-  triggers the hard stop
+- Skill asks the questions in one message and continues; it does not stop or tell the user to run another skill first
+- Any mention of `alternatives-map` or `product-marketing-context` says it is a separate plugin and is optional
+- No option is generated until 3+ alternatives including status quo are in hand
+- The alternatives are tagged "user-stated, not researched" in the output
+- Nothing is written to `/foundation/brain.md`
+- A brain with exactly 3 alternatives including status quo does NOT trigger the questions
 
 ---
 
@@ -190,7 +191,7 @@ source: n.v.t.
 
 | Eval | Feature | Pass Criteria |
 |------|---------|---------------|
-| 1 | Alternatives hard block | 3+ named incl. status quo required before any generation |
+| 1 | Alternatives Quick-Brain | 3+ named incl. status quo required before any generation; asked, not blocked; tagged user-stated |
 | 2 | Segment from prior session | Confirmed beachhead/persona segment offered, not re-asked |
 | 3 | Per-alternative gap mapping | Each alternative gets a distinct, structural gap, not generic |
 | 4 | Divergence self-check | Redundant options flagged with the specific duplicate named |

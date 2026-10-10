@@ -2,7 +2,7 @@
 name: gtm-motions.eval
 version: 1.0.0
 description: >
-  Eval suite for gtm-motions skill. Tests: brain hard-block enforcement,
+  Eval suite for gtm-motions skill. Tests: no-brain Quick-Brain path,
   single-round intake discipline, all-7-motions scoring before gating,
   blocking-gate enforcement (ABM ACV floor, PLG self-serve requirement,
   outbound SDR capacity), single-primary/max-one-secondary selection,
@@ -15,7 +15,7 @@ description: >
 ## Setup (Universal)
 
 Each eval:
-1. Populates `/foundation/brain.md` with Sections 2 (ICP), 3 (Positioning), 4 (Competitive), or omits it to test the hard block
+1. Populates `/foundation/brain.md` with Sections 2 (ICP), 3 (Positioning), 4 (Competitive), or omits it to test the Quick-Brain path
 2. Populates `/context/meta-patterns.md` with a guardrail that has fired 2+ times, if testing guardrail surfacing
 3. Provides ACV, sales-cycle, and current-motion data, or withholds parts to test the intake sequence
 4. Runs gtm-motions skill for the given scenario
@@ -23,20 +23,26 @@ Each eval:
 
 ---
 
-## Eval 1: Brain Hard Block (Step 0 / Pre-flight)
+## Eval 1: No Brain — Quick-Brain, Not a Block (Step 0 / Pre-flight)
 
-**Scenario:** No `/foundation/brain.md` exists, or Section 2 (ICP) is empty. Skill must hard-block rather than scoring motions against guessed deal economics.
+**Scenario:** No `/foundation/brain.md` exists, or Section 2 (ICP) is empty. User asks "which GTM motions should we use?" The skill must not send the user away and must not score against guessed deal economics.
 
-**Expected Output — Block, Not a Guessed Score:**
+**Expected Output — Two Questions, Then Intake:**
 ```
-Brain not found. Run product-marketing-context first — motion fit is
-scored against ICP deal size, buyer type, and self-serve capability.
+No PMM brain found, so I'll score against two quick answers. Run
+product-marketing-context (a separate plugin) later to build one.
+1. Who is your best-fit buyer (title), and what kind and size of company?
+2. Can a buyer start and get value on their own (self-serve), or does it
+   take a sales conversation?
 ```
 
 **Pass Criteria:**
-- Skill does not proceed to Step 1 intake or any scoring without brain Section 2 present
-- Block message explicitly names `product-marketing-context` as the next step
-- A brain with Section 2 present but Sections 3/4 empty does NOT block — only Section 2's absence is a hard stop, per the skill's own Pre-flight rule
+- Skill asks the two Quick-Brain questions and continues; it does not stop or tell the user to run another skill first
+- Any mention of `product-marketing-context` says it is a separate plugin and is not a precondition
+- The answers are echoed back and the output is labeled "Built from Quick-Brain answers, not a full brain"
+- Nothing is written to `/foundation/brain.md`
+- Step 1 intake (segment, ACV, cycle length, current motion) still runs in one message; no scoring happens before it is answered
+- A brain with Section 2 present does NOT trigger the Quick-Brain questions
 
 ---
 
@@ -163,7 +169,7 @@ source: surprised
 
 | Eval | Feature | Pass Criteria |
 |------|---------|---------------|
-| 1 | Brain hard block (Pre-flight) | No ICP → hard stop, never guesses; other sections thin doesn't block |
+| 1 | No-brain Quick-Brain (Pre-flight) | No ICP → two questions, labeled, session-only; never guesses; full brain skips them |
 | 2 | Single-round intake | 4 questions in one message; scoring blocked until ACV + cycle length answered |
 | 3 | All 7 motions scored before gating | Every motion scored on all 4 signals before any exclusion |
 | 4 | Blocking gate enforcement | Gate failures exclude regardless of raw score — never averaged away |

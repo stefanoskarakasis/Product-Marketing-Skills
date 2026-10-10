@@ -7,9 +7,9 @@ argument-hint: "<product/segment, optionally with named alternatives already con
 
 Generate 3-5 divergent, ungated positioning angle options for $ARGUMENTS,
 each anchored to a specific named alternative from brain Section 3 and
-the unclaimed territory it opens. Requires 3+ named alternatives
-including status quo — hard-blocks and directs to
-`product-marketing-context` if that isn't in place yet.
+the unclaimed territory it opens. Needs 3+ named alternatives
+including status quo; if the brain has none, it asks you for them (tagged
+user-stated) instead of stopping.
 
 ## Invocation
 

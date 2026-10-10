@@ -20,15 +20,15 @@ Eval test cases for `meta-review` skill (SKILL-SPEC v2.1.0 compliance).
 3. Tier-appropriate checks pass — Operating Rules ≥6, Quality Gate ≥5 (2/2)
 4. Quality checks pass — under 500 lines, template fenced, evals file with
    3+ cases including an edge case (3/3)
-5. Score reported as 17/17
+5. Score reported as 18/18
 
 **Success Criteria:**
 
-- Every one of the 17 checks is evaluated and reported individually
-- Final score correctly totals 17/17
+- Every one of the 18 checks is evaluated and reported individually
+- Final score correctly totals 18/18
 - Verdict states "PASSES SPEC" plainly, without manufacturing nitpicks
 
-**Test Pass:** Skill scores 17/17 and the report says so without padding
+**Test Pass:** Skill scores 18/18 and the report says so without padding
 
 ---
 
@@ -46,14 +46,14 @@ Eval test cases for `meta-review` skill (SKILL-SPEC v2.1.0 compliance).
 2. `## Operating Rules` check fails — 3 rules present, 6 required
 3. Evals-file check fails — no `evals/` directory found
 4. All other checks evaluated independently and pass/fail on their own merits
-5. Score totals below 15/17
+5. Score totals below 16/18
 6. Failed checks each cite the specific gap: "Do Not Use For section is
    missing (not present as n.v.t. either)", "Operating Rules has 3 rules,
    spec requires ≥6 for T1", "No evals/skill-name.eval.md file found"
 
 **Success Criteria:**
 
-- Score is below the 15/17 threshold and the report says NEEDS FIXES
+- Score is below the 16/18 threshold and the report says NEEDS FIXES
 - Each failure names the specific gap, not a generic "incomplete"
 - Checks unrelated to the three failures are still evaluated and reported
   as passing, not skipped
@@ -100,11 +100,11 @@ requirements is not penalized for either
 
 **Expected Behavior:**
 
-1. Meta-review runs the full 17-point checklist independently for each of
+1. Meta-review runs the full 18-point checklist independently for each of
    the 3 skills
 2. Results are reported per-skill, not averaged or blended into one summary
    score
-3. If skill A scores 17/17 and skill B scores 12/17, both scores are shown
+3. If skill A scores 18/18 and skill B scores 12/18, both scores are shown
    individually with skill B's specific failures listed
 
 **Success Criteria:**

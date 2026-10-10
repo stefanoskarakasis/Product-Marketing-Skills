@@ -17,14 +17,14 @@ are checked before they ship.
 - **You get:** campaign ideas, value-prop variants, a metrics scorecard and customer stories that stay tied to your real positioning.
 - **First command:** `/pmm-growth:customer-stories` (needs no brain)
 - **Try:** "I have a call with [customer] on Thursday. What do I ask?"
-- **The brain:** `positioning-ideas` needs a brain; the other idea skills are sharper with one. The brain-building skill is a separate plugin, `product-marketing-context`.
+- **The brain:** The idea skills are sharper with a brain; `positioning-ideas` and `value-prop-statements` ask for what they need if you have none. The brain-building skill is a separate plugin, `product-marketing-context`.
 
 ## Skills (5)
 
 - **positioning-ideas** — Generate 3-5 divergent positioning angle
   options, each tied to a specific named alternative's unclaimed
-  territory, for choosing a direction before committing. Hard-blocks
-  without 3+ named alternatives including status quo. Ungated by design
+  territory, for choosing a direction before committing. Asks
+  for 3+ named alternatives including status quo if the brain has none. Ungated by design
   — every option still needs `positioning-messaging` BUILD mode's
   7-point gate before it ships as real copy.
 - **experiment-ideas** — Generate several concrete, cost-efficient growth
@@ -33,7 +33,7 @@ are checked before they ship.
   status-quo competitor already says, ranked by effort vs. impact.
 - **value-prop-statements** — Fan an existing positioning statement out
   into segment- or channel-specific value-prop copy for marketing, sales,
-  and onboarding. Hard-blocks if no canonical positioning exists yet, and
+  and onboarding. Asks you to paste your positioning if none exists, never invents one, and
   trace-checks every variant against drift.
 - **pmm-metrics** — Classify the business game, define a North Star
   Metric validated against 7 criteria, name 3-5 Input Metrics with a

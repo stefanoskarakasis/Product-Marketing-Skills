@@ -32,3 +32,9 @@ The evals in each skill's `evals/` folder are written test cases. This page reco
 | product-messaging-playbook | 1.1.0 | Eval 1: Quick-Brain (no brain) | | Not run | |
 | product-messaging-playbook | 1.1.0 | Eval 2: Full run | | Not run | |
 | product-messaging-playbook | 1.1.0 | Eval 9: Learning Close | | Not run | |
+| gtm-motions | 1.1.0 | Eval 1: No brain, Quick-Brain | | Not run | |
+| positioning-ideas | 1.1.0 | Eval 1: Fewer than 3 alternatives, Quick-Brain | | Not run | |
+| value-prop-statements | 1.1.0 | Eval 1: No positioning, user supplies one | | Not run | |
+| product-marketing-context | 2.1.0 | Eval 3: Cold-start brain recognised | | Not run | |
+| meta-review | 3.1.0 | Test 1: Skill that passes (18/18) | | Not run | |
+| workflow-orchestrator | 2.4.1 | Test Case 2: Brain missing, routes to beachhead-segment | | Not run | |

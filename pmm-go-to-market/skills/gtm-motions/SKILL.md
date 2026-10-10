@@ -1,6 +1,6 @@
 ---
 name: gtm-motions
-version: 1.0.1
+version: 1.1.0
 description: >
   Scores your GTM motion stack (Inbound, Outbound, Paid, Community, Partner, ABM, PLG)
   against ICP deal economics with blocking gates, then selects one primary and at most
@@ -10,7 +10,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-09-25
+last_updated: 2026-10-10
 ---
 
 # GTM Motions
@@ -41,7 +41,7 @@ attached to it; this skill replaces that guess with gates and scores.
 - **Args:** Initiative/segment, ACV band, target sales-cycle length, current motion if any. Free format — Step 1 fills gaps conversationally.
 - **Defaults:** If ACV and sales-cycle length are both unknown, block scoring and ask for a rough band first — motion fit runs on deal economics, not preference.
 - **Context keys:**
-  - `/foundation/brain.md` — required. Sections 2 (ICP), 3 (Alternatives & Positioning).
+  - `/foundation/brain.md` — optional, sharper with it. Sections 2 (ICP), 3 (Alternatives & Positioning). Without it, Step 0 asks two Quick-Brain questions.
   - `/context/meta-patterns.md` — optional; guardrails from prior motion decisions.
   - **Brain contract:** Reads Sections 2, 3. Writes: none.
 
@@ -64,7 +64,7 @@ attached to it; this skill replaces that guess with gates and scores.
 
 - Load `/foundation/brain.md` Sections 2, 3 if present — see Step 0.
 - Load `/context/meta-patterns.md` if present; surface any guardrail fired 2+ times.
-- **Hard block:** brain absent or Section 2 (ICP) empty → stop, direct to `product-marketing-context` first.
+- **Brain absent or Section 2 (ICP) empty: continue, don't block.** Say once: "No PMM brain found, so I'll score against two quick answers. Run `product-marketing-context` (a separate plugin) later to build one." Step 0 asks the two questions. Nothing is written to the brain.
 
 ---
 
@@ -74,8 +74,11 @@ attached to it; this skill replaces that guess with gates and scores.
 
 Load brain Sections 2–3, the confirmed beachhead if `beachhead-segment` already wrote one, and any guardrail from `/context/meta-patterns.md` that has fired 2+ times.
 
-**Gate check:** if brain is absent or Section 2 is empty, block and surface:
-> "Brain not found. Run `product-marketing-context` first — motion fit is scored against ICP deal size, buyer type, and self-serve capability."
+**No brain, or Section 2 empty:** ask the two Quick-Brain questions in one message, then continue to Step 1:
+> "1. Who is your best-fit buyer (title), and what kind and size of company?
+> 2. Can a buyer start and get value on their own (self-serve), or does it take a sales conversation?"
+
+Echo the answers back in one line. Use them as the ICP input for buyer reachability and the self-serve gate. They live in this session only and are never written to the brain. Label the output "Built from Quick-Brain answers, not a full brain". Deal size and cycle length still come from Step 1.
 
 ### Step 1 — Intake (One Round)
 
@@ -183,6 +186,7 @@ separate confirmation if the user wants the stack saved elsewhere.
 
 - All 7 motions scored on all 4 signals before any gate applied.
 - Every fired gate named with what it excluded.
+- With no brain, the two Quick-Brain answers were shown back, the output is labeled as built from them, and nothing was written to the brain.
 - Exactly one primary; ≤1 secondary; every rejection has a stated reason.
 - 90-day plan covers only selected motion(s) and includes a numeric kill criterion.
 

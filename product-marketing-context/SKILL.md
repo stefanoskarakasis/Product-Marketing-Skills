@@ -1,12 +1,12 @@
 ---
 name: product-marketing-context
-version: 2.0.0
+version: 2.1.0
 description: Build and maintain the shared GTM brain — product context, ICP, positioning, voice, market context, and proof points — that every other skill in this stack reads before producing output. Works standalone with your own answers, supercharged when you connect docs or a CRM. Trigger with "build my brain", "set up my GTM foundation", "audit my brain", "update my ICP", or "check brain health".
 metadata:
   author: Stefanos Karakasis
   context: context-agnostic
   quality_gate: true
-last_updated: 2026-08-24
+last_updated: 2026-10-10
 ---
 
 # Product Marketing Context (The Brain)
@@ -143,6 +143,7 @@ Check for `/foundation/brain.md`.
 
 - **Missing:** Explain in one line what the brain does, then start the wizard from Section 1.
 - **Exists:** Load all sections silently. Offer: [View current] [Edit a section] [Run health audit].
+- **Exists with a `🟡 Cold start` line:** another skill started the brain with one section. Say so in one line and list which of the 6 sections are filled and which are missing. Offer: [Build the missing sections] [Expand a filled section] [Run health audit]. Start at the first missing section unless the user picks one. For a section that is present but partial, ask only for its missing fields, show the merged result, and replace the section only after the user confirms it. Never rewrite a filled section the user did not choose.
 - **Legacy files found** (`.agents/*.md`, `.claude/*.md`): offer to migrate, showing each extracted value before writing anything.
 
 ### Step 2: Run the Wizard
@@ -158,11 +159,11 @@ Ask one question at a time. After each section, show the collected answers and a
 
 ### Step 3: Write the Brain File
 
-Once a section is confirmed, write it to `/foundation/brain.md` using the template at `templates/brain-template.md`. Write section by section, not in one batch — a mid-wizard exit should still leave a partial, usable brain plus a `.brain-draft.md` marker noting which section to resume from.
+Once a section is confirmed, write it to `/foundation/brain.md` using the template at `templates/brain-template.md`. Write section by section, not in one batch — a mid-wizard exit should still leave a partial, usable brain plus a `.brain-draft.md` marker noting which section to resume from. Keep a `🟡 Cold start` line in the header until all 6 sections are confirmed, then remove it in the same write.
 
 ### Step 4: Health Audit (Run Standalone or After Edits)
 
-Score each of the 6 sections 0-100 on: does the field exist, and is it specific rather than generic (named alternatives not "competitors," numbers not "high," a real persona not "businesses"). Report strengths (80+), needs improvement (50-79), and critical gaps (<50), with one concrete fix per gap. Offer to jump straight into editing the weakest section.
+Score each of the 6 sections 0-100 on: does the field exist, and is it specific rather than generic (named alternatives not "competitors," numbers not "high," a real persona not "businesses"). A section absent from a cold-start brain scores 0; a section present with fields missing scores 50 or lower. Report strengths (80+), needs improvement (50-79), and critical gaps (<50), with one concrete fix per gap. Offer to jump straight into editing the weakest section.
 
 ### Step 5: Route to What's Next
 
@@ -187,6 +188,7 @@ After any completed setup, edit, or audit, tell the user plainly that the brain 
 - Brain state checked (existing vs missing vs legacy) before any question is asked (Step 1).
 - No section written to `/foundation/brain.md` without the user confirming the exact before/after (Step 3).
 - Vague answers challenged inline, not silently accepted (Step 2).
+- A brain with a `🟡 Cold start` line is recognised in Step 1: filled and missing sections are listed, only missing fields are asked for, and the line is removed only once all 6 sections are confirmed (Steps 1, 3).
 - Health audit, when run, scores all 6 sections and names a concrete fix for every gap under 50 (Step 4).
 - Downstream skill names mentioned only if their write-back to this brain has been verified correct this session (Step 5).
 

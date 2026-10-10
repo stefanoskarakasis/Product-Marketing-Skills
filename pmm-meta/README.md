@@ -12,7 +12,7 @@ Meta skills that operate on the skill system itself. Install alongside any PMM p
 ## Skills (4)
 
 - **meta-learn** — Captures what a completed session actually taught you and logs it to the shared session log for meta-synthesis to read later.
-- **meta-review** — Audits any SKILL.md against SKILL-SPEC.md — the repo's authoring standard — with a scored 17-point checklist and prioritised fixes.
+- **meta-review** — Audits any SKILL.md against SKILL-SPEC.md — the repo's authoring standard — with a scored 18-point checklist and prioritised fixes.
 - **meta-synthesis** — Detects cross-skill patterns from the session log and proposes guardrails or brain updates for approval.
 - **meta-verify** — Second-pass quality check on skill output, re-applying the originating skill's own Quality Gate before delivery.
 

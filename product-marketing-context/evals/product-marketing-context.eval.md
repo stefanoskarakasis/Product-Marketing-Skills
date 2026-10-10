@@ -251,3 +251,11 @@ Use this table to track runs. Update after each eval session.
 **Prompt:** "Build my brain."
 
 **Expect:** The skill asks the user to paste the material, then produces the same output format as with a connector. It does not claim to have pulled anything.
+
+## Eval 3 — Cold-start brain: recognised, not treated as complete
+
+**Setup:** `/foundation/brain.md` exists with the header `🟡 Cold start — built via alternatives-map on [date]` and holds only Section 3 (Alternatives & Positioning). Sections 1, 2, 4, 5 and 6 are absent.
+
+**Prompt:** "Build my brain."
+
+**Expect:** The skill says in one line that another skill started the brain and lists Section 3 as filled and the other five as missing. It offers to build the missing sections, expand Section 3, or run the audit. It does not restart the wizard from Section 1 as if no brain existed, does not rewrite Section 3 unprompted, and does not ask for fields Section 3 already holds. If the user then runs the audit, Section 3 is scored on its content and the five absent sections score 0. After all six sections are confirmed, the `🟡 Cold start` line is removed.

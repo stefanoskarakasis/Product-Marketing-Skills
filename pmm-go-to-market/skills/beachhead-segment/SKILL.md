@@ -1,13 +1,13 @@
 ---
 name: beachhead-segment
-version: 3.0.1
+version: 3.0.2
 description: >
     Identifies and scores your highest-priority beachhead segment using four-dimension scoring (Burning Pain, Willingness to Pay, Winnability, Referral Potential) with blocking gates. Reads brain context (ICP, alternatives & positioning, proof points) and, when available, guardrails from prior beachhead decisions the user has logged. Writes confirmed beachhead to brain Section 2, on explicit confirmation.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-09-25
+last_updated: 2026-10-10
 ---
 
 # Beachhead-Segment — Skill
@@ -85,7 +85,7 @@ numbering above now match the body exactly: 7 steps, numbered 0–6.
 
 - Load `/foundation/brain.md` Sections 2, 3, 6 if it exists — see Step 0 for the full sequence.
 - Load `/context/meta-patterns.md` if it exists, and surface any guardrail that has fired 2+ times in prior beachhead decisions — see Step 0.
-- **Hard block:** if `/foundation/brain.md` is absent or Section 2 (ICP) is empty, stop and surface the message in Step 0's Gate check before proceeding — beachhead scoring without ICP, positioning, and competitive context produces guesswork, not a defensible recommendation.
+- **No brain: run the Quick-Brain, don't block.** If `/foundation/brain.md` is absent or Section 2 (ICP) is empty, ask the three Quick-Brain questions in Step 0's Gate check (about 3 minutes) and continue — beachhead scoring without ICP, positioning, and competitive context produces guesswork, not a defensible recommendation.
 
 ---
 

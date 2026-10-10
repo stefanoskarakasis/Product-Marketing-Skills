@@ -1,6 +1,6 @@
 ---
 name: workflow-orchestrator
-version: 2.4.0
+version: 2.4.1
 description: >
   Orchestrates multi-skill PMM programs end-to-end — chains positioning,
   competitive, GTM strategy, campaign briefs, stakeholder maps, and retros into
@@ -14,7 +14,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-09-25
+last_updated: 2026-10-10
 ---
 
 # PMM Workflow Orchestrator
@@ -77,12 +77,9 @@ matters as much as each individual output.
 ## Pre-flight
 
 - Load `/foundation/brain.md`. Read all sections silently.
-- If brain missing: block and surface:
-  > "Brain file not found at `/foundation/brain.md`. Run `product-marketing-context`
-  > first — the orchestrator needs your ICP, positioning, and history to route
-  > skills coherently. Without it, outputs will be disconnected."
-  > Unlike individual skills, the orchestrator does not degrade gracefully without
-  > brain. A program of disconnected outputs is worse than no program.
+- If brain missing: stop before the charter and surface:
+  > "Brain file not found at `/foundation/brain.md`. Run `beachhead-segment` first (same plugin, it builds a quick brain in about 3 minutes), then come back. The orchestrator needs your ICP and positioning to route skills coherently. `product-marketing-context` (a separate plugin) builds the full brain."
+  > Unlike individual skills, the orchestrator does not run on nothing. A program of disconnected outputs is worse than no program.
 - Audit brain sections before confirming workflow:
    - Section 3 > 6 months old → "Positioning is [N] months old. This workflow will
        include a positioning refresh step."
@@ -400,7 +397,7 @@ Runs at program close, before Master Program Document is delivered.
 
 ## Operating Rules
 
-- **Brain is mandatory.** The orchestrator does not run without `/foundation/brain.md`.
+- **A brain is required, a quick one is enough.** The orchestrator does not run without `/foundation/brain.md`; the Quick-Brain from `beachhead-segment` satisfies it.
   Disconnected skill outputs without shared context are worse than no program.
 - **Program Charter before execution.** No skill runs before the charter is confirmed.
   Starting without alignment is the most common reason programs produce wasted output.

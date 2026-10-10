@@ -1,6 +1,6 @@
 ---
 name: alternatives-map
-version: 2.1.0
+version: 2.1.1
 description: >
   Synthesizes research data — win/loss notes, sales call transcripts,
   G2/Capterra reviews, analyst reports — into a named alternatives map
@@ -28,8 +28,8 @@ deals: the status quo. This skill builds the map from evidence — win/loss
 notes, sales call transcripts, review-site quotes, analyst reports — across
 all four types a buyer actually considers, not just named vendors, and
 deepens your brain's existing Section 3 in place. `positioning-messaging`
-and `positioning-ideas` both hard-block without it — this is the single
-source of truth both read.
+needs 3+ alternatives before it builds, and `positioning-ideas` asks for them if
+the brain has none — this is the researched source both read.
 
 **Step 0** — Load brain Section 3 (current alternatives, however thin) and
 any guardrails from `/context/meta-patterns.md`.

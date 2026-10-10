@@ -1,6 +1,6 @@
 ---
 name: positioning-ideas
-version: 1.0.0
+version: 1.1.0
 description: >
   Generates 3-5 real positioning angles anchored to your named
   alternatives — not five ways of saying "we're better," actual
@@ -11,7 +11,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-09-06
+last_updated: 2026-10-10
 ---
 
 # Positioning Ideas
@@ -32,10 +32,10 @@ positioning copy — this skill explicitly does not replace that gate, it
 feeds it.
 
 **Step 0** — Load brain Section 1 (Product), Section 2 (ICP), and
-Section 3 (Alternatives & Positioning) — hard-block if Section 3 has
-fewer than 3 named alternatives including status quo, since divergent
-positioning options are meaningless without knowing what's actually
-being differentiated from.
+Section 3 (Alternatives & Positioning). If Section 3 has fewer than 3
+named alternatives including status quo, or there is no brain, run the
+Quick-Brain from Pre-flight first, since divergent positioning options
+are meaningless without knowing what's actually being differentiated from.
 
 **Step 1** — Confirm the target segment (from a recent `beachhead-segment`
 or `buyer-personas` session if one exists, or ask directly).
@@ -92,7 +92,7 @@ whichever option (or blend) gets chosen.
 - **Args:** Target segment (if not pulled from a recent session), number
   of options wanted (default 5).
 - **Defaults:** No brain, or Section 3 with fewer than 3 alternatives →
-  hard block, direct to `product-marketing-context` first. Brain exists
+  Quick-Brain (see Pre-flight), not a block. Brain exists
   with 3+ alternatives → load silently.
 - **Context keys:**
   - `/foundation/brain.md` — read Sections 1, 2, 3. Never written to —
@@ -105,12 +105,7 @@ whichever option (or blend) gets chosen.
 ## Pre-flight
 
 - Load `/foundation/brain.md` if it exists — Sections 1, 2, 3, silently.
-- **Hard block** if brain doesn't exist or Section 3 has fewer than 3
-  named alternatives including status quo: "Positioning options only
-  mean something against real alternatives. Run `alternatives-map` first
-  to name at least 3 from real research, including status quo, then come
-  back. No research handy? `product-marketing-context` covers a quicker
-  manual pass."
+- **Fewer than 3 named alternatives, or no brain: ask, don't block.** Say once: "No PMM brain with alternatives found, so I'll work from what you tell me. Run `alternatives-map` (pmm-positioning, a separate plugin) later for researched alternatives." Then ask in one message: (1) What do you sell, in one sentence? (2) Who is the best-fit buyer? (3) Name 3 alternatives a buyer compares you to, including what they do today if they buy nothing. Tag them "user-stated, not researched" in the output. Positioning options only mean something against real alternatives, so 3+ including status quo is still required before anything is generated; status quo is always one, so ask what buyers do instead. Session-only: nothing is written to the brain.
 - If a recent `beachhead-segment` or `buyer-personas` session exists,
   offer its segment instead of asking from scratch.
 
@@ -186,8 +181,9 @@ not itself shippable.
 
 ## Verification
 
-- Brain Section 3 had 3+ named alternatives including status quo before
-  any option was generated — hard block enforced, not skipped
+- 3+ named alternatives including status quo were in hand before any
+  option was generated, from brain Section 3 or the Quick-Brain (tagged
+  user-stated), never skipped
 - Every option has all four required fields
 - Every option is tied to a specific named alternative's gap, not a
   generic differentiation claim
@@ -216,14 +212,13 @@ not itself shippable.
   channel ideas assuming positioning is already set, not positioning
   direction itself.
 
-- **product-marketing-context** — when named alternatives don't exist
-  yet at all. Run that first; this skill hard-blocks without it.
+- **alternatives-map** (pmm-positioning, a separate plugin) — when you want the alternatives researched instead of stated from memory. This skill works without it from your own 3 alternatives, tagged user-stated.
 
 ---
 
 ## Operating Rules
 
-1. **Load alternatives first, hard block without 3+.** Divergent
+1. **Get 3+ alternatives first, from the brain or the Quick-Brain.** Divergent
    positioning is meaningless without a real competitive set to
    differentiate from.
 2. **Every option ties to a specific alternative's gap.** A "we're just

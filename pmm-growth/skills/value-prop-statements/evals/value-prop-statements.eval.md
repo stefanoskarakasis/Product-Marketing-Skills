@@ -2,7 +2,7 @@
 name: value-prop-statements.eval
 version: 1.0.0
 description: >
-  Eval suite for value-prop-statements skill. Tests: hard block with no
+  Eval suite for value-prop-statements skill. Tests: ask-not-invent with no
   canonical positioning, buyer-personas segment inheritance, segment/channel
   specificity, drift trace-check flagging, the 3+-drift escalation
   threshold, and Learning Close accuracy against the skill's real
@@ -15,28 +15,30 @@ description: >
 ## Setup (Universal)
 
 Each eval:
-1. Populates `/foundation/brain.md` with a canonical positioning statement (Section 3) and ICP (Section 2), or withholds it to test the hard block
+1. Populates `/foundation/brain.md` with a canonical positioning statement (Section 3) and ICP (Section 2), or withholds it to test the ask-not-invent path
 2. Populates `/context/skill-sessions.md` with a recent buyer-personas session if testing segment inheritance
 3. Runs value-prop-statements skill for the given scenario
 4. Validates outputs: block enforcement, specificity, trace-check accuracy, escalation threshold, confirmation gating
 
 ---
 
-## Eval 1: Hard Block With No Canonical Positioning
+## Eval 1: No Canonical Positioning — User Supplies One, Skill Never Invents
 
 **Scenario:** No `/foundation/brain.md` exists, and no positioning statement is pasted. User asks directly for value-prop variants.
 
-**Expected Output — Block, Not a Guessed Positioning:**
+**Expected Output — Ask, Don't Invent:**
 ```
-No positioning statement found. This skill fans out an existing
-positioning into variants — it doesn't build one from scratch. Run
-positioning-messaging first, then come back.
+Paste your current positioning, even a rough one. A usable one names who
+it is for, the alternative, and what you do differently ("For X, unlike
+Y, we Z"). I fan it out into variants; I don't write it for you.
 ```
 
 **Pass Criteria:**
-- Skill does not invent a positioning statement to proceed anyway
-- Block message explicitly names `positioning-messaging` as the correct next step
-- Skill does not generate any variants until a real positioning statement is confirmed
+- Skill asks the user for a positioning statement and does not invent one to proceed
+- No variants are generated until a statement naming an alternative or differentiator is confirmed
+- If the user supplies one, it is tagged "user-stated" and stated back as the fixed input
+- If the user has nothing at all, `positioning-messaging` is named as a separate plugin, not as a precondition for the rest of the skill
+- A generic line ("we help teams work better") is not accepted; the skill asks for the missing alternative or differentiator
 
 ---
 
@@ -169,7 +171,7 @@ source: surprised
 
 | Eval | Feature | Pass Criteria |
 |------|---------|---------------|
-| 1 | Hard block, no canonical positioning | Never invents positioning; routes to positioning-messaging |
+| 1 | No canonical positioning | Asks the user to supply one; never invents positioning |
 | 2 | Buyer-personas segment inheritance | Recent committee session offered, not re-derived |
 | 3 | Segment/channel specificity | Generic, audience-agnostic statements rejected |
 | 4 | Drift trace-check flagging | Statements contradicting canonical positioning explicitly flagged |

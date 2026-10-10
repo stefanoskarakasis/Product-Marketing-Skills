@@ -1,6 +1,6 @@
 ---
 name: meta-review
-version: 3.0.0
+version: 3.1.0
 description: >
   Audits any SKILL.md in this repo against SKILL-SPEC.md, the skill authoring
   standard — checks frontmatter, the seven required sections, tier-appropriate
@@ -12,13 +12,13 @@ metadata:
   author: Stefanos Karakasis
   context: context-agnostic
   quality_gate: true
-last_updated: 2026-08-22
+last_updated: 2026-10-10
 ---
 
 # meta-review
 
 Audits a skill's `SKILL.md` against `SKILL-SPEC.md` — the one standard every
-skill in this repo is supposed to meet. Runs the same 17-point checklist
+skill in this repo is supposed to meet. Runs the same 18-point checklist
 `SKILL-SPEC.md` Section 13 defines, returns a pass/fail per check, and
 prioritizes fixes so the skill's author knows exactly what to do next.
 
@@ -77,9 +77,9 @@ line counts.
 Check `SKILL-SPEC.md` Section 12 (Skill Tiers) for whether this skill is
 already listed under a tier. If not listed, ask the user which tier applies
 (T1 Strategic / T2 Execution / T3 Utility / T4 Meta) — tier determines which
-of the 17 checks apply.
+of the 18 checks apply.
 
-### Step 3: Run the 17-Point Checklist
+### Step 3: Run the 18-Point Checklist
 
 Work through `SKILL-SPEC.md` Section 13 exactly as written, in order:
 
@@ -91,9 +91,10 @@ directory name; `description` is 300–600 chars with trigger phrases verbatim;
 `Steps`, `Outputs`, `Verification`, `Do Not Use For` — each present, either
 filled in or explicitly marked `n.v.t.`
 
-**Tier-appropriate sections (2 checks, T1/T2 only)** — `Operating Rules`
+**Tier-appropriate sections (3 checks, T1/T2 only)** — `Operating Rules`
 with ≥6 rules; `Quality Gate` with ≥5 binary checks, only where
-`quality_gate: true`.
+`quality_gate: true`; `Steps` ends with a Learning Close step
+(`SKILL-SPEC.md` Section 5.1).
 
 **Quality (3 checks)** — `SKILL.md` ≤500 lines; any output template is
 wrapped in a code fence, not raw `##` headers; an evals file exists with
@@ -109,8 +110,8 @@ compliant; an omitted section is not.
 ## Meta-Review — [skill-name]
 
 **Tier:** [T1 / T2 / T3 / T4]
-**Score:** [N]/17
-**Threshold:** 15/17
+**Score:** [N]/18
+**Threshold:** 16/18
 
 ### Failed checks
 - [Check name] — [what's missing, specifically]
@@ -122,7 +123,7 @@ compliant; an omitted section is not.
 [PASSES SPEC / NEEDS FIXES] — [one sentence]
 ```
 
-If the skill scores below 15/17, list every failed check with enough detail
+If the skill scores below 16/18, list every failed check with enough detail
 that the author can fix it without re-reading the whole spec. If it passes,
 say so plainly — don't manufacture nitpicks to seem thorough.
 
@@ -135,7 +136,7 @@ say so plainly — don't manufacture nitpicks to seem thorough.
 
 ## Verification
 
-- Every one of the 17 checks from `SKILL-SPEC.md` Section 13 was evaluated,
+- Every one of the 18 checks from `SKILL-SPEC.md` Section 13 was evaluated,
   not a subset.
 - Tier was determined before checks ran (tier changes which checks apply).
 - Score and threshold are both stated, not just a pass/fail verdict.
@@ -158,7 +159,7 @@ say so plainly — don't manufacture nitpicks to seem thorough.
   good. That's a human call, or a job for the skill that produced the output
   plus `meta-verify`.
 - **Score honestly.** A skill that's missing three sections is not "mostly
-  there" — report the real count against 17.
+  there" — report the real count against 18.
 - **`n.v.t.` is a pass, silence is a fail.** Per `SKILL-SPEC.md` Section 7,
   an explicit `n.v.t.` on a section that doesn't apply is fully compliant.
   An omitted section is not, even if the reason is obvious.
@@ -180,7 +181,7 @@ say so plainly — don't manufacture nitpicks to seem thorough.
 |---|---|---|
 | Spec loaded | `SKILL-SPEC.md` read before any check ran | Yes |
 | Tier determined | Tier confirmed before checks, not assumed | Yes |
-| All 17 checks run | No check skipped regardless of early failures | Yes |
-| Score stated | Numeric score (N/17) shown, not just pass/fail | Yes |
+| All 18 checks run | No check skipped regardless of early failures | Yes |
+| Score stated | Numeric score (N/18) shown, not just pass/fail | Yes |
 | Failed checks specific | Each failure names the exact gap | Yes |
 | n.v.t. handled correctly | Explicit n.v.t. counted as pass per spec Section 7 | Yes |

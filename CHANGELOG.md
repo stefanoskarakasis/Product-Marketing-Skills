@@ -1,5 +1,34 @@
 # Changelog
 
+## v1.5.0 — 2026-10-10
+
+### Fewer dead ends
+
+- `gtm-motions` and `positioning-ideas` no longer stop when there is no brain.
+  `gtm-motions` asks two Quick-Brain questions (best-fit buyer, self-serve or sales
+  conversation); `positioning-ideas` asks for what you sell, the best-fit buyer and
+  three alternatives including doing nothing, tagged user-stated. Both are session-only
+  and never write to the brain.
+- `value-prop-statements` asks you to paste or write your positioning instead of
+  sending you to another plugin, and still never invents one.
+- `go-to-market-strategy` wording now matches its Step 0: with no brain it sends you
+  to `beachhead-segment` in the same plugin. It no longer names `product-marketing-context`
+  as the first step.
+- `workflow-orchestrator` 2.4.1 still stops without a brain, but now sends you to `beachhead-segment` in the same plugin (a quick brain in about 3 minutes) instead of a plugin you may not have installed.
+- `positioning-messaging` offers "name your 3 alternatives now" next to `alternatives-map` when Section 3 is empty. `alternatives-map` no longer says `positioning-ideas` hard-blocks.
+- `beachhead-segment` Pre-flight said "hard block" while its Step 0 ran the Quick-Brain. The Pre-flight now matches Step 0: no brain means three quick questions, not a stop.
+- `product-marketing-context` recognises a brain that another skill started (the
+  `🟡 Cold start` line): it lists filled and missing sections, asks only for missing
+  fields, scores absent sections 0, and removes the line once all six are confirmed.
+
+### Fixes
+
+- `meta-review` runs the 18 checks in `SKILL-SPEC.md` Section 13 (it ran 17 and missed
+  the Learning Close check). Pass threshold is 16/18.
+- `positioning-messaging` v2.4.2 is back under the 500-line limit: the Onboarding steps
+  moved to `references/onboarding.md`. Fixed a corrupted frontmatter value
+  (`brain-dependentContext keys`).
+
 ## v1.4.0 — 2026-10-10
 
 ### Works without a brain

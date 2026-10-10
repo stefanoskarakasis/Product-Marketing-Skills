@@ -1,6 +1,6 @@
 ---
 name: value-prop-statements
-version: 1.0.0
+version: 1.1.0
 description: >
   Fans an existing positioning statement out into segment- and
   channel-specific value-prop copy variants for marketing, sales, and
@@ -13,7 +13,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-09-01
+last_updated: 2026-10-10
 ---
 
 # Value Prop Statements
@@ -38,9 +38,10 @@ product context, Section 3 alternatives/gap statement, or a
 freshly-pasted positioning statement from `positioning-messaging` output)
 and brain Section 2 (ICP) if present.
 
-**Step 1** — Confirm the source positioning. Block if none exists or is
-only a vague product description — this skill fans out an existing
-positioning, it doesn't invent one.
+**Step 1** — Confirm the source positioning. Ask for one if none exists. If what's given is only a
+vague product description, ask for the missing piece (the alternative or
+the differentiator). This skill fans out a positioning the user supplies;
+it doesn't invent one.
 
 **Step 2** — Identify target segments/channels for this batch (from
 `buyer-personas` output if a recent session exists, brain ICP, or direct
@@ -85,8 +86,8 @@ delivering them.
 
 - **Args:** The canonical positioning statement (pasted, or loaded from
   brain), target segments/channels, number of variants wanted.
-- **Defaults:** If no positioning statement is available anywhere, block
-  and direct to `positioning-messaging`. If segments aren't specified,
+- **Defaults:** If no positioning statement is available anywhere, ask the
+  user to paste or write one (see Pre-flight). If segments aren't specified,
   ask, or pull from a recent `buyer-personas` session if one exists.
 - **Context keys:**
   - `/foundation/brain.md` — read Section 1 (Product), Section 2 (ICP),
@@ -100,11 +101,7 @@ delivering them.
 ## Pre-flight
 
 - Check for a canonical positioning statement: brain Section 3's gap
-  statement, or ask the user to paste one from a recent
-  `positioning-messaging` session. If neither exists: **hard block** —
-  "No positioning statement found. This skill fans out an existing
-  positioning into variants — it doesn't build one from scratch. Run
-  `positioning-messaging` first, then come back."
+  statement, or one the user pastes. If neither exists, ask once: "Paste your current positioning, even a rough one. A usable one names who it is for, the alternative, and what you do differently ('For X, unlike Y, we Z'). I fan it out into variants; I don't write it for you." Tag it "user-stated" and state it back as the fixed input. If the user has nothing at all, point to `positioning-messaging` (pmm-positioning, a separate plugin) to build one, then come back.
 - If a recent `buyer-personas` session exists in
   `/context/skill-sessions.md`, offer to use its committee roles as the
   segment list instead of asking from scratch.
@@ -115,10 +112,10 @@ delivering them.
 
 **Step 1 — Confirm the source positioning.**
 State back the positioning statement being used as the fixed input.
-Block if it's missing or is only a generic product description ("we help
+Stop if it's missing or is only a generic product description ("we help
 teams work better" is not a positioning statement — it has no named
-alternative or differentiator). Ask the user to run
-`positioning-messaging` first if so.
+alternative or differentiator). Ask for the missing alternative or differentiator; if the user has none, point to
+`positioning-messaging` (a separate plugin).
 
 **Step 2 — Identify segments and channels for this batch.**
 If a recent `buyer-personas` session named committee roles, offer them.
@@ -205,9 +202,8 @@ source: {{surprised/wrong/missing/n.v.t.}}
 
 ## Operating Rules
 
-1. **Never invent a positioning statement.** If none exists, block and
-   route to `positioning-messaging` — this skill fans out, it doesn't
-   originate.
+1. **Never invent a positioning statement.** If none exists, ask the
+   user to supply one — this skill fans out, it doesn't originate.
 2. **Every variant traces to the canonical differentiator.** A statement
    that introduces a new claim isn't a variant, it's drift — flag it.
 3. **Name the specific segment or channel in every statement.** A
@@ -228,7 +224,7 @@ source: {{surprised/wrong/missing/n.v.t.}}
 
 | Check | Standard | Pass = |
 |---|---|---|
-| Canonical positioning confirmed | Stated back before generation; blocked if absent | Yes |
+| Canonical positioning confirmed | Stated back before generation; user-supplied if absent, never invented | Yes |
 | Segment/channel named per statement | No generic, audience-agnostic statements | Yes |
 | Trace-check run | Every statement checked against canonical differentiator | Yes |
 | Drift flagged, not hidden | Any statement failing trace-check marked explicitly | Yes |

@@ -36,7 +36,7 @@ requested, and zero skill outputs produced before user confirms.
 
 ---
 
-## Test Case 2: Brain missing — orchestrator blocks
+## Test Case 2: Brain missing — orchestrator stops and routes in-plugin
 
 **Input:**
 ```
@@ -46,9 +46,8 @@ Run a full positioning refresh for our B2B SaaS product.
 **Expected output includes:**
 - Pre-flight detects missing brain
 - Blocking message surfaced — not a soft warning:
-  > "Brain file not found at `/foundation/brain.md`. Run `product-marketing-context`
-  > first..."
-- Explicit instruction to run `product-marketing-context` before proceeding
+  > "Brain file not found at `/foundation/brain.md`. Run `beachhead-segment` first (same plugin, builds a quick brain in about 3 minutes)..."
+- Explicit instruction to run `beachhead-segment` (same plugin) before proceeding; `product-marketing-context` is mentioned only as a separate plugin for the full brain
 - No workflow starts, no skills run
 - Contrast with individual skill behaviour — orchestrator does not degrade gracefully
 

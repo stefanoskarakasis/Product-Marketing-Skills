@@ -7,7 +7,7 @@ Go-to-market strategy, tier assignment, and workflow orchestration for product l
 - **You get:** a launch tier, a GTM brief and a motion stack, scored against your own ICP.
 - **First command:** `/pmm-go-to-market:beachhead-segment` (builds a three-question brain if you have none)
 - **Try:** "Which segment should we win first? Candidates: [list]"
-- **The brain:** `go-to-market-strategy` and `gtm-motions` need one. The brain-building skill is a separate plugin, `product-marketing-context`.
+- **The brain:** `go-to-market-strategy` sends you to `beachhead-segment` if you have none; `gtm-motions` asks two quick questions instead. The full brain is built by a separate plugin, `product-marketing-context`.
 
 ## Skills (4)
 

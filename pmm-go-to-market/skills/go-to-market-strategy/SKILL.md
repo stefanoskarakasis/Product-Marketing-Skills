@@ -1,13 +1,13 @@
 ---
 name: go-to-market-strategy
-version: 3.0.1
+version: 3.0.2
 description: >
     Assigns launch tier (T1–T4) using a four-signal framework and generates a complete GTM brief with positioning angles, channel strategy, success metrics, and competitive context. Reads brain (ICP, positioning, competitive, proof points) and, when available, guardrails from prior launches the user has logged.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-09-26
+last_updated: 2026-10-10
 ---
 
 # Go-to-Market-Strategy
@@ -48,7 +48,7 @@ The skill runs in 6 steps:
 ## Inputs
 
 - **Args:** Initiative name, 90-day success metric, timeline. Free format — Step 1 intake fills gaps conversationally.
-- **Defaults:** If brain is missing or Section 2 (ICP) is empty, this skill blocks and directs the user to `product-marketing-context` first — see Pre-flight.
+- **Defaults:** If brain is missing or Section 2 (ICP) is empty, this skill sends the user to `beachhead-segment` (same plugin) first — see Pre-flight and Step 0.
 - **Context keys:**
    - `/foundation/brain.md` — required. Sections 2 (ICP), 3 (Alternatives & Positioning), 6 (Proof Points Registry).
    - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior GTM briefs.
@@ -76,7 +76,7 @@ The skill runs in 6 steps:
 
 - Load `/foundation/brain.md` Sections 2, 3, 6 if it exists — see Step 0 for the full sequence.
 - Load `/context/meta-patterns.md` if it exists, and surface any guardrail that has fired 2+ times in prior GTM briefs — see Step 0.
-- **Hard block:** if `/foundation/brain.md` is absent or Section 2 (ICP) is empty, stop and direct the user to run `product-marketing-context` first — GTM strategy without ICP and positioning produces generic output, not defensible strategy.
+- **No brain:** if `/foundation/brain.md` is absent or Section 2 (ICP) is empty, stop and send the user to `beachhead-segment` (same plugin, builds a quick brain in about 3 minutes), then come back — see Step 0. GTM strategy without ICP and positioning produces generic output, not defensible strategy. `product-marketing-context` (a separate plugin) builds the full brain.
 
 ---
 
@@ -301,7 +301,7 @@ happened this session, still write the row with `pattern: none`.
 ## Operating Rules
 
 - **Load brain before intake.** ICP shapes what tier is appropriate.
-- **First-run blocks without brain.** Missing brain triggers onboarding, not a warning.
+- **First run without a brain goes to `beachhead-segment`.** A missing brain triggers a short setup in this plugin, not a warning.
 - **All four tier signals must be applied.** Revenue alone does not make something T1.
 - **Tier rationale mandatory.** One-sentence grounded reason required. "It feels big" is not a rationale.
 - **Leading indicators required.** Every brief has ≥1 leading indicator + primary metric.

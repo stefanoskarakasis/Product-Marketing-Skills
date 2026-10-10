@@ -43,8 +43,7 @@ of asking again.
 **Skills** are the building blocks. Each skill gives Claude domain
 knowledge, a framework, or a guided workflow for a specific PMM task.
 
-**Plugins** group related skills into installable packages, one per GTM
-domain. This repo has seven plugins:
+**Plugins** group related skills into installable packages, one per GTM domain. This repo has seven plugins:
 
 | Plugin | What it covers |
 |---|---|

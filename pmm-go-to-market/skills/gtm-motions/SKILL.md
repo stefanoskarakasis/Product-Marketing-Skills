@@ -1,6 +1,6 @@
 ---
 name: gtm-motions
-version: 1.1.0
+version: 1.2.0
 description: >
   Scores your GTM motion stack (Inbound, Outbound, Paid, Community, Partner, ABM, PLG)
   against ICP deal economics with blocking gates, then selects one primary and at most
@@ -43,7 +43,7 @@ attached to it; this skill replaces that guess with gates and scores.
 - **Context keys:**
   - `/foundation/brain.md` — optional, sharper with it. Sections 2 (ICP), 3 (Alternatives & Positioning). Without it, Step 0 asks two Quick-Brain questions.
   - `/context/meta-patterns.md` — optional; guardrails from prior motion decisions.
-  - **Brain contract:** Reads Sections 2, 3. Writes: none.
+  - **Brain contract:** Reads Sections 2, 3. Writes: a Section 2 stub, only when the Quick-Brain ran and the user says yes in Step 5b. Never the motion stack.
 
 ---
 
@@ -64,7 +64,7 @@ attached to it; this skill replaces that guess with gates and scores.
 
 - Load `/foundation/brain.md` Sections 2, 3 if present — see Step 0.
 - Load `/context/meta-patterns.md` if present; surface any guardrail fired 2+ times.
-- **Brain absent or Section 2 (ICP) empty: continue, don't block.** Say once: "No PMM brain found, so I'll score against two quick answers. Run `product-marketing-context` (a separate plugin) later to build one." Step 0 asks the two questions. Nothing is written to the brain.
+- **Brain absent or Section 2 (ICP) empty: continue, don't block.** Say once: "No PMM brain found, so I'll score against two quick answers. Run `product-marketing-context` (a separate plugin) later to build one." Step 0 asks the two questions. Nothing is written to the brain unless the user says yes in Step 5b.
 
 ---
 
@@ -78,7 +78,7 @@ Load brain Sections 2–3, the confirmed beachhead if `beachhead-segment` alread
 > "1. Who is your best-fit buyer (title), and what kind and size of company?
 > 2. Can a buyer start and get value on their own (self-serve), or does it take a sales conversation?"
 
-Echo the answers back in one line. Use them as the ICP input for buyer reachability and the self-serve gate. They live in this session only and are never written to the brain. Label the output "Built from Quick-Brain answers, not a full brain". Deal size and cycle length still come from Step 1.
+Echo the answers back in one line. Use them as the ICP input for buyer reachability and the self-serve gate. They live in this session only, unless the user chooses to keep them in Step 5b. Label the output "Built from Quick-Brain answers, not a full brain". Deal size and cycle length still come from Step 1.
 
 ### Step 1 — Intake (One Round)
 
@@ -157,6 +157,26 @@ rejection wasn't real.
 
 If a secondary was selected, repeat at roughly half scope.
 
+### Step 5b — Offer to keep the answers (Quick-Brain runs only)
+
+If Step 0 used the Quick-Brain, ask once, after the plan: "Keep these two answers as the start of your brain, so the next skill doesn't ask again? (yes / no)". On no, write nothing. On yes:
+
+- No `/foundation/brain.md`: create it with the block below.
+- A brain exists with no Section 2: add this Section 2 only.
+- Section 2 already has content: write nothing and say why. Never overwrite a Section 2.
+- Files cannot be written: show the block and tell the user to save it as `brain.md`. Never say it was saved unless the write succeeded.
+
+```markdown
+# PMM Brain — [product name, or "not set"]
+🟡 Cold start — built via gtm-motions on [date]. Run `product-marketing-context` to build the other sections.
+
+## Section 2: ICP Definition
+Quick-Brain answers, user-stated, not researched.
+- Best-fit buyer: [title]
+- Company type and size: [..]
+- Buying path: [self-serve / sales conversation]
+```
+
 ### Step 6 — Learning Close
 
 Append one entry to `/context/skill-sessions.md`, in the format defined in
@@ -178,7 +198,7 @@ separate confirmation if the user wants the stack saved elsewhere.
 
 ## Outputs
 
-- **Files written:** `/context/skill-sessions.md` — one row per session. n.v.t. otherwise; no brain write. Stack goes into `go-to-market-strategy`'s brief if the user wants it saved.
+- **Files written:** `/context/skill-sessions.md` — one row per session. n.v.t. otherwise; no brain write except the optional Section 2 stub in Step 5b. Stack goes into `go-to-market-strategy`'s brief if the user wants it saved.
 - **Chat output format:** Motion Stack block, then 90-Day Activation table(s) — always together.
 - **External side effects:** n.v.t.
 
@@ -186,7 +206,7 @@ separate confirmation if the user wants the stack saved elsewhere.
 
 - All 7 motions scored on all 4 signals before any gate applied.
 - Every fired gate named with what it excluded.
-- With no brain, the two Quick-Brain answers were shown back, the output is labeled as built from them, and nothing was written to the brain.
+- With no brain, the two Quick-Brain answers were shown back, the output is labeled as built from them, and nothing was written to the brain unless the user said yes in Step 5b.
 - Exactly one primary; ≤1 secondary; every rejection has a stated reason.
 - 90-day plan covers only selected motion(s) and includes a numeric kill criterion.
 
@@ -206,7 +226,7 @@ separate confirmation if the user wants the stack saved elsewhere.
 - **Max one secondary.** A 4-motion "portfolio" at partial resourcing funds nothing enough to produce a signal.
 - **Every rejection gets one sentence.** Silence invites relitigating later with no anchor.
 - **The 90-day plan always carries a numeric kill criterion.** Milestones alone are a calendar, not a plan.
-- **Never write the stack to `/foundation/brain.md`.** Motion choice is initiative-specific and can legitimately change per launch — writing it as a brain fact would drift the brain every time a new motion is tried.
+- **Never write the stack to `/foundation/brain.md`. Only the optional Quick-Brain Section 2 stub (Step 5b) may be written, and only after a yes.** Motion choice is initiative-specific and can legitimately change per launch — writing it as a brain fact would drift the brain every time a new motion is tried.
 
 ## Quality Gate
 

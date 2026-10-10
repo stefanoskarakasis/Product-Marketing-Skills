@@ -40,7 +40,7 @@ product-marketing-context (a separate plugin) later to build one.
 - Skill asks the two Quick-Brain questions and continues; it does not stop or tell the user to run another skill first
 - Any mention of `product-marketing-context` says it is a separate plugin and is not a precondition
 - The answers are echoed back and the output is labeled "Built from Quick-Brain answers, not a full brain"
-- Nothing is written to `/foundation/brain.md`
+- Nothing is written to `/foundation/brain.md` before the user answers the offer in Step 5b
 - Step 1 intake (segment, ACV, cycle length, current motion) still runs in one message; no scoring happens before it is answered
 - A brain with Section 2 present does NOT trigger the Quick-Brain questions
 
@@ -210,3 +210,12 @@ done
 # [invoke gtm-motions with eval N test data]
 # [validate against eval N pass criteria]
 ```
+
+## Eval 9 — Keep the Quick-Brain answers: opt-in, never overwrites
+
+**Setup:** No `/foundation/brain.md`. The Quick-Brain ran and the plan is delivered.
+
+**Prompt (after the plan):** "yes, keep them"
+
+**Expect:** The skill had asked once whether to keep the two answers. On yes it creates `/foundation/brain.md` containing the `🟡 Cold start — built via gtm-motions` line and Section 2 only, tagged "Quick-Brain answers, user-stated, not researched". It does not write the motion stack and does not invent other sections. If the user says no, nothing is written. If a brain already has a filled Section 2, nothing is overwritten and the skill says why. If files cannot be written, it shows the block and does not claim it was saved.
+

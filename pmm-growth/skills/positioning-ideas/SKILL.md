@@ -1,6 +1,6 @@
 ---
 name: positioning-ideas
-version: 1.1.0
+version: 1.2.0
 description: >
   Generates 3-5 real positioning angles anchored to your named
   alternatives — not five ways of saying "we're better," actual
@@ -95,8 +95,9 @@ whichever option (or blend) gets chosen.
   Quick-Brain (see Pre-flight), not a block. Brain exists
   with 3+ alternatives → load silently.
 - **Context keys:**
-  - `/foundation/brain.md` — read Sections 1, 2, 3. Never written to —
-    this skill produces no durable brain output.
+  - `/foundation/brain.md` — read Sections 1, 2, 3. Never written to,
+    except the optional Section 3 stub in Step 4b (Quick-Brain runs only,
+    after a yes). The options themselves are never written.
   - `/context/skill-sessions.md` — check for a recent `beachhead-segment`
     or `buyer-personas` session to pull a real segment instead of asking.
 
@@ -105,7 +106,7 @@ whichever option (or blend) gets chosen.
 ## Pre-flight
 
 - Load `/foundation/brain.md` if it exists — Sections 1, 2, 3, silently.
-- **Fewer than 3 named alternatives, or no brain: ask, don't block.** Say once: "No PMM brain with alternatives found, so I'll work from what you tell me. Run `alternatives-map` (pmm-positioning, a separate plugin) later for researched alternatives." Then ask in one message: (1) What do you sell, in one sentence? (2) Who is the best-fit buyer? (3) Name 3 alternatives a buyer compares you to, including what they do today if they buy nothing. Tag them "user-stated, not researched" in the output. Positioning options only mean something against real alternatives, so 3+ including status quo is still required before anything is generated; status quo is always one, so ask what buyers do instead. Session-only: nothing is written to the brain.
+- **Fewer than 3 named alternatives, or no brain: ask, don't block.** Say once: "No PMM brain with alternatives found, so I'll work from what you tell me. Run `alternatives-map` (pmm-positioning, a separate plugin) later for researched alternatives." Then ask in one message: (1) What do you sell, in one sentence? (2) Who is the best-fit buyer? (3) Name 3 alternatives a buyer compares you to, including what they do today if they buy nothing. Tag them "user-stated, not researched" in the output. Positioning options only mean something against real alternatives, so 3+ including status quo is still required before anything is generated; status quo is always one, so ask what buyers do instead. Nothing is written to the brain unless the user says yes in Step 4b.
 - If a recent `beachhead-segment` or `buyer-personas` session exists,
   offer its segment instead of asking from scratch.
 
@@ -142,6 +143,25 @@ Compare every pair of options. If two options claim substantively the
 same unclaimed territory, collapse them into one or flag the weaker as
 `[REDUNDANT — same territory as Option N]` rather than presenting both
 as if they were real alternatives.
+
+**Step 4b — Offer to keep the alternatives (Quick-Brain runs only).**
+If the alternatives came from the Quick-Brain, ask once: "Keep these alternatives as the start of your brain, so the next skill doesn't ask again? (yes / no)". On no, write nothing. On yes:
+
+- No `/foundation/brain.md`: create it with the block below.
+- A brain exists with no Section 3: add this Section 3 only.
+- Section 3 already has content: write nothing and say why. Never overwrite a Section 3.
+- Files cannot be written: show the block and tell the user to save it as `brain.md`. Never say it was saved unless the write succeeded.
+
+```markdown
+# PMM Brain — [product name, or "not set"]
+🟡 Cold start — built via positioning-ideas on [date]. Run `product-marketing-context` to build the other sections.
+
+## Section 3: Alternatives & Positioning
+User-stated, not researched. Run `alternatives-map` (a separate plugin) to research them.
+- Alternatives: [1, 2, 3 including status quo]
+```
+
+Only the alternatives are kept. The positioning options are never written.
 
 **Step 5 — Learning Close.**
 Append an entry to `/context/skill-sessions.md`, in the format defined in
@@ -227,9 +247,10 @@ not itself shippable.
    time; don't deliver near-duplicates as if they were real choices.
 4. **Never present this output as shippable.** State explicitly that the
    winning option still needs `positioning-messaging` BUILD mode's gate.
-5. **Write nothing to the brain.** Options are disposable brainstorm
-   output; only a gated, chosen positioning earns durability via
-   `positioning-messaging`.
+5. **Never write the options to the brain.** Options are disposable
+   brainstorm output; only a gated, chosen positioning earns durability via
+   `positioning-messaging`. The one exception is the user-stated
+   alternatives, kept only after a yes in Step 4b.
 6. **Pull a real segment when available.** Check for a recent
    `beachhead-segment`/`buyer-personas` session before asking from
    scratch.

@@ -24,7 +24,7 @@ are checked before they ship.
 - **positioning-ideas** — Generate 3-5 divergent positioning angle
   options, each tied to a specific named alternative's unclaimed
   territory, for choosing a direction before committing. Asks
-  for 3+ named alternatives including status quo if the brain has none. Ungated by design
+  for 3+ named alternatives including status quo if the brain has none, and offers to keep them as the start of your brain. Ungated by design
   — every option still needs `positioning-messaging` BUILD mode's
   7-point gate before it ships as real copy.
 - **experiment-ideas** — Generate several concrete, cost-efficient growth

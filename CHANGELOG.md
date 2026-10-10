@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.6.0 — 2026-10-10
+
+### Keep your quick answers
+
+- `gtm-motions` and `positioning-ideas` now ask, once, after the output, whether to keep the
+  Quick-Brain answers as the start of your brain, so the next skill does not ask the same
+  questions again. Only on a yes: `gtm-motions` writes a Section 2 stub, `positioning-ideas`
+  writes a Section 3 stub with the alternatives, both under the `🟡 Cold start` line and tagged
+  user-stated. Neither overwrites an existing section, and neither ever writes the motion stack
+  or the positioning options.
+
 ## v1.5.0 — 2026-10-10
 
 ### Fewer dead ends

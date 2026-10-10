@@ -45,7 +45,7 @@ me. Run alternatives-map (a separate plugin) later for researched ones.
 - Any mention of `alternatives-map` or `product-marketing-context` says it is a separate plugin and is optional
 - No option is generated until 3+ alternatives including status quo are in hand
 - The alternatives are tagged "user-stated, not researched" in the output
-- Nothing is written to `/foundation/brain.md`
+- Nothing is written to `/foundation/brain.md` before the user answers the offer in Step 4b
 - A brain with exactly 3 alternatives including status quo does NOT trigger the questions
 
 ---
@@ -182,8 +182,22 @@ source: n.v.t.
   written explicitly, the row is never skipped
 - No separate knowledge/decisions file written — matches this repo's
   single compounding mechanism used by every other skill
-- No brain write attempted at any point — options are disposable, only
+- No write of the options to the brain at any point — options are disposable, only
   a gated `positioning-messaging` output earns durability
+
+---
+
+## Eval 7: Keep the Alternatives — Opt-In, Never Overwrites
+
+**Scenario:** No brain. The Quick-Brain ran, options were delivered, and the skill asked once whether to keep the alternatives. User replies "yes".
+
+**Pass Criteria:**
+- The question was asked once, after the options, not before
+- On yes, `/foundation/brain.md` holds the `🟡 Cold start — built via positioning-ideas` line and Section 3 only, tagged "User-stated, not researched"
+- The positioning options are not written anywhere in the brain
+- On no, nothing is written
+- A brain with a filled Section 3 is never overwritten; the skill says why
+- If files cannot be written, the block is shown and the skill never claims it was saved
 
 ---
 
@@ -196,7 +210,8 @@ source: n.v.t.
 | 3 | Per-alternative gap mapping | Each alternative gets a distinct, structural gap, not generic |
 | 4 | Divergence self-check | Redundant options flagged with the specific duplicate named |
 | 5 | Pre-gate handoff framing | Explicit statement that BUILD mode's gate still applies |
-| 6 | Learning Close | Real five-field row; no brain write; `pattern: none` never skipped |
+| 6 | Learning Close | Real five-field row; no write of options to the brain; `pattern: none` never skipped |
+| 7 | Keep the alternatives | Opt-in only; Section 3 stub only; never overwrites; options never written |
 
 ---
 

@@ -2,7 +2,7 @@
 description: Write a one-pager — solution brief, battle card leave-behind, or executive summary
 ---
 
-Load writing-assistant. Reference .agents/product-marketing-context.md —
+Load writing-assistant. Reference the brain (/foundation/brain.md; see "Context to load first" in SKILL.md) —
 load Positioning, ICP, Buyer Committee Personas (especially Decision Maker and Financial Buyer),
 Proof Points, Brand Voice, Objections.
 

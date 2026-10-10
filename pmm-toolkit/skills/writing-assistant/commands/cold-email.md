@@ -2,7 +2,7 @@
 description: Write a cold outreach email or short sequence
 ---
 
-Load writing-assistant. Reference .agents/product-marketing-context.md —
+Load writing-assistant. Reference the brain (/foundation/brain.md; see "Context to load first" in SKILL.md) —
 load ICP (target segment), Positioning (compared to what / why better), Problems & Pain Points,
 Customer Language, Proof Points.
 

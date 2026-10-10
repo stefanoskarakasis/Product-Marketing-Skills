@@ -430,7 +430,9 @@ Load instruction for context-agnostic skills:
 
 **Why this matters:** If `experiment-doc` loads your current ICP, it validates experiments that fit your current ICP instead of stress-testing them. The framework must be objective.
 
-**Context-agnostic skills:** `experiment-doc`, `prioritization-frameworks`, `privacy-policy`, `pmm-resume`, `writing-assistant`, `interview-summary`, `prd`
+**Context-agnostic skills:** `experiment-doc`, `prioritization-frameworks`, `privacy-policy`, `pmm-resume`, `interview-summary`, `prd`
+
+**Hybrid:** `writing-assistant` loads the brain for marketing content and Behavioral Messaging Review, and only Section 4 (voice) for internal messages. It moves to the brain-dependent list when its frontmatter is brought to this spec.
 
 **The rule:** If output quality depends on knowing your product → brain-dependent. If output quality depends on a universal framework → context-agnostic. When in doubt, choose agnostic.
 

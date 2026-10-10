@@ -2,7 +2,7 @@
 description: Draft or sharpen a Slack message or async update
 ---
 
-Load writing-assistant. Reference .agents/product-marketing-context.md —
+Load writing-assistant. Reference the brain (/foundation/brain.md; see "Context to load first" in SKILL.md) —
 load Brand Voice.
 
 Mode: Slack / async. Keep it short. One idea per message. Front-load the point.

@@ -21,3 +21,6 @@ pressure-testing built in.
 Uses the `writing-assistant` skill. Diagnoses what's weak about the
 current draft (or drafts from scratch), then rewrites it and explains
 the reasoning behind the changes.
+
+For blog posts, landing pages, press releases, case studies, newsletters, and
+social posts, use `/pmm-toolkit:marketing-content` instead.

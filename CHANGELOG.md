@@ -2,6 +2,24 @@
 
 ## Unreleased
 
+### Writing assistant
+
+- `writing-assistant` v2.4.0 drafts marketing content: blog posts, landing pages,
+  press releases, case studies, newsletters, and social posts. It takes audience,
+  key messages, voice, and proof from the brain and asks once for what is missing,
+  or lists its assumptions when told to just draft it.
+- Added an Audit mode that names AI patterns and quotes the lines without rewriting.
+- Added a routing step so Slack, email, and memo rewrites keep their zero-question
+  behavior, with explicit rules for email vs newsletter and post vs blog post.
+- Never invents stats, quotes, customer names, results, or search volume. Gaps become
+  placeholders, and press release and case study quotes are always placeholders.
+- Added `references/` format guides for the six formats plus an SEO checklist.
+- Added `/pmm-toolkit:marketing-content` (and the in-skill `marketing-content`
+  command). `homepage` now follows the landing-page guide.
+- The skill now reads `/foundation/brain.md`. The old
+  `.agents/product-marketing-context.md` file still works as a fallback.
+- Rewrote the evals to the SPEC format: the original 3 tests plus 12 new ones.
+
 ### Connectors
 
 - Added Google Docs, Google Sheets and Google Slides servers. Each plugin wires only

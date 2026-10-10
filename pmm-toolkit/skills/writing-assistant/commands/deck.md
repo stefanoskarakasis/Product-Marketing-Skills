@@ -2,7 +2,7 @@
 description: Write or sharpen copy for a presentation, sales deck, or pitch
 ---
 
-Load writing-assistant. Reference .agents/product-marketing-context.md —
+Load writing-assistant. Reference the brain (/foundation/brain.md; see "Context to load first" in SKILL.md) —
 load Positioning, ICP, Buyer Committee Personas, Proof Points, Brand Voice.
 
 Mode: deck copy. Presentations are read and listened to simultaneously — copy must work both ways.

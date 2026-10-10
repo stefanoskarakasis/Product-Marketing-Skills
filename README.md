@@ -53,7 +53,7 @@ domain. This repo has seven plugins:
 | `pmm-go-to-market` | GTM strategy, launch tiering, workflow orchestration |
 | `pmm-execution` | Day-to-day PMM work: PRDs, OKRs, retros, pre-mortems |
 | `pmm-growth` | Growth ideation and measurement: a North Star Metric and capped scorecard, pre-commitment positioning angles, brain-grounded campaign ideas, and value-prop variants |
-| `pmm-toolkit` | Utilities: writing assistant, resume review, privacy policy, GACCS briefs |
+| `pmm-toolkit` | Utilities: writing assistant (internal and marketing content), resume review, privacy policy, GACCS briefs |
 | `pmm-meta` | Skills that operate on the skill system itself |
 
 ## The Foundation: `product-marketing-context`
@@ -78,7 +78,7 @@ every other skill reads from it.
 | [message-house](pmm-positioning/skills/message-house/) | pmm-positioning | Formats existing positioning into a Roof + Value Pillars table |
 | [product-messaging-playbook](pmm-positioning/skills/product-messaging-playbook/) | pmm-positioning | Sales/CS-ready messaging playbook: problem, story, one named competitive comparison, discovery/objection script |
 | [gaccs-brief](pmm-toolkit/skills/gaccs-brief/) | pmm-toolkit | Campaign briefs (Goals, Audience, Creative, Channels, Stakeholders) |
-| [writing-assistant](pmm-toolkit/skills/writing-assistant/) | pmm-toolkit | Sharpen any written communication |
+| [writing-assistant](pmm-toolkit/skills/writing-assistant/) | pmm-toolkit | Sharpen any written communication; draft blog posts, landing pages, press releases, case studies, newsletters, social posts |
 | [pmm-resume](pmm-toolkit/skills/pmm-resume/) | pmm-toolkit | Resume tailoring for PMM roles |
 | [privacy-policy](pmm-toolkit/skills/privacy-policy/) | pmm-toolkit | GDPR/CCPA-aware privacy policies |
 | [experiment-doc](pmm-execution/skills/experiment-doc/) | pmm-execution | Growth experiments, A/B tests, hypotheses |

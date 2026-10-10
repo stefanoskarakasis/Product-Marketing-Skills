@@ -2,7 +2,7 @@
 description: Draft or rewrite a professional email — internal or external
 ---
 
-Load writing-assistant. Reference .agents/product-marketing-context.md —
+Load writing-assistant. Reference the brain (/foundation/brain.md; see "Context to load first" in SKILL.md) —
 load Brand Voice, Customer Language. Apply tone and style silently.
 
 Mode: email. Mirror the user's voice exactly. Apply Brand Voice if available.

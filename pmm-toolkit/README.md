@@ -1,20 +1,21 @@
 # pmm-toolkit
 
-PMM utilities: writing assistant, resume reviewer, privacy policy generator, and GACCS campaign briefs.
+PMM utilities: writing assistant (internal messages plus marketing content), resume reviewer, privacy policy generator, and GACCS campaign briefs.
 
 ## Skills (4)
 
 - **gaccs-brief** — Build and pressure-test a complete GACCS Brief (Goals, Audience, Creative, Channels, Stakeholders) for any marketing or GTM project.
 - **pmm-resume** — Review and tailor PMM resumes from IC to VP — dissects job descriptions, ranks bullets by fit, and rebuilds the full resume in one pass.
 - **privacy-policy** — Draft a jurisdiction-aware privacy policy for any digital product covering GDPR, CCPA, UK GDPR, and more.
-- **writing-assistant** — Rewrite, sharpen, or draft internal and external communications — with behavioral science pressure-testing for marketing copy.
+- **writing-assistant** — Rewrite, sharpen, or draft internal and external communications, with behavioral science pressure-testing for marketing copy. Also drafts blog posts, landing pages, press releases, case studies, newsletters, and social posts from your brain without inventing stats or quotes, and audits a draft for AI patterns.
 
-## Commands (4)
+## Commands (5)
 
 - `/pmm-toolkit:brief` — Build a GACCS campaign brief.
 - `/pmm-toolkit:resume` — Review or tailor a PMM resume against a job description.
 - `/pmm-toolkit:privacy` — Draft a jurisdiction-aware privacy policy.
 - `/pmm-toolkit:write` — Rewrite or draft a communication in your voice.
+- `/pmm-toolkit:marketing-content` — Draft a blog post, landing page, press release, case study, newsletter, or social post, or audit a draft for AI patterns.
 
 ## Connectors (Optional)
 

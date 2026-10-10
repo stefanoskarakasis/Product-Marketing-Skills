@@ -1,5 +1,13 @@
 {
   "mcpServers": {
+    "fireflies": {
+      "type": "http",
+      "url": "https://api.fireflies.ai/mcp"
+    },
+    "gong": {
+      "type": "http",
+      "url": "https://mcp.gong.io/mcp"
+    },
     "amplitude": {
       "type": "http",
       "url": "https://mcp.amplitude.com/mcp"

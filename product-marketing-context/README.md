@@ -14,14 +14,25 @@ producing output. Install this first.
 ## Skills (1)
 
 - **product-marketing-context** — Guided setup wizard for building your
-  brain from scratch (6 sections: Product Context, ICP Definition,
+  brain from scratch, plus refresh and gap modes that keep it current (6 core sections plus optional strategy and execution sections: Product Context, ICP Definition,
   Alternatives & Positioning, Voice & Tone, Market Context, Proof Points
   Registry), plus a health-audit mode that scores an existing brain
   file and recommends specific fixes.
 
-## Commands (1)
+## Commands (4)
 
 - `/product-marketing-context:build-brain` — Build or audit your PMM brain.
+- `/product-marketing-context:refresh-brain` — Find the fields that have gone stale and re-confirm only those.
+- `/product-marketing-context:brain-gaps` — Answer the open questions other skills left in your gaps queue.
+- `/product-marketing-context:my-context` — Tell the brain how you like to work (length, detail, tone of feedback). Saved to `/foundation/me.md`, kept apart from company facts.
+
+## How a brain gets built
+
+The skill starts from what you already have. It asks for your website and pricing page, drafts from them, and takes decks, call notes and win/loss docs if you have them. It then shows the facts it found, with sources, as a proposed brain you approve section by section. It asks questions only about what your material could not answer. Facts live in `/foundation/evidence.md`; if your folder is under version control, do not commit that file, because it can hold customer details. A demo you can run is in [`examples/ingest-demo`](../examples/ingest-demo/).
+
+## One brain, one product
+
+A brain covers one product or platform (modules and plans go in its Offerings block). If your company has several product lines, keep a separate folder, each with its own `/foundation/brain.md`, and run the skills once per product.
 
 ## Why This Comes First
 
@@ -49,7 +60,7 @@ Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Ca
 
 ## Author
 
-Stefanos Karakasis — [Product Marketing Skills](https://heystefanos.gumroad.com/)
+Stefanos Karakasis — [GitHub](https://github.com/stefanoskarakasis)
 
 ## License
 

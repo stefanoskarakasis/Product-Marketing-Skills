@@ -14,7 +14,7 @@ or offers to view, edit, or audit what's already there.
 - /build-brain 
 - /build-brain ICP 
 - /build-brain audit
-- /setup-GTM brain
+- /build-brain strategy
 
 ## Workflow
 
@@ -26,7 +26,7 @@ to that section or to the health audit instead of the full wizard.
 
 ### Step 2: Run the Wizard or Audit
 
-Follow the skill's own Execution Flow exactly — this command is a thin
+Follow the skill's own Steps exactly — this command is a thin
 entry point, not a separate set of instructions. Do not duplicate the
 skill's step logic here; invoke it.
 

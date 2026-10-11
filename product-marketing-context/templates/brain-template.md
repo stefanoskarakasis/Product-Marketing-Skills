@@ -9,7 +9,7 @@ Use this template file in your repo. The `product-marketing-context` skill will 
 # PMM Brain — {{product_name}}
 
 **Generated:** {{generated_date}}
-**Version:** 2.2.0
+**Version:** 3.1.0
 **Owner:** {{brain_owner}}
 
 ---
@@ -30,6 +30,15 @@ Use this template file in your repo. The `product-marketing-context` skill will 
 
 **Value Proposition:**
 {{value_proposition}}
+
+**Offerings (what we sell, packaged):**
+{{offerings}}
+
+**Approved Terminology (we say X, not Y):**
+{{glossary}}
+
+**Permitted Claims (may be made without further approval):**
+{{permitted_claims}}
 
 ---
 
@@ -135,6 +144,44 @@ Use this template file in your repo. The `product-marketing-context` skill will 
 
 ---
 
+## Section 7: Strategy
+
+**Top Priorities This Quarter (max 3):**
+{{priorities}}
+
+**Launches (name, date, tier T1-T4):**
+{{launches}}
+
+**Quarterly Goals (metric, baseline, target, date):**
+{{quarter_goals}}
+
+**Active Bets:**
+{{active_bets}}
+
+**Explicitly Not Doing:**
+{{not_doing}}
+
+---
+
+## Section 8: Execution
+
+**Stakeholders (role, what they care about, stance):**
+{{stakeholders}}
+
+**Approvals (what needs sign-off, from whom, how long it takes):**
+{{approvals}}
+
+**Prohibited (topics, claims or competitor mentions legal or leadership ruled out):**
+{{prohibited}}
+
+**Channels (where you publish and who owns each):**
+{{channels}}
+
+**Cadence (recurring reviews, launches, reporting):**
+{{cadence}}
+
+---
+
 ## Quick Reference
 
 **Your Brain in One Sentence:**
@@ -161,38 +208,38 @@ Use this template file in your repo. The `product-marketing-context` skill will 
 
 ## How Other Skills Use This Brain
 
-| Skill | Reads Sections | Use Case |
-|-------|---|---|
-| positioning-messaging | 1, 2, 3, 4 | Generate positioning statements vs. alternatives |
-| go-to-market-strategy | 1, 2, 5 | Scope launches with market context |
-| pre-mortem | 2 | Identify stakeholders + their concerns |
-| stakeholder-maps | 2, 4 | Map power dynamics + messaging by persona |
-| gaccs-brief | 1, 2, 4, 6 | Build campaign briefs (audience, messaging, proof points) |
+Which skill reads or writes which section, and how long each section stays fresh: see `references/brain-schema.md`.
 
 ---
 
 ## Maintenance
 
 **Last Updated:** {{last_updated}}
-**Next Review Date:** [Add 6 months]
+
+Each section has its own freshness limit (see `references/brain-schema.md`). Fields may carry a source tag: `[src: <where> | <date> | <stated/pulled/inferred> | <draft/confirmed/stale>]`. An untagged field is read as stated by you and confirmed on the last-updated date.
 
 **Update this brain when:**
 - Your ICP changes (new target segment)
 - Market dynamics shift (new macro forces, new category)
 - Positioning is challenged (new competitor, loss patterns)
 - Voice changes (brand refresh, new CEO, new tone)
+- A quarter turns over (Section 7)
+- An approval path, owner or channel changes (Section 8)
 
 **How to update:**
 1. Run `product-marketing-context` skill
-2. Choose [Edit sections]
+2. Choose [Edit a section]
 3. Select the section that changed
 4. Re-answer those questions
-5. Brain file updates automatically
+5. Confirm the before/after; the file is updated
+
+You may also edit this file by hand. Run the health audit afterwards so tags and dates stay accurate.
 
 **Do NOT:**
-- Edit this file manually (use the skill instead)
 - Delete old sections (keep history)
-- Skip sections (all six are required)
+- Present an unconfirmed value as confirmed
+
+Sections 1 to 6 make a complete brain. Sections 7 (Strategy) and 8 (Execution) are recommended: an existing brain without them stays complete, and the audit reports each as "not built" rather than as a gap.
 
 ---
 

@@ -24,6 +24,10 @@ Everything in it is invented: the company, the customers, the numbers and the qu
 | `pmm-growth` | "I have a call with Harbor & Pine Freight on Thursday. What do I ask?" | Interview questions trimmed to what Section 6 already proves. |
 | `pmm-go-to-market` | "What launch tier is exception routing?" | A tier (T1 to T4) with the signals behind it. |
 
+### See how a brain gets built from material
+
+`ingest-demo/` has five fictional source documents (a homepage, a pricing page, two customer calls and a planning note), the evidence the skill should pull out of them, and the Brain Diff it should propose. It shows website claims staying out of your proof points and disagreeing sources being shown to you instead of settled. Start with `ingest-demo/README.md`.
+
 ### Then switch to your own
 
 Delete the example brain, then run `/product-marketing-context:build-brain`. Or start with `alternatives-map`, `ideal-customer-profile` or `proof-points` in `pmm-positioning`: each works from your own notes and starts your brain with its section.

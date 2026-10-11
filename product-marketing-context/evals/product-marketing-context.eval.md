@@ -132,7 +132,7 @@ fix the operating rule or step that governs it.
 
 ### C1 — Brain written only after confirmation, using the real template
 **ID:** `write-only-after-confirm`
-**Starting condition:** Wizard running. User has just confirmed Section 6 (Proof Points), the last section.
+**Starting condition:** Wizard running. User has just confirmed Section 6 (Proof Points), the last required section. Section 7 (Strategy) is offered next and may be skipped.
 **Input:** `"Yes, that looks good"`
 **Pass criteria:**
 - [ ] `/foundation/brain.md` is written using `templates/brain-template.md`
@@ -200,13 +200,13 @@ fix the operating rule or step that governs it.
 ## Category E — Routing and Downstream Naming (Step 5) (2 scenarios)
 
 ### E1 — Downstream skill named only if genuinely verified (Edge case)
-**ID:** `routing-only-verified-skills-named`
+**ID:** `routing-only-mapped-skills-named`
 **Starting condition:** Full brain build just completed.
 **Input:** Brain confirmation accepted (`"Yes"`)
 **Pass criteria:**
 - [ ] Skill states plainly that the brain is ready and other skills will read from it
-- [ ] Does not name a specific downstream skill unless it has been verified in this session to read the brain's real section structure correctly — per Operating Rule 4
-- [ ] If no skill is named, that's a pass, not a gap — an unverified name is a broken promise, not a helpful suggestion
+- [ ] Names a next skill only if it appears in the "After product-marketing-context" entry of `.claude-plugin/next-skill-map.md` — per Operating Rule 4
+- [ ] If no skill is named, that's a pass, not a gap — a name from memory is a broken promise, not a helpful suggestion
 
 ---
 
@@ -259,3 +259,204 @@ Use this table to track runs. Update after each eval session.
 **Prompt:** "Build my brain."
 
 **Expect:** The skill says in one line that another skill started the brain and lists Section 3 as filled and the other five as missing. It offers to build the missing sections, expand Section 3, or run the audit. It does not restart the wizard from Section 1 as if no brain existed, does not rewrite Section 3 unprompted, and does not ask for fields Section 3 already holds. If the user then runs the audit, Section 3 is scored on its content and the five absent sections score 0. After all six sections are confirmed, the `🟡 Cold start` line is removed.
+
+## Eval 4 — Provenance tag written with every confirmed value
+
+**Setup:** No brain exists. The user answers Section 1 and confirms.
+
+**Prompt:** "Yes, that looks good."
+
+**Expect:** Each written value carries a tag in the form `[src: ... | YYYY-MM-DD | stated | confirmed]` as defined in `references/brain-schema.md`. User-typed answers are `stated`.
+
+## Eval 5 — Legacy brain with no tags loads silently
+
+**Setup:** `/foundation/brain.md` exists with all six sections and no provenance tags.
+
+**Prompt:** "Audit my brain."
+
+**Expect:** The brain loads without re-asking anything. The audit reports provenance coverage as 0 percent untagged (legacy), does not mark any field stale solely for lacking a tag, and does not rewrite any field.
+
+## Eval 6 — Section 7 questions reject vague answers
+
+**Setup:** A complete Sections 1 to 6 brain. The user asks to add strategy.
+
+**Prompt:** "Our goal is to grow revenue."
+
+**Expect:** The skill asks for metric, baseline, target and date before storing anything in Section 7. Nothing is written until the user confirms the before/after.
+
+## Eval 7 — Stale field flagged with one concrete fix
+
+**Setup:** A brain whose Section 5 tag is dated more than 90 days ago.
+
+**Prompt:** "Check brain health."
+
+**Expect:** Section 5 is reported as stale against its limit in `references/brain-schema.md`, with one concrete fix. A brain with no Section 7 reports it as "not built", not as a gap and not as 0.
+
+## Eval 8 — Missing Section 7 does not make a complete brain incomplete
+
+**Setup:** A brain with Sections 1 to 6 confirmed and no `🟡 Cold start` line.
+
+**Prompt:** "Build my brain."
+
+**Expect:** The skill offers View, Edit a section and Run audit. It does not treat the brain as cold-start and may offer Section 7 once, as optional.
+
+## Eval 9 — A confirmed value is never overwritten by newer evidence
+
+**Setup:** The brain has `persona: Controller` confirmed by the user last month. New call notes say the buyer is "the VP of Finance."
+
+**Prompt:** "Update my brain from these notes."
+
+**Expect:** The skill shows both values with their sources and dates and asks which is right. It does not change `persona` until the user answers. The old value stays until the user confirms the change.
+
+## Eval 10 — Refresh lists only stale fields and asks one at a time
+
+**Setup:** A brain with Section 5 dated 120 days ago (limit 90) and every other field within its limit.
+
+**Prompt:** "Refresh my brain."
+
+**Expect:** The skill lists only the Section 5 fields as stale, with age and limit. It asks "Still true? [yes / changed / drop]" for one field at a time and writes nothing until the user confirms.
+
+## Eval 11 — Refresh "drop" removes only after confirmation
+
+**Setup:** The same stale brain.
+
+**Prompt:** "Drop it" for a stale `macro_forces` field.
+
+**Expect:** The skill shows exactly what will be removed, asks for confirmation, and only then removes it. It does not touch any other field.
+
+## Eval 12 — Refresh with nothing stale stops in one line
+
+**Setup:** A brain where every field is within its limit.
+
+**Prompt:** "What's stale in my brain?"
+
+**Expect:** One line saying nothing is stale. No questions asked. No file written.
+
+## Eval 13 — Gaps: skipped gap is quiet for 30 days
+
+**Setup:** `/foundation/gaps.md` holds an `open` gap and a gap whose newest block is `skipped` 10 days ago.
+
+**Prompt:** "Answer my brain gaps."
+
+**Expect:** Only the `open` gap is offered. The skipped one is not shown. Answering appends an `answered` block and writes the answer to the brain with a `stated` tag after the user confirms the exact before/after.
+
+## Eval 14 — Gaps file is append-only
+
+**Setup:** A gap `G-003` is `open`. The user answers it.
+
+**Prompt:** "It's the VP of Finance."
+
+**Expect:** A new block with `gap_id: G-003` and `status: answered` is appended. The earlier `open` block is not edited or deleted.
+
+
+## Eval 15 — Ingest: URL seed fetch fails, falls back to paste
+
+**Setup:** No brain. The user gives a website URL that cannot be fetched.
+
+**Prompt:** "Build my brain from https://example.com."
+
+**Expect:** The skill says the page could not be read, makes no claims about the site, and asks the user to paste the homepage and pricing page text. It does not guess from the domain name.
+
+## Eval 16 — Ingest: website copy is not proof
+
+**Setup:** The only source is the company homepage, which says "Trusted by 500 teams" and "cuts reporting time by 60%".
+
+**Prompt:** "Ingest this page."
+
+**Expect:** Those lines are extracted as evidence with the lowest authority (public marketing) and are not filed as proof points. The Brain Diff does not put them in Section 6 as confirmed.
+
+## Eval 17 — Ingest: conflicts are shown, never auto-resolved
+
+**Setup:** The pricing page says "from $49 per seat"; a customer call transcript says "we pay a flat $2,000 per month".
+
+**Prompt:** "Ingest both."
+
+**Expect:** Both versions appear side by side with their sources. The skill asks which is right and writes nothing until the user answers.
+
+## Eval 18 — Ingest: a single source is tagged inferred
+
+**Setup:** A claim appears in exactly one document.
+
+**Prompt:** "Ingest this."
+
+**Expect:** The proposed field carries an `inferred` tag and `draft` status. Two or more agreeing sources are tagged `pulled`.
+
+## Eval 19 — Ingest: empty or unreadable input
+
+**Setup:** The user attaches an empty file and an image-only PDF.
+
+**Prompt:** "Add these to my brain."
+
+**Expect:** The skill reports that no text could be read from either, proposes no brain changes, and asks for a text version.
+
+## Eval 20 — Ingest: over the cap
+
+**Setup:** The user pastes 40 documents.
+
+**Prompt:** "Ingest all of these."
+
+**Expect:** The skill takes the first batch within the cap (about 10 documents or 5 transcripts), says what was left out, and offers to continue in a next round.
+
+## Eval 21 — Ingest: personal data is not stored
+
+**Setup:** A call transcript contains an email address and a phone number.
+
+**Prompt:** "Ingest this call."
+
+**Expect:** Neither value appears in the evidence file or the brain. Only the business fact is stored.
+
+## Eval 22 — Ingest: a confirmed value is never overwritten
+
+**Setup:** The brain has a confirmed `buyer_title` of "VP Finance". New evidence says "CFO".
+
+**Prompt:** "Ingest this call."
+
+**Expect:** The skill shows both, asks first, and leaves the confirmed value in place until the user decides.
+
+## Eval 23 — Ingest: Brain Diff needs approval per section
+
+**Setup:** Ingest produces changes for Sections 1, 2 and 3.
+
+**Prompt:** "Looks good, apply it all."
+
+**Expect:** The skill still confirms section by section, or states that one yes covers all three and lists them, before writing. Fields it could not support go to the gaps queue.
+
+## Eval 24 — My context asks only about format
+
+**Setup:** No `/foundation/me.md`.
+
+**Prompt:** "Set up my context."
+
+**Expect:** At most six short questions about length, detail, shape, bluntness and phrases to avoid, each with a default. It asks nothing about the product, customers or numbers, shows the exact file, and writes only after a yes.
+
+## Eval 25 — My context redirects company facts
+
+**Setup:** During Step 9 the user says "we sell to CFOs at mid-size banks".
+
+**Prompt:** (the sentence above)
+
+**Expect:** The skill does not store it in `me.md`. It says that belongs in the brain and offers to add it there after confirmation.
+
+## Eval 26 — My context works without a brain
+
+**Setup:** No `/foundation/brain.md`.
+
+**Prompt:** "My context."
+
+**Expect:** The skill still runs, writes only `/foundation/me.md` after confirmation, and offers to build the brain afterwards.
+
+## Eval 27 — Wizard offers Section 8 as recommended
+
+**Setup:** A confirmed brain with Sections 1 to 6.
+
+**Prompt:** "Edit a section" then "Execution".
+
+**Expect:** The skill asks about stakeholders, approvals, prohibited items, channels and cadence, roles first. It does not ask for personal details, and the audit afterwards reports Section 8 as built or "not built", never as a gap.
+
+## Eval 28 — Refresh covers Section 8 on its 180-day limit
+
+**Setup:** Section 8 dated 200 days ago, all other sections fresh.
+
+**Prompt:** "What's stale in my brain?"
+
+**Expect:** Only the Section 8 fields are listed as stale, with age 200 days and limit 180 days.

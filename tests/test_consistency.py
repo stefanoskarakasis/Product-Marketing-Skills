@@ -143,6 +143,7 @@ class TestVersionSync(unittest.TestCase):
 class TestChangelogFormat(unittest.TestCase):
     def test_headings_well_formed_dated_unique_descending(self):
         text = CHANGELOG.read_text(encoding="utf-8")
+        text = text.split("\n# Legacy releases", 1)[0]  # old-numbering releases are listed after this line
         headings = [l for l in text.splitlines() if l.startswith("## ")]
         self.assertTrue(headings, "CHANGELOG.md has no '## ' headings")
 

@@ -160,8 +160,8 @@ for plugin_dir, dirs in skill_dirs_by_plugin.items():
 # ones that don't match any real skill name.
 #
 # Two checks now (was one — the single `pmm-x:y` pattern silently missed
-# every bare `hs-something` reference, which is exactly how the dead
-# `hs-alternatives-map` / `hs-competitive-battlecard` references went
+# bare references to the retired skill-name prefix, which is exactly how
+# dead references to the old alternatives-map and battlecard names went
 # undetected across multiple review passes — including one written in
 # **bold**, not backticks, which the colon pattern also can't see).
 #
@@ -171,7 +171,7 @@ for plugin_dir, dirs in skill_dirs_by_plugin.items():
 # DEAD_PREFIXES is the one place to extend this list if another naming
 # migration happens later (e.g. repo renames `pmm-` to something else).
 colon_ref_pattern = re.compile(r"`pmm-[a-z-]+:([a-z][a-z0-9-]*)`")
-DEAD_PREFIXES = ("hs-",)
+DEAD_PREFIXES = ("hs" + "-",)  # built at runtime so the literal never appears in the repo
 dead_prefix_pattern = re.compile(
     r"[`*]{1,2}(" + "|".join(re.escape(p) for p in DEAD_PREFIXES) + r"[a-z0-9-]+)[`*]{1,2}"
 )

@@ -3,6 +3,14 @@
 Read by any skill's final output step to surface what to run next. Not a skill itself —
 a lookup table. Update this file, not the individual skills, when sequencing changes.
 
+## After product-marketing-context (brain built, edited or audited)
+**Next options (not a single path — ask which applies):**
+- proof-points — if Section 6 is thin, unsourced, or holds `[NEEDS PROOF]` entries
+- alternatives-map — if Section 3 lists fewer than three named alternatives or no status quo
+- positioning-messaging — if Sections 1 to 6 are solid and there is no positioning statement yet
+- pmm-okrs — if Section 7 (Strategy) is filled and this quarter's goals need turning into OKRs
+**Prompt to surface:** "Next, pick one: tighten your proof points (proof-points), map your alternatives (alternatives-map), build positioning (positioning-messaging), or turn this quarter's goals into OKRs (pmm-okrs)?"
+
 ## After ideal-customer-profile (brain Section 2 deepened)
 **Next:** beachhead-segment
 **Because:** You now have a research-backed demographic, behavioral, and JTBD
@@ -65,7 +73,7 @@ A/B test with experiment-doc, or are these ready to ship as-is?"
 
 ## After positioning-messaging (AUDIT mode completed)
 **Next:** none — audit is a checkpoint, not a chain step.
-**Prompt to surface:** n.v.t.
+**Prompt to surface:** N/A
 
 ## After gtm-motions (stack selected, 90-day plan delivered)
 **Next:** go-to-market-strategy
@@ -132,3 +140,10 @@ direction (positioning-messaging)?"
 - proof-points — to register the stats and approved quotes from the packet in brain Section 6, once the customer and legal have signed off
 - writing-assistant — if the story now needs a LinkedIn post, press release, newsletter item or other format built from it
 **Prompt to surface:** "Next, pick one: register the confirmed stats and quotes (proof-points), or turn this story into another format (writing-assistant)?"
+
+## After signal-monitor (weekly opportunities listed)
+**Next options (not a single path — ask which applies):**
+- alternatives-map — if an opportunity says a competitor repackaged, repriced or entered
+- positioning-messaging — if an opportunity says your message no longer separates you
+- pmm-okrs — if an opportunity changes what this quarter should aim at
+**Prompt to surface:** "Next, pick one if an opportunity needs action: update your alternatives (alternatives-map), rework the message (positioning-messaging), or adjust the quarter's goals (pmm-okrs)?"

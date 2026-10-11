@@ -1,0 +1,13 @@
+{
+  "name": "pmm-execution",
+  "displayName": "PMM Execution",
+  "description": "Day-to-day PMM execution: PRDs, OKRs, pre-mortems, retros, stakeholder maps, interview synthesis, experiments, and prioritization frameworks.",
+  "version": "1.12.1",
+  "author": {
+    "name": "Stefanos Karakasis"
+  },
+  "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-execution",
+  "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
+  "license": "MIT",
+  "skills": "./skills"
+}

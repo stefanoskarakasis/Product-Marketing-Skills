@@ -1,8 +1,8 @@
 # Changelog
 
-## v1.12.0 — 2026-10-11
+## v1.12.1 — 2026-10-11
 
-This release rolls up six steps (1.7 to 1.11.1) that were built in order and shipped together. The sections below keep each step's notes.
+This release rolls up six steps (1.7 to 1.11.1) that were built in order and shipped together. The sections below keep each step's notes. A first upload labelled 1.12.0 missed the hidden files (manifests, `.github`, `.gitignore`); it was never released, and 1.12.1 is the complete release.
 
 ### Step 1.11.1
 

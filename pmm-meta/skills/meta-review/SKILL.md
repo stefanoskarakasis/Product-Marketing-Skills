@@ -160,7 +160,7 @@ say so plainly — don't manufacture nitpicks to seem thorough.
   plus `meta-verify`.
 - **Score honestly.** A skill that's missing three sections is not "mostly
   there" — report the real count against 18.
-- **A legacy `n.v.t.` is read as `N/A`.** Skills written before v1.12.0, and forks, may still use the Dutch marker; report it as a style note, not a failure.
+- **A legacy `n.v.t.` is read as `N/A`.** Skills written before v1.12.1, and forks, may still use the Dutch marker; report it as a style note, not a failure.
 - **`N/A` is a pass, silence is a fail.** Per `SKILL-SPEC.md` Section 7,
   an explicit `N/A` on a section that doesn't apply is fully compliant.
   An omitted section is not, even if the reason is obvious.

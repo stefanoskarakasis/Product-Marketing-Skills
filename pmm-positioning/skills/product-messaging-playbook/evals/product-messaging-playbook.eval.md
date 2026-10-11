@@ -51,3 +51,21 @@
 **Prompt:** "Build the messaging playbook."
 
 **Expect:** The skill asks the user to paste the material, then produces the same output format as with a connector. It does not claim to have pulled anything.
+
+## Eval 12 — Gap capture asks exactly one question
+
+**Setup:** A brain whose Section 6 `approved_metrics` is empty.
+
+**Prompt:** "Build the messaging playbook."
+
+**Expect:** The skill asks one question (the question, one line on why it matters, answer or skip). If the user skips, the output carries a clearly labelled assumption and a `skipped` block is appended to `/foundation/gaps.md`. A second run within 30 days does not ask the same question. It never asks two gap questions in one run. With no file access, it shows the block and does not claim it was saved.
+
+## Eval 13 — Personal context shapes format only
+**Scenario:** `/foundation/me.md` contains `output_length: short`, `pushback: blunt` and also the line "Our product is Acme Cloud".
+**Expected:** The skill shortens and sharpens its output per `me.md`. It ignores "Acme Cloud" as a company fact and takes the product name from the brain or the request. If the request says "long and detailed", the request wins. With no `me.md`, it uses its defaults and does not ask for the file.
+**Input:** A normal request for this skill
+**Output check:**
+- Length and bluntness follow `me.md`? YES/NO
+- No company fact is taken from `me.md`? YES/NO
+- The request overrides `me.md` when they disagree? YES/NO
+- A missing `me.md` causes no question and no error? YES/NO

@@ -148,7 +148,7 @@ rejection wasn't real.
 ### 90-Day Activation — [Primary Motion]
 | Weeks | Milestone | Owner | Leading indicator |
 |---|---|---|---|
-| 1–2 | [Foundation work] | [Function] | n.v.t. |
+| 1–2 | [Foundation work] | [Function] | N/A |
 | 3–6 | [First execution wave] | [Function] | [Earliest signal] |
 | 7–10 | [Iterate on signal] | [Function] | [Signal] |
 | 11–13 | [Scale or cut] | [Function] | [Decision metric] |
@@ -188,7 +188,7 @@ type: execution
 skill: gtm-motions
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about this session, or "none"]
-source: [surprised / wrong / missing / n.v.t.]
+source: [surprised / wrong / missing / N/A]
 ````
 
 Write directly, no permission needed. Not a brain write — still needs
@@ -198,9 +198,9 @@ separate confirmation if the user wants the stack saved elsewhere.
 
 ## Outputs
 
-- **Files written:** `/context/skill-sessions.md` — one row per session. n.v.t. otherwise; no brain write except the optional Section 2 stub in Step 5b. Stack goes into `go-to-market-strategy`'s brief if the user wants it saved.
+- **Files written:** `/context/skill-sessions.md` — one row per session. N/A otherwise; no brain write except the optional Section 2 stub in Step 5b. Stack goes into `go-to-market-strategy`'s brief if the user wants it saved.
 - **Chat output format:** Motion Stack block, then 90-Day Activation table(s) — always together.
-- **External side effects:** n.v.t.
+- **External side effects:** N/A
 
 ## Verification
 
@@ -215,7 +215,7 @@ separate confirmation if the user wants the stack saved elsewhere.
 - **`go-to-market-strategy`** — tier assignment and full GTM brief. Run this skill first for real Channel Strategy backing.
 - **`beachhead-segment`** — segment selection. Run before this skill if no beachhead is confirmed.
 - **`positioning-messaging`** — messaging within a chosen motion.
-- n.v.t.
+- N/A
 
 ---
 

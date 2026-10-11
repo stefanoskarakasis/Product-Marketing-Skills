@@ -103,7 +103,7 @@ themselves — this skill has no durable output file of its own.
   - `/context/meta-patterns.md` — optional; guardrails from prior
     metrics sessions.
   - **Brain contract:** Reads Sections 1, 2. Writes nothing — the brain's
-    6 sections are all claimed; adding a Metrics section is a
+    sections are all claimed; adding a Metrics section is a
     `product-marketing-context` schema change, out of scope here.
     Scorecard is chat-only output, same as `experiment-ideas`.
 
@@ -292,7 +292,7 @@ type: execution
 skill: pmm-metrics
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about what happened this session, or "none"]
-source: [surprised / wrong / missing / n.v.t.]
+source: [surprised / wrong / missing / N/A]
 ```
 
 Write this row directly — do not ask the user for permission. This is
@@ -309,7 +309,7 @@ this session, still write the row with `pattern: none`.
 - **Chat output format:** Business game → NSM with 7-criteria scoring →
   Input Metrics with causal rationale and owners → categorized scorecard
   table → self-check results.
-- **External side effects:** n.v.t.
+- **External side effects:** N/A
 - **Next skill:** After delivery, check
   `product-marketing-context/.claude-plugin/next-skill-map.md` for
   "After pmm-metrics" and surface it as a question — never auto-run.

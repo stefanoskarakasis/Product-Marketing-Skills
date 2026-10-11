@@ -1,7 +1,7 @@
 # Contributing
 
 Product Marketing Skills is maintained by Stefanos Karakasis
-(https://heystefanos.gumroad.com/). Contributions are welcome — whether
+(https://github.com/stefanoskarakasis). Contributions are welcome — whether
 it's a bug fix, a typo, or a new skill idea.
 
 ## How to Contribute

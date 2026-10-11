@@ -94,7 +94,7 @@ type: execution
 skill: customer-stories
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement, or "none"]
-source: [surprised / wrong / missing / n.v.t.]
+source: [surprised / wrong / missing / N/A]
 ```
 
 ## Outputs

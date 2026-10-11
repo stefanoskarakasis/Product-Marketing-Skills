@@ -78,7 +78,7 @@ Quick check: Do you have win/loss data or customer research for this launch?
 
 ## Eval 2: Brain Context Loading (Pre-flight)
 
-**Scenario:** `/foundation/brain.md` exists with populated ICP (§2), Positioning (§3), Revenue Levers (§5). Skill should load silently and reference during framework selection and tier translation.
+**Scenario:** `/foundation/brain.md` exists with populated ICP (§2), Positioning (§3), Strategy (§7). Skill should load silently and reference during framework selection and tier translation.
 
 **Test Data:**
 ```yaml
@@ -91,10 +91,11 @@ Secondary: Enterprise ops teams (500+), lower growth trajectory
 Unique angle: "For ops leaders who measure impact, not activity"
 Key differentiator: Outcome-first analytics, not output metrics
 
-## Section 5: Revenue Levers
-Lever 1: Time-to-value (setup speed) — $10K ACV impact
-Lever 2: Outcome visibility (customer success metric) — $5K ACV impact
-Lever 3: Team collaboration (multiple stakeholder adoption) — $15K ACV impact
+## Section 7: Strategy
+Priority 1: Time-to-value (setup speed)
+Priority 2: Outcome visibility (customer success metric)
+Priority 3: Team collaboration (multiple stakeholder adoption)
+Quarter goal: Expansion revenue from team plans
 ```
 
 **Expected Output - Context Referenced:**
@@ -102,17 +103,17 @@ Lever 3: Team collaboration (multiple stakeholder adoption) — $15K ACV impact
 ✓ Brain context loaded:
   - ICP: Mid-market ops teams (grounding Reach in this segment)
   - Positioning: Outcome-first analytics (defining Impact scope)
-  - Revenue Levers: Team collaboration as highest ACV lever (weighing Impact)
+  - Strategy: Team collaboration is Priority 3 and serves the quarter goal (weighing Impact)
 
 Reach interpretation: [Pre-filled with mid-market + enterprise segments]
-Impact definition: [Weighted by revenue lever alignment]
+Impact definition: [Weighted by alignment with Section 7 priorities]
 ```
 
 **Pass Criteria:**
 - Brain sections loaded silently at pre-flight
 - ICP anchors Reach definition
 - Positioning informs Impact interpretation
-- Revenue Levers weight the scoring (e.g., if initiative drives Lever 3, Impact is higher)
+- Section 7 priorities weight the scoring (e.g., an initiative serving a stated priority scores higher on Impact)
 
 ---
 
@@ -284,7 +285,7 @@ source: surprised
 **Pass Criteria:**
 - Session logged to `/context/skill-sessions.md` with exactly these five fields — `type: execution`, `skill`, `session_date`, `pattern`, `source` — matching Step 7's template in `SKILL.md` verbatim. No additional fields.
 - `pattern` is a single falsifiable statement about what happened this session, or the literal string `"none"` if nothing notable occurred — not a multi-field summary object.
-- `source` is one of `surprised / wrong / missing / n.v.t.`
+- `source` is one of `surprised / wrong / missing / N/A`
 - The row is written directly, without asking the user for permission — this is a separate, mechanical write from anything the skill asks the user's go-ahead on (like where to save the Tier Assignment Card, Scoring Table, or Tier Rationale, per Outputs).
 - If nothing notable happened this session, the row is still written with `pattern: none` — the log entry is never skipped.
 - Neither the Quality Gate results, the tier assignment, nor the scoring table are duplicated into the log row — those live in the Step 6 chat output only.
@@ -308,7 +309,7 @@ type: execution
 skill: prioritization-frameworks
 session_date: 2026-06-12
 pattern: "ICE framework applied with full evidence trail — all Quality Gates passed on first pass"
-source: n.v.t.
+source: N/A
 
 type: execution
 skill: prioritization-frameworks

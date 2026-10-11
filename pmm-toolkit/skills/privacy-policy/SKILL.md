@@ -23,7 +23,7 @@ High-risk clauses are marked `[⚠️ LEGAL REVIEW REQUIRED]` throughout — alw
 ## Trigger
 
 - **When:** Creating, updating, auditing, or reviewing a privacy policy or other data protection documentation, or answering what a product needs to comply with applicable privacy law.
-- **Not for:** n.v.t. — this skill has no overlap with another skill in this stack; overlap was considered and there is none.
+- **Not for:** N/A — this skill has no overlap with another skill in this stack; overlap was considered and there is none.
 - **Example prompts:**
   - "Draft a privacy policy"
   - "Are we GDPR compliant?"
@@ -356,4 +356,4 @@ If product context changes — new market, new data type, new feature:
 
 ## Do Not Use For
 
-- n.v.t. — this skill has no overlap with another skill in this stack; overlap was considered and there is none.
+- N/A — this skill has no overlap with another skill in this stack; overlap was considered and there is none.

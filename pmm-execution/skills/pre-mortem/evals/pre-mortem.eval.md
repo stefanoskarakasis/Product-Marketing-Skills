@@ -71,7 +71,7 @@ Quick check: Are you aware of this risk?
 
 ## Eval 2: Brain Context Loading (Pre-flight)
 
-**Scenario:** `/foundation/brain.md` exists with populated ICP (§2), Positioning (§3), Revenue Levers (§5). Skill should load silently and reference during intake and scenario generation.
+**Scenario:** `/foundation/brain.md` exists with populated ICP (§2), Positioning (§3), Execution (§8). Skill should load silently and reference during intake and scenario generation.
 
 **Test Data:**
 ```yaml
@@ -84,10 +84,9 @@ Pain points: Manual processes, lack of visibility, team coordination friction
 Unique angle: "For ops leaders who measure impact, not activity"
 Key differentiator: Outcome-first analytics
 
-## Section 5: Revenue Levers
-Lever 1: Time-to-value (setup speed)
-Lever 2: Outcome visibility (customer success metric)
-Lever 3: Team collaboration (multiple stakeholder adoption)
+## Section 8: Execution
+Approvals: Customer-facing numbers need Legal sign-off (3 business days); pricing changes need VP Sales and Finance
+Prohibited: No "guaranteed" outcomes in launch copy
 ```
 
 **Expected Output - Context Referenced:**
@@ -95,17 +94,17 @@ Lever 3: Team collaboration (multiple stakeholder adoption)
 ✓ Brain context loaded:
   - ICP: Mid-market ops teams (grounding failure scenarios in this segment)
   - Positioning: Outcome-first analytics (informing messaging risks)
-  - Revenue: Team collaboration as lever (adding adoption friction scenario)
+  - Execution (§8): Legal's 3-day lead time and the ban on "guaranteed" claims (adding approval and claims scenarios)
 
 Target customer from brain ICP: [Pre-filled — mid-market ops leaders]
-Risk angle: If adoption slower than expected, teams won't unlock the collaboration lever
+Risk angle: If the launch date leaves less than 3 business days for Legal sign-off, customer numbers cannot ship
 ```
 
 **Pass Criteria:**
 - Brain sections loaded silently at pre-flight
 - ICP informs target customer in intake
 - Positioning anchors messaging-related failure scenarios
-- Revenue Levers inform adoption/friction scenarios
+- Section 8 approvals and prohibited items inform approval and claims scenarios
 
 ---
 
@@ -256,7 +255,7 @@ source: surprised
 **Pass Criteria:**
 - Session logged to `/context/skill-sessions.md` with exactly these five fields — `type: execution`, `skill`, `session_date`, `pattern`, `source` — matching Step 7's template in `SKILL.md` verbatim. No additional fields.
 - `pattern` is a single falsifiable statement about what happened this session, or the literal string `"none"` if nothing notable occurred — not a multi-field summary object.
-- `source` is one of `surprised / wrong / missing / n.v.t.`
+- `source` is one of `surprised / wrong / missing / N/A`
 - The row is written directly, without asking the user for permission — this is a separate, mechanical write from anything the skill asks the user's go-ahead on (like where to save the Tiger triage output, per Outputs).
 - If nothing notable happened this session, the row is still written with `pattern: none` — the log entry is never skipped.
 
@@ -340,6 +339,14 @@ Note that pattern-across-sessions detection (comparing this session's row agains
 **Expect:** The skill asks the user to paste the material, then produces the same output format as with a connector. It does not claim to have pulled anything.
 
 ---
+
+## Eval 11: Section 8 approvals and prohibited feed failure scenarios
+**Scenario:** Section 8 says legal sign-off on customer numbers takes 3 business days and "guaranteed delivery" is prohibited. The plan launches in 2 days and its headline says "guaranteed delivery".
+**Expected:** Two failure scenarios name the approval lead time and the prohibited claim, each tied to Section 8.
+**Input:** A launch plan with that date and headline
+**Output check:**
+- The approval lead-time conflict is a named scenario? YES/NO
+- The prohibited claim is flagged and attributed to Section 8? YES/NO
 
 ## Running Evals
 

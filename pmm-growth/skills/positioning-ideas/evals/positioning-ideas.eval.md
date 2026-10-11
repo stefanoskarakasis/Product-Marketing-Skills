@@ -62,7 +62,7 @@ type: execution
 skill: beachhead-segment
 session_date: 2026-08-20
 pattern: "none"
-source: n.v.t.
+source: N/A
 # (segment context: mid-market B2B SaaS, 50-200 employees, confirmed beachhead)
 ```
 
@@ -173,7 +173,7 @@ type: execution
 skill: positioning-ideas
 session_date: 2026-09-06
 pattern: "none"
-source: n.v.t.
+source: N/A
 ```
 
 **Pass Criteria:**

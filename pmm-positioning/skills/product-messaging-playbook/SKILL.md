@@ -1,6 +1,6 @@
 ---
 name: product-messaging-playbook
-version: 1.1.0
+version: 1.3.0
 description: >
   Assembles a single Sales/CS-ready Product Messaging Playbook for a new
   product or feature — problem, story, one named competitive comparison,
@@ -13,7 +13,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-10
+last_updated: 2026-10-11
 ---
 
 # Product Messaging Playbook
@@ -95,6 +95,8 @@ assembles the rest into one document a rep can open cold.
 
 ## Pre-flight
 
+- **Gap capture** (see the gap capture rule in `SKILL-SPEC.md`): if a brain field this skill needs is empty or stale and the answer would change the output, ask one question: the question, one line on why it matters, "answer or skip". Answer: use it for this run and offer it as a brain update. Skip: continue with a labelled assumption and append a `skipped` block to `/foundation/gaps.md` (format in `product-marketing-context/references/gaps-format.md`). At most one gap question per run. This is the only write to `/foundation/gaps.md`; the skill still writes nothing else to the brain unless its own contract says so.
+- **Personal context** (see the personal context rule in `SKILL-SPEC.md`): if `/foundation/me.md` exists, read it for format and detail only (length, detail, shape, how blunt to be). Never take a company fact from it; the current request wins. Do not ask for it if it is missing.
 - Load `/foundation/brain.md` if present. If absent, check for a pasted
   `message-house` and/or `positioning-messaging` output this session.
 - **Brain and pasted output both missing: run Quick-Brain, don't block.**
@@ -272,7 +274,7 @@ session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about this session, or "none" — fold in
   what's useful: which sources were pasted vs. derived fresh, whether a
   comparative section was built, how many fields shipped MISSING/TARGET]
-source: [surprised / wrong / missing / n.v.t.]
+source: [surprised / wrong / missing / N/A]
 ```
 
 Written directly, no permission required — observational log, not content
@@ -289,7 +291,7 @@ approval.
   Foundation, Story, Comparative Positioning (if built), Sales Enablement
   Kit, then "Still needed / not yet measurable." Not fragmented across
   multiple messages.
-- **External side effects:** n.v.t.
+- **External side effects:** N/A
 - **Next skill:** If Step 2's success targets are later measured, prompt
   the user to run `proof-points` (Add mode) to register the real result —
   do not auto-run. If the Sales Enablement Kit shipped with a `[MISSING]`
@@ -334,7 +336,7 @@ approval.
 - **alternatives-map** — mapping competitive alternatives (Section 3)
   from real research. Run first if the named competitor isn't in Section
   3 yet.
-- n.v.t.
+- N/A
 
 ---
 

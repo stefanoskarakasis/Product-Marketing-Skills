@@ -37,18 +37,18 @@ Eval test cases for `meta-review` skill (SKILL-SPEC v2.1.0 compliance).
 **Input:**
 
 - Skill name: a T1 skill missing `## Do Not Use For` entirely (not even
-  `n.v.t.`), with `## Operating Rules` containing only 3 rules (spec
+  `N/A`), with `## Operating Rules` containing only 3 rules (spec
   requires ≥6 for T1/T2), and no evals file at all.
 
 **Expected Behavior:**
 
-1. `## Do Not Use For` check fails — section is absent, not `n.v.t.`
+1. `## Do Not Use For` check fails — section is absent, not `N/A`
 2. `## Operating Rules` check fails — 3 rules present, 6 required
 3. Evals-file check fails — no `evals/` directory found
 4. All other checks evaluated independently and pass/fail on their own merits
 5. Score totals below 16/18
 6. Failed checks each cite the specific gap: "Do Not Use For section is
-   missing (not present as n.v.t. either)", "Operating Rules has 3 rules,
+   missing (not present as N/A either)", "Operating Rules has 3 rules,
    spec requires ≥6 for T1", "No evals/skill-name.eval.md file found"
 
 **Success Criteria:**
@@ -62,20 +62,20 @@ Eval test cases for `meta-review` skill (SKILL-SPEC v2.1.0 compliance).
 
 ---
 
-## Test 3: n.v.t. Handled Correctly (Edge Case)
+## Test 3: N/A Handled Correctly (Edge Case)
 
 **Input:**
 
-- Skill name: a T3 utility skill where `## Pre-flight` reads only `n.v.t.`
+- Skill name: a T3 utility skill where `## Pre-flight` reads only `N/A`
   (genuinely no dependency checks apply) and `## Inputs` → `Args` and
-  `Defaults` both read `n.v.t.` (skill takes no arguments).
+  `Defaults` both read `N/A` (skill takes no arguments).
 
 **Expected Behavior:**
 
-1. The `## Pre-flight` check passes — explicit `n.v.t.` counts as compliant
+1. The `## Pre-flight` check passes — explicit `N/A` counts as compliant
    per SKILL-SPEC.md Section 7, not as an omission
 2. The `## Inputs` check passes on the same basis
-3. Report explicitly lists these two checks under "Passed with n.v.t.",
+3. Report explicitly lists these two checks under "Passed with N/A",
    distinct from checks that passed with real content
 4. T3 tier means Operating Rules and Quality Gate checks are not evaluated
    at all (they're T1/T2-only per Section 12) — report does not penalize
@@ -83,11 +83,11 @@ Eval test cases for `meta-review` skill (SKILL-SPEC v2.1.0 compliance).
 
 **Success Criteria:**
 
-- `n.v.t.` sections are never scored as failures
-- The report distinguishes "passed with n.v.t." from "passed with content"
+- `N/A` sections are never scored as failures
+- The report distinguishes "passed with N/A" from "passed with content"
 - Tier-inappropriate checks are correctly excluded, not silently failed
 
-**Test Pass:** A skill using n.v.t. correctly and matching its tier's
+**Test Pass:** A skill using N/A correctly and matching its tier's
 requirements is not penalized for either
 
 ---

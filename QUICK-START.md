@@ -38,7 +38,7 @@ automatically. Try:
 - "What tier is this launch?" 
 - "Run a retro on our last launch"
 
-## What You Can Do (35 skills across 7 plugins)
+## What You Can Do (36 skills across 8 plugins)
 
 See the [main README](./README.md) for the full skill list and what each
 plugin covers.
@@ -58,7 +58,7 @@ and work with any agent that supports it.
 ## Questions?
 
 [Open an issue](https://github.com/stefanoskarakasis/Product-Marketing-Skills/issues)
-or reach out to [Stefanos](https://heystefanos.gumroad.com/).
+or reach out to [Stefanos](https://github.com/stefanoskarakasis).
 
 If this is useful, star the repo — it helps others find it.
 

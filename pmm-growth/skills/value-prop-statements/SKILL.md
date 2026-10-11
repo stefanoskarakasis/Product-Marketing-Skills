@@ -153,7 +153,7 @@ skill: value-prop-statements
 session_date: {{date}}
 pattern: "{{what surprised you, a recurring drift pattern, or 'none' if
   nothing notable happened — never skip the row}}"
-source: {{surprised/wrong/missing/n.v.t.}}
+source: {{surprised/wrong/missing/N/A}}
 ````
 ---
 
@@ -164,7 +164,7 @@ source: {{surprised/wrong/missing/n.v.t.}}
 - Session logged to `/context/skill-sessions.md`
 - If 3+ statements were flagged for drift: an explicit note recommending
   a `positioning-messaging` AUDIT pass
-- **External side effects:** n.v.t.
+- **External side effects:** N/A
 - **Next skill:** check `next-skill-map.md` for "After value-prop-statements"
   and surface that prompt.
 

@@ -218,3 +218,42 @@ who will definitely bring this up.
 Expedited mode activated, 3-skill sequence runs for Salesforce specifically,
 output contains immediately usable talk tracks, and program completes within
 the urgency timeline.
+
+---
+
+## Test Case 8: Weekly Opportunities — runs signal-monitor, checkpoint before any follow-up
+
+**Input:**
+```
+/run weekly-opportunities
+```
+with a brain present and the `pmm-intelligence` plugin installed.
+
+**Expected output includes:**
+- Workflow identified as Weekly Opportunities and a short charter confirmed
+- `signal-monitor` runs on signals the user names; at most five opportunities
+- For each opportunity the user wants to act on, the single skill it names is offered, with a checkpoint before it runs
+- No brain write by the orchestrator itself
+
+**Expected output excludes:**
+- Any search the user did not ask for
+- More than five opportunities
+- A downstream skill running without a checkpoint
+
+**Pass condition:**
+The read runs, follow-ups are routed one at a time with confirmation, and the brain is untouched until a downstream skill writes after the user confirms.
+
+## Test Case 9: Weekly Opportunities — plugin not installed
+
+**Input:**
+```
+/run weekly-opportunities
+```
+with `signal-monitor` unavailable.
+
+**Expected output includes:**
+- A plain statement that `signal-monitor` belongs to the `pmm-intelligence` plugin and is not installed
+- The workflow stops without inventing a substitute
+
+**Pass condition:**
+The orchestrator stops with a clear message and produces no opportunities.

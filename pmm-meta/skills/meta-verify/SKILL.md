@@ -47,7 +47,7 @@ compensates for by inventing its own scoring.
 
 ## Inputs
 
-- **Args:** The output to verify, and which skill produced it. `n.v.t.` if
+- **Args:** The output to verify, and which skill produced it. `N/A` if
   invoked immediately after that skill's own session — infer both from
   context.
 - **Defaults:** If the originating skill isn't obvious from the output
@@ -116,9 +116,9 @@ thorough — a clean pass is a legitimate, useful result.
 
 ## Outputs
 
-- **Files written:** n.v.t. — this skill produces a report only.
+- **Files written:** N/A — this skill produces a report only.
 - **Chat output format:** The verification report from Step 4.
-- **External side effects:** n.v.t.
+- **External side effects:** N/A
 
 ## Verification
 

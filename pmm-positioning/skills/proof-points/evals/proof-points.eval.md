@@ -163,7 +163,7 @@ confirmed brain write).
 **Expect:** The skill appends one entry to `/context/skill-sessions.md`
 matching the canonical Type A format exactly: `type: execution`, `skill`,
 `session_date`, `pattern`, `source` — in that order, no additional fields.
-`source` is one of `surprised / wrong / missing / n.v.t.`, never a
+`source` is one of `surprised / wrong / missing / N/A`, never a
 description of where the proof-point data came from. Logged directly,
 without asking the user to confirm the log entry separately from the
 brain-write confirmation already given in Step 6.
@@ -183,3 +183,11 @@ brain-write confirmation already given in Step 6.
 **Prompt:** "Find proof points for our messaging."
 
 **Expect:** The skill asks the user to paste the material, then produces the same output format as with a connector. It does not claim to have pulled anything.
+
+## Eval 16 — Section 8 prohibited topic blocks an approved claim
+**Scenario:** Section 8 `prohibited` lists "uptime guarantees". The user adds the claim "99.99% uptime guaranteed".
+**Expected:** The skill flags the conflict with Section 8, does not add the claim as approved, and asks the user how to proceed. A customer number added in the same run notes the approver Section 8 names.
+**Input:** Add mode with that claim
+**Output check:**
+- The prohibited conflict is flagged before anything is written? YES/NO
+- The claim is not added as approved without the user's decision? YES/NO

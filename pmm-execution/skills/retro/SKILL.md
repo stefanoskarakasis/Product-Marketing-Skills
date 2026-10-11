@@ -41,7 +41,7 @@ decisions. Not a feelings circle. A diagnostic system.
 - **Args:** Cycle name or launch name (required). Free format — one sentence minimum.
 - **Defaults:** If no cycle named, run intake before proceeding. Never generate a retro output without a named cycle and at least one OKR to anchor to.
 - **Context keys:**
-  - `/foundation/brain.md` — optional but recommended. Load ICP, Positioning, Revenue Levers, GTM Motion, Launch Tier Definitions silently if present.
+  - `/foundation/brain.md` — optional but recommended. Load Section 2 (ICP), Section 3 (Alternatives & Positioning) and Section 7 (Strategy: priorities, launches with tier, quarterly goals) silently if present.
   - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from all skills.
 
 ---
@@ -195,7 +195,7 @@ type: execution
 skill: retro
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about what happened this session, or "none"]
-source: [surprised / wrong / missing / n.v.t.]
+source: [surprised / wrong / missing / N/A]
 ````
 
 Write this row directly — do not ask the user for permission. This is a

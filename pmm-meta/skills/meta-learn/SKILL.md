@@ -52,7 +52,7 @@ regardless of which produced any given row.
 ## Inputs
 
 - **Args:** The completed session's skill name and a short description of
-  its output. `n.v.t.` if invoked immediately after a skill session in the
+  its output. `N/A` if invoked immediately after a skill session in the
   same conversation — infer both from context.
 - **Defaults:** If the skill name isn't obvious, ask for it before proceeding.
 - **Context keys:** `/context/skill-sessions.md` — appended to, created if
@@ -133,7 +133,7 @@ type: execution
 skill: [name]
 session_date: [YYYY-MM-DD]
 pattern: [falsifiable statement, or "none"]
-source: [surprised / wrong / missing / n.v.t.]
+source: [surprised / wrong / missing / N/A]
 ````
 
 This is the only file this skill writes to. `meta-synthesis` is what reads
@@ -147,7 +147,7 @@ job is making sure each individual row is worth reading.
 - **Chat output format:** The three questions (Step 2), the falsifiable
   restatement if applicable (Step 3), and the logged-entry confirmation
   (Step 4).
-- **External side effects:** n.v.t.
+- **External side effects:** N/A
 
 ## Verification
 
@@ -191,7 +191,7 @@ job is making sure each individual row is worth reading.
 | Check | Standard | Pass = |
 |---|---|---|
 | All three questions asked | Surprised / wrong / missing, in one message | Yes |
-| Pattern is falsifiable | Specific claim, not a vague impression | Yes or n.v.t. (clean close) |
-| Confirmation shown before write | Exact log entry shown, user confirmed | Yes or n.v.t. (clean close) |
+| Pattern is falsifiable | Specific claim, not a vague impression | Yes or N/A (clean close) |
+| Confirmation shown before write | Exact log entry shown, user confirmed | Yes or N/A (clean close) |
 | Log entry appended | `/context/skill-sessions.md` has the new row | Yes |
 | Clean closes handled | "Nothing" answers don't force a fake pattern | Yes |

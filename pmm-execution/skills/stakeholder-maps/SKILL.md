@@ -1,6 +1,6 @@
 ---
 name: stakeholder-maps
-version: 3.1.0
+version: 3.2.0
 description: >
   Builds political maps (not org charts) showing who can kill your launch, who champions it, and what to say to each stakeholder. Reads brain context (ICP, positioning, GTM motion) and guardrails from prior stakeholder mapping sessions; produces Power × Interest grid with political role assignment, conflict map, and weekly Sprint Cards for execution.
 metadata:
@@ -53,10 +53,11 @@ The skill runs in 7 steps:
 - **Args:** Initiative description, success definition, timeline, current champions/blockers. Free format — Step 1 intake fills gaps conversationally.
 - **Defaults:** If brain context is unavailable, this skill still runs — brain sharpens which stakeholders matter and what power they hold, but is not a hard blocker the way it is for `go-to-market-strategy`.
 - **Context keys:**
-  - `/foundation/brain.md` — optional but recommended. Sections 2 (ICP), 3 (Alternatives & Positioning).
+  - `/foundation/brain.md` — optional but recommended. Sections 2 (ICP), 3 (Alternatives & Positioning), 8 (Execution: stakeholders, approvals).
   - `/context/skill-sessions.md` — optional; check for a recent `gtm-motions` session to ground stakeholder power in the actual motion chosen. `gtm-motions` deliberately never writes its output to the brain (motion choice is initiative-specific, not a durable fact), so this is a session-log lookup, not a brain section.
   - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior stakeholder mapping sessions.
-- **Brain contract:** Reads Sections 2, 3. Writes: none — this skill does not write to `/foundation/brain.md`.
+- **Brain contract:** Reads Sections 2, 3, 8. Writes: none — this skill does not write to `/foundation/brain.md`; it may propose new Section 8 `stakeholders` or `approvals` entries, written only by `product-marketing-context` after the user confirms.
+- **Personal context:** if `/foundation/me.md` exists, read it for format and detail only (see the personal context rule in `SKILL-SPEC.md`).
 
 ---
 
@@ -75,7 +76,7 @@ The skill runs in 7 steps:
 
 ## Pre-flight
 
-- Load `/foundation/brain.md` Sections 2, 3 if it exists — see Step 0 for the full sequence.
+- Load `/foundation/brain.md` Sections 2, 3, 8 if it exists. If Section 8 lists stakeholders or approvals, start the map from them and mark each as `from brain`; add only people the initiative needs that are missing — see Step 0 for the full sequence.
 - Check `/context/skill-sessions.md` for a recent `gtm-motions` session. If one exists, use its confirmed motion to ground stakeholder power (who owns the primary channel, who's affected by the secondary). If none exists, proceed without it — don't block, and don't claim motion context was loaded when it wasn't.
 - Load `/context/meta-patterns.md` if it exists, and surface any guardrail that has fired 2+ times in prior stakeholder mapping sessions — see Step 0.
 - No hard block: this skill runs without brain context, with reduced calibration.
@@ -247,7 +248,7 @@ type: execution
 skill: stakeholder-maps
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about what happened this session, or "none"]
-source: [surprised / wrong / missing / n.v.t.]
+source: [surprised / wrong / missing / N/A]
 ````
 
 Write this row directly — do not ask the user for permission. This is an

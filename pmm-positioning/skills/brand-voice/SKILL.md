@@ -180,7 +180,7 @@ skill: brand-voice
 session_date: {{date}}
 pattern: "{{what surprised you, a tone-drift pattern AUDIT caught, or
   'none' if nothing notable happened — never skip the row}}"
-source: {{surprised/wrong/missing/n.v.t.}}
+source: {{surprised/wrong/missing/N/A}}
 ````
 
 ---
@@ -191,7 +191,7 @@ source: {{surprised/wrong/missing/n.v.t.}}
 - A stated voice test sentence, persona tone profiles, channel table, and
   forbidden-language list — not buried in prose
 - Session logged to `/context/skill-sessions.md`
-- **External side effects:** n.v.t.
+- **External side effects:** N/A
 - **Next skill:** check `next-skill-map.md` for "After brand-voice" and
   surface that prompt.
 

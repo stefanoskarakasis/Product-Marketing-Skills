@@ -1,6 +1,6 @@
 ---
 name: positioning-messaging
-version: 2.4.2
+version: 2.6.0
 description: >
   Builds or audits positioning statements, messaging hierarchies, homepage
   copy, and persona cards using April Dunford's Obviously Awesome
@@ -13,7 +13,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-10
+last_updated: 2026-10-11
 ---
 
 # positioning-messaging
@@ -88,6 +88,8 @@ A missing brain never stops this skill. Say once: "No brain found, so output wil
 
 ## Pre-flight
 
+- **Gap capture** (see the gap capture rule in `SKILL-SPEC.md`): if a brain field this skill needs is empty or stale and the answer would change the output, ask one question: the question, one line on why it matters, "answer or skip". Answer: use it for this run and offer it as a brain update. Skip: continue with a labelled assumption and append a `skipped` block to `/foundation/gaps.md` (format in `product-marketing-context/references/gaps-format.md`). At most one gap question per run. This is the only write to `/foundation/gaps.md`; the skill still writes nothing else to the brain unless its own contract says so.
+- **Personal context** (see the personal context rule in `SKILL-SPEC.md`): if `/foundation/me.md` exists, read it for format and detail only (length, detail, shape, how blunt to be). Never take a company fact from it; the current request wins. Do not ask for it if it is missing.
 - Load `/foundation/brain.md` if it exists. Extract Section 1 (Product Context),
      Section 2 (ICP), and Section 3 (Alternatives & Positioning) silently.
 
@@ -309,7 +311,7 @@ type: execution
 skill: positioning-messaging
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about what happened this session, or "none"]
-source: [surprised / wrong / missing / n.v.t.]
+source: [surprised / wrong / missing / N/A]
 ````
 
 Write this row directly — do not ask the user for permission. This is an
@@ -328,7 +330,7 @@ happened this session, still write the row with `pattern: none`.
 - **Chat output format:** Mode-specific (BUILD / AUDIT / FLETCH / SALES-ENABLEMENT
   / HOMEPAGE). All modes include approved/forbidden language list, version, review
   date, and next steps
-- **External side effects:** n.v.t.
+- **External side effects:** N/A
 - **Next skill:** After BUILD or FLETCH mode delivers output, check `next-skill-map.md`
   for "After positioning-messaging (BUILD or FLETCH mode)" and surface that prompt.
   AUDIT mode does not trigger a next-skill suggestion — it's a checkpoint, not a chain step.

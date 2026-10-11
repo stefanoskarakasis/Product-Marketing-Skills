@@ -256,7 +256,7 @@ type: execution
 skill: buyer-personas
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about this session, or "none"]
-source: [surprised / wrong / missing / n.v.t.]
+source: [surprised / wrong / missing / N/A]
 ````
 
 Write directly, no permission needed — this is a mechanical log entry,
@@ -273,7 +273,7 @@ separate from any downstream use of the output.
   one Messaging Persona card per role needing differentiated messaging →
   explicit handoff note (primary persona, which need separate content,
   which claims are still unvalidated).
-- **External side effects:** n.v.t.
+- **External side effects:** N/A
 - **Next skill:** After output is delivered, check
   `product-marketing-context/.claude-plugin/next-skill-map.md` for "After
   buyer-personas" and surface that prompt. Do not auto-run — ask.
@@ -348,4 +348,4 @@ separate from any downstream use of the output.
   behaviors, JTBD, needs). Run that first if the ICP itself is still
   thin; this skill assumes a real target and maps the humans inside the
   purchase decision.
-- n.v.t.
+- N/A

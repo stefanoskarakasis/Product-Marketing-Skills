@@ -254,5 +254,141 @@ class TestCommandReferences(unittest.TestCase):
                 )
 
 
+class TestContextClassification(unittest.TestCase):
+    """SKILL-SPEC.md lists which skills are brain-dependent or context-agnostic.
+    Each skill's `context:` frontmatter must agree with those lists."""
+
+    def _spec_list(self, label):
+        spec = (ROOT / "SKILL-SPEC.md").read_text(encoding="utf-8")
+        m = re.search(r"\*\*" + re.escape(label) + r":\*\*([^\n]*)", spec)
+        self.assertIsNotNone(m, f"SKILL-SPEC.md has no '{label}' list")
+        return set(re.findall(r"`([^`]+)`", m.group(1)))
+
+    def test_frontmatter_matches_spec_lists(self):
+        dep = self._spec_list("Brain-dependent skills")
+        agn = self._spec_list("Context-agnostic skills")
+        bad = []
+        for skill in ROOT.rglob("SKILL.md"):
+            if ".git" in skill.parts:
+                continue
+            m = re.search(r"^  context: (\S+)", skill.read_text(encoding="utf-8"), re.M)
+            if not m:
+                continue
+            name = skill.parent.name
+            want = dep if m.group(1) == "brain-dependent" else agn
+            if name not in want:
+                bad.append(f"{name}: frontmatter says {m.group(1)}, not in the matching SKILL-SPEC list")
+        self.assertEqual(bad, [])
+
+
+class TestPhantomSections(unittest.TestCase):
+    """Brain sections that never existed must not come back in skills or evals."""
+
+    PHANTOMS = ("Revenue " + "Levers", "Personas (\u00a74)")
+    ALLOWED = {"pmm-okrs.eval.md", "CHANGELOG.md", "test_consistency.py"}
+
+    def test_no_phantom_sections(self):
+        bad = []
+        for f in ROOT.rglob("*.md"):
+            if ".git" in f.parts or f.name in self.ALLOWED:
+                continue
+            text = f.read_text(encoding="utf-8")
+            for ph in self.PHANTOMS:
+                if ph in text:
+                    bad.append(f"{f.relative_to(ROOT)}: {ph}")
+        self.assertEqual(bad, [])
+
+
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestBrainSchema(unittest.TestCase):
+    SCHEMA = ROOT / "product-marketing-context" / "references" / "brain-schema.md"
+
+    def schema_sections(self):
+        text = self.SCHEMA.read_text(encoding="utf-8")
+        return {int(m.group(1)) for m in re.finditer(r"^\|\s*(\d+)\s*\|", text, re.M)}
+
+    def test_template_sections_match_schema(self):
+        template = ROOT / "product-marketing-context" / "templates" / "brain-template.md"
+        found = {int(m.group(1)) for m in re.finditer(r"^## Section (\d+):", template.read_text(encoding="utf-8"), re.M)}
+        self.assertEqual(found, self.schema_sections(),
+                         "brain-template.md sections differ from brain-schema.md")
+
+    def test_skills_cite_only_real_sections(self):
+        """Only paragraphs that talk about the brain are checked, so a skill's
+        own 'Section 12' of SKILL-SPEC or a '0-100' score is not a brain citation."""
+        valid = self.schema_sections()
+        cite = re.compile(r"\bSections?\s+(\d+)(?:\s*(?:,|and|&|to|-|\u2013)\s*(\d+))*\b(?!\s*-\s*\d)")
+        bad = []
+        for skill in ROOT.rglob("SKILL.md"):
+            if ".git" in skill.parts:
+                continue
+            text = skill.read_text(encoding="utf-8")
+            for para in re.split(r"\n\s*\n", text):
+                if not re.search(r"brain", para, re.I):
+                    continue
+                for m in cite.finditer(para):
+                    for n in re.findall(r"\d+", m.group(0)):
+                        if int(n) not in valid:
+                            bad.append(f"{skill.relative_to(ROOT)}: {m.group(0)}")
+        self.assertEqual(bad, [], "Skill cites a brain section missing from brain-schema.md")
+
+
+class TestNextSkillMap(unittest.TestCase):
+    MAP = ROOT / "product-marketing-context" / ".claude-plugin" / "next-skill-map.md"
+
+    def real_skill_names(self):
+        return {p.parent.name for p in ROOT.rglob("SKILL.md") if ".git" not in p.parts}
+
+    def test_every_hyphenated_skill_in_the_map_exists(self):
+        names = self.real_skill_names()
+        text = self.MAP.read_text(encoding="utf-8")
+        found = set()
+        for line in text.splitlines():
+            m = re.match(r"^## After ([a-z0-9]+(?:-[a-z0-9]+)+)\b", line)
+            if m:
+                found.add(m.group(1))
+            m = re.match(r"^\*\*Next:\*\*\s+([a-z0-9]+(?:-[a-z0-9]+)+)", line)
+            if m:
+                found.add(m.group(1))
+            m = re.match(r"^- ([a-z0-9]+(?:-[a-z0-9]+)+) \u2014", line)
+            if m:
+                found.add(m.group(1))
+        missing = sorted(n for n in found if n not in names)
+        self.assertEqual(missing, [], "next-skill-map.md names a skill that does not exist")
+
+
+class TestBanList(unittest.TestCase):
+    NVT = "n.v" + ".t."
+    HS = "hs" + "-"
+    TEXT = {".md", ".json", ".py", ".yml", ".yaml"}
+
+    def files(self):
+        for p in ROOT.rglob("*"):
+            if p.is_file() and ".git" not in p.parts and p.suffix in self.TEXT:
+                yield p
+
+    # Two files must name the legacy marker so old logs and forks still read correctly.
+    NVT_ALLOWED = {
+        "product-marketing-context/.claude-plugin/skill-sessions-format.md",
+        "pmm-meta/skills/meta-review/SKILL.md",
+    }
+
+    def test_no_dutch_marker(self):
+        hits = [str(p.relative_to(ROOT)) for p in self.files()
+                if self.NVT in p.read_text(encoding="utf-8", errors="ignore")
+                and str(p.relative_to(ROOT)) not in self.NVT_ALLOWED]
+        self.assertEqual(hits, [])
+
+    def test_no_retired_prefix(self):
+        hits = [str(p.relative_to(ROOT)) for p in self.files()
+                if re.search(r"\b" + re.escape(self.HS), p.read_text(encoding="utf-8", errors="ignore"))]
+        self.assertEqual(hits, [])
+
+    def test_storefront_link_only_in_root_readme(self):
+        needle = "heystefanos" + ".gumroad.com"
+        hits = [str(p.relative_to(ROOT)) for p in self.files()
+                if needle in p.read_text(encoding="utf-8", errors="ignore")]
+        self.assertEqual(hits, ["README.md"])

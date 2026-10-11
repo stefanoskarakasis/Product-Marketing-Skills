@@ -1,5 +1,74 @@
 # Changelog
 
+## v1.12.0 — 2026-10-11
+
+This release rolls up six steps (1.7 to 1.11.1) that were built in order and shipped together. The sections below keep each step's notes.
+
+### Step 1.11.1
+
+#### Test text and labels now match reality
+
+- The eval fixtures in `prioritization-frameworks`, `stakeholder-maps`, `prd` and `pre-mortem` no longer describe brain sections that never existed ("Revenue Levers", "Personas (§4)"). They now use Sections 2, 3, 7 and 8, and the `prd` fixture takes persona detail from the session log, as the skill does. A new test keeps those phantom sections out.
+- `interview-summary` 2.5.0 states its brain contract: it reads Sections 2 and 3 only to check the ICP match and compare alternatives, and never writes the brain.
+- `SKILL-SPEC.md` 2.6.1: the lists of brain-dependent and context-agnostic skills now match each skill's `context:` label. Before this, `prd`, `experiment-doc`, `prioritization-frameworks` and `interview-summary` were listed as agnostic while using the brain, and `product-marketing-context` was labelled agnostic. A new test checks the lists against the labels.
+
+### Step 1.11.0
+
+#### A weekly read on the world, tied to your brain
+
+- New plugin `pmm-intelligence` with one skill, `signal-monitor` (`/pmm-intelligence:signal-monitor`). It reads only the signals you name (pasted notes, files, URLs you list, or `~~market data` and `~~SEO` connectors) and returns at most five opportunities. Each has evidence with a source and date, the brain field it touches, the Section 7 priority it serves, a confidence label and one suggested next move.
+- Read-only for your brain. It saves a dated list to `/context/signals/` and hands off any brain change to `product-marketing-context`, which asks first. One source is never `high` confidence, and a company's own claims are never treated as proof.
+- With no brain it asks three quick questions and holds the answers for the session.
+- `workflow-orchestrator` 2.5.0 adds a "Weekly Opportunities" workflow (`/run weekly-opportunities`).
+- New page `docs/ai-marketer-loop.md`: know, notice, decide, act, learn, and how to schedule the weekly read.
+- The skill count is now 36 across 8 plugins.
+
+### Step 1.10.0
+
+#### Your brain knows how work gets done, and how you like to work
+
+- New optional Section 8, Execution: stakeholders, approvals, what is prohibited, channels and cadence. The audit reports it as "not built" rather than a gap, and refresh treats it as stale after 180 days.
+- `stakeholder-maps` starts from your Section 8 stakeholders and can propose new ones. `pre-mortem` tests approval lead times and prohibited claims. `proof-points` flags a claim that touches a prohibited topic and notes who approves it.
+- New "My context" mode (`/product-marketing-context:my-context`) and `/foundation/me.md`: how you like outputs (length, detail, shape, how blunt). Skills read it for format and detail only, never for company facts, and your request always wins. Six skills adopt it: `positioning-messaging`, `product-messaging-playbook`, `go-to-market-strategy`, `pmm-okrs`, `gaccs-brief` and `writing-assistant`.
+- `SKILL-SPEC.md` v2.6.0 adds the personal context rule.
+- Evals added for each changed skill.
+
+### Step 1.9.0
+
+#### Build your brain from material you already have
+
+- New ingest mode in the brain skill: give it your website and pricing page, then optionally customer calls, planning notes or decks. It extracts atomic evidence, compares sources, and shows a Brain Diff you approve section by section. Nothing is written without your yes.
+- Two or more agreeing sources are tagged `pulled`; one source is `inferred`. Conflicts are shown side by side and never resolved for you. A value you confirmed is never overwritten.
+- Website copy is never treated as proof. Personal data (emails, phone numbers) is not stored.
+- New `references/evidence-format.md`: the evidence file format and the authority ranking.
+- New practice kit `examples/ingest-demo/`: five fictional sources plus the expected evidence and Brain Diff, so you can check the skill against a known answer.
+- Evals 15 to 23 cover URL fallback, conflicts, caps, personal data and approvals.
+
+### Step 1.8.0
+
+#### Your brain stops going stale
+
+- New refresh mode (`/product-marketing-context:refresh-brain`): lists only the fields that are past their section's freshness limit and asks, one at a time, whether each is still true, changed, or should be dropped.
+- New gaps queue (`/foundation/gaps.md`) and mode (`/product-marketing-context:brain-gaps`). When a skill needs a fact the brain lacks, it now asks one question in the moment. Skip it and it is saved to the queue for later; a skipped question stays quiet for 30 days.
+- `positioning-messaging`, `go-to-market-strategy`, `product-messaging-playbook`, `gaccs-brief` and `pmm-okrs` ask that one gap question. The rule is in `SKILL-SPEC.md` for other skills to adopt.
+- The health audit now reports open gaps and the oldest field in each section.
+- New page `docs/keep-your-brain-fresh.md`, including how to schedule a weekly read-only check. Nothing updates your brain without your yes.
+- New test: the sections in the brain template must match the schema.
+
+### Step 1.7.0
+
+#### Your brain now shows its sources
+
+- Every brain field can carry a source tag: where it came from, the date, whether you stated it or it was pulled or inferred, and whether it is confirmed. Brains without tags keep working.
+- New optional Section 7, Strategy: priorities, launches, quarterly goals, active bets and what you are not doing.
+- New Offerings block in Section 1: how it is packaged, approved terminology and permitted claims.
+- One canonical schema, `product-marketing-context/references/brain-schema.md`, and a test that fails if a skill cites a brain section that does not exist.
+- Fixed: the build-brain command pointed to a step that does not exist and listed an invocation that does not match its name. The stale skill table in the brain template is replaced by a pointer to the schema.
+- One brain covers one product or platform. The README and the brain plugin now say so; for several product lines, keep one folder and one brain per product.
+- `pmm-okrs` and `go-to-market-strategy` now read Section 7. `pmm-okrs` can propose a Section 7 update, only after you confirm it. Leftover references to a brain section called "Revenue Levers", which never existed, are removed from `retro`, `interview-summary` and `pmm-okrs`.
+- The brain skill now offers next steps from `next-skill-map.md`, and a test checks every skill name in that file. A value you confirmed is never overwritten by newer evidence: the skill shows both and asks.
+- "Not applicable" now reads `N/A` everywhere. The last retired-prefix and storefront links outside the root README are removed, and tests keep them out.
+
 ## v1.6.0 — 2026-10-10
 
 ### Keep your quick answers
@@ -160,7 +229,7 @@
 - Added consistent display names for all plugins in the marketplace listing.
 - Added a Connectors section to `CLAUDE.md` and `CONTRIBUTING.md`, a connect
   step in `QUICK-START.md`, and an access-requirements note in the README.
-- Fixed the dead `hs-proof-points-claims` reference in message-house and
+- Fixed the dead reference to the retired proof-points skill name in message-house and
   reset the pmm-positioning version to match the CHANGELOG.
 
 ## v1.0.0 — 2026-08-25

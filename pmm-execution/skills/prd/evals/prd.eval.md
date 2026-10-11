@@ -70,7 +70,7 @@ Quick check: Do you have a baseline and target metric in mind?
 
 ## Eval 2: Brain Context Loading (Pre-flight)
 
-**Scenario:** `/foundation/brain.md` exists with populated Positioning (§3), ICP (§2), Personas (§4), Revenue Levers (§5). Skill should load silently and reference during intake.
+**Scenario:** `/foundation/brain.md` exists with populated Positioning (§3) and ICP (§2), and `/context/skill-sessions.md` holds a recent `buyer-personas` session. Skill should load silently and reference during intake.
 
 **Test Data:**
 ```yaml
@@ -82,13 +82,11 @@ Primary: Mid-market B2B SaaS, 50-500 employees, marketing ops teams
 Unique angle: "For ops leaders who want to measure impact, not just activity"
 Key differentiator: Outcome-first analytics, not output metrics
 
-## Section 4: Personas
-Primary: Sarah, VP Marketing Ops, 15 years experience, frustrated with visibility
+```
 
-## Section 5: Revenue Levers
-Lever 1: Time-to-value (setup speed)
-Lever 2: Outcome visibility (customer success metric)
-Lever 3: Team collaboration (multiple stakeholders)
+```yaml
+# /context/skill-sessions.md (buyer-personas session)
+Primary persona: Sarah, VP Marketing Ops, 15 years experience, frustrated with visibility
 ```
 
 **Expected Output - Context Referenced:**
@@ -96,18 +94,17 @@ Lever 3: Team collaboration (multiple stakeholders)
 ✓ Brain context loaded:
   - ICP: Mid-market B2B SaaS (pre-filling target customer)
   - Positioning: Outcome-first analytics (anchor for Solution Story)
-  - Personas: Sarah, VP Marketing Ops (primary user in PRD)
-  - Revenue: Setup speed as lever (feature should accelerate)
+  - Persona (from the buyer-personas session, not the brain): Sarah, VP Marketing Ops (primary user in PRD)
 
 Target customer from brain ICP: [pre-filled from Section 2]
-Success metric inspiration from Revenue Levers: [pre-filled from Section 5]
+Solution Story framing from brain Positioning: [pre-filled from Section 3]
 ```
 
 **Pass Criteria:**
 - Brain sections loaded silently at pre-flight
 - ICP pre-fills target customer field
 - Positioning anchors Solution Story framing
-- Revenue Levers inform feature alignment check
+- Persona detail comes from the session log and is labelled as such; no persona or revenue data is claimed from the brain
 
 ---
 
@@ -275,7 +272,7 @@ source: surprised
 **Pass Criteria:**
 - Session logged to `/context/skill-sessions.md` with exactly these five fields — `type: execution`, `skill`, `session_date`, `pattern`, `source` — matching Step 7's template in `SKILL.md` verbatim. No additional fields.
 - `pattern` is a single falsifiable statement about what happened this session, or the literal string `"none"` if nothing notable occurred — not a multi-field summary object.
-- `source` is one of `surprised / wrong / missing / n.v.t.`
+- `source` is one of `surprised / wrong / missing / N/A`
 - The row is written directly, without asking the user for permission — this is a separate, mechanical write from anything the skill asks the user's go-ahead on (like where to save the PRD or Solution Story output).
 - If nothing notable happened this session, the row is still written with `pattern: none` — the log entry is never skipped.
 

@@ -160,7 +160,7 @@ source: surprised
 **Pass Criteria:**
 - Session logged to `/context/skill-sessions.md` with exactly these five fields — `type: execution`, `skill`, `session_date`, `pattern`, `source` — matching Step 5's template in `SKILL.md` verbatim. No additional fields.
 - `pattern` is a single falsifiable statement about what happened this session, or the literal string `"none"` if nothing notable occurred — not a multi-field summary object.
-- `source` is one of `surprised / wrong / missing / n.v.t.`
+- `source` is one of `surprised / wrong / missing / N/A`
 - The row is written directly, without asking the user for permission — this is a separate, mechanical write from anything the skill asks the user's go-ahead on (like where to save the GTM brief, per Outputs).
 - If nothing notable happened this session, the row is still written with `pattern: none` — the log entry is never skipped.
 - The tier assignment, four-signal reasoning, and full GTM brief are delivered in chat only (Steps 3-4) — none of that detail is duplicated into the session-log row.
@@ -253,6 +253,32 @@ Note that pattern-across-sessions detection (comparing this session's row agains
 
 **Expect:** The skill asks the user to paste the material, then produces the same output format as with a connector. It does not claim to have pulled anything.
 
+
+## Eval 11 — Launch calendar clash flagged from Section 7
+
+**Setup:** The brain has Section 7 with a T2 launch on 2026-11-18 and three priorities. The user asks for a GTM brief for a different launch on 2026-11-20 that is not one of the three priorities.
+
+**Prompt:** "What tier is this launch, and plan it."
+
+**Expect:** The brief flags the two-day gap to the existing launch and that this launch is not one of this quarter's priorities, then continues. It does not write to the brain. With no Section 7, it skips both flags silently.
+
+## Eval 12 — Gap capture asks exactly one question
+
+**Setup:** A brain whose Section 3 `status_quo` is empty.
+
+**Prompt:** "Plan the launch."
+
+**Expect:** The skill asks one question (the question, one line on why it matters, answer or skip). If the user skips, the output carries a clearly labelled assumption and a `skipped` block is appended to `/foundation/gaps.md`. A second run within 30 days does not ask the same question. It never asks two gap questions in one run. With no file access, it shows the block and does not claim it was saved.
+
+## Eval 13: Personal context shapes format only
+**Scenario:** `/foundation/me.md` contains `output_length: short`, `pushback: blunt` and also the line "Our product is Acme Cloud".
+**Expected:** The skill shortens and sharpens its output per `me.md`. It ignores "Acme Cloud" as a company fact and takes the product name from the brain or the request. If the request says "long and detailed", the request wins. With no `me.md`, it uses its defaults and does not ask for the file.
+**Input:** A normal request for this skill
+**Output check:**
+- Length and bluntness follow `me.md`? YES/NO
+- No company fact is taken from `me.md`? YES/NO
+- The request overrides `me.md` when they disagree? YES/NO
+- A missing `me.md` causes no question and no error? YES/NO
 
 ## Running Evals
 

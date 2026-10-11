@@ -174,7 +174,7 @@ skill: positioning-ideas
 session_date: {{date}}
 pattern: "{{what surprised you, a recurring redundancy pattern, or
   'none' if nothing notable happened — never skip the row}}"
-source: {{surprised/wrong/missing/n.v.t.}}
+source: {{surprised/wrong/missing/N/A}}
 ````
 
 State explicitly which option (or blend) is strongest, and that the
@@ -193,7 +193,7 @@ not itself shippable.
 - An explicit handoff line naming the strongest option(s) and stating
   they still require `positioning-messaging` BUILD mode's gate before
   use
-- **External side effects:** n.v.t.
+- **External side effects:** N/A
 - **Next skill:** check `next-skill-map.md` for "After positioning-ideas"
   and surface that prompt.
 

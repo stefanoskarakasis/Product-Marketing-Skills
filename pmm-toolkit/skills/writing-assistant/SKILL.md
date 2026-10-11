@@ -8,7 +8,7 @@ description: >
   or converting, or says "write a blog post", "landing page copy", "press release",
   "case study", "LinkedIn post", "draft the newsletter", or "does this sound like AI?"
 metadata:
-  version: "2.4.1"
+  version: "2.5.0"
   updated: "2026-10-10"
 conversation_starters:
   - "Write a blog post about our new feature"
@@ -106,6 +106,8 @@ If it exists, load it silently and apply it:
 
 Load all six for Marketing content and Behavioral Messaging Review. For Slack, email,
 memos and other internal text, load Section 4 only.
+
+**Personal context.** If `/foundation/me.md` exists, read it for format and detail only (length, level of detail, shape, how blunt to be). Never take a company fact from it, and the current request wins when they disagree. Do not ask for it if it is missing. Rule: `SKILL-SPEC.md`, personal context.
 
 **Legacy fallback.** If there is no brain, check `.agents/product-marketing-context.md`.
 If it exists, load it the old way: `## Brand Voice` for tone, `## Positioning` to check

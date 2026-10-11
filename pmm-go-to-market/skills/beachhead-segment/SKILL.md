@@ -324,7 +324,7 @@ type: execution
 skill: beachhead-segment
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about what happened this session, or "none"]
-source: [surprised / wrong / missing / n.v.t.]
+source: [surprised / wrong / missing / N/A]
 ````
 
 Write this row directly — do not ask the user for permission. This is a

@@ -234,7 +234,7 @@ type: execution
 skill: ideal-customer-profile
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about this session, or "none"]
-source: [surprised / wrong / missing / n.v.t.]
+source: [surprised / wrong / missing / N/A]
 ````
 
 Write directly, no permission needed — separate from the brain write
@@ -250,7 +250,7 @@ above, which still requires explicit confirmation.
   — one appended row per session (Step 4).
 - **Chat output format:** Source and cohort stated → four-layer profile →
   One-Line ICP Statement → confirmation prompt for the brain write.
-- **External side effects:** n.v.t.
+- **External side effects:** N/A
 - **Next skill:** After brain Section 2 is deepened, check
   `product-marketing-context/.claude-plugin/next-skill-map.md` for "After
   ideal-customer-profile" and surface that prompt. Do not auto-run — ask.
@@ -313,4 +313,4 @@ above, which still requires explicit confirmation.
   the ICP is profiled; run this skill first for real inputs.
 - **`positioning-messaging`** — turning a confirmed ICP into a positioning
   statement or messaging hierarchy; run this skill first, then that one.
-- n.v.t.
+- N/A

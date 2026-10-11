@@ -185,7 +185,7 @@ skill: market-context
 session_date: {{date}}
 pattern: "{{what surprised you, what the tagging discipline caught, or
   'none' if nothing notable happened — never skip the row}}"
-source: {{surprised/wrong/missing/n.v.t.}}
+source: {{surprised/wrong/missing/N/A}}
 ````
 ---
 
@@ -195,7 +195,7 @@ source: {{surprised/wrong/missing/n.v.t.}}
 - A stated narrative arc, category moment, and durability rating — not
   buried in prose
 - Session logged to `/context/skill-sessions.md`
-- **External side effects:** n.v.t.
+- **External side effects:** N/A
 - **Next skill:** check `next-skill-map.md` for "After market-context"
   and surface that prompt.
 

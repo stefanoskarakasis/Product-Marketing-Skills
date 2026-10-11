@@ -1,6 +1,6 @@
 ---
 name: proof-points
-version: 1.1.0
+version: 1.2.0
 description: >
   Build and maintain a sourced, gated registry of the proof points your
   messaging relies on — metrics, customer quotes, case study results, and
@@ -107,7 +107,7 @@ dates, undocumented customer names, and unsupported superlatives.
     write if missing). Section 6 (Proof Points Registry).
     Section 1 (Product Context) read for plausibility only — never to
     invent a claim the user didn't supply.
-  - **Brain contract:** Reads Section 6, and Section 1 for context only.
+  - **Brain contract:** Reads Section 6, Section 8 (`prohibited`, `approvals`), and Section 1 for context only.
     Writes Section 6 only — approved metrics, customer quotes/case
     studies, and forbidden claims, appended on explicit confirmation.
     Never writes to any other section. If no brain exists, creates
@@ -132,7 +132,7 @@ dates, undocumented customer names, and unsupported superlatives.
 
 ## Pre-flight
 
-- Load `/foundation/brain.md` Section 6 if it exists.
+- Load `/foundation/brain.md` Section 6 if it exists. Also read Section 8 `prohibited` and `approvals` if present: a claim that touches a prohibited topic is flagged and not added as approved, and each customer number or quote notes the approver Section 8 names.
 - **Brain absent: continue, don't block.** This skill works from the evidence you give it. Say once: "No PMM brain found, so I'll work from your material and start the brain with this section only. Run `product-marketing-context` later (a separate plugin) to build the rest." The write step handles the cold start.
 - **Soft block:** request doesn't clearly state Extract, Add, Verify, or
   Audit → ask which applies. If Section 6 is empty and the user just says
@@ -330,7 +330,7 @@ type: execution
 skill: proof-points
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about this session, or "none"]
-source: [surprised / wrong / missing / n.v.t.]
+source: [surprised / wrong / missing / N/A]
 ```
 
 Write directly, no permission needed — separate from the brain write above,
@@ -347,7 +347,7 @@ which still requires explicit confirmation.
 - **Chat output format:** Mode stated (Extract / Add / Verify / Audit) →
   candidate list, findings, or new registry entries → confirmation prompt
   for the brain write.
-- **External side effects:** n.v.t.
+- **External side effects:** N/A
 - **Next skill:** After brain Section 6 is deepened, check
   `product-marketing-context/.claude-plugin/next-skill-map.md` for "After
   proof-points" and surface that prompt. Do not auto-run — ask.
@@ -438,4 +438,4 @@ which still requires explicit confirmation.
   rep-ready handoff document. Run this skill first so that assembler has
   clean, sourced proof to pull from instead of a thin or unsourced
   registry.
-- n.v.t.
+- N/A

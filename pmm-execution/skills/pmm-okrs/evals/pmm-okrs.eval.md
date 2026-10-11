@@ -36,7 +36,7 @@
 - Session logged? YES/NO
 - Row contains exactly these five fields: `type: execution`, `skill`, `session_date`, `pattern`, `source`? YES/NO — no additional fields (no `quarter`, `objectives_count`, `guardrails_triggered`, or similar; those are chat-output details from `/build` and `/scorecard`, not part of the log row)
 - `pattern` is a single falsifiable statement about this session, or the literal `"none"`? YES/NO
-- `source` is one of `surprised / wrong / missing / n.v.t.`? YES/NO
+- `source` is one of `surprised / wrong / missing / N/A`? YES/NO
 - Row written directly, without asking the user for permission? YES/NO
 
 ## Eval 5: Adversarial callouts surface inline
@@ -76,3 +76,31 @@
 - No file created at any `decisions/` path — that mechanism does not exist in this skill? YES/NO
 - If the Option B choice was a genuine surprise or worth remembering, `pattern` in the Step 8 row names it (e.g. "User picked the higher-risk option over the calibration-recommended one")? YES/NO
 - If not notable, `pattern: none` is still written — the row is never skipped? YES/NO
+
+## Eval 9: Section 7 (Strategy) read, empty case handled
+**Scenario:** `/foundation/brain.md` has Sections 1 to 6 but no Section 7
+**Expected:** The skill asks the five Strategy questions once (top 3 priorities, launches with date and tier, the measured number with baseline and target, active bets, what you are not doing), holds the answers for the session, and offers to keep them as Section 7. It does not write Section 7 until the user finalizes OKRs and confirms the exact before/after.
+**Input:** `/build` with no Section 7
+**Output check:**
+- Five Strategy questions asked once, not five separate prompts per OKR? YES/NO
+- Nothing written to the brain before the user confirms? YES/NO
+- The old phantom "Revenue Levers" wording does not appear anywhere in the output? YES/NO
+
+## Eval 10: Gap capture asks exactly one question
+**Scenario:** A brain with Section 2 `economic_buyer` empty.
+**Expected:** The skill asks one question (the question, one line on why it matters, answer or skip). If the user skips, the output carries a clearly labelled assumption and a `skipped` block is appended to `/foundation/gaps.md`. A second run within 30 days does not ask the same question. It never asks two gap questions in one run. With no file access, it shows the block and does not claim it was saved.
+**Input:** `/build` with the gap above
+**Output check:**
+- Exactly one gap question asked, with one line on why it matters? YES/NO
+- After a skip, a `skipped` block is appended to `/foundation/gaps.md` and the output carries a labelled assumption? YES/NO
+- With no file access, the block is shown and the skill does not claim it was saved? YES/NO
+
+## Eval 11: Personal context shapes format only
+**Scenario:** `/foundation/me.md` contains `output_length: short`, `pushback: blunt` and also the line "Our product is Acme Cloud".
+**Expected:** The skill shortens and sharpens its output per `me.md`. It ignores "Acme Cloud" as a company fact and takes the product name from the brain or the request. If the request says "long and detailed", the request wins. With no `me.md`, it uses its defaults and does not ask for the file.
+**Input:** A normal request for this skill
+**Output check:**
+- Length and bluntness follow `me.md`? YES/NO
+- No company fact is taken from `me.md`? YES/NO
+- The request overrides `me.md` when they disagree? YES/NO
+- A missing `me.md` causes no question and no error? YES/NO

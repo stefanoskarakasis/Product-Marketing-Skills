@@ -52,7 +52,7 @@ skill doesn't have; a human or a domain-specific reviewer does that.
   e.g. `retro` or `positioning-messaging`. If the user names a whole plugin
   instead of one skill, run this skill once per skill in that plugin and
   report all results together.
-- **Defaults:** n.v.t. — a skill name is always required.
+- **Defaults:** N/A — a skill name is always required.
 - **Context keys:** `SKILL-SPEC.md` (the standard being enforced) and the
   target skill's `SKILL.md` file. No brain context needed.
 
@@ -89,7 +89,7 @@ directory name; `description` is 300–600 chars with trigger phrases verbatim;
 
 **Seven required sections (7 checks)** — `Trigger`, `Inputs`, `Pre-flight`,
 `Steps`, `Outputs`, `Verification`, `Do Not Use For` — each present, either
-filled in or explicitly marked `n.v.t.`
+filled in or explicitly marked `N/A`
 
 **Tier-appropriate sections (3 checks, T1/T2 only)** — `Operating Rules`
 with ≥6 rules; `Quality Gate` with ≥5 binary checks, only where
@@ -100,8 +100,8 @@ with ≥6 rules; `Quality Gate` with ≥5 binary checks, only where
 wrapped in a code fence, not raw `##` headers; an evals file exists with
 ≥3 test cases including one edge case.
 
-Mark each check pass/fail. A check applying `n.v.t.` correctly (per
-`SKILL-SPEC.md` Section 7) counts as pass — an explicit `n.v.t.` is
+Mark each check pass/fail. A check applying `N/A` correctly (per
+`SKILL-SPEC.md` Section 7) counts as pass — an explicit `N/A` is
 compliant; an omitted section is not.
 
 ### Step 4: Score and Report
@@ -116,7 +116,7 @@ compliant; an omitted section is not.
 ### Failed checks
 - [Check name] — [what's missing, specifically]
 
-### Passed with n.v.t.
+### Passed with N/A
 - [Check name] — explicitly marked not applicable
 
 ### Recommendation
@@ -129,10 +129,10 @@ say so plainly — don't manufacture nitpicks to seem thorough.
 
 ## Outputs
 
-- **Files written:** n.v.t. — this skill produces a report only, it does not
+- **Files written:** N/A — this skill produces a report only, it does not
   edit the audited `SKILL.md`.
 - **Chat output format:** The scored checklist template from Step 4.
-- **External side effects:** n.v.t.
+- **External side effects:** N/A
 
 ## Verification
 
@@ -160,8 +160,9 @@ say so plainly — don't manufacture nitpicks to seem thorough.
   plus `meta-verify`.
 - **Score honestly.** A skill that's missing three sections is not "mostly
   there" — report the real count against 18.
-- **`n.v.t.` is a pass, silence is a fail.** Per `SKILL-SPEC.md` Section 7,
-  an explicit `n.v.t.` on a section that doesn't apply is fully compliant.
+- **A legacy `n.v.t.` is read as `N/A`.** Skills written before v1.12.0, and forks, may still use the Dutch marker; report it as a style note, not a failure.
+- **`N/A` is a pass, silence is a fail.** Per `SKILL-SPEC.md` Section 7,
+  an explicit `N/A` on a section that doesn't apply is fully compliant.
   An omitted section is not, even if the reason is obvious.
 - **Tier determines scope.** Don't fail a T3 skill for missing a
   Self-Improvement Loop or Changelog — as of `SKILL-SPEC.md` v2.1.0, no
@@ -184,4 +185,4 @@ say so plainly — don't manufacture nitpicks to seem thorough.
 | All 18 checks run | No check skipped regardless of early failures | Yes |
 | Score stated | Numeric score (N/18) shown, not just pass/fail | Yes |
 | Failed checks specific | Each failure names the exact gap | Yes |
-| n.v.t. handled correctly | Explicit n.v.t. counted as pass per spec Section 7 | Yes |
+| N/A handled correctly | Explicit N/A counted as pass per spec Section 7 | Yes |

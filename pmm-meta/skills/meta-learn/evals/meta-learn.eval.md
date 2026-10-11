@@ -47,7 +47,7 @@ before the write
    predictable
 2. Skill does not manufacture a pattern to appear productive
 3. Skips directly to Step 5 — logs a clean-close entry
-   (`pattern: none, source: n.v.t.`) without a confirmation gate, since
+   (`pattern: none, source: N/A`) without a confirmation gate, since
    there's nothing to approve
 4. Session is still logged — a clean session is a real, useful data point
    for `meta-synthesis` later (it's part of the denominator)

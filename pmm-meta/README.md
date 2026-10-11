@@ -29,7 +29,7 @@ None. This plugin works on your own outputs and needs no external tools.
 
 ## Author
 
-Stefanos Karakasis — [Product Marketing Skills](https://heystefanos.gumroad.com/)
+Stefanos Karakasis — [GitHub](https://github.com/stefanoskarakasis)
 
 ## License
 

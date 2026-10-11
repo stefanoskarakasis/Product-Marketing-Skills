@@ -1,6 +1,6 @@
 ---
 name: workflow-orchestrator
-version: 2.4.1
+version: 2.5.0
 description: >
   Orchestrates multi-skill PMM programs end-to-end — chains positioning,
   competitive, GTM strategy, campaign briefs, stakeholder maps, and retros into
@@ -260,7 +260,7 @@ If the user wants this document saved somewhere, ask where.
       pattern: [one falsifiable statement about the orchestration — workflow type,
         number of skills chained, whether coherence check passed clean or needed
         conflict resolution, or "none"]
-      source: [surprised / wrong / missing / n.v.t.]
+      source: [surprised / wrong / missing / N/A]
 ````
 
       Write this row directly — do not ask the user for permission.
@@ -314,6 +314,13 @@ No dedicated competitive-intelligence skill exists yet in this repo. Handle with
 
 **Note:** Read-only. No brain writes under any circumstance.
 
+### 8. Weekly Opportunities
+**Trigger:** "weekly opportunities", "what changed this week", "weekly PMM read"
+1. `signal-monitor` (from the `pmm-intelligence` plugin; if it is not installed, say so and stop) — at most five opportunities from the signals the user names
+2. For each opportunity the user wants to act on, route to the one skill it names (`alternatives-map`, `positioning-messaging` or `pmm-okrs`), with a checkpoint before it runs
+
+**Note:** The read itself writes only its dated list in `/context/signals/`. Any brain write is performed by the downstream skill after the user confirms.
+
 ---
 
 ## Commands
@@ -329,6 +336,7 @@ Start a named workflow. Runs Steps 1–7 with checkpoints.
 /run market-entry
 /run competitive-response [competitor name]
 /run audit
+/run weekly-opportunities
 ````
 
 ### /status

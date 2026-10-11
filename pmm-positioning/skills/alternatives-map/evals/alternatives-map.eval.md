@@ -89,12 +89,12 @@ complete.
 
 ---
 
-## Eval 3: Four-Type Discipline, DIY Marked n.v.t. Not Skipped
+## Eval 3: Four-Type Discipline, DIY Marked N/A Not Skipped
 
 **Scenario:** Research data covers direct competitors, adjacent tools,
 and status quo, but the business genuinely has no DIY/internal-build
 alternative (e.g., a narrow technical tool no team would build
-in-house). Skill must mark DIY `n.v.t.` explicitly rather than silently
+in-house). Skill must mark DIY `N/A` explicitly rather than silently
 omitting the type.
 
 **Test Data:**
@@ -108,7 +108,7 @@ too specialized."
 ```
 Direct Competitors: [Competitor A] — [mapped]
 Adjacent Tools: Spreadsheets — [mapped]
-DIY / Internal Build: n.v.t. — not observed in source data; the tool's
+DIY / Internal Build: N/A — not observed in source data; the tool's
 specialization makes internal build uncommon. Flagged as absent, not
 silently omitted.
 Status Quo: [mapped]
@@ -117,9 +117,9 @@ Status Quo: [mapped]
 **Pass Criteria:**
 - All four types appear in the output structure, even when one has no
   content
-- The absent type is explicitly marked `n.v.t.` with a stated reason,
+- The absent type is explicitly marked `N/A` with a stated reason,
   never just missing from the output
-- The eventual Section 3 write preserves this explicit `n.v.t.` rather
+- The eventual Section 3 write preserves this explicit `N/A` rather
   than dropping the row
 
 ---
@@ -221,13 +221,13 @@ at this segment."
 ## Eval 7: Confirmation-Gated Write and Learning Close
 
 **Scenario:** Full session completes — layered map built across direct
-competitor, adjacent tool, and status quo (DIY marked n.v.t.), ready to
+competitor, adjacent tool, and status quo (DIY marked N/A), ready to
 deepen brain Section 3.
 
 **Expected Output — Section 3 Write Shown Before Committed:**
 ```
 Here's exactly what Section 3 will read after this write: [full
-before/after shown, all four types including the n.v.t. DIY row].
+before/after shown, all four types including the N/A DIY row].
 Confirm before I save this?
 ```
 
@@ -259,7 +259,7 @@ source: surprised
 |------|---------|---------------|
 | 1 | Brain context loading (Step 0) | Thin Section 3 loaded silently, treated as deepening |
 | 2 | Status quo never optional | Probed and flagged even when absent from source data |
-| 3 | Four-type discipline | All four types present in structure; absent type marked n.v.t., not dropped |
+| 3 | Four-type discipline | All four types present in structure; absent type marked N/A, not dropped |
 | 4 | Status quo's four elements | Named, cost, real reason, trigger — gaps flagged, not fabricated |
 | 5 | Unsourced-claim tagging | `[A]` flag applied consistently to every unvalidated claim |
 | 6 | Named-Not-Abstract + gap-credibility test | Vague or non-unique gaps rejected; specific, tested gaps pass |

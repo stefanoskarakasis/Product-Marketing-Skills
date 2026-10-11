@@ -1,6 +1,6 @@
 ---
 name: gaccs-brief
-version: 3.4.1
+version: 3.6.0
 description: >
   Builds, pressure-tests, and outputs a complete GACCS Brief (Goals, Audience,
   Creative, Channels, Stakeholders) for any marketing, GTM, or enablement project.
@@ -15,7 +15,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-09-25
+last_updated: 2026-10-11
 ---
 
 # gaccs-brief
@@ -70,6 +70,8 @@ enough to act on.
 
 ## Pre-flight
 
+- **Gap capture** (see the gap capture rule in `SKILL-SPEC.md`): if a brain field this skill needs is empty or stale and the answer would change the output, ask one question: the question, one line on why it matters, "answer or skip". Answer: use it for this run and offer it as a brain update. Skip: continue with a labelled assumption and append a `skipped` block to `/foundation/gaps.md` (format in `product-marketing-context/references/gaps-format.md`). At most one gap question per run. This is the only write to `/foundation/gaps.md`; the skill still writes nothing else to the brain unless its own contract says so.
+- **Personal context** (see the personal context rule in `SKILL-SPEC.md`): if `/foundation/me.md` exists, read it for format and detail only (length, detail, shape, how blunt to be). Never take a company fact from it; the current request wins. Do not ask for it if it is missing.
 - Load `/foundation/brain.md` silently if present. Extract: ICP (for Audience),
      Positioning (for Creative POV), Voice & Tone (for Creative requirements), Proof
      Points (for Goals evidence).
@@ -159,7 +161,7 @@ type: execution
 skill: gaccs-brief
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about what happened this session, or "none"]
-source: [surprised / wrong / missing / n.v.t.]
+source: [surprised / wrong / missing / N/A]
 ````
 
 Write this row directly — do not ask the user for permission. This is an

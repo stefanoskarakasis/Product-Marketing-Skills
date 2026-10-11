@@ -296,7 +296,7 @@ source: surprised
 **Pass Criteria:**
 - Session logged to `/context/skill-sessions.md` with exactly these five fields — `type: execution`, `skill`, `session_date`, `pattern`, `source` — matching Step 6's template in `SKILL.md` verbatim. No additional fields.
 - `pattern` is a single falsifiable statement about what happened this session, or the literal string `"none"` if nothing notable occurred — not a multi-field summary object.
-- `source` is one of `surprised / wrong / missing / n.v.t.`
+- `source` is one of `surprised / wrong / missing / N/A`
 - The row is written directly, without asking the user for permission — this is a separate, mechanical write from the brain Section 2 write (Step 5), which does require explicit user confirmation.
 - If nothing notable happened this session, the row is still written with `pattern: none` — the log entry is never skipped.
 
@@ -313,7 +313,7 @@ type: execution
 skill: beachhead-segment
 session_date: 2026-05-05
 pattern: "Enterprise rejected at Gate 1 (Pain 2); Mid-market chosen (Pain 4) — segment expanded successfully 18 months later"
-source: n.v.t.
+source: N/A
 
 type: execution
 skill: beachhead-segment

@@ -1,6 +1,6 @@
 ---
 name: pre-mortem
-version: 3.0.1
+version: 3.1.0
 description: >
   Identifies and pressure-tests failure modes for any strategic initiative (product launch, pricing change, GTM pivot, new market entry, feature rollout) by running a cross-functional risk exercise. Loads brain context (ICP, positioning, competitive landscape) and, when available, guardrails from prior pre-mortems; surfaces Tigers (deal-blocking risks) with owner-assigned action plans.
 metadata:
@@ -54,7 +54,7 @@ The skill runs in 7 steps:
 - **Args:** Initiative name and scope. Free format — one sentence minimum; Step 1 intake fills in the rest conversationally.
 - **Defaults:** If no initiative is named, run Step 1 intake before proceeding. Never generate failure scenarios without a named initiative and scope.
 - **Context keys:**
-  - `/foundation/brain.md` — recommended. Sections 2 (ICP), 3 (Alternatives & Positioning) loaded silently at Step 0.
+  - `/foundation/brain.md` — recommended. Sections 2 (ICP), 3 (Alternatives & Positioning), 8 (Execution: approvals, prohibited) loaded silently at Step 0.
   - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior pre-mortems.
 
 ---
@@ -74,7 +74,7 @@ The skill runs in 7 steps:
 
 ## Pre-flight
 
-- Load `/foundation/brain.md` Sections 2, 3 (ICP, alternatives & positioning) if it exists — see Step 0 for the full sequence.
+- Load `/foundation/brain.md` Sections 2, 3, 8 (ICP, alternatives & positioning, execution) if it exists. An approval that takes longer than the plan allows, or a prohibited claim the plan relies on, is a failure scenario to test — see Step 0 for the full sequence.
 - Load `/context/meta-patterns.md` if it exists, and surface any guardrail that has fired 2+ times in prior pre-mortems — see Step 0.
 - No hard block: this skill runs with or without brain context, though output is sharper with it.
 
@@ -252,7 +252,7 @@ type: execution
 skill: pre-mortem
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about what happened this session, or "none"]
-source: [surprised / wrong / missing / n.v.t.]
+source: [surprised / wrong / missing / N/A]
 ````
 
 Write this row directly — do not ask the user for permission. This is an

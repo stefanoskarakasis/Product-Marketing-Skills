@@ -169,7 +169,7 @@ skill: experiment-ideas
 session_date: {{date}}
 pattern: "{{what surprised you, a recurring weak-idea pattern, or 'none'
   if nothing notable happened — never skip the row}}"
-source: {{surprised/wrong/missing/n.v.t.}}
+source: {{surprised/wrong/missing/N/A}}
 ````
 
 State explicitly which idea(s), if any, look strong enough to send to
@@ -186,7 +186,7 @@ starting list, not a validated plan.
 - Session logged to `/context/skill-sessions.md`
 - An explicit handoff line naming which idea(s) are strong candidates for
   `experiment-doc`
-- **External side effects:** n.v.t.
+- **External side effects:** N/A
 - **Next skill:** check `next-skill-map.md` for "After experiment-ideas"
   and surface that prompt.
 

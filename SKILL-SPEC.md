@@ -1,8 +1,8 @@
 # SKILL-SPEC.md
 ## Product Marketing Skills — Skill Authoring Standard
 
-**Version:** 2.4.0
-**Last updated:** 2026-10-10
+**Version:** 2.6.1
+**Last updated:** 2026-10-11
 **Applies to:** All skills in this repository
 **Owner:** Stefanos Karakasis
 
@@ -84,7 +84,7 @@ last_updated: YYYY-MM-DD
 
 ## 4. The Seven Required Sections
 
-Every `SKILL.md` must contain exactly these seven sections, in this order. **Do not rename them. Do not omit them.** Use `n.v.t.` if a section doesn't apply — that's the whole point. An omitted section says nothing. `n.v.t.` says "I considered this and it doesn't apply."
+Every `SKILL.md` must contain exactly these seven sections, in this order. **Do not rename them. Do not omit them.** Use `N/A` if a section doesn't apply — that's the whole point. An omitted section says nothing. `N/A` says "I considered this and it doesn't apply."
 
 After frontmatter, open with:
 
@@ -127,11 +127,11 @@ What this skill needs before it can run.
 ````markdown
 ## Inputs
 
-- **Args:** What the user passes. CLI-style if applicable. `n.v.t.` if none.
-- **Defaults:** What happens if no arg is given. `n.v.t.` if no defaults.
+- **Args:** What the user passes. CLI-style if applicable. `N/A` if none.
+- **Defaults:** What happens if no arg is given. `N/A` if no defaults.
 - **Context keys:** Which files, brain sections, or external resources are
   needed before running. List file paths explicitly.
-  n.v.t. if context-agnostic and no files needed.
+  N/A if context-agnostic and no files needed.
 ````
 
 ---
@@ -145,10 +145,10 @@ Dependency checks and early-exit conditions. Running before anything else.
 
 - [Dependency check — what must exist or be loaded]
 - [Early-exit condition — when failing fast beats degraded output]
-- n.v.t. if no pre-flight needed — write it explicitly, don't omit it.
+- N/A if no pre-flight needed — write it explicitly, don't omit it.
 ````
 
-**The `n.v.t.` rule applies here most often.** Simple utility skills genuinely have no pre-flight. Write `n.v.t.` explicitly so reviewers know it was considered.
+**The `N/A` rule applies here most often.** Simple utility skills genuinely have no pre-flight. Write `N/A` explicitly so reviewers know it was considered.
 
 **Missing-brain rule (brain-dependent skills).** A plugin can be installed on its own, so a skill must not assume `product-marketing-context` is present. When the brain is absent, a brain-dependent skill must take one of these paths and must never end the session with a redirect alone:
 
@@ -157,6 +157,15 @@ Dependency checks and early-exit conditions. Running before anything else.
 3. **Block with a working path.** Only when the skill's purpose is to format content that does not exist yet. The message must offer an action that works inside the same plugin (paste the content, or run a sibling skill), and any mention of `product-marketing-context` must say it is a separate plugin.
 
 If the environment cannot write files, show the block to save and never claim it was saved.
+
+**Gap capture (brain-dependent skills).** When a skill finds a brain field it needs that is empty, stale, or old and untagged, and the answer would change its output, it asks **one** question inline: the question, one line on why it matters, and "answer or skip".
+
+- **Answer:** use it for this run, then offer it as a brain update. The user confirms the exact before/after, and it is written with a `stated` source tag.
+- **Skip:** continue with a clearly labelled assumption and append a block with `status: skipped` to `/foundation/gaps.md` (format: `product-marketing-context/references/gaps-format.md`).
+- Never ask more than one gap question per run. Never ask when the answer would not change the output.
+- If the environment cannot write files, show the block to save and never claim it was saved.
+
+**Personal context (`me.md`).** A skill may read `/foundation/me.md` (format: `product-marketing-context/references/me-format.md`) **for format and detail only**: output length, level of detail, shape, how blunt to be. It never takes a company fact from that file, and the current request wins when the two disagree. A skill never writes `me.md`; only `product-marketing-context` does, after the user confirms. A missing `me.md` is normal: use the skill's defaults and do not ask for it.
 
 ---
 
@@ -201,11 +210,11 @@ What this skill produces.
 ````markdown
 ## Outputs
 
-- **Files written:** path → what's in it. n.v.t. if pure read-only.
+- **Files written:** path → what's in it. N/A if pure read-only.
 - **Chat output format:** markdown shape, with example or reference to
-  example in appendix. n.v.t. if no chat output.
+  example in appendix. N/A if no chat output.
 - **External side effects:** DB writes, external services triggered.
-  n.v.t. if none.
+  N/A if none.
 ````
 
 **Convention — output templates go in a code fence.** If this section or an appendix shows a template with H2/H3 headers, wrap it in ` ```markdown … ``` `. Otherwise every parser (skill audit, plugin sync) reads those raw `##` lines as skill sections — producing broken audits.
@@ -223,7 +232,7 @@ How to confirm the skill ran correctly. Concrete and checkable.
 
 - [How to verify the output is correct. Concrete commands or checks.]
 - [What the expected result looks like.]
-- n.v.t. only if the output is self-evidently verifiable with no steps needed.
+- N/A only if the output is self-evidently verifiable with no steps needed.
 ````
 
 This is not a quality gate (that's in Section 9). Verification is for the user to confirm success after the skill completes.
@@ -239,8 +248,8 @@ Explicit routing away from this skill. Every skill has boundaries.
 
 - **skill-name** — When to use that skill instead. One sentence.
 - **skill-name** — When to use that skill instead.
-- n.v.t. if this skill has no overlap with other skills — write it explicitly.
-  n.v.t. here means: "overlap was considered and there is none."
+- N/A if this skill has no overlap with other skills — write it explicitly.
+  N/A here means: "overlap was considered and there is none."
 ````
 
 **This is the most important section for a multi-skill system.** Without it, users hit the wrong skill and get confused. With it, the routing is baked in.
@@ -314,7 +323,7 @@ type: execution
 skill: [this skill's name]
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about what happened this session, or "none"]
-source: [surprised / wrong / missing / n.v.t.]
+source: [surprised / wrong / missing / N/A]
 ```
 
 Write this row directly — do not ask the user for permission. This is an
@@ -384,20 +393,20 @@ Optional content goes after the seven required sections. Use these canonical app
 
 ---
 
-## 7. The `n.v.t.` Rule
+## 7. The `N/A` Rule
 
 This is the single most important consistency mechanism in the spec.
 
 **Every section must be present. Always.**
 
-If a section doesn't apply to a skill, write `n.v.t.` (not applicable) under it — do not omit the section.
+If a section doesn't apply to a skill, write `N/A` (not applicable) under it — do not omit the section.
 
 - An omitted section says nothing about whether it was considered.
-- `n.v.t.` says: "this was considered and doesn't apply."
+- `N/A` says: "this was considered and doesn't apply."
 
 These are completely different signals. The second is auditable. The first is not.
 
-**This rule applies to all seven required sections and to the `## Do Not Use For` section specifically.** A `## Do Not Use For` with `n.v.t.` says: "there are no overlapping skills." A missing `## Do Not Use For` says nothing — and after 15+ skills, that silence causes real confusion.
+**This rule applies to all seven required sections and to the `## Do Not Use For` section specifically.** A `## Do Not Use For` with `N/A` says: "there are no overlapping skills." A missing `## Do Not Use For` says nothing — and after 15+ skills, that silence causes real confusion.
 
 ---
 
@@ -421,7 +430,7 @@ Load instruction for brain-dependent skills:
 - If a loaded section is marked 🔴 Placeholder: flag before proceeding.
 ````
 
-**Brain-dependent skills:** `positioning-messaging`, `go-to-market-strategy`, `gaccs-brief`, `stakeholder-maps`, `retro`, `pre-mortem`, `workflow-orchestrator`, `pmm-okrs`, `beachhead-segment`, `product-marketing-context`
+**Brain-dependent skills:** `alternatives-map`, `beachhead-segment`, `brand-voice`, `buyer-personas`, `customer-stories`, `experiment-doc`, `experiment-ideas`, `gaccs-brief`, `go-to-market-strategy`, `gtm-motions`, `ideal-customer-profile`, `interview-summary`, `market-context`, `message-house`, `meta-synthesis`, `pmm-metrics`, `pmm-okrs`, `positioning-ideas`, `positioning-messaging`, `prd`, `pre-mortem`, `prioritization-frameworks`, `product-marketing-context`, `product-messaging-playbook`, `proof-points`, `retro`, `signal-monitor`, `stakeholder-maps`, `value-prop-statements`, `workflow-orchestrator`
 
 ### Context-Agnostic (`context-agnostic`)
 
@@ -437,11 +446,13 @@ Load instruction for context-agnostic skills:
 - Start from the user's input only.
 ````
 
-**Why this matters:** If `experiment-doc` loads your current ICP, it validates experiments that fit your current ICP instead of stress-testing them. The framework must be objective.
+**Why this matters:** If `privacy-policy` loaded your positioning, it would shape legal text around marketing claims instead of your actual data practices. The output must follow the input, not the brand.
 
-**Context-agnostic skills:** `experiment-doc`, `prioritization-frameworks`, `privacy-policy`, `pmm-resume`, `interview-summary`, `prd`
+**Context-agnostic skills:** `meta-learn`, `meta-review`, `meta-verify`, `pmm-resume`, `privacy-policy`
 
 **Hybrid:** `writing-assistant` loads the brain for marketing content and Behavioral Messaging Review, and only Section 4 (voice) for internal messages. It moves to the brain-dependent list when its frontmatter is brought to this spec.
+
+The two lists above are checked by `tests/test_consistency.py` against each skill's `context:` frontmatter. A skill with no `context:` value (`writing-assistant`, the hybrid) is not checked.
 
 **The rule:** If output quality depends on knowing your product → brain-dependent. If output quality depends on a universal framework → context-agnostic. When in doubt, choose agnostic.
 
@@ -570,12 +581,12 @@ When the `review` meta skill audits a `SKILL.md`, it checks these in order. Use 
 
 **Seven required sections (7 checks):**
 - [ ] `## Trigger` — includes When, Not for, Example prompts
-- [ ] `## Inputs` — all three sub-fields present (or `n.v.t.`)
-- [ ] `## Pre-flight` — present (or explicit `n.v.t.`)
+- [ ] `## Inputs` — all three sub-fields present (or `N/A`)
+- [ ] `## Pre-flight` — present (or explicit `N/A`)
 - [ ] `## Steps` — named steps in imperative form, at least 2 steps
-- [ ] `## Outputs` — all three sub-fields present (or `n.v.t.`)
-- [ ] `## Verification` — concrete and checkable (or explicit `n.v.t.`)
-- [ ] `## Do Not Use For` — present with routing (or explicit `n.v.t.`)
+- [ ] `## Outputs` — all three sub-fields present (or `N/A`)
+- [ ] `## Verification` — concrete and checkable (or explicit `N/A`)
+- [ ] `## Do Not Use For` — present with routing (or explicit `N/A`)
 
 **Tier-appropriate sections (3 checks):**
 - [ ] `## Operating Rules` present with ≥6 rules (T1/T2)
@@ -612,7 +623,7 @@ A best-in-class skill has five properties:
 
 ## 15. SKILL.md Template
 
-Copy this to `skills/<skill-name>/SKILL.md` when creating a new skill. Fill every section. Use `n.v.t.` where genuinely not applicable — never leave a section blank or omit it.
+Copy this to `skills/<skill-name>/SKILL.md` when creating a new skill. Fill every section. Use `N/A` where genuinely not applicable — never leave a section blank or omit it.
 
 ````markdown
 ---
@@ -645,16 +656,16 @@ immediately whether this is the right skill.
 
 ## Inputs
 
-- **Args:** [n.v.t. if none]
-- **Defaults:** [n.v.t. if no defaults]
+- **Args:** [N/A if none]
+- **Defaults:** [N/A if no defaults]
 - **Context keys:** [Files, brain sections, external resources needed.
-  n.v.t. if context-agnostic.]
+  N/A if context-agnostic.]
   - **Brain contract:** Reads: [sections]. Writes: [sections]. Never writes to: [sections].
 
 ## Pre-flight
 
 - [Dependency check or early-exit condition]
-- n.v.t.
+- N/A
 
 ## Steps
 
@@ -673,20 +684,20 @@ Omit this step for T3/T4 skills unless the author opts in.]
 
 ## Outputs
 
-- **Files written:** [path → what's in it. n.v.t. if read-only. T1/T2 skills
+- **Files written:** [path → what's in it. N/A if read-only. T1/T2 skills
   also list `/context/skill-sessions.md` — one row per session.]
-- **Chat output format:** [markdown shape. n.v.t. if no chat output.]
-- **External side effects:** [n.v.t. if none.]
+- **Chat output format:** [markdown shape. N/A if no chat output.]
+- **External side effects:** [N/A if none.]
 
 ## Verification
 
 - [How to confirm the skill ran correctly. Concrete.]
-- n.v.t.
+- N/A
 
 ## Do Not Use For
 
 - **[skill-name]** — [When to use that skill instead.]
-- n.v.t.
+- N/A
 
 ---
 

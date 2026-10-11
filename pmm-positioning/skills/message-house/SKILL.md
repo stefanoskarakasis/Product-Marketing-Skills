@@ -93,7 +93,7 @@ session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about this session, or "none" — fold in what's
   useful from this run: source used, pillar count, any missing fields, e.g. "Built
   3 pillars from brain; Target audience and Buyer persona both missing"]
-source: [surprised / wrong / missing / n.v.t.]
+source: [surprised / wrong / missing / N/A]
 ```
 
 Written directly, no permission required — observational log, not content approval.

@@ -1,13 +1,13 @@
 ---
 name: go-to-market-strategy
-version: 3.0.2
+version: 3.2.0
 description: >
     Assigns launch tier (T1–T4) using a four-signal framework and generates a complete GTM brief with positioning angles, channel strategy, success metrics, and competitive context. Reads brain (ICP, positioning, competitive, proof points) and, when available, guardrails from prior launches the user has logged.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-10
+last_updated: 2026-10-11
 ---
 
 # Go-to-Market-Strategy
@@ -50,9 +50,9 @@ The skill runs in 6 steps:
 - **Args:** Initiative name, 90-day success metric, timeline. Free format — Step 1 intake fills gaps conversationally.
 - **Defaults:** If brain is missing or Section 2 (ICP) is empty, this skill sends the user to `beachhead-segment` (same plugin) first — see Pre-flight and Step 0.
 - **Context keys:**
-   - `/foundation/brain.md` — required. Sections 2 (ICP), 3 (Alternatives & Positioning), 6 (Proof Points Registry).
+   - `/foundation/brain.md` — required. Sections 2 (ICP), 3 (Alternatives & Positioning), 6 (Proof Points Registry). Section 7 (Strategy) is read if present.
    - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior GTM briefs.
-   - **Brain contract:** Reads Sections 2, 3, 6. Writes: none — this skill does not write to `/foundation/brain.md` on its own. If Section 6 is thin or unsourced, route to `proof-points` (Add or Audit mode) rather than treating flagged claims as usable.
+   - **Brain contract:** Reads Sections 2, 3, 6, and 7 if present (launch calendar and priorities, to flag clashes with the new launch). Writes: none — this skill does not write to `/foundation/brain.md` on its own. If Section 6 is thin or unsourced, route to `proof-points` (Add or Audit mode) rather than treating flagged claims as usable.
 
 ---
 
@@ -74,7 +74,9 @@ The skill runs in 6 steps:
 
 ## Pre-flight
 
-- Load `/foundation/brain.md` Sections 2, 3, 6 if it exists — see Step 0 for the full sequence.
+- **Gap capture** (see the gap capture rule in `SKILL-SPEC.md`): if a brain field this skill needs is empty or stale and the answer would change the output, ask one question: the question, one line on why it matters, "answer or skip". Answer: use it for this run and offer it as a brain update. Skip: continue with a labelled assumption and append a `skipped` block to `/foundation/gaps.md` (format in `product-marketing-context/references/gaps-format.md`). At most one gap question per run. This is the only write to `/foundation/gaps.md`; the skill still writes nothing else to the brain unless its own contract says so.
+- **Personal context** (see the personal context rule in `SKILL-SPEC.md`): if `/foundation/me.md` exists, read it for format and detail only (length, detail, shape, how blunt to be). Never take a company fact from it; the current request wins. Do not ask for it if it is missing.
+- Load `/foundation/brain.md` Sections 2, 3, 6 if it exists — see Step 0 for the full sequence. If Section 7 exists, also load `launches` and `priorities` and flag any launch on the same dates or any launch that is not one of this quarter's priorities.
 - Load `/context/meta-patterns.md` if it exists, and surface any guardrail that has fired 2+ times in prior GTM briefs — see Step 0.
 - **No brain:** if `/foundation/brain.md` is absent or Section 2 (ICP) is empty, stop and send the user to `beachhead-segment` (same plugin, builds a quick brain in about 3 minutes), then come back — see Step 0. GTM strategy without ICP and positioning produces generic output, not defensible strategy. `product-marketing-context` (a separate plugin) builds the full brain.
 
@@ -261,7 +263,7 @@ type: execution
 skill: go-to-market-strategy
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about what happened this session, or "none"]
-source: [surprised / wrong / missing / n.v.t.]
+source: [surprised / wrong / missing / N/A]
 ````
 
 Write this row directly — do not ask the user for permission. This is an

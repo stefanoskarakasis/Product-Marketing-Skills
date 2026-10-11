@@ -1,6 +1,6 @@
 ---
 name: pmm-okrs
-version: 2.4.0
+version: 2.6.0
 description: >
   Guides Product Marketing leaders and individual PMMs through building a complete,
   export-ready OKR set for their quarter — including Objective, Key Results, Projects,
@@ -14,7 +14,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-08-21
+last_updated: 2026-10-11
 ---
 
 # pmm-okrs
@@ -45,10 +45,14 @@ Outputs a complete, review-ready OKR set you can paste directly into the PMM OKR
   is provided, infer where possible and surface gaps explicitly before proceeding.
 - **Context keys:**
   - `/foundation/brain.md` — recommended. Load Section 2 (ICP), Section 3
-    (Alternatives & Positioning), Section 5 (Market Context) silently if present.
+    (Alternatives & Positioning), Section 5 (Market Context) and Section 7 (Strategy) silently if present.
+  - **Brain contract:** Reads Sections 1, 2, 3, 5, 7. Writes: a Section 7 update (`quarter_goals`) only as a proposal, after the user finalizes the OKR set and says yes to the exact before/after. Never writes to any other section.
   - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from all skills.
 ---
 ## Pre-flight
+- **Gap capture** (see the gap capture rule in `SKILL-SPEC.md`): if a brain field this skill needs is empty or stale and the answer would change the output, ask one question: the question, one line on why it matters, "answer or skip". Answer: use it for this run and offer it as a brain update. Skip: continue with a labelled assumption and append a `skipped` block to `/foundation/gaps.md` (format in `product-marketing-context/references/gaps-format.md`). At most one gap question per run. This is the only write to `/foundation/gaps.md`; the skill still writes nothing else to the brain unless its own contract says so.
+- **Personal context** (see the personal context rule in `SKILL-SPEC.md`): if `/foundation/me.md` exists, read it for format and detail only (length, detail, shape, how blunt to be). Never take a company fact from it; the current request wins. Do not ask for it if it is missing.
+
 If `/context/meta-patterns.md` exists in the user's workspace, check it for recurring
 OKR patterns they've logged. If one applies, surface a guardrail prompt before Step 1.
 If it doesn't exist, skip silently.
@@ -58,8 +62,10 @@ Before starting, check `/foundation/brain.md`.
 - Section 1 (Product Context) → stage and business model context
 - Section 2 (ICP Definition) → align OKRs to the named buyer
 - Section 5 (Market Context) → align OKRs to macro forces and timing
+- Section 7 (Strategy) → start from this quarter's priorities, launches and goals instead of asking again
 **Confidence awareness:** If loaded sections are 🔴, flag before building OKRs:
-> "Revenue Levers is marked as Placeholder — OKRs built on this may need revisiting. Want to update it first?"
+> "Section 7 (Strategy) is marked as Placeholder — OKRs built on this may need revisiting. Want to update it first?"
+**If Section 7 is empty:** ask the five Strategy questions once (top 3 priorities, launches with date and tier, the number you are measured on with baseline and target, active bets, what you are not doing). Hold the answers for this session and offer to keep them as Section 7.
 **If missing:** Proceed. Surface once:
 > "Run `product-marketing-context` first for sharper OKRs. Continuing."
 
@@ -113,7 +119,7 @@ type: execution
 skill: pmm-okrs
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about what happened this session, or "none"]
-source: [surprised / wrong / missing / n.v.t.]
+source: [surprised / wrong / missing / N/A]
 ````
 
 Write this row directly — do not ask the user for permission. This is an

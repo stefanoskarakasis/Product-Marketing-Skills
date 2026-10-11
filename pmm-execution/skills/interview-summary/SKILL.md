@@ -1,6 +1,6 @@
 ---
 name: interview-summary
-version: 2.4.0
+version: 2.5.0
 description: >
   Customer interview synthesis engine for PMMs, Product Managers, and UX Researchers.
   Transforms raw transcripts into structured discovery outputs anchored in JTBD theory,
@@ -49,7 +49,8 @@ Built on JTBD theory. Sharpened for B2B product and GTM contexts.
   If interviewee segment unknown, default to "Unclassified" in ICP match.
   If no interview type specified, default to "Discovery".
 - **Context keys:**
-  - `/foundation/brain.md` (ICP, Positioning, Beachhead Segment sections) — optional, if exists: load for validation
+  - `/foundation/brain.md` — optional. Section 2 (ICP, including the confirmed beachhead segment) and Section 3 (Alternatives & Positioning), used only to validate the ICP match and to compare named alternatives. Never used to shape what the transcript says.
+  - **Brain contract:** Reads Sections 2, 3. Writes: none. Never writes to: Sections 1 to 8.
   - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior interviews
 ---
 
@@ -67,7 +68,7 @@ Built on JTBD theory. Sharpened for B2B product and GTM contexts.
 
 ## Pre-flight
 - If `/context/meta-patterns.md` exists in the user's workspace, check for recurring patterns they've logged from prior interviews. If one applies, surface a guardrail prompt before Step 1. Skip silently if the file doesn't exist.
-- Load `/foundation/brain.md` if it exists. Extract: ICP Prioritisation, Positioning, Beachhead Segment, Revenue Levers.
+- Load `/foundation/brain.md` if it exists. Extract: Section 2 (ICP, including the confirmed beachhead segment) and Section 3 (Alternatives & Positioning).
   If missing, surface non-blocking notice: "No brain context. Synthesis will be transcript-isolated."
 - Accept transcript in any format: pasted text, uploaded file (`.txt`, `.md`, `.pdf`),
   or structured notes. Read the full file before producing output.
@@ -119,7 +120,7 @@ Built on JTBD theory. Sharpened for B2B product and GTM contexts.
      session_date: [YYYY-MM-DD]
      pattern: [one falsifiable statement drawn from the three questions above,
        or "none" if nothing notable surfaced]
-     source: [surprised / wrong / missing / n.v.t.]
+     source: [surprised / wrong / missing / N/A]
 ````
 
 Write this row directly — do not ask the user for permission. This is a separate, mechanical log entry, distinct from the interview summary itself.

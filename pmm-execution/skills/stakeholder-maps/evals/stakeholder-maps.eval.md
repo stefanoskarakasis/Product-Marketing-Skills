@@ -79,7 +79,7 @@ Quick check: Do you have written Sales VP buy-in on this launch?
 
 ## Eval 2: Brain Context Loading (Pre-flight)
 
-**Scenario:** `/foundation/brain.md` exists with populated ICP (§2), Positioning (§3), GTM Motion (§5). Skill should load and inform which stakeholders matter and what their power is.
+**Scenario:** `/foundation/brain.md` exists with populated ICP (§2), Positioning (§3), Strategy (§7), Execution (§8). Skill should load and inform which stakeholders matter and what their power is.
 
 **Test Data:**
 ```yaml
@@ -92,18 +92,20 @@ Secondary: Enterprise ops, 500+ employees (lower growth)
 Unique angle: "For ops leaders who measure impact, not activity"
 GTM narrative: Outcome-first analytics
 
-## Section 5: GTM Motion & Growth Loops
-Primary motion: Sales-led (enterprise), PLG (mid-market)
-Key stakeholders: VP Sales (motion authority), VP Product (platform dependency)
-Revenue Levers: Time-to-value, outcome visibility, team collaboration
+## Section 7: Strategy
+Priorities: Time-to-value, outcome visibility, team collaboration
+
+## Section 8: Execution
+Stakeholders: VP Sales (owns the sales-led enterprise motion, supportive), VP Product (platform dependency, neutral), VP Customer Success (owns outcome visibility, supportive)
+Approvals: Pricing and packaging changes need VP Sales and Finance sign-off
 ```
 
 **Expected Output - Context Referenced:**
 ```
 ✓ Brain context loaded:
   - ICP: Mid-market primary, enterprise secondary (shapes who's in room)
-  - GTM Motion: Sales-led + PLG (Sales VP is Manage Closely, Product VP is critical)
-  - Revenue Levers: Time-to-value (Eng stakeholder power), outcome visibility (CS stakeholder power)
+  - Execution (§8): VP Sales, VP Product and VP Customer Success listed (marked from brain)
+  - Strategy (§7): Priorities time-to-value (Eng stakeholder power), outcome visibility (CS stakeholder power)
 
 Inferred stakeholder power:
   - Sales VP: High Power, High Interest (sales-led motion authority)
@@ -114,8 +116,8 @@ Inferred stakeholder power:
 **Pass Criteria:**
 - Brain sections loaded silently at pre-flight
 - ICP shapes Manage Closely stakeholder scope
-- GTM Motion informs which function owns which decision
-- Revenue Levers inform which stakeholders can block
+- Section 8 stakeholders and approvals seed the map and are marked from brain
+- Section 7 priorities inform which stakeholders can block
 
 ---
 
@@ -299,7 +301,7 @@ source: surprised
 **Pass Criteria:**
 - Session logged to `/context/skill-sessions.md` with exactly these five fields — `type: execution`, `skill`, `session_date`, `pattern`, `source` — matching Step 7's template in `SKILL.md` verbatim. No additional fields.
 - `pattern` is a single falsifiable statement about what happened this session, or the literal string `"none"` if nothing notable occurred — not a multi-field summary object.
-- `source` is one of `surprised / wrong / missing / n.v.t.`
+- `source` is one of `surprised / wrong / missing / N/A`
 - The row is written directly, without asking the user for permission — this is a separate, mechanical write from anything the skill asks the user's go-ahead on (like where to save the HTML widget, markdown diagnostic, or Sprint Cards, per Outputs).
 - If nothing notable happened this session, the row is still written with `pattern: none` — the log entry is never skipped.
 
@@ -328,7 +330,7 @@ type: execution
 skill: stakeholder-maps
 session_date: 2026-06-15
 pattern: "GTM pivot — inversion check named 3 potential blockers; 2 materialized, 1 was a red herring"
-source: n.v.t.
+source: N/A
 
 # Current session:
 Campaign launch intake → inversion check names 4 blockers → classification → 2 conflicts mapped → silent blocker scan flags Legal for contract review
@@ -364,7 +366,7 @@ Note that pattern-across-sessions detection (comparing this session's row agains
 | Eval | Feature | Pass Criteria |
 |------|---------|---------------|
 | 1 | Guardrail surfacing (Step 0) | Pattern detected, user warned, can acknowledge/skip |
-| 2 | Brain context loading (pre-flight) | ICP, GTM Motion, Revenue Levers inform stakeholder power assessment |
+| 2 | Brain context loading (pre-flight) | ICP, Strategy and Execution sections inform stakeholder power assessment |
 | 3 | Inversion check quality | Named concrete blockers (not generic); skill flags if user can't name |
 | 4 | Power × Interest + political role | Grid placement grounded in initiative context; role assigned with Watch For signal |
 | 5 | Conflict mapping completeness | Every conflict has second-order risk + resolution owner + deadline |
@@ -392,6 +394,15 @@ Note that pattern-across-sessions detection (comparing this session's row agains
 **Expect:** The skill asks the user to paste the material, then produces the same output format as with a connector. It does not claim to have pulled anything.
 
 ---
+
+## Eval 12: Section 8 seeds the map
+**Scenario:** A brain whose Section 8 lists Legal (cautious, approves claims in 3 days) and a Head of Product (neutral). The initiative is a pricing change.
+**Expected:** The map starts with those two marked `from brain`, adds only the missing stakeholders the initiative needs (for example Finance), and may propose new Section 8 entries without writing them.
+**Input:** Initiative: "Change to usage-based pricing"
+**Output check:**
+- Brain stakeholders appear first and are marked `from brain`? YES/NO
+- Added people are labelled as new, not from the brain? YES/NO
+- Nothing is written to the brain by this skill? YES/NO
 
 ## Running Evals
 

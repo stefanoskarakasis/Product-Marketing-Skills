@@ -297,3 +297,13 @@ List: customers on a monthly plan. Just draft it."
 
 **Pass condition:**
 The legacy fallback is used, the draft passes the banned-word check, and no figure is invented.
+
+## Test Case 16: Personal context shapes format only
+**Scenario:** `/foundation/me.md` contains `output_length: short`, `pushback: blunt` and also the line "Our product is Acme Cloud".
+**Expected:** The skill shortens and sharpens its output per `me.md`. It ignores "Acme Cloud" as a company fact and takes the product name from the brain or the request. If the request says "long and detailed", the request wins. With no `me.md`, it uses its defaults and does not ask for the file.
+**Input:** A normal request for this skill
+**Output check:**
+- Length and bluntness follow `me.md`? YES/NO
+- No company fact is taken from `me.md`? YES/NO
+- The request overrides `me.md` when they disagree? YES/NO
+- A missing `me.md` causes no question and no error? YES/NO

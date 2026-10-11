@@ -217,7 +217,7 @@ content, do not create a separate file:
 1. [Alternative] — chosen because [reason]; left because [friction];
    unclaimed territory: [gap]
 
-**DIY / Internal Build:** [n.v.t. if not present in this deal cycle]
+**DIY / Internal Build:** [N/A if not present in this deal cycle]
 
 **Status Quo:** [what buyers do if they buy nothing], named specifically
 - Cost of inaction: [quantified or `[NEEDS PROOF]`]
@@ -254,7 +254,7 @@ type: execution
 skill: alternatives-map
 session_date: [YYYY-MM-DD]
 pattern: [one falsifiable statement about this session, or "none"]
-source: [surprised / wrong / missing / n.v.t.]
+source: [surprised / wrong / missing / N/A]
 ````
 
 Write directly, no permission needed — separate from the brain write
@@ -273,7 +273,7 @@ above, which still requires explicit confirmation.
 - **Chat output format:** Source and named alternatives stated by type →
   layered map per alternative → Named-Not-Abstract Statement →
   confirmation prompt for the brain write.
-- **External side effects:** n.v.t.
+- **External side effects:** N/A
 - **Next skill:** After brain Section 3 is deepened, check
   `product-marketing-context/.claude-plugin/next-skill-map.md` for "After
   alternatives-map" and surface that prompt. Do not auto-run — ask.
@@ -284,7 +284,7 @@ above, which still requires explicit confirmation.
 
 - Cold start: with no brain file, the skill proceeded without redirecting, and the only file it created held this section alone (or the block was shown for pasting).
 - All four alternative types considered — status quo always present,
-  DIY marked `n.v.t.` explicitly if genuinely absent, never silently
+  DIY marked `N/A` explicitly if genuinely absent, never silently
   skipped.
 - Named alternatives, not generic categories.
 - Status quo has all four required elements: named specifically,
@@ -325,7 +325,7 @@ above, which still requires explicit confirmation.
 
 | Check | Standard | Pass = |
 |---|---|---|
-| All four types considered | Status quo present; DIY marked n.v.t. if absent, not skipped | Yes |
+| All four types considered | Status quo present; DIY marked N/A if absent, not skipped | Yes |
 | Named alternatives, not categories | Real products/tools named, status quo specific | Yes |
 | Status quo's four elements complete | Named, quantified cost, real reason, trigger | Yes |
 | Assumption flags visible | Every unsourced claim marked `[A]` | Yes |
@@ -346,4 +346,4 @@ above, which still requires explicit confirmation.
 - **`positioning-messaging`** — turning a confirmed alternatives map into
   a positioning statement or messaging hierarchy; run this skill first,
   then that one.
-- n.v.t.
+- N/A

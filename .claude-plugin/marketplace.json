@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Product Marketing Skills for B2B SaaS PMMs — positioning, GTM strategy, competitive intelligence, execution frameworks, and workflow orchestration",
-    "version": "1.6.0"
+    "version": "1.12.1"
   },
   "plugins": [
     {
@@ -34,6 +34,12 @@
       "displayName": "PMM Growth",
       "description": "Growth ideation and measurement: a North Star Metric and capped scorecard to aim at, brain-grounded campaign ideas, fast, trace-checked value-prop variants of an already-set positioning, and customer stories with every stat and quote checked",
       "source": "./pmm-growth"
+    },
+    {
+      "name": "pmm-intelligence",
+      "displayName": "PMM Intelligence",
+      "description": "A weekly read on what changed around your product: at most five opportunities from signals you name, each tied to a brain field and a quarterly priority",
+      "source": "./pmm-intelligence"
     },
     {
       "name": "pmm-toolkit",

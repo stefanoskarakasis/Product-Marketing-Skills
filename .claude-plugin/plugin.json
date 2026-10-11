@@ -1,7 +1,7 @@
 {
   "name": "pmm-skills",
   "description": "Product Marketing Skills for B2B SaaS PMMs — positioning, GTM strategy, competitive intelligence, execution frameworks, and workflow orchestration",
-  "version": "1.6.0",
+  "version": "1.12.1",
   "author": {
     "name": "Stefanos Karakasis"
   },
@@ -15,6 +15,7 @@
     "./pmm-toolkit/skills",
     "./pmm-meta",
     "./product-marketing-context",
-    "./pmm-growth/skills"
+    "./pmm-growth/skills",
+    "./pmm-intelligence/skills"
   ]
 }

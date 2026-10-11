@@ -11,6 +11,8 @@ chronological order, separated by a blank line. It is NOT a markdown table — d
 "row" and "header row" language used loosely in some skills' Learning Close
 instructions, there is no single shared header. Each block is self-contained.
 
+**Legacy value:** logs written before v1.12.1 use `source: n.v.t.` (Dutch for not applicable). Readers treat it as equal to `source: N/A`. Do not rewrite old entries; new entries use `N/A`.
+
 If the file doesn't exist yet, create it with this file-level header (once, not per
 entry):
 
@@ -28,7 +30,7 @@ Type A — execution session (written by any T1/T2 skill after Learning Close):
     skill: [skill-name]
     session_date: [YYYY-MM-DD]
     pattern: [one falsifiable statement, or "none"]
-    source: [surprised / wrong / missing / n.v.t.]
+    source: [surprised / wrong / missing / N/A]
 
 Type B — synthesis run (written only by meta-synthesis):
 

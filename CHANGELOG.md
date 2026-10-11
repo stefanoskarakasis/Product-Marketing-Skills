@@ -173,3 +173,57 @@
 
 - Added `.claude-plugin/plugin.json`, `README.md`, and `commands/build-brain.md` — this folder is now a proper installable plugin, not a bare skill folder.
 - Removed the redundant `.skill/skill.json` manifest.
+
+# Legacy releases
+
+These three releases use the old numbering from before the repo moved to 1.x. They stay published and tagged; the notes are rewritten in the format above. Skill names are shown without the retired prefix they carried at the time.
+
+## v2.5.0 — 2026-06-12
+
+### Core skills
+
+- Brought `positioning-messaging` (16/19 to 19/19), `stakeholder-maps` (18/19 to 19/19) and `experiment-doc` (17/19 to 19/19) to full `SKILL-SPEC` v2.0.0 compliance. `go-to-market-strategy` stayed at 18/19 and `pre-mortem` at 19/19; both gained evals.
+- Added to `positioning-messaging`: `version`, `metadata` and `last_updated` frontmatter; Trigger, Inputs, Pre-flight, Outputs, Verification, Do Not Use For and Changelog sections; 8 Operating Rules; and a Quality Gate of 8 binary checks. All 6 phases are unchanged.
+- Added to `experiment-doc`: `last_updated` (renamed from `updated`), `metadata.context` and `metadata.quality_gate`; Trigger, Inputs, Pre-flight (a knowledge check for false beliefs), Outputs, Verification and Changelog sections; and a Quality Gate of 9 binary checks. All four modes (Formulate, Diagnose, Pressure-Test, Score) are unchanged.
+- Added to `stakeholder-maps`: `last_updated`, a formal Trigger, an Inputs section (replacing the INTAKE block), Outputs, Verification and Do Not Use For sections. The five sections, the `/map`, `/sprint`, `/deep-dive`, `/update` and `/check` commands and the learning loop are unchanged.
+
+### Evals
+
+- Added 35 evals, 7 each for `go-to-market-strategy`, `positioning-messaging`, `stakeholder-maps`, `pre-mortem` and `experiment-doc`, covering happy paths, modes, refusals, brain-missing cases and the learning close.
+
+### Repo
+
+- Backward compatible: no change to methodology, commands, triggers or brain integration.
+- Added `DELIVERABLES-SUMMARY.md`, `REPO-UPDATE-GUIDE.md` and `FILES-INDEX.md`.
+- Credited April Dunford (positioning), Gary Klein (pre-mortem), Anthony W. Ulwick (Jobs to Be Done) and Paweł Huryn (learning loops and pattern capture).
+- Install: add the marketplace `stefanoskarakasis/Product-Marketing-Skills` in Claude, or run `claude plugin marketplace add stefanoskarakasis/Product-Marketing-Skills`.
+
+## v2.0.0 — 2026-05-23
+
+### product-marketing-context
+
+- Added **product-marketing-context**, a setup wizard and brain health audit in one skill. About 20 minutes of questions across six sections: Product Context (5), ICP (8), Alternatives and Positioning (6), Voice and Tone (5), Market Context (4), Proof Points Registry (3). It creates `/foundation/brain.md`, which other skills read.
+- Added a 0 to 100 brain health score with recommendations, and compound intelligence: skills save their outputs to brain Section 7 so the next skill builds on them.
+
+### pmm-positioning
+
+- Added `positioning-messaging`, based on April Dunford's framework, with five modes: BUILD (positioning statement and four-layer messaging doc), AUDIT (scored review and rewrite queue), FLETCH (six-slide internal deck), SALES-ENABLEMENT (persona cards and competitive playbook) and HOMEPAGE (copy with no placeholders). It reads Product, ICP, Alternatives and Market, and saves positioning to Section 7.
+
+### pmm-toolkit
+
+- Added four skills: `writing-assistant` (rewrites copy to brand voice), `pmm-resume`, `privacy-policy` (jurisdiction-aware) and `gaccs-brief`. `writing-assistant` and `gaccs-brief` optionally read the brain; the other two are standalone.
+
+### Repo
+
+- Shipped 3 plugins and 6 skills, with 50+ input validation rules and 15+ evals.
+- Replaced 7 separate foundation skills with one brain. v1.x users export their data, run the brain setup, paste the data in and delete the old skills; every v1.x field maps to a v2.0 brain section.
+- Install in Claude.ai from the release ZIPs (start with `product-marketing-context.zip`), or in Claude Code with `claude plugin marketplace add stefanoskarakasis/Product-Marketing-Skills`.
+- Planned next: execution skills (PRDs, OKRs, retros, pre-mortems, stakeholder maps), value propositions and battlecards, then a visual brain editor, multi-brain support, MCP integrations and brain version control.
+- Credited April Dunford, Emily Kramer (MKT1) and Paweł Huryn (self-improving skills). MIT licensed.
+
+## v2.1.0 — 2026-05-22
+
+### product-marketing-context
+
+- Released **product-marketing-context** v2.1.0: a setup wizard with validation (31 onboarding questions, 15 to 20 minutes), a brain health audit scored 0 to 100, compound intelligence where skills write back to the brain, and 15 evals.
+- Install in Claude.ai by uploading `product-marketing-context.zip` under Settings, Skills, then saying "Set up my PMM brain".

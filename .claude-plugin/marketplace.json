@@ -42,6 +42,12 @@
       "source": "./pmm-intelligence"
     },
     {
+      "name": "pmm-competitive-intelligence",
+      "displayName": "PMM Competitive Intelligence",
+      "description": "A one-page competitor battlecard for a live deal, tailored to role, GTM motion, buyer persona and deal stage, built from your brain and alternatives map",
+      "source": "./pmm-competitive-intelligence"
+    },
+    {
       "name": "pmm-toolkit",
       "displayName": "PMM Toolkit",
       "description": "PMM utilities: writing assistant (internal messages plus marketing content), resume review, privacy policy generator, GACCS briefs",

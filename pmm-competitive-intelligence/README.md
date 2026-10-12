@@ -11,11 +11,11 @@ Competitive plays a seller can use in a live deal, built from your brain and you
 
 ## Skills (1)
 
-- **competitive-battlecard** — Build a one-page competitor battlecard tailored to role, GTM motion, buyer persona, deal stage and the competitor's status in the deal. Reads brain Sections 1 to 8, checks your forbidden claims and prohibited items first, saves the card to `/context/battlecards/`, and proposes field notes back to Section 3 for you to confirm. Use when a competitor is in a live deal and a seller needs one page to read before the call and quote from during it.
+- **competitive-battlecard** — Build a one-page competitor battlecard for a live deal, tailored to role, GTM motion, buyer persona and deal stage, with every competitor claim sourced and dated.
 
 ## Commands (1)
 
-- `/pmm-competitive-intelligence:competitive-battlecard` — Build or refresh a one-page competitor card for a live deal.
+- `/pmm-competitive-intelligence:competitive-battlecard` — Build or refresh a one-page competitor battlecard for a live deal.
 
 ## Connectors (Optional)
 

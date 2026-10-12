@@ -124,16 +124,19 @@ track (go-to-market-strategy)?"
   and divergent options against the mapped alternatives would help
 - positioning-messaging (pmm-positioning) BUILD mode — if a direction is
   already clear and it's time for gated, shippable copy
+- competitive-battlecard (pmm-competitive-intelligence) — if a named competitor is in a live deal and a seller needs a one-page play against it
 **Prompt to surface:** "Next, pick one: generate a few divergent
-positioning angles against these alternatives (positioning-ideas), or go
+positioning angles against these alternatives (positioning-ideas), go
 straight to a gated positioning statement if you already know the
-direction (positioning-messaging)?"
+direction (positioning-messaging), or build a seller's one-page card for a
+named competitor (competitive-battlecard)?"
 
 ## After proof-points (brain Section 6 deepened)
 **Next options (not a single path — ask which applies):**
 - message-house — if the goal is a one-page formatted deliverable and positioning is already set; the Pillars table can now cite sourced, gated proof instead of pulling from a thin, unenforced registry
 - positioning-messaging — if positioning itself still needs building or auditing, now with a real claims registry to cite from
-**Prompt to surface:** "Next, pick one: format this into a message house (message-house), or build/audit positioning with this registry backing it (positioning-messaging)?"
+- competitive-battlecard — if a seller card was held back because its proof was unregistered; it can now use the approved entries
+**Prompt to surface:** "Next, pick one: format this into a message house (message-house), build/audit positioning with this registry backing it (positioning-messaging), or build the seller card that uses these approved claims (competitive-battlecard)?"
 
 ## After customer-stories (story drafted or audited, packet saved)
 **Next options (not a single path — ask which applies):**
@@ -146,4 +149,13 @@ direction (positioning-messaging)?"
 - alternatives-map — if an opportunity says a competitor repackaged, repriced or entered
 - positioning-messaging — if an opportunity says your message no longer separates you
 - pmm-okrs — if an opportunity changes what this quarter should aim at
-**Prompt to surface:** "Next, pick one if an opportunity needs action: update your alternatives (alternatives-map), rework the message (positioning-messaging), or adjust the quarter's goals (pmm-okrs)?"
+- competitive-battlecard — if an opportunity says a named competitor moved and a live deal is affected
+**Prompt to surface:** "Next, pick one if an opportunity needs action: update your alternatives (alternatives-map), rework the message (positioning-messaging), adjust the quarter's goals (pmm-okrs), or refresh the seller card for that competitor (competitive-battlecard)?"
+
+## After competitive-battlecard (card delivered, record saved)
+**Next options (not a single path — ask which applies):**
+- alternatives-map — if the competitor was missing from Section 3, or the card exposed a conflict with the map
+- proof-points — if the card left `[NEEDS PROOF]` or `[NEEDS APPROVAL]` items worth registering in Section 6
+- positioning-messaging — if the card showed the message does not separate you from this competitor (SALES-ENABLEMENT mode builds persona cards and a competitive playbook)
+- signal-monitor — if you want this competitor's moves tracked weekly
+**Prompt to surface:** "Next, pick one: map your alternatives properly (alternatives-map), register the claims the card could not use (proof-points), fix a message that does not separate you (positioning-messaging), or track this competitor weekly (signal-monitor)?"

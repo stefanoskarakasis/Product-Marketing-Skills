@@ -39,6 +39,7 @@ One page a seller skims in 60 seconds, five minutes before a call, and can quote
 |---|---|---|
 | `[Field: <tool>, n=<n>, <window>]` | Closed deals, calls, support or chat evidence from the user's own tools or paste | 1 to 2 (chat is 5) |
 | `[Brain S<n>]` | Taken from a brain section value the user confirmed | 0 |
+| `[Internal <Mon YYYY>]` | A card, story or profile from your CI platform or planning docs, with its own date. The team's claim, not a source | 3 |
 | `[Public <Mon YYYY>]` | The competitor's or our own public page, release or filing, with the date read | 4 (financial filings are a hard record about what was reported) |
 | `[Third-party <Mon YYYY>]` | Review site, analyst or vendor-authored comparison. Say which if vendor-authored | 4 to 5 |
 | `[A]` | Assumption, no source | none |

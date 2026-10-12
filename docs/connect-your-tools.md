@@ -50,6 +50,8 @@ that account can see. No keys, tokens or passwords live in this repo.
 
 G2 and other review sites: no server is wired. Paste an export.
 
+Competitive intelligence platforms (Klue, Crayon and similar), win/loss programs and company data (Crunchbase, PitchBook): no server is wired in this repo, because the vendors give each customer their own endpoint and sign-in instead of one public address. If your vendor offers an MCP server, ask your admin or customer success manager for the endpoint, add it as a custom connector in Claude settings, and the skills use it through the `~~competitive intelligence` category. Otherwise paste an export. Pulled cards are drafts like any other connector output. Same for Salesforce: connect your own org's hosted MCP server if your admin has enabled it.
+
 ## Privacy
 
 Connectors are read-only by default. Skills ask before writing to any external tool. Gmail in particular: skills only read threads you point them at. Each plugin loads only the Google servers its skills use (see the Google table in `CONNECTORS.md`).

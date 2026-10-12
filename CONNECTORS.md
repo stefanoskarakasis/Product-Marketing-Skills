@@ -22,11 +22,14 @@ have and the output has the same shape.
 | Placeholder | What it provides | Wired today | Other tools that work |
 |---|---|---|---|
 | `~~knowledge base` | Company overview, product docs, pricing, positioning docs | Notion, Atlassian (Confluence) | Confluence, Guru, Google Drive |
-| `~~CRM` | Win/loss reasons, deal data, segment performance | HubSpot | Salesforce, Pipedrive, Attio |
+| `~~CRM` | Win/loss reasons, deal data, segment performance | HubSpot | Salesforce (hosted MCP is in pilot and the endpoint is per org: connect your own), Pipedrive, Attio |
 | `~~call recordings` | Sales and customer call transcripts, objections, buyer language | Fireflies, Gong | Chorus, Grain, Otter, Avoma |
 | `~~market data` | Competitor traffic, audience and market-size signals | SimilarWeb | Crunchbase, Semrush Traffic, Sensor Tower |
 | `~~support` | Support conversations, recurring pain points, churn language | Intercom | Zendesk, Front, Help Scout |
 | `~~reviews` | Public reviews and win/loss themes (G2 etc.) | Docs-only today: paste exports | G2, Capterra, TrustRadius (export and paste) |
+| `~~competitive intelligence` | Competitor cards, win/loss stories and profiles your CI team already curates | Docs-only today: connect your vendor's MCP server, or paste | Klue, Crayon, Kompyte, Contify |
+| `~~win/loss` | Structured buyer interviews and win/loss reports: why deals were won or lost | Docs-only today: paste exports | Clozd, Primary Intelligence, Anecdote, Dovetail |
+| `~~company data` | Funding, headcount, hiring and leadership changes for a named company | Docs-only today: paste | Crunchbase, PitchBook, LinkedIn |
 | `~~SEO` | Keyword demand, competitor organic positioning | Ahrefs | Semrush, Moz |
 | `~~product analytics` | Usage, activation and adoption metrics | Amplitude (US and EU), Pendo | Mixpanel, Heap, Google Analytics |
 | `~~marketing analytics` | Cross-channel campaign and spend performance | Supermetrics | Google Analytics, Funnel, Windsor |

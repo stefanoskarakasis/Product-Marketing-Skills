@@ -34,7 +34,7 @@ A battlecard is read once, five minutes before a call, and quoted from memory in
   - `/foundation/me.md` (optional): format and detail only.
   - `/foundation/gaps.md` (append only).
   - `/context/battlecards/` (earlier cards for this competitor), `/context/signals/` (recent `signal-monitor` runs), `/context/meta-patterns.md` (guardrails).
-  - `~~CRM`, `~~call recordings`, `~~team chat`, `~~reviews`, `~~market data`, `~~knowledge base`, `~~cloud storage`, or pasted material.
+  - `~~CRM`, `~~call recordings`, `~~competitive intelligence`, `~~win/loss`, `~~team chat`, `~~reviews`, `~~market data`, `~~company data`, `~~knowledge base`, `~~cloud storage`, or pasted material.
   - **Brain contract:** Reads: Section 1 (permitted claims, offerings, glossary), 2 (persona, economic buyer, champion, pains, triggers), 3 (alternatives, status quo, why they leave, unique capabilities, and the Alternatives Map block for this competitor), 4 (language preferences, forbidden phrases), 5 (why now), 6 (approved metrics, approved quotes, forbidden claims), 7 (priorities), 8 (prohibited, approvals, stakeholders). Writes: Section 3 only, as one appended Battlecard Field Notes block or a one-line stub, after you confirm the exact text. Never writes to: Sections 1, 2, 4, 5, 6, 7, 8.
 
 ## Connectors (Optional)
@@ -44,6 +44,9 @@ A battlecard is read once, five minutes before a call, and quoted from memory in
 | `~~CRM` | Closed-won and closed-lost deals naming this competitor, loss reasons, account type, contract end date |
 | `~~call recordings` | Objections as buyers said them, and what moved the deal after |
 | `~~team chat` | Field intel and pricing claims reps reported (rank 5, soft) |
+| `~~competitive intelligence` | The cards, win/loss stories and profiles your CI team already keeps (rank 3, current internal strategy). Read first so the card never contradicts them; a conflict with a public page is shown as a question |
+| `~~win/loss` | Buyer interviews on why deals were won or lost (rank 2, customer-spoken) |
+| `~~company data` | Funding, headcount and hiring moves for the competitor (rank 4) |
 | `~~reviews` | Public review themes about the competitor (paste export) |
 | `~~market data` | Competitor traffic and audience shifts |
 | `~~knowledge base` | Internal positioning and product notes |
@@ -91,7 +94,7 @@ If the user says "just give it to me", build the neutral card (account executive
 
 List back, in one line, the sources you will use this run: pasted material, files, connector pulls, and public pages about the named competitor only (its site, pricing page, release notes, newsroom, public review pages). Do not scan beyond them; if a page cannot be read, say so and ask for the text. Never fill a gap from memory.
 
-Source order: your confirmed brain values (rank 0), then `~~CRM` and `~~call recordings` (ranks 1 and 2), then public and third-party material (rank 4), then chat (rank 5). Ranks follow `product-marketing-context/references/evidence-format.md`; a fact older than 12 months drops one rank. Newer evidence that disagrees with a value you confirmed is shown as a question, never used to replace it. If a competitor profile record exists at `/context/competitor-profiles/<competitor-slug>-*.md`, read the newest one and treat its claims as that record's own tags, never as confirmed brain values; if none exists, carry on without it and never ask for it.
+Source order: your confirmed brain values (rank 0), then `~~CRM`, `~~win/loss` and `~~call recordings` (ranks 1 and 2), then `~~competitive intelligence` (rank 3: the team's own cards, read only and never written back), then public and third-party material (rank 4), then chat (rank 5). Ranks follow `product-marketing-context/references/evidence-format.md`; a fact older than 12 months drops one rank. Newer evidence that disagrees with a value you confirmed is shown as a question, never used to replace it. If a competitor profile record exists at `/context/competitor-profiles/<competitor-slug>-*.md`, read the newest one and treat its claims as that record's own tags, never as confirmed brain values; if none exists, carry on without it and never ask for it.
 
 Web rules: read the target market and language, disambiguate company names with the category, check that each result is about the right company, and write "no data" rather than widening a search until something fits. A competitor's own pages prove only what it said. Read the complaint inside a positive review: it is where the best reframes live. A rebrand, acquisition or pivot is often the most useful single fact. Treat a vendor-authored comparison as opinion and say so.
 

@@ -2,7 +2,7 @@
 name: competitive-battlecard.eval
 version: 1.0.0
 description: >
-  Eval suite for competitive-battlecard. Tests: a full-brain card, Quick-Brain with no brain, ask-once intake with delivery always asked, an unsourced buyer claim, an unapproved our-side claim kept off the card, prohibited and forbidden-claim checks, a competitor missing from Section 3, confirmation-gated and append-only Section 3 write-back, refresh against a previous card, stale and past-dated claims, the one-page gate, truthful delivery, and Learning Close against the five-field shape. 13 test cases.
+  Eval suite for competitive-battlecard. Tests: a full-brain card, Quick-Brain with no brain, ask-once intake with delivery always asked, an unsourced buyer claim, an unapproved our-side claim kept off the card, prohibited and forbidden-claim checks, a competitor missing from Section 3, confirmation-gated and append-only Section 3 write-back, refresh against a previous card, stale and past-dated claims, the one-page gate, truthful delivery, a CI-platform card that disagrees with a public page, and Learning Close against the five-field shape. 14 test cases.
 ---
 
 # Competitive-Battlecard: Eval Suite
@@ -220,3 +220,21 @@ Fixtures use a fictional company ("Ledgerlane", from `examples/example-brain.md`
 **Expected output excludes:** Any additional field, and any request for permission before writing the row.
 
 **Pass condition:** The entry matches the five-field shape in `SKILL-SPEC.md` Section 5.1.
+
+---
+
+## Test Case 14: CI-platform card disagrees with a public page (edge: connector read-only)
+
+**Input:** A card pulled from a connected `~~competitive intelligence` tool says the competitor's entry price is $20 per seat (dated 4 months ago). The competitor's pricing page, read today, says $29.
+
+**Expected output includes:**
+- The platform card read first and tagged `[Internal <Mon YYYY>]` with its own date
+- The disagreement shown as a question or a "re-check" note on the Price and terms row, with both values and both dates
+- The platform value not silently replaced by the public one (or the reverse)
+- No write of any kind back to the CI platform
+
+**Expected output excludes:**
+- A single price stated as fact
+- Any claim that the CI platform was updated
+
+**Pass condition:** Both values and dates are visible, the conflict is a question, and nothing is written to the external tool.

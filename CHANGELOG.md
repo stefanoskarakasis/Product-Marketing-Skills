@@ -9,6 +9,7 @@
 - Checks brain Section 6 forbidden claims and Section 8 prohibited items before it writes a line, keeps unapproved claims about your product off the card, tags and dates every competitor claim, and turns an unsourced weakness into a question.
 - Saves each card to `/context/battlecards/`, shows what changed since the last card, reads recent `signal-monitor` lists, and proposes dated field notes back to brain Section 3 only after you confirm the exact text. It never writes any other section and never writes to a CRM.
 - With no brain it asks five quick questions and holds the answers for the session.
+- Three new connector categories in the root `CONNECTORS.md`: `~~competitive intelligence` (Klue, Crayon and similar), `~~win/loss` and `~~company data`. None is wired in `.mcp.json`, because those vendors give each customer their own endpoint; connect yours or paste. `competitive-battlecard` reads a CI platform's cards first so the card never contradicts them, and never writes back. `~~CRM` now notes Salesforce (connect your own org's server).
 
 ### product-marketing-context
 

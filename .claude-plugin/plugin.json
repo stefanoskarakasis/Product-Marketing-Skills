@@ -16,6 +16,7 @@
     "./pmm-meta",
     "./product-marketing-context",
     "./pmm-growth/skills",
-    "./pmm-intelligence/skills"
+    "./pmm-intelligence/skills",
+    "./pmm-competitive-intelligence/skills"
   ]
 }

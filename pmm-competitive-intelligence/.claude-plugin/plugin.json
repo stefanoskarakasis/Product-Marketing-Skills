@@ -1,0 +1,13 @@
+{
+  "name": "pmm-competitive-intelligence",
+  "displayName": "PMM Competitive Intelligence",
+  "description": "Competitive plays a seller can use in a live deal: a one-page battlecard per competitor, tailored to role, GTM motion, buyer persona and deal stage, built from your brain and your alternatives map, with field notes proposed back to Section 3 for you to confirm.",
+  "version": "1.12.1",
+  "author": {
+    "name": "Stefanos Karakasis"
+  },
+  "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-competitive-intelligence",
+  "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
+  "license": "MIT",
+  "skills": "./skills"
+}

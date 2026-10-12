@@ -43,7 +43,7 @@ of asking again.
 **Skills** are the building blocks. Each skill gives Claude domain
 knowledge, a framework, or a guided workflow for a specific PMM task.
 
-**Plugins** group related skills into installable packages, one per GTM domain. This repo has eight plugins:
+**Plugins** group related skills into installable packages, one per GTM domain. This repo has nine plugins:
 
 | Plugin | What it covers |
 |---|---|
@@ -53,6 +53,7 @@ knowledge, a framework, or a guided workflow for a specific PMM task.
 | `pmm-execution` | Day-to-day PMM work: PRDs, OKRs, retros, pre-mortems |
 | `pmm-growth` | Growth ideation and measurement: a North Star Metric and capped scorecard, pre-commitment positioning angles, brain-grounded campaign ideas, value-prop variants, and customer stories |
 | `pmm-intelligence` | A weekly read on what changed around your product, tied to your brain and your quarterly priorities |
+| `pmm-competitive-intelligence` | A one-page competitor battlecard for a live deal, tailored to role, motion, buyer persona and stage, built from your brain and alternatives map |
 | `pmm-toolkit` | Utilities: writing assistant (internal and marketing content), resume review, privacy policy, GACCS briefs |
 | `pmm-meta` | Skills that operate on the skill system itself |
 
@@ -63,7 +64,7 @@ understand your product, ICP, positioning, and competitive landscape before
 doing anything. Build it once with the `product-marketing-context` skill;
 every other skill reads from it.
 
-## Available Skills (36 Total)
+## Available Skills (37 Total)
 
 | Skill | Plugin | Description |
 |-------|--------|-------------|
@@ -78,6 +79,7 @@ every other skill reads from it.
 | [message-house](pmm-positioning/skills/message-house/) | pmm-positioning | Formats existing positioning into a Roof + Value Pillars table |
 | [product-messaging-playbook](pmm-positioning/skills/product-messaging-playbook/) | pmm-positioning | Sales/CS-ready messaging playbook: problem, story, one named competitive comparison, discovery/objection script |
 | [signal-monitor](pmm-intelligence/skills/signal-monitor/) | pmm-intelligence | Weekly read: at most five opportunities from signals you name, each tied to a brain field and a Section 7 priority |
+| [competitive-battlecard](pmm-competitive-intelligence/skills/competitive-battlecard/) | pmm-competitive-intelligence | One-page competitor battlecard for a live deal, tailored to role, motion, persona and stage; field notes proposed back to Section 3 |
 | [gaccs-brief](pmm-toolkit/skills/gaccs-brief/) | pmm-toolkit | Campaign briefs (Goals, Audience, Creative, Channels, Stakeholders) |
 | [writing-assistant](pmm-toolkit/skills/writing-assistant/) | pmm-toolkit | Sharpen any written communication; draft blog posts, landing pages, press releases, case studies, newsletters, social posts |
 | [pmm-resume](pmm-toolkit/skills/pmm-resume/) | pmm-toolkit | Resume tailoring for PMM roles |
@@ -117,6 +119,7 @@ every other skill reads from it.
 /plugin install pmm-go-to-market
 /plugin install pmm-growth
 /plugin install pmm-intelligence
+/plugin install pmm-competitive-intelligence
 /plugin install pmm-meta
 ```
 
@@ -153,6 +156,7 @@ Skills work without connectors. Connect tools and they pull candidate facts for 
 | pmm-go-to-market | HubSpot, SimilarWeb, Fireflies, Gong, Slack, Klaviyo, Supermetrics, Canva, Gmail, Google Calendar, Google Drive, Google Docs, Google Sheets, Google Slides |
 | pmm-growth | Fireflies, Gong, Amplitude (US and EU), Pendo, SimilarWeb, Ahrefs, HubSpot, Klaviyo, Supermetrics, Google Drive, Google Sheets |
 | pmm-intelligence | SimilarWeb, Ahrefs |
+| pmm-competitive-intelligence | HubSpot, Fireflies, Gong, Slack, SimilarWeb, Notion, Atlassian, Google Drive |
 | pmm-toolkit | Notion, Atlassian, Slack, Canva, Gmail, Google Calendar, Google Drive, Google Docs, Google Sheets, Google Slides |
 | pmm-meta | None |
 

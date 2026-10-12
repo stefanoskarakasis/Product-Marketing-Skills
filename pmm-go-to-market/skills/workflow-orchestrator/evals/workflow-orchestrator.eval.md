@@ -138,7 +138,7 @@ have been completed.]
 **Expected output includes:**
 - Program name and workflow type
 - Skills completed with dates: `retro` (date), `positioning-messaging` (date)
-- Skills pending: `pmm-okrs` (proof points and competitive battlecard work: no dedicated skill yet)
+- Skills pending: `pmm-okrs` (proof points via `proof-points`; competitive battlecard work via `competitive-battlecard`)
 - Next skill clearly named: `pmm-okrs` — what it reads from prior
 - Brain updates made so far: Section 3 updated (date), Section 7 retros completed (date)
 - Open items if any surfaced during completed skills
@@ -202,7 +202,7 @@ who will definitely bring this up.
 - Urgency acknowledged — orchestrator notes "expedited mode" in charter
 - Charter produced but lightweight — does not require full charter confirmation
   given stated urgency (offers "Confirm in 30 seconds or I start immediately")
-- Competitive battlecard work (no dedicated skill yet) runs for Salesforce specifically — not all competitors
+- `competitive-battlecard` (from `pmm-competitive-intelligence`) runs for Salesforce specifically — not all competitors
 - Output includes immediate talk tracks usable in tomorrow's sales call
 - (No dedicated stakeholder-briefing skill yet) produces a short exec alert, not a full newsletter
 - Brain Section 4 update offered after completion

@@ -1,5 +1,36 @@
 # Changelog
 
+## Unreleased
+
+### pmm-competitive-intelligence
+
+- Added the **pmm-competitive-intelligence** plugin with one skill, **competitive-battlecard** (`/pmm-competitive-intelligence:competitive-battlecard`). It builds a one-page card for one competitor in one deal: win condition, what to say first, a five-row snapshot, questions to ask, replies to what the buyer will say, when to lean in and when to walk away, and the proof you are allowed to use.
+- Tailored to role, GTM motion, the competitor's status in the deal, buyer persona, deal stage and segment. It asks once, always asks whether you want a Google Doc (paste-ready in chat, the default) or an HTML page, shows both in one stacked column with identical headers, and states every assumption on the card.
+- Checks brain Section 6 forbidden claims and Section 8 prohibited items before it writes a line, keeps unapproved claims about your product off the card, tags and dates every competitor claim, and turns an unsourced weakness into a question.
+- Saves each card to `/context/battlecards/`, shows what changed since the last card, reads recent `signal-monitor` lists, and proposes dated field notes back to brain Section 3 only after you confirm the exact text. It never writes any other section and never writes to a CRM.
+- With no brain it asks five quick questions and holds the answers for the session.
+
+### product-marketing-context
+
+- `brain-schema.md` lets `competitive-battlecard` append field notes or a stub to Section 3 after you confirm. `next-skill-map.md` adds an "After competitive-battlecard" entry and offers the card after `alternatives-map`, `signal-monitor` and `proof-points`.
+
+### pmm-go-to-market
+
+- `workflow-orchestrator` 2.6.0 routes the "Competitive Intelligence Program" and "Competitive Response (Fast)" workflows to `competitive-battlecard` instead of a placeholder. The `go-to-market-strategy` T1 template checklist names the skill.
+
+### pmm-positioning
+
+- `product-messaging-playbook` 1.3.1 points to `competitive-battlecard` for a full competitor card.
+
+### pmm-intelligence
+
+- `signal-monitor` 1.0.1 points to `competitive-battlecard` for a competitor card.
+
+### Repo
+
+- `SKILL-SPEC.md` 2.6.2 adds `competitive-battlecard` to the brain-dependent list and the T2 examples.
+- Changed the skill count to 37 across 9 plugins.
+
 ## v1.12.1 — 2026-10-11
 
 ### product-marketing-context

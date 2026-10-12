@@ -54,6 +54,7 @@ Only the Google servers a plugin's skills use are wired. Fewer sign-ins, fewer p
 | pmm-go-to-market | yes | yes | yes | yes | yes | yes |
 | pmm-growth | | | yes | | yes | |
 | pmm-intelligence | | | | | | |
+| pmm-competitive-intelligence | | | yes | | | |
 | pmm-toolkit | yes | yes | yes | yes | yes | yes |
 | pmm-meta | | | | | | |
 

@@ -1,6 +1,6 @@
 ---
 name: workflow-orchestrator
-version: 2.5.0
+version: 2.6.0
 description: >
   Orchestrates multi-skill PMM programs end-to-end — chains positioning,
   competitive, GTM strategy, campaign briefs, stakeholder maps, and retros into
@@ -14,7 +14,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-10
+last_updated: 2026-10-12
 ---
 
 # PMM Workflow Orchestrator
@@ -285,7 +285,9 @@ If the user wants this document saved somewhere, ask where.
 
 ### 3. Competitive Intelligence Program
 **Trigger:** "competitive program", "build battlecards", "competitive deep-dive"
-No dedicated competitive-intelligence skill exists yet in this repo. Handle within `positioning-messaging`'s competitive alternatives work, or flag to the user that this workflow is a placeholder pending a dedicated skill (a `competitive-battlecard` skill, not yet built). In the meantime, `proof-points` can source and verify individual competitive claims (win/loss stats, analyst citations) as they come up — it does not build a battlecard or replace the missing skill, but it stops unsourced competitive claims from shipping while the gap exists.
+1. `alternatives-map` (from `pmm-positioning`; skip if brain Section 3 already names the competitors with why-chosen and why-left)
+2. `competitive-battlecard` (from the `pmm-competitive-intelligence` plugin; if it is not installed, say so and stop) — one card per competitor the user names, with a checkpoint between competitors
+3. `proof-points` — register the claims the cards listed as `[NEEDS PROOF]`
 
 ### 4. Quarterly PMM Cycle
 **Trigger:** "quarterly PMM cycle", "Q[X] refresh", "quarterly review"
@@ -304,7 +306,8 @@ No dedicated competitive-intelligence skill exists yet in this repo. Handle with
 
 ### 6. Competitive Response (Fast)
 **Trigger:** "competitive response to [competitor]", "they just launched [X]"
-No dedicated competitive-intelligence skill exists yet in this repo. Handle within `positioning-messaging`'s competitive alternatives work, or flag to the user that this workflow is a placeholder pending a dedicated skill (a `competitive-battlecard` skill, not yet built). In the meantime, `proof-points` can source and verify individual competitive claims (win/loss stats, analyst citations) as they come up — it does not build a battlecard or replace the missing skill, but it stops unsourced competitive claims from shipping while the gap exists.
+1. `competitive-battlecard` (from the `pmm-competitive-intelligence` plugin; if it is not installed, say so and stop) — for the named competitor only, not all competitors. Pass along the deal context the user gave (role, buyer, stage); the skill asks once for the rest.
+2. Offer, never run: `proof-points` for any claim the card listed as `[NEEDS PROOF]`
 
 ### 7. Full PMM Onboarding / Audit
 **Trigger:** "I just joined as PMM", "PMM audit", "what's our current state"

@@ -1,8 +1,8 @@
 # SKILL-SPEC.md
 ## Product Marketing Skills — Skill Authoring Standard
 
-**Version:** 2.6.1
-**Last updated:** 2026-10-11
+**Version:** 2.6.2
+**Last updated:** 2026-10-12
 **Applies to:** All skills in this repository
 **Owner:** Stefanos Karakasis
 
@@ -430,7 +430,7 @@ Load instruction for brain-dependent skills:
 - If a loaded section is marked 🔴 Placeholder: flag before proceeding.
 ````
 
-**Brain-dependent skills:** `alternatives-map`, `beachhead-segment`, `brand-voice`, `buyer-personas`, `customer-stories`, `experiment-doc`, `experiment-ideas`, `gaccs-brief`, `go-to-market-strategy`, `gtm-motions`, `ideal-customer-profile`, `interview-summary`, `market-context`, `message-house`, `meta-synthesis`, `pmm-metrics`, `pmm-okrs`, `positioning-ideas`, `positioning-messaging`, `prd`, `pre-mortem`, `prioritization-frameworks`, `product-marketing-context`, `product-messaging-playbook`, `proof-points`, `retro`, `signal-monitor`, `stakeholder-maps`, `value-prop-statements`, `workflow-orchestrator`
+**Brain-dependent skills:** `alternatives-map`, `beachhead-segment`, `brand-voice`, `buyer-personas`, `competitive-battlecard`, `customer-stories`, `experiment-doc`, `experiment-ideas`, `gaccs-brief`, `go-to-market-strategy`, `gtm-motions`, `ideal-customer-profile`, `interview-summary`, `market-context`, `message-house`, `meta-synthesis`, `pmm-metrics`, `pmm-okrs`, `positioning-ideas`, `positioning-messaging`, `prd`, `pre-mortem`, `prioritization-frameworks`, `product-marketing-context`, `product-messaging-playbook`, `proof-points`, `retro`, `signal-monitor`, `stakeholder-maps`, `value-prop-statements`, `workflow-orchestrator`
 
 ### Context-Agnostic (`context-agnostic`)
 
@@ -534,7 +534,7 @@ instead of a fabricated one. **Found and fixed across 6 eval files on
 | Tier | Description | Examples | Requirements |
 |---|---|---|---|
 | **T1 — Strategic** | High-stakes, executive or customer-facing output | pre-mortem, positioning-messaging, go-to-market-strategy | All 7 sections + operating rules + quality gate + Learning Close |
-| **T2 — Execution** | Day-to-day PMM work, high frequency, medium stakes | experiment-doc, prd, retro, stakeholder-maps, gaccs-brief, pmm-okrs, beachhead-segment, buyer-personas | All 7 sections + quality gate + Learning Close |
+| **T2 — Execution** | Day-to-day PMM work, high frequency, medium stakes | experiment-doc, prd, retro, stakeholder-maps, gaccs-brief, competitive-battlecard, pmm-okrs, beachhead-segment, buyer-personas | All 7 sections + quality gate + Learning Close |
 | **T3 — Utility** | Tactical outputs, lower stakes | writing-assistant, pmm-resume, privacy-policy, interview-summary, prioritization-frameworks | All 7 sections. Quality gate optional. Learning Close optional. |
 | **T4 — Meta** | Skills that operate on other skills | meta-review, meta-learn, meta-verify, meta-synthesis, workflow-orchestrator, product-marketing-context | Custom per meta skill. All 7 sections still required. |
 
@@ -546,8 +546,9 @@ to T2 that same day — it was previously missing despite being a fully
 built, brain-writing skill that meets every T1/T2 structural requirement.
 `buyer-personas` was built on 2026-08-29 (`quality_gate: true`, full
 Operating Rules and Quality Gate sections) and is re-added to the T2 row
-above as of this update. `competitive-battlecard` still does not exist in
-this repo — if it's built later, add it to the table at that time.
+above as of this update. `competitive-battlecard` was built on 2026-10-12 as the first skill of the
+`pmm-competitive-intelligence` plugin (`quality_gate: true`, full Operating Rules
+and Quality Gate sections) and is added to the T2 row above as of this update.
 
 **Note on enforcement (2026-08-24):** This table's "All 7 sections still
 required" language for every tier, including T3 and T4, was accurate but

@@ -73,7 +73,7 @@
 ## Sales Enablement
 
 - [ ] Sales one-pager created
-- [ ] Competitive battlecard created
+- [ ] Competitive battlecard created (`competitive-battlecard`)
 - [ ] Sales training scheduled
 - [ ] Objection handling guide created
 - [ ] Customer success playbook created

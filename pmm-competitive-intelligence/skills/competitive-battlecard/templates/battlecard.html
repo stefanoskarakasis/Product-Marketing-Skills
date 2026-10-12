@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Battlecard: {{us}} vs {{competitor}}</title>
+<!--
+  Fill every {{placeholder}}. Remove a row or block that has no content; never leave a placeholder.
+  Single stacked column, same headers and order as the Doc version in references/card-format.md. Aim for one printed page (A4 or Letter); keep the caps.
+  Shading classes on a snapshot cell: g (documented strength), y (gap or unbacked claim), w (parity or unknown). {{mark}} is 🟢, 🟡 or ⚪ to match, so shading survives black-and-white printing.
+-->
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #ffffff; --surface: #f6f7f9; --border: #d9dde3;
+    --text: #111827; --text-2: #4b5563; --muted: #5b6472;
+    --accent: #2563eb;            /* replace with your brand colour */
+    --good: #047857; --bad: #b91c1c; --warn: #b45309;
+    --good-bg: #e8f5ef; --warn-bg: #fdf3e3; --neutral-bg: #eef0f3;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .page { max-width: 820px; margin: 0 auto; padding: 24px 16px 32px; }
+  h1 { font-size: 30px; line-height: 1.15; margin: 0; letter-spacing: -0.01em; }
+  .kicker { color: var(--accent); font-weight: 800; font-size: 12px; letter-spacing: .08em; margin: 2px 0 8px; }
+  .deal { color: var(--text-2); font-size: 14px; margin: 0 0 2px; }
+  .meta { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
+  h2 { font-size: 17px; font-weight: 800; margin: 18px 0 6px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+  h2 small { font-weight: 400; color: var(--muted); font-size: 13px; }
+  .check { background: var(--surface); border-left: 3px solid var(--warn); padding: 8px 12px; border-radius: 4px; font-size: 14px; }
+  .callout { border-left: 4px solid var(--good); background: var(--good-bg); padding: 10px 14px; border-radius: 4px; font-weight: 400; margin: 0; }
+  table.ctx { font-size: 13px; margin: 6px 0 4px; } table.ctx th { width: 17%; } table.ctx td { width: 33%; }
+  .callout.say { border-left-color: var(--accent); background: var(--surface); font-size: 17px; font-weight: 600; }
+  p { margin: 0 0 6px; }
+  ul { margin: 0; padding-left: 18px; }
+  li { margin: 0 0 5px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { border: 1px solid var(--border); padding: 6px 8px; text-align: left; vertical-align: top; }
+  th { background: var(--surface); font-weight: 700; }
+  th.row { width: 22%; }
+  td.g { background: var(--good-bg); } td.y { background: var(--warn-bg); } td.w { background: var(--neutral-bg); }
+  .tag { color: var(--muted); font-size: 12px; }
+  .go { color: var(--good); font-weight: 700; } .stop { color: var(--bad); font-weight: 700; }
+  footer { color: var(--muted); font-size: 12px; margin-top: 16px; border-top: 1px solid var(--border); padding-top: 8px; }
+  h2, table, .callout, .check { break-inside: avoid; }
+  @media print {
+    @page { size: A4; margin: 8mm; }   /* use "size: Letter" for US deals */
+    body { font-size: 9pt; line-height: 1.2; }
+    .page { max-width: none; padding: 0; }
+    h1 { font-size: 16pt; } .kicker { margin: 0 0 4px; } h2 { font-size: 10pt; margin: 6px 0 2px; padding-bottom: 1px; }
+    .callout.say { font-size: 10.5pt; } .callout { padding: 5px 9px; }
+    table { font-size: 8.5pt; } th, td { padding: 1.5px 5px; } p { margin-bottom: 3px; }
+    .check { font-size: 8.5pt; padding: 4px 8px; } footer { margin-top: 6px; padding-top: 4px; }
+    table.ctx { font-size: 8pt; margin: 2px 0 0; } table.ctx th, table.ctx td { padding: 1px 4px; }
+    .check { padding: 3px 7px; } .callout { padding: 3px 8px; }
+    .meta, .deal, .tag, footer { font-size: 8pt; } .meta { margin-bottom: 6px; }
+    li { margin-bottom: 1px; }
+    td.g, td.y, td.w { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>{{us}} vs. {{competitor}}</h1>
+  <p class="kicker">BATTLECARD · INTERNAL USE ONLY</p>
+  <table class="ctx">
+    <tr><th>Role</th><td>{{role}}</td><th>Stage</th><td>{{stage}}</td></tr>
+    <tr><th>Motion</th><td>{{motion}}</td><th>Buyer</th><td>{{persona}}</td></tr>
+    <tr><th>Competitor is</th><td>{{competitor_status}}</td><th>Segment</th><td>{{segment_region}}</td></tr>
+    <tr><th>Win rate vs {{competitor}}</th><td>{{win_rate_or_no_data}}</td><th>As of</th><td>{{month_year}}</td></tr>
+    <tr><th>Brain read</th><td>{{brain_sections}}</td><th>Assumptions</th><td>{{assumptions_or_none}}</td></tr>
+  </table>
+
+  <h2>⚠️ Check before use</h2>
+  <div class="check">{{check_before_use}}</div>
+
+  <h2>🏆 Win condition</h2>
+  <p class="callout">{{win_condition}}</p>
+
+  <h2>🎤 Say this first</h2>
+  <p class="callout say">“{{say_first}}”</p>
+
+  <h2>🔍 Competitor snapshot <small>{{axis_label}}</small></h2>
+  <table>
+    <tr><th class="row"></th><th>{{competitor}}</th><th>{{us}}</th></tr>
+    <tr><th class="row">Buyer and use case</th><td class="{{shade}}">{{mark}} {{them_buyer}} <span class="tag">{{tag}}</span></td><td class="{{shade}}">{{mark}} {{us_buyer}} <span class="tag">{{tag}}</span></td></tr>
+    <tr><th class="row">Value promise</th><td class="{{shade}}">{{mark}} {{them_value}} <span class="tag">{{tag}}</span></td><td class="{{shade}}">{{mark}} {{us_value}} <span class="tag">{{tag}}</span></td></tr>
+    <tr><th class="row">Business-metric link</th><td class="{{shade}}">{{mark}} {{them_metric}} <span class="tag">{{tag}}</span></td><td class="{{shade}}">{{mark}} {{us_metric}} <span class="tag">{{tag}}</span></td></tr>
+    <tr><th class="row">Price and terms</th><td class="{{shade}}">{{mark}} {{them_price}} <span class="tag">{{tag}}</span></td><td class="{{shade}}">{{mark}} {{us_price}} <span class="tag">{{tag}}</span></td></tr>
+    <tr><th class="row">Who wins where</th><td class="{{shade}}">{{mark}} {{them_wins}} <span class="tag">{{tag}}</span></td><td class="{{shade}}">{{mark}} {{us_wins}} <span class="tag">{{tag}}</span></td></tr>
+  </table>
+
+  <h2>❓ Discovery questions</h2>
+  <table>
+    <tr><th>Question</th><th style="width:38%">Why it works</th></tr>
+    <tr><td>“{{question}}”</td><td>{{gap}}</td></tr>
+  </table>
+
+  <h2>🔄 Reframe their strengths</h2>
+  <table>
+    <tr><th style="width:36%">What they say</th><th>Reply</th></tr>
+    <tr><td>“{{claim_or_objection}}”</td><td>“{{reply}}”</td></tr>
+  </table>
+
+  <h2>🚦 Win vs. walk away</h2>
+  <p><span class="go">✅ Lean in:</span> {{lean_in}}</p>
+  <p><span class="stop">🛑 Walk away:</span> {{walk_away}}</p>
+
+  <h2>💎 Proof to use</h2>
+  <ul><li><b>{{proof_claim}}</b> {{proof_line}} <span class="tag">{{tag}}</span></li></ul>
+
+  <h2>🧭 Next move <small>({{stage}})</small></h2>
+  <p>{{next_move}}</p>
+
+  <footer>Sources: {{sources}} · Internal use only. Do not forward to customers.</footer>
+</div>
+</body>
+</html>

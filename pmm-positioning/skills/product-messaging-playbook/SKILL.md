@@ -1,6 +1,6 @@
 ---
 name: product-messaging-playbook
-version: 1.3.0
+version: 1.3.1
 description: >
   Assembles a single Sales/CS-ready Product Messaging Playbook for a new
   product or feature — problem, story, one named competitive comparison,
@@ -13,7 +13,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-11
+last_updated: 2026-10-12
 ---
 
 # Product Messaging Playbook
@@ -47,9 +47,9 @@ assembles the rest into one document a rep can open cold.
   comparison. Sourcing or auditing the proof points themselves →
   `proof-points`, run first if Section 6 is thin. Building a full
   multi-competitor battlecard, not a single named comparison scoped to
-  one feature → that's a distinct, larger deliverable this repo does not
-  yet have a dedicated skill for; this skill's Section 3 is intentionally
-  scoped to one alternative, not a full battlecard.
+  one feature → `competitive-battlecard` (in the `pmm-competitive-intelligence`
+  plugin); this skill's Section 3 is intentionally scoped to one
+  alternative, not a full battlecard.
 - **Example prompts:**
   - "Build a messaging playbook for [feature]"
   - "Give sales something they can use for this launch"

@@ -1,4 +1,4 @@
-# PMM Skills Marketplace: The AI operating system to get work done
+# PMM Skills Marketplace: The AI Operating System to get Work Done
 
 A collection of AI agent skills focused on product marketing tasks. Built
 for Product Marketing Managers, founders, and marketing leaders who want AI

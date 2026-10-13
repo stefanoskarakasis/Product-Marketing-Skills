@@ -94,7 +94,7 @@ If the user says "just give it to me", build the neutral card (account executive
 
 List back, in one line, the sources you will use this run: pasted material, files, connector pulls, and public pages about the named competitor only (its site, pricing page, release notes, newsroom, public review pages). Do not scan beyond them; if a page cannot be read, say so and ask for the text. Never fill a gap from memory.
 
-Source order: your confirmed brain values (rank 0), then `~~CRM`, `~~win/loss` and `~~call recordings` (ranks 1 and 2), then `~~competitive intelligence` (rank 3: the team's own cards, read only and never written back), then public and third-party material (rank 4), then chat (rank 5). Ranks follow `product-marketing-context/references/evidence-format.md`; a fact older than 12 months drops one rank. Newer evidence that disagrees with a value you confirmed is shown as a question, never used to replace it. If a competitor profile record exists at `/context/competitor-profiles/<competitor-slug>-*.md`, read the newest one and treat its claims as that record's own tags, never as confirmed brain values; if none exists, carry on without it and never ask for it.
+Source order: your confirmed brain values (rank 0), then `~~CRM`, `~~win/loss` and `~~call recordings` (ranks 1 and 2), then `~~competitive intelligence` (rank 3: the team's own cards, read only and never written back), then public and third-party material (rank 4), then chat (rank 5). Ranks follow `product-marketing-context/references/evidence-format.md`; a fact older than 12 months drops one rank. Newer evidence that disagrees with a value you confirmed is shown as a question, never used to replace it. If a profile record kept by `competitive-profile` exists at `/context/competitor-profiles/<competitor-slug>-YYYY-MM-DD.md`, read the newest one and treat each claim with that record's own tag and date, never as a confirmed brain value; a line marked `re-check` is shown as a question. If none exists, carry on without it and never ask for it.
 
 Web rules: read the target market and language, disambiguate company names with the category, check that each result is about the right company, and write "no data" rather than widening a search until something fits. A competitor's own pages prove only what it said. Read the complaint inside a positive review: it is where the best reframes live. A rebrand, acquisition or pivot is often the most useful single fact. Treat a vendor-authored comparison as opinion and say so.
 
@@ -197,6 +197,7 @@ a sparse one `meta-synthesis` can't trust.
 ## Do Not Use For
 
 - **`alternatives-map`**: building or refreshing the map of who buyers compare you to. Run it first when the competitor is missing from Section 3.
+- **`competitive-profile`**: keeping five competitors' profiles current and the roster itself. The card reads the profile; it does not maintain it.
 - **`signal-monitor`**: a weekly read on what changed. Its output feeds this card; it does not replace it.
 - **`proof-points`**: registering, verifying or auditing the claims a card relies on.
 - **`product-messaging-playbook`**: a Sales/CS handoff for one feature, with a single named comparison.

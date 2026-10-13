@@ -1,6 +1,6 @@
 ---
 name: workflow-orchestrator
-version: 2.6.0
+version: 2.6.1
 description: >
   Orchestrates multi-skill PMM programs end-to-end — chains positioning,
   competitive, GTM strategy, campaign briefs, stakeholder maps, and retros into
@@ -286,8 +286,9 @@ If the user wants this document saved somewhere, ask where.
 ### 3. Competitive Intelligence Program
 **Trigger:** "competitive program", "build battlecards", "competitive deep-dive"
 1. `alternatives-map` (from `pmm-positioning`; skip if brain Section 3 already names the competitors with why-chosen and why-left)
-2. `competitive-battlecard` (from the `pmm-competitive-intelligence` plugin; if it is not installed, say so and stop) — one card per competitor the user names, with a checkpoint between competitors
-3. `proof-points` — register the claims the cards listed as `[NEEDS PROOF]`
+2. `competitive-profile` (from the `pmm-competitive-intelligence` plugin; skip if current profiles exist) — fixes the roster of up to five and builds their profiles
+3. `competitive-battlecard` (same plugin; if it is not installed, say so and stop) — one card per competitor the user names, with a checkpoint between competitors
+4. `proof-points` — register the claims the cards listed as `[NEEDS PROOF]`
 
 ### 4. Quarterly PMM Cycle
 **Trigger:** "quarterly PMM cycle", "Q[X] refresh", "quarterly review"

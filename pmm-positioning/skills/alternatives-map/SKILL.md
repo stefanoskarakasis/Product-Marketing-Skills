@@ -1,6 +1,6 @@
 ---
 name: alternatives-map
-version: 2.1.1
+version: 2.1.2
 description: >
   Synthesizes research data — win/loss notes, sales call transcripts,
   G2/Capterra reviews, analyst reports — into a named alternatives map
@@ -346,4 +346,5 @@ above, which still requires explicit confirmation.
 - **`positioning-messaging`** — turning a confirmed alternatives map into
   a positioning statement or messaging hierarchy; run this skill first,
   then that one.
-- N/A
+- **`competitive-profile`** — keeping five named competitors' profiles
+  current. It reads this map; it does not redraw it.

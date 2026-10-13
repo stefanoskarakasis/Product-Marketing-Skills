@@ -8,7 +8,7 @@ Skills keep their own one-line "Brain contract" (plugins install standalone).
 |---|---|---|---|---|
 | 1 | Product Context | name, description, stage, target_market, value_prop, offerings, glossary, permitted_claims | 180 days | product-marketing-context |
 | 2 | ICP Definition | company_size, industry, geography, persona, economic_buyer, champion, pains, triggers | 180 days | product-marketing-context, ideal-customer-profile, beachhead-segment, gtm-motions (stub only) |
-| 3 | Alternatives & Positioning | alternatives, status_quo, why_leaving, unique_capabilities, category, market_type | 180 days | product-marketing-context, alternatives-map, positioning-ideas (stub only), competitive-battlecard (field notes and stub only, user-confirmed) |
+| 3 | Alternatives & Positioning | alternatives, status_quo, why_leaving, unique_capabilities, category, market_type | 180 days | product-marketing-context, alternatives-map, positioning-ideas (stub only), competitive-battlecard (field notes and stub only, user-confirmed), competitive-profile (roster and profile notes only, user-confirmed, never from an unattended run) |
 | 4 | Voice & Tone | attributes, tone_shifts, language_prefs, forbidden_phrases, tone_example | 365 days | product-marketing-context, brand-voice |
 | 5 | Market Context | maturity, macro_forces, why_now, narrative | 90 days | product-marketing-context, market-context |
 | 6 | Proof Points Registry | approved_metrics, quotes, forbidden_claims | 12 months per claim | proof-points |

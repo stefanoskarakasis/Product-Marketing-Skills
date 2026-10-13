@@ -38,7 +38,7 @@ automatically. Try:
 - "What tier is this launch?" 
 - "Run a retro on our last launch"
 
-## What You Can Do (37 skills across 9 plugins)
+## What You Can Do (38 skills across 9 plugins)
 
 See the [main README](./README.md) for the full skill list and what each
 plugin covers.

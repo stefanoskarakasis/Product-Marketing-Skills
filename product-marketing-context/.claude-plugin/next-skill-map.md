@@ -152,10 +152,19 @@ named competitor (competitive-battlecard)?"
 - competitive-battlecard — if an opportunity says a named competitor moved and a live deal is affected
 **Prompt to surface:** "Next, pick one if an opportunity needs action: update your alternatives (alternatives-map), rework the message (positioning-messaging), adjust the quarter's goals (pmm-okrs), or refresh the seller card for that competitor (competitive-battlecard)?"
 
+## After competitive-profile (profiles saved, board shown)
+**Next options (not a single path — ask which applies):**
+- competitive-battlecard — if a named competitor is in a live deal and a seller needs a one-page play against it
+- alternatives-map — if Section 3 names no direct competitors, or the roster check shows the map is out of date
+- proof-points — if the profiles left `[NEEDS PROOF]` items worth registering in Section 6
+- signal-monitor — if you want the market read weekly between refreshes
+**Prompt to surface:** "Next, pick one: build a seller card for a live deal (competitive-battlecard), rework the map (alternatives-map), register the claims the profiles could not use (proof-points), or track the market weekly (signal-monitor)?"
+
 ## After competitive-battlecard (card delivered, record saved)
 **Next options (not a single path — ask which applies):**
 - alternatives-map — if the competitor was missing from Section 3, or the card exposed a conflict with the map
 - proof-points — if the card left `[NEEDS PROOF]` or `[NEEDS APPROVAL]` items worth registering in Section 6
 - positioning-messaging — if the card showed the message does not separate you from this competitor (SALES-ENABLEMENT mode builds persona cards and a competitive playbook)
 - signal-monitor — if you want this competitor's moves tracked weekly
+- competitive-profile — if this competitor has no current profile, or you want your five key competitors kept fresh
 **Prompt to surface:** "Next, pick one: map your alternatives properly (alternatives-map), register the claims the card could not use (proof-points), fix a message that does not separate you (positioning-messaging), or track this competitor weekly (signal-monitor)?"

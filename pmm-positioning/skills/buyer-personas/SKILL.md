@@ -81,7 +81,7 @@ with an explicit note on which persona is primary.
   - `/foundation/brain.md` — recommended. Section 2 (ICP), Section 3
     (Alternatives).
   - `/context/meta-patterns.md` — optional; guardrails from prior sessions.
-  - **Brain contract:** Reads Sections 2, 3. Writes nothing to the brain —
+  - **Brain contract:** Reads Sections 2, 3, including `committee_roles`, `jobs_to_be_done`, `anti_persona`, `objections` and `switching_forces` as the starting default for the committee map. Writes nothing to the brain —
     committee maps and persona cards are delivered in chat and handed to
     `positioning-messaging`, not stored as a brain fact. A buying
     committee shifts per deal and per segment; treating it as durable

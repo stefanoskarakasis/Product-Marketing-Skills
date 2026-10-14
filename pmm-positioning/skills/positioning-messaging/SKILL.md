@@ -67,7 +67,7 @@ A missing brain never stops this skill. Say once: "No brain found, so output wil
   alternatives, block and ask before proceeding.
 
 - **Context keys:**
-  - `/foundation/brain.md` — preferred. Sections 1 (product), 2 (ICP), 3 (alternatives), 4 (voice) if available; 6 (proof points) for SALES-ENABLEMENT mode's proof and "never say" components — see Pre-flight.
+  - `/foundation/brain.md` — preferred. Sections 1 (product), 2 (ICP), 3 (alternatives, including `switching_forces` and `objections`), 4 (voice, including `customer_phrases`) if available; 6 (proof points) for SALES-ENABLEMENT mode's proof and "never say" components — see Pre-flight.
 
 ---
 

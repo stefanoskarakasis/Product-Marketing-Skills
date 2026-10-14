@@ -88,7 +88,9 @@ stated one.
     sessions.
   - **Brain contract:** Reads Section 3. Writes Section 3 only — named
     alternatives across all four types, status quo, why-they-leave, and
-    unclaimed territory, appended on explicit confirmation. Never creates a separate competitive file. If no brain exists, creates
+    unclaimed territory, plus `alt_shortfalls` and `switching_forces`,
+    appended on explicit confirmation. Reads `objections` for context and
+    never writes it (only `product-marketing-context` does). Never creates a separate competitive file. If no brain exists, creates
     `/foundation/brain.md` holding this section alone (cold start).
 
 ---

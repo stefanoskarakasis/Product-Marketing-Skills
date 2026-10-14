@@ -14,7 +14,7 @@ producing output. Install this first.
 ## Skills (1)
 
 - **product-marketing-context** — Guided setup wizard for building your
-  brain from scratch, plus refresh and gap modes that keep it current (6 core sections plus optional strategy and execution sections: Product Context, ICP Definition,
+  brain from scratch, plus refresh and gap modes that keep it current (6 core sections plus optional strategy and execution sections, and ten deal-reality fields for objections, switching forces, customer language and anti-persona: Product Context, ICP Definition,
   Alternatives & Positioning, Voice & Tone, Market Context, Proof Points
   Registry), plus a health-audit mode that scores an existing brain
   file and recommends specific fixes.

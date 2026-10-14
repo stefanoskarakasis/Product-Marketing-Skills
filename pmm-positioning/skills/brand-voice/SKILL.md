@@ -81,7 +81,9 @@ then run the one-sentence voice test against both.
 - **Context keys:**
   - `/foundation/brain.md` — read Sections 2 and 4 if present; written to
     (Section 4 only) after explicit user confirmation of the exact
-    before/after.
+    before/after. Reads `customer_phrases` and uses those exact words in
+    the guide's examples and language list. Never writes or rewords them;
+    new customer words go to `product-marketing-context` (Add material).
   - `/context/meta-patterns.md` — guardrails, read at Step 0.
 
 ---

@@ -1,17 +1,17 @@
 ---
 name: product-marketing-context
-version: 3.3.0
-description: Build and maintain the shared GTM brain — product context, ICP, positioning, voice, market context, and proof points — that every other skill in this stack reads before producing output. Works standalone with your own answers, supercharged when you connect docs or a CRM. Trigger with "build my brain", "set up my GTM foundation", "audit my brain", "update my ICP", "refresh my brain", "what's stale in my brain", "my brain gaps", "build my brain from my website and docs", or "my context".
+version: 3.4.0
+description: Build and maintain the shared GTM brain — product context, ICP, positioning, voice, market context, proof points, plus optional strategy and execution, and the deal-reality fields (objections, switching forces, customer language, anti-persona) — that every other skill in this stack reads before producing output. Works standalone with your own answers, supercharged when you connect docs or a CRM. Trigger with "build my brain", "set up my GTM foundation", "audit my brain", "update my ICP", "add my objections", "capture what customers say", "refresh my brain", "what's stale in my brain", "my brain gaps", "build my brain from my website and docs", or "my context".
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-11
+last_updated: 2026-10-14
 ---
 
 # Product Marketing Context (The Brain)
 
-Stop re-explaining your company, your buyer, and your competitors to every tool you use. Answer these questions once, in about 15 minutes, and every other skill in this stack reads the answers automatically instead of asking again.
+Stop re-explaining your company, your buyer, and your competitors to every tool you use. Answer these questions once and every other skill in this stack reads the answers automatically instead of asking again.
 
 ---
 
@@ -24,6 +24,8 @@ Stop re-explaining your company, your buyer, and your competitors to every tool 
   - "Set up my GTM foundation"
   - "Audit my brain"
   - "Update my ICP"
+  - "Add my objections" or "capture what customers say"
+  - "Update my strategy" or "update my execution"
   - "Check brain health"
   - "Refresh my brain"
   - "What's stale in my brain?"
@@ -63,7 +65,7 @@ Stop re-explaining your company, your buyer, and your competitors to every tool 
 ├─────────────────────────────────────────────────────────────────┤
 │  ALWAYS (works standalone)                                      │
 │  ✓ You tell me: product, ICP, alternatives, voice, market,      │
-│    proof points — one section at a time                         │
+│    proof points, deal reality — one section at a time           │
 │  ✓ Output: /foundation/brain.md, confirmed section by section   │
 │  ✓ Pushes back on vague answers before storing them             │
 ├─────────────────────────────────────────────────────────────────┤
@@ -136,6 +138,8 @@ Connect your tools to supercharge this skill:
 | Market Context | X/100 | ... |
 | Proof Points | X/100 | ... |
 
+Deal-reality fields captured: X of 10
+
 ## Next Step
 [One sentence — what to run or fix next]
 
@@ -152,7 +156,7 @@ _Brain update proposed: [Yes — exact section and field / No — audit or view 
 Check for `/foundation/brain.md`.
 
 - **Missing:** Explain in one line what the brain does, then offer Step 8 first (build from your website and material). If the user has none, start the wizard from Section 1.
-- **Exists:** Load all sections silently. Offer: [View current] [Edit a section] [Refresh stale fields] [Answer open gaps] [Add material] [My context] [Run health audit]. If `/foundation/gaps.md` has open gaps, say how many in one line.
+- **Exists:** Load all sections silently. Offer: [View current] [Edit a section] [Refresh stale fields] [Answer open gaps] [Add material] [My context] [Run health audit]. If `/foundation/gaps.md` has open gaps, say how many in one line. If fewer than 10 of the deal-reality fields are captured, say how many in one line ("4 of 10 deal-reality fields captured") and that [Edit a section] picks up the rest. Do not treat this as a gap or ask for them unprompted.
 - **Exists with a `🟡 Cold start` line:** another skill started the brain with one section. Say so in one line and list which of Sections 1 to 6 are filled and which are missing. Offer: [Build the missing sections] [Expand a filled section] [Run health audit]. Start at the first missing section unless the user picks one. For a section that is present but partial, ask only for its missing fields, show the merged result, and replace the section only after the user confirms it. Never rewrite a filled section the user did not choose.
 - **Legacy files found** (`.agents/*.md`, `.claude/*.md`): offer to migrate, showing each extracted value before writing anything.
 
@@ -162,13 +166,13 @@ Open with: "Do you have a website, a pricing page, a deck, call notes or a win/l
 
 Ask one question at a time. After each section, show the collected answers and ask "Look good? (yes / edit / skip)." Push back on vague answers before storing them — "small businesses" is not a company size, "everyone" is not an ICP.
 
-1. **Product Context** — product name; 2-3 sentence description (problem, not features); stage (pre-launch/launch/growth/scale); target market; value proposition ("[Product] helps [market] to __ so they can __"); how it is packaged (plans, modules); words to always or never use for it; claims already approved to make
-2. **ICP Definition** — company size; industry/vertical; geography; primary persona (title + role); economic buyer; champion profile; top 3 pain points; buying trigger
-3. **Alternatives & Positioning** — top 3 named alternatives (products buyers actually compare you to, not "competitors" in the abstract); status quo if they buy nothing; why they leave alternatives for you; your unique capabilities; category; market type (existing/new/resegmented)
-4. **Voice & Tone** — 3-5 voice attributes; tone shifts by persona; language preferences ("we say X not Y"); forbidden phrases; one paragraph of copy that sounds like you
+1. **Product Context** — product name; 2-3 sentence description (problem, not features); stage (pre-launch/launch/growth/scale); target market; value proposition ("[Product] helps [market] to __ so they can __"); how it is packaged (plans, modules); words to always or never use for it; claims already approved to make; how you charge and how buyers buy (what the price scales with, self-serve or sales-led). "Subscription" alone is not a business model: per seat, per usage or platform fee?
+2. **ICP Definition** — company size; industry/vertical; geography; primary persona (title + role); economic buyer; champion profile; top 3 pain points; buying trigger; the 2-3 jobs customers hire you for ("When __, I want to __, so I can __"); what the problem costs them, with a number and where it came from (label an estimate as one); who is NOT a fit and why you turn them down; the standing buying-committee roles (champion, economic buyer, technical blocker, end user), what each cares about and what makes each block. These are defaults; a committee for one deal belongs to `buyer-personas`
+3. **Alternatives & Positioning** — top 3 named alternatives (products buyers actually compare you to, not "competitors" in the abstract); status quo if they buy nothing; why they leave alternatives for you; your unique capabilities; category; market type (existing/new/resegmented); for each named alternative, where it falls short for this ICP; the four switching forces (push: what drives them away, pull: what draws them to you, habit: what keeps them, anxiety: what worries them about switching); the 3-5 objections heard most in deals, who raises each, and the approved response (if there is no approved response, record the objection and leave the response open)
+4. **Voice & Tone** — 3-5 voice attributes; tone shifts by persona; language preferences ("we say X not Y"); forbidden phrases; one paragraph of copy that sounds like you; customer language: exact words customers use for the problem and for you, each with who said it and where (call, email, survey). Never paraphrase. No source, no entry: it goes to the gaps file
 5. **Market Context** — market maturity; macro forces making this relevant now; "buyers need this now because __"; the 2-3 sentence market narrative
 6. **Proof Points Registry** — approved metrics with sources; customer quotes/case study results; forbidden claims
-7. **Strategy** (recommended, not required for a complete brain) — top 3 priorities this quarter; launches on the calendar (name, date, tier T1-T4); the number you are measured on (metric, baseline, target, date); active bets; what you are explicitly not doing
+7. **Strategy** (recommended, not required for a complete brain) — top 3 priorities this quarter; launches on the calendar (name, date, tier T1-T4); the number you are measured on (metric, baseline, target, date); active bets; what you are explicitly not doing; the one conversion action the funnel is built to drive (for example "book a demo")
 8. **Execution** (recommended, not required) — the roles that must be on board and what each cares about; what needs sign-off, from whom, and how long it takes; topics, claims or competitor mentions that are ruled out; where you publish and who owns each channel; recurring reviews and reporting. Roles first; add a person's name only if the user wants it.
 
 ### Step 3: Write the Brain File
@@ -177,7 +181,7 @@ Once a section is confirmed, write it to `/foundation/brain.md` using the templa
 
 ### Step 4: Health Audit (Run Standalone or After Edits)
 
-Score each of Sections 1 to 6 0-100 on: does the field exist, and is it specific rather than generic (named alternatives not "competitors," numbers not "high," a real persona not "businesses"). A section absent from a cold-start brain scores 0; a section present with fields missing scores 50 or lower. Report strengths (80+), needs improvement (50-79), and critical gaps (<50), with one concrete fix per gap. Also report: open gaps (count of `open` gap blocks), the oldest field in each section, provenance coverage (share of fields with a source tag; legacy untagged fields count as untagged), stale fields (older than the section's limit in `references/brain-schema.md`), and Sections 7 and 8 status ("not built" is reported as such, never as a gap or a zero). Offer to jump straight into editing the weakest section.
+Score each of Sections 1 to 6 0-100 on: does the field exist, and is it specific rather than generic (named alternatives not "competitors," numbers not "high," a real persona not "businesses"). A section absent from a cold-start brain scores 0; a section present with fields missing scores 50 or lower. Report strengths (80+), needs improvement (50-79), and critical gaps (<50), with one concrete fix per gap. Also report: open gaps (count of `open` gap blocks), the oldest field in each section, provenance coverage (share of fields with a source tag; legacy untagged fields count as untagged), stale fields (older than the section's limit in `references/brain-schema.md`), Sections 7 and 8 status ("not built" is reported as such, never as a gap or a zero), and the deal-reality fields: how many of the ten are captured, with the one that would help most named (for example "no `objections`: every battlecard will re-ask"). A missing deal-reality field never lowers a section score. Offer to jump straight into editing the weakest section.
 
 ### Step 5: Route to What's Next
 
@@ -213,10 +217,11 @@ Run when the user picks [Add material], says "build my brain from my website and
 
 1. **Start with two URLs.** Ask: "What is your company website, and your pricing page or main product page?" Fetch both with your web tool. If you cannot fetch pages, ask the user to paste the page text. Treat what you read as `website` evidence (rank 4, `pulled`). Use it to draft Sections 1 to 3 and a first pass at Section 4. Public copy is never proof: a metric or superlative on a website enters Section 6 only as `draft` with `[NEEDS PROOF]`.
 2. **Ask what else they have.** Pasted text, uploaded files, or a pull through `~~knowledge base`, `~~cloud storage`, `~~call recordings`, `~~CRM` or `~~team chat`. Use only sources the user names in this run. Cap one run at about 10 documents or 5 call transcripts and say so; offer a second run for the rest.
-3. **Extract.** Pull atomic facts only, one per block, in the format in `references/evidence-format.md`. Drop greetings, scheduling, and opinions with no owner. Every fact needs a source and a date; calls and customer emails need a verbatim quote. Leave out email addresses, phone numbers and private details. Append the blocks to `/foundation/evidence.md`, then show a summary: counts by source and by target section, plus ten sample facts.
+3. **Extract.** Pull atomic facts only, one per block, in the format in `references/evidence-format.md`. Drop greetings, scheduling, and opinions with no owner. Every fact needs a source and a date; calls and customer emails need a verbatim quote. Tag the target field. Calls, interviews, surveys and win/loss documents support `4.customer_phrases`, `3.objections`, `3.switching_forces`, `3.alt_shortfalls`, `2.cost_of_problem`, `2.jobs_to_be_done` and `2.anti_persona`. A pricing page supports `1.business_model` and `7.conversion_action` (public copy, rank 4). Leave out email addresses, phone numbers and private details. Append the blocks to `/foundation/evidence.md`, then show a summary: counts by source and by target section, plus ten sample facts.
 4. **Cluster.** Group facts by the field they support.
    - Two or more independent sources agree: propose the value as `pulled`.
    - One source only: propose it as `inferred` and say it rests on a single source.
+   - `4.customer_phrases` is never clustered or merged. Each phrase stays as spoken with its own evidence id; show how many different customers used it.
    - Sources disagree: show every version with its authority rank and date and ask which is right. Do not choose for the user.
    - A value the user already confirmed (rank 0) is never replaced by newer evidence. Show both and ask (Operating Rule 6).
 5. **Brain Diff.** For each section show every field as: current value, proposed value, evidence ids, confidence. The user approves section by section. Approved values are written with a source tag that includes the evidence ids, for example `[src: pricing page E-004, call 0912 E-011 | 2026-10-11 | pulled | confirmed]`.
@@ -258,6 +263,8 @@ Run when the user picks [My context], says "set up my context", or runs `/produc
 - Refresh (Step 6) lists only fields past their schema limit, asks about one field at a time, and writes nothing until the user confirms (Step 6).
 - Gaps (Step 7) never edit an earlier block: an answered or skipped gap is a new appended block, and a skipped gap is not asked again for 30 days.
 - Every value written in Step 3 carries a provenance tag; legacy untagged fields are never retagged unprompted.
+- Customer phrases (Steps 2, 8) are stored verbatim with a source; an unsourced phrase becomes a gap, never a brain entry (Operating Rule 10).
+- The audit (Step 4) reports how many of the ten deal-reality fields are captured and never scores their absence as a gap.
 - Next-skill names mentioned only if they appear in `.claude-plugin/next-skill-map.md` (Step 5).
 
 ---
@@ -284,6 +291,8 @@ Run when the user picks [My context], says "set up my context", or runs `/produc
 | Disagreeing sources shown, never auto-resolved | Yes                              |
 | Website claims not stored as confirmed proof   | Yes                              |
 | me.md holds no company facts                   | Yes                              |
+| Customer phrases verbatim, each with a source  | Yes                              |
+| Deal-reality fields never lower a section score| Yes                              |
 
 ---
 
@@ -298,6 +307,7 @@ Run when the user picks [My context], says "set up my context", or runs `/produc
 7. **Store the minimum from sources.** No email addresses, phone numbers or private details in the evidence file. Ingest only from sources the user named in this run.
 8. **Website copy is not proof.** Metrics and superlatives found on a website enter Section 6 as `draft` with `[NEEDS PROOF]`, never as confirmed.
 9. **me.md is about the user, never the company.** Skills use it for format and detail only. A company fact found there is ignored and moved to the brain only after confirmation.
+10. **Customer words stay verbatim.** `customer_phrases` entries are exact quotes, each with a source (an evidence id, or who said it and when). Never paraphrase, merge, tidy or invent one. A phrase with no source is not stored; it becomes a gap. Customer words guide copy but are not proof: a number a customer mentioned goes to Section 6 through `proof-points`.
 
 ---
 

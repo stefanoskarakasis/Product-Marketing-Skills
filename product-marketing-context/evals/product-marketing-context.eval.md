@@ -2,7 +2,7 @@
 skill: product-marketing-context
 version: 3.0.0
 eval_version: 2.0.0
-last_updated: 2026-08-22
+last_updated: 2026-10-14
 author: Stefanos Karakasis
 ---
 
@@ -460,3 +460,67 @@ Use this table to track runs. Update after each eval session.
 **Prompt:** "What's stale in my brain?"
 
 **Expect:** Only the Section 8 fields are listed as stale, with age 200 days and limit 180 days.
+
+## Eval 29 — Wizard asks the deal-reality fields in the right sections
+
+**Setup:** No brain. The user has no material to share.
+
+**Prompt:** "Build my brain."
+
+**Expect:** Business model is asked in Section 1. Jobs to be done, cost of the problem, anti-persona and standing buying-committee roles are asked in Section 2. Per-alternative shortfalls, the four switching forces and objections are asked in Section 3. Customer language is asked in Section 4. Conversion action is asked in Section 7. No new section number appears. "Subscription" alone is challenged as a business model.
+
+## Eval 30 — A customer phrase with no source is not stored
+
+**Setup:** A brain with Sections 1 to 6.
+
+**Prompt:** "Add a customer phrase: 'it just works'." No source given.
+
+**Expect:** The skill asks who said it and where. If the user cannot say, nothing is written to `customer_phrases`; a gap block is appended to `/foundation/gaps.md` instead.
+
+## Eval 31 — Ingest keeps customer words verbatim
+
+**Setup:** A pasted call transcript where a customer says: "We live in the inbox and a spreadsheet, and month-end is a fire drill."
+
+**Prompt:** "Add material" and paste the transcript.
+
+**Expect:** The evidence block holds the exact words as `quote`, supports `4.customer_phrases`, and carries the call as `source`. The Brain Diff proposes the phrase exactly as spoken, not tidied or shortened. Phrases are not merged with similar ones. A number the customer mentioned is routed toward Section 6 as a draft, not into `customer_phrases`.
+
+## Eval 32 — An existing brain without the ten fields stays complete
+
+**Setup:** A confirmed brain with Sections 1 to 6 and none of the deal-reality fields.
+
+**Prompt:** "Run health audit."
+
+**Expect:** Section scores are the same as before the fields existed. The audit reports "Deal-reality fields captured: 0 of 10" and names the one that would help most. It is never listed as a gap, never lowers a score, and the brain is not called incomplete.
+
+## Eval 33 — An objection with no approved response is recorded, not invented
+
+**Setup:** A brain with Sections 1 to 6.
+
+**Prompt:** Edit Section 3. The user gives the objection "We already have an ERP module" and says there is no agreed response.
+
+**Expect:** The objection is stored with who raises it and the response left open. A gap block for the response is appended. The skill does not write a response of its own.
+
+## Eval 34 — All four switching forces, or the missing ones become gaps
+
+**Setup:** Edit Section 3. The user gives push and pull only.
+
+**Prompt:** "That's all I have."
+
+**Expect:** Push and pull are stored after the exact before/after is confirmed. Habit and anxiety are not invented. They are added to the gaps file as open blocks.
+
+## Eval 35 — Committee roles are defaults; buyer-personas still writes nothing
+
+**Setup:** A brain with `committee_roles` filled in Section 2.
+
+**Prompt:** "Map the buying committee for this deal" (run through `buyer-personas`).
+
+**Expect:** `buyer-personas` starts from the stored roles, adjusts them for the deal in chat, and writes nothing to the brain. If the user wants a change to the standing roles, the skill hands it to `product-marketing-context`.
+
+## Eval 36 — Pricing page feeds business model and conversion action as pulled
+
+**Setup:** The user gives a website and pricing page URL. Fetching works.
+
+**Prompt:** "Build my brain from my website."
+
+**Expect:** `business_model` and `conversion_action` are proposed in the Brain Diff as `pulled`, rank 4, with the page as source. The button text on the site is read as the conversion action only as a proposal. Nothing is written until the user approves that section.

@@ -25,7 +25,7 @@ reads it. Zero repetition."
 
 Users establish a single context document — `/foundation/brain.md` —
 that stores product context, ICP, positioning, voice and tone, market
-context, and proof points across 6 core sections plus an optional strategy section. One brain covers one product or platform; for several product lines, keep one folder and one brain per product. Every skill in this
+context, and proof points across 6 core sections plus optional strategy and execution sections, with the deal-reality fields (objections, switching forces, customer language, anti-persona) inside them. One brain covers one product or platform; for several product lines, keep one folder and one brain per product. Every skill in this
 marketplace reads this file before producing output, eliminating the
 need to re-explain context across sessions.
 

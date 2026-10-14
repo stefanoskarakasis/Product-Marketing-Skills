@@ -78,7 +78,10 @@ Needs.
     write if missing). Section 2 (ICP).
   - `/context/meta-patterns.md` — optional; guardrails from prior sessions.
   - **Brain contract:** Reads Section 2. Writes Section 2 only — the four
-    profile layers, appended on explicit confirmation. Never creates a separate ICP file. If no brain exists, creates
+    profile layers, appended on explicit confirmation. Layers map to the
+    Section 2 fields `committee_roles` (buyer map), `jobs_to_be_done`
+    (JTBD), `anti_persona` (disqualifiers) and `cost_of_problem` (pains).
+    Read these before asking; fill an empty one instead of re-asking. Never creates a separate ICP file. If no brain exists, creates
     `/foundation/brain.md` holding this section alone (cold start).
 
 ---

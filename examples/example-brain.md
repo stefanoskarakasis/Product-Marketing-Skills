@@ -3,7 +3,7 @@
 > **FICTIONAL EXAMPLE.** Ledgerlane, its customers, numbers and quotes are invented to show what a finished brain looks like. Do not cite any claim below. Replace this file with your own brain before real use (run `product-marketing-context`).
 
 **Generated:** 2026-10-10
-**Version:** 3.0.0
+**Version:** 3.4.0
 **Owner:** Example PMM
 
 ---
@@ -33,6 +33,9 @@ Two plans: Core (capture, matching, approvals) and Control (adds exception routi
 
 **Permitted Claims (may be made without further approval):**
 Go-live in about five weeks. Works on top of the existing ERP. [src: Ledgerlane implementation records | 2026-09-30 | stated | confirmed]
+
+**Business Model (how you charge, what the price scales with, self-serve or sales-led):**
+Annual subscription priced on invoice volume bands, with a platform fee for the Control plan. Sales-led: a 30-minute demo, then a two-week pilot on the buyer's own invoices.
 
 ---
 
@@ -64,6 +67,22 @@ Senior AP analyst or AP manager who lives in the inbox and the spreadsheet. Want
 **Buying Triggers:**
 A failed audit finding on duplicate payments. A new Controller or CFO who wants a faster close. Invoice volume growing 30% or more without headcount to match. An ERP upgrade that exposes how many manual workarounds exist.
 
+**Jobs to Be Done (When __, I want to __, so I can __):**
+1. When month-end is two days away, I want every invoice matched and approved, so I can close on time.
+2. When an invoice looks wrong, I want it routed to the person who can fix it, so I stop chasing people by email.
+
+**Cost of the Problem (time, money or risk, with a number and its source):**
+About 1.5 FTE of keying time per 20,000 invoices a month, and roughly one avoidable duplicate payment a quarter. (Estimate from three customer interviews; not yet confirmed with finance data.)
+
+**Anti-Persona (who is NOT a fit, and why):**
+Teams under 2,000 invoices a month (the cost of the tool outweighs the saving) and companies that plan to replace their ERP within a year (matching rules would be rebuilt).
+
+**Buying Committee (standing roles, what each cares about, what makes each block):**
+- Controller (champion or buyer): close time and audit findings. Blocks if the pilot adds work to the close.
+- CFO (economic buyer): cost of inaction and payback period. Blocks on risk to payment accuracy.
+- IT or ERP owner (technical blocker): security and ERP integration. Blocks if it needs custom development.
+- AP analyst (end user): fewer manual matches. Blocks if the tool is slower than the spreadsheet.
+
 ---
 
 ## Section 3: Alternatives & Positioning
@@ -88,6 +107,22 @@ Accounts payable automation for mid-market finance teams
 **Market Type:**
 Existing category, resegmented: enterprise AP suites exist; Ledgerlane is built for teams without an implementation team.
 
+**Where Each Alternative Falls Short (for this ICP):**
+- ERP AP module: cannot route an exception to the person who can fix it.
+- Enterprise AP suite: six-month rollout and a services bill a 10-person team cannot absorb.
+- Offshore data entry: moves the keying but not the errors, and adds a handoff.
+
+**Switching Forces (push, pull, habit, anxiety):**
+- Push: duplicate payments found after the money has left; close stretching past 8 days.
+- Pull: go-live in about five weeks on top of the existing ERP; exceptions reach the right person.
+- Habit: the spreadsheet and shared inbox work well enough that nobody owns changing them.
+- Anxiety: "Will it break our ERP posting?" and "Will the team trust the matching?"
+
+**Objections (who raises it, approved response):**
+- "We already have an ERP module." (Controller) Response: show one exception routed end to end; the module cannot do that. [src: Q3 win/loss review | 2026-09-14 | pulled | confirmed]
+- "Another tool to maintain." (IT) Response: go-live uses the existing ERP posting; no custom development.
+- "We'll look at it after year-end." (CFO) Response: open, no approved response yet.
+
 ---
 
 ## Section 4: Voice & Tone
@@ -108,6 +143,11 @@ Plain, precise, operator-to-operator, calm about money
 
 **Tone Example (Copy that captures our voice):**
 > Most invoice errors are found after the money has left. Ledgerlane checks each invoice against the purchase order before it is approved, and sends the ones that do not match to the person who can fix them. Your analysts stop chasing and start reviewing.
+
+**Customer Language (exact words, each with who said it and where):**
+- "Month-end is a fire drill." (Controller, discovery call) [src: call 0912 E-011 | 2026-09-12 | pulled | confirmed]
+- "We live in the inbox and a spreadsheet." (AP manager, discovery call) [src: call 0912 E-012 | 2026-09-12 | pulled | confirmed]
+- "I just want the weird ones to land on the right desk." (AP analyst, customer interview) [src: interview 0921 E-017 | 2026-09-21 | pulled | confirmed]
 
 ---
 
@@ -200,6 +240,9 @@ Customer-proof content over paid spend. A webinar with two named customers.
 
 **Explicitly Not Doing:**
 No new vertical landing pages this quarter. No competitor-name ads.
+
+**Conversion Action (the one thing the funnel drives):**
+Book a 30-minute demo, followed by a pilot on the buyer's own invoices.
 
 ## Section 8: Execution
 

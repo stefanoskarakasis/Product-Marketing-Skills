@@ -23,7 +23,7 @@ If the file does not exist yet, create it with this header (once):
     source_type: [user | contract | crm | call | internal-doc | website | chat | note]
     authority: [0-5, see the table]
     as_of: [YYYY-MM-DD, the date of the source]
-    supports: [section.field, for example 2.pains]
+    supports: [section.field, for example 2.pains, 3.objections or 4.customer_phrases]
     status: [new | used | contradicted | superseded]
     supersedes: [an earlier id, or leave blank]
 

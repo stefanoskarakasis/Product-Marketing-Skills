@@ -9,7 +9,7 @@ Use this template file in your repo. The `product-marketing-context` skill will 
 # PMM Brain — {{product_name}}
 
 **Generated:** {{generated_date}}
-**Version:** 3.1.0
+**Version:** 3.4.0
 **Owner:** {{brain_owner}}
 
 ---
@@ -39,6 +39,9 @@ Use this template file in your repo. The `product-marketing-context` skill will 
 
 **Permitted Claims (may be made without further approval):**
 {{permitted_claims}}
+
+**Business Model (how you charge, what the price scales with, self-serve or sales-led):**
+{{business_model}}
 
 ---
 
@@ -70,6 +73,18 @@ Use this template file in your repo. The `product-marketing-context` skill will 
 **Buying Triggers:**
 {{icp_buying_triggers}}
 
+**Jobs to Be Done (When __, I want to __, so I can __):**
+{{jobs_to_be_done}}
+
+**Cost of the Problem (time, money or risk, with a number and its source):**
+{{cost_of_problem}}
+
+**Anti-Persona (who is NOT a fit, and why):**
+{{anti_persona}}
+
+**Buying Committee (standing roles, what each cares about, what makes each block):**
+{{committee_roles}}
+
 ---
 
 ## Section 3: Alternatives & Positioning
@@ -94,6 +109,15 @@ Use this template file in your repo. The `product-marketing-context` skill will 
 **Market Type:**
 {{market_type}}
 
+**Where Each Alternative Falls Short (for this ICP):**
+{{alt_shortfalls}}
+
+**Switching Forces (push, pull, habit, anxiety):**
+{{switching_forces}}
+
+**Objections (who raises it, approved response):**
+{{objections}}
+
 ---
 
 ## Section 4: Voice & Tone
@@ -112,6 +136,9 @@ Use this template file in your repo. The `product-marketing-context` skill will 
 
 **Tone Example (Copy that captures our voice):**
 > {{tone_example}}
+
+**Customer Language (exact words, each with who said it and where):**
+{{customer_phrases}}
 
 ---
 
@@ -160,6 +187,9 @@ Use this template file in your repo. The `product-marketing-context` skill will 
 
 **Explicitly Not Doing:**
 {{not_doing}}
+
+**Conversion Action (the one thing the funnel drives):**
+{{conversion_action}}
 
 ---
 
@@ -224,6 +254,7 @@ Each section has its own freshness limit (see `references/brain-schema.md`). Fie
 - Positioning is challenged (new competitor, loss patterns)
 - Voice changes (brand refresh, new CEO, new tone)
 - A quarter turns over (Section 7)
+- A new call, interview or win/loss review changes what customers say or object to (Sections 2, 3, 4)
 - An approval path, owner or channel changes (Section 8)
 
 **How to update:**
@@ -239,7 +270,7 @@ You may also edit this file by hand. Run the health audit afterwards so tags and
 - Delete old sections (keep history)
 - Present an unconfirmed value as confirmed
 
-Sections 1 to 6 make a complete brain. Sections 7 (Strategy) and 8 (Execution) are recommended: an existing brain without them stays complete, and the audit reports each as "not built" rather than as a gap.
+Sections 1 to 6 make a complete brain. The ten deal-reality fields (see `references/brain-schema.md`) are recommended too: a brain without them stays complete, and the audit reports how many are captured. Sections 7 (Strategy) and 8 (Execution) are recommended: an existing brain without them stays complete, and the audit reports each as "not built" rather than as a gap.
 
 ---
 

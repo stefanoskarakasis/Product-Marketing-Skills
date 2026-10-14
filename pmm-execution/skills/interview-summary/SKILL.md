@@ -50,7 +50,7 @@ Built on JTBD theory. Sharpened for B2B product and GTM contexts.
   If no interview type specified, default to "Discovery".
 - **Context keys:**
   - `/foundation/brain.md` — optional. Section 2 (ICP, including the confirmed beachhead segment) and Section 3 (Alternatives & Positioning), used only to validate the ICP match and to compare named alternatives. Never used to shape what the transcript says.
-  - **Brain contract:** Reads Sections 2, 3. Writes: none. Never writes to: Sections 1 to 8.
+  - **Brain contract:** Reads Sections 2, 3. Writes: none. Never writes to: Sections 1 to 8. Customer words, objections and switching forces from a summary are stored by `product-marketing-context` (Add material) after you approve the Brain Diff.
   - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior interviews
 ---
 

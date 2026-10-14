@@ -52,7 +52,7 @@ The skill runs in 6 steps:
 - **Context keys:**
    - `/foundation/brain.md` — required. Sections 2 (ICP), 3 (Alternatives & Positioning), 6 (Proof Points Registry). Section 7 (Strategy) is read if present.
    - `/context/meta-patterns.md` — optional; recurring patterns the user has logged from prior GTM briefs.
-   - **Brain contract:** Reads Sections 2, 3, 6, and 7 if present (launch calendar and priorities, to flag clashes with the new launch). Writes: none — this skill does not write to `/foundation/brain.md` on its own. If Section 6 is thin or unsourced, route to `proof-points` (Add or Audit mode) rather than treating flagged claims as usable.
+   - **Brain contract:** Reads Sections 1 (`business_model` only), 2, 3, 6, and 7 if present (launch calendar and priorities, to flag clashes with the new launch; `conversion_action` as the default success action). Writes: none — this skill does not write to `/foundation/brain.md` on its own. If Section 6 is thin or unsourced, route to `proof-points` (Add or Audit mode) rather than treating flagged claims as usable.
 
 ---
 

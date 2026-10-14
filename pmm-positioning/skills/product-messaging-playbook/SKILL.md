@@ -74,7 +74,7 @@ assembles the rest into one document a rep can open cold.
     when missing). Sections 1 (Product), 2 (ICP), 3
     (Alternatives & Positioning), 5 (Market Context), 6 (Proof Points
     Registry).
-  - **Brain contract:** Reads Sections 1, 2, 3, 5, 6. Writes: none. This
+  - **Brain contract:** Reads Sections 1, 2, 3, 5, 6, including Section 3 `objections` (with approved responses) and `switching_forces`, and Section 4 `customer_phrases` for exact buyer wording. Writes: none. This
     skill is a read-only assembler, same contract as `message-house` — it
     never edits `/foundation/brain.md`.
 
@@ -240,7 +240,8 @@ Three subsections, sourced — never freehand:
    Experience-today framing in Step 2. If a `positioning-messaging`
    SALES-ENABLEMENT output was pasted, reuse its persona pain points
    directly rather than reinventing questions.
-3. **Addressing objections:** pull directly from brain Section 6's
+3. **Addressing objections:** pull first from brain Section 3's
+   `objections` field and use its approved responses as written; then from brain Section 6's
    Forbidden Claims list (what NOT to say and why) plus, if a
    SALES-ENABLEMENT output was pasted, its persona cards' pre-handled
    objections verbatim. If neither source exists, this subsection ships

@@ -1,9 +1,10 @@
 # Changelog
 
-## Unreleased
+## v1.13.0 — 2026-10-14
 
 ### pmm-competitive-intelligence
 
+- `competitive-battlecard` also reads `alt_shortfalls`, `switching_forces`, `objections`, `anti_persona` and `customer_phrases` from the brain.
 - Added the **pmm-competitive-intelligence** plugin with one skill, **competitive-battlecard** (`/pmm-competitive-intelligence:competitive-battlecard`). It builds a one-page card for one competitor in one deal: win condition, what to say first, a five-row snapshot, questions to ask, replies to what the buyer will say, when to lean in and when to walk away, and the proof you are allowed to use.
 - Tailored to role, GTM motion, the competitor's status in the deal, buyer persona, deal stage and segment. It asks once, always asks whether you want a Google Doc (paste-ready in chat, the default) or an HTML page, shows both in one stacked column with identical headers, and states every assumption on the card.
 - Checks brain Section 6 forbidden claims and Section 8 prohibited items before it writes a line, keeps unapproved claims about your product off the card, tags and dates every competitor claim, and turns an unsourced weakness into a question.
@@ -13,19 +14,32 @@
 
 ### product-marketing-context
 
+- **Sharper brain (3.4.0).** Added ten fields that capture what happens in deals and what customers say, inside the existing sections (no renumbering): `business_model` (Section 1), `jobs_to_be_done`, `cost_of_problem`, `anti_persona`, `committee_roles` (Section 2), `alt_shortfalls`, `switching_forces`, `objections` (Section 3), `customer_phrases` (Section 4), `conversion_action` (Section 7).
+- Customer language is verbatim. Every `customer_phrases` entry is an exact quote with a source (an evidence id, or who said it and when). No source means no entry; it becomes a gap. New Operating Rule 10.
+- The wizard asks the new fields in the right sections, and ingest (Step 8) routes calls, interviews, surveys and win/loss notes to them and the pricing page to `business_model` and `conversion_action`. Phrases are never merged.
+- Existing brains stay complete. The health audit reports "Deal-reality fields captured: X of 10" and never lowers a section score for a missing one.
+- Fixed the template version (said 3.1.0, skill is 3.4.0), updated the skill description and triggers for Sections 7 and 8, and removed an unverified time claim.
+- `brain-schema.md` documents the ten fields and who may write them. The example brain, the plugin README and 8 new evals (29 to 36) cover them.
 - `brain-schema.md` lets `competitive-battlecard` append field notes or a stub to Section 3 after you confirm. `next-skill-map.md` adds an "After competitive-battlecard" entry and offers the card after `alternatives-map`, `signal-monitor` and `proof-points`.
 
 ### pmm-go-to-market
 
+- `go-to-market-strategy` reads `business_model` and `conversion_action` from the brain.
 - `workflow-orchestrator` 2.6.0 routes the "Competitive Intelligence Program" and "Competitive Response (Fast)" workflows to `competitive-battlecard` instead of a placeholder. The `go-to-market-strategy` T1 template checklist names the skill.
 
 ### pmm-positioning
 
+- `ideal-customer-profile`, `alternatives-map`, `buyer-personas`, `brand-voice`, `positioning-messaging` and `product-messaging-playbook` now read the new brain fields instead of re-asking. `ideal-customer-profile` fills `committee_roles`, `jobs_to_be_done`, `anti_persona` and `cost_of_problem`; `alternatives-map` fills `alt_shortfalls` and `switching_forces`. `brand-voice` uses `customer_phrases` verbatim and never rewords them. `buyer-personas` still writes nothing.
+- The playbook's objection handling uses the approved responses in `objections` first.
 - `product-messaging-playbook` 1.3.1 points to `competitive-battlecard` for a full competitor card.
 
 ### pmm-intelligence
 
 - `signal-monitor` 1.0.1 points to `competitive-battlecard` for a competitor card.
+
+### pmm-execution
+
+- `interview-summary` now says where customer words, objections and switching forces go: `product-marketing-context` (Add material), after you approve the Brain Diff.
 
 ### Repo
 

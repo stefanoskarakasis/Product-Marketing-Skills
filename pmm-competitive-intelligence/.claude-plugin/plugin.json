@@ -2,7 +2,7 @@
   "name": "pmm-competitive-intelligence",
   "displayName": "PMM Competitive Intelligence",
   "description": "Competitive intelligence that stays fresh: a roster of your five key competitors with dated, sourced profiles refreshed on a schedule, and a one-page battlecard per competitor for a live deal, tailored to role, GTM motion, buyer persona and deal stage, built from your brain and your alternatives map, with field notes proposed back to Section 3 for you to confirm.",
-  "version": "1.12.1",
+  "version": "1.13.0",
   "author": {
     "name": "Stefanos Karakasis"
   },

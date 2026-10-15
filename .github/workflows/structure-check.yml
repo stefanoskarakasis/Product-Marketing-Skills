@@ -3,6 +3,8 @@ name: Structure Check
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - connectors.json
   pull_request:
     branches: [main]
 

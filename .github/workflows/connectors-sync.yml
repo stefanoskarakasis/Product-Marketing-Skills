@@ -1,0 +1,48 @@
+name: Connectors sync
+
+# When connectors.json changes on main, rewrite every generated connector file
+# from it (the .mcp.json files, connector lists and tables), run the repo
+# checks, and commit the result as github-actions[bot].
+# You only ever edit connectors.json. See docs/add-a-connector.md.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - connectors.json
+      - scripts/generate_connectors.py
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Rewrite generated files from connectors.json
+        run: python3 scripts/generate_connectors.py --write
+
+      - name: Structure check
+        run: python3 .github/scripts/check_structure.py
+
+      - name: Consistency tests
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Commit changes if any
+        run: |
+          if git diff --quiet; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Sync connector files from connectors.json"
+          git push

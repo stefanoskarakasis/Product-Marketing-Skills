@@ -1,0 +1,363 @@
+{
+  "_readme": "EDIT THIS FILE to add, remove or change connectors. Never edit the generated tables or .mcp.json files by hand: the 'Connectors sync' Action rewrites them from this file. See docs/add-a-connector.md.",
+  "foundation": "product-marketing-context",
+  "plugins": ["product-marketing-context", "pmm-positioning", "pmm-execution", "pmm-go-to-market", "pmm-growth", "pmm-intelligence", "pmm-competitive-intelligence", "pmm-toolkit"],
+  "no_connector_plugins": ["pmm-meta"],
+  "verified": "2026-10-15",
+  "servers": [
+    {
+      "name": "notion",
+      "tool": "Notion",
+      "category": "knowledge base",
+      "type": "http",
+      "url": "https://mcp.notion.com/mcp",
+      "plugins": ["pmm-positioning", "pmm-execution", "pmm-competitive-intelligence", "pmm-toolkit"],
+      "signin": "Notion login, choose pages to share",
+      "unlocks": "Company and product docs",
+      "if_fails": "Share the pages with the integration"
+    },
+    {
+      "name": "atlassian",
+      "tool": "Atlassian",
+      "category": "knowledge base",
+      "type": "http",
+      "url": "https://mcp.atlassian.com/v1/mcp",
+      "plugins": ["pmm-positioning", "pmm-execution", "pmm-competitive-intelligence", "pmm-toolkit"],
+      "signin": "Atlassian login",
+      "unlocks": "Confluence docs",
+      "if_fails": "Confirm site access"
+    },
+    {
+      "name": "hubspot",
+      "tool": "HubSpot",
+      "category": "CRM",
+      "type": "http",
+      "url": "https://mcp.hubspot.com/anthropic",
+      "plugins": ["pmm-positioning", "pmm-go-to-market", "pmm-growth", "pmm-competitive-intelligence"],
+      "signin": "HubSpot login",
+      "unlocks": "Win/loss and deal data",
+      "if_fails": "Needs permission to read deals"
+    },
+    {
+      "name": "gong",
+      "tool": "Gong",
+      "category": "call recordings",
+      "type": "http",
+      "url": "https://mcp.gong.io/mcp",
+      "plugins": ["pmm-positioning", "pmm-execution", "pmm-go-to-market", "pmm-growth", "pmm-competitive-intelligence"],
+      "signin": "Gong admin approval usually needed",
+      "unlocks": "Transcripts for ICP, alternatives, proof points",
+      "if_fails": "Ask your Gong admin to enable the MCP integration"
+    },
+    {
+      "name": "intercom",
+      "tool": "Intercom",
+      "category": "support",
+      "type": "http",
+      "url": "https://mcp.intercom.com/mcp",
+      "plugins": ["pmm-positioning"],
+      "signin": "Intercom login",
+      "unlocks": "Support themes and pain points",
+      "if_fails": "Needs read access to conversations"
+    },
+    {
+      "name": "slack",
+      "tool": "Slack",
+      "category": "team chat",
+      "type": "http",
+      "url": "https://mcp.slack.com/mcp",
+      "plugins": ["pmm-positioning", "pmm-execution", "pmm-go-to-market", "pmm-growth", "pmm-intelligence", "pmm-competitive-intelligence", "pmm-toolkit"],
+      "signin": "Slack login",
+      "unlocks": "Launch and field threads",
+      "if_fails": "Join the channels you want read"
+    },
+    {
+      "name": "google-drive",
+      "tool": "Google Drive",
+      "category": "cloud storage",
+      "type": "http",
+      "url": "https://drivemcp.googleapis.com/mcp/v1",
+      "plugins": ["pmm-positioning", "pmm-execution", "pmm-go-to-market", "pmm-growth", "pmm-competitive-intelligence", "pmm-toolkit"],
+      "signin": "Google login",
+      "unlocks": "Find and read files, decks and PDFs",
+      "if_fails": "Same: use the built-in Claude connector if the plugin sign-in fails"
+    },
+    {
+      "name": "google-docs",
+      "tool": "Google Docs",
+      "category": "cloud storage",
+      "type": "http",
+      "url": "https://docsmcp.googleapis.com/mcp/v1",
+      "plugins": ["pmm-positioning", "pmm-execution", "pmm-go-to-market", "pmm-toolkit"],
+      "signin": "Google login",
+      "unlocks": "Read and draft documents",
+      "if_fails": "Google lists this server as Developer Preview. If sign-in fails, use Drive or paste the text"
+    },
+    {
+      "name": "google-sheets",
+      "tool": "Google Sheets",
+      "category": "cloud storage",
+      "type": "http",
+      "url": "https://sheetsmcp.googleapis.com/mcp/v1",
+      "plugins": ["pmm-execution", "pmm-go-to-market", "pmm-growth", "pmm-toolkit"],
+      "signin": "Google login",
+      "unlocks": "Read metric and planning sheets",
+      "if_fails": "Same Developer Preview note. If sign-in fails, export to CSV and paste"
+    },
+    {
+      "name": "google-slides",
+      "tool": "Google Slides",
+      "category": "cloud storage",
+      "type": "http",
+      "url": "https://slidesmcp.googleapis.com/mcp/v1",
+      "plugins": ["pmm-positioning", "pmm-execution", "pmm-go-to-market", "pmm-toolkit"],
+      "signin": "Google login",
+      "unlocks": "Read existing decks",
+      "if_fails": "Same Developer Preview note. If sign-in fails, use Drive or paste the text"
+    },
+    {
+      "name": "linear",
+      "tool": "Linear",
+      "category": "project tracker",
+      "type": "http",
+      "url": "https://mcp.linear.app/mcp",
+      "plugins": ["pmm-execution"],
+      "signin": "Linear login",
+      "unlocks": "Launch tasks",
+      "if_fails": "Check workspace access"
+    },
+    {
+      "name": "figma",
+      "tool": "Figma",
+      "category": "design",
+      "type": "http",
+      "url": "https://mcp.figma.com/mcp",
+      "plugins": ["pmm-execution"],
+      "signin": "Figma login",
+      "unlocks": "Design files for PRDs",
+      "if_fails": "Share the file"
+    },
+    {
+      "name": "canva",
+      "tool": "Canva",
+      "category": "design",
+      "type": "http",
+      "url": "https://mcp.canva.com/mcp",
+      "plugins": ["pmm-execution", "pmm-go-to-market", "pmm-toolkit"],
+      "signin": "Canva login",
+      "unlocks": "Launch assets and designs",
+      "if_fails": "Open the design to your account"
+    },
+    {
+      "name": "gmail",
+      "tool": "Gmail",
+      "category": "email",
+      "type": "http",
+      "url": "https://gmailmcp.googleapis.com/mcp/v1",
+      "plugins": ["pmm-positioning", "pmm-execution", "pmm-go-to-market", "pmm-growth", "pmm-intelligence", "pmm-competitive-intelligence", "pmm-toolkit"],
+      "signin": "Google login",
+      "unlocks": "Customer and stakeholder email threads",
+      "if_fails": "If sign-in fails, enable the built-in Claude Gmail connector in Claude settings instead"
+    },
+    {
+      "name": "google-calendar",
+      "tool": "Google Calendar",
+      "category": "calendar",
+      "type": "http",
+      "url": "https://calendarmcp.googleapis.com/mcp/v1",
+      "plugins": ["pmm-positioning", "pmm-execution", "pmm-go-to-market", "pmm-growth", "pmm-intelligence", "pmm-competitive-intelligence", "pmm-toolkit"],
+      "signin": "Google login",
+      "unlocks": "Meeting cadence, launch dates",
+      "if_fails": "Same: use the built-in Claude connector if the plugin sign-in fails"
+    },
+    {
+      "name": "klaviyo",
+      "tool": "Klaviyo",
+      "category": "email marketing",
+      "type": "http",
+      "url": "https://mcp.klaviyo.com/mcp",
+      "plugins": ["pmm-go-to-market", "pmm-growth"],
+      "signin": "Klaviyo login",
+      "unlocks": "Lifecycle email performance",
+      "if_fails": "Needs access to the Klaviyo account"
+    },
+    {
+      "name": "supermetrics",
+      "tool": "Supermetrics",
+      "category": "marketing analytics",
+      "type": "http",
+      "url": "https://mcp.supermetrics.com/mcp",
+      "plugins": ["pmm-go-to-market", "pmm-growth"],
+      "signin": "Supermetrics login",
+      "unlocks": "Cross-channel campaign performance",
+      "if_fails": "Needs a Supermetrics plan with the data sources you want"
+    },
+    {
+      "name": "amplitude",
+      "tool": "Amplitude",
+      "label": "Amplitude (US and EU)",
+      "category": "product analytics",
+      "type": "http",
+      "url": "https://mcp.amplitude.com/mcp",
+      "plugins": ["pmm-growth"],
+      "signin": "Amplitude login",
+      "unlocks": "Usage and adoption metrics",
+      "if_fails": "EU workspaces use the separate `amplitude-eu` server. Ignore the one that does not match your region"
+    },
+    {
+      "name": "amplitude-eu",
+      "tool": "Amplitude",
+      "label": "",
+      "docs": false,
+      "category": "product analytics",
+      "type": "http",
+      "url": "https://mcp.eu.amplitude.com/mcp",
+      "plugins": ["pmm-growth"],
+      "signin": "Amplitude login",
+      "unlocks": "Usage and adoption metrics",
+      "if_fails": "EU workspaces use the separate `amplitude-eu` server. Ignore the one that does not match your region"
+    },
+    {
+      "name": "mixpanel",
+      "tool": "Mixpanel",
+      "label": "Mixpanel (US and EU)",
+      "category": "product analytics",
+      "type": "http",
+      "url": "https://mcp.mixpanel.com/mcp",
+      "plugins": ["pmm-positioning", "pmm-growth"],
+      "signin": "Mixpanel login",
+      "unlocks": "Usage and funnel metrics",
+      "if_fails": "US and EU workspaces use separate servers (`mixpanel`, `mixpanel-eu`). Ignore the one that does not match your region. India workspaces: add `https://mcp-in.mixpanel.com/mcp` as a custom connector"
+    },
+    {
+      "name": "mixpanel-eu",
+      "tool": "Mixpanel",
+      "label": "",
+      "docs": false,
+      "category": "product analytics",
+      "type": "http",
+      "url": "https://mcp-eu.mixpanel.com/mcp",
+      "plugins": ["pmm-positioning", "pmm-growth"],
+      "signin": "Mixpanel login",
+      "unlocks": "Usage and funnel metrics",
+      "if_fails": "US and EU workspaces use separate servers (`mixpanel`, `mixpanel-eu`). Ignore the one that does not match your region. India workspaces: add `https://mcp-in.mixpanel.com/mcp` as a custom connector"
+    },
+    {
+      "name": "asana",
+      "tool": "Asana",
+      "category": "project tracker",
+      "type": "http",
+      "url": "https://mcp.asana.com/v2/mcp",
+      "plugins": ["pmm-execution"],
+      "signin": "Asana login",
+      "unlocks": "Launch tasks and project context",
+      "if_fails": "This repo uses Asana's v2 server. Asana's older SSE address is deprecated"
+    },
+    {
+      "name": "wispr-flow",
+      "tool": "Wispr Flow",
+      "category": "call recordings",
+      "type": "http",
+      "url": "https://api.wisprflow.ai/connect/mcp",
+      "plugins": ["pmm-positioning", "pmm-execution", "pmm-go-to-market", "pmm-growth", "pmm-competitive-intelligence"],
+      "signin": "Wispr Flow account, browser sign-in",
+      "unlocks": "Meeting transcripts, summaries and notes from Wispr Flow Notetaker",
+      "if_fails": "Needs Notetaker and MCP access on your account, and an active HIPAA agreement blocks it. Wispr's docs do not cover Claude Code: if sign-in fails, add it as a connector in Claude settings, or paste transcripts"
+    },
+    {
+      "name": "semrush",
+      "tool": "Semrush",
+      "category": "market data, SEO",
+      "type": "http",
+      "url": "https://mcp.semrush.com/v2/mcp",
+      "plugins": ["pmm-positioning", "pmm-go-to-market", "pmm-growth", "pmm-intelligence", "pmm-competitive-intelligence"],
+      "signin": "Semrush login (OAuth)",
+      "unlocks": "Competitor traffic, keyword demand and organic positioning",
+      "if_fails": "Needs a Semrush plan with API units. SEO data comes with Semrush One or SEO Classic plans, traffic and market data with the Trends API"
+    },
+    {
+      "name": "crunchbase",
+      "tool": "Crunchbase",
+      "category": "company data",
+      "type": "http",
+      "url": "https://mcp.crunchbase.com",
+      "plugins": ["pmm-intelligence", "pmm-competitive-intelligence"],
+      "signin": "Crunchbase login (OAuth)",
+      "unlocks": "Funding, headcount and leadership changes for a named company",
+      "if_fails": "Needs a Crunchbase MCP seat assigned by your workspace admin. In Claude Code the connector only loads when you are signed in with a Claude.ai subscription, not an API key"
+    },
+    {
+      "name": "exa",
+      "tool": "Exa",
+      "category": "web research",
+      "type": "http",
+      "url": "https://mcp.exa.ai/mcp",
+      "plugins": ["pmm-intelligence"],
+      "signin": "None needed: free and rate-limited",
+      "unlocks": "Web search and page fetch for competitor and market signals",
+      "if_fails": "Rate-limited without an account. For your own Exa usage, add `https://mcp.exa.ai/mcp?login` as a custom connector"
+    }
+  ],
+  "connect_your_own": [
+    {
+      "tool": "Salesforce",
+      "category": "CRM",
+      "documents": "Hosted MCP servers use per-user OAuth 2.0 with PKCE and are aimed at customers with Flex Credits. The docs give no public endpoint",
+      "todo": "Ask your Salesforce admin for your org's server address"
+    },
+    {
+      "tool": "GitHub",
+      "category": "project tracker",
+      "documents": "GitHub hosts an official remote server at `https://api.githubcopilot.com/mcp/`. Sign-in needs either a personal access token or an OAuth app that your host has been set up with. Whether Claude Code's own OAuth works with it is not confirmed",
+      "todo": "Add it yourself with your own token kept in your environment, or paste issues and release notes. Never put the token in `.mcp.json`; the structure check blocks it"
+    },
+    {
+      "tool": "Klue",
+      "category": "competitive intelligence",
+      "documents": "Each customer gets their own endpoint and sign-in",
+      "todo": "Ask your admin or customer success manager"
+    },
+    {
+      "tool": "Zendesk",
+      "category": "support",
+      "documents": "No official general-purpose hosted server was found as of August 2026. Partner and community servers exist. Zendesk is retiring API tokens (none can be created from 27 October 2026), so token-based community servers will stop working",
+      "todo": "Paste an export, or use a partner server that signs in with OAuth"
+    },
+    {
+      "tool": "Snowflake",
+      "category": "data warehouse",
+      "documents": "Managed server with one endpoint per database and schema: `https://<account_url>/api/v2/databases/{database}/schemas/{schema}/mcp-servers/{name}`. Snowflake OAuth",
+      "todo": "Create the server in your account, then add it as a custom connector"
+    },
+    {
+      "tool": "Zoom",
+      "category": "video meetings",
+      "documents": "Zoom hosts an official server over streamable HTTP. Its docs page does not list the address or sign-in steps",
+      "todo": "Take the address from Zoom's developer docs, or paste transcripts"
+    },
+    {
+      "tool": "Salesloft",
+      "category": "revenue intelligence",
+      "documents": "Official read-only server, reported as an admin-enabled add-on for customers with an Agent package",
+      "todo": "Ask your Salesloft admin. Clari and Outreach: no official server found, paste exports"
+    },
+    {
+      "tool": "Pardot",
+      "category": "email marketing",
+      "documents": "Only third-party servers found",
+      "todo": "Paste exports"
+    },
+    {
+      "tool": "Clay",
+      "category": "enrichment",
+      "documents": "Runs on your machine as a CLI over stdio (`clay mcp`) and signs in with `clay login` or an API key in your environment",
+      "todo": "Add it as a local server in your own Claude settings. Never put the key in `.mcp.json`; the structure check blocks it"
+    },
+    {
+      "tool": "LinkedIn",
+      "category": "company data",
+      "documents": "Only unofficial servers found",
+      "todo": "Paste exports. Avoid servers that scrape the site"
+    }
+  ]
+}

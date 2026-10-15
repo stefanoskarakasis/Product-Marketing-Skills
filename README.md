@@ -124,7 +124,7 @@ every other skill reads from it.
 /plugin install pmm-meta
 ```
 
-Connectors load per plugin, so install the plugins individually as above. Install `product-marketing-context` first — every other plugin reads the brain it
+Connectors load per plugin. `product-marketing-context` (the brain) wires the whole catalog, so installing it alone gives you every connector, and each other plugin wires only what its skills read. If you instead load the repo root as one plugin, the root `.mcp.json` carries the same catalog. Pick one path: using both declares the same servers twice. Install `product-marketing-context` first — every other plugin reads the brain it
 builds. `pmm-meta` can be installed alongside any combination of the
 others; it doesn't depend on which ones you have.
 
@@ -149,21 +149,25 @@ Adjust the source path per plugin depending on which skills you want.
 
 Skills work without connectors. Connect tools and they pull candidate facts for you to confirm instead of asking you to type them.
 
+<!-- generated:plugin-table begin -->
 | Plugin | Connectors wired |
 |---|---|
-| product-marketing-context | Notion, Atlassian, HubSpot, Fireflies, Gong, SimilarWeb, Intercom, Slack, Google Drive, Google Docs, Google Sheets, Google Slides |
-| pmm-positioning | Fireflies, Gong, HubSpot, SimilarWeb, Intercom, Notion, Atlassian, Ahrefs, Slack, Google Drive, Google Docs, Google Slides |
-| pmm-execution | Fireflies, Gong, Notion, Atlassian, Linear, Figma, Canva, Slack, Gmail, Google Calendar, Google Drive, Google Docs, Google Sheets, Google Slides |
-| pmm-go-to-market | HubSpot, SimilarWeb, Fireflies, Gong, Slack, Klaviyo, Supermetrics, Canva, Gmail, Google Calendar, Google Drive, Google Docs, Google Sheets, Google Slides |
-| pmm-growth | Fireflies, Gong, Amplitude (US and EU), Pendo, SimilarWeb, Ahrefs, HubSpot, Klaviyo, Supermetrics, Google Drive, Google Sheets |
-| pmm-intelligence | SimilarWeb, Ahrefs |
-| pmm-competitive-intelligence | HubSpot, Fireflies, Gong, Slack, SimilarWeb, Notion, Atlassian, Google Drive |
-| pmm-toolkit | Notion, Atlassian, Slack, Canva, Gmail, Google Calendar, Google Drive, Google Docs, Google Sheets, Google Slides |
+| product-marketing-context | Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Linear, Figma, Canva, Gmail, Google Calendar, Klaviyo, Supermetrics, Amplitude (US and EU), Mixpanel (US and EU), Asana, Wispr Flow, Semrush, Crunchbase, Exa |
+| pmm-positioning | Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Google Slides, Gmail, Google Calendar, Mixpanel (US and EU), Wispr Flow, Semrush |
+| pmm-execution | Notion, Atlassian, Gong, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Linear, Figma, Canva, Gmail, Google Calendar, Asana, Wispr Flow |
+| pmm-go-to-market | HubSpot, Gong, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Canva, Gmail, Google Calendar, Klaviyo, Supermetrics, Wispr Flow, Semrush |
+| pmm-growth | HubSpot, Gong, Slack, Google Drive, Google Sheets, Gmail, Google Calendar, Klaviyo, Supermetrics, Amplitude (US and EU), Mixpanel (US and EU), Wispr Flow, Semrush |
+| pmm-intelligence | Slack, Gmail, Google Calendar, Semrush, Crunchbase, Exa |
+| pmm-competitive-intelligence | Notion, Atlassian, HubSpot, Gong, Slack, Google Drive, Gmail, Google Calendar, Wispr Flow, Semrush, Crunchbase |
+| pmm-toolkit | Notion, Atlassian, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Canva, Gmail, Google Calendar |
 | pmm-meta | None |
+<!-- generated:plugin-table end -->
 
-Some connectors need extra access: SimilarWeb and Ahrefs need an API plan,
-Gong usually needs an admin to enable it, and G2 and other review sites are
-paste-only. Install each plugin on its own to load its connectors (see Installation). Sign-in steps: [docs/connect-your-tools.md](docs/connect-your-tools.md). Category registry: [CONNECTORS.md](CONNECTORS.md).
+Some connectors need extra access: Semrush needs an API plan,
+Gong usually needs an admin to enable it, Crunchbase needs a workspace seat, and Wispr Flow needs
+Notetaker and MCP access on your account. Salesforce, GitHub, Zendesk,
+Snowflake, Zoom, Salesloft, Clay and other tools with no public endpoint are
+connect-your-own or paste-only. The brain plugin (`product-marketing-context`) wires every connector in the catalog. Every other plugin wires only the tools its skills read. Install each plugin on its own to load its connectors (see Installation). To add or change a connector, edit `connectors.json` ([how](docs/add-a-connector.md)). Sign-in steps: [docs/connect-your-tools.md](docs/connect-your-tools.md). Category registry: [CONNECTORS.md](CONNECTORS.md).
 
 ## Workflow Intelligence
 

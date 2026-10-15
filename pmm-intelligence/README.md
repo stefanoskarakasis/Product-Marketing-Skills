@@ -20,6 +20,22 @@ priority, so you can tell what matters from what is only interesting.
   the evidence, a confidence label and one suggested next move. Read-only:
   it saves a dated list to `/context/signals/` and never changes your brain.
 
+## Connectors (Optional)
+
+Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`. Only the sources you name in a run are read.
+
+| Category | What it adds | Tools |
+|---|---|---|
+| `~~market data` | competitor traffic and audience shifts | Semrush |
+| `~~team chat` | team threads, launch coordination, field feedback | Slack |
+| `~~email` | customer and stakeholder email context | Gmail |
+| `~~calendar` | meeting cadence, launch dates and attendees | Google Calendar |
+| `~~SEO` | keyword demand, competitor organic positioning | Semrush |
+| `~~company data` | funding, headcount, hiring and leadership changes for a named company | Crunchbase |
+| `~~web research` | open-web search and page fetch for competitor moves, launches and market signals | Exa |
+
+Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
+
 ## Commands (1)
 
 - `/pmm-intelligence:signal-monitor` — Run this week's read.

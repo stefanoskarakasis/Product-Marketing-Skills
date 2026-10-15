@@ -68,14 +68,17 @@ Every skill works without connectors. Install this plugin on its own to load its
 
 | Category | What it adds | Tools |
 |---|---|---|
-| `~~product analytics` | activation, adoption and retention metrics | Amplitude (US and EU), Pendo |
-| `~~market data` | traffic and market benchmarks | SimilarWeb |
-| `~~SEO` | keyword and content demand signals | Ahrefs |
+| `~~product analytics` | activation, adoption and retention metrics | Amplitude (US and EU), Mixpanel (US and EU) |
+| `~~market data` | traffic and market benchmarks | Semrush |
+| `~~SEO` | keyword and content demand signals | Semrush |
 | `~~CRM` | funnel and conversion data | HubSpot |
-| `~~call recordings` | customer calls and quotes to build stories from | Fireflies, Gong |
+| `~~call recordings` | customer calls and quotes to build stories from | Gong, Wispr Flow |
 | `~~email marketing` | lifecycle email performance | Klaviyo |
 | `~~marketing analytics` | cross-channel campaign and spend performance | Supermetrics |
 | `~~cloud storage` | metric sheets, past reports and experiment logs | Google Drive, Google Sheets |
+| `~~team chat` | team threads, launch coordination, field feedback | Slack |
+| `~~email` | customer and stakeholder email context | Gmail |
+| `~~calendar` | meeting cadence, launch dates and attendees | Google Calendar |
 
 Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
 

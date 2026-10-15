@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased
+
+### Connectors
+
+- New `connectors.json` is the single list of connector servers. `scripts/generate_connectors.py` writes each plugin's `.mcp.json`, a root `.mcp.json`, the server line and the "Wired today" column in each `CONNECTORS.md` and plugin README, the Google table, the README plugin table and the two tool tables in `docs/connect-your-tools.md` from it. A "Connectors sync" GitHub Action runs it when `connectors.json` changes, and a new test fails if generated files drift. See `docs/add-a-connector.md`.
+- `product-marketing-context` (the brain) wires every server in the catalog. Other plugins wire only the servers whose category their skills read, except Slack, Gmail and Google Calendar, which every connector-shipping plugin wires.
+- Removed Fireflies, Granola, SimilarWeb, Pendo and Ahrefs from the wired servers. Dropped the connect-your-own notes for ZoomInfo, 6sense, Looker, G2, Crayon and Marketo.
+- Wired six servers: `mixpanel` and `mixpanel-eu` (`~~product analytics`), `asana` (`~~project tracker`), `wispr-flow` (`~~call recordings`), `semrush` (`~~market data` and `~~SEO`), `crunchbase` (`~~company data`) and `exa` (new `~~web research`).
+- `pmm-intelligence` now wires Semrush, Crunchbase, Exa, Slack, Gmail and Google Calendar, and `signal-monitor` reads `~~company data` and `~~web research` as well as `~~market data` and `~~SEO`.
+- New categories in the root `CONNECTORS.md`: `~~web research`, `~~revenue intelligence`, `~~data warehouse`, `~~video meetings` and `~~enrichment`. Only `~~web research` has a wired server.
+- `docs/connect-your-tools.md` lists, for 10 tools with no public address (Salesforce, GitHub, Klue, Zendesk, Snowflake, Zoom, Salesloft, Pardot, Clay, LinkedIn), what each vendor documents and what to do.
+
 ## v1.13.0 — 2026-10-14
 
 ### pmm-competitive-intelligence

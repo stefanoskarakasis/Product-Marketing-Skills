@@ -6,16 +6,18 @@ and the output has the same shape. Category definitions live in the root
 
 | Placeholder | What it adds here | Wired today |
 |---|---|---|
-| `~~call recordings` | interview and call transcripts for summaries | Fireflies, Gong |
+| `~~call recordings` | interview and call transcripts for summaries | Gong, Wispr Flow |
 | `~~knowledge base` | retro, PRD and OKR source docs | Notion, Atlassian |
-| `~~project tracker` | launch tasks and ticket context | Linear |
+| `~~project tracker` | launch tasks and ticket context | Linear, Asana |
 | `~~design` | design files and assets referenced in PRDs | Figma, Canva |
 | `~~team chat` | stakeholder and launch threads | Slack |
 | `~~email` | customer and stakeholder email threads | Gmail |
 | `~~calendar` | meeting cadence and attendees | Google Calendar |
 | `~~cloud storage` | specs, decks, docs and spreadsheets | Google Drive, Google Docs, Google Sheets, Google Slides |
 
-Servers in this plugin's `.mcp.json`: fireflies, gong, notion, atlassian, linear, figma, canva, slack, gmail, google-calendar, google-drive, google-docs, google-sheets, google-slides.
+<!-- generated:servers begin -->
+Servers in this plugin's `.mcp.json`: notion, atlassian, gong, slack, google-drive, google-docs, google-sheets, google-slides, linear, figma, canva, gmail, google-calendar, asana, wispr-flow.
+<!-- generated:servers end -->
 
 Rules: read-only by default, ask before writing, tag every pulled fact with
 category, tool and date, treat pulled facts as drafts until confirmed, and

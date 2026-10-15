@@ -29,7 +29,7 @@ Most weekly "market scans" produce a long list and no decision. This skill does 
 
 - **Args:** The signals, named by you: pasted text, files, URLs you list, or "use my connectors". Optional: the period covered (default: the last 7 days) and the quarter's priority if the brain has none.
 - **Defaults:** Max five opportunities. Period: 7 days. Sources: only those named in this run.
-- **Context keys:** `/foundation/brain.md` (optional), `/foundation/me.md` (optional, format and detail only), `/context/signals/` (earlier runs), `~~market data`, `~~SEO`, pasted material.
+- **Context keys:** `/foundation/brain.md` (optional), `/foundation/me.md` (optional, format and detail only), `/context/signals/` (earlier runs), `~~market data`, `~~SEO`, `~~company data`, `~~web research`, pasted material.
   - **Brain contract:** Reads: Section 2 (who matters), 3 (alternatives, positioning), 5 (market context), 6 (approved proof), 7 (priorities), 8 (prohibited). Writes: none. Never writes to: Sections 1 to 8. A suggested brain change is handed to `product-marketing-context`.
 
 ## Pre-flight
@@ -45,7 +45,7 @@ Most weekly "market scans" produce a long list and no decision. This skill does 
 
 ### Step 1: Name the sources
 
-List the sources you will read this run, back to the user in one line, and confirm. Sources are only what the user pasted, uploaded, listed as URLs, or pulled through `~~market data` or `~~SEO`. If a URL cannot be read, say so and ask for the text. Never fill a gap from memory.
+List the sources you will read this run, back to the user in one line, and confirm. Sources are only what the user pasted, uploaded, listed as URLs, or pulled through `~~market data`, `~~SEO`, `~~company data` or `~~web research`. If a URL cannot be read, say so and ask for the text. Never fill a gap from memory.
 
 ### Step 2: Extract signals
 

@@ -40,6 +40,7 @@ See also [AGENTS.md](AGENTS.md) for skill-authoring conventions and
 - Never commit credentials. A `.mcp.json` must not contain keys, tokens,
   passwords, `headers`, `env` or authorization values. Each user signs in
   with their own account. The structure check enforces this.
+- Connector servers live in `connectors.json`. Never hand-edit a `.mcp.json`, a "Servers in this plugin's" line or any text between `<!-- generated:... -->` markers. Edit `connectors.json` and run `python3 scripts/generate_connectors.py --write`. See `docs/add-a-connector.md`.
 - Connectors are read-only by default, pulled facts are drafts until the
   user confirms, and every skill with a connector block must still work by
   paste when no connector is present.

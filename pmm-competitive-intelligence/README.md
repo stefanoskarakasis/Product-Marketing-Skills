@@ -28,16 +28,19 @@ Every skill works without connectors. Install this plugin on its own to load its
 
 | Category | What it adds | Tools |
 |---|---|---|
-| `~~CRM` | closed-won and closed-lost deals naming the competitor, loss reasons, account type, contract end date | HubSpot (Salesforce: connect your own) |
-| `~~call recordings` | objections as buyers said them, and what moved the deal after | Fireflies, Gong |
+| `~~CRM` | closed-won and closed-lost deals naming the competitor, loss reasons, account type, contract end date | HubSpot |
+| `~~call recordings` | objections as buyers said them, and what moved the deal after | Gong, Wispr Flow |
 | `~~team chat` | field intel and pricing claims reps reported | Slack |
-| `~~market data` | competitor traffic and audience shifts | SimilarWeb |
+| `~~market data` | competitor traffic and audience shifts | Semrush |
 | `~~knowledge base` | internal positioning and product notes | Notion, Atlassian |
 | `~~cloud storage` | existing decks, battlecards and win/loss logs | Google Drive |
-| `~~competitive intelligence` | the competitor cards and win/loss stories your CI team already keeps (paste only today, or connect your vendor's server) | none wired (Klue, Crayon work if you connect them) |
-| `~~win/loss` | buyer interviews on why deals were won or lost (paste only today) | none wired |
-| `~~company data` | funding, headcount and hiring moves for the competitor (paste only today) | none wired |
-| `~~reviews` | public review themes about the competitor (paste only today) | none wired |
+| `~~competitive intelligence` | the competitor cards and win/loss stories your CI team already keeps (paste only today, or connect your vendor's server) | none wired: paste, or connect your own server |
+| `~~win/loss` | buyer interviews on why deals were won or lost | none wired: paste, or connect your own server |
+| `~~company data` | funding, headcount and hiring moves for the competitor (paste only today) | Crunchbase |
+| `~~reviews` | public review themes about the competitor (paste only today) | none wired: paste, or connect your own server |
+| `~~email` | customer and stakeholder email context | Gmail |
+| `~~calendar` | meeting cadence, launch dates and attendees | Google Calendar |
+| `~~SEO` | keyword demand, competitor organic positioning | Semrush |
 
 Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
 

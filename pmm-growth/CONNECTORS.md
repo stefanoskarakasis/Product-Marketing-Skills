@@ -6,16 +6,21 @@ and the output has the same shape. Category definitions live in the root
 
 | Placeholder | What it adds here | Wired today |
 |---|---|---|
-| `~~product analytics` | activation, adoption and retention metrics | Amplitude (US and EU), Pendo |
-| `~~market data` | traffic and market benchmarks | SimilarWeb |
-| `~~SEO` | keyword and content demand signals | Ahrefs |
+| `~~product analytics` | activation, adoption and retention metrics | Amplitude (US and EU), Mixpanel (US and EU) |
+| `~~market data` | traffic and market benchmarks | Semrush |
+| `~~SEO` | keyword and content demand signals | Semrush |
 | `~~CRM` | funnel and conversion data | HubSpot |
-| `~~call recordings` | customer calls and quotes to build stories from | Fireflies, Gong |
+| `~~call recordings` | customer calls and quotes to build stories from | Gong, Wispr Flow |
 | `~~email marketing` | lifecycle email performance | Klaviyo |
 | `~~marketing analytics` | cross-channel campaign and spend performance | Supermetrics |
 | `~~cloud storage` | metric sheets, past reports and experiment logs | Google Drive, Google Sheets |
+| `~~team chat` | team threads, launch coordination, field feedback | Slack |
+| `~~email` | customer and stakeholder email context | Gmail |
+| `~~calendar` | meeting cadence, launch dates and attendees | Google Calendar |
 
-Servers in this plugin's `.mcp.json`: fireflies, gong, amplitude, amplitude-eu, pendo, similarweb, ahrefs, hubspot, klaviyo, supermetrics, google-drive, google-sheets.
+<!-- generated:servers begin -->
+Servers in this plugin's `.mcp.json`: hubspot, gong, slack, google-drive, google-sheets, gmail, google-calendar, klaviyo, supermetrics, amplitude, amplitude-eu, mixpanel, mixpanel-eu, wispr-flow, semrush.
+<!-- generated:servers end -->
 
 Rules: read-only by default, ask before writing, tag every pulled fact with
 category, tool and date, treat pulled facts as drafts until confirmed, and

@@ -30,8 +30,8 @@ Every skill works without connectors. Install this plugin on its own to load its
 | Category | What it adds | Tools |
 |---|---|---|
 | `~~CRM` | segment performance and pipeline context | HubSpot |
-| `~~market data` | segment sizing and competitor signals | SimilarWeb |
-| `~~call recordings` | buyer language for beachhead and motion choices | Fireflies, Gong |
+| `~~market data` | segment sizing and competitor signals | Semrush |
+| `~~call recordings` | buyer language for beachhead and motion choices | Gong, Wispr Flow |
 | `~~team chat` | launch coordination context | Slack |
 | `~~email marketing` | lifecycle and campaign performance | Klaviyo |
 | `~~marketing analytics` | cross-channel performance | Supermetrics |
@@ -39,6 +39,7 @@ Every skill works without connectors. Install this plugin on its own to load its
 | `~~email` | stakeholder and customer email threads | Gmail |
 | `~~calendar` | launch dates and milestones | Google Calendar |
 | `~~cloud storage` | launch docs, sheets and decks | Google Drive, Google Docs, Google Sheets, Google Slides |
+| `~~SEO` | keyword demand, competitor organic positioning | Semrush |
 
 Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
 

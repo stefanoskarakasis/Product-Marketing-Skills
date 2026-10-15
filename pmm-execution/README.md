@@ -37,9 +37,9 @@ Every skill works without connectors. Install this plugin on its own to load its
 
 | Category | What it adds | Tools |
 |---|---|---|
-| `~~call recordings` | interview and call transcripts for summaries | Fireflies, Gong |
+| `~~call recordings` | interview and call transcripts for summaries | Gong, Wispr Flow |
 | `~~knowledge base` | retro, PRD and OKR source docs | Notion, Atlassian |
-| `~~project tracker` | launch tasks and ticket context | Linear |
+| `~~project tracker` | launch tasks and ticket context | Linear, Asana |
 | `~~design` | design files and assets referenced in PRDs | Figma, Canva |
 | `~~team chat` | stakeholder and launch threads | Slack |
 | `~~email` | customer and stakeholder email threads | Gmail |

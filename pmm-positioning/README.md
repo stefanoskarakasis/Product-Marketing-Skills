@@ -39,16 +39,18 @@ Every skill works without connectors. Install this plugin on its own to load its
 
 | Category | What it adds | Tools |
 |---|---|---|
-| `~~call recordings` | buyer language, objections, alternatives named on calls | Fireflies, Gong |
+| `~~call recordings` | buyer language, objections, alternatives named on calls | Gong, Wispr Flow |
 | `~~CRM` | win/loss reasons and segment data | HubSpot |
-| `~~market data` | competitor and market signals | SimilarWeb |
+| `~~market data` | competitor and market signals | Semrush |
 | `~~support` | pain points and churn language | Intercom |
 | `~~knowledge base` | internal positioning and market notes | Notion, Atlassian |
-| `~~SEO` | keyword demand and competitor organic positioning | Ahrefs |
+| `~~SEO` | keyword demand and competitor organic positioning | Semrush |
 | `~~team chat` | win threads and field feedback | Slack |
 | `~~cloud storage` | existing decks, case studies and docs | Google Drive, Google Docs, Google Slides |
-| `~~reviews` | public review themes (paste only today) | none wired |
-| `~~product analytics` | usage evidence for proof points (paste only today) | none wired |
+| `~~reviews` | public review themes (paste only today) | none wired: paste, or connect your own server |
+| `~~product analytics` | usage evidence for proof points | Mixpanel (US and EU) |
+| `~~email` | customer and stakeholder email context | Gmail |
+| `~~calendar` | meeting cadence, launch dates and attendees | Google Calendar |
 
 Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
 

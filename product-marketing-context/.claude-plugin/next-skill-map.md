@@ -160,6 +160,17 @@ named competitor (competitive-battlecard)?"
 - signal-monitor — if you want the market read weekly between refreshes
 **Prompt to surface:** "Next, pick one: build a seller card for a live deal (competitive-battlecard), rework the map (alternatives-map), register the claims the profiles could not use (proof-points), or track the market weekly (signal-monitor)?"
 
+## After competitor-deep-dive (document delivered, record saved)
+**Next options (not a single path — ask which applies):**
+- competitive-battlecard — if a live deal needs the one-page card; it reads this deep-dive's Card feed block
+- alternatives-map — if the competitor was missing from Section 3, or the Brain check showed the map is out of date
+- proof-points — if the deep-dive left `[NEEDS PROOF]` or `[NEEDS APPROVAL]` items worth registering in Section 6
+- competitive-profile — if this competitor has no current profile, or you want your five key competitors kept fresh
+- signal-monitor — if you want this competitor's moves tracked weekly
+- meta-verify — a second quality gate, before the deep-dive leaves the PMM team for an exec, RFP or pricing decision
+- meta-learn — a deeper capture of what this session taught
+**Prompt to surface:** "Next, pick one: build the seller card (competitive-battlecard), map your alternatives properly (alternatives-map), register the claims it could not use (proof-points), keep the profiles current (competitive-profile), track this competitor weekly (signal-monitor), or run a second quality check before this leaves the team (meta-verify)?"
+
 ## After competitive-battlecard (card delivered, record saved)
 **Next options (not a single path — ask which applies):**
 - alternatives-map — if the competitor was missing from Section 3, or the card exposed a conflict with the map

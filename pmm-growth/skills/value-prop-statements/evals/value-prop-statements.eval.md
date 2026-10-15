@@ -194,30 +194,3 @@ done
 # [invoke value-prop-statements with eval N test data]
 # [validate against eval N pass criteria]
 ```
-name: Structure Check
-
-on:
-  push:
-    branches: [main]
-    paths-ignore:
-      - connectors.json
-  pull_request:
-    branches: [main]
-
-jobs:
-  check-structure:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repo
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Run structure check
-        run: python3 .github/scripts/check_structure.py
-
-      - name: Run consistency tests
-        run: python3 -m unittest discover -s tests -v

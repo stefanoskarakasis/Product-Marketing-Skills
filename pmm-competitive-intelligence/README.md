@@ -1,13 +1,6 @@
 # pmm-competitive-intelligence
 
-Competitive plays a seller can use in a live deal, built from your brain and your alternatives map. `competitive-profile` keeps a roster of your five key competitors current, with a dated, sourced profile for each. `competitive-battlecard` takes one competitor and returns one page: what to say first, what to ask, what to say when the buyer pushes back, and when to walk away. It is tailored to who is selling to whom, at what stage, and what the competitor's role in the deal is.
-
-## Start here
-
-- **You get:** a one-page card (a paste-ready Google Doc in chat, or an HTML page) for one competitor in one deal, with every competitor claim tagged and dated.
-- **First command:** `/pmm-competitive-intelligence:competitive-profile` to set up your five, then `/pmm-competitive-intelligence:competitive-battlecard` for a live deal (both work with pasted notes; no connector needed)
-- **Try:** "Battlecard for [competitor]. I am an AE talking to their CFO in the evaluation stage."
-- **The brain:** Sharper with a brain (Sections 3 and 6 especially). With no brain it asks five quick questions and holds the answers for the session only. The brain-building skill is a separate plugin, `product-marketing-context`. The map of who you compete with is built by `alternatives-map` in `pmm-positioning`.
+Competitive intelligence skills for B2B SaaS PMMs: dated competitor profiles, live-deal battlecards and decision-ready deep-dives.
 
 ## Skills (3)
 

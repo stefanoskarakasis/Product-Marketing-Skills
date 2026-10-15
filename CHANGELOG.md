@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Competitive intelligence
+
+- New skill `competitor-deep-dive` in `pmm-competitive-intelligence`, with the `/pmm-competitive-intelligence:competitor-deep-dive` command: a long-form, sourced deep-dive on one competitor for a named decision. It asks once whether to connect, paste or skip the deal and pricing tools, tests the brain's standing beliefs against fresh evidence, saves to `/context/deep-dives/`, and proposes an append-only Deep-Dive Field Notes block to Section 3 for you to confirm.
+
 ### Connectors
 
 - New `connectors.json` is the single list of connector servers. `scripts/generate_connectors.py` writes each plugin's `.mcp.json`, a root `.mcp.json`, the server line and the "Wired today" column in each `CONNECTORS.md` and plugin README, the Google table, the README plugin table and the two tool tables in `docs/connect-your-tools.md` from it. A "Connectors sync" GitHub Action runs it when `connectors.json` changes, and a new test fails if generated files drift. See `docs/add-a-connector.md`.

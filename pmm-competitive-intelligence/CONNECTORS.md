@@ -1,6 +1,6 @@
 # pmm-competitive-intelligence connectors
 
-Optional. `competitive-profile` and `competitive-battlecard` work without them:
+Optional. `competitive-profile`, `competitive-battlecard` and `competitor-deep-dive` work without them:
 paste what you have and the output has the same shape. Public pages about a
 named competitor are read with web search, so no connector is needed for those. Category definitions live in the root
 `CONNECTORS.md`. Sign-in steps are in `docs/connect-your-tools.md`.

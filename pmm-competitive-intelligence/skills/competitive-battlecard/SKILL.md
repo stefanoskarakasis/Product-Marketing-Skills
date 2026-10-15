@@ -70,7 +70,7 @@ A battlecard is read once, five minutes before a call, and quoted from memory in
 
 ### Step 1: Load Context
 
-Read the brain as above. Then read `/context/battlecards/` for the most recent card on this competitor (to show what changed since) and the last 30 days of `/context/signals/` for any opportunity that names this competitor (a move to weigh, tagged with its original confidence). Say in one line what was found: "Brain: Sections 1 to 8 present, Section 5 stale. Last card: 2026-08-14. Two recent signals."
+Read the brain as above. Then read `/context/battlecards/` for the most recent card on this competitor (to show what changed since) the newest `/context/deep-dives/<competitor-slug>-*.md` if one exists (its Card feed block and Brain check; each claim keeps its own tag and date, and a `re-check` line is shown as a question), and the last 30 days of `/context/signals/` for any opportunity that names this competitor (a move to weigh, tagged with its original confidence). Say in one line what was found: "Brain: Sections 1 to 8 present, Section 5 stale. Last card: 2026-08-14. Two recent signals."
 
 ### Step 2: Establish the Deal
 
@@ -198,6 +198,7 @@ a sparse one `meta-synthesis` can't trust.
 
 - **`alternatives-map`**: building or refreshing the map of who buyers compare you to. Run it first when the competitor is missing from Section 3.
 - **`competitive-profile`**: keeping five competitors' profiles current and the roster itself. The card reads the profile; it does not maintain it.
+- **`competitor-deep-dive`**: the long, sourced document behind a decision. The card does not replace it; when a deep-dive exists for this competitor the card reads it so the two never disagree.
 - **`signal-monitor`**: a weekly read on what changed. Its output feeds this card; it does not replace it.
 - **`proof-points`**: registering, verifying or auditing the claims a card relies on.
 - **`product-messaging-playbook`**: a Sales/CS handoff for one feature, with a single named comparison.

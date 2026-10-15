@@ -9,18 +9,20 @@ Competitive plays a seller can use in a live deal, built from your brain and you
 - **Try:** "Battlecard for [competitor]. I am an AE talking to their CFO in the evaluation stage."
 - **The brain:** Sharper with a brain (Sections 3 and 6 especially). With no brain it asks five quick questions and holds the answers for the session only. The brain-building skill is a separate plugin, `product-marketing-context`. The map of who you compete with is built by `alternatives-map` in `pmm-positioning`.
 
-## Skills (2)
+## Skills (3)
 
 - **competitive-profile** — Keep a roster of your five key competitors with a dated, sourced profile each, refresh only what has gone stale, and get a weekly scheduled refresh proposed.
 - **competitive-battlecard** — Build a one-page competitor battlecard for a live deal, tailored to role, GTM motion, buyer persona and deal stage, with every competitor claim sourced and dated.
+- **competitor-deep-dive** — Build a long-form, sourced deep-dive on one competitor for a named decision, with deal evidence, reviews, a head-to-head per offering and where they genuinely win.
 
-## Commands (5)
+## Commands (6)
 
 - `/pmm-competitive-intelligence:competitive-profile` — Set up your market and roster of up to five competitors, or review their profiles.
 - `/pmm-competitive-intelligence:competitor-refresh` — Refresh only the stale lines of one profile or the whole roster.
 - `/pmm-competitive-intelligence:competitor-roster` — Check who really shows up in your deals and propose a swap.
 - `/pmm-competitive-intelligence:profile-status` — Show the freshness board for your profiles.
 - `/pmm-competitive-intelligence:competitive-battlecard` — Build or refresh a one-page competitor battlecard for a live deal.
+- `/pmm-competitive-intelligence:competitor-deep-dive` — Build or refresh a long-form, sourced deep-dive on one competitor for a named decision.
 
 ## Connectors (Optional)
 

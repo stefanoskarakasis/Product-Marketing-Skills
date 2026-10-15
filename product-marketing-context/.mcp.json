@@ -12,17 +12,9 @@
       "type": "http",
       "url": "https://mcp.hubspot.com/anthropic"
     },
-    "fireflies": {
-      "type": "http",
-      "url": "https://api.fireflies.ai/mcp"
-    },
     "gong": {
       "type": "http",
       "url": "https://mcp.gong.io/mcp"
-    },
-    "similarweb": {
-      "type": "http",
-      "url": "https://mcp.similarweb.com"
     },
     "intercom": {
       "type": "http",
@@ -30,11 +22,7 @@
     },
     "slack": {
       "type": "http",
-      "url": "https://mcp.slack.com/mcp",
-      "oauth": {
-        "clientId": "1601185624273.8899143856786",
-        "callbackPort": 3118
-      }
+      "url": "https://mcp.slack.com/mcp"
     },
     "google-drive": {
       "type": "http",
@@ -51,6 +39,70 @@
     "google-slides": {
       "type": "http",
       "url": "https://slidesmcp.googleapis.com/mcp/v1"
+    },
+    "linear": {
+      "type": "http",
+      "url": "https://mcp.linear.app/mcp"
+    },
+    "figma": {
+      "type": "http",
+      "url": "https://mcp.figma.com/mcp"
+    },
+    "canva": {
+      "type": "http",
+      "url": "https://mcp.canva.com/mcp"
+    },
+    "gmail": {
+      "type": "http",
+      "url": "https://gmailmcp.googleapis.com/mcp/v1"
+    },
+    "google-calendar": {
+      "type": "http",
+      "url": "https://calendarmcp.googleapis.com/mcp/v1"
+    },
+    "klaviyo": {
+      "type": "http",
+      "url": "https://mcp.klaviyo.com/mcp"
+    },
+    "supermetrics": {
+      "type": "http",
+      "url": "https://mcp.supermetrics.com/mcp"
+    },
+    "amplitude": {
+      "type": "http",
+      "url": "https://mcp.amplitude.com/mcp"
+    },
+    "amplitude-eu": {
+      "type": "http",
+      "url": "https://mcp.eu.amplitude.com/mcp"
+    },
+    "mixpanel": {
+      "type": "http",
+      "url": "https://mcp.mixpanel.com/mcp"
+    },
+    "mixpanel-eu": {
+      "type": "http",
+      "url": "https://mcp-eu.mixpanel.com/mcp"
+    },
+    "asana": {
+      "type": "http",
+      "url": "https://mcp.asana.com/v2/mcp"
+    },
+    "wispr-flow": {
+      "type": "http",
+      "url": "https://api.wisprflow.ai/connect/mcp"
+    },
+    "semrush": {
+      "type": "http",
+      "url": "https://mcp.semrush.com/v2/mcp"
+    },
+    "crunchbase": {
+      "type": "http",
+      "url": "https://mcp.crunchbase.com"
+    },
+    "exa": {
+      "type": "http",
+      "url": "https://mcp.exa.ai/mcp"
     }
   }
 }

@@ -1,12 +1,28 @@
 {
   "mcpServers": {
-    "similarweb": {
+    "slack": {
       "type": "http",
-      "url": "https://mcp.similarweb.com"
+      "url": "https://mcp.slack.com/mcp"
     },
-    "ahrefs": {
+    "gmail": {
       "type": "http",
-      "url": "https://api.ahrefs.com/mcp/mcp"
+      "url": "https://gmailmcp.googleapis.com/mcp/v1"
+    },
+    "google-calendar": {
+      "type": "http",
+      "url": "https://calendarmcp.googleapis.com/mcp/v1"
+    },
+    "semrush": {
+      "type": "http",
+      "url": "https://mcp.semrush.com/v2/mcp"
+    },
+    "crunchbase": {
+      "type": "http",
+      "url": "https://mcp.crunchbase.com"
+    },
+    "exa": {
+      "type": "http",
+      "url": "https://mcp.exa.ai/mcp"
     }
   }
 }

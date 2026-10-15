@@ -1,13 +1,5 @@
 {
   "mcpServers": {
-    "fireflies": {
-      "type": "http",
-      "url": "https://api.fireflies.ai/mcp"
-    },
-    "gong": {
-      "type": "http",
-      "url": "https://mcp.gong.io/mcp"
-    },
     "notion": {
       "type": "http",
       "url": "https://mcp.notion.com/mcp"
@@ -16,33 +8,13 @@
       "type": "http",
       "url": "https://mcp.atlassian.com/v1/mcp"
     },
-    "linear": {
+    "gong": {
       "type": "http",
-      "url": "https://mcp.linear.app/mcp"
-    },
-    "figma": {
-      "type": "http",
-      "url": "https://mcp.figma.com/mcp"
-    },
-    "canva": {
-      "type": "http",
-      "url": "https://mcp.canva.com/mcp"
+      "url": "https://mcp.gong.io/mcp"
     },
     "slack": {
       "type": "http",
-      "url": "https://mcp.slack.com/mcp",
-      "oauth": {
-        "clientId": "1601185624273.8899143856786",
-        "callbackPort": 3118
-      }
-    },
-    "gmail": {
-      "type": "http",
-      "url": "https://gmailmcp.googleapis.com/mcp/v1"
-    },
-    "google-calendar": {
-      "type": "http",
-      "url": "https://calendarmcp.googleapis.com/mcp/v1"
+      "url": "https://mcp.slack.com/mcp"
     },
     "google-drive": {
       "type": "http",
@@ -59,6 +31,34 @@
     "google-slides": {
       "type": "http",
       "url": "https://slidesmcp.googleapis.com/mcp/v1"
+    },
+    "linear": {
+      "type": "http",
+      "url": "https://mcp.linear.app/mcp"
+    },
+    "figma": {
+      "type": "http",
+      "url": "https://mcp.figma.com/mcp"
+    },
+    "canva": {
+      "type": "http",
+      "url": "https://mcp.canva.com/mcp"
+    },
+    "gmail": {
+      "type": "http",
+      "url": "https://gmailmcp.googleapis.com/mcp/v1"
+    },
+    "google-calendar": {
+      "type": "http",
+      "url": "https://calendarmcp.googleapis.com/mcp/v1"
+    },
+    "asana": {
+      "type": "http",
+      "url": "https://mcp.asana.com/v2/mcp"
+    },
+    "wispr-flow": {
+      "type": "http",
+      "url": "https://api.wisprflow.ai/connect/mcp"
     }
   }
 }

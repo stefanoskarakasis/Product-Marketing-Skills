@@ -10,27 +10,11 @@
     },
     "slack": {
       "type": "http",
-      "url": "https://mcp.slack.com/mcp",
-      "oauth": {
-        "clientId": "1601185624273.8899143856786",
-        "callbackPort": 3118
-      }
-    },
-    "gmail": {
-      "type": "http",
-      "url": "https://gmailmcp.googleapis.com/mcp/v1"
-    },
-    "google-calendar": {
-      "type": "http",
-      "url": "https://calendarmcp.googleapis.com/mcp/v1"
+      "url": "https://mcp.slack.com/mcp"
     },
     "google-drive": {
       "type": "http",
       "url": "https://drivemcp.googleapis.com/mcp/v1"
-    },
-    "canva": {
-      "type": "http",
-      "url": "https://mcp.canva.com/mcp"
     },
     "google-docs": {
       "type": "http",
@@ -43,6 +27,18 @@
     "google-slides": {
       "type": "http",
       "url": "https://slidesmcp.googleapis.com/mcp/v1"
+    },
+    "canva": {
+      "type": "http",
+      "url": "https://mcp.canva.com/mcp"
+    },
+    "gmail": {
+      "type": "http",
+      "url": "https://gmailmcp.googleapis.com/mcp/v1"
+    },
+    "google-calendar": {
+      "type": "http",
+      "url": "https://calendarmcp.googleapis.com/mcp/v1"
     }
   }
 }

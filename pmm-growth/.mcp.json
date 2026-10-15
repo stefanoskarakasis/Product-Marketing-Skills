@@ -1,36 +1,32 @@
 {
   "mcpServers": {
-    "fireflies": {
+    "hubspot": {
       "type": "http",
-      "url": "https://api.fireflies.ai/mcp"
+      "url": "https://mcp.hubspot.com/anthropic"
     },
     "gong": {
       "type": "http",
       "url": "https://mcp.gong.io/mcp"
     },
-    "amplitude": {
+    "slack": {
       "type": "http",
-      "url": "https://mcp.amplitude.com/mcp"
+      "url": "https://mcp.slack.com/mcp"
     },
-    "amplitude-eu": {
+    "google-drive": {
       "type": "http",
-      "url": "https://mcp.eu.amplitude.com/mcp"
+      "url": "https://drivemcp.googleapis.com/mcp/v1"
     },
-    "pendo": {
+    "google-sheets": {
       "type": "http",
-      "url": "https://app.pendo.io/mcp/v0/shttp"
+      "url": "https://sheetsmcp.googleapis.com/mcp/v1"
     },
-    "similarweb": {
+    "gmail": {
       "type": "http",
-      "url": "https://mcp.similarweb.com"
+      "url": "https://gmailmcp.googleapis.com/mcp/v1"
     },
-    "ahrefs": {
+    "google-calendar": {
       "type": "http",
-      "url": "https://api.ahrefs.com/mcp/mcp"
-    },
-    "hubspot": {
-      "type": "http",
-      "url": "https://mcp.hubspot.com/anthropic"
+      "url": "https://calendarmcp.googleapis.com/mcp/v1"
     },
     "klaviyo": {
       "type": "http",
@@ -40,13 +36,29 @@
       "type": "http",
       "url": "https://mcp.supermetrics.com/mcp"
     },
-    "google-drive": {
+    "amplitude": {
       "type": "http",
-      "url": "https://drivemcp.googleapis.com/mcp/v1"
+      "url": "https://mcp.amplitude.com/mcp"
     },
-    "google-sheets": {
+    "amplitude-eu": {
       "type": "http",
-      "url": "https://sheetsmcp.googleapis.com/mcp/v1"
+      "url": "https://mcp.eu.amplitude.com/mcp"
+    },
+    "mixpanel": {
+      "type": "http",
+      "url": "https://mcp.mixpanel.com/mcp"
+    },
+    "mixpanel-eu": {
+      "type": "http",
+      "url": "https://mcp-eu.mixpanel.com/mcp"
+    },
+    "wispr-flow": {
+      "type": "http",
+      "url": "https://api.wisprflow.ai/connect/mcp"
+    },
+    "semrush": {
+      "type": "http",
+      "url": "https://mcp.semrush.com/v2/mcp"
     }
   }
 }

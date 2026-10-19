@@ -2,10 +2,9 @@
 name: experiment-doc
 version: 2.6.0
 description: >
-  Guides you through building high-rigor experiment briefs by first understanding your role,
-  what you're testing, and what scale you need to detect real results statistically. Pressure-tests
-  your hypothesis and only approves experiments that can reach significance with realistic sample sizes.
-
+  Builds, audits and pressure-tests experiment briefs, approving only experiments that can
+  reach statistical significance at realistic sample sizes. Use when you have a growth or
+  product test idea, a hypothesis to sharpen, or an experiment doc to score.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

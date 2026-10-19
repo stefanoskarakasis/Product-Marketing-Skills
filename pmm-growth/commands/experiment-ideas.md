@@ -1,5 +1,5 @@
 ---
-description: Generate several concrete, brain-grounded growth ideas — channel, message, rationale, cost-efficiency — ranked by effort vs. impact
+description: Generate ranked, brain-grounded growth ideas — channel, message, rationale, and cost-efficiency
 argument-hint: "<product/launch context, or just say 'give me growth ideas'>"
 ---
 

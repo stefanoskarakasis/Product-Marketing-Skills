@@ -2,15 +2,11 @@
 name: meta-learn
 version: 3.1.0
 description: >
-  Deliberate deep-dive capture for a completed skill session that deserves
-  more than the automatic one-line row every T1/T2 skill already logs at its
-  own close — asks three extraction questions (what surprised you, what was
-  wrong, what was missing), turns real answers into specific, falsifiable
-  pattern statements, and logs the session to /context/skill-sessions.md in
-  the same format so meta-synthesis reads one consistent log either way.
-  Trigger on: "capture what we learned", "log this session", "save the
-  learnings", "what did we learn", or any request to encode deeper insights
-  from a completed skill session.
+  Captures a completed skill session in depth: three extraction questions (what surprised
+  you, what was wrong, what was missing) become falsifiable pattern statements, logged to
+  /context/skill-sessions.md for meta-synthesis. Trigger on: "capture what we learned",
+  "log this session", "save the learnings", "what did we learn", or any request to encode
+  deeper insights from a completed skill session.
 metadata:
   author: Stefanos Karakasis
   context: context-agnostic

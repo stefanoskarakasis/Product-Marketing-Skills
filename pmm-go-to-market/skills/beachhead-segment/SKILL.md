@@ -2,7 +2,10 @@
 name: beachhead-segment
 version: 3.0.2
 description: >
-    Identifies and scores your highest-priority beachhead segment using four-dimension scoring (Burning Pain, Willingness to Pay, Winnability, Referral Potential) with blocking gates. Reads brain context (ICP, alternatives & positioning, proof points) and, when available, guardrails from prior beachhead decisions the user has logged. Writes confirmed beachhead to brain Section 2, on explicit confirmation.
+  Scores candidate segments on Burning Pain, Willingness to Pay, Winnability and Referral
+  Potential, with blocking gates, to pick your highest-priority beachhead. Use when
+  choosing a first market or customer segment; the confirmed beachhead is written to brain
+  Section 2 only on your say-so.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

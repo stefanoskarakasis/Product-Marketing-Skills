@@ -1,6 +1,6 @@
 # pmm-execution
 
-Day-to-day PMM execution: PRDs, growth experiments, OKRs, pre-mortems, retrospectives, stakeholder management, interview synthesis, and prioritization frameworks.
+Day-to-day PMM execution skills: PRDs, OKRs, pre-mortems, retros, stakeholder maps, interview summaries, experiment docs and prioritization frameworks.
 
 ## Start here
 
@@ -11,29 +11,31 @@ Day-to-day PMM execution: PRDs, growth experiments, OKRs, pre-mortems, retrospec
 
 ## Skills (8)
 
-- **experiment-doc** — Build, audit, score, and pressure-test growth experiment documents with ICE scoring and a self-improving knowledge base.
-- **interview-summary** — Synthesize customer interviews with JTBD theory, signal detection, and confidence scoring.
-- **pmm-okrs** — Build complete, export-ready OKR sets for PMM teams including Key Results, Projects, and Exec Summary language.
-- **prd** — Co-write a full PRD with embedded Solution Story for PM and PMM teams.
-- **pre-mortem** — Run cross-functional pre-mortem risk analysis on any strategic project or launch.
-- **prioritization-frameworks** — Apply 9 GTM-native prioritization frameworks with tier output logic (T1–T4).
-- **retro** — Facilitate structured GTM retrospectives anchored to OKRs with a compounding knowledge loop.
-- **stakeholder-maps** — Build political stakeholder maps with Sprint Cards for launches and GTM initiatives.
+- **experiment-doc** — Build, audit and pressure-test an experiment brief, approving only tests that can reach significance at realistic sample sizes.
+- **interview-summary** — Turn raw customer interview transcripts into structured JTBD discovery outputs with signal detection and confidence scoring.
+- **pmm-okrs** — Build an export-ready quarterly OKR set with Key Results, Projects, scorecard metrics and Exec Summary language.
+- **prd** — Co-write a full PRD with an embedded Solution Story, anchored in your brain's positioning and ICP.
+- **pre-mortem** — Run a cross-functional pre-mortem on a launch or strategic project and surface the deal-blocking risks, with owners.
+- **prioritization-frameworks** — Apply one of 9 prioritization frameworks with a PMM interpretation layer and launch tier output (T1–T4).
+- **retro** — Facilitate a GTM retrospective anchored to OKRs and launch outcomes that ends in decisions, not venting.
+- **stakeholder-maps** — Build a political stakeholder map showing who can kill your launch, who champions it and what to say to each.
 
 ## Commands (8)
 
-- `/pmm-execution:experiment` — Build or audit a growth experiment document.
-- `/pmm-execution:interview-summary` — Synthesize a customer interview transcript.
+- `/pmm-execution:experiment` — Build, audit or score a growth experiment document.
+- `/pmm-execution:interview-summary` — Summarize a customer interview transcript.
 - `/pmm-execution:okrs` — Build a quarterly PMM OKR set.
-- `/pmm-execution:prd` — Create a product requirements document with Solution Story.
-- `/pmm-execution:pre-mortem` — Run pre-mortem risk analysis on a strategic project.
-- `/pmm-execution:prioritize` — Score and tier initiatives using prioritization frameworks.
+- `/pmm-execution:prd` — Create a PRD with an embedded Solution Story.
+- `/pmm-execution:pre-mortem` — Run a pre-mortem on a strategic project.
+- `/pmm-execution:prioritize` — Score and tier initiatives with a prioritization framework.
 - `/pmm-execution:retro` — Facilitate a post-launch or sprint retrospective.
 - `/pmm-execution:stakeholder-map` — Build a stakeholder map for a launch or initiative.
 
 ## Connectors (Optional)
 
 Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`.
+
+Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
 
 | Category | What it adds | Tools |
 |---|---|---|
@@ -45,8 +47,6 @@ Every skill works without connectors. Install this plugin on its own to load its
 | `~~email` | customer and stakeholder email threads | Gmail |
 | `~~calendar` | meeting cadence and attendees | Google Calendar |
 | `~~cloud storage` | specs, decks, docs and spreadsheets | Google Drive, Google Docs, Google Sheets, Google Slides |
-
-Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
 
 ## Author
 

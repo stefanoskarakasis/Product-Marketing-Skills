@@ -1,6 +1,6 @@
 # pmm-toolkit
 
-PMM utilities: writing assistant (internal messages plus marketing content), resume reviewer, privacy policy generator, and GACCS campaign briefs.
+PMM utilities: writing assistant for internal and marketing content, resume review, privacy policy generator and GACCS campaign briefs.
 
 ## Start here
 
@@ -11,10 +11,10 @@ PMM utilities: writing assistant (internal messages plus marketing content), res
 
 ## Skills (4)
 
-- **gaccs-brief** — Build and pressure-test a complete GACCS Brief (Goals, Audience, Creative, Channels, Stakeholders) for any marketing or GTM project.
-- **pmm-resume** — Review and tailor PMM resumes from IC to VP — dissects job descriptions, ranks bullets by fit, and rebuilds the full resume in one pass.
-- **privacy-policy** — Draft a jurisdiction-aware privacy policy for any digital product covering GDPR, CCPA, UK GDPR, and more.
-- **writing-assistant** — Rewrite, sharpen, or draft internal and external communications, with behavioral science pressure-testing for marketing copy. Also drafts blog posts, landing pages, press releases, case studies, newsletters, and social posts from your brain without inventing stats or quotes, and audits a draft for AI patterns.
+- **gaccs-brief** — Build and pressure-test a GACCS Brief (Goals, Audience, Creative, Channels, Stakeholders) for any marketing or GTM project.
+- **pmm-resume** — Review and tailor a PMM resume, IC to VP, against a job description in one pass.
+- **privacy-policy** — Draft a jurisdiction-aware privacy policy for any digital product, covering GDPR, CCPA and UK GDPR.
+- **writing-assistant** — Rewrite, sharpen or draft internal and marketing writing in your voice, and audit a draft for AI patterns.
 
 ## Commands (5)
 
@@ -22,11 +22,13 @@ PMM utilities: writing assistant (internal messages plus marketing content), res
 - `/pmm-toolkit:resume` — Review or tailor a PMM resume against a job description.
 - `/pmm-toolkit:privacy` — Draft a jurisdiction-aware privacy policy.
 - `/pmm-toolkit:write` — Rewrite or draft a communication in your voice.
-- `/pmm-toolkit:marketing-content` — Draft a blog post, landing page, press release, case study, newsletter, or social post, or audit a draft for AI patterns.
+- `/pmm-toolkit:marketing-content` — Draft a blog post, landing page, press release, case study, newsletter or social post, or audit a draft for AI patterns.
 
 ## Connectors (Optional)
 
 Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`.
+
+Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
 
 | Category | What it adds | Tools |
 |---|---|---|
@@ -36,8 +38,6 @@ Every skill works without connectors. Install this plugin on its own to load its
 | `~~calendar` | project dates and stakeholder meetings | Google Calendar |
 | `~~cloud storage` | source docs, sheets and decks | Google Drive, Google Docs, Google Sheets, Google Slides |
 | `~~design` | creative assets referenced in briefs | Canva |
-
-Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
 
 ## Author
 

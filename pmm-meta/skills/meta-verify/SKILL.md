@@ -2,12 +2,11 @@
 name: meta-verify
 version: 3.0.0
 description: >
-  Runs a second-pass quality check on a skill's output before it goes out —
-  re-checks it against the originating skill's own Quality Gate and
-  Operating Rules, and returns specific fixes rather than a pass/fail
-  verdict alone. Trigger on: "verify this", "check this before I send it",
-  "second-pass this brief", "did that pass quality gate", or any request to
-  re-check a skill's output before it's delivered externally.
+  Runs a second-pass quality check on a skill's output before it goes out, re-checking it
+  against the originating skill's Quality Gate and Operating Rules and returning specific
+  fixes, not just pass/fail. Trigger on: "verify this", "check this before I send it",
+  "second-pass this brief", "did that pass quality gate", or any request to re-check a
+  skill's output before it's delivered externally.
 metadata:
   author: Stefanos Karakasis
   context: context-agnostic

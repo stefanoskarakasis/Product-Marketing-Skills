@@ -1,5 +1,5 @@
 ---
-description: Score and select a GTM motion stack against real deal economics, not a taxonomy tour
+description: Score and select a GTM motion stack against real deal economics
 argument-hint: "<segment or initiative, ACV/deal size, sales-cycle length>"
 ---
 

@@ -2,7 +2,11 @@
 name: competitive-battlecard
 version: 1.0.0
 description: >
-  Builds a one-page competitor battlecard a seller can skim in 60 seconds before a call and quote mid-call, tailored to role, GTM motion, buyer persona, deal stage and the competitor's status in the deal. Reads the brain and the alternatives map; proposes field notes back to Section 3. Trigger on: "battlecard for [competitor]", "how do we beat [competitor]", "[competitor] is in my deal", "what do I say against [competitor]", "counter this objection". Related: alternatives-map, signal-monitor, proof-points.
+  Builds a one-page competitor battlecard a seller can skim in 60 seconds before a call,
+  tailored to role, GTM motion, buyer persona, deal stage and the competitor's status in
+  the deal. Trigger on: "battlecard for [competitor]", "how do we beat [competitor]",
+  "[competitor] is in my deal", "what do I say against [competitor]", "counter this
+  objection". Related: alternatives-map, signal-monitor, proof-points.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

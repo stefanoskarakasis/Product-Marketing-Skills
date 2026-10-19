@@ -2,7 +2,11 @@
 name: competitive-profile
 version: 1.0.0
 description: >
-  Keeps a roster of your five key competitors and a dated, sourced profile for each, so every competitive skill starts from fresh ground. Sets up your market and roster from brain Sections 1 to 3, refreshes only what has gone stale, shows a freshness board, and proposes updates from signals, battlecards and deal data for you to confirm. Always offers a weekly scheduled refresh. Trigger on: "who are my key competitors", "set up my competitive profiles", "refresh my competitor profiles", "what's stale", "competitive roster". Related: alternatives-map, signal-monitor, competitive-battlecard.
+  Keeps a roster of your five key competitors with a dated, sourced profile each,
+  refreshes only what has gone stale, and always offers a weekly scheduled refresh.
+  Trigger on: "who are my key competitors", "set up my competitive profiles", "refresh my
+  competitor profiles", "what's stale", "competitive roster". Related: alternatives-map,
+  signal-monitor, competitive-battlecard.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

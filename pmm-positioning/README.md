@@ -37,6 +37,8 @@ Strategic positioning and messaging using April Dunford's framework — with fiv
 
 Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`.
 
+Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
+
 | Category | What it adds | Tools |
 |---|---|---|
 | `~~call recordings` | buyer language, objections, alternatives named on calls | Gong, Wispr Flow |
@@ -51,8 +53,6 @@ Every skill works without connectors. Install this plugin on its own to load its
 | `~~product analytics` | usage evidence for proof points | Mixpanel (US and EU) |
 | `~~email` | customer and stakeholder email context | Gmail |
 | `~~calendar` | meeting cadence, launch dates and attendees | Google Calendar |
-
-Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
 
 ## Author
 

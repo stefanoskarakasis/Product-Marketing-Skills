@@ -46,6 +46,8 @@ positioning to another skill again.
 
 Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`.
 
+Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
+
 | Category | What it adds | Tools |
 |---|---|---|
 | `~~knowledge base` | Product Context, Market Context | Notion, Atlassian |
@@ -72,8 +74,6 @@ Every skill works without connectors. Install this plugin on its own to load its
 | `~~video meetings` | meeting recordings, transcripts and summaries from your video tool | none wired: paste, or connect your own server |
 | `~~enrichment` | company and contact enrichment for named accounts | none wired: paste, or connect your own server |
 | `~~web research` | open-web search and page fetch for competitor moves, launches and market signals | Exa |
-
-Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
 
 ## Author
 

@@ -1,5 +1,5 @@
 ---
-description: Assemble a Sales/CS-ready messaging playbook for a new product or feature — problem, story, one named competitive comparison, discovery questions, objection handling
+description: Assemble a Sales/CS-ready messaging playbook — problem, story, competitive comparison, discovery questions, objections
 argument-hint: "<feature/product name, optionally 'vs [competitor]', or paste a message-house/positioning-messaging output>"
 ---
 

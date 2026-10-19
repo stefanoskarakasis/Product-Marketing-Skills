@@ -1,7 +1,15 @@
 ---
 name: product-marketing-context
 version: 3.4.0
-description: Build and maintain the shared GTM brain — product context, ICP, positioning, voice, market context, proof points, plus optional strategy and execution, and the deal-reality fields (objections, switching forces, customer language, anti-persona) — that every other skill in this stack reads before producing output. Works standalone with your own answers, supercharged when you connect docs or a CRM. Trigger with "build my brain", "set up my GTM foundation", "audit my brain", "update my ICP", "add my objections", "capture what customers say", "refresh my brain", "what's stale in my brain", "my brain gaps", "build my brain from my website and docs", or "my context".
+description: >
+  Builds and maintains the shared GTM brain (product context, ICP, positioning, voice,
+  market context, proof points, plus optional strategy and execution sections and the
+  deal-reality fields) that every other skill reads before producing output. Works
+  standalone from your own answers, and gets stronger when you connect docs or a CRM.
+  Trigger with "build my brain", "set up my GTM foundation", "audit my brain", "update my
+  ICP", "add my objections", "capture what customers say", "refresh my brain", "what's
+  stale in my brain", "my brain gaps", "build my brain from my website and docs", or "my
+  context".
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

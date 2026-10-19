@@ -1,5 +1,5 @@
 ---
-description: Show the freshness board for your competitor profiles: what is stale, what changed and what still needs proof
+description: Show the freshness board for your competitor profiles — what is stale, changed or unproven
 argument-hint: "<none>"
 ---
 

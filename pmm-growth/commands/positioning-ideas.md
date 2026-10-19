@@ -1,5 +1,5 @@
 ---
-description: Generate 3-5 divergent, ungated positioning angle options anchored to named alternatives
+description: Generate 3-5 divergent positioning angles anchored to your named alternatives
 argument-hint: "<product/segment, optionally with named alternatives already confirmed>"
 ---
 

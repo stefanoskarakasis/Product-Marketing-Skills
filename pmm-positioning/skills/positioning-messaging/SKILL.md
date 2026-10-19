@@ -2,13 +2,12 @@
 name: positioning-messaging
 version: 2.6.0
 description: >
-  Builds or audits positioning statements, messaging hierarchies, homepage
-  copy, and persona cards using April Dunford's Obviously Awesome
-  framework across five modes (build, audit, fletch, sales-enablement,
-  homepage). Refuses to generate without a named primary persona and 3+
-  alternatives including status quo, and blocks output until a 7-point
-  verification gate passes.
-
+  Builds or audits positioning statements, messaging hierarchies, homepage copy and
+  persona cards using April Dunford's Obviously Awesome framework, in five modes (build,
+  audit, fletch, sales-enablement, homepage). Refuses to generate without a named primary
+  persona and 3+ alternatives including status quo, and blocks output until a 7-point
+  verification gate passes. Use when your messaging is scattered, or sales cannot explain
+  what you do in one sentence.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

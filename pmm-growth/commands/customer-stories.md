@@ -1,5 +1,5 @@
 ---
-description: Kick off, interview for, draft, send for customer review or audit a B2B customer story in one fixed structure, with stats and named quotes checked
+description: Run a B2B customer story from kickoff to approval — brief, interview questions, draft, review pack, audit
 argument-hint: "<customer name, interview notes, or a finished story to audit>"
 ---
 

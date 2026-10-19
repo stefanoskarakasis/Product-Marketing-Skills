@@ -2,7 +2,12 @@
 name: signal-monitor
 version: 1.0.2
 description: >
-  Turn the signals you name into at most five opportunities, each tied to a brain field and a Section 7 priority, with evidence, a confidence label and one suggested next move. Read-only for the brain. Trigger on: "what changed this week", "weekly opportunities", "signal monitor", "what should we act on", "competitor moves this week", "scan these signals". Related: alternatives-map, positioning-messaging, pmm-okrs, workflow-orchestrator.
+  Turns the signals you name into at most five opportunities, each tied to a brain field
+  and a Section 7 priority, with evidence, a confidence label and one suggested next move;
+  it never edits your brain. Trigger on: "what changed this week", "weekly opportunities",
+  "signal monitor", "what should we act on", "competitor moves this week", "scan these
+  signals". Related: alternatives-map, positioning-messaging, pmm-okrs,
+  workflow-orchestrator.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

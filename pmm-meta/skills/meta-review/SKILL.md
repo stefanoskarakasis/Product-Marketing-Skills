@@ -2,12 +2,11 @@
 name: meta-review
 version: 3.1.0
 description: >
-  Audits any SKILL.md in this repo against SKILL-SPEC.md, the skill authoring
-  standard — checks frontmatter, the seven required sections, tier-appropriate
-  sections, and quality-gate structure, then returns a scored checklist with
-  prioritized fixes. Trigger on: "review this skill", "audit this SKILL.md",
-  "does this skill meet spec", "is this skill done", "quality check this skill",
-  or any request to validate a skill file against the repo's authoring standard.
+  Audits any SKILL.md against SKILL-SPEC.md, the repo's skill authoring standard, and
+  returns a scored checklist with prioritized fixes. Trigger on: "review this skill",
+  "audit this SKILL.md", "does this skill meet spec", "is this skill done", "quality check
+  this skill", or any request to validate a skill file against the repo's authoring
+  standard.
 metadata:
   author: Stefanos Karakasis
   context: context-agnostic
@@ -84,7 +83,7 @@ of the 18 checks apply.
 Work through `SKILL-SPEC.md` Section 13 exactly as written, in order:
 
 **Frontmatter (5 checks)** — all required fields present; `name` matches
-directory name; `description` is 300–600 chars with trigger phrases verbatim;
+directory name; `description` is 2–3 sentences with trigger phrases verbatim;
 `metadata.context` declared; `version` and `last_updated` present.
 
 **Seven required sections (7 checks)** — `Trigger`, `Inputs`, `Pre-flight`,

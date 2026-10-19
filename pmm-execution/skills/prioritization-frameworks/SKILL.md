@@ -2,7 +2,11 @@
 name: prioritization-frameworks
 version: 3.1.1
 description: >
-  Selects and applies the right prioritization framework (9 frameworks: Opportunity Score, ICE, RICE, Eisenhower, Impact vs Effort, Risk vs Reward, Kano, Weighted Decision Matrix, MoSCoW) with PMM interpretation layer and GTM launch tier output (T1–T4). Reads brain context (ICP, alternatives & positioning) and, when available, guardrails from prior scoring sessions.
+  Selects and applies one of 9 prioritization frameworks (Opportunity Score, ICE, RICE,
+  Eisenhower, Impact vs Effort, Risk vs Reward, Kano, Weighted Decision Matrix, MoSCoW)
+  with a PMM interpretation layer and GTM launch tier output (T1–T4). Use when ranking
+  initiatives, triaging a launch backlog, or deciding how much GTM weight something
+  deserves.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

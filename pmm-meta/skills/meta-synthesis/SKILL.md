@@ -2,7 +2,11 @@
 name: meta-synthesis
 version: 3.2.0
 description: >
-    Reads /context/skill-sessions.md (the session log every execution skill writes to) to detect patterns that repeat across 2+ sessions, proposes new guardrails for /context/meta-patterns.md, and proposes brain updates for confirmed learnings. Run on-demand or roughly weekly — not a scheduled background job. Trigger on: "run meta-synthesis", "what patterns are emerging", "detect cross-skill signals", "update guardrails", "compound our learnings", "what should we remember".
+  Reads /context/skill-sessions.md to detect patterns that repeat across 2+ sessions,
+  proposes new guardrails for /context/meta-patterns.md, and proposes brain updates for
+  confirmed learnings. Run on demand or roughly weekly, not as a background job. Trigger
+  on: "run meta-synthesis", "what patterns are emerging", "detect cross-skill signals",
+  "update guardrails", "compound our learnings", "what should we remember".
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

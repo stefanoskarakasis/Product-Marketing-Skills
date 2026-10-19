@@ -1,7 +1,12 @@
 ---
 name: privacy-policy
 version: 3.0.0
-description: Draft a jurisdiction-aware privacy policy for any digital product — use this skill whenever a PMM or Product Manager needs to create, update, audit, or review data protection documentation, asks about GDPR, CCPA, or UK GDPR obligations, mentions "privacy policy", "cookie policy", "data retention", "right to be forgotten", "data processing agreement", or asks what their product needs to comply with applicable privacy law.
+description: >
+  Drafts a jurisdiction-aware privacy policy for any digital product. Use whenever a PMM
+  or Product Manager needs to create, update, audit or review data protection
+  documentation, asks about GDPR, CCPA or UK GDPR obligations, mentions "privacy policy",
+  "cookie policy", "data retention", "right to be forgotten", "data processing agreement",
+  or asks what their product needs to comply with applicable privacy law.
 metadata:
   author: Stefanos Karakasis
   context: context-agnostic

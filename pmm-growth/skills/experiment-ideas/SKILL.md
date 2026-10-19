@@ -2,12 +2,11 @@
 name: experiment-ideas
 version: 1.0.0
 description: >
-  Generates several concrete, cost-efficient growth ideas — each with a
-  channel, core message, and cost-efficiency rationale — grounded in
-  brain ICP, alternatives, and market context. Trigger with "give me
-  marketing ideas", "brainstorm growth tactics", "what should we try",
-  "cheap ways to promote this", or any request to generate raw campaign
-  or channel ideas before committing to one to test.
+  Generates several concrete, cost-efficient growth ideas, each with a channel, core
+  message and cost-efficiency rationale, grounded in your brain's ICP, alternatives and
+  market context. Trigger with "give me marketing ideas", "brainstorm growth tactics",
+  "what should we try", "cheap ways to promote this", or any request to generate raw
+  campaign or channel ideas before committing to one to test.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

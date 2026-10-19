@@ -1,5 +1,5 @@
 ---
-description: Set up your market and a roster of up to five competitors, each with a dated, sourced profile, and get a weekly refresh proposed
+description: Set up your market and a roster of up to five competitors, each with a dated, sourced profile
 argument-hint: "<optional: a competitor, or 'setup', 'status', 'review'>"
 ---
 

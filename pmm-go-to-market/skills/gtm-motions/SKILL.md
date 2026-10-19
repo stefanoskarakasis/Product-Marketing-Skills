@@ -3,9 +3,9 @@ name: gtm-motions
 version: 1.2.0
 description: >
   Scores your GTM motion stack (Inbound, Outbound, Paid, Community, Partner, ABM, PLG)
-  against ICP deal economics with blocking gates, then selects one primary and at most
-  one secondary motion. Trigger with "which GTM motions should we use", "inbound vs
-  outbound", "PLG vs sales-led", or any request to select or sequence acquisition channels.
+  against ICP deal economics with blocking gates, then selects one primary and at most one
+  secondary motion. Trigger with "which GTM motions should we use", "inbound vs outbound",
+  "PLG vs sales-led", or any request to select or sequence acquisition channels.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

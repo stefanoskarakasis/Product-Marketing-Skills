@@ -2,13 +2,12 @@
 name: interview-summary
 version: 2.5.0
 description: >
-  Customer interview synthesis engine for PMMs, Product Managers, and UX Researchers.
-  Transforms raw transcripts into structured discovery outputs anchored in JTBD theory,
-  with signal-level pattern detection and confidence scoring.
-  Trigger on: "summarize interview", "process transcript", "interview summary", "what did customers say", 
-  "synthesize discovery", "interview debrief", "JTBD analysis", "customer insight", "research synthesis", 
-  or any request to process, structure, or extract meaning from a customer or prospect interview.
-
+  Turns raw customer interview transcripts into structured discovery outputs anchored in
+  JTBD theory, with signal-level pattern detection and confidence scoring. Trigger on:
+  "summarize interview", "process transcript", "interview summary", "what did customers
+  say", "synthesize discovery", "interview debrief", "JTBD analysis", "customer insight",
+  "research synthesis", or any request to process, structure, or extract meaning from a
+  customer or prospect interview.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

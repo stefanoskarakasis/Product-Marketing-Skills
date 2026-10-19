@@ -1,5 +1,5 @@
 ---
-description: Build a persona-adaptive voice guide — brand attributes, tone by buyer and channel, forbidden language — then deepen brain Section 4
+description: Build a persona-adaptive voice guide — brand attributes, tone by buyer and channel, forbidden language
 argument-hint: "<what's off about your current voice, or just say 'build my voice guide'>"
 ---
 

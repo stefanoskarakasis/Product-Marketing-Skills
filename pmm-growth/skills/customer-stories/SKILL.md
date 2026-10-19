@@ -2,7 +2,11 @@
 name: customer-stories
 version: 1.0.0
 description: >
-  Run a B2B customer story from kickoff to approval: kickoff questions, internal brief, interview questions, a draft in one fixed structure, the customer review pack, and an audit, with every stat and quote checked. Trigger on: "write a customer story", "kick off a case study", "customer interview questions", "prepare the customer review", "audit this customer story". Related: interview-summary, proof-points, writing-assistant.
+  Runs a B2B customer story from kickoff to customer approval: kickoff questions, internal
+  brief, interview questions, a draft in one fixed structure, the customer review pack and
+  an audit, with every stat and quote checked. Trigger on: "write a customer story", "kick
+  off a case study", "customer interview questions", "prepare the customer review", "audit
+  this customer story". Related: interview-summary, proof-points, writing-assistant.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

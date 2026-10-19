@@ -2,6 +2,13 @@
 
 Competitive intelligence skills for B2B SaaS PMMs: dated competitor profiles, live-deal battlecards and decision-ready deep-dives.
 
+## Start here
+
+- **You get:** dated profiles of your five key competitors and a one-page battlecard for a live deal, tied to your alternatives map.
+- **First command:** `/pmm-competitive-intelligence:competitive-profile`
+- **Try:** "Set up my competitive profiles. We sell [product] to [buyer]."
+- **The brain:** sharper with a brain (Sections 1 to 3) and an alternatives map; without them the skills ask for what they need. The brain-building skill is a separate plugin, `product-marketing-context`.
+
 ## Skills (3)
 
 - **competitive-profile** — Keep a roster of your five key competitors with a dated, sourced profile each, refresh only what has gone stale, and get a weekly scheduled refresh proposed.
@@ -21,6 +28,8 @@ Competitive intelligence skills for B2B SaaS PMMs: dated competitor profiles, li
 
 Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`.
 
+Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
+
 | Category | What it adds | Tools |
 |---|---|---|
 | `~~CRM` | closed-won and closed-lost deals naming the competitor, loss reasons, account type, contract end date | HubSpot |
@@ -36,8 +45,6 @@ Every skill works without connectors. Install this plugin on its own to load its
 | `~~email` | customer and stakeholder email context | Gmail |
 | `~~calendar` | meeting cadence, launch dates and attendees | Google Calendar |
 | `~~SEO` | keyword demand, competitor organic positioning | Semrush |
-
-Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
 
 ## Author
 

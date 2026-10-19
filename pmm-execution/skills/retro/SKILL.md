@@ -2,13 +2,10 @@
 name: retro
 version: 1.4.0
 description: >
-  Structured GTM retrospective for cross-functional squads anchored to OKRs and launch
-  outcomes. Produces diagnostic root causes and actionable decisions, not venting. Loads
-  brain context and, when available, guardrails from prior sessions logged in the user's
-  own workspace. Use for post-launch reviews, GTM cycle debriefs, and sprint
-  retrospectives where you need to understand what broke structurally and fix it before
-  the next cycle.
-
+  Facilitates a structured GTM retrospective for cross-functional squads, anchored to OKRs
+  and launch outcomes, that ends in root causes and decisions rather than venting. Use for
+  post-launch reviews, GTM cycle debriefs, and sprint retrospectives where you need to fix
+  what broke structurally before the next cycle.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

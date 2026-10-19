@@ -2,12 +2,11 @@
 name: ideal-customer-profile
 version: 1.1.0
 description: >
-  Synthesizes research data — surveys, interviews, usage data, win/loss
-  notes — into an Ideal Customer Profile across demographics, behaviors,
-  Jobs to Be Done, and needs, then deepens brain Section 2 in place.
-  Trigger with "build my ICP", "who is my ideal customer", "analyze our
-  PMF survey", "define our target customer", or any request to identify,
-  segment, or profile customers from research data.
+  Turns research (surveys, interviews, usage data, win/loss notes) into an Ideal Customer
+  Profile across demographics, behaviors, Jobs to Be Done and needs, then deepens brain
+  Section 2. Trigger with "build my ICP", "who is my ideal customer", "analyze our PMF
+  survey", "define our target customer", or any request to identify, segment, or profile
+  customers from research data.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

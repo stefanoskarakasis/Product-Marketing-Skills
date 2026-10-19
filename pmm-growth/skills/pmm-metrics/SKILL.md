@@ -2,15 +2,11 @@
 name: pmm-metrics
 version: 1.0.0
 description: >
-  Defines a North Star Metric and 3-5 Input Metrics, then builds a
-  capped 8-16 metric scorecard across Financial, Customer, Product &
-  GTM, and Process & Growth. Classifies the business game (Attention,
-  Transaction, Productivity), scores the NSM against 7 criteria, and
-  flags vanity and unowned metrics before delivery. Reads brain ICP and
-  beachhead context when available. Trigger on: "what should we
-  measure", "North Star metric", "build a PMM scorecard", "what metrics
-  should I track", "define our key metrics", "set up a metrics
-  framework".
+  Defines a North Star Metric and 3-5 Input Metrics, then builds a capped 8-16 metric
+  scorecard across Financial, Customer, Product & GTM, and Process & Growth, flagging
+  vanity and unowned metrics. Trigger on: "what should we measure", "North Star metric",
+  "build a PMM scorecard", "what metrics should I track", "define our key metrics", "set
+  up a metrics framework".
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

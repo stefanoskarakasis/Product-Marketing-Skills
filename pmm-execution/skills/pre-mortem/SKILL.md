@@ -2,7 +2,10 @@
 name: pre-mortem
 version: 3.1.0
 description: >
-  Identifies and pressure-tests failure modes for any strategic initiative (product launch, pricing change, GTM pivot, new market entry, feature rollout) by running a cross-functional risk exercise. Loads brain context (ICP, positioning, competitive landscape) and, when available, guardrails from prior pre-mortems; surfaces Tigers (deal-blocking risks) with owner-assigned action plans.
+  Runs a cross-functional pre-mortem on a strategic initiative (product launch, pricing
+  change, GTM pivot, new market entry, feature rollout) and surfaces the Tigers, the
+  deal-blocking risks, with owner-assigned action plans. Use before a launch or major
+  move, while what could go wrong is still cheap to fix.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

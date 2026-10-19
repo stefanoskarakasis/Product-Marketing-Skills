@@ -2,7 +2,11 @@
 name: competitor-deep-dive
 version: 1.0.0
 description: >
-  Builds a long-form, fully sourced deep-dive on one competitor for a named decision (strategy call, RFP, pricing change, roadmap bet): dated reviews, deal evidence, recent moves, head-to-head per offering, where they win, and a block the battlecard reads. Triggers: "deep-dive on [competitor]", "full competitor write-up", "what do users really say about [competitor]", "teardown of [competitor]". Related: competitive-battlecard, competitive-profile, signal-monitor.
+  Builds a long-form, fully sourced deep-dive on one competitor for a named decision
+  (strategy call, RFP, pricing change, roadmap bet), with dated reviews, deal evidence, a
+  head-to-head per offering and where they win. Triggers: "deep-dive on [competitor]",
+  "full competitor write-up", "what do users really say about [competitor]", "teardown of
+  [competitor]". Related: competitive-battlecard, competitive-profile, signal-monitor.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

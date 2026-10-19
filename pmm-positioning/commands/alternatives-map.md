@@ -1,5 +1,5 @@
 ---
-description: Build or deepen your competitive alternatives map — direct competitors, adjacent tools, DIY, and status quo — from real win/loss data
+description: Build your competitive alternatives map — direct competitors, adjacent tools, DIY, and status quo — from win/loss data
 argument-hint: "<research you have — win/loss notes, call transcripts, reviews, or 'nothing yet'>"
 ---
 

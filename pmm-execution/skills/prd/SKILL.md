@@ -2,10 +2,9 @@
 name: prd
 version: 2.7.0
 description: >
-  Guides Product Managers and Product Marketing Managers to co-create complete Product Requirements Documents with embedded Solution Stories.
-  Reads brain context (positioning, ICP) to anchor PRDs in strategy.
-  Outputs: structured Solution Story for GTM communications + full PRD for execution alignment.
-
+  Co-writes a full Product Requirements Document with an embedded Solution Story, anchored
+  in your brain's positioning and ICP. Use when a PM or PMM needs a PRD, a standalone
+  Solution Story for GTM communications, or help structuring a feature or launch spec.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

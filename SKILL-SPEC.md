@@ -55,7 +55,7 @@ Every `SKILL.md` opens with YAML frontmatter:
 name: skill-name
 version: 1.0.0
 description: >
-  What this skill does + 3–5 trigger phrases verbatim. Target 300–600 chars.
+  What this skill does, then its trigger phrases verbatim. 2–3 sentences max.
   Trigger phrases belong here — they drive auto-fire. Explanatory prose
   belongs in the H1 paragraph of the body, not here.
   Example: "Assigns launch tier and builds GTM strategy briefs. Trigger on:
@@ -74,7 +74,7 @@ last_updated: YYYY-MM-DD
 |---|---|---|
 | `name` | Yes | Lowercase, hyphens only. Matches directory name exactly. No `--`. |
 | `version` | Yes | Semantic versioning. See Section 10. |
-| `description` | Yes | 300–600 chars. Trigger phrases verbatim. Mention related skills for scope boundaries. |
+| `description` | Yes | 2–3 sentences: what it does, then trigger phrases verbatim. Mention related skills for scope boundaries. |
 | `metadata.author` | Yes | Author name. |
 | `metadata.context` | Yes | `brain-dependent` or `context-agnostic`. See Section 8. |
 | `metadata.quality_gate` | Yes | `true` for any skill producing strategic output. `false` for simple utilities only. |
@@ -578,7 +578,7 @@ When the `review` meta skill audits a `SKILL.md`, it checks these in order. Use 
 **Frontmatter (5 checks):**
 - [ ] All required fields present
 - [ ] `name` matches directory name exactly
-- [ ] `description` is 300–600 chars and includes trigger phrases verbatim
+- [ ] `description` is 2–3 sentences and includes trigger phrases verbatim
 - [ ] `metadata.context` declared as `brain-dependent` or `context-agnostic`
 - [ ] `version` and `last_updated` present
 
@@ -633,7 +633,7 @@ Copy this to `skills/<skill-name>/SKILL.md` when creating a new skill. Fill ever
 name: skill-name
 version: 1.0.0
 description: >
-  What this skill does + 3–5 trigger phrases verbatim. 300–600 chars.
+  What this skill does, then its trigger phrases verbatim. 2–3 sentences max.
   Trigger phrases here drive auto-fire. Explanatory prose goes in the body.
 metadata:
   author: Stefanos Karakasis

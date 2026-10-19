@@ -2,11 +2,10 @@
 name: positioning-ideas
 version: 1.2.0
 description: >
-  Generates 3-5 real positioning angles anchored to your named
-  alternatives — not five ways of saying "we're better," actual
-  different territory to choose from before you commit to one. Use it
-  before positioning-messaging, not instead of it: nothing here ships
-  until your pick passes that skill's gate.
+  Generates 3-5 positioning angles anchored to your named alternatives: different
+  territory to choose from, not five ways of saying "we're better". Use it before
+  positioning-messaging, not instead of it: nothing ships until your pick passes that
+  skill's gate.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

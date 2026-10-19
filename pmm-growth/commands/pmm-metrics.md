@@ -1,5 +1,5 @@
 ---
-description: Define a North Star Metric and capped scorecard, or audit an existing metrics list for sprawl and vanity metrics
+description: Define a North Star Metric and capped scorecard, or audit an existing metrics list for vanity metrics
 argument-hint: "<business context, or just say 'help me define what to measure'>"
 ---
 

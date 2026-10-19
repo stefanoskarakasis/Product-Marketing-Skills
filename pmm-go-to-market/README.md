@@ -1,6 +1,6 @@
 # pmm-go-to-market
 
-Go-to-market strategy, tier assignment, and workflow orchestration for product launches, positioning refresh, competitive programs, and quarterly PMM cycles.
+Go-to-market skills for PMMs: beachhead segments, launch tiering and GTM strategy briefs, GTM motions and multi-skill workflow orchestration.
 
 ## Start here
 
@@ -11,21 +11,23 @@ Go-to-market strategy, tier assignment, and workflow orchestration for product l
 
 ## Skills (4)
 
-- **beachhead-segment** — Score candidate segments on four dimensions and identify the first wedge of customers to dominate before scaling GTM investment.
-- **go-to-market-strategy** — Assign launch tier (T1–T4) and generate a complete GTM strategy brief with positioning angles, channels, success metrics, and competitive context.
-- **workflow-orchestrator** — Orchestrate multi-skill PMM programs end-to-end with Program Charters, checkpoints, coherence checks, and master documents.
-- **gtm-motions** — Score GTM motions against ICP deal economics and select a primary/secondary stack.
+- **beachhead-segment** — Score candidate segments on four dimensions and pick the first wedge of customers to win before scaling.
+- **go-to-market-strategy** — Assign a launch tier (T1–T4) and generate a GTM brief with positioning angles, channels, metrics and competitive context.
+- **workflow-orchestrator** — Chain several PMM skills into one program with a charter, checkpoints and a master document.
+- **gtm-motions** — Score GTM motions against ICP deal economics and pick one primary and at most one secondary.
 
 ## Commands (4)
 
 - `/pmm-go-to-market:beachhead-segment` — Score candidate segments and identify the first wedge to dominate.
 - `/pmm-go-to-market:go-to-market-strategy` — Assign a launch tier and generate a full GTM strategy brief.
-- `/pmm-go-to-market:workflow-orchestrator` — Orchestrate a multi-skill PMM program end-to-end.
-- `/pmm-go-to-market:gtm-motions` — Score and select a GTM motion stack
+- `/pmm-go-to-market:workflow-orchestrator` — Orchestrate a multi-skill PMM program end to end.
+- `/pmm-go-to-market:gtm-motions` — Score and select a GTM motion stack.
 
 ## Connectors (Optional)
 
 Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`.
+
+Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
 
 | Category | What it adds | Tools |
 |---|---|---|
@@ -40,8 +42,6 @@ Every skill works without connectors. Install this plugin on its own to load its
 | `~~calendar` | launch dates and milestones | Google Calendar |
 | `~~cloud storage` | launch docs, sheets and decks | Google Drive, Google Docs, Google Sheets, Google Slides |
 | `~~SEO` | keyword demand, competitor organic positioning | Semrush |
-
-Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
 
 ## Author
 

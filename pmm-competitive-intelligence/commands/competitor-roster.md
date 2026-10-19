@@ -1,5 +1,5 @@
 ---
-description: Check which five competitors really show up in your deals and propose a swap, never forcing one
+description: Check which competitors really show up in your deals and propose a roster swap
 argument-hint: "<optional: 'last quarter' or a CRM name>"
 ---
 

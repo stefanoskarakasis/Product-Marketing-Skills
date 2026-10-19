@@ -2,12 +2,11 @@
 name: market-context
 version: 1.0.0
 description: >
-  Builds the "why now" layer — market maturity, macro forces, buying
-  triggers, narrative arc, and category moment — then deepens brain
-  Section 5 in place. Trigger with "why now", "what's our market context",
-  "define our category", "market narrative", "what macro trends support
-  us", "buying triggers", or any request to define, update, or audit the
-  market forces that make your positioning credible.
+  Builds the "why now" layer (market maturity, macro forces, buying triggers, narrative
+  arc, category moment), then deepens brain Section 5. Trigger with "why now", "what's our
+  market context", "define our category", "market narrative", "what macro trends support
+  us", "buying triggers", or any request to define, update, or audit the market forces
+  that make your positioning credible.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

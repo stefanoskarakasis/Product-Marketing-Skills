@@ -51,9 +51,9 @@ knowledge, a framework, or a guided workflow for a specific PMM task.
 | `pmm-positioning` | Positioning and messaging |
 | `pmm-go-to-market` | GTM strategy, launch tiering, workflow orchestration |
 | `pmm-execution` | Day-to-day PMM work: PRDs, OKRs, retros, pre-mortems |
-| `pmm-growth` | Growth ideation and measurement: a North Star Metric and capped scorecard, pre-commitment positioning angles, brain-grounded campaign ideas, value-prop variants, and customer stories |
-| `pmm-intelligence` | A weekly read on what changed around your product, tied to your brain and your quarterly priorities |
-| `pmm-competitive-intelligence` | A one-page competitor battlecard for a live deal, tailored to role, motion, buyer persona and stage, built from your brain and alternatives map |
+| `pmm-growth` | Growth ideation and measurement: North Star Metric and scorecard, positioning angles, campaign ideas, value-prop variants, customer stories |
+| `pmm-intelligence` | A weekly read on what changed around your product |
+| `pmm-competitive-intelligence` | Competitor profiles, live-deal battlecards and deep-dives |
 | `pmm-toolkit` | Utilities: writing assistant (internal and marketing content), resume review, privacy policy, GACCS briefs |
 | `pmm-meta` | Skills that operate on the skill system itself |
 
@@ -78,10 +78,10 @@ every other skill reads from it.
 | [proof-points](pmm-positioning/skills/proof-points/) | pmm-positioning | Sourced, gated claims registry — approved metrics, quotes, forbidden claims |
 | [message-house](pmm-positioning/skills/message-house/) | pmm-positioning | Formats existing positioning into a Roof + Value Pillars table |
 | [product-messaging-playbook](pmm-positioning/skills/product-messaging-playbook/) | pmm-positioning | Sales/CS-ready messaging playbook: problem, story, one named competitive comparison, discovery/objection script |
-| [signal-monitor](pmm-intelligence/skills/signal-monitor/) | pmm-intelligence | Weekly read: at most five opportunities from signals you name, each tied to a brain field and a Section 7 priority |
-| [competitive-profile](pmm-competitive-intelligence/skills/competitive-profile/) | pmm-competitive-intelligence | Roster of your five key competitors with a dated, sourced profile each; refreshes only stale lines, shows a freshness board and proposes a weekly schedule |
-| [competitive-battlecard](pmm-competitive-intelligence/skills/competitive-battlecard/) | pmm-competitive-intelligence | One-page competitor battlecard for a live deal, tailored to role, motion, persona and stage; field notes proposed back to Section 3 |
-| [competitor-deep-dive](pmm-competitive-intelligence/skills/competitor-deep-dive/) | pmm-competitive-intelligence | Long-form, sourced deep-dive on one competitor for a named decision, with deal evidence, reviews, head-to-head and where they win; field notes proposed back to Section 3 |
+| [signal-monitor](pmm-intelligence/skills/signal-monitor/) | pmm-intelligence | Weekly read: at most five opportunities from signals you name |
+| [competitive-profile](pmm-competitive-intelligence/skills/competitive-profile/) | pmm-competitive-intelligence | Roster of five key competitors with dated, sourced profiles, refreshed only where stale |
+| [competitive-battlecard](pmm-competitive-intelligence/skills/competitive-battlecard/) | pmm-competitive-intelligence | One-page competitor battlecard for a live deal, tailored to role, motion, persona and stage |
+| [competitor-deep-dive](pmm-competitive-intelligence/skills/competitor-deep-dive/) | pmm-competitive-intelligence | Long-form, sourced deep-dive on one competitor for a named decision |
 | [gaccs-brief](pmm-toolkit/skills/gaccs-brief/) | pmm-toolkit | Campaign briefs (Goals, Audience, Creative, Channels, Stakeholders) |
 | [writing-assistant](pmm-toolkit/skills/writing-assistant/) | pmm-toolkit | Sharpen any written communication; draft blog posts, landing pages, press releases, case studies, newsletters, social posts |
 | [pmm-resume](pmm-toolkit/skills/pmm-resume/) | pmm-toolkit | Resume tailoring for PMM roles |

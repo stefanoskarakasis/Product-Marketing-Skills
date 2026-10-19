@@ -1,5 +1,5 @@
 ---
-description: Build a long-form, sourced deep-dive on one competitor for a named decision, with deal evidence, reviews, head-to-head per offering and where they win
+description: Build a long-form, sourced deep-dive on one competitor for a named decision
 argument-hint: "<competitor, plus the decision it supports: pricing change, RFP, strategy call, roadmap bet>"
 ---
 

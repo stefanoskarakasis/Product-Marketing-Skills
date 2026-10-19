@@ -2,14 +2,12 @@
 name: alternatives-map
 version: 2.1.2
 description: >
-  Synthesizes research data — win/loss notes, sales call transcripts,
-  G2/Capterra reviews, analyst reports — into a named alternatives map
-  across four buyer-real types (direct competitors, adjacent tools, DIY,
-  and status quo), each with why-chosen, why-left, and unclaimed
-  territory, then deepens brain Section 3 in place. Trigger with "map our
-  alternatives", "who do we actually compete with", "status quo
-  analysis", "our alternatives section is just a competitor list", or any
-  request to identify, evidence, or sharpen who buyers compare you to.
+  Turns research (win/loss notes, call transcripts, G2/Capterra reviews, analyst reports)
+  into a named alternatives map across direct competitors, adjacent tools, DIY and status
+  quo, each with why-chosen, why-left and unclaimed territory, then deepens brain Section
+  3. Trigger with "map our alternatives", "who do we actually compete with", "status quo
+  analysis", "our alternatives section is just a competitor list", or any request to
+  identify, evidence, or sharpen who buyers compare you to.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

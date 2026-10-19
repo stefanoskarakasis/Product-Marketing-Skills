@@ -1,5 +1,5 @@
 ---
-description: Refresh only the stale lines of one competitor profile or the whole roster, and leave unchanged lines with their original dates
+description: Refresh only the stale lines of one competitor profile or the whole roster
 argument-hint: "<optional: competitor name>"
 ---
 

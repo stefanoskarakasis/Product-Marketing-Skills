@@ -2,7 +2,10 @@
 name: stakeholder-maps
 version: 3.2.0
 description: >
-  Builds political maps (not org charts) showing who can kill your launch, who champions it, and what to say to each stakeholder. Reads brain context (ICP, positioning, GTM motion) and guardrails from prior stakeholder mapping sessions; produces Power × Interest grid with political role assignment, conflict map, and weekly Sprint Cards for execution.
+  Builds a political map, not an org chart, showing who can kill your launch, who
+  champions it and what to say to each stakeholder, with a Power × Interest grid, conflict
+  map and weekly Sprint Cards. Use when aligning stakeholders around a launch or GTM
+  initiative.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

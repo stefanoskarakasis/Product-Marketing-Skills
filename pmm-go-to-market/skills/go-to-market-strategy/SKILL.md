@@ -2,7 +2,10 @@
 name: go-to-market-strategy
 version: 3.2.0
 description: >
-    Assigns launch tier (T1–T4) using a four-signal framework and generates a complete GTM brief with positioning angles, channel strategy, success metrics, and competitive context. Reads brain (ICP, positioning, competitive, proof points) and, when available, guardrails from prior launches the user has logged.
+  Assigns a launch tier (T1–T4) using a four-signal framework and generates a complete GTM
+  brief with positioning angles, channel strategy, success metrics and competitive
+  context. Use when planning a launch or deciding how much GTM investment an initiative
+  deserves.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

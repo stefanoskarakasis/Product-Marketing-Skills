@@ -1,5 +1,5 @@
 ---
-description: Build a one-page competitor battlecard for a live deal, tailored to your role, motion, buyer persona and deal stage
+description: Build a one-page competitor battlecard for a live deal — tailored to role, motion, buyer persona and stage
 argument-hint: "<competitor, plus anything you know: your role, the buyer, the stage, what they said>"
 ---
 

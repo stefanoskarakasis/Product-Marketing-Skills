@@ -1,5 +1,5 @@
 ---
-description: Fan an existing positioning statement out into segment- and channel-specific value-prop copy variants, trace-checked against drift
+description: Fan an existing positioning statement out into segment- and channel-specific value-prop copy
 argument-hint: "<segments or channels you need copy for — assumes a positioning statement already exists>"
 ---
 

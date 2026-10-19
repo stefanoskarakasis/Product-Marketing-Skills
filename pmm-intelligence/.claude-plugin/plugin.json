@@ -1,7 +1,7 @@
 {
   "name": "pmm-intelligence",
   "displayName": "PMM Intelligence",
-  "description": "A weekly read on what changed around your product, tied to your brain: at most five opportunities, each linked to a brain field and a Section 7 priority, from signals you name. Read-only; you decide what to act on.",
+  "description": "A weekly read on what changed around your product: at most five opportunities from signals you name, each tied to your brain and quarterly priorities.",
   "version": "1.13.0",
   "author": {
     "name": "Stefanos Karakasis"

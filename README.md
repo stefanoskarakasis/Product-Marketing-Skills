@@ -4,7 +4,7 @@
 
 Built for PMMs, product marketing leaders and GTM operators. Runs in Claude Code and Claude; the skills are plain `SKILL.md` files, so the same install works in other agents that support them.
 
-Built by [Stefanos Karakasis](https://heystefanos.gumroad.com/). Contributions: [open a PR](CONTRIBUTING.md). Problems: [open an issue](https://github.com/stefanoskarakasis/Product-Marketing-Skills/issues).
+Built by [Stefanos Karakasis]([https://heystefanos.gumroad.com/](https://stefanoskarakasis.substack.com/)). Contributions: [open a PR](CONTRIBUTING.md). Problems: [open an issue](https://github.com/stefanoskarakasis/Product-Marketing-Skills/issues).
 
 ## Install in 60 seconds
 

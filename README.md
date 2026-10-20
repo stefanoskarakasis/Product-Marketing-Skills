@@ -4,7 +4,7 @@
 
 Built for PMMs, product marketing leaders and GTM operators. Runs in Claude Code and Claude; the skills are plain `SKILL.md` files, so the same install works in other agents that support them.
 
-Built by [Stefanos Karakasis]([https://heystefanos.gumroad.com/](https://stefanoskarakasis.substack.com/)). Contributions: [open a PR](CONTRIBUTING.md). Problems: [open an issue](https://github.com/stefanoskarakasis/Product-Marketing-Skills/issues).
+Built by [Stefanos Karakasis](https://stefanoskarakasis.substack.com/). Contributions: [open a PR](CONTRIBUTING.md). Problems: [open an issue](https://github.com/stefanoskarakasis/Product-Marketing-Skills/issues).
 
 ## Install in 60 seconds
 
@@ -217,8 +217,9 @@ Selected skills based on the work of:
 - Ash Maurya — [*Running Lean*](https://www.amazon.com/dp/B004J4XGN6/)
 - Anthony W. Ulwick — [*Jobs to Be Done*](https://jobs-to-be-done-book.com/)
 - Alistair Croll & Benjamin Yoskovitz — [*Lean Analytics*](https://www.amazon.com/Lean-Analytics-Better-Startup-Faster/dp/1449335675/)
+- April Dunford — [*Obviously Awesome*](https://www.aprildunford.com/)
 
-Curated by Stefanos Karakasis from Stefanos's Stack: [https://stefanoskarakasis.substack.com/](https://stefanoskarakasis.substack.com/)
+Curated by [Stefanos Karakasis](https://stefanoskarakasis.substack.com/). Follow along at [Stefanos's Stack](https://stefanoskarakasis.substack.com/).
 
 ## License
 

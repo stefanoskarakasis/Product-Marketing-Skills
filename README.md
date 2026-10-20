@@ -1,42 +1,30 @@
 # Product Marketing Skills for AI Agents
 
-A collection of AI agent skills focused on product marketing tasks. Built
-for Product Marketing Managers, founders, and GTM leaders who want AI
-agents to help with positioning, competitive intelligence, launch planning,
-OKRs, experiments, and GTM strategy.
+**Positioning, competitive intelligence, GTM strategy and launch planning for B2B SaaS product marketers.** Build your company brain once; every skill reads it, so you stop re-explaining your product in every chat.
 
-Designed for Claude Code and Cowork. Skills compatible with other AI assistants.
+Built for PMMs, product marketing leaders and GTM operators. Runs in Claude Code and Claude; the skills are plain `SKILL.md` files, so the same install works in other agents that support them.
 
-Built by [Stefanos Karakasis](https://heystefanos.gumroad.com/).
+Built by [Stefanos Karakasis](https://heystefanos.gumroad.com/). Contributions: [open a PR](CONTRIBUTING.md). Problems: [open an issue](https://github.com/stefanoskarakasis/Product-Marketing-Skills/issues).
 
-Contributions welcome! Found a way to improve a skill or have a new one to
-add? [Open a PR](CONTRIBUTING.md).
+## Install in 60 seconds
 
-Run into a problem or have a question? [Open an issue](https://github.com/stefanoskarakasis/Product-Marketing-Skills/issues) — happy to help.
+```bash
+# Any supported agent (recommended): pick skills interactively
+npx skills add stefanoskarakasis/Product-Marketing-Skills
 
-## What This Is
+# Claude Code only, no prompts
+npx skills add stefanoskarakasis/Product-Marketing-Skills -a claude-code
+```
 
-This is a Claude agent marketplace designed to streamline product
-marketing tasks. The system operates on a foundational principle:
-"Build your brain once (`product-marketing-context`). Every other skill
-reads it. Zero repetition."
+Then run **`product-marketing-context`** first. It interviews you for ~15 minutes and writes `/foundation/brain.md`. Everything else builds on it. No time? Open [`examples/`](examples/) to see a finished brain and five prompts to try.
 
-**The Brain System:**
+Prefer the plugin marketplace? See [Installation](#installation) below.
 
-Users establish a single context document — `/foundation/brain.md` —
-that stores product context, ICP, positioning, voice and tone, market
-context, and proof points across 6 core sections plus optional strategy and execution sections, with the deal-reality fields (objections, switching forces, customer language, anti-persona) inside them. One brain covers one product or platform; for several product lines, keep one folder and one brain per product. Every skill in this
-marketplace reads this file before producing output, eliminating the
-need to re-explain context across sessions.
+## Why a brain?
 
-## Why Product Marketing Skills?
+**The problem:** every time you ask an AI agent for positioning, battlecards or a brief, you re-explain your company. By the fifth conversation you're copy-pasting from old chats.
 
-**The problem:** every time you ask an AI agent for positioning,
-battlecards, or briefs, you re-explain your company. By the fifth
-conversation, you're copy-pasting from old chats.
-
-**The solution:** build your brain once with `product-marketing-context`. Every other skill in this stack reads from `/foundation/brain.md` instead
-of asking again.
+**The fix:** `product-marketing-context` builds one document, `/foundation/brain.md`: product, ICP, alternatives, positioning, voice, market context and proof points. Every other skill reads it before producing anything. One brain covers one product; for several product lines keep one folder and one brain per product.
 
 ## How It Works: Skills and Plugins
 
@@ -110,19 +98,17 @@ every other skill reads from it.
 
 ## Installation
 
-### Option 1: Claude Code / Cowork Plugin Marketplace
+### Option 1: Plugin marketplace (Claude Code / Claude)
+
+"The one-line npx skills add install is at the top of this page. These are the alternatives."
 
 ```bash
 /plugin marketplace add stefanoskarakasis/Product-Marketing-Skills
-/plugin install product-marketing-context
+/plugin install product-marketing-context   # install first: everything reads its brain
 /plugin install pmm-positioning
-/plugin install pmm-toolkit
-/plugin install pmm-execution
 /plugin install pmm-go-to-market
-/plugin install pmm-growth
-/plugin install pmm-intelligence
 /plugin install pmm-competitive-intelligence
-/plugin install pmm-meta
+# ...add pmm-execution, pmm-growth, pmm-intelligence, pmm-toolkit, pmm-meta as needed
 ```
 
 Connectors load per plugin. `product-marketing-context` (the brain) wires the whole catalog, so installing it alone gives you every connector, and each other plugin wires only what its skills read. If you instead load the repo root as one plugin, the root `.mcp.json` carries the same catalog. Pick one path: using both declares the same servers twice. Install `product-marketing-context` first — every other plugin reads the brain it
@@ -179,14 +165,18 @@ document at the end.
 
 ## Usage
 
-Once installed, ask your agent to help with PMM tasks:
+Ask in plain language, or call a skill directly.
 
-- "Build my ICP from these customer interviews"
-- "Map the alternatives my buyers consider and how we compare"
-- "Plan the launch for our new feature as a Tier 2 launch"
-- "Run a retro on last quarter's launch"
+| Say this | Skill that runs |
+|---|---|
+| "Build my ICP from these customer interviews" | `ideal-customer-profile` |
+| "Map the alternatives my buyers consider" | `alternatives-map` |
+| "Write positioning for our new product" | `positioning-messaging` |
+| "Plan the launch for this feature as a Tier 2" | `go-to-market-strategy` |
+| "Build me a battlecard against Acme" | `competitive-battlecard` |
+| "Run a retro on last quarter's launch" | `retro` |
 
-Or call a skill directly, for example `/pmm-positioning:ideal-customer-profile`.
+Direct call example: `/pmm-positioning:ideal-customer-profile`.
 
 ## Making Them Yours
 

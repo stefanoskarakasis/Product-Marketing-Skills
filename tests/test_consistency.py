@@ -388,8 +388,8 @@ class TestBanList(unittest.TestCase):
                 if re.search(r"\b" + re.escape(self.HS), p.read_text(encoding="utf-8", errors="ignore"))]
         self.assertEqual(hits, [])
 
-    def test_storefront_link_not_in_repo(self):
+    def test_storefront_link_only_in_funding_file(self):
         needle = "heystefanos" + ".gumroad.com"
         hits = [str(p.relative_to(ROOT)) for p in self.files()
                 if needle in p.read_text(encoding="utf-8", errors="ignore")]
-        self.assertEqual(hits, [])
+        self.assertTrue(set(hits) <= {".github/FUNDING.yml"}, hits)

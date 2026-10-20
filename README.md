@@ -16,7 +16,7 @@ npx skills add stefanoskarakasis/Product-Marketing-Skills
 npx skills add stefanoskarakasis/Product-Marketing-Skills -a claude-code
 ```
 
-Then run **`product-marketing-context`** first. It interviews you for ~15 minutes and writes `/foundation/brain.md`. Everything else builds on it. No time? Open [`examples/`](examples/) to see a finished brain and five prompts to try.
+Then run **`product-marketing-context`** first. It interviews you for about 15 minutes and writes `/foundation/brain.md`. Everything else builds on it. No time? Open [`examples/`](examples/) to see a finished brain and five prompts to try.
 
 Prefer the plugin marketplace? See [Installation](#installation) below.
 
@@ -24,33 +24,60 @@ Prefer the plugin marketplace? See [Installation](#installation) below.
 
 **The problem:** every time you ask an AI agent for positioning, battlecards or a brief, you re-explain your company. By the fifth conversation you're copy-pasting from old chats.
 
-**The fix:** `product-marketing-context` builds one document, `/foundation/brain.md`: product, ICP, alternatives, positioning, voice, market context and proof points. Every other skill reads it before producing anything. One brain covers one product; for several product lines keep one folder and one brain per product.
+**The fix:** `product-marketing-context` builds one document, `/foundation/brain.md`: product, ICP, alternatives, positioning, voice, market context and proof points. Every other skill reads it before producing anything. One brain covers one product; for several product lines, keep one folder and one brain per product.
 
-## How It Works: Skills and Plugins
+## Start here: pick by job
 
-**Skills** are the building blocks. Each skill gives Claude domain
-knowledge, a framework, or a guided workflow for a specific PMM task.
+Nine plugins, grouped by the work you do. Install `product-marketing-context` first; add the rest as you need them.
 
-**Plugins** group related skills into installable packages, one per GTM domain. This repo has nine plugins:
+| I need to… | Start with | Plugin |
+|---|---|---|
+| Build my brain | `product-marketing-context` | `product-marketing-context` |
+| Define who we sell to and why we win | `ideal-customer-profile`, `alternatives-map` | `pmm-positioning` |
+| Write positioning and messaging | `positioning-messaging`, `message-house` | `pmm-positioning` |
+| Hand Sales a messaging playbook | `product-messaging-playbook` | `pmm-positioning` |
+| Pick a first segment and plan a launch | `beachhead-segment`, `go-to-market-strategy` | `pmm-go-to-market` |
+| Beat a competitor in a live deal | `competitive-battlecard` | `pmm-competitive-intelligence` |
+| Profile a competitor | `competitive-profile`, `competitor-deep-dive` | `pmm-competitive-intelligence` |
+| Know what changed around my product this week | `signal-monitor` | `pmm-intelligence` |
+| Run the PMM job: OKRs, retros, pre-mortems | `pmm-okrs`, `retro`, `pre-mortem` | `pmm-execution` |
+| Generate and measure growth ideas | `experiment-ideas`, `pmm-metrics` | `pmm-growth` |
+| Write customer stories | `customer-stories` | `pmm-growth` |
+| Draft content, briefs, resumes | `writing-assistant`, `gaccs-brief` | `pmm-toolkit` |
+| Keep my skills sharp | `meta-review`, `meta-learn` | `pmm-meta` |
 
-| Plugin | What it covers |
+**Skills** are single guided workflows; **plugins** bundle related skills into one install. The full catalogue is under [Available Skills](#available-skills-39-total).
+
+## How it fits together
+
+```
+                  product-marketing-context
+                  /foundation/brain.md  (built once)
+                            |
+        every skill below reads it before it writes
+                            |
+  +--------------+--------------+--------------+--------------+
+  | positioning  | go-to-market | competitive  | execution    |
+  | ICP, message | beachhead,   | profiles,    | OKRs, PRDs,  |
+  | house, voice | launch tier  | battlecards  | retros       |
+  +--------------+--------------+--------------+--------------+
+        growth | intelligence | toolkit | meta  (same pattern)
+```
+
+## Usage
+
+Ask in plain language, or call a skill directly.
+
+| Say this | Skill that runs |
 |---|---|
-| `product-marketing-context` | The brain |
-| `pmm-positioning` | Positioning and messaging |
-| `pmm-go-to-market` | GTM strategy, launch tiering, workflow orchestration |
-| `pmm-execution` | Day-to-day PMM work: PRDs, OKRs, retros, pre-mortems |
-| `pmm-growth` | Growth ideation and measurement: North Star Metric and scorecard, positioning angles, campaign ideas, value-prop variants, customer stories |
-| `pmm-intelligence` | A weekly read on what changed around your product |
-| `pmm-competitive-intelligence` | Competitor profiles, live-deal battlecards and deep-dives |
-| `pmm-toolkit` | Utilities: writing assistant (internal and marketing content), resume review, privacy policy, GACCS briefs |
-| `pmm-meta` | Skills that operate on the skill system itself |
+| "Build my ICP from these customer interviews" | `ideal-customer-profile` |
+| "Map the alternatives my buyers consider" | `alternatives-map` |
+| "Write positioning for our new product" | `positioning-messaging` |
+| "Plan the launch for this feature as a Tier 2" | `go-to-market-strategy` |
+| "Build me a battlecard against Acme" | `competitive-battlecard` |
+| "Run a retro on last quarter's launch" | `retro` |
 
-## The Foundation: `product-marketing-context`
-
-Every other skill in this repo checks `/foundation/brain.md` first to
-understand your product, ICP, positioning, and competitive landscape before
-doing anything. Build it once with the `product-marketing-context` skill;
-every other skill reads from it.
+Direct call example: `/pmm-positioning:ideal-customer-profile`.
 
 ## Available Skills (39 Total)
 
@@ -96,37 +123,23 @@ every other skill reads from it.
 | [meta-review](pmm-meta/skills/meta-review/) | pmm-meta | Audits skills against `SKILL-SPEC.md` |
 | [meta-verify](pmm-meta/skills/meta-verify/) | pmm-meta | Quality gate on skill output |
 
-## How it fits together
-
-```
-                  product-marketing-context
-                  /foundation/brain.md   ← built once
-                            │
-        every skill below reads it before it writes
-                            │
-  ┌──────────────┬──────────┴───┬──────────────┬─────────────┐
-  │ positioning  │ go-to-market │ competitive  │ execution   │
-  │ ICP, message │ beachhead,   │ profiles,    │ OKRs, PRDs, │
-  │ house, voice │ launch tier  │ battlecards  │ retros      │
-  └──────────────┴──────────────┴──────────────┴─────────────┘
-        growth · intelligence · toolkit · meta  (same pattern)
-```
-
-Skills also write back what they learn, so the brain gets sharper each run.
-
 ## Installation
 
-### Option 1: Plugin marketplace (Claude Code / Claude)
+The one-line `npx skills add` install is at the top of this page. These are the alternatives.
 
-"The one-line npx skills add install is at the top of this page. These are the alternatives."
+### Option 1: Plugin marketplace (Claude Code / Claude)
 
 ```bash
 /plugin marketplace add stefanoskarakasis/Product-Marketing-Skills
 /plugin install product-marketing-context   # install first: everything reads its brain
 /plugin install pmm-positioning
+/plugin install pmm-toolkit
+/plugin install pmm-execution
 /plugin install pmm-go-to-market
+/plugin install pmm-growth
+/plugin install pmm-intelligence
 /plugin install pmm-competitive-intelligence
-# ...add pmm-execution, pmm-growth, pmm-intelligence, pmm-toolkit, pmm-meta as needed
+/plugin install pmm-meta
 ```
 
 Connectors load per plugin. `product-marketing-context` (the brain) wires the whole catalog, so installing it alone gives you every connector, and each other plugin wires only what its skills read. If you instead load the repo root as one plugin, the root `.mcp.json` carries the same catalog. Pick one path: using both declares the same servers twice. Install `product-marketing-context` first — every other plugin reads the brain it
@@ -180,21 +193,6 @@ connect-your-own or paste-only. The brain plugin (`product-marketing-context`) w
 into one coherent, end-to-end program — a Program Charter, sequenced
 skill runs, coherence checks between their outputs, and one master
 document at the end.
-
-## Usage
-
-Ask in plain language, or call a skill directly.
-
-| Say this | Skill that runs |
-|---|---|
-| "Build my ICP from these customer interviews" | `ideal-customer-profile` |
-| "Map the alternatives my buyers consider" | `alternatives-map` |
-| "Write positioning for our new product" | `positioning-messaging` |
-| "Plan the launch for this feature as a Tier 2" | `go-to-market-strategy` |
-| "Build me a battlecard against Acme" | `competitive-battlecard` |
-| "Run a retro on last quarter's launch" | `retro` |
-
-Direct call example: `/pmm-positioning:ideal-customer-profile`.
 
 ## Making Them Yours
 

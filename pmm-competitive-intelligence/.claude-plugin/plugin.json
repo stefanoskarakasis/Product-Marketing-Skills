@@ -9,5 +9,12 @@
   "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-competitive-intelligence",
   "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
   "license": "MIT",
-  "skills": "./skills"
+  "skills": "./skills",
+  "keywords": [
+    "competitive intelligence",
+    "battlecards",
+    "competitor analysis",
+    "sales enablement",
+    "pmm"
+  ]
 }

@@ -13,7 +13,9 @@
       "name": "pmm-go-to-market",
       "displayName": "PMM Go-to-Market",
       "description": "Go-to-market skills for PMMs: beachhead segments, launch tiering and GTM strategy briefs, GTM motions and multi-skill workflow orchestration.",
-      "source": "./pmm-go-to-market"
+      "source": "./pmm-go-to-market",
+      "category": "product-marketing",
+      "tags": ["go-to-market", "gtm", "launch-planning", "beachhead", "b2b-saas"]
     },
     {
       "name": "pmm-positioning",
@@ -27,37 +29,49 @@
       "name": "pmm-execution",
       "displayName": "PMM Execution",
       "description": "Day-to-day PMM execution skills: PRDs, OKRs, pre-mortems, retros, stakeholder maps, interview summaries, experiment docs and prioritization frameworks.",
-      "source": "./pmm-execution"
+      "source": "./pmm-execution",
+      "category": "product-marketing",
+      "tags": ["okrs", "prd", "retro", "pre-mortem", "experiments", "pmm"]
     },
     {
       "name": "pmm-growth",
       "displayName": "PMM Growth",
       "description": "Growth skills for PMMs: North Star Metric and scorecard, positioning angles, campaign ideas, value-prop variants and checked customer stories.",
-      "source": "./pmm-growth"
+      "source": "./pmm-growth",
+      "category": "product-marketing",
+      "tags": ["growth", "experiments", "customer-stories", "metrics", "value-proposition"]
     },
     {
       "name": "pmm-intelligence",
       "displayName": "PMM Intelligence",
       "description": "A weekly read on what changed around your product: at most five opportunities from signals you name, each tied to your brain and quarterly priorities.",
-      "source": "./pmm-intelligence"
+      "source": "./pmm-intelligence",
+      "category": "product-marketing",
+      "tags": ["market-intelligence", "signals", "monitoring", "competitive-intelligence"]
     },
     {
       "name": "pmm-competitive-intelligence",
       "displayName": "PMM Competitive Intelligence",
       "description": "Competitive intelligence skills for B2B SaaS PMMs: dated competitor profiles, live-deal battlecards and decision-ready deep-dives.",
-      "source": "./pmm-competitive-intelligence"
+      "source": "./pmm-competitive-intelligence",
+      "category": "product-marketing",
+      "tags": ["competitive-intelligence", "battlecards", "competitor-analysis", "sales-enablement"]
     },
     {
       "name": "pmm-toolkit",
       "displayName": "PMM Toolkit",
       "description": "PMM utilities: writing assistant for internal and marketing content, resume review, privacy policy generator and GACCS campaign briefs.",
-      "source": "./pmm-toolkit"
+      "source": "./pmm-toolkit",
+      "category": "product-marketing",
+      "tags": ["writing", "briefs", "content", "pmm"]
     },
     {
       "name": "pmm-meta",
       "displayName": "PMM Meta",
       "description": "Meta skills that operate on the skill system itself: skill review, session learning, cross-skill synthesis and output verification.",
-      "source": "./pmm-meta"
+      "source": "./pmm-meta",
+      "category": "product-marketing",
+      "tags": ["meta", "skill-quality", "evals"]
     },
     {
       "name": "product-marketing-context",
@@ -65,14 +79,7 @@
       "description": "The PMM brain — builds and maintains /foundation/brain.md, the GTM context file every other plugin in this stack reads before producing output.",
       "source": "./product-marketing-context",
       "category": "product-marketing",
-      "tags": [
-        "gtm",
-        "foundation",
-        "icp",
-        "positioning",
-        "b2b-saas",
-        "product-marketing"
-      ]
+      "tags": ["gtm", "foundation", "icp", "positioning", "b2b-saas", "product-marketing"]
     }
   ]
 }

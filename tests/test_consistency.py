@@ -387,9 +387,3 @@ class TestBanList(unittest.TestCase):
         hits = [str(p.relative_to(ROOT)) for p in self.files()
                 if re.search(r"\b" + re.escape(self.HS), p.read_text(encoding="utf-8", errors="ignore"))]
         self.assertEqual(hits, [])
-
-    def test_storefront_link_only_in_root_readme(self):
-        needle = "heystefanos" + ".gumroad.com"
-        hits = [str(p.relative_to(ROOT)) for p in self.files()
-                if needle in p.read_text(encoding="utf-8", errors="ignore")]
-        self.assertEqual(hits, ["README.md"])

@@ -9,5 +9,11 @@
   "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-meta",
   "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
   "license": "MIT",
-  "skills": "./skills"
+  "skills": "./skills",
+  "keywords": [
+    "meta",
+    "skill quality",
+    "evals",
+    "pmm"
+  ]
 }

@@ -9,5 +9,13 @@
   "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-growth",
   "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
   "license": "MIT",
-  "skills": "./skills"
+  "skills": "./skills",
+  "keywords": [
+    "growth",
+    "experiments",
+    "customer stories",
+    "metrics",
+    "value proposition",
+    "pmm"
+  ]
 }

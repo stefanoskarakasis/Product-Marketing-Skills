@@ -1,15 +1,16 @@
 # Quick Start
 
-## 1. Clone the repo
+## 1. Install
 
 ```bash
-git clone https://github.com/stefanoskarakasis/Product-Marketing-Skills.git
-cd Product-Marketing-Skills
+npx skills add stefanoskarakasis/Product-Marketing-Skills -a claude-code
 ```
+
+Prefer the plugin marketplace? See the [README](README.md#installation).
 
 ## 2. Build your brain
 
-Open Claude Code, Claude Cowork, Cursor, or Windsurf in this repo and run
+Open Claude Code in your project and run
 the `product-marketing-context` skill. It walks you through:
 
 - Product context (what you sell, to whom)

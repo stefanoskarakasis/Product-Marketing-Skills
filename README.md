@@ -1,7 +1,7 @@
-# PMM Skills Marketplace: Your AI colleague to get Work Done
+# Product Marketing Skills for AI Agents
 
 A collection of AI agent skills focused on product marketing tasks. Built
-for Product Marketing Managers, founders, and marketing leaders who want AI
+for Product Marketing Managers, founders, and GTM leaders who want AI
 agents to help with positioning, competitive intelligence, launch planning,
 OKRs, experiments, and GTM strategy.
 

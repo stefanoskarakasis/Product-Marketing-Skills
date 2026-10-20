@@ -96,6 +96,24 @@ every other skill reads from it.
 | [meta-review](pmm-meta/skills/meta-review/) | pmm-meta | Audits skills against `SKILL-SPEC.md` |
 | [meta-verify](pmm-meta/skills/meta-verify/) | pmm-meta | Quality gate on skill output |
 
+## How it fits together
+
+```
+                  product-marketing-context
+                  /foundation/brain.md   ← built once
+                            │
+        every skill below reads it before it writes
+                            │
+  ┌──────────────┬──────────┴───┬──────────────┬─────────────┐
+  │ positioning  │ go-to-market │ competitive  │ execution   │
+  │ ICP, message │ beachhead,   │ profiles,    │ OKRs, PRDs, │
+  │ house, voice │ launch tier  │ battlecards  │ retros      │
+  └──────────────┴──────────────┴──────────────┴─────────────┘
+        growth · intelligence · toolkit · meta  (same pattern)
+```
+
+Skills also write back what they learn, so the brain gets sharper each run.
+
 ## Installation
 
 ### Option 1: Plugin marketplace (Claude Code / Claude)

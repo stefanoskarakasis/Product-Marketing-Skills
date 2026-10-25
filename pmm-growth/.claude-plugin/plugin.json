@@ -4,7 +4,8 @@
   "description": "Growth skills for PMMs: North Star Metric and scorecard, positioning angles, campaign ideas, value-prop variants and checked customer stories.",
   "version": "1.14.0",
   "author": {
-    "name": "Stefanos Karakasis"
+    "name": "Stefanos Karakasis",
+    "url": "https://stefanoskarakasis.substack.com"
   },
   "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-growth",
   "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",

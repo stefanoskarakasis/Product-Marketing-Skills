@@ -1,8 +1,8 @@
 {
   "name": "pmm-competitive-intelligence",
   "displayName": "PMM Competitive Intelligence",
-  "description": "Competitive intelligence skills for B2B SaaS PMMs: dated competitor profiles, live-deal battlecards and decision-ready deep-dives.",
-  "version": "1.13.0",
+  "description": "Competitive intelligence skills for B2B SaaS PMMs: dated competitor profiles, live-deal battlecards and decision-ready deep-dives, with competitor answers your team can get in Slack.",
+  "version": "1.14.0",
   "author": {
     "name": "Stefanos Karakasis"
   },
@@ -15,6 +15,7 @@
     "battlecards",
     "competitor analysis",
     "sales enablement",
+    "slack",
     "pmm"
   ]
 }

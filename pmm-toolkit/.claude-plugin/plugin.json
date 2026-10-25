@@ -4,7 +4,8 @@
   "description": "PMM utilities: writing assistant for internal and marketing content, resume review, privacy policy generator and GACCS campaign briefs.",
   "version": "1.14.0",
   "author": {
-    "name": "Stefanos Karakasis"
+    "name": "Stefanos Karakasis",
+    "url": "https://stefanoskarakasis.substack.com"
   },
   "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-toolkit",
   "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",

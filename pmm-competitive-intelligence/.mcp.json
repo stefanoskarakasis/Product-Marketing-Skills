@@ -43,6 +43,10 @@
     "crunchbase": {
       "type": "http",
       "url": "https://mcp.crunchbase.com"
+    },
+    "exa": {
+      "type": "http",
+      "url": "https://mcp.exa.ai/mcp"
     }
   }
 }

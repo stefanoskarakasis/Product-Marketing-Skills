@@ -4,7 +4,8 @@
   "description": "Meta skills that operate on the skill system itself: skill review, session learning, cross-skill synthesis and output verification.",
   "version": "1.14.0",
   "author": {
-    "name": "Stefanos Karakasis"
+    "name": "Stefanos Karakasis",
+    "url": "https://stefanoskarakasis.substack.com"
   },
   "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-meta",
   "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",

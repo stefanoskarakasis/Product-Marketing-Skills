@@ -3,7 +3,8 @@
   "displayName": "Product Marketing",
   "description": "Positioning and messaging skills for B2B SaaS PMMs: ICP, alternatives map, buyer personas, market context, brand voice, positioning statements, message house, proof points and messaging playbooks.",
   "author": {
-    "name": "Stefanos Karakasis"
+    "name": "Stefanos Karakasis",
+    "url": "https://stefanoskarakasis.substack.com"
   },
   "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-positioning",
   "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",

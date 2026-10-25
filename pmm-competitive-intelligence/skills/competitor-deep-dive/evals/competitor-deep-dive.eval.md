@@ -1,8 +1,8 @@
 ---
 name: competitor-deep-dive.eval
-version: 1.0.0
+version: 1.1.0
 description: >
-  Eval suite for competitor-deep-dive. Tests: a full-brain deep-dive, Quick-Brain with no brain, a prohibited competitor, profile reuse, a missing connector prompted once, a skipped connector labelled, connect and re-check, a pricing decision with no sources, an unsourced weakness, absence versus non-existence, the one tag vocabulary, forbidden claims, the brain check, confirmation-gated append-only Section 3 write-back, truthful delivery, refresh against a previous deep-dive, the quality gate, and Learning Close against the five-field shape. 17 test cases.
+  Eval suite for competitor-deep-dive. Tests: a full-brain deep-dive, Quick-Brain with no brain, a prohibited competitor, profile reuse, a missing connector prompted once, a skipped connector labelled, connect and re-check, a pricing decision with no sources, an unsourced weakness, absence versus non-existence, the one tag vocabulary, forbidden claims, the brain check, confirmation-gated append-only Section 3 write-back, truthful delivery, refresh against a previous deep-dive, the quality gate, and Learning Close against the five-field shape. a Slack thread getting a five-line summary while the full document is built and saved. 18 test cases.
 ---
 
 # Competitor-Deep-Dive: Eval Suite
@@ -288,3 +288,22 @@ Fixtures use a fictional company ("Ledgerlane", from `examples/example-brain.md`
 - Fields beyond the five
 
 **Pass condition:** The session is logged in the five-field shape and the hand-off is real.
+
+---
+
+## Test Case 18: Slack thread: summary in the thread, full document built and saved
+
+**Input:** In a Slack thread: "Deep-dive on Brightwire for our pricing review." The brain is present.
+
+**Expected output includes:**
+- No delivery-format question
+- One line that the deep-dive is building
+- A summary of five lines: the decision, what they sell and cost, what changed, where they win, what we do about it
+- The full deep-dive built and saved to `/context/deep-dives/`, with the path named
+- A Google Doc offered only if a `~~cloud storage` tool can create one
+
+**Expected output excludes:**
+- The full 2,500-word document pasted into the thread
+- A claim that a Google Doc was created when no tool did it
+
+**Pass condition:** The thread gets a short summary, the full record exists, and no delivery claim is untrue.

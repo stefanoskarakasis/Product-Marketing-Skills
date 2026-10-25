@@ -31,7 +31,7 @@ that account can see. No keys, tokens or passwords live in this repo.
 | HubSpot | CRM | HubSpot login | Win/loss and deal data | Needs permission to read deals |
 | Gong | call recordings | Gong admin approval usually needed | Transcripts for ICP, alternatives, proof points | Ask your Gong admin to enable the MCP integration |
 | Intercom | support | Intercom login | Support themes and pain points | Needs read access to conversations |
-| Slack | team chat | Slack login | Launch and field threads | Join the channels you want read |
+| Slack | team chat | Slack login | Launch and field threads; questions, answers and approvals in tagged threads | Join the channels you want read. To tag Claude in a channel, ask your Slack admin to add it (see docs/slack-setup.md) |
 | Google Drive | cloud storage | Google login | Find and read files, decks and PDFs | Same: use the built-in Claude connector if the plugin sign-in fails |
 | Google Docs | cloud storage | Google login | Read and draft documents | Google lists this server as Developer Preview. If sign-in fails, use Drive or paste the text |
 | Google Sheets | cloud storage | Google login | Read metric and planning sheets | Same Developer Preview note. If sign-in fails, export to CSV and paste |

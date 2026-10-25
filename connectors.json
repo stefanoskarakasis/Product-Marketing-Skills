@@ -68,8 +68,8 @@
       "url": "https://mcp.slack.com/mcp",
       "plugins": ["pmm-positioning", "pmm-execution", "pmm-go-to-market", "pmm-growth", "pmm-intelligence", "pmm-competitive-intelligence", "pmm-toolkit"],
       "signin": "Slack login",
-      "unlocks": "Launch and field threads",
-      "if_fails": "Join the channels you want read"
+      "unlocks": "Launch and field threads; questions, answers and approvals in tagged threads",
+      "if_fails": "Join the channels you want read. To tag Claude in a channel, ask your Slack admin to add it (see docs/slack-setup.md)"
     },
     {
       "name": "google-drive",
@@ -292,7 +292,7 @@
       "category": "web research",
       "type": "http",
       "url": "https://mcp.exa.ai/mcp",
-      "plugins": ["pmm-intelligence"],
+      "plugins": ["pmm-intelligence", "pmm-competitive-intelligence"],
       "signin": "None needed: free and rate-limited",
       "unlocks": "Web search and page fetch for competitor and market signals",
       "if_fails": "Rate-limited without an account. For your own Exa usage, add `https://mcp.exa.ai/mcp?login` as a custom connector"

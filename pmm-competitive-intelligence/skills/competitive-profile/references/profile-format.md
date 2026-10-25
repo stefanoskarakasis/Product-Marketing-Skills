@@ -11,6 +11,10 @@ Reference for `competitive-profile`. Read it when building a record, a board, a 
 5. Status record and freshness board
 6. Scheduled-run prompts
 7. Deal feedback line
+8. Slack settings file
+9. Draft file
+10. Unanswered log
+11. Weekly Slack run prompt
 
 ---
 
@@ -45,13 +49,14 @@ Past the window the line is marked `re-check`. These windows change only when yo
 
 ## 3. Profile record
 
-Saved as `/context/competitor-profiles/<competitor-slug>-YYYY-MM-DD.md`. Never overwrite; the newest file is current.
+Saved as `/context/competitor-profiles/<competitor-slug>-YYYY-MM-DD-HHMM.md`. Never overwrite; the newest file by date and then time is current, so two approvals on one day never collide. Records written before v1.14.0 keep their date-only names and still sort correctly.
 
 ```markdown
 ---
 competitor: [name]
 slug: [competitor-slug]
-status: draft
+status: draft            # draft | approved
+approved_by: none        # role of the approver, set only when status is approved
 roster_position: [1-5]
 market: [category · market type · segment]
 built: [YYYY-MM-DD]
@@ -143,3 +148,57 @@ After a deal, one line is enough, and it feeds `intake`:
 `[competitor] · won/lost · reason in the buyer's words · stage · date`
 
 One line is a note. The same reason twice within 180 days is a "where they win" proposal.
+
+## 8. Slack settings file
+
+Saved as `/context/competitor-profiles/_slack.md`. Written only at `setup` (or `review`), after you confirm the exact text. A scheduled run never writes it.
+
+```markdown
+---
+approvers: [Slack handle and role of each person who may approve a change, e.g. "@dana (PMM lead)"]
+field_channel: [channel the weekly run sweeps for competitor intel, or "none"]
+board_channel: [channel the weekly board is posted to, or "none"]
+---
+```
+
+Approvers are named by Slack handle because a reply in a thread shows a handle, not a role. Handles are the only personal data kept, and only here. Without this file, Slack drafts are saved but never applied, and the thread is told to run `setup`.
+
+## 9. Draft file
+
+Saved as `/context/competitor-profiles/drafts/<competitor-slug>-YYYY-MM-DD-HHMM.md`, one per proposed change. A draft is a working file: its `status` line may be updated. Profile records are never overwritten.
+
+```markdown
+---
+competitor: [name]
+slug: [competitor-slug]
+line: [profile section and line]
+status: open            # open | approved | rejected | expired
+opened: [YYYY-MM-DD HH:MM]
+reports: [n]
+---
+Now: [old value] (as of [date])
+New: [new value]
+Sources: [tag · permalink or URL · date], one per report. Roles only, no names.
+Thread: [permalink]
+Decision: [approved / rejected / expired · approver role · date]
+```
+
+An open draft older than 7 days becomes `expired`.
+
+## 10. Unanswered log
+
+Append-only. `/context/competitor-profiles/_unanswered.md`, one row per question with no sourced answer or about a competitor that is not on the roster.
+
+```markdown
+| Date | Competitor | Type | What was missing | Reaction |
+|---|---|---|---|---|
+| [YYYY-MM-DD] | [name or "not profiled"] | [pricing / launch / win-loss / objection / other] | [the source that would have answered it] | [none / thumbs down] |
+```
+
+The weekly board shows the five most common rows. A competitor that appears three times is a candidate for `roster`.
+
+## 11. Weekly Slack run prompt
+
+For a Claude in Slack routine or any scheduled task. Replace the bracketed parts.
+
+> Every Monday at 8:00, use the competitive-profile skill in refresh, status and sweep mode. My brain is in [folder]. Read /context/competitor-profiles/_slack.md for the approvers, the field channel and the board channel. Re-read only the profile lines past their window. Sweep the field channel for the last 7 days and save each new item as an open draft; do not change any profile. Mark drafts open for more than 7 days as expired. Post the freshness board, "Waiting for [approver]" (open drafts) and the five most common unanswered questions to the board channel, as bullets and not a table. Do not change the brain, do not ask questions, and list anything that needs my yes under "Waiting for you".

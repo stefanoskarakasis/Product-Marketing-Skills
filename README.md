@@ -41,6 +41,7 @@ Nine plugins, grouped by the work you do. Install `product-marketing-context` fi
 | Pick a first segment and plan a launch | `beachhead-segment`, `go-to-market-strategy` | `pmm-go-to-market` |
 | Beat a competitor in a live deal | `competitive-battlecard` | `pmm-competitive-intelligence` |
 | Profile a competitor | `competitive-profile`, `competitor-deep-dive` | `pmm-competitive-intelligence` |
+| Answer competitor questions in Slack | `competitive-profile` | `pmm-competitive-intelligence` |
 | Know what changed around my product this week | `signal-monitor` | `pmm-intelligence` |
 | Run the PMM job: OKRs, retros, pre-mortems | `pmm-okrs`, `retro`, `pre-mortem` | `pmm-execution` |
 | Generate and measure growth ideas | `experiment-ideas`, `pmm-metrics` | `pmm-growth` |
@@ -77,6 +78,7 @@ Ask in plain language, or call a skill directly.
 | "Write positioning for our new product" | `positioning-messaging` |
 | "Plan the launch for this feature as a Tier 2" | `go-to-market-strategy` |
 | "Build me a battlecard against Acme" | `competitive-battlecard` |
+| "What do we say against Acme on pricing?" | `competitive-profile` |
 | "Run a retro on last quarter's launch" | `retro` |
 
 Direct call example: `/pmm-positioning:ideal-customer-profile`.
@@ -96,7 +98,7 @@ Direct call example: `/pmm-positioning:ideal-customer-profile`.
 | [message-house](pmm-positioning/skills/message-house/) | pmm-positioning | Formats existing positioning into a Roof + Value Pillars table |
 | [product-messaging-playbook](pmm-positioning/skills/product-messaging-playbook/) | pmm-positioning | Sales/CS-ready messaging playbook: problem, story, one named competitive comparison, discovery/objection script |
 | [signal-monitor](pmm-intelligence/skills/signal-monitor/) | pmm-intelligence | Weekly read: at most five opportunities from signals you name |
-| [competitive-profile](pmm-competitive-intelligence/skills/competitive-profile/) | pmm-competitive-intelligence | Roster of five key competitors with dated, sourced profiles, refreshed only where stale |
+| [competitive-profile](pmm-competitive-intelligence/skills/competitive-profile/) | pmm-competitive-intelligence | Roster of five key competitors with dated, sourced profiles, refreshed only where stale; answers team questions in Slack |
 | [competitive-battlecard](pmm-competitive-intelligence/skills/competitive-battlecard/) | pmm-competitive-intelligence | One-page competitor battlecard for a live deal, tailored to role, motion, persona and stage |
 | [competitor-deep-dive](pmm-competitive-intelligence/skills/competitor-deep-dive/) | pmm-competitive-intelligence | Long-form, sourced deep-dive on one competitor for a named decision |
 | [gaccs-brief](pmm-toolkit/skills/gaccs-brief/) | pmm-toolkit | Campaign briefs (Goals, Audience, Creative, Channels, Stakeholders) |
@@ -178,7 +180,7 @@ Skills work without connectors. Connect tools and they pull candidate facts for 
 | pmm-go-to-market | HubSpot, Gong, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Canva, Gmail, Google Calendar, Klaviyo, Supermetrics, Wispr Flow, Semrush |
 | pmm-growth | HubSpot, Gong, Slack, Google Drive, Google Sheets, Gmail, Google Calendar, Klaviyo, Supermetrics, Amplitude (US and EU), Mixpanel (US and EU), Wispr Flow, Semrush |
 | pmm-intelligence | Slack, Gmail, Google Calendar, Semrush, Crunchbase, Exa |
-| pmm-competitive-intelligence | Notion, Atlassian, HubSpot, Gong, Slack, Google Drive, Gmail, Google Calendar, Wispr Flow, Semrush, Crunchbase |
+| pmm-competitive-intelligence | Notion, Atlassian, HubSpot, Gong, Slack, Google Drive, Gmail, Google Calendar, Wispr Flow, Semrush, Crunchbase, Exa |
 | pmm-toolkit | Notion, Atlassian, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Canva, Gmail, Google Calendar |
 | pmm-meta | None |
 <!-- generated:plugin-table end -->
@@ -187,7 +189,7 @@ Some connectors need extra access: Semrush needs an API plan,
 Gong usually needs an admin to enable it, Crunchbase needs a workspace seat, and Wispr Flow needs
 Notetaker and MCP access on your account. Salesforce, GitHub, Zendesk,
 Snowflake, Zoom, Salesloft, Clay and other tools with no public endpoint are
-connect-your-own or paste-only. The brain plugin (`product-marketing-context`) wires every connector in the catalog. Every other plugin wires only the tools its skills read. Install each plugin on its own to load its connectors (see Installation). To add or change a connector, edit `connectors.json` ([how](docs/add-a-connector.md)). Sign-in steps: [docs/connect-your-tools.md](docs/connect-your-tools.md). Category registry: [CONNECTORS.md](CONNECTORS.md).
+connect-your-own or paste-only. The brain plugin (`product-marketing-context`) wires every connector in the catalog. Every other plugin wires only the tools its skills read. Install each plugin on its own to load its connectors (see Installation). To add or change a connector, edit `connectors.json` ([how](docs/add-a-connector.md)). Sign-in steps: [docs/connect-your-tools.md](docs/connect-your-tools.md). Competitor answers in a Slack thread: [docs/slack-setup.md](docs/slack-setup.md). Category registry: [CONNECTORS.md](CONNECTORS.md).
 
 ## Workflow Intelligence
 

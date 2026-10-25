@@ -1,17 +1,17 @@
 ---
 name: competitor-deep-dive
-version: 1.0.0
+version: 1.1.0
 description: >
   Builds a long-form, fully sourced deep-dive on one competitor for a named decision
   (strategy call, RFP, pricing change, roadmap bet), with dated reviews, deal evidence, a
-  head-to-head per offering and where they win. Triggers: "deep-dive on [competitor]",
+  head-to-head per offering and where they win. In a Slack thread it posts a short summary and builds the full document. Triggers: "deep-dive on [competitor]",
   "full competitor write-up", "what do users really say about [competitor]", "teardown of
   [competitor]". Related: competitive-battlecard, competitive-profile, signal-monitor.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-15
+last_updated: 2026-10-25
 ---
 
 # Competitor Deep-Dive
@@ -95,7 +95,7 @@ Fill in this order of trust: (1) already stated in the request, (2) a connector,
 | Decision this supports | Strategy call · RFP response · Pricing change · Roadmap bet · Battlecard source · General reference | General reference |
 | Main audience | Sales · Product · Exec · PMM | PMM |
 | Depth | Standard (about 2,500 body words) · Short (about 1,500) · Long (up to 3,500) | Standard |
-| Delivery | Google Doc (paste-ready, shown here in chat) | Always ask; Google Doc if unanswered |
+| Delivery | Google Doc (paste-ready, shown here in chat) | Always ask; Google Doc if unanswered. Not asked in Slack: a summary is posted and the Doc is the full document |
 | Pricing and deal sources | Connect · Paste · Skip, one choice per not-connected row of the readiness table | Skip, stated in Check before use |
 
 The decision line shapes emphasis, never section order.
@@ -147,6 +147,7 @@ Run the Quality Gate before delivery. Fix what the evidence allows; cut a line t
 Always save the record to `/context/deep-dives/<competitor-slug>-YYYY-MM-DD.md` (never overwrite an earlier file). If files cannot be written, show the document and say it was not saved; never claim a save or a build that did not happen.
 
 - **Google Doc (first-class, default):** show the full deep-dive in chat as clean markdown in the exact order of the template: headings, tables, no HTML, no code fence around it, so the user can select it and paste it into a Google Doc with headings and tables intact. Table header cells are bold. Say that in one line. Do not claim a Google Doc was created, shared or saved to Drive unless a connector actually did it. With a `~~cloud storage` connector that can create a Doc, offer it and ask before writing.
+- **Slack thread:** never post the full deep-dive in the thread (`competitive-profile/references/slack-mode.md` section 11). Post one line that it is building, then a five-line summary: the decision, what they sell and cost, what changed, where they win, what we do about it. The full document is still built and saved as above, and the Doc is offered if a `~~cloud storage` tool can create one.
 - **Anything else** (Word, PDF, slides, HTML): say it is not built in this version and offer the Google Doc.
 
 ### Step 8: Propose Brain Write-Back
@@ -229,7 +230,7 @@ The `pattern` is where `meta-synthesis` learns from this skill, so make it speci
 ## Operating Rules
 
 - **Section 3 is the competitive source of truth.** The deep-dive record is an output, not a second brain and not a profile. Notes append under Section 3 on confirmation.
-- **Ask once.** One combined intake message. Delivery is always asked; everything else only if unknown.
+- **Ask once.** One combined intake message. Delivery is always asked (not in Slack, where a summary is posted); everything else only if unknown.
 - **Name the decision.** A deep-dive without a decision is an encyclopedia; the decision sets emphasis, never order.
 - **Our side comes only from permitted and approved claims.** Anything else is `[NEEDS PROOF]` and stays out.
 - **Their side comes only from named, dated sources.** A competitor's own claim proves only that it said it.
@@ -260,7 +261,7 @@ Runs after the deep-dive is built, before delivery. Surface failures before deli
 | They win | Where They Win names at least two real strengths | Yes |
 | Deal evidence honest | Part 6 shows n and source, or says "no deal evidence available" | Yes |
 | Write-back honest | Brain note shown as exact text and confirmed, or "none proposed"; no profile file created | Yes |
-| Delivery truthful | Delivery asked; no Doc, file or link claimed that was not made or checked | Yes |
+| Delivery truthful | Delivery asked (or, in Slack, a summary posted with the record path); no Doc, file or link claimed that was not made or checked | Yes |
 | Connector status honest | Part 4 and Part 6 carry a status line; skipped or missing connectors are named; no pull claimed that did not happen | Yes |
 | Brain check done | Each hypothesis from Step 1 is confirmed, contradicted or untested | Yes |
 | One tag vocabulary | Every evidence tag exists in `card-format.md` | Yes |

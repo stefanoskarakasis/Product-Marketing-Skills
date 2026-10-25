@@ -1,17 +1,17 @@
 ---
 name: competitive-battlecard
-version: 1.0.0
+version: 1.1.0
 description: >
   Builds a one-page competitor battlecard a seller can skim in 60 seconds before a call,
   tailored to role, GTM motion, buyer persona, deal stage and the competitor's status in
-  the deal. Trigger on: "battlecard for [competitor]", "how do we beat [competitor]",
+  the deal. In a Slack thread it posts the card in the thread. Trigger on: "battlecard for [competitor]", "how do we beat [competitor]",
   "[competitor] is in my deal", "what do I say against [competitor]", "counter this
   objection". Related: alternatives-map, signal-monitor, proof-points.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-12
+last_updated: 2026-10-25
 ---
 
 # Competitive Battlecard
@@ -21,7 +21,7 @@ A battlecard is read once, five minutes before a call, and quoted from memory in
 ## Trigger
 
 - **When:** A seller or PMM needs a competitor-specific play for a live or upcoming deal, or a refresh of an existing card.
-- **Not for:** Mapping who buyers compare you to → `alternatives-map`. A weekly read on what changed → `signal-monitor`. Registering or checking a claim → `proof-points`. A feature-level handoff doc with one comparison → `product-messaging-playbook`. Persona cards and a competitive playbook as part of a positioning build → `positioning-messaging` (SALES-ENABLEMENT mode). A multi-skill competitive program → `workflow-orchestrator`.
+- **Not for:** A single question about a competitor with no deal to tailor to (a price, a launch, why we lose) → `competitive-profile` (`ask` mode). A request for a card, or one that names a role, buyer or stage, stays here. Mapping who buyers compare you to → `alternatives-map`. A weekly read on what changed → `signal-monitor`. Registering or checking a claim → `proof-points`. A feature-level handoff doc with one comparison → `product-messaging-playbook`. Persona cards and a competitive playbook as part of a positioning build → `positioning-messaging` (SALES-ENABLEMENT mode). A multi-skill competitive program → `workflow-orchestrator`.
 - **Example prompts:**
   - "Battlecard for [competitor]"
   - "How do we beat [competitor] with a CFO in the evaluation stage?"
@@ -90,7 +90,9 @@ Tailoring is the point of this skill. Fill the variables below in this order of 
 | Deal stage | Prospecting · Discovery · Evaluation/POC · Negotiation · Renewal | Evaluation |
 | Segment and region | Mid-market · Enterprise · Strategic; country or region | Section 2 company size and geography |
 | Optional | Deal size, the CRM competitor field, what the buyer actually said | Do not ask again |
-| Delivery | Google Doc (paste-ready, shown here in chat) · HTML page | Always ask; Google Doc if unanswered |
+| Delivery | Google Doc (paste-ready, shown here in chat) · HTML page | Always ask; Google Doc if unanswered. Not asked in Slack: the thread is the delivery |
+
+**In Slack** (`competitive-profile/references/slack-mode.md` sections 7 and 11): do not ask for a delivery format; ask the remaining questions in one message, or state the assumptions on the card.
 
 If the user says "just give it to me", build the neutral card (account executive, general buyer, evaluation), state the assumptions in one line on the card, and offer to tailor. If the user pasted a buyer objection or a competitor claim, it becomes the first entry in 🔄 Reframe their strengths, answered directly, and is treated as the buyer's claim, not fact: unsourced, it is answered with a question and marked `[A]`.
 
@@ -98,7 +100,7 @@ If the user says "just give it to me", build the neutral card (account executive
 
 List back, in one line, the sources you will use this run: pasted material, files, connector pulls, and public pages about the named competitor only (its site, pricing page, release notes, newsroom, public review pages). Do not scan beyond them; if a page cannot be read, say so and ask for the text. Never fill a gap from memory.
 
-Source order: your confirmed brain values (rank 0), then `~~CRM`, `~~win/loss` and `~~call recordings` (ranks 1 and 2), then `~~competitive intelligence` (rank 3: the team's own cards, read only and never written back), then public and third-party material (rank 4), then chat (rank 5). Ranks follow `product-marketing-context/references/evidence-format.md`; a fact older than 12 months drops one rank. Newer evidence that disagrees with a value you confirmed is shown as a question, never used to replace it. If a profile record kept by `competitive-profile` exists at `/context/competitor-profiles/<competitor-slug>-YYYY-MM-DD.md`, read the newest one and treat each claim with that record's own tag and date, never as a confirmed brain value; a line marked `re-check` is shown as a question. If none exists, carry on without it and never ask for it.
+Source order: your confirmed brain values (rank 0), then `~~CRM`, `~~win/loss` and `~~call recordings` (ranks 1 and 2), then `~~competitive intelligence` (rank 3: the team's own cards, read only and never written back), then public and third-party material (rank 4), then chat (rank 5). Ranks follow `product-marketing-context/references/evidence-format.md`; a fact older than 12 months drops one rank. Newer evidence that disagrees with a value you confirmed is shown as a question, never used to replace it. If a profile record kept by `competitive-profile` exists at `/context/competitor-profiles/<competitor-slug>-*.md`, read the newest one (by date, then time; older records have no time in the name) and treat each claim with that record's own tag and date, never as a confirmed brain value; a line marked `re-check` is shown as a question. If none exists, carry on without it and never ask for it.
 
 Web rules: read the target market and language, disambiguate company names with the category, check that each result is about the right company, and write "no data" rather than widening a search until something fits. A competitor's own pages prove only what it said. Read the complaint inside a positive review: it is where the best reframes live. A rebrand, acquisition or pivot is often the most useful single fact. Treat a vendor-authored comparison as opinion and say so.
 
@@ -132,6 +134,7 @@ Deliver in the format chosen in Step 2. Always save the record to `/context/batt
 
 - **Google Doc (first-class):** show the full card in chat as clean markdown in the exact order of the template in `references/card-format.md`: headings, tables, no HTML, no code fence around it, so the user can select it and paste it into a Google Doc with headings and tables intact. Say that in one line. Do not claim a Google Doc was created, shared or saved to Drive unless a connector actually did it. With a `~~cloud storage` connector that can create a Doc, offer it and ask before writing.
 - **HTML page:** copy `templates/battlecard.html`, fill every `{{placeholder}}`, remove unused rows, and save as `Battlecard-<competitor-slug>-YYYY-MM-DD.html` beside the record. One self-contained file, no external dependencies, one stacked column with the same headers as the Doc. If a browser or PDF tool is available, print it and confirm one page; if not, say the page count was not verified.
+- **Slack thread:** post the card in the thread in the Slack variant (`references/card-format.md`, "Slack variant"): same blocks and order, no tables, sources in words. Offer a Google Doc if a `~~cloud storage` tool can create one; otherwise say where the full card is saved. The record is saved as usual.
 - **Anything else** (Word, PDF, slides): say it is not built here and offer the two formats above.
 - When the HTML file was chosen, the chat reply is the 🏆, 🎤 and 🧭 sections plus the file, not a second copy of the card.
 
@@ -196,6 +199,7 @@ a sparse one `meta-synthesis` can't trust.
 - No weakness is stated as fact without a source; no 💎 line is `[NEEDS PROOF]`.
 - Section 6 `forbidden_claims` and Section 8 `prohibited` were checked and the result is on the card.
 - The saved record exists in `/context/battlecards/`; any brain write was shown as exact text and confirmed first.
+- In Slack, the card was posted in the thread with no table and no delivery question.
 - The session was logged to `/context/skill-sessions.md`.
 
 ## Do Not Use For
@@ -214,7 +218,7 @@ a sparse one `meta-synthesis` can't trust.
 ## Operating Rules
 
 - **Section 3 is the competitive source of truth.** Never create a separate profile or competitor file. Notes append under Section 3 on confirmation; the saved card is an output, not a second brain.
-- **Ask once.** One combined intake message. Delivery format is always asked; everything else is asked only if unknown.
+- **Ask once.** One combined intake message. Delivery format is always asked (not in Slack, where the thread is the delivery); everything else is asked only if unknown.
 - **Our side comes only from permitted and approved claims.** Anything else is `[NEEDS PROOF]` and stays off the card.
 - **Their side comes only from named sources, dated.** A competitor's own claim proves only that it said it. A vendor-authored comparison is opinion.
 - **An unsourced weakness is a question, never a statement.** Absence is "no public evidence of X".
@@ -240,7 +244,7 @@ Runs after the card is built, before delivery. Surface failures before deliverin
 | Constraints checked | Section 6 `forbidden_claims` and Section 8 `prohibited` tested, result shown | Yes |
 | Walk-away present | 🛑 Walk away lists 3 signals, one about the champion or incumbent relationship | Yes |
 | Write-back honest | Brain note shown as exact text and confirmed, or "none proposed" | Yes |
-| Delivery truthful | Delivery asked; no Doc, file or page count claimed that was not made or checked | Yes |
+| Delivery truthful | Delivery asked (or posted in the Slack thread); no Doc, file or page count claimed that was not made or checked | Yes |
 | Learning Close ran | `/context/skill-sessions.md` has a new row for this session | Yes |
 
 ## Gotchas

@@ -1,8 +1,8 @@
 ---
 name: competitive-battlecard.eval
-version: 1.0.0
+version: 1.1.0
 description: >
-  Eval suite for competitive-battlecard. Tests: a full-brain card, Quick-Brain with no brain, ask-once intake with delivery always asked, an unsourced buyer claim, an unapproved our-side claim kept off the card, prohibited and forbidden-claim checks, a competitor missing from Section 3, confirmation-gated and append-only Section 3 write-back, refresh against a previous card, stale and past-dated claims, the one-page gate, truthful delivery, a CI-platform card that disagrees with a public page, and Learning Close against the five-field shape. 14 test cases.
+  Eval suite for competitive-battlecard. Tests: a full-brain card, Quick-Brain with no brain, ask-once intake with delivery always asked, an unsourced buyer claim, an unapproved our-side claim kept off the card, prohibited and forbidden-claim checks, a competitor missing from Section 3, confirmation-gated and append-only Section 3 write-back, refresh against a previous card, stale and past-dated claims, the one-page gate, truthful delivery, a CI-platform card that disagrees with a public page, and Learning Close against the five-field shape. Slack mode: a card posted in a thread with no table and no delivery question, and truthful Google Doc wording when no tool can create one. 16 test cases.
 ---
 
 # Competitive-Battlecard: Eval Suite
@@ -238,3 +238,41 @@ Fixtures use a fictional company ("Ledgerlane", from `examples/example-brain.md`
 - Any claim that the CI platform was updated
 
 **Pass condition:** Both values and dates are visible, the conflict is a question, and nothing is written to the external tool.
+
+---
+
+## Test Case 15: Slack thread: card posted in the thread, no table, no delivery question
+
+**Input:** In a Slack thread: "Brightwire is in my deal, I am an AE, the buyer is the CFO, we are in evaluation. What do I say?" The brain is present.
+
+**Expected output includes:**
+- No question about delivery format
+- The card posted in the thread with the same blocks in the same order
+- The deal block as one line, the snapshot as five bullets marked 🟢, 🟡 or ⚪, and the discovery questions and replies as bullets
+- Sources in words with dates, not evidence tags
+- 450 body words or fewer
+- The record saved to `/context/battlecards/`
+
+**Expected output excludes:**
+- A markdown table
+- A delivery-format question
+- HTML
+
+**Pass condition:** The card is in the thread, table-free, within the ceiling, and saved.
+
+---
+
+## Test Case 16: Slack thread: Google Doc wording stays truthful
+
+**Input:** The same request in Slack, with no `~~cloud storage` tool that can create a Google Doc.
+
+**Expected output includes:**
+- A line saying where the full card is saved and that it can be pasted into a Google Doc
+- No claim that a Doc was created, shared or saved to Drive
+
+**Expected output excludes:**
+- "I created a Google Doc"
+- A link that does not exist
+
+**Pass condition:** Nothing is claimed that no tool did.
+

@@ -16,4 +16,4 @@ Prints one table for your roster: last profile date, stale lines, oldest line, w
 
 ## Workflow
 
-Uses the `competitive-profile` skill in `status` mode. Reads only; saves a status record and logs the session.
+Uses the `competitive-profile` skill in `status` mode. Reads only; saves a status record and logs the session. In Slack the board is posted as bullets, and the weekly run posts it to your board channel.

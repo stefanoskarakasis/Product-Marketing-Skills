@@ -8,6 +8,7 @@ Your brain is a teammate that knows your company. This page shows the weekly loo
 2. **Notice** — once a week, `/pmm-intelligence:signal-monitor` reads the signals you name and returns at most five opportunities. Each is tied to a brain field and to a Section 7 priority.
 3. **Decide** — you pick which, if any, to act on. Nothing runs without you.
 4. **Act** — the list points at one skill per opportunity, such as `alternatives-map`, `positioning-messaging` or `pmm-okrs`. Each asks before it changes anything.
+   Competitor questions from your team can run in Slack too: see [slack-setup.md](slack-setup.md).
 5. **Learn** — when the work shows the brain was wrong or stale, `/product-marketing-context:refresh-brain` and `/product-marketing-context:brain-gaps` fix it, one question at a time.
 
 ## Set up the weekly read

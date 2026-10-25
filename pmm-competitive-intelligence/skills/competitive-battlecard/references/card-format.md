@@ -163,6 +163,22 @@ This markdown is the Google Doc version. The HTML page carries the same headers 
 
 Snapshot rows are fixed at five. Add a sixth only when the deal turns on it (integrations, compliance, deployment), and then cut the weakest of the others. In the Doc version, shading is carried by the 🟢 🟡 ⚪ mark in the row label; in HTML it is the cell background plus the same mark, so it survives black-and-white printing.
 
+## Slack variant
+
+Used when the card is requested from a Slack thread (`competitive-profile/references/slack-mode.md` section 11). Slack text does not render tables reliably, so the card keeps the same blocks in the same order and drops the tables.
+
+| Block | In Slack |
+|---|---|
+| Title and deal table | Title line, then one line: `Role · Motion · Stage · Buyer · Competitor is · Segment · As of` |
+| ⚠️ Check before use | Unchanged, plain text |
+| 🏆 Win condition, 🎤 Say this first | Unchanged |
+| 🔍 Competitor snapshot | Axis line, then five bullets in the same row order (Buyer and use case, Value promise, Business-metric link, Price and terms, Who wins where). Each bullet: mark (🟢 🟡 ⚪), row name, one line for them, one line for us |
+| ❓ Discovery questions | Bullets: "Question" followed by why it works |
+| 🔄 Reframe their strengths | Bullets: "They say" followed by the quotable reply |
+| 🚦 Win vs. walk away, 💎 Proof, 🧭 Next move | Unchanged |
+
+Block names are bold lines. The word ceiling (450), the caps per block and the footer stay the same. Evidence tags stay in the saved record; the thread shows the source in words and a date.
+
 ## The saved record: `/context/battlecards/<competitor-slug>-YYYY-MM-DD.md`
 
 One file per run. If a file for the same competitor and date exists, add `-2`, `-3`. Never overwrite an earlier card.

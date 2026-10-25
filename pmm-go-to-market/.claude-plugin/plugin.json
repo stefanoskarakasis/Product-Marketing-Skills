@@ -2,7 +2,7 @@
   "name": "pmm-go-to-market",
   "displayName": "PMM Go-to-Market",
   "description": "Go-to-market skills for PMMs: beachhead segments, launch tiering and GTM strategy briefs, GTM motions and multi-skill workflow orchestration.",
-  "version": "1.13.0",
+  "version": "1.14.0",
   "author": {
     "name": "Stefanos Karakasis"
   },

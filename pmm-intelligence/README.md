@@ -35,7 +35,7 @@ Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Ca
 
 ## Author
 
-Stefanos Karakasis — [GitHub](https://github.com/stefanoskarakasis)
+Stefanos Karakasis — [Stefanos's Stack on Substack](https://stefanoskarakasis.substack.com/)
 
 ## License
 

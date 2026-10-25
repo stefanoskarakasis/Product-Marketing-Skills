@@ -29,7 +29,7 @@ None. This plugin works on your own outputs and needs no external tools.
 
 ## Author
 
-Stefanos Karakasis — [GitHub](https://github.com/stefanoskarakasis)
+Stefanos Karakasis — [Stefanos's Stack on Substack](https://stefanoskarakasis.substack.com/)
 
 ## License
 

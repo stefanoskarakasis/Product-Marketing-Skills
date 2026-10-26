@@ -1,5 +1,20 @@
 # Changelog
 
+## v1.16.0 — 2026-10-26
+
+### Competitive intelligence
+
+- Fixed how Claude picks between the competitive skills. Routing reads only a skill's name and description, so the "Do Not Use For" notes added in v1.15.0 could not stop a wrong pick. Every competitive description now ends with a "Not for ..." clause naming the skill the request belongs to.
+- `competitive-briefing` (1.1.0) triggers now always name an audience or the leadership brief: "brief the CEO on competitors", "weekly leadership brief", "board update on competitors", "exec brief on competitors", "grade last week's call". The generic phrases "competitive brief" and "competitive update" are no longer claimed, which also removes the overlap with other vendors' "competitive brief" skills.
+- `competitive-profile` (1.3.0), `competitive-battlecard` (1.3.0), `competitor-deep-dive` (1.2.0), `competitive-briefing` and `signal-monitor` (1.1.0) open Pre-flight with a Route check: if a request fits a sibling skill better, the skill says so in one line and asks before continuing, and a bare "competitive update" gets one question instead of a build. Each skill's eval suite gains a routing case.
+- `competitive-battlecard`'s trigger "what do I say against [competitor]" is now "what do I say against [competitor] in my deal", so it no longer hides inside `competitive-profile`'s pricing question.
+
+### Tests and documentation
+
+- New `tests/test_triggers.py`: no trigger phrase is claimed by two skills, no generic phrase is claimed, no skill in the competitive family hides a phrase inside another's, every competitive description has a "Not for" clause, and every competitive skill opens Pre-flight with a Route check.
+- New `docs/routing-checks.md`: a 15-prompt battery to run by hand after an install or update, and the slash commands to use when two sets of competitive skills are installed together.
+- The plugin README gains a "Which skill do I use?" table. `SKILL-SPEC.md` now requires a "Not for" clause in a description when a sibling shares vocabulary.
+
 ## v1.15.0 — 2026-10-26
 
 ### Competitive intelligence

@@ -1,6 +1,6 @@
 ---
 name: competitor-deep-dive
-version: 1.1.0
+version: 1.1.1
 description: >
   Builds a long-form, fully sourced deep-dive on one competitor for a named decision
   (strategy call, RFP, pricing change, roadmap bet), with dated reviews, deal evidence, a
@@ -11,7 +11,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-25
+last_updated: 2026-10-26
 ---
 
 # Competitor Deep-Dive
@@ -223,6 +223,7 @@ The `pattern` is where `meta-synthesis` learns from this skill, so make it speci
 - **`alternatives-map`**: building or refreshing the map of who buyers compare you to. Run it first when the competitor is missing from Section 3.
 - **`proof-points`**: registering, verifying or auditing the claims a document relies on.
 - **`positioning-messaging`**: positioning and messaging hierarchy.
+- **`competitive-briefing`**: the short weekly leadership brief. Offer this deep-dive when a decision in the brief needs the long evidence.
 - **`workflow-orchestrator`**: a multi-skill competitive program rather than one document.
 
 ---

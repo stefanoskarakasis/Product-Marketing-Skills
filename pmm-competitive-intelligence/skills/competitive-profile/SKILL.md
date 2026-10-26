@@ -1,6 +1,6 @@
 ---
 name: competitive-profile
-version: 1.2.0
+version: 1.2.1
 description: >
   Keeps a roster of your five key competitors with a dated, sourced profile each,
   refreshes only what has gone stale, and always offers a weekly scheduled refresh.
@@ -223,6 +223,7 @@ Schedule: [proposed / accepted / declined]
 - **`competitive-battlecard`**: a one-page card for a live deal. It reads the profiles this skill keeps.
 - **`proof-points`**: registering, verifying or auditing the claims a profile relies on.
 - **`positioning-messaging`**: positioning, messaging hierarchy, or persona cards and a competitive playbook.
+- **`competitive-briefing`**: the weekly leadership brief with a recommendation and the open decisions. It reads the profiles this skill keeps.
 - **`workflow-orchestrator`**: a multi-skill competitive program rather than keeping five profiles current.
 
 ---

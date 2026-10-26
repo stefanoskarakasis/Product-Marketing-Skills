@@ -1,6 +1,6 @@
 ---
 name: competitor-deep-dive.eval
-version: 1.1.0
+version: 1.1.1
 description: >
   Eval suite for competitor-deep-dive. Tests: a full-brain deep-dive, Quick-Brain with no brain, a prohibited competitor, profile reuse, a missing connector prompted once, a skipped connector labelled, connect and re-check, a pricing decision with no sources, an unsourced weakness, absence versus non-existence, the one tag vocabulary, forbidden claims, the brain check, confirmation-gated append-only Section 3 write-back, truthful delivery, refresh against a previous deep-dive, the quality gate, and Learning Close against the five-field shape. a Slack thread getting a five-line summary while the full document is built and saved. 18 test cases.
 ---

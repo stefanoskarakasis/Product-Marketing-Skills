@@ -13,6 +13,7 @@ Plugin: [`pmm-competitive-intelligence`](../pmm-competitive-intelligence/). Rule
 | Anyone | Asks for "set of cards" | An index of your saved battlecards by roster tier, with their re-check dates; nothing is rebuilt |
 | A seller | Replies in a card's thread with how the deal ended | One line is logged; two or more outcomes show on the next card and can become a proposed note for your PMM |
 | Anyone | Asks for a deep-dive | A five-line summary in the thread; the full document is built and saved |
+| Your PMM | Asks for the leadership brief (or schedules it for Monday) | A 150-word brief in the thread or channel: verdict, one decision with a recommendation, what moved, the last call graded; the full record is saved. It stays on HOLD until a person is named as verifier |
 | Anyone | Tags Claude with new intel ("update the profile") | Claude drafts one change and tags your PMM |
 | Your PMM | Replies "approve" or "reject" | Approve writes a new dated profile record; nothing changes without it |
 | Your PMM | Reads the weekly board | Freshness of each profile, saved cards past their re-check date, outcomes logged, drafts waiting, the questions nobody could answer |
@@ -30,6 +31,7 @@ Tag Claude in a channel or thread where your admin has added it, and write in pl
 | What changed | "@Claude did Brightwire launch anything this quarter?" |
 | A card | "@Claude battlecard for Brightwire, I am an AE, the buyer is the CFO, we are in evaluation" |
 | A deep-dive | "@Claude deep-dive on Brightwire for our pricing review" |
+| The leadership brief | "@Claude leadership brief for the CEO this week" |
 | Which cards we have | "@Claude set of cards for my roster" |
 | To log how a deal ended | "@Claude we lost to Brightwire, the price reply did not land" in the card's thread |
 | To log intel | "@Claude update the profile: Brightwire cut the entry plan to $19 per seat" with the link in the thread |

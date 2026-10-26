@@ -1,6 +1,6 @@
 ---
 name: competitive-battlecard
-version: 1.2.0
+version: 1.2.1
 description: >
   Builds a one-page competitor battlecard a seller can skim in 60 seconds before a call,
   tailored to role, GTM motion, buyer persona, deal stage and the competitor's status in
@@ -217,6 +217,7 @@ a sparse one `meta-synthesis` can't trust.
 - **`proof-points`**: registering, verifying or auditing the claims a card relies on.
 - **`product-messaging-playbook`**: a Sales/CS handoff for one feature, with a single named comparison.
 - **`positioning-messaging`**: positioning, messaging hierarchy, or persona cards and a competitive playbook in SALES-ENABLEMENT mode.
+- **`competitive-briefing`**: the weekly leadership brief across the whole roster. It reads saved cards and the outcome log; it does not build a card.
 - **`workflow-orchestrator`**: a multi-skill competitive program rather than one card.
 
 ---

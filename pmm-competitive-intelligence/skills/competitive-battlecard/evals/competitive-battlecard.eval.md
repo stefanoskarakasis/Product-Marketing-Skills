@@ -1,6 +1,6 @@
 ---
 name: competitive-battlecard.eval
-version: 1.2.0
+version: 1.2.1
 description: >
   Eval suite for competitive-battlecard. Tests: a full-brain card, Quick-Brain with no brain, ask-once intake with delivery always asked, an unsourced buyer claim, an unapproved our-side claim kept off the card, prohibited and forbidden-claim checks, a competitor missing from Section 3, confirmation-gated and append-only Section 3 write-back, refresh against a previous card, stale and past-dated claims, the one-page gate, truthful delivery, a CI-platform card that disagrees with a public page, and Learning Close against the five-field shape. Slack mode: a card posted in a thread with no table and no delivery question, and truthful Google Doc wording when no tool can create one. Roster and re-check: a Re-check by date set from the oldest displayed claim, a roster tier from the profile record, and no tier when the competitor is off the roster. Pack: an index of saved cards that rebuilds nothing, in chat and in Slack. Outcomes: one logged row, a single outcome staying silent, two outcomes proposing an exact Section 3 note, an injected instruction ignored, and field results shown on the next card. 25 test cases.
 ---

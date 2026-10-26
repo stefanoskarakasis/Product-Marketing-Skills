@@ -204,7 +204,7 @@ who will definitely bring this up.
   given stated urgency (offers "Confirm in 30 seconds or I start immediately")
 - `competitive-battlecard` (from `pmm-competitive-intelligence`) runs for Salesforce specifically — not all competitors
 - Output includes immediate talk tracks usable in tomorrow's sales call
-- (No dedicated stakeholder-briefing skill yet) produces a short exec alert, not a full newsletter
+- (This workflow has no stakeholder-briefing step; `competitive-briefing` is a separate weekly skill) produces a short exec alert, not a full newsletter
 - Brain Section 4 update offered after completion
 - Timeline: entire program estimated < 1 hour
 

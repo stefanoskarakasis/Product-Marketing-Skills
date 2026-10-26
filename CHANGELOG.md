@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.15.0 — 2026-10-26
+
+### Competitive intelligence
+
+- New skill `competitive-briefing` in `pmm-competitive-intelligence`, with the `/pmm-competitive-intelligence:competitive-briefing` command: the weekly leadership brief for your CEO and board, CRO, product leadership or the whole company. It opens with a verdict (what changed, what it puts at risk in euro, what to do, by when), then one decision with two options, a recommendation and what would change it, what moved ranked by exposure, what not to react to, the last call graded and the next one, and a Held list.
+- The brief is built only from records you already keep: profiles, battlecards and the outcome log, deep-dives, signals and the brain. It does no research of its own, and it stops with a plain message if there is no profile, signal or paste to build from. A week with nothing worth reporting gets a short brief, not silence.
+- Money figures come only from `~~CRM` or a dated paste; otherwise the brief says "not quantified". Euro is the default currency; a figure in another currency is shown as given and never converted without a rate you supply.
+- Two small append-only ledgers in `/context/briefings/`: `_ledger.md` (each brief makes one falsifiable call and grades the last, shown as "3 of 5", never a percentage) and `_decisions.md` (decisions asked for, shown with their age until you or a listed approver closes them).
+- Nothing unverified goes out unmarked: the status stays HOLD until the Held list is empty and you name who checked the brief. Competitor-confidential material is excluded and named. The skill never writes the brain.
+- The brief posts in Slack as a short bullet version; `slack-mode.md` and `docs/slack-setup.md` describe it, and a Monday scheduled prompt is in the skill's `references/brief-format.md`. The hand-off map in `next-skill-map.md` lists the new skill after `competitive-profile` and after itself.
+- Evals: 23 test cases for `competitive-briefing`.
+- `competitive-battlecard` (1.2.1), `competitive-profile` (1.2.1) and `competitor-deep-dive` (1.1.1) list `competitive-briefing` under Do Not Use For, so requests for the leadership brief route to it. The plugin and marketplace descriptions mention the weekly leadership brief.
+
 ## v1.14.0 — 2026-10-26
 
 ### Competitive intelligence

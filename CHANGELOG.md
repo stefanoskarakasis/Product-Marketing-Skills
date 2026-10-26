@@ -1,9 +1,17 @@
 # Changelog
 
-## Unreleased
+## v1.14.0 — 2026-10-26
 
 ### Competitive intelligence
 
+- `competitive-profile` now answers competitor questions in Slack or chat (`ask` mode). It reads every internal CI record for the named competitor first (profile, battlecard, deep-dive, signals, brain Section 3, and your CI platform and knowledge base if connected), goes on to your deal data and then the public web only if those cannot answer inside their freshness window, and replies in the thread in about 120 words or fewer with dated sources. With no sourced answer it says so and logs the question for your PMM.
+- Tag Claude in a thread with new intel and `competitive-profile` drafts one change and tags a named approver. Only a listed approver can approve; an approval writes a new time-stamped profile record and lists the saved cards and deep-dives that cite the old value for re-check. One report stays a note until a second arrives, a draft expires after 7 days, and the brain is never written from a thread.
+- A weekly run posts a freshness board to a Slack channel, sweeps one field channel into drafts, and shows the five most common unanswered questions. The board also lists saved battlecards past their re-check date, and the run asks sellers in the field channel how recent cards ended: at most three prompts a week, each card at most twice, and only replies that say exactly won, lost or no decision are logged.
+- `competitive-battlecard` (1.2.0): in Slack the card posts in the thread as bullets, with no table and no delivery question. Every card now shows the competitor's roster tier (from the profile record) and a re-check date (the oldest displayed claim plus about 90 days); a saved card is flagged when it passes that date and is never edited.
+- `competitive-battlecard` also answers "set of cards": an index of the newest saved card per roster competitor, with tier, date, status and win condition, that rebuilds nothing.
+- `competitive-battlecard` logs how deals ended. A seller says "we won against [competitor]" or "that reply worked" and one row is appended to `/context/battlecards/_outcomes.md` (roles only, never a name). Two or more outcomes appear on the next card as seller-reported field results and can become a proposed Section 3 note, shown as exact text and written only after a yes.
+- `competitor-deep-dive` posts a five-line summary in a Slack thread and builds the full document as before.
+- New `docs/slack-setup.md`: what your team can do in Slack, how to ask, and a 30-minute admin setup.
 - New skill `competitor-deep-dive` in `pmm-competitive-intelligence`, with the `/pmm-competitive-intelligence:competitor-deep-dive` command: a long-form, sourced deep-dive on one competitor for a named decision. It asks once whether to connect, paste or skip the deal and pricing tools, tests the brain's standing beliefs against fresh evidence, saves to `/context/deep-dives/`, and proposes an append-only Deep-Dive Field Notes block to Section 3 for you to confirm.
 
 ### Connectors
@@ -15,6 +23,10 @@
 - `pmm-intelligence` now wires Semrush, Crunchbase, Exa, Slack, Gmail and Google Calendar, and `signal-monitor` reads `~~company data` and `~~web research` as well as `~~market data` and `~~SEO`.
 - New categories in the root `CONNECTORS.md`: `~~web research`, `~~revenue intelligence`, `~~data warehouse`, `~~video meetings` and `~~enrichment`. Only `~~web research` has a wired server.
 - `docs/connect-your-tools.md` lists, for 10 tools with no public address (Salesforce, GitHub, Klue, Zendesk, Snowflake, Zoom, Salesloft, Pardot, Clay, LinkedIn), what each vendor documents and what to do.
+
+### Documentation
+
+- Every plugin README and `plugin.json` credits Stefanos Karakasis with a link to Stefanos's Stack on Substack.
 
 ## v1.13.0 — 2026-10-14
 

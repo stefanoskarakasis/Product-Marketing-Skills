@@ -19,6 +19,8 @@ Section 3.
 /pmm-competitive-intelligence:competitive-battlecard [Competitor] is the incumbent, I am an AE talking to their CFO in evaluation
 /pmm-competitive-intelligence:competitive-battlecard They say we are more expensive. What do I say?
 /pmm-competitive-intelligence:competitive-battlecard Refresh the [competitor] card
+/pmm-competitive-intelligence:competitive-battlecard Set of cards for my roster
+/pmm-competitive-intelligence:competitive-battlecard We lost to [competitor]; the price reply did not land
 ```
 
 ## Workflow
@@ -27,5 +29,8 @@ Uses the `competitive-battlecard` skill. Loads the brain (or asks five quick
 questions and holds the answers for the session), asks once for the deal
 context and the delivery format (Google Doc or HTML), names its sources,
 checks your forbidden claims and prohibited items before writing a line,
-builds the card, runs a 10-check gate on its own work, saves the record,
-offers a brain note for you to confirm, and logs the session.
+builds the card, runs a 12-check gate on its own work, saves the record,
+offers a brain note for you to confirm, and logs the session. Each card shows
+the competitor's roster tier and a re-check date. "Set of cards" lists your
+saved cards by tier and rebuilds nothing. Telling it how a deal ended adds one
+row to an outcome log; two or more outcomes appear on the next card.

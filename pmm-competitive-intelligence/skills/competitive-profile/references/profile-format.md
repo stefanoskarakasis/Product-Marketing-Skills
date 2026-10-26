@@ -15,6 +15,7 @@ Reference for `competitive-profile`. Read it when building a record, a board, a 
 9. Draft file
 10. Unanswered log
 11. Weekly Slack run prompt
+12. Outcome prompt log
 
 ---
 
@@ -201,4 +202,16 @@ The weekly board shows the five most common rows. A competitor that appears thre
 
 For a Claude in Slack routine or any scheduled task. Replace the bracketed parts.
 
-> Every Monday at 8:00, use the competitive-profile skill in refresh, status and sweep mode. My brain is in [folder]. Read /context/competitor-profiles/_slack.md for the approvers, the field channel and the board channel. Re-read only the profile lines past their window. Sweep the field channel for the last 7 days and save each new item as an open draft; do not change any profile. Mark drafts open for more than 7 days as expired. Post the freshness board, "Waiting for [approver]" (open drafts) and the five most common unanswered questions to the board channel, as bullets and not a table. Do not change the brain, do not ask questions, and list anything that needs my yes under "Waiting for you".
+> Every Monday at 8:00, use the competitive-profile skill in refresh, status and sweep mode. My brain is in [folder]. Read /context/competitor-profiles/_slack.md for the approvers, the field channel and the board channel. Re-read only the profile lines past their window. Sweep the field channel for the last 7 days and save each new item as an open draft; do not change any profile. Mark drafts open for more than 7 days as expired. Read the replies to earlier outcome prompts and log them. Post up to three outcome prompts for roster cards that have no outcome yet. Post the freshness board, the saved cards past their re-check date, "Waiting for [approver]" (open drafts) and the five most common unanswered questions to the board channel, as bullets and not a table. Do not change the brain, do not ask questions, and list anything that needs my yes under "Waiting for you".
+
+## 12. Outcome prompt log
+
+Append-only. `/context/competitor-profiles/_outcome-prompts.md`, one row per prompt the weekly run posted. It decides which cards are due a prompt and lets the next run find the replies. Never edited.
+
+```markdown
+| Date | Competitor | Card record | Channel | Prompt permalink | Round |
+|---|---|---|---|---|---|
+| [YYYY-MM-DD] | [name] | [card file name] | [channel] | [permalink] | [1 or 2] |
+```
+
+Outcome rows themselves go to `/context/battlecards/_outcomes.md` (`competitive-battlecard/references/outcome-log.md`), never here. A card is prompted at most twice, at least 14 days apart, and not at all once an outcome exists for that competitor dated on or after the card.

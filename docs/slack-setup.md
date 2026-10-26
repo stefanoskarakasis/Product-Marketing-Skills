@@ -10,10 +10,13 @@ Plugin: [`pmm-competitive-intelligence`](../pmm-competitive-intelligence/). Rule
 |---|---|---|
 | Anyone | Tags Claude with a question about a competitor | A short answer in the thread, with sources and dates |
 | A seller | Asks for a card for a live deal | The one-page battlecard is posted in the thread |
+| Anyone | Asks for "set of cards" | An index of your saved battlecards by roster tier, with their re-check dates; nothing is rebuilt |
+| A seller | Replies in a card's thread with how the deal ended | One line is logged; two or more outcomes show on the next card and can become a proposed note for your PMM |
 | Anyone | Asks for a deep-dive | A five-line summary in the thread; the full document is built and saved |
 | Anyone | Tags Claude with new intel ("update the profile") | Claude drafts one change and tags your PMM |
 | Your PMM | Replies "approve" or "reject" | Approve writes a new dated profile record; nothing changes without it |
-| Your PMM | Reads the weekly board | Freshness of each profile, drafts waiting, the questions nobody could answer |
+| Your PMM | Reads the weekly board | Freshness of each profile, saved cards past their re-check date, outcomes logged, drafts waiting, the questions nobody could answer |
+| Anyone in the field channel | Replies to an outcome prompt ("won", "lost" or "no decision", and which part they used) | One row is logged, roles only; nothing else changes |
 
 ## How to ask
 
@@ -27,6 +30,8 @@ Tag Claude in a channel or thread where your admin has added it, and write in pl
 | What changed | "@Claude did Brightwire launch anything this quarter?" |
 | A card | "@Claude battlecard for Brightwire, I am an AE, the buyer is the CFO, we are in evaluation" |
 | A deep-dive | "@Claude deep-dive on Brightwire for our pricing review" |
+| Which cards we have | "@Claude set of cards for my roster" |
+| To log how a deal ended | "@Claude we lost to Brightwire, the price reply did not land" in the card's thread |
 | To log intel | "@Claude update the profile: Brightwire cut the entry plan to $19 per seat" with the link in the thread |
 
 What Claude reads for every question: the newest profile, battlecard, deep-dive and signals for that competitor, brain Section 3, and any CI platform, knowledge base or drive you connected. If that cannot answer inside its freshness window it goes on to your deal data (CRM, Gong, win/loss) when the question is about deals, and then to the public web for the one line that is stale.
@@ -41,7 +46,7 @@ You need a Slack workspace where Claude in Slack is enabled. Ask your Claude adm
 2. **Connect the tools.** Slack, Exa and any of Gong, your CRM and your CI platform. Sign-in steps: [connect-your-tools.md](connect-your-tools.md). Skip any you do not have; the answer says which source it could not reach.
 3. **Add Claude to the channels.** One for questions, one for field intel, one for the weekly board. They can be the same channel.
 4. **Run setup once, in Claude.** `/pmm-competitive-intelligence:competitive-profile Set up my competitive profiles`. When it asks, name the people who may approve (their Slack handle and role), the field channel and the board channel. It shows the exact settings text and saves it only on your yes.
-5. **Schedule the weekly run.** Use the prompt in section 11 of [profile-format.md](../pmm-competitive-intelligence/skills/competitive-profile/references/profile-format.md). It refreshes stale lines, saves new field intel as drafts, expires old drafts and posts the board. It changes no profile and no brain.
+5. **Schedule the weekly run.** Use the prompt in section 11 of [profile-format.md](../pmm-competitive-intelligence/skills/competitive-profile/references/profile-format.md). It refreshes stale lines, saves new field intel as drafts, expires old drafts, asks sellers in the field channel how recent battlecards ended (at most three prompts a week, each card at most twice), logs their replies and posts the board. It changes no profile and no brain.
 
 ## First-run checks (10 minutes)
 

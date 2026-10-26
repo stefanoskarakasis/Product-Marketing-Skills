@@ -101,6 +101,14 @@ Rules: a competitor's own claim proves only that it said it. Add "re-check" to a
 | Partner / channel | What the partner must say, and what they must not |
 | Expansion / renewal | The value delivered since signing |
 
+## Roster tier and Re-check by
+
+Two cells in the deal block, outside the word count.
+
+**Roster.** Read `roster_position` from the front matter of the newest profile record in `/context/competitor-profiles/` (the same record the card already reads for claims). 1 or 2 is High, 3 or 4 is Medium, 5 is Watch. Written `#2 of 5 · High`. No profile record, or the competitor is not on the roster: write `not on roster`. Never invent a tier and never ask for one.
+
+**Re-check by.** The date of the oldest competitor claim displayed on the card, plus about 90 days (the re-check window above). If that date has already passed, write `now` and name the claim in Check before use. The deal block shows the month; the saved record shows the full date. A saved card is never edited when it passes this date: it is flagged on the `competitive-profile` freshness board and rebuilt on request.
+
 ## The card (template)
 
 This markdown is the Google Doc version. The HTML page carries the same headers in the same order.
@@ -115,10 +123,11 @@ This markdown is the Google Doc version. The HTML page carries the same headers 
 | **Motion** | [motion] | **Buyer** | [persona] |
 | **Competitor is** | [incumbent / challenger / final two / status quo] | **Segment** | [segment, region] |
 | **Win rate vs [Competitor]** | [x% (source, n, window) or "no data"] | **As of** | [Mon YYYY] |
+| **Roster** | [#n of 5 · High, Medium or Watch, or "not on roster"] | **Re-check by** | [Mon YYYY, or "now"] |
 | **Brain read** | [sections or "none (Quick-Brain)"] | **Assumptions** | [list or "none"] |
 
 ## ⚠️ Check before use
-[Only if needed: stale brain section, thin data, legal-review rule, past-dated roadmap item.]
+[Only if needed: stale brain section, thin data, legal-review rule, past-dated roadmap item, or logged field results (two or more outcomes): "Field results: n=3, 2 won, 1 lost (seller-reported)".]
 
 ## 🏆 Win condition
 [One sentence: the deal where we beat them. Plain text, no bold.]
@@ -169,7 +178,7 @@ Used when the card is requested from a Slack thread (`competitive-profile/refere
 
 | Block | In Slack |
 |---|---|
-| Title and deal table | Title line, then one line: `Role · Motion · Stage · Buyer · Competitor is · Segment · As of` |
+| Title and deal table | Title line, then one line: `Role · Motion · Stage · Buyer · Competitor is · Segment · As of · Roster · Re-check by` |
 | ⚠️ Check before use | Unchanged, plain text |
 | 🏆 Win condition, 🎤 Say this first | Unchanged |
 | 🔍 Competitor snapshot | Axis line, then five bullets in the same row order (Buyer and use case, Value promise, Business-metric link, Price and terms, Who wins where). Each bullet: mark (🟢 🟡 ⚪), row name, one line for them, one line for us |
@@ -190,6 +199,8 @@ Deal: [role · motion · status · persona · stage · segment, region]
 Assumptions: [what was assumed because it was skipped, or "none"]
 Sources named this run: [list, each with category, tool and date for pulled items]
 Changed since last card ([date]): [up to 3 lines, or "first card"]
+Roster: [#n of 5 · tier, or "not on roster"]
+Re-check by: [YYYY-MM-DD, or "now"]
 
 [the card, exactly as delivered]
 
@@ -217,3 +228,8 @@ Appended under brain Section 3 only after the user confirms the exact text. Neve
 ```
 
 A stub for a competitor missing from Section 3 is one line in the same block: `- Named alternative: [Competitor] (not yet in the map; run alternatives-map)`.
+
+## Related formats
+
+- The index of saved cards for a roster ("set of cards"): `references/pack-format.md`.
+- Logged deal outcomes and how they reach Section 3: `references/outcome-log.md`.

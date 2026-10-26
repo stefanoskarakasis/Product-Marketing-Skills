@@ -13,7 +13,7 @@ Competitive intelligence skills for B2B SaaS PMMs: dated competitor profiles, li
 ## Skills (3)
 
 - **competitive-profile** — Keep a roster of your five key competitors with a dated, sourced profile each, refresh only what has gone stale, answer your team's competitor questions in Slack from all your CI records, and fold in new intel once a named approver says yes.
-- **competitive-battlecard** — Build a one-page competitor battlecard for a live deal, tailored to role, GTM motion, buyer persona and deal stage, with every competitor claim sourced and dated.
+- **competitive-battlecard** — Build a one-page competitor battlecard for a live deal, tailored to role, GTM motion, buyer persona and deal stage, with every competitor claim sourced and dated, a roster tier and a re-check date. List your saved cards in one index and log how deals ended so the next card shows field results.
 - **competitor-deep-dive** — Build a long-form, sourced deep-dive on one competitor for a named decision, with deal evidence, reviews, a head-to-head per offering and where they genuinely win.
 
 ## Commands (6)

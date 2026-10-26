@@ -1,17 +1,17 @@
 ---
 name: competitive-battlecard
-version: 1.1.0
+version: 1.2.0
 description: >
   Builds a one-page competitor battlecard a seller can skim in 60 seconds before a call,
   tailored to role, GTM motion, buyer persona, deal stage and the competitor's status in
-  the deal. In a Slack thread it posts the card in the thread. Trigger on: "battlecard for [competitor]", "how do we beat [competitor]",
+  the deal. In a Slack thread it posts the card in the thread. Also lists your saved cards by roster tier and logs deal outcomes. Trigger on: "battlecard for [competitor]", "how do we beat [competitor]",
   "[competitor] is in my deal", "what do I say against [competitor]", "counter this
-  objection". Related: alternatives-map, signal-monitor, proof-points.
+  objection", "set of cards", "we won against [competitor]", "that reply worked". Related: alternatives-map, signal-monitor, proof-points.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-25
+last_updated: 2026-10-26
 ---
 
 # Competitive Battlecard
@@ -28,6 +28,8 @@ A battlecard is read once, five minutes before a call, and quoted from memory in
   - "[Competitor] is in my deal, what do I say?"
   - "They say [claim]. How do I counter it?" (edge: one objection, answered from the card's blocks)
   - "Refresh the [competitor] card" (edge: compares with the last saved card)
+  - "Set of cards for my five competitors" (pack: an index of saved cards, nothing rebuilt)
+  - "We lost to [competitor], the price reply did not land" (outcome: one row in the log)
 
 ## Inputs
 
@@ -37,7 +39,7 @@ A battlecard is read once, five minutes before a call, and quoted from memory in
   - `/foundation/brain.md` (optional, sharper with it): Sections 1 to 8, see the contract.
   - `/foundation/me.md` (optional): format and detail only.
   - `/foundation/gaps.md` (append only).
-  - `/context/battlecards/` (earlier cards for this competitor), `/context/signals/` (recent `signal-monitor` runs), `/context/meta-patterns.md` (guardrails).
+  - `/context/battlecards/` (earlier cards for this competitor, and `_outcomes.md`), `/context/competitor-profiles/` (`roster_position`), `/context/signals/` (recent `signal-monitor` runs), `/context/meta-patterns.md` (guardrails).
   - `~~CRM`, `~~call recordings`, `~~competitive intelligence`, `~~win/loss`, `~~team chat`, `~~reviews`, `~~market data`, `~~company data`, `~~knowledge base`, `~~cloud storage`, or pasted material.
   - **Brain contract:** Reads: Section 1 (permitted claims, offerings, glossary), 2 (persona, economic buyer, champion, pains, triggers, anti-persona), 3 (alternatives, status quo, why they leave, unique capabilities, `alt_shortfalls`, `switching_forces`, `objections` with approved responses, and the Alternatives Map block for this competitor), 4 (language preferences, forbidden phrases, `customer_phrases`), 5 (why now), 6 (approved metrics, approved quotes, forbidden claims), 7 (priorities), 8 (prohibited, approvals, stakeholders). Writes: Section 3 only, as one appended Battlecard Field Notes block or a one-line stub, after you confirm the exact text. Never writes to: Sections 1, 2, 4, 5, 6, 7, 8.
 
@@ -72,9 +74,11 @@ A battlecard is read once, five minutes before a call, and quoted from memory in
 
 ## Steps
 
+Three request types. A **card** request runs Steps 1 to 11. A **pack** request ("set of cards", "all five competitors") runs none of them: read the roster and the newest saved card per roster competitor, post the index in `references/pack-format.md`, then write the Learning Close row. Nothing is rebuilt. An **outcome** report ("we won against [competitor]", "that reply worked") follows `references/outcome-log.md`: one question at most, one appended row in `/context/battlecards/_outcomes.md`, then the Learning Close row.
+
 ### Step 1: Load Context
 
-Read the brain as above. Then read `/context/battlecards/` for the most recent card on this competitor (to show what changed since) the newest `/context/deep-dives/<competitor-slug>-*.md` if one exists (its Card feed block and Brain check; each claim keeps its own tag and date, and a `re-check` line is shown as a question), and the last 30 days of `/context/signals/` for any opportunity that names this competitor (a move to weigh, tagged with its original confidence). Say in one line what was found: "Brain: Sections 1 to 8 present, Section 5 stale. Last card: 2026-08-14. Two recent signals."
+Read the brain as above. Then read `/context/battlecards/` for the most recent card on this competitor (to show what changed since) the newest `/context/deep-dives/<competitor-slug>-*.md` if one exists (its Card feed block and Brain check; each claim keeps its own tag and date, and a `re-check` line is shown as a question), and the last 30 days of `/context/signals/` for any opportunity that names this competitor (a move to weigh, tagged with its original confidence), and the rows for this competitor in `/context/battlecards/_outcomes.md` from the last 180 days (seller-reported, rank 5). Say in one line what was found: "Brain: Sections 1 to 8 present, Section 5 stale. Last card: 2026-08-14. Two recent signals."
 
 ### Step 2: Establish the Deal
 
@@ -100,7 +104,7 @@ If the user says "just give it to me", build the neutral card (account executive
 
 List back, in one line, the sources you will use this run: pasted material, files, connector pulls, and public pages about the named competitor only (its site, pricing page, release notes, newsroom, public review pages). Do not scan beyond them; if a page cannot be read, say so and ask for the text. Never fill a gap from memory.
 
-Source order: your confirmed brain values (rank 0), then `~~CRM`, `~~win/loss` and `~~call recordings` (ranks 1 and 2), then `~~competitive intelligence` (rank 3: the team's own cards, read only and never written back), then public and third-party material (rank 4), then chat (rank 5). Ranks follow `product-marketing-context/references/evidence-format.md`; a fact older than 12 months drops one rank. Newer evidence that disagrees with a value you confirmed is shown as a question, never used to replace it. If a profile record kept by `competitive-profile` exists at `/context/competitor-profiles/<competitor-slug>-*.md`, read the newest one (by date, then time; older records have no time in the name) and treat each claim with that record's own tag and date, never as a confirmed brain value; a line marked `re-check` is shown as a question. If none exists, carry on without it and never ask for it.
+Source order: your confirmed brain values (rank 0), then `~~CRM`, `~~win/loss` and `~~call recordings` (ranks 1 and 2), then `~~competitive intelligence` (rank 3: the team's own cards, read only and never written back), then public and third-party material (rank 4), then chat (rank 5). Ranks follow `product-marketing-context/references/evidence-format.md`; a fact older than 12 months drops one rank. Newer evidence that disagrees with a value you confirmed is shown as a question, never used to replace it. If a profile record kept by `competitive-profile` exists at `/context/competitor-profiles/<competitor-slug>-*.md`, read the newest one (by date, then time; older records have no time in the name) and treat each claim with that record's own tag and date, never as a confirmed brain value; a line marked `re-check` is shown as a question. Its front matter `roster_position` gives the Roster cell (`references/card-format.md`, "Roster tier and Re-check by"). If none exists, carry on without it, write "not on roster" and never ask for it.
 
 Web rules: read the target market and language, disambiguate company names with the category, check that each result is about the right company, and write "no data" rather than widening a search until something fits. A competitor's own pages prove only what it said. Read the complaint inside a positive review: it is where the best reframes live. A rebrand, acquisition or pivot is often the most useful single fact. Treat a vendor-authored comparison as opinion and say so.
 
@@ -122,7 +126,7 @@ Apply four lenses from `references/card-format.md`: persona (what to lead with),
 
 ### Step 6: Build the Card
 
-Fill the template in `references/card-format.md`: about 350 words, hard ceiling 450 (counted from Check before use to Next move, without the deal line, tags, sources and footer), caps per block. Both formats use the same headers in the same order, as one stacked column (no side-by-side blocks). Write 🏆 and 🎤 last, after the data has shaped them. Apply Section 4 voice (language preferences, forbidden phrases) silently. Real strengths are acknowledged out loud: the first clause of every reply is true and generous. Write as though the competitor will read it: factual, dated, defensible; never mocking; never a guess about intent. If a previous card exists, add one line, "Changed since [date]", with at most three differences.
+Fill the template in `references/card-format.md`: about 350 words, hard ceiling 450 (counted from Check before use to Next move, without the deal line, tags, sources and footer), caps per block. Both formats use the same headers in the same order, as one stacked column (no side-by-side blocks). Write 🏆 and 🎤 last, after the data has shaped them. Apply Section 4 voice (language preferences, forbidden phrases) silently. Real strengths are acknowledged out loud: the first clause of every reply is true and generous. Write as though the competitor will read it: factual, dated, defensible; never mocking; never a guess about intent. If a previous card exists, add one line, "Changed since [date]", with at most three differences. Fill the Roster and Re-check by cells from the oldest displayed claim (`references/card-format.md`). If `_outcomes.md` holds two or more outcomes for this competitor in the last 180 days, add one line to Check before use with the counts, marked seller-reported; one outcome stays silent.
 
 ### Step 7: Gate Your Own Card
 
@@ -140,7 +144,7 @@ Deliver in the format chosen in Step 2. Always save the record to `/context/batt
 
 ### Step 9: Propose Brain Write-Back
 
-Propose a write only if this run produced something the map lacks: (a) the competitor is missing from Section 3, (b) a dated competitor fact the Alternatives Map block does not hold (pricing model, packaging, an acquisition), (c) field evidence on why deals are lost or won (from `~~CRM` or `~~call recordings`, with n), or (d) a conflict between the map and fresh evidence. At most three lines.
+Propose a write only if this run produced something the map lacks: (a) the competitor is missing from Section 3, (b) a dated competitor fact the Alternatives Map block does not hold (pricing model, packaging, an acquisition), (c) field evidence on why deals are lost or won (from `~~CRM` or `~~call recordings`, with n, or two or more outcomes logged for this competitor in the last 180 days, see `references/outcome-log.md`), or (d) a conflict between the map and fresh evidence. At most three lines.
 
 Show the exact text as the "Proposed Section 3 note" in `references/card-format.md`, with a source tag on each line, and ask: "Add this to Section 3? Existing content stays unchanged." On yes, append it to `/foundation/brain.md` under Section 3. Rules: append only; never edit existing text; a value you confirmed is never overwritten (show both and ask); competitor website copy never becomes a `why_leaving` entry; if no brain exists, do not create one from a battlecard run unless the user asks (Quick-Brain answers are offered to `product-marketing-context` instead). If the note implies the map itself needs rework, say so and name `alternatives-map`. If files cannot be written, show the block and say it was not saved. Record the outcome (confirmed, declined, none proposed) in the saved card's Open items.
 
@@ -172,7 +176,7 @@ a sparse one `meta-synthesis` can't trust.
 
 ## Outputs
 
-- **Files written:** `/context/battlecards/<competitor-slug>-YYYY-MM-DD.md` (the card, evidence log and open items), plus `Battlecard-<competitor-slug>-YYYY-MM-DD.html` if HTML was chosen. `/foundation/brain.md` Section 3: one appended Battlecard Field Notes block or stub, only after confirmation. `/context/skill-sessions.md`: one entry per session. Possibly one appended `skipped` block in `/foundation/gaps.md`.
+- **Files written:** `/context/battlecards/<competitor-slug>-YYYY-MM-DD.md` (the card, evidence log and open items), plus `Battlecard-<competitor-slug>-YYYY-MM-DD.html` if HTML was chosen. `/foundation/brain.md` Section 3: one appended Battlecard Field Notes block or stub, only after confirmation. `/context/battlecards/_outcomes.md`: one appended row per reported outcome. `/context/skill-sessions.md`: one entry per session. Possibly one appended `skipped` block in `/foundation/gaps.md`.
 - **Chat output format:** the full card as paste-ready Google Doc markdown (or, when HTML was chosen, 🏆 🎤 🧭 and the file), then the Gate score with failed rows only, the proposed brain note if any, and one hand-off line.
 
 ```markdown
@@ -199,6 +203,8 @@ a sparse one `meta-synthesis` can't trust.
 - No weakness is stated as fact without a source; no 💎 line is `[NEEDS PROOF]`.
 - Section 6 `forbidden_claims` and Section 8 `prohibited` were checked and the result is on the card.
 - The saved record exists in `/context/battlecards/`; any brain write was shown as exact text and confirmed first.
+- The deal block shows Roster (from the profile record, or "not on roster") and Re-check by (the oldest displayed claim plus about 90 days, or "now").
+- A pack lists every roster competitor, rebuilds nothing and says so; an outcome report appended exactly one row and edited no card.
 - In Slack, the card was posted in the thread with no table and no delivery question.
 - The session was logged to `/context/skill-sessions.md`.
 
@@ -229,6 +235,7 @@ a sparse one `meta-synthesis` can't trust.
 - **Pulled facts are drafts.** Tag category, tool and date; connectors are read-only; no external writes.
 - **Brain writes need exact text and a yes.** Append only; a confirmed value is never overwritten.
 - **Internal use only.** Every card carries the footer; legal review is flagged when Sections 6 or 8 require it.
+- **Outcomes are append-only and seller-reported.** One row per report in `_outcomes.md`, roles only, never edit a saved card; a brain note needs two or more outcomes, exact text and a yes.
 
 ## Quality Gate
 
@@ -244,6 +251,8 @@ Runs after the card is built, before delivery. Surface failures before deliverin
 | Constraints checked | Section 6 `forbidden_claims` and Section 8 `prohibited` tested, result shown | Yes |
 | Walk-away present | 🛑 Walk away lists 3 signals, one about the champion or incumbent relationship | Yes |
 | Write-back honest | Brain note shown as exact text and confirmed, or "none proposed" | Yes |
+| Re-check date set | Deal block shows Roster and Re-check by, computed from the oldest displayed claim | Yes |
+| Outcomes honest | Field results shown only at n of 2 or more, marked seller-reported, never used as the win rate | Yes |
 | Delivery truthful | Delivery asked (or posted in the Slack thread); no Doc, file or page count claimed that was not made or checked | Yes |
 | Learning Close ran | `/context/skill-sessions.md` has a new row for this session | Yes |
 
@@ -254,3 +263,5 @@ Runs after the card is built, before delivery. Surface failures before deliverin
 - **Third-party "comparison" posts are often vendor-authored.** Say which, and never repeat an unsourced percentage from one.
 - **Pricing pages change.** A list price is indicative unless the page says otherwise; custom pricing is quoted by sales.
 - **A past-dated roadmap item is a rumor.** Do not promise it on a call.
+- **An outcome is a seller's report, not a win rate.** Two or three reports are a signal to check, not a statistic to quote. The win-rate cell comes from `~~CRM` or `~~win/loss`.
+- **A pack is an index.** If it starts rebuilding cards it has become five runs of this skill, with five times the cost.

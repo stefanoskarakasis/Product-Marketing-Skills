@@ -1,8 +1,8 @@
 ---
 name: competitive-briefing
-version: 1.0.0
+version: 1.1.0
 description: >
-  Builds the weekly leadership competitive brief: a verdict, one recommended decision with options and what would change the call, what moved ranked by exposure, and a graded prediction, all from your saved profiles, cards, signals and outcome log. Every claim is dated and sourced, anything unverified is held rather than sent, and open decisions and past calls are tracked week to week. Triggers: "leadership competitive brief", "brief the CEO on competitors", "board competitive update", "exec competitive brief", "weekly leadership brief", "grade last week's call". Related: competitive-profile, competitor-deep-dive, competitive-battlecard, signal-monitor.
+  Builds the weekly leadership brief on competitors for a named audience (CEO and board, CRO, product leaders or the whole company): a verdict, one recommended decision with options, what moved ranked by exposure and a graded prediction, from your saved profiles, cards, signals and outcome log. Triggers: "brief the CEO on competitors", "weekly leadership brief", "board update on competitors", "exec brief on competitors", "grade last week's call". Not for one competitor's question (competitive-profile), a seller card (competitive-battlecard), a long write-up (competitor-deep-dive) or a weekly opportunities list (signal-monitor).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
@@ -19,8 +19,8 @@ Leaders do not need a summary of competitor news. They need to know what changed
 - **When:** A PMM or CI lead needs the recurring leadership read on competitors: for the CEO and board, the CRO, product leadership or the whole company.
 - **Not for:** One question about one competitor ("what do we say on pricing?") → `competitive-profile`. The one-page card for a live deal → `competitive-battlecard`. The long sourced document on one competitor for a decision → `competitor-deep-dive`. A list of weekly opportunities tied to brain priorities → `signal-monitor`. Mapping who buyers compare you to → `alternatives-map`. Registering or checking a claim → `proof-points`. A multi-skill competitive program → `workflow-orchestrator`.
 - **Example prompts:**
-  - "Weekly leadership competitive brief for the CEO."
-  - "Board competitive update, we have a pricing decision coming."
+  - "Weekly leadership brief for the CEO."
+  - "Board update on competitors, we have a pricing decision coming."
   - "Brief the CRO on competitors, focus on win and loss."
   - "Grade last week's call and show what is still open." (edge: grades the ledger and lists open decisions; a full brief only if asked)
   - "Send the leadership brief." (edge: no profiles, signals or pasted material, so the evidence floor stops the build)
@@ -58,6 +58,7 @@ Every skill in this repo works without connectors. This skill checks which are c
 
 ## Pre-flight
 
+- **Route check (first).** If the request names no audience and is generic ("competitive update", "what are our competitors doing"), ask one question before loading anything: "Is this the weekly leadership brief (for the CEO, CRO, product leaders or the company), or a refresh of the profiles?" If it is a single-competitor question, a seller card, a long write-up or a weekly opportunities list, name the matching skill from Do Not Use For in one line and ask whether to continue here. Never build a leadership document from a generic phrase.
 - Load `/foundation/brain.md`. Read Sections 3, 6 and 8 first (what is known, what we may claim, what we may not do), then 1, 2, 4 and 7.
 - Load `/context/meta-patterns.md` if present; surface any guardrail fired 2+ times in earlier briefing sessions.
 - **Personal context** (see the personal context rule in `SKILL-SPEC.md`): if `/foundation/me.md` exists, read it for format, detail and currency only. Never take a company fact from it.

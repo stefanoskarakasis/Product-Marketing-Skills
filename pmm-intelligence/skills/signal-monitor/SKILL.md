@@ -1,18 +1,18 @@
 ---
 name: signal-monitor
-version: 1.0.3
+version: 1.1.0
 description: >
   Turns the signals you name into at most five opportunities, each tied to a brain field
   and a Section 7 priority, with evidence, a confidence label and one suggested next move;
   it never edits your brain. Trigger on: "what changed this week", "weekly opportunities",
   "signal monitor", "what should we act on", "competitor moves this week", "scan these
   signals". Related: alternatives-map, positioning-messaging, pmm-okrs,
-  workflow-orchestrator.
+  workflow-orchestrator. Not for a leadership brief on competitors (competitive-briefing).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-25
+last_updated: 2026-10-26
 ---
 
 # Signal Monitor
@@ -39,6 +39,7 @@ Most weekly "market scans" produce a long list and no decision. This skill does 
 
 ## Pre-flight
 
+- **Route check (first).** If the request is a brief for leadership on competitors ("brief the CEO on competitors"), name `competitive-briefing` (plugin `pmm-competitive-intelligence`; say so if it is not installed) in one line and ask whether to continue here.
 - Load the brain. Read Sections 3 and 7 first, because they decide what counts as relevant.
 - **Brain absent: Quick-Brain.** Ask at most three questions and hold the answers for the session: the three alternatives buyers compare you with (including doing nothing), the one priority this quarter, and who your best-fit buyer is. Label the output as built from them. Do not write them to the brain.
 - **Gap capture** (see the gap capture rule in `SKILL-SPEC.md`): if Section 7 `priorities` is empty or older than 90 days and the answer would change the ranking, ask one question: the question, one line on why it matters, "answer or skip". Answer: use it for this run and offer it as a brain update. Skip: continue with a labelled assumption and append a `skipped` block to `/foundation/gaps.md` (format in `product-marketing-context/references/gaps-format.md`). At most one gap question per run. This is the only write to `/foundation/gaps.md`.

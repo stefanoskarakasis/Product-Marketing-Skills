@@ -1,8 +1,8 @@
 ---
 name: competitive-profile.eval
-version: 1.2.1
+version: 1.3.0
 description: >
-  Eval suite for competitive-profile. Tests: setup from a full brain, the five-competitor cap, Quick-Brain with no brain, no invented roster, delta-only refresh, unchanged pages keeping their dates, unsourced weaknesses as questions, mechanism-not-adjective and roadmap-versus-shipped checks, append-only confirmed brain write-back, conflicts with confirmed values, a single honest schedule proposal, an unattended scheduled run, v2 intake with n of 2, v2 roster upkeep, and Learning Close against the five-field shape. Slack mode: a pricing question answered from a fresh profile, a stale line refreshed on that line only, a deal-data question with n and window, no sourced answer, a competitor off the roster, an unreachable tool, a full sweep of every internal CI store, thread intake with a named approver, an unlisted approver, one report staying a note, an injected instruction, the unattended weekly run, two approvals on one day, a freshness board that lists saved battlecards past their re-check date, and the weekly outcome prompts: a capped prompt for a card with no outcome, no prompt after two rounds or once an outcome exists, a reply logged with its permalink, an ambiguous reply and an injected instruction left unlogged. 35 test cases.
+  Eval suite for competitive-profile. Tests: setup from a full brain, the five-competitor cap, Quick-Brain with no brain, no invented roster, delta-only refresh, unchanged pages keeping their dates, unsourced weaknesses as questions, mechanism-not-adjective and roadmap-versus-shipped checks, append-only confirmed brain write-back, conflicts with confirmed values, a single honest schedule proposal, an unattended scheduled run, v2 intake with n of 2, v2 roster upkeep, and Learning Close against the five-field shape. Slack mode: a pricing question answered from a fresh profile, a stale line refreshed on that line only, a deal-data question with n and window, no sourced answer, a competitor off the roster, an unreachable tool, a full sweep of every internal CI store, thread intake with a named approver, an unlisted approver, one report staying a note, an injected instruction, the unattended weekly run, two approvals on one day, a freshness board that lists saved battlecards past their re-check date, and the weekly outcome prompts: a capped prompt for a card with no outcome, no prompt after two rounds or once an outcome exists, a reply logged with its permalink, an ambiguous reply and an injected instruction left unlogged. 36 test cases.
 ---
 
 # Competitive-Profile: Eval Suite
@@ -619,3 +619,21 @@ Fixtures use a fictional company ("Ledgerlane", from `examples/example-brain.md`
 - A prompt posted to a channel that could not be read
 
 **Pass condition:** The reply is evidence only, and a missing source is named, not hidden.
+
+---
+
+## Test Case 36: Routing: a request that belongs to a sibling skill (edge case: overlapping vocabulary)
+
+**Input:**
+A: "Brief the CEO on competitors."
+B: "Competitive update."
+
+**Expected output includes:**
+- A: one line naming `competitive-briefing` and a question whether to continue here
+- B: one question: refresh the profiles, or brief leadership?
+
+**Expected output excludes:**
+- A profile refresh or a status board built from either input before the user answers
+
+**Pass condition:**
+Leadership requests go to the briefing, and a bare phrase is questioned.

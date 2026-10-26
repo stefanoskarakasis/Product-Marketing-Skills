@@ -1,12 +1,12 @@
 ---
 name: competitor-deep-dive
-version: 1.1.1
+version: 1.2.0
 description: >
   Builds a long-form, fully sourced deep-dive on one competitor for a named decision
   (strategy call, RFP, pricing change, roadmap bet), with dated reviews, deal evidence, a
   head-to-head per offering and where they win. In a Slack thread it posts a short summary and builds the full document. Triggers: "deep-dive on [competitor]",
   "full competitor write-up", "what do users really say about [competitor]", "teardown of
-  [competitor]". Related: competitive-battlecard, competitive-profile, signal-monitor.
+  [competitor]". Related: competitive-battlecard, competitive-profile, signal-monitor. Not for a weekly leadership read (competitive-briefing).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
@@ -69,6 +69,7 @@ Every skill in this repo works without connectors, but a deep-dive is only as st
 
 ## Pre-flight
 
+- **Route check (first).** If the request is a weekly or recurring read across the roster, or is for the board without a named decision, name `competitive-briefing`; a one-page card for a live deal, `competitive-battlecard`; one factual question, `competitive-profile`. One line, then ask whether to continue here.
 - Load `/foundation/brain.md`. Read Sections 3, 6 and 8 first: Section 3 says what is already known, Section 6 says what we may claim, Section 8 says what we may not do. Then 1, 2, 4, 5 and 7.
 - Load `/context/meta-patterns.md` if present; surface any guardrail fired 2+ times in earlier deep-dive sessions.
 - **Personal context** (see the personal context rule in `SKILL-SPEC.md`): if `/foundation/me.md` exists, read it for format and detail only. It may shorten the deep-dive, never lengthen it past the ceiling. Never take a company fact from it.

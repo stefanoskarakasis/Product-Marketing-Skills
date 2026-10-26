@@ -74,7 +74,7 @@ last_updated: YYYY-MM-DD
 |---|---|---|
 | `name` | Yes | Lowercase, hyphens only. Matches directory name exactly. No `--`. |
 | `version` | Yes | Semantic versioning. See Section 10. |
-| `description` | Yes | 2–3 sentences: what it does, then trigger phrases verbatim. Mention related skills for scope boundaries. |
+| `description` | Yes | 2–3 sentences: what it does, then trigger phrases verbatim. Mention related skills for scope boundaries. When a sibling skill shares vocabulary, add a "Not for X (skill-name)" clause here: routing reads only the name and description, never the body. Never claim a generic phrase such as "competitive update"; `tests/test_triggers.py` enforces this for the competitive skills. |
 | `metadata.author` | Yes | Author name. |
 | `metadata.context` | Yes | `brain-dependent` or `context-agnostic`. See Section 8. |
 | `metadata.quality_gate` | Yes | `true` for any skill producing strategic output. `false` for simple utilities only. |

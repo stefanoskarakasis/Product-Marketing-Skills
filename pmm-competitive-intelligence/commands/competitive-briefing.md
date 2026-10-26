@@ -1,5 +1,5 @@
 ---
-description: Build the weekly leadership competitive brief from your saved profiles, cards, signals and outcome log
+description: Build the weekly leadership brief on competitors from your saved profiles, cards, signals and outcome log
 argument-hint: "<audience (CEO and board, CRO, product leadership, whole company) and the decision on the table, if any>"
 ---
 
@@ -16,7 +16,7 @@ to `/context/briefings/`. Never writes the brain.
 
 ```
 /pmm-competitive-intelligence:competitive-briefing Weekly leadership brief for the CEO
-/pmm-competitive-intelligence:competitive-briefing Board update, we have a pricing decision coming
+/pmm-competitive-intelligence:competitive-briefing Board update on competitors, we have a pricing decision coming
 /pmm-competitive-intelligence:competitive-briefing CRO brief, focus on win and loss
 /pmm-competitive-intelligence:competitive-briefing Grade last week's call and show what is still open
 ```

@@ -11,6 +11,18 @@ Competitive intelligence skills for B2B SaaS PMMs: dated competitor profiles, li
 - **In Slack:** tag Claude and ask "What do we say against [competitor] on pricing?" Setup for your Slack admin: [`docs/slack-setup.md`](../docs/slack-setup.md).
 - **The brain:** sharper with a brain (Sections 1 to 3) and an alternatives map; without them the skills ask for what they need. The brain-building skill is a separate plugin, `product-marketing-context`.
 
+## Which skill do I use?
+
+| You say | Skill |
+|---|---|
+| "Brief the CEO on competitors", "weekly leadership brief", "board update on competitors" | `competitive-briefing` |
+| "Battlecard for [competitor]", "[competitor] is in my deal" | `competitive-battlecard` |
+| "What do we say against [competitor] on pricing", "refresh my competitor profiles" | `competitive-profile` |
+| "Deep-dive on [competitor] for our pricing review" | `competitor-deep-dive` |
+| "What changed this week" (in `pmm-intelligence`) | `signal-monitor` |
+
+A bare "competitive update" fits none of them, so Claude asks one question first. If another set of competitive skills is installed in the same project, use the slash commands below; they always reach this plugin. Check routing by hand with [`docs/routing-checks.md`](../docs/routing-checks.md).
+
 ## Skills (4)
 
 - **competitive-profile** — Keep a roster of your five key competitors with a dated, sourced profile each, refresh only what has gone stale, answer your team's competitor questions in Slack from all your CI records, and fold in new intel once a named approver says yes.
@@ -26,7 +38,7 @@ Competitive intelligence skills for B2B SaaS PMMs: dated competitor profiles, li
 - `/pmm-competitive-intelligence:profile-status` — Show the freshness board for your profiles.
 - `/pmm-competitive-intelligence:competitive-battlecard` — Build or refresh a one-page competitor battlecard for a live deal.
 - `/pmm-competitive-intelligence:competitor-deep-dive` — Build or refresh a long-form, sourced deep-dive on one competitor for a named decision.
-- `/pmm-competitive-intelligence:competitive-briefing` — Build the weekly leadership competitive brief and keep the ledger of calls and open decisions.
+- `/pmm-competitive-intelligence:competitive-briefing` — Build the weekly leadership brief on competitors and keep the ledger of calls and open decisions.
 
 ## Connectors (Optional)
 

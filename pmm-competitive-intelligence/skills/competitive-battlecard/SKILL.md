@@ -1,12 +1,12 @@
 ---
 name: competitive-battlecard
-version: 1.2.1
+version: 1.3.0
 description: >
   Builds a one-page competitor battlecard a seller can skim in 60 seconds before a call,
   tailored to role, GTM motion, buyer persona, deal stage and the competitor's status in
   the deal. In a Slack thread it posts the card in the thread. Also lists your saved cards by roster tier and logs deal outcomes. Trigger on: "battlecard for [competitor]", "how do we beat [competitor]",
-  "[competitor] is in my deal", "what do I say against [competitor]", "counter this
-  objection", "set of cards", "we won against [competitor]", "that reply worked". Related: alternatives-map, signal-monitor, proof-points.
+  "[competitor] is in my deal", "what do I say against [competitor] in my deal", "counter this
+  objection", "set of cards", "we won against [competitor]", "that reply worked". Related: alternatives-map, signal-monitor, proof-points. Not for the leadership brief (competitive-briefing) or a competitor Q&A (competitive-profile).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
@@ -63,6 +63,7 @@ A battlecard is read once, five minutes before a call, and quoted from memory in
 
 ## Pre-flight
 
+- **Route check (first).** If the request has no deal (no role, persona or stage) and the audience is leadership, name `competitive-briefing`; if it asks one question about a competitor, name `competitive-profile`; if it wants a long write-up, name `competitor-deep-dive`. One line, then ask whether to continue here.
 - Load `/foundation/brain.md`. Read Sections 3 and 6 first: Section 3 decides what is already known about the competitor, Section 6 decides what we are allowed to claim. Then 1, 2, 4, 5, 7 and 8.
 - Load `/context/meta-patterns.md` if present; surface any guardrail fired 2+ times in earlier battlecard sessions.
 - **Personal context** (see the personal context rule in `SKILL-SPEC.md`): if `/foundation/me.md` exists, read it for format and detail only (length, shape, how blunt). It may shorten the card, never lengthen it past one page. Never take a company fact or the seller's role from it.

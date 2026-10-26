@@ -1,6 +1,6 @@
 ---
 name: signal-monitor.eval
-version: 1.0.0
+version: 1.1.0
 description: >
   Eval suite for signal-monitor. Tests: a normal weekly read from pasted signals, the five-opportunity cap, signals that touch no brain field are dropped, one source cannot be high confidence, company claims are not proof, no named source means no scan, Quick-Brain when there is no brain, a conflict with a confirmed brain value, a suggested move that hits a prohibited item, no brain writes, unreadable URL fallback, repeat suppression, and Learning Close against the five-field shape. 12 scenarios.
 ---
@@ -142,3 +142,13 @@ Fixtures use a fictional company ("Ledgerlane", from `examples/ingest-demo/`) an
 **Expected Output:** An entry appended to `/context/skill-sessions.md` with `type: execution`, `skill: signal-monitor`, `session_date`, `pattern`, `source`, written without asking.
 
 **Pass Criteria:** All five fields present; no permission question.
+
+---
+
+## Eval 13: Routing: a leadership brief on competitors
+
+**Input:** "Brief the CEO on competitors."
+
+**Expected Output:** One line naming `competitive-briefing` (plugin `pmm-competitive-intelligence`, with a note if it is not installed) and a question whether to continue here. No opportunities are listed before the user answers.
+
+**Pass Criteria:** The request is routed or questioned, never answered with a weekly opportunities list.

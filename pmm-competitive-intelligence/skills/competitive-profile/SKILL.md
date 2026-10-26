@@ -1,6 +1,6 @@
 ---
 name: competitive-profile
-version: 1.2.1
+version: 1.3.0
 description: >
   Keeps a roster of your five key competitors with a dated, sourced profile each,
   refreshes only what has gone stale, and always offers a weekly scheduled refresh.
@@ -9,7 +9,7 @@ description: >
   Trigger on: "who are my key competitors", "set up my competitive profiles", "refresh my
   competitor profiles", "what's stale", "competitive roster", "what do we say against
   [competitor] on pricing", "is [competitor] cheaper than us", "[competitor] just launched",
-  "update the profile". Related: alternatives-map, signal-monitor, competitive-battlecard.
+  "update the profile". Related: alternatives-map, signal-monitor, competitive-battlecard. Not for the leadership brief (competitive-briefing) or a long write-up (competitor-deep-dive).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
@@ -76,6 +76,7 @@ A battlecard is only as good as the facts under it, and competitor facts decay: 
 
 ## Pre-flight
 
+- **Route check (first).** If the request is for a leadership brief ("brief the CEO", "weekly leadership brief"), a seller card for a live deal or a long write-up, name the matching skill (`competitive-briefing`, `competitive-battlecard`, `competitor-deep-dive`) in one line and ask whether to continue here. A bare "competitive update" gets one question: refresh the profiles, or brief leadership?
 Context is loaded in a fixed order so the right facts come from the right place. Paths and field keys are defined in `product-marketing-context/references/brain-schema.md`; evidence ranks in `product-marketing-context/references/evidence-format.md`.
 
 | Load | From | Why |

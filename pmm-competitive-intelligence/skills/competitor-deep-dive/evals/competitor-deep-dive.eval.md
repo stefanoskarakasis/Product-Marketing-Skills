@@ -1,8 +1,8 @@
 ---
 name: competitor-deep-dive.eval
-version: 1.1.1
+version: 1.2.0
 description: >
-  Eval suite for competitor-deep-dive. Tests: a full-brain deep-dive, Quick-Brain with no brain, a prohibited competitor, profile reuse, a missing connector prompted once, a skipped connector labelled, connect and re-check, a pricing decision with no sources, an unsourced weakness, absence versus non-existence, the one tag vocabulary, forbidden claims, the brain check, confirmation-gated append-only Section 3 write-back, truthful delivery, refresh against a previous deep-dive, the quality gate, and Learning Close against the five-field shape. a Slack thread getting a five-line summary while the full document is built and saved. 18 test cases.
+  Eval suite for competitor-deep-dive. Tests: a full-brain deep-dive, Quick-Brain with no brain, a prohibited competitor, profile reuse, a missing connector prompted once, a skipped connector labelled, connect and re-check, a pricing decision with no sources, an unsourced weakness, absence versus non-existence, the one tag vocabulary, forbidden claims, the brain check, confirmation-gated append-only Section 3 write-back, truthful delivery, refresh against a previous deep-dive, the quality gate, and Learning Close against the five-field shape. a Slack thread getting a five-line summary while the full document is built and saved. 19 test cases.
 ---
 
 # Competitor-Deep-Dive: Eval Suite
@@ -307,3 +307,21 @@ Fixtures use a fictional company ("Ledgerlane", from `examples/example-brain.md`
 - A claim that a Google Doc was created when no tool did it
 
 **Pass condition:** The thread gets a short summary, the full record exists, and no delivery claim is untrue.
+
+---
+
+## Test Case 19: Routing: a request that belongs to a sibling skill (edge case: overlapping vocabulary)
+
+**Input:**
+A: "Weekly competitor read for the board." (no named decision)
+B: "What does Acme charge for the entry plan?"
+
+**Expected output includes:**
+- A: one line naming `competitive-briefing` and a question whether to continue here
+- B: one line naming `competitive-profile` and a question whether to continue here
+
+**Expected output excludes:**
+- A deep-dive built for either input before the user answers
+
+**Pass condition:**
+A recurring or single-fact request is routed, not built into a long document.

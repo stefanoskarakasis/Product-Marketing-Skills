@@ -158,7 +158,8 @@ named competitor (competitive-battlecard)?"
 - alternatives-map — if Section 3 names no direct competitors, or the roster check shows the map is out of date
 - proof-points — if the profiles left `[NEEDS PROOF]` items worth registering in Section 6
 - signal-monitor — if you want the market read weekly between refreshes
-**Prompt to surface:** "Next, pick one: build a seller card for a live deal (competitive-battlecard), rework the map (alternatives-map), register the claims the profiles could not use (proof-points), or track the market weekly (signal-monitor)?"
+- competitive-briefing — if leadership needs the weekly read on these competitors, with a recommendation and the open decisions
+**Prompt to surface:** "Next, pick one: build a seller card for a live deal (competitive-battlecard), rework the map (alternatives-map), register the claims the profiles could not use (proof-points), track the market weekly (signal-monitor), or brief leadership (competitive-briefing)?"
 
 ## After competitor-deep-dive (document delivered, record saved)
 **Next options (not a single path — ask which applies):**
@@ -179,3 +180,13 @@ named competitor (competitive-battlecard)?"
 - signal-monitor — if you want this competitor's moves tracked weekly
 - competitive-profile — if this competitor has no current profile, or you want your five key competitors kept fresh
 **Prompt to surface:** "Next, pick one: map your alternatives properly (alternatives-map), register the claims the card could not use (proof-points), fix a message that does not separate you (positioning-messaging), or track this competitor weekly (signal-monitor)?"
+
+## After competitive-briefing (brief delivered, record and ledgers saved)
+**Next options (not a single path — ask which applies):**
+- competitor-deep-dive — if the decision needs the long, sourced evidence behind it
+- competitive-battlecard — if a seller needs the play for a competitor named in the brief
+- competitive-profile — if the Held list shows profile lines past their window, or a competitor is missing from the roster
+- proof-points — if the brief left `[NEEDS PROOF]` items worth registering in Section 6
+- meta-verify — a second quality gate, before the brief goes to the board
+- meta-learn — a deeper capture of what this session taught
+**Prompt to surface:** "Next, pick one: build the evidence behind the decision (competitor-deep-dive), give sellers the play (competitive-battlecard), refresh the stale profile lines (competitive-profile), register the claims it could not use (proof-points), or run a second quality check before it goes to the board (meta-verify)?"

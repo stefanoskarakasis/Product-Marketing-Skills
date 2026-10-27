@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Product marketing skills for B2B SaaS PMMs and GTM operators: positioning and messaging, ICP and buyer personas, competitive intelligence and battlecards, GTM strategy and launch tiering, OKRs, PRDs, retros, customer stories and a shared company brain for Claude Code and Claude.",
-    "version": "1.16.0"
+    "version": "1.17.0"
   },
   "plugins": [
     {
@@ -52,7 +52,7 @@
     {
       "name": "pmm-competitive-intelligence",
       "displayName": "PMM Competitive Intelligence",
-      "description": "Competitive intelligence skills for B2B SaaS PMMs: dated competitor profiles, live-deal battlecards, decision-ready deep-dives and a weekly leadership brief, with competitor answers your team can get in Slack.",
+      "description": "Competitive intelligence skills for B2B SaaS PMMs: dated competitor profiles, live-deal battlecards, decision-ready deep-dives, a weekly leadership brief and a weekly industry newsletter, with competitor answers your team can get in Slack.",
       "source": "./pmm-competitive-intelligence",
       "category": "product-marketing",
       "tags": ["competitive-intelligence", "battlecards", "competitor-analysis", "sales-enablement", "slack"]

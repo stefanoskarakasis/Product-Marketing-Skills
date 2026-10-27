@@ -1,13 +1,13 @@
 ---
 name: competitive-briefing
-version: 1.1.0
+version: 1.1.1
 description: >
-  Builds the weekly leadership brief on competitors for a named audience (CEO and board, CRO, product leaders or the whole company): a verdict, one recommended decision with options, what moved ranked by exposure and a graded prediction, from your saved profiles, cards, signals and outcome log. Triggers: "brief the CEO on competitors", "weekly leadership brief", "board update on competitors", "exec brief on competitors", "grade last week's call". Not for one competitor's question (competitive-profile), a seller card (competitive-battlecard), a long write-up (competitor-deep-dive) or a weekly opportunities list (signal-monitor).
+  Builds the weekly leadership brief on competitors for a named audience (CEO and board, CRO, product leaders or the whole company): a verdict, one recommended decision with options, what moved ranked by exposure and a graded prediction, from your saved profiles, cards, signals and outcome log. Triggers: "brief the CEO on competitors", "weekly leadership brief", "board update on competitors", "exec brief on competitors", "grade last week's call". Not for one competitor's question (competitive-profile), a seller card (competitive-battlecard), a long write-up (competitor-deep-dive), a weekly opportunities list (signal-monitor) or the industry newsletter for GTM leaders (industry-newsletter).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-26
+last_updated: 2026-10-27
 ---
 
 # Competitive Briefing
@@ -194,6 +194,7 @@ The `pattern` is where `meta-synthesis` learns from this skill, so make it speci
 - **`competitive-battlecard`**: the one-page card a seller reads before a call. The brief may point to it; it does not build it.
 - **`competitor-deep-dive`**: the long, sourced document on one competitor for a decision. Offer it when a decision needs the evidence.
 - **`signal-monitor`**: a weekly list of up to five opportunities tied to brain priorities. Its output can feed What moved; it does not replace the brief.
+- **`industry-newsletter`**: the weekly industry newsletter for GTM leaders across Product, Sales, RevOps and PMM. It covers the market and regulation as well as rivals and carries no deal data or euro figures.
 - **`alternatives-map`**: building or refreshing the map of who buyers compare you to.
 - **`proof-points`**: registering, verifying or auditing the claims a document relies on.
 - **`workflow-orchestrator`**: a multi-skill competitive program rather than one weekly document.

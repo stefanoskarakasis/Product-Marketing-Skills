@@ -43,6 +43,7 @@ Nine plugins, grouped by the work you do. Install `product-marketing-context` fi
 | Profile a competitor | `competitive-profile`, `competitor-deep-dive` | `pmm-competitive-intelligence` |
 | Answer competitor questions in Slack | `competitive-profile` | `pmm-competitive-intelligence` |
 | Brief the CEO, CRO or board on competitors every week | `competitive-briefing` | `pmm-competitive-intelligence` |
+| Send GTM leaders one weekly industry newsletter | `industry-newsletter` | `pmm-competitive-intelligence` |
 | Know what changed around my product this week | `signal-monitor` | `pmm-intelligence` |
 | Run the PMM job: OKRs, retros, pre-mortems | `pmm-okrs`, `retro`, `pre-mortem` | `pmm-execution` |
 | Generate and measure growth ideas | `experiment-ideas`, `pmm-metrics` | `pmm-growth` |
@@ -50,7 +51,7 @@ Nine plugins, grouped by the work you do. Install `product-marketing-context` fi
 | Draft content, briefs, resumes | `writing-assistant`, `gaccs-brief` | `pmm-toolkit` |
 | Keep my skills sharp | `meta-review`, `meta-learn` | `pmm-meta` |
 
-**Skills** are single guided workflows; **plugins** bundle related skills into one install. The full catalogue is under [Available Skills](#available-skills-40-total).
+**Skills** are single guided workflows; **plugins** bundle related skills into one install. The full catalogue is under [Available Skills](#available-skills-41-total).
 
 ## How it fits together
 
@@ -84,7 +85,7 @@ Ask in plain language, or call a skill directly.
 
 Direct call example: `/pmm-positioning:ideal-customer-profile`.
 
-## Available Skills (40 Total)
+## Available Skills (41 Total)
 
 | Skill | Plugin | Description |
 |-------|--------|-------------|
@@ -103,6 +104,7 @@ Direct call example: `/pmm-positioning:ideal-customer-profile`.
 | [competitive-battlecard](pmm-competitive-intelligence/skills/competitive-battlecard/) | pmm-competitive-intelligence | One-page competitor battlecard for a live deal, tailored to role, motion, persona and stage |
 | [competitor-deep-dive](pmm-competitive-intelligence/skills/competitor-deep-dive/) | pmm-competitive-intelligence | Long-form, sourced deep-dive on one competitor for a named decision |
 | [competitive-briefing](pmm-competitive-intelligence/skills/competitive-briefing/) | pmm-competitive-intelligence | Weekly leadership brief: verdict with the risk in euro, one recommended decision, what moved, the last call graded and the decisions still open |
+| [industry-newsletter](pmm-competitive-intelligence/skills/industry-newsletter/) | pmm-competitive-intelligence | Weekly industry newsletter for GTM leaders in one locked layout: numbered competitor tables, industry changes, pricing watch and role-owned actions; formatted for Google Doc, email or Slack |
 | [gaccs-brief](pmm-toolkit/skills/gaccs-brief/) | pmm-toolkit | Campaign briefs (Goals, Audience, Creative, Channels, Stakeholders) |
 | [writing-assistant](pmm-toolkit/skills/writing-assistant/) | pmm-toolkit | Sharpen any written communication; draft blog posts, landing pages, press releases, case studies, newsletters, social posts |
 | [pmm-resume](pmm-toolkit/skills/pmm-resume/) | pmm-toolkit | Resume tailoring for PMM roles |

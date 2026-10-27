@@ -29,8 +29,11 @@ Claude chooses a skill from its name and description. This page is how you check
 | 13 | What are our competitors doing | One question, or `competitive-profile`. Never a leadership brief |
 | 14 | Competitive newsletter | One question. No leadership brief without an audience |
 | 15 | Who are we competing with | `alternatives-map` |
+| 16 | Write this week's industry newsletter | `industry-newsletter` |
+| 17 | Weekly market and pricing watch for our GTM leaders | `industry-newsletter` |
+| 18 | Brief the CEO on competitors, with the euro at risk | `competitive-briefing` |
 
-**Pass:** 13 of 15, and prompts 12 to 14 never build a leadership brief without asking.
+**Pass:** 16 of 18, and prompts 12 to 14 never build a leadership brief or a newsletter without asking.
 
 ## If two sets of skills are installed
 
@@ -39,6 +42,7 @@ If you also run another set of competitive skills in the same project (for examp
 | You want | Use |
 |---|---|
 | The weekly leadership brief | `/pmm-competitive-intelligence:competitive-briefing` |
+| The weekly industry newsletter | `/pmm-competitive-intelligence:industry-newsletter` |
 | A battlecard for a live deal | `/pmm-competitive-intelligence:competitive-battlecard` |
 | A deep-dive on one competitor | `/pmm-competitive-intelligence:competitor-deep-dive` |
 | Profiles, roster, a competitor question | `/pmm-competitive-intelligence:competitive-profile` |

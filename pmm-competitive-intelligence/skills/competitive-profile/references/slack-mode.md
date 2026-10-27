@@ -1,6 +1,6 @@
 # Slack Mode
 
-Reference for the skills in this plugin. Read it when a request arrives from a Slack thread, when a scheduled run posts to a channel, or when someone asks a question about a named competitor. It holds the rules for `competitive-profile` `ask` mode, thread `intake`, and the Slack versions of `competitive-battlecard`, `competitor-deep-dive` and `competitive-briefing`.
+Reference for the skills in this plugin. Read it when a request arrives from a Slack thread, when a scheduled run posts to a channel, or when someone asks a question about a named competitor. It holds the rules for `competitive-profile` `ask` mode, thread `intake`, and the Slack versions of `competitive-battlecard`, `competitor-deep-dive`, `competitive-briefing` and `industry-newsletter`.
 
 ## Contents
 
@@ -219,6 +219,13 @@ At the start of each run, read the replies under every prompt posted in the last
 - Do not ask for a delivery format. Post the Slack rendering in `competitive-briefing/references/brief-format.md` (section 7): about 150 words, bullets, no table, source wording with dates, the saved record path last. All other intake questions go in one message; a scheduled run asks nothing and states its defaults.
 - The brief posts to the channel it was asked in or the one its scheduled prompt names. It reads the sweep stores in section 2 and `/context/briefings/`, and never writes a profile or the brain.
 - Only the user or a listed approver closes a decision in a thread (`competitive-briefing/references/prediction-ledger.md`, section 4). A reply from anyone else is quoted back and not applied.
+
+**`industry-newsletter`**
+
+- A request from Slack means the platform is Slack: do not ask for one. Post the Slack version in `industry-newsletter/references/issue-format.md` (section 5): a single post of about 220 words, no table, the Doc link or saved path last. All other intake questions go in one message; a scheduled run asks nothing and states its defaults.
+- A reply in the thread that names a section is logged to `/context/industry-newsletter/_feedback.md` by role, never by name; reactions alone are not logged. A reply that reports how a deal ended gets one line offering to log it in `/context/battlecards/_outcomes.md`; it is never written without a yes.
+- Only the user or a listed approver says yes to a proposed change to the newsletter, or closes a decision. A reply from anyone else is quoted back and not applied.
+- No deal data is posted in the digest, even when the thread contains it.
 
 ## 12. Cost rules
 

@@ -1,12 +1,13 @@
 # pmm-competitive-intelligence
 
-Competitive intelligence skills for B2B SaaS PMMs: dated competitor profiles, live-deal battlecards, decision-ready deep-dives and a weekly leadership brief, with competitor answers your team can get in Slack.
+Competitive intelligence skills for B2B SaaS PMMs: dated competitor profiles, live-deal battlecards, decision-ready deep-dives, a weekly leadership brief and a weekly industry newsletter, with competitor answers your team can get in Slack.
 
 ## Start here
 
 - **You get:** dated profiles of your five key competitors and a one-page battlecard for a live deal, tied to your alternatives map. In Slack, anyone can tag Claude with a competitor question and get a short answer with sources, and tag it again to log new intel for your PMM to approve.
 - **First command:** `/pmm-competitive-intelligence:competitive-profile`
 - **For leadership:** once profiles exist, `/pmm-competitive-intelligence:competitive-briefing` builds the weekly brief for your CEO, CRO or board.
+- **For GTM leaders:** `/pmm-competitive-intelligence:industry-newsletter` builds the weekly industry newsletter (numbered competitor tables, industry changes, pricing watch, role-owned actions) that Product, Sales, RevOps and PMM can all read and forward.
 - **Try:** "Set up my competitive profiles. We sell [product] to [buyer]."
 - **In Slack:** tag Claude and ask "What do we say against [competitor] on pricing?" Setup for your Slack admin: [`docs/slack-setup.md`](../docs/slack-setup.md).
 - **The brain:** sharper with a brain (Sections 1 to 3) and an alternatives map; without them the skills ask for what they need. The brain-building skill is a separate plugin, `product-marketing-context`.
@@ -16,6 +17,7 @@ Competitive intelligence skills for B2B SaaS PMMs: dated competitor profiles, li
 | You say | Skill |
 |---|---|
 | "Brief the CEO on competitors", "weekly leadership brief", "board update on competitors" | `competitive-briefing` |
+| "Write this week's industry newsletter", "weekly market and pricing watch" | `industry-newsletter` |
 | "Battlecard for [competitor]", "[competitor] is in my deal" | `competitive-battlecard` |
 | "What do we say against [competitor] on pricing", "refresh my competitor profiles" | `competitive-profile` |
 | "Deep-dive on [competitor] for our pricing review" | `competitor-deep-dive` |
@@ -23,14 +25,15 @@ Competitive intelligence skills for B2B SaaS PMMs: dated competitor profiles, li
 
 A bare "competitive update" fits none of them, so Claude asks one question first. If another set of competitive skills is installed in the same project, use the slash commands below; they always reach this plugin. Check routing by hand with [`docs/routing-checks.md`](../docs/routing-checks.md).
 
-## Skills (4)
+## Skills (5)
 
 - **competitive-profile** — Keep a roster of your five key competitors with a dated, sourced profile each, refresh only what has gone stale, answer your team's competitor questions in Slack from all your CI records, and fold in new intel once a named approver says yes.
 - **competitive-battlecard** — Build a one-page competitor battlecard for a live deal, tailored to role, GTM motion, buyer persona and deal stage, with every competitor claim sourced and dated, a roster tier and a re-check date. List your saved cards in one index and log how deals ended so the next card shows field results.
 - **competitor-deep-dive** — Build a long-form, sourced deep-dive on one competitor for a named decision, with deal evidence, reviews, a head-to-head per offering and where they genuinely win.
 - **competitive-briefing** — Build the weekly leadership brief from the records above: a verdict with the risk in euro, one recommended decision with options and what would change the call, what moved ranked by exposure, the last call graded, and the decisions still open. Anything unverified is held, not sent.
+- **industry-newsletter** — Build the weekly newsletter on your competitors and your industry for GTM leaders in one locked layout: numbered competitor tables with 3 to 5 product updates, industry changes, a pricing watch and role-owned actions, every claim linked. Asks once whether it is read in a Google Doc, email or Slack. Pulls leads from your other CI skills and from Gong, Slack, Klue and Google Drive, publishes only what a public page confirms, and grades its last call and carries open signals into the next issue.
 
-## Commands (7)
+## Commands (8)
 
 - `/pmm-competitive-intelligence:competitive-profile` — Set up your market and roster of up to five competitors, review their profiles, or ask a question about one.
 - `/pmm-competitive-intelligence:competitor-refresh` — Refresh only the stale lines of one profile or the whole roster.
@@ -39,6 +42,7 @@ A bare "competitive update" fits none of them, so Claude asks one question first
 - `/pmm-competitive-intelligence:competitive-battlecard` — Build or refresh a one-page competitor battlecard for a live deal.
 - `/pmm-competitive-intelligence:competitor-deep-dive` — Build or refresh a long-form, sourced deep-dive on one competitor for a named decision.
 - `/pmm-competitive-intelligence:competitive-briefing` — Build the weekly leadership brief on competitors and keep the ledger of calls and open decisions.
+- `/pmm-competitive-intelligence:industry-newsletter` — Build the weekly industry newsletter for GTM leaders, grade the last call and fold in what the field said.
 
 ## Connectors (Optional)
 

@@ -1,5 +1,24 @@
 # Changelog
 
+## v1.17.0 — 2026-10-27
+
+### Competitive intelligence
+
+- New skill `industry-newsletter` in `pmm-competitive-intelligence`, with the `/pmm-competitive-intelligence:industry-newsletter` command: the weekly newsletter on your competitors and your industry for GTM leaders across Product, Sales, RevOps, PMM and Pricing, in one locked layout: title with issue and ISO week, a line of regions and the owning team, a one-sentence verdict, Competitor Watch, Industry Changes, Decisions & Actions and Sources & References (last). Every claim carries a link retrieved in that run; an unlinked claim is held, not softened.
+- Written for readability and scanning: heading levels (H1 title, H2 section, H3 numbered competitor, H4 label), one table per competitor with the same columns every time (update, impact and horizon, confidence, one-sentence pipeline implication, source), and 3 to 5 competitor product updates in total (fewer only when fewer were verifiable, and the count is stated). Confidence marks (🔵 🟡 ⚠️) carry a 1 to 5 score from a written rubric. A body of about 900 words with a 1,200-word ceiling keeps it a five-minute read.
+- It asks once, before the first build, where the issue will be read (Google Doc, email or Slack), saves the answer, and formats for it: 5-column tables for a Doc, 4 columns for email, a single post of about 220 words with no tables for Slack. Scheduled runs use the saved answer and never ask.
+- It pulls from your other CI skills and your tools: competitor profiles, battlecards and the outcome log, deep-dives, signals and the leadership brief's ledgers, plus Gong (`~~call recordings`), Slack (`~~team chat`), Klue (`~~competitive intelligence`, paste or your vendor's server) and Google Drive (`~~cloud storage`). Those are leads, never the claim: a public page must confirm anything before it is published, sellers' reports appear only as "seller-reported, n=", and no account names, amounts, call links or long quotes leave an internal source. `references/inputs.md` has the map.
+- Every issue carries the pricing and packaging watch, a decision question, Now, Next and Later pipeline impact, the last call's result with one new falsifiable call, and at most five actions, each tied to a competitor or industry number and owned by a role. A quiet week is a short issue, never a skipped one.
+- Each issue learns from the previous one through three append-only files in `/context/industry-newsletter/`: a call ledger (the last call is graded; "x of y" appears after three graded calls), a watchlist (unresolved signals carried forward with their age and the trigger that would promote them) and reader feedback (a change is proposed only when three roles say the same thing across two issues, and applied only after you say yes; the pricing watch, calls, actions and handling line can never be tuned away).
+- Handling is internal use only: no deal data, no euro figures. Items the issue could not verify stay out of the document and are listed in the chat. The brain is read-only.
+- `competitive-briefing` (1.1.1) and `signal-monitor` (1.1.1) now name `industry-newsletter` in their "Not for" clauses so requests route correctly. The hand-off map in `next-skill-map.md` lists the new skill after `competitive-profile`, after `competitive-briefing` and after itself.
+- Evals: 33 test cases for `industry-newsletter`. Two samples in `examples/` (Google Doc and Slack).
+
+### Tests and documentation
+
+- `tests/test_triggers.py` adds `industry-newsletter` to the competitive family and checks that its "Not for" clause names its five neighbours and that no family description passes 1,024 characters.
+- `docs/routing-checks.md` grows to 18 prompts; the plugin README, root README, `slack-mode.md` and `SKILL-SPEC.md` list the new skill. The skill count is 41.
+
 ## v1.16.0 — 2026-10-26
 
 ### Competitive intelligence

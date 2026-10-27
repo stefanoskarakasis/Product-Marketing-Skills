@@ -1,7 +1,7 @@
 {
   "name": "pmm-skills",
   "description": "Product marketing skills for B2B SaaS PMMs and GTM operators: positioning and messaging, ICP and buyer personas, competitive intelligence and battlecards, GTM strategy and launch tiering, OKRs, PRDs, retros, customer stories and a shared company brain for Claude Code and Claude.",
-  "version": "1.16.0",
+  "version": "1.17.0",
   "author": {
     "name": "Stefanos Karakasis",
     "url": "https://stefanoskarakasis.substack.com"

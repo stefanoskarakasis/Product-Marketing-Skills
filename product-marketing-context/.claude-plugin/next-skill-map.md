@@ -159,7 +159,8 @@ named competitor (competitive-battlecard)?"
 - proof-points — if the profiles left `[NEEDS PROOF]` items worth registering in Section 6
 - signal-monitor — if you want the market read weekly between refreshes
 - competitive-briefing — if leadership needs the weekly read on these competitors, with a recommendation and the open decisions
-**Prompt to surface:** "Next, pick one: build a seller card for a live deal (competitive-battlecard), rework the map (alternatives-map), register the claims the profiles could not use (proof-points), track the market weekly (signal-monitor), or brief leadership (competitive-briefing)?"
+- industry-newsletter — if GTM leaders across Product, Sales and RevOps need a weekly market read, not only the competitor view
+**Prompt to surface:** "Next, pick one: build a seller card for a live deal (competitive-battlecard), rework the map (alternatives-map), register the claims the profiles could not use (proof-points), track the market weekly (signal-monitor), brief leadership (competitive-briefing), or send GTM leaders the weekly newsletter (industry-newsletter)?"
 
 ## After competitor-deep-dive (document delivered, record saved)
 **Next options (not a single path — ask which applies):**
@@ -190,3 +191,14 @@ named competitor (competitive-battlecard)?"
 - meta-verify — a second quality gate, before the brief goes to the board
 - meta-learn — a deeper capture of what this session taught
 **Prompt to surface:** "Next, pick one: build the evidence behind the decision (competitor-deep-dive), give sellers the play (competitive-battlecard), refresh the stale profile lines (competitive-profile), register the claims it could not use (proof-points), or run a second quality check before it goes to the board (meta-verify)?"
+
+## After industry-newsletter (issue delivered, record and loop files saved)
+**Next options (not a single path — ask which applies):**
+- competitive-profile — if the held items show profile lines past their window, or a competitor is missing from the roster
+- competitor-deep-dive — if the decision question needs the long, sourced evidence behind it
+- competitive-briefing — if the CEO or board needs the euro-quantified version of the top move, leadership only
+- competitive-battlecard — if a competitor row shows a move sellers will meet in live deals and they need the play
+- proof-points — if the issue left `[NEEDS PROOF]` items worth registering in Section 6
+- meta-verify — a second quality gate, before the issue is forwarded beyond the team
+- meta-learn — a deeper capture of what this session taught
+**Prompt to surface:** "Next, pick one: refresh the stale profile lines (competitive-profile), build the evidence behind the decision (competitor-deep-dive), brief the CEO in euro (competitive-briefing), give sellers the play (competitive-battlecard), register the claims it could not use (proof-points), or run a second quality check before it is forwarded (meta-verify)?"

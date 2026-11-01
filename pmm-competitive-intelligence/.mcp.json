@@ -51,6 +51,22 @@
     "exa": {
       "type": "http",
       "url": "https://mcp.exa.ai/mcp"
+    },
+    "ahrefs": {
+      "type": "http",
+      "url": "https://api.ahrefs.com/mcp/mcp"
+    },
+    "granola": {
+      "type": "http",
+      "url": "https://mcp.granola.ai/mcp"
+    },
+    "dovetail": {
+      "type": "http",
+      "url": "https://dovetail.com/api/mcp"
+    },
+    "zoom": {
+      "type": "http",
+      "url": "https://zoom.us/mcp/meeting/streamable"
     }
   }
 }

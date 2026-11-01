@@ -103,6 +103,30 @@
     "exa": {
       "type": "http",
       "url": "https://mcp.exa.ai/mcp"
+    },
+    "ahrefs": {
+      "type": "http",
+      "url": "https://api.ahrefs.com/mcp/mcp"
+    },
+    "monday": {
+      "type": "http",
+      "url": "https://mcp.monday.com/mcp"
+    },
+    "productboard": {
+      "type": "http",
+      "url": "https://mcp.productboard.com"
+    },
+    "granola": {
+      "type": "http",
+      "url": "https://mcp.granola.ai/mcp"
+    },
+    "dovetail": {
+      "type": "http",
+      "url": "https://dovetail.com/api/mcp"
+    },
+    "zoom": {
+      "type": "http",
+      "url": "https://zoom.us/mcp/meeting/streamable"
     }
   }
 }

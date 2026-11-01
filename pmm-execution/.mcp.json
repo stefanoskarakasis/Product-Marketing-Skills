@@ -59,6 +59,18 @@
     "wispr-flow": {
       "type": "http",
       "url": "https://api.wisprflow.ai/connect/mcp"
+    },
+    "monday": {
+      "type": "http",
+      "url": "https://mcp.monday.com/mcp"
+    },
+    "productboard": {
+      "type": "http",
+      "url": "https://mcp.productboard.com"
+    },
+    "granola": {
+      "type": "http",
+      "url": "https://mcp.granola.ai/mcp"
     }
   }
 }

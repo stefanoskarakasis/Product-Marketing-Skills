@@ -23,6 +23,10 @@
     "exa": {
       "type": "http",
       "url": "https://mcp.exa.ai/mcp"
+    },
+    "ahrefs": {
+      "type": "http",
+      "url": "https://api.ahrefs.com/mcp/mcp"
     }
   }
 }

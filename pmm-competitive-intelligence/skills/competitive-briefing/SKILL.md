@@ -1,13 +1,13 @@
 ---
 name: competitive-briefing
-version: 1.1.1
+version: 1.1.2
 description: >
-  Builds the weekly leadership brief on competitors for a named audience (CEO and board, CRO, product leaders or the whole company): a verdict, one recommended decision with options, what moved ranked by exposure and a graded prediction, from your saved profiles, cards, signals and outcome log. Triggers: "brief the CEO on competitors", "weekly leadership brief", "board update on competitors", "exec brief on competitors", "grade last week's call". Not for one competitor's question (competitive-profile), a seller card (competitive-battlecard), a long write-up (competitor-deep-dive), a weekly opportunities list (signal-monitor) or the industry newsletter for GTM leaders (industry-newsletter).
+  Builds the weekly leadership brief on competitors for a named audience (CEO and board, CRO, product leaders or the whole company): a verdict, one recommended decision with options, what moved ranked by exposure and a graded prediction, from your saved profiles, cards, signals and outcome log. Triggers: "brief the CEO on competitors", "weekly leadership brief", "board update on competitors", "exec brief on competitors", "grade last week's call". Not for one competitor's question (competitive-profile), a seller card (competitive-battlecard), a long write-up (competitor-deep-dive), a weekly opportunities list (signal-monitor) or the industry newsletter for GTM leaders (industry-newsletter), or the scheduled competitor sweep (media-monitoring).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-27
+last_updated: 2026-10-29
 ---
 
 # Competitive Briefing
@@ -190,6 +190,7 @@ The `pattern` is where `meta-synthesis` learns from this skill, so make it speci
 
 ## Do Not Use For
 
+- **`media-monitoring`**: the scheduled sweep of your core competitors' public pages, with the fix for each item drafted. Its findings can feed this skill; it does not replace it.
 - **`competitive-profile`**: keeping five competitors' profiles current, the roster, and answering one competitor question. The brief reads the profiles; it does not maintain them.
 - **`competitive-battlecard`**: the one-page card a seller reads before a call. The brief may point to it; it does not build it.
 - **`competitor-deep-dive`**: the long, sourced document on one competitor for a decision. Offer it when a decision needs the evidence.

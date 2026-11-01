@@ -154,7 +154,7 @@ Every question that ended with "no sourced answer", and every out-of-roster ques
 
 An unattended run (a scheduled routine, no questions to the person who scheduled it):
 
-1. `refresh`: re-read only lines past their window.
+1. `refresh`: re-read only lines past their window. If `/context/monitoring/signal-log.md` has findings since the last run (from `media-monitoring`), use them first and fetch only what they do not cover.
 2. `status`: build the freshness board, including saved battlecards past their `Re-check by`.
 3. Read the replies to earlier outcome prompts and log them (see "Outcome replies" below).
 4. Sweep the one named `field_channel` (from `_slack.md`) for competitor mentions in the last 7 days. Each new item becomes an open draft under section 8. Nothing is applied to a profile.
@@ -166,6 +166,7 @@ An unattended run (a scheduled routine, no questions to the person who scheduled
    - "Outcomes: [n] logged since last run, [n] cards waiting for an outcome"
    - "Waiting for [approver]": open drafts
    - the five most common unanswered questions
+   - when `media-monitoring` is set up, its Monitor section: the Needs-you headlines and the coverage line (format in `media-monitoring/references/output-format.md`, section 5)
 8. Never write the brain. Anything that needs a yes goes under "Waiting for you". If a source is missing, the board says so and the run moves on.
 
 ### Outcome prompts

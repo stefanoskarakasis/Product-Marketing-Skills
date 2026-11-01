@@ -9,6 +9,12 @@ A weekly read on what changed around your product: at most five opportunities fr
 - **Try:** "Here is what changed on two competitor pricing pages this week: [paste]. What matters for us?"
 - **The brain:** sharper with a brain (Sections 3 and 7 especially). With no brain it asks three quick questions and holds the answers for the session only. The brain-building skill is a separate plugin, `product-marketing-context`.
 
+## How it fits with the other plugins
+
+- **This plugin (signals: rank what changed):** `signal-monitor` ranks signals of any kind against your priorities.
+- **`pmm-competitive-intelligence` (competitors: collect and produce):** its `media-monitoring` skill collects competitor findings; bring them here to rank them.
+- **`product-marketing-context`:** the brain this plugin reads. It never writes it.
+
 ## Skills (1)
 
 - **signal-monitor** — Turn the signals you name into at most five opportunities, each with evidence, a confidence label and one next move. Read-only for your brain.

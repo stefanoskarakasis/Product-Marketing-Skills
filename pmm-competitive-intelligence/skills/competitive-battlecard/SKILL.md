@@ -1,17 +1,17 @@
 ---
 name: competitive-battlecard
-version: 1.3.0
+version: 1.3.1
 description: >
   Builds a one-page competitor battlecard a seller can skim in 60 seconds before a call,
   tailored to role, GTM motion, buyer persona, deal stage and the competitor's status in
   the deal. In a Slack thread it posts the card in the thread. Also lists your saved cards by roster tier and logs deal outcomes. Trigger on: "battlecard for [competitor]", "how do we beat [competitor]",
   "[competitor] is in my deal", "what do I say against [competitor] in my deal", "counter this
-  objection", "set of cards", "we won against [competitor]", "that reply worked". Related: alternatives-map, signal-monitor, proof-points. Not for the leadership brief (competitive-briefing) or a competitor Q&A (competitive-profile).
+  objection", "set of cards", "we won against [competitor]", "that reply worked". Related: alternatives-map, signal-monitor, proof-points. Not for the leadership brief (competitive-briefing) or a competitor Q&A (competitive-profile), or the scheduled competitor sweep (media-monitoring).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-26
+last_updated: 2026-10-29
 ---
 
 # Competitive Battlecard
@@ -211,6 +211,7 @@ a sparse one `meta-synthesis` can't trust.
 
 ## Do Not Use For
 
+- **`media-monitoring`**: the scheduled sweep of your core competitors' public pages, with the fix for each item drafted. Its findings can feed this skill; it does not replace it.
 - **`alternatives-map`**: building or refreshing the map of who buyers compare you to. Run it first when the competitor is missing from Section 3.
 - **`competitive-profile`**: keeping five competitors' profiles current and the roster itself. The card reads the profile; it does not maintain it.
 - **`competitor-deep-dive`**: the long, sourced document behind a decision. The card does not replace it; when a deep-dive exists for this competitor the card reads it so the two never disagree.

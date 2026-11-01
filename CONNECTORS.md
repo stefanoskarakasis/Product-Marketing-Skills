@@ -63,7 +63,7 @@ The brain plugin (`product-marketing-context`) wires every Google server. Every 
 | pmm-go-to-market | yes | yes | yes | yes | yes | yes |
 | pmm-growth | yes | yes | yes |  | yes |  |
 | pmm-intelligence | yes | yes |  |  |  |  |
-| pmm-competitive-intelligence | yes | yes | yes |  |  |  |
+| pmm-competitive-intelligence | yes | yes | yes | yes |  |  |
 | pmm-toolkit | yes | yes | yes | yes | yes | yes |
 | pmm-meta |  |  |  |  |  |  |
 <!-- generated:google-table end -->

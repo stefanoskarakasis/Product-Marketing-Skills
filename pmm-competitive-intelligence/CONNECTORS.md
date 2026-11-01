@@ -1,6 +1,6 @@
 # pmm-competitive-intelligence connectors
 
-Optional. `competitive-profile`, `competitive-battlecard`, `competitor-deep-dive`, `competitive-briefing` and `industry-newsletter` work without them:
+Optional. `competitive-profile`, `competitive-battlecard`, `competitor-deep-dive`, `competitive-briefing`, `industry-newsletter` and `media-monitoring` work without them:
 paste what you have and the output has the same shape. Public pages about a
 named competitor are read with web search, so no connector is needed for those. Category definitions live in the root
 `CONNECTORS.md`. Sign-in steps are in `docs/connect-your-tools.md`.
@@ -12,7 +12,7 @@ named competitor are read with web search, so no connector is needed for those. 
 | `~~team chat` | where questions arrive and answers are posted; field intel and pricing claims reps reported | Slack |
 | `~~market data` | competitor traffic and audience shifts | Semrush |
 | `~~knowledge base` | internal positioning and product notes | Notion, Atlassian |
-| `~~cloud storage` | existing decks, battlecards and win/loss logs | Google Drive |
+| `~~cloud storage` | existing decks, battlecards and win/loss logs | Google Drive, Google Docs |
 | `~~competitive intelligence` | the competitor cards, win/loss stories and profiles your CI team already keeps, so the card does not contradict them | none wired: paste, or connect your own server |
 | `~~win/loss` | buyer interviews on why deals were won or lost | none wired: paste, or connect your own server |
 | `~~company data` | funding, headcount and hiring moves for the competitor | Crunchbase |
@@ -23,7 +23,7 @@ named competitor are read with web search, so no connector is needed for those. 
 | `~~SEO` | keyword demand, competitor organic positioning | Semrush |
 
 <!-- generated:servers begin -->
-Servers in this plugin's `.mcp.json`: notion, atlassian, hubspot, gong, slack, google-drive, gmail, google-calendar, wispr-flow, semrush, crunchbase, exa.
+Servers in this plugin's `.mcp.json`: notion, atlassian, hubspot, gong, slack, google-drive, google-docs, gmail, google-calendar, wispr-flow, semrush, crunchbase, exa.
 <!-- generated:servers end -->
 
 Rules: read-only by default, ask before writing, tag every pulled fact with

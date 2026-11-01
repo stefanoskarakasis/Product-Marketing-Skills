@@ -1,6 +1,6 @@
 ---
 name: competitive-profile
-version: 1.3.0
+version: 1.3.1
 description: >
   Keeps a roster of your five key competitors with a dated, sourced profile each,
   refreshes only what has gone stale, and always offers a weekly scheduled refresh.
@@ -9,12 +9,12 @@ description: >
   Trigger on: "who are my key competitors", "set up my competitive profiles", "refresh my
   competitor profiles", "what's stale", "competitive roster", "what do we say against
   [competitor] on pricing", "is [competitor] cheaper than us", "[competitor] just launched",
-  "update the profile". Related: alternatives-map, signal-monitor, competitive-battlecard. Not for the leadership brief (competitive-briefing) or a long write-up (competitor-deep-dive).
+  "update the profile". Related: alternatives-map, signal-monitor, competitive-battlecard. Not for the leadership brief (competitive-briefing) or a long write-up (competitor-deep-dive), or the scheduled competitor sweep (media-monitoring).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-26
+last_updated: 2026-10-29
 ---
 
 # Competitive Profile
@@ -219,6 +219,7 @@ Schedule: [proposed / accepted / declined]
 
 ## Do Not Use For
 
+- **`media-monitoring`**: the scheduled sweep of your core competitors' public pages, with the fix for each item drafted. Its findings can feed this skill; it does not replace it.
 - **`alternatives-map`**: building or refreshing the map of who buyers compare you to, including status quo and DIY. Run it first when Section 3 holds no named competitors.
 - **`signal-monitor`**: the weekly read on what changed across the market. Its saved lists feed `intake`; it does not replace it.
 - **`competitive-battlecard`**: a one-page card for a live deal. It reads the profiles this skill keeps.

@@ -1,17 +1,17 @@
 ---
 name: competitor-deep-dive
-version: 1.2.0
+version: 1.2.1
 description: >
   Builds a long-form, fully sourced deep-dive on one competitor for a named decision
   (strategy call, RFP, pricing change, roadmap bet), with dated reviews, deal evidence, a
   head-to-head per offering and where they win. In a Slack thread it posts a short summary and builds the full document. Triggers: "deep-dive on [competitor]",
   "full competitor write-up", "what do users really say about [competitor]", "teardown of
-  [competitor]". Related: competitive-battlecard, competitive-profile, signal-monitor. Not for a weekly leadership read (competitive-briefing).
+  [competitor]". Related: competitive-battlecard, competitive-profile, signal-monitor. Not for a weekly leadership read (competitive-briefing), or the scheduled competitor sweep (media-monitoring).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-26
+last_updated: 2026-10-29
 ---
 
 # Competitor Deep-Dive
@@ -218,6 +218,7 @@ The `pattern` is where `meta-synthesis` learns from this skill, so make it speci
 
 ## Do Not Use For
 
+- **`media-monitoring`**: the scheduled sweep of your core competitors' public pages, with the fix for each item drafted. Its findings can feed this skill; it does not replace it.
 - **`competitive-battlecard`**: the one-page card a seller reads before a call. It reads this deep-dive's Card feed block; this skill does not build the card.
 - **`competitive-profile`**: keeping five competitors' profiles current and the roster itself. The deep-dive reads the newest record; it does not maintain it.
 - **`signal-monitor`**: a weekly read on what changed. Its output feeds Part 5; it does not replace it.

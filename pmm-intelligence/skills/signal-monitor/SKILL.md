@@ -1,18 +1,18 @@
 ---
 name: signal-monitor
-version: 1.1.1
+version: 1.1.2
 description: >
   Turns the signals you name into at most five opportunities, each tied to a brain field
   and a Section 7 priority, with evidence, a confidence label and one suggested next move;
   it never edits your brain. Trigger on: "what changed this week", "weekly opportunities",
   "signal monitor", "what should we act on", "competitor moves this week", "scan these
   signals". Related: alternatives-map, positioning-messaging, pmm-okrs,
-  workflow-orchestrator. Not for a leadership brief on competitors (competitive-briefing) or the weekly industry newsletter (industry-newsletter).
+  workflow-orchestrator. Not for a leadership brief on competitors (competitive-briefing) or the weekly industry newsletter (industry-newsletter), or the scheduled competitor sweep (media-monitoring).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-27
+last_updated: 2026-10-29
 ---
 
 # Signal Monitor
@@ -118,6 +118,7 @@ Gate: n of 6 · open questions
 
 ## Do Not Use For
 
+- **`media-monitoring`**: the scheduled sweep of your core competitors' public pages, with the fix for each item drafted. Its findings can feed this skill; it does not replace it.
 - **`industry-newsletter`**: the weekly newsletter for GTM leaders. Your opportunities list can feed its Industry Changes; it does not replace it.
 - **`workflow-orchestrator`**: a multi-skill program such as a launch or a quarterly cycle.
 - **`alternatives-map`**: building or refreshing the map of alternatives.

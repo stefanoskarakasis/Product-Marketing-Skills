@@ -1,13 +1,13 @@
 ---
 name: industry-newsletter
-version: 1.0.0
+version: 1.0.1
 description: >
-  Builds the weekly industry newsletter for GTM leaders: what changed with your competitors and in your industry, in one locked layout with numbered competitor tables (3 to 5 product updates), a pricing watch and role-owned actions. Asks where it will be read (Google Doc, email or Slack), pulls leads from your other CI skills, Gong, Slack, Klue and Drive, and publishes only what a public page confirms. Grades its last call. Triggers: "write this week's industry newsletter", "industry newsletter for my market", "weekly competitor and industry newsletter", "grade the last industry newsletter call", "forwardable industry newsletter for the exec team". Not for the euro decision brief on your roster (competitive-briefing), a weekly opportunities list (signal-monitor), one competitor's question (competitive-profile), a seller card (competitive-battlecard), a long write-up (competitor-deep-dive) or a public newsletter (writing-assistant).
+  Builds the weekly industry newsletter for GTM leaders: what changed with your competitors and in your industry, in one locked layout with numbered competitor tables (3 to 5 product updates), a pricing watch and role-owned actions. Asks where it will be read (Google Doc, email or Slack), pulls leads from your other CI skills, Gong, Slack, Klue and Drive, and publishes only what a public page confirms. Grades its last call. Triggers: "write this week's industry newsletter", "industry newsletter for my market", "weekly competitor and industry newsletter", "grade the last industry newsletter call", "forwardable industry newsletter for the exec team". Not for the euro decision brief on your roster (competitive-briefing), a weekly opportunities list (signal-monitor), one competitor's question (competitive-profile), a seller card (competitive-battlecard), a long write-up (competitor-deep-dive) or a public newsletter (writing-assistant), or the scheduled competitor sweep (media-monitoring).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-27
+last_updated: 2026-10-29
 ---
 
 # Industry Newsletter
@@ -207,6 +207,7 @@ The `pattern` is where `meta-synthesis` learns from this skill, so make it speci
 
 ## Do Not Use For
 
+- **`media-monitoring`**: the scheduled sweep of your core competitors' public pages, with the fix for each item drafted. Its findings can feed this skill; it does not replace it.
 - **`competitive-briefing`**: the euro-quantified decision brief for the CEO, CRO or board, built from your own records. The newsletter is wider (market, regulation, category) and carries no deal data.
 - **`signal-monitor`**: a list of up to five opportunities tied to brain priorities. Its output can feed Industry Changes; it does not replace the issue.
 - **`competitive-profile`**: keeping the roster's profiles current and answering one competitor question. The newsletter reads the profiles; it does not maintain them.

@@ -88,7 +88,7 @@
       "category": "cloud storage",
       "type": "http",
       "url": "https://docsmcp.googleapis.com/mcp/v1",
-      "plugins": ["pmm-positioning", "pmm-execution", "pmm-go-to-market", "pmm-toolkit"],
+      "plugins": ["pmm-positioning", "pmm-execution", "pmm-go-to-market", "pmm-competitive-intelligence", "pmm-toolkit"],
       "signin": "Google login",
       "unlocks": "Read and draft documents",
       "if_fails": "Google lists this server as Developer Preview. If sign-in fails, use Drive or paste the text"

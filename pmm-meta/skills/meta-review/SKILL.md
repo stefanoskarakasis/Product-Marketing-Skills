@@ -1,6 +1,6 @@
 ---
 name: meta-review
-version: 3.1.0
+version: 4.0.0
 description: >
   Audits any SKILL.md against SKILL-SPEC.md, the repo's skill authoring standard, and
   returns a scored checklist with prioritized fixes. Trigger on: "review this skill",
@@ -11,13 +11,13 @@ metadata:
   author: Stefanos Karakasis
   context: context-agnostic
   quality_gate: true
-last_updated: 2026-10-10
+last_updated: 2026-11-01
 ---
 
 # meta-review
 
 Audits a skill's `SKILL.md` against `SKILL-SPEC.md` — the one standard every
-skill in this repo is supposed to meet. Runs the same 18-point checklist
+skill in this repo is supposed to meet. Runs the same 15-point checklist
 `SKILL-SPEC.md` Section 13 defines, returns a pass/fail per check, and
 prioritizes fixes so the skill's author knows exactly what to do next.
 
@@ -76,9 +76,9 @@ line counts.
 Check `SKILL-SPEC.md` Section 12 (Skill Tiers) for whether this skill is
 already listed under a tier. If not listed, ask the user which tier applies
 (T1 Strategic / T2 Execution / T3 Utility / T4 Meta) — tier determines which
-of the 18 checks apply.
+of the 15 checks apply.
 
-### Step 3: Run the 18-Point Checklist
+### Step 3: Run the 15-Point Checklist
 
 Work through `SKILL-SPEC.md` Section 13 exactly as written, in order:
 
@@ -86,18 +86,19 @@ Work through `SKILL-SPEC.md` Section 13 exactly as written, in order:
 directory name; `description` is 2–3 sentences with trigger phrases verbatim;
 `metadata.context` declared; `version` and `last_updated` present.
 
-**Seven required sections (7 checks)** — `Trigger`, `Inputs`, `Pre-flight`,
-`Steps`, `Outputs`, `Verification`, `Do Not Use For` — each present, either
-filled in or explicitly marked `N/A`
+**Core sections (5 checks)** — `Trigger`, `Inputs`, `Steps` and `Outputs`
+each present, filled in or explicitly `N/A`; `Quality Gate` with ≥5 binary
+checks where `quality_gate: true` (a pass when it is `false` and the section
+is absent). The retired sections (`Pre-flight`, `Verification`,
+`Do Not Use For`, `Operating Rules`) are neither required nor penalised.
 
-**Tier-appropriate sections (3 checks, T1/T2 only)** — `Operating Rules`
-with ≥6 rules; `Quality Gate` with ≥5 binary checks, only where
-`quality_gate: true`; `Steps` ends with a Learning Close step
-(`SKILL-SPEC.md` Section 5.1).
+**Tier-appropriate (1 check)** — `Steps` ends with a Learning Close step
+(`SKILL-SPEC.md` Section 5.1). T1/T2 only; passes for T3/T4.
 
-**Quality (3 checks)** — `SKILL.md` ≤500 lines; any output template is
-wrapped in a code fence, not raw `##` headers; an evals file exists with
-≥3 test cases including one edge case.
+**Quality (4 checks)** — `SKILL.md` ≤500 lines; `SKILL.md` ≤3,000 words, or
+within its recorded legacy ceiling in `tests/test_skill_size.py`; any output
+template is wrapped in a code fence, not raw `##` headers; an evals file
+exists with ≥3 test cases including one edge case.
 
 Mark each check pass/fail. A check applying `N/A` correctly (per
 `SKILL-SPEC.md` Section 7) counts as pass — an explicit `N/A` is
@@ -109,8 +110,8 @@ compliant; an omitted section is not.
 ## Meta-Review — [skill-name]
 
 **Tier:** [T1 / T2 / T3 / T4]
-**Score:** [N]/18
-**Threshold:** 16/18
+**Score:** [N]/15
+**Threshold:** 13/15
 
 ### Failed checks
 - [Check name] — [what's missing, specifically]
@@ -122,7 +123,7 @@ compliant; an omitted section is not.
 [PASSES SPEC / NEEDS FIXES] — [one sentence]
 ```
 
-If the skill scores below 16/18, list every failed check with enough detail
+If the skill scores below 13/15, list every failed check with enough detail
 that the author can fix it without re-reading the whole spec. If it passes,
 say so plainly — don't manufacture nitpicks to seem thorough.
 
@@ -135,7 +136,7 @@ say so plainly — don't manufacture nitpicks to seem thorough.
 
 ## Verification
 
-- Every one of the 18 checks from `SKILL-SPEC.md` Section 13 was evaluated,
+- Every one of the 15 checks from `SKILL-SPEC.md` Section 13 was evaluated,
   not a subset.
 - Tier was determined before checks ran (tier changes which checks apply).
 - Score and threshold are both stated, not just a pass/fail verdict.
@@ -158,18 +159,18 @@ say so plainly — don't manufacture nitpicks to seem thorough.
   good. That's a human call, or a job for the skill that produced the output
   plus `meta-verify`.
 - **Score honestly.** A skill that's missing three sections is not "mostly
-  there" — report the real count against 18.
+  there" — report the real count against 15.
 - **A legacy `n.v.t.` is read as `N/A`.** Skills written before v1.12.1, and forks, may still use the Dutch marker; report it as a style note, not a failure.
 - **`N/A` is a pass, silence is a fail.** Per `SKILL-SPEC.md` Section 7,
   an explicit `N/A` on a section that doesn't apply is fully compliant.
   An omitted section is not, even if the reason is obvious.
 - **Tier determines scope.** Don't fail a T3 skill for missing a
-  Self-Improvement Loop or Changelog — as of `SKILL-SPEC.md` v2.1.0, no
-  skill requires either. Don't fail a T3 skill for missing Operating Rules
-  or Quality Gate — those are T1/T2 only.
-- **Name the fix, not just the gap.** "Missing `## Do Not Use For`" is a
-  gap. "Add `## Do Not Use For` listing at minimum the skills this one is
-  most often confused with" is a fix.
+  Learning Close or Changelog. Don't fail any skill for a retired section
+  (`Pre-flight`, `Verification`, `Do Not Use For`, `Operating Rules`) being
+  absent, or for still carrying one: `SKILL-SPEC.md` v3.0.0 made them optional.
+- **Name the fix, not just the gap.** "Over the word budget" is a gap.
+  "Move the scoring rubric (about 600 words) to `references/rubric.md` and
+  load it in Step 4" is a fix.
 - **One skill at a time, reported together for a plugin.** If asked to
   review a whole plugin, run the full checklist per skill — don't average
   or summarize across skills in a way that hides which specific skill
@@ -181,7 +182,7 @@ say so plainly — don't manufacture nitpicks to seem thorough.
 |---|---|---|
 | Spec loaded | `SKILL-SPEC.md` read before any check ran | Yes |
 | Tier determined | Tier confirmed before checks, not assumed | Yes |
-| All 18 checks run | No check skipped regardless of early failures | Yes |
-| Score stated | Numeric score (N/18) shown, not just pass/fail | Yes |
+| All 15 checks run | No check skipped regardless of early failures | Yes |
+| Score stated | Numeric score (N/15) shown, not just pass/fail | Yes |
 | Failed checks specific | Each failure names the exact gap | Yes |
 | N/A handled correctly | Explicit N/A counted as pass per spec Section 7 | Yes |

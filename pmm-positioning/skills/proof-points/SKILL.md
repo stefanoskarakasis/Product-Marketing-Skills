@@ -1,6 +1,6 @@
 ---
 name: proof-points
-version: 1.2.0
+version: 1.3.0
 description: >
   Builds and maintains a sourced, gated registry of the proof points your messaging relies
   on (metrics, customer quotes, case study results, analyst citations), then deepens brain
@@ -11,48 +11,20 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-10
+last_updated: 2026-11-01
 ---
 
 # Proof Points
 
 ## How This Works
 
-Every stat, quote, and case study in your messaging is a promise — and every
-promise sales, legal, or a skeptical prospect can eventually ask you to back
-up. Almost no company has a clean registry of these; what they actually have
-is a mash of sales decks, battlecards, one-pagers, and case study PDFs, each
-one repeating (and slowly staling) numbers nobody's re-checked since the deck
-was built. This skill is both the intake and the gate: it mines claim
+Every stat, quote, and case study in your messaging is a promise someone can ask you to back up. Most companies have a mash of decks, battlecards and case study PDFs repeating stale numbers. This skill is both the intake and the gate: it mines claim
 candidates out of that mess, then makes sure nothing gets called "approved"
 without a source, no customer name ships without documented permission to use
 it, and every forbidden claim carries a stated reason — not a bare
 prohibition nobody can act on. It deepens your brain's existing Section 6 in
 place, the same Proof Points Registry `message-house` and
 `positioning-messaging` already read.
-
-**Step 0** — Load brain Section 6 (current registry, however thin).
-
-**Step 1** — Classify the request: Extract from source material, Add one
-claim directly, Verify a claim before it ships, or Audit the existing
-registry.
-
-**Step 2 (Extract)** — Mine claim-shaped statements out of pasted decks,
-battlecards, case studies, or other GTM collateral; every candidate starts
-flagged, regardless of whether the source material cites its own source.
-
-**Step 3 (Add)** — Require a source for a directly-supplied claim; unsourced
-claims get flagged, never silently approved.
-
-**Step 4 (Verify)** — Check a claim someone wants to use against the
-registry: approved, forbidden, or not yet registered.
-
-**Step 5 (Audit)** — Walk every existing entry for missing sources, stale
-dates, undocumented customer names, and unsupported superlatives.
-
-**Step 6** — Deepen brain Section 6 with the result (on user confirmation).
-
-**Step 7** — Learning Close: log the session to `/context/skill-sessions.md`.
 
 ---
 
@@ -76,7 +48,8 @@ dates, undocumented customer names, and unsupported superlatives.
   Vocabulary, tone, and forbidden *language* (not claims) → `brand-voice`.
   Building the positioning statement or messaging hierarchy itself →
   `positioning-messaging`, run this first so it has a gated registry to cite
-  from.
+  from. Packaging Section 6 evidence into a rep-ready handoff document →
+  `product-messaging-playbook`, run this first so it pulls clean, sourced proof.
 - **Example prompts:**
   - "Pull proof points out of this battlecard"
   - "We don't have a registry — start one from these 3 sales decks"
@@ -353,56 +326,16 @@ which still requires explicit confirmation.
 
 ---
 
-## Verification
-
-- Cold start: with no brain file, the skill proceeded without redirecting, and the only file it created held this section alone (or the block was shown for pasting).
-- Every approved claim traces to a stated source — no exceptions.
-- Every extracted candidate starts `[NEEDS PROOF]`, even when the source
-  material cited its own source — no extraction shortcut to "approved."
-- Every customer-named quote or case study has documented approval-to-use,
-  not just evidence the customer said it or appeared in a deck.
-- Every forbidden claim carries a reason, not a bare prohibition.
-- Duplicate claims found across multiple source documents are merged into
-  one candidate, not registered twice.
-- Audit mode covers every existing Section 6 entry, not a sample.
-- Superlatives without a named comparison are flagged even without a
-  matching Forbidden Claims entry.
-- Brain Section 6 write shown to the user and confirmed before it happens.
-- Existing Section 6 content preserved, not overwritten.
-- Session logged to `/context/skill-sessions.md` with `type: execution`.
-
----
-
 ## Operating Rules
 
-- **Every approved claim requires a source. No source means not approved,
-  full stop.** A plausible-sounding number with no traceable origin is a
-  liability, not a proof point.
-- **Extraction never grants approval.** A claim pulled from a deck or
-  battlecard is a candidate, not a verified fact — even when the source
-  material cites its own source, that citation is carried through as
-  unconfirmed until the user actively checks it's still current.
-- **Customer names require documented approval-to-use, not just usage in
-  a past call or a deck.** A customer saying something to your sales rep,
-  or appearing in a battlecard, is not the same as a customer agreeing to
-  be quoted publicly.
-- **Forbidden claims need a stated reason.** A bare "don't say this" can't
-  be applied consistently by anyone who wasn't in the room when it was
-  decided.
-- **Never silently promote an unsourced or extracted claim to approved.**
-  Flag it and move on — don't let a plausible draft slip through because
-  asking for confirmation felt like friction.
-- **Deepen brain Section 6 — never fork a second claims file.**
-  `message-house` and `positioning-messaging` both expect Section 6 to be
-  the single source of truth for proof.
-- **Superlatives get flagged, not auto-blocked.** "Industry-leading" isn't
-  banned outright — it's flagged as unsupported until the user either
-  finds the comparison evidence or decides to cut it. The decision stays
-  with the user; the flag makes sure it's a decision, not an oversight.
-- **Brain write requires explicit confirmation. Never append silently,**
-  including bulk writes from Extract mode.
+The source, approval and confirmation rules live in the Steps and are tested in the Quality Gate. These are stated only here.
 
----
+- **No source means not approved, full stop.** A plausible number with no traceable origin is a liability.
+- **Extraction never grants approval.** A claim pulled from a deck is a candidate even when the deck cites a source; that citation is carried as unconfirmed.
+- **Customer names need documented approval-to-use.** A customer saying something to a rep, or appearing in a battlecard, is not agreement to be quoted publicly.
+- **Never silently promote an unsourced or extracted claim.** Flag it and move on.
+- **Deepen brain Section 6, never fork a second claims file.** `message-house` and `positioning-messaging` expect it to be the single source of truth for proof.
+- **Superlatives get flagged, not auto-blocked.** The decision stays with the user.
 
 ## Quality Gate
 
@@ -417,24 +350,7 @@ which still requires explicit confirmation.
 | Superlatives flagged | Unsupported superlatives caught even with no matching Forbidden Claims entry | Yes |
 | Existing content preserved | Prior Section 6 content untouched unless explicitly revised | Yes |
 | Brain write confirmed | Exact addition (including bulk Extract-mode writes) shown and confirmed before writing | Yes |
+| Cold start handled | With no brain file the skill proceeded without redirecting; the only file created held Section 6 alone (or the block was shown for pasting) | Yes |
 | Learning Close ran | `/context/skill-sessions.md` has a new `type: execution` row for this session | Yes |
 
 ---
-
-## Do Not Use For
-
-- **`interview-summary`** — structuring a raw, unsynthesized call
-  recording or interview transcript into discovery insights. Run that
-  first if the source is genuinely raw conversation, not existing GTM
-  collateral; bring the resulting quote back here once it's written up.
-- **`brand-voice`** — vocabulary, tone, and forbidden *language* (how you
-  sound). This skill governs factual claims and their evidence — a
-  distinct concern even where both maintain a "don't say this" list.
-- **`positioning-messaging`** — building the positioning statement or
-  messaging hierarchy itself. Run this skill first so positioning has a
-  gated, sourced registry to cite from.
-- **`product-messaging-playbook`** — packaging Section 6 evidence into a
-  rep-ready handoff document. Run this skill first so that assembler has
-  clean, sourced proof to pull from instead of a thin or unsourced
-  registry.
-- N/A

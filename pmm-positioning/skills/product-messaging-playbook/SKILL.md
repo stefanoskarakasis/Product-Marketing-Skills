@@ -1,6 +1,6 @@
 ---
 name: product-messaging-playbook
-version: 1.3.1
+version: 1.4.0
 description: >
   Assembles a single Sales/CS-ready playbook for a new product or feature: problem, story,
   one named competitive comparison, discovery questions and objection handling. Use when
@@ -12,7 +12,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-12
+last_updated: 2026-11-01
 ---
 
 # Product Messaging Playbook
@@ -48,7 +48,8 @@ assembles the rest into one document a rep can open cold.
   multi-competitor battlecard, not a single named comparison scoped to
   one feature → `competitive-battlecard` (in the `pmm-competitive-intelligence`
   plugin); this skill's Section 3 is intentionally scoped to one
-  alternative, not a full battlecard.
+  alternative, not a full battlecard. Mapping competitive alternatives (Section 3) from real research →
+  `alternatives-map`, run first if the named competitor isn't in Section 3.
 - **Example prompts:**
   - "Build a messaging playbook for [feature]"
   - "Give sales something they can use for this launch"
@@ -98,24 +99,7 @@ assembles the rest into one document a rep can open cold.
 - **Personal context** (see the personal context rule in `SKILL-SPEC.md`): if `/foundation/me.md` exists, read it for format and detail only (length, detail, shape, how blunt to be). Never take a company fact from it; the current request wins. Do not ask for it if it is missing.
 - Load `/foundation/brain.md` if present. If absent, check for a pasted
   `message-house` and/or `positioning-messaging` output this session.
-- **Brain and pasted output both missing: run Quick-Brain, don't block.**
-  Say: *"No brain found. Five quick answers let me build this now (about
-  4 minutes). Run `product-marketing-context` later (a separate plugin)
-  and I'll use the full brain."* Ask all five, then wait:
-  1. What are you launching, in one sentence?
-  2. Who is the best-fit buyer, and what pain pushes them to act?
-  3. What do they do instead of buying this? Name two alternatives,
-     including doing nothing.
-  4. Which one competitor should the comparison use, and what can you do
-     that they can't?
-  5. One proof point you can source: a metric or customer quote, and
-     where it comes from.
-
-  Use the answers as stand-ins for Sections 1, 2, 3 and 6 for this
-  session only. Do not write the brain (this skill is read-only). Label
-  the playbook "Built from Quick-Brain answers, not a full brain", mark
-  every unanswered field `[MISSING — <what's needed>]`, and treat the one
-  proof point as `[NEEDS PROOF]` unless the user gave its source.
+- **Brain and pasted output both missing: run Quick-Brain, don't block.** Say once that no brain was found, ask the five questions in `references/quick-brain.md` and wait. Use the answers as stand-ins for Sections 1, 2, 3 and 6 for this session only, write nothing to the brain, label the playbook "Built from Quick-Brain answers, not a full brain", mark every unanswered field `[MISSING — <what's needed>]` and treat the one proof point as `[NEEDS PROOF]` unless its source was given.
 - **Soft block:** brain exists but Section 3 (Alternatives) is empty or a
   competitor was named that isn't in Section 3 → surface once, don't
   block: *"[Competitor] isn't in your alternatives map. I can still build
@@ -297,46 +281,6 @@ approval.
   do not auto-run. If the Sales Enablement Kit shipped with a `[MISSING]`
   objection-handling subsection, prompt `positioning-messaging`
   SALES-ENABLEMENT mode.
-
----
-
-## Verification
-
-- Quick-Brain: with no brain and nothing pasted, the skill asked the five questions, built the playbook from the answers, labelled it as such, and wrote nothing to the brain.
-- Every field in Messaging Foundation and Story is sourced (brain,
-  pasted skill output, or explicit user statement this session) or
-  explicitly flagged `[MISSING]` — no invented copy.
-- Every success target from Step 2 is labeled `[TARGET — not yet
-  measured]` and never presented as if it were sourced Section 6
-  evidence.
-- Comparative Positioning section exists only if a competitor was
-  explicitly named — never built against an inferred or invented rival.
-- Every Customer Proof / competitive-proof entry excludes anything
-  flagged `[NEEDS PROOF]` or `[NEEDS APPROVAL]` in Section 6.
-- Sales Enablement Kit's objection handling traces to Section 6 Forbidden
-  Claims or a pasted SALES-ENABLEMENT output — never freehand.
-- Output is one single deliverable, not fragmented.
-- Session logged to `/context/skill-sessions.md` with `type: execution`.
-
----
-
-## Do Not Use For
-
-- **positioning-messaging** — deriving the positioning statement,
-  messaging hierarchy, or persona cards themselves. Run first if brain
-  Section 3 is thin or no SALES-ENABLEMENT output exists yet.
-- **message-house** — a general-purpose Roof + Pillars table with no
-  feature-specific problem framing, competitive comparison, or sales
-  script. Use that instead when the ask is just "format our positioning,"
-  not "give sales a handoff document."
-- **proof-points** — sourcing, verifying, or auditing a claim itself,
-  or registering a measured result once a feature has shipped. Run first
-  if Section 6 is thin; run again after launch to register real
-  (not targeted) adoption/stickiness numbers.
-- **alternatives-map** — mapping competitive alternatives (Section 3)
-  from real research. Run first if the named competitor isn't in Section
-  3 yet.
-- N/A
 
 ---
 

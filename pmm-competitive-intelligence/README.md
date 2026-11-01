@@ -10,6 +10,7 @@ Competitive intelligence for B2B SaaS PMMs: a scheduled sweep of your core compe
 - **For leadership:** `/pmm-competitive-intelligence:competitive-briefing`
 - **For GTM leaders:** `/pmm-competitive-intelligence:industry-newsletter`
 - **In Slack:** tag Claude with "What do we say against [competitor] on pricing?" Admin setup: [`docs/slack-setup.md`](../docs/slack-setup.md)
+- **Safety (Claude Code):** a built-in guard asks you before anything is sent or posted to Slack or email. Details: [`docs/agents-map.md`](../docs/agents-map.md)
 - **The brain:** better with Sections 1 to 3 and an alternatives map (`product-marketing-context` plugin); without them, skills ask.
 
 ## Which skill do I use?

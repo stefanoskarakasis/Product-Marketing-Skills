@@ -1,6 +1,6 @@
 ---
 name: pmm-resume
-version: 3.0.0
+version: 3.1.0
 description: >
   Reviews and tailors a PMM resume (IC to VP, including AI PMM roles): dissects the job
   description, ranks bullets by impact fit and rebuilds the complete resume in one pass.
@@ -11,7 +11,7 @@ metadata:
   author: Stefanos Karakasis
   context: context-agnostic
   quality_gate: false
-last_updated: 2026-08-24
+last_updated: 2026-11-01
 ---
 
 # PMM Resume Review
@@ -254,187 +254,13 @@ Responsibilities: (optional)
 
 ## Core Analysis Framework (Full Audit Mode)
 
-Run all four steps in sequence for a Full Audit.
-
-### Step 1 — Executive Read Table
-
-For each signal, show the current impression, the desired impression, and the fix:
-
-| Signal | Current Impression | Desired Impression | Fix |
-|--------|-------------------|-------------------|-----|
-| Positioning Ownership | Passive — "helped develop messaging" | Active — owns the narrative | "Defined positioning framework for..." |
-| Commercial Impact | Weak — no pipeline or revenue tie | Strong — launch outcomes visible | "$X in pipeline in 90 days post-launch" |
-| GTM Motion Clarity | Vague — "went to market" | Named motion visible | "Built the sales-led enterprise motion from 0 to $X ARR" |
-| Leadership Presence | Coordination language throughout | Ownership language | "Collaborated with" → "Led cross-functional launch team" |
-| Narrative Arc | Flat — same scope across roles | Escalating ownership | Connect the dots: each role expands the stage |
-| Role Entry Structure | Bullets start immediately, no context | Scope → Achievements → Responsibilities | Add a scope paragraph and restructure |
-| Bullet Construction | Action-first, metric buried at the end | Metric-first — number leads in the first 3 words | "$2.4M pipeline via 4 EMEA launches," not "Led 4 launches that drove $2.4M" |
-| Skills Section Order | AI/ML fluency buried last | AI PMM tier leads, for AI-role targets | Restructure: AI PMM → PMM Specialties → GTM → Tools |
-
-Always run this table first — it sets the strategic lens for everything that follows.
-
-### Step 2 — 10-Point Best Practice Review
-
-Evaluate against each point. For each: explain why it matters for PMM roles specifically, identify what's working or needs fixing, quote directly from the resume, and suggest a concrete edit.
-
-**1. Professional Summary — the 3-part formula.** Sentence 1: identity + domain + scale. Sentence 2: three named PMM capabilities, not soft skills. Sentence 3: "Known for [distinctive superpower]" — the differentiator most resumes skip. Flag and delete: "passionate about building great products," "strategic thinker," "results-driven marketer." Flag summaries over 3-5 sentences.
-- Weak: "Innovative PMM with passion for user-centered go-to-market strategy"
-- Strong: "Product Marketing Manager with 7 years launching B2B SaaS products into enterprise markets. Skilled at competitive positioning, sales-led GTM design, and pipeline-tied launch execution. Known for translating complex product capabilities into commercial narratives that shorten sales cycles."
-
-**2. No personal pronouns.** Scan for I, me, my, we, our, he, she, his, her. Rewrite with the action verb as the subject.
-- Weak: "I led the product launch strategy for three product lines"
-- Strong: "Led product launch strategy for three product lines, driving $6M in pipeline and a 20% win rate lift"
-
-**3. Conciseness.** 1 page for 0-3 years of experience, 2 pages for 4+. Flag anything longer. 3-5 bullets per role maximum — flag any role with 6+ and consolidate. Prioritize impact bullets over responsibility bullets; reframe or cut anything that just describes a duty.
-
-**4. XYZ+S on every impact bullet.** The single most powerful rewrite lever — teach it alongside every fix so the user can self-edit the rest.
-> **X** = the outcome | **Y** = the metric | **Z** = the action | **S** = the specific context
-
-- Weak (Z only): "Led product launch across EMEA"
-- Strong (XYZ+S): "Drove $2.4M in pipeline **(X+Y)** by orchestrating 4 EMEA product launches across 6 markets **(Z)**, establishing the first scalable regional launch playbook **(S)**"
-
-Apply to roughly 70% of achievement bullets. Always show the labeled before/after.
-
-**5. Professional email and contact.** Flag nicknames, numbers, outdated domains (yahoo, hotmail), anything casual. Require firstname.lastname@domain.com format. Check the LinkedIn URL is clean, not auto-generated.
-
-**6. JD alignment, if a posting is provided.** Extract 8-12 must-have PMM keywords, check presence/absence, flag gaps with natural integration points, reorder bullets to surface the most relevant experience first. Customize emphasis by role type: Strategy PMM (vision-setting, positioning architecture), Launch PMM (launch metrics, pipeline, cross-functional ownership), Enablement PMM (sales impact, win rate, ramp time), AI company PMM (see AI PMM Mode below).
-
-**7. Show PMM skills inside bullets, and structure the Skills section.** PMM acumen must live in achievements, not a keyword list.
-- Weak: "Skills: Competitive Intelligence, Sales Enablement, Product Launches"
-- Strong: "Built competitive intelligence program used by 90% of AE base — improved win rate vs. [competitor] by 18% in two quarters"
-
-Skills section structure:
-```
-PMM Specialties:   [Core PMM competencies]
-GTM & Commercial:  [Motion types and commercial frameworks]
-Tools & Platforms: [Specific software — only genuinely proficient]
-```
-For AI PMM targets, add a fourth tier: `AI PMM: [LLM product GTM, responsible AI narrative, etc.]`. Credible framework citations: Jobs-to-be-Done, Challenger Sale, MEDDIC, Pragmatic Marketing, OKRs.
-
-**8. Section order.** Contact info → Professional summary → Experience (most recent first) → Education → Certifications → Technical skills/tools (optional, last). Most common violation: education at the top for someone with 5+ years of experience — move it down.
-
-**9. Early-career and career-changer framing.** Under 2 years: surface any GTM, launch, or positioning work, even from internships or adjacent roles. Career changers, by background:
-
-| Background | PMM Signal to Surface |
-|-----------|----------------------|
-| Demand gen / growth | Campaign positioning → messaging ownership. A/B tests → hypothesis-driven GTM. |
-| Sales | Customer discovery → ICP development. Talk tracks → sales enablement ownership. |
-| Content marketing | Editorial strategy → content-led GTM. SEO insights → market narrative. |
-| Product Manager | GTM ownership → PMM ownership. Pricing input → pricing strategy leadership. |
-| Analyst / strategy | Market research → competitive intelligence. Segmentation → persona frameworks. |
-
-Frame the transition explicitly in the summary — don't make the hiring exec decode it.
-
-**10. Standard titles and consistent language.** Flag non-standard titles ("Growth Ninja," "GTM Guru"). Standard titles: Product Marketing Manager, Senior PMM, Group PMM, Director of PMM, VP of Product Marketing, Head of Product Marketing. Consistent action verbs throughout: Led, Launched, Built, Drove, Owned, Defined, Positioned, Enabled. Every role entry: Company | Title | Dates (Month-Year) | 3-5 bullets.
-
-### Step 3 — Strategic Fixes
-
-Distill the review to 3-5 highest-impact actions:
-- **🔴 Delete:** generic claims, duty-listing, pronoun-heavy sentences, banned words (passionate, spearheaded, synergy, leveraged, innovative, responsible for)
-- **🟡 Elevate:** bullets with the right idea but no metric, ownership signal, or specificity — apply XYZ+S
-- **🟢 Add:** missing PMM signals — positioning ownership, named GTM motion, commercial outcomes, cross-functional leadership, AI fluency if targeting AI roles
-
-### Step 4 — Reframed Samples
-
-Rewrite 2-3 bullets or the summary. For every rewrite, output a structured three-row change block:
-
-```
-| | Content | Changes Applied |
-|--|---------|----------------|
-| ❌ Before | [original text] | |
-| ✅ After  | [rewritten text] | [change tags] |
-| 💡 Why    | [one-sentence coaching note] | |
-```
-
-**Change tags:**
-
-| Tag | Meaning |
-|-----|---------|
-| `metric-first` | Number moved to lead the sentence |
-| `XYZ+S` | Full outcome/metric/action/context formula applied |
-| `ownership verb` | Passive verb upgraded to an ownership verb |
-| `scope anchor` | Scale context added (ARR, reps, markets, segment) |
-| `commercial anchor` | Pipeline / win rate / ACV / revenue outcome added |
-| `pronoun removed` | I / we / my eliminated |
-| `banned word` | Spearheaded / passionate / leveraged / synergy removed |
-| `AI signal` | AI product GTM language added for AI role targets |
-| `GTM motion named` | Vague "go-to-market" replaced with a specific motion type |
-| `passive → active` | Supported / helped / worked on → Led / Owned / Built |
-
-**Example:**
-
-| | Content | Changes Applied |
-|--|---------|----------------|
-| ❌ Before | "Spearheaded a major product launch that was very successful" | |
-| ✅ After | "$3.2M in pipeline generated in 60 days via the enterprise tier launch — highest-performing launch in North America segment" | `metric-first` `commercial anchor` `banned word` `scope anchor` |
-| 💡 Why | Metric-first means the commercial signal lands in the first 3 words; "very successful" is the weakest possible outcome signal on a PMM resume | |
+Run the four steps in order: Executive Read table, 10-point best-practice review, Strategic Fixes, reframed samples with before/after. Read `references/full-audit.md` now; it holds the table, the ten checks and the XYZ+S formula that TAILOR mode also uses.
 
 ---
 
-## AI PMM Mode
+## AI PMM Mode, Level Calibration, Story Archetype Detection, Resume Build Mode
 
-Activate when the user targets AI-native companies, AI product PMM roles, or wants to reposition their story for the AI market.
-
-**What AI company hiring execs look for:**
-
-| Signal | What it looks like on a resume |
-|--------|-------------------------------|
-| AI product GTM | Launched AI features/products, not just "software with AI inside" |
-| Technical fluency | Worked with LLMs, RAG, model evaluation — can brief engineers and customers both |
-| Trust and adoption framing | Positioned around ROI proof, explainability, responsible use — not just features |
-| Category creation | Helped define how the market thinks about an AI capability |
-| Cross-functional with AI teams | Led alongside data science, ML engineering, or AI research |
-| Responsible AI narrative | Ethics, safety, transparency as PMM positioning elements |
-
-**Example rewrites:**
-- ❌ "Marketed AI features to enterprise customers"
-- ✅ "Positioned LLM-powered workflow automation for enterprise buyers — built the ROI narrative that reduced sales cycle by 3 weeks and improved win rate vs. incumbent by 22%"
-
-**Title landscape:** "AI PMM," "PMM for AI Platform," "Senior PMM — Machine Learning," "Product Marketing Lead, GenAI" are all valid. Flag if the user is underselling AI exposure with a generic title.
-
----
-
-## Level Calibration
-
-- **Manager PMM:** Execution excellence, clean launch ownership, measurable outputs, cross-functional coordination
-- **Director PMM:** GTM system ownership, commercial influence (pipeline, win rate, ACV), cross-functional leadership, team or program leadership
-- **VP PMM:** Market shaping, category creation, org design, board-level narrative, revenue accountability
-
-Calibrate every rewrite to the stated target level. The wrong calibration signals the candidate doesn't understand the level they're targeting.
-
----
-
-## Story Archetype Detection
-
-Identify which archetype the resume reads as, and what's needed to advance it:
-
-| Archetype | Signals | What's Missing | Next Stage |
-|-----------|---------|---------------|------------|
-| **Operator** | Task-level bullets, execution metrics, "ran campaigns" | System-level framing, cross-functional ownership | Orchestrator |
-| **Orchestrator** | Cross-functional leadership, GTM motion ownership, launch outcomes | Commercial ownership, market narrative, named GTM motion | Market Shaper |
-| **Market Shaper** | Category creation, analyst narrative, revenue accountability, org-building | VP-ready signal confirmed | — |
-
-Tell the user which archetype their resume reads as, and exactly what language shifts would advance it.
-
----
-
-## Resume Build Mode
-
-Activate after a Full Audit or TAILOR session is complete and the user has confirmed the rewritten content — never generate a final file before that.
-
-**Trigger phrases:** "Build my resume," "Generate the final version," "Give me the formatted resume."
-
-**Confirm before building:**
-> "Ready to build the final version? I'll use everything we've rewritten today and format it into a clean resume."
-
-**Output:** a clean, well-formatted document (markdown or plain text) containing:
-- The approved rewritten summary (3-part formula)
-- Each role entry: scope paragraph → Key Achievements (metric-first, impact-ordered) → Responsibilities
-- Skills section: AI PMM tier first if targeting AI roles, then PMM Specialties → GTM & Commercial → Tools
-- Education, with sub-fields only where they add a signal
-- PMM-relevant certifications only
-
-If the user wants a polished HTML or PDF version, use the `docx` or `pdf` skill to produce it from this content rather than hand-rolling a template here.
+The detail for these four modes is in `references/modes-detail.md`. Read it when the request names one of them, or when the target level is Director or above (Level Calibration) or the career arc is the question (Story Archetype Detection).
 
 ---
 
@@ -469,17 +295,3 @@ This skill doesn't depend on any shared knowledge base or external file — its 
 
 ---
 
-## Verification
-
-- Goal confirmed with the user before any mode runs (Step 1) — never inferred silently.
-- XYZ+S formula applied and shown as a labeled before/after for rewritten bullets.
-- No fabricated achievements — every rewrite reframes something real.
-- Level calibration matches the stated target level.
-- Final resume built only after the user has confirmed the rewritten content (Resume Build Mode).
-
----
-
-## Do Not Use For
-
-- **Any non-PMM resume** — the frameworks here (GTM motion naming, positioning ownership, commercial signal priority) are PMM-specific and would misfire on other roles
-- **Cover letters** — this skill's structure is built around resume bullets and section order, not narrative prose

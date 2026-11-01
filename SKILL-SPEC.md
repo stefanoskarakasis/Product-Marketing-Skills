@@ -1,8 +1,8 @@
 # SKILL-SPEC.md
 ## Product Marketing Skills — Skill Authoring Standard
 
-**Version:** 2.6.4
-**Last updated:** 2026-10-29
+**Version:** 3.0.0
+**Last updated:** 2026-11-01
 **Applies to:** All skills in this repository
 **Owner:** Stefanos Karakasis
 
@@ -38,7 +38,7 @@ skills/skill-name/
 ````
 
 **Hard rules:**
-- `SKILL.md` stays under 500 lines. Move reference material to `config/` or `references/`.
+- `SKILL.md` stays under 500 lines **and under 3,000 words** (aim for 2,000). Lines alone hide dense paragraphs: a 270-line skill can be 4,800 words. Move rubrics, templates and long tables to `references/`, which Claude loads only when a step names it. `tests/test_skill_size.py` enforces the budget; skills that were over it when v3.0.0 landed have a ceiling that may only go down.
 - Directory name must exactly match the `name` field in frontmatter.
 - `evals/` is not optional. A skill without evals has no quality floor.
 - **Do not have a `SKILL.md` in a template folder** — Claude Code treats any file named `SKILL.md` as a loadable skill.
@@ -82,9 +82,13 @@ last_updated: YYYY-MM-DD
 
 ---
 
-## 4. The Seven Required Sections
+## 4. The Core Sections
 
-Every `SKILL.md` must contain exactly these seven sections, in this order. **Do not rename them. Do not omit them.** Use `N/A` if a section doesn't apply — that's the whole point. An omitted section says nothing. `N/A` says "I considered this and it doesn't apply."
+Every `SKILL.md` contains these four sections in this order, plus a `## Quality Gate` when `quality_gate: true`. **Do not rename them.** Use `N/A` inside a core section that has nothing to say (see Section 7); never drop the heading.
+
+**What changed in v3.0.0.** Before, every skill carried nine sections: Trigger, Inputs, Pre-flight, Steps, Outputs, Verification, Do Not Use For, Operating Rules and Quality Gate. Four of them repeated each other (`Do Not Use For` repeated `Not for`; `Verification` repeated the Quality Gate; `Operating Rules` repeated the Steps; `Pre-flight` repeated the Inputs), which added about 1,000 words to a large skill. Those four are no longer required. For scale: Pawel Huryn's pm-skills averages about 580 words per skill and has none of them. This repo's skills do more (brain, ledgers, connectors), so the budget is higher, but the rule is the same: every sentence must change what Claude does.
+
+Existing skills that still carry the retired sections keep passing. A new skill should not add them.
 
 After frontmatter, open with:
 
@@ -92,11 +96,11 @@ After frontmatter, open with:
 # Skill Name
 
 One paragraph. What this skill does and why it exists. No commands, no section
-headers — just the essence. Someone reading this paragraph should know immediately
+headers, just the essence. Someone reading this paragraph should know immediately
 whether this is the right skill.
 ````
 
-Then the seven sections:
+Then the core sections:
 
 ---
 
@@ -118,6 +122,8 @@ When to use this skill and when not to. Explicit routing to other skills.
 
 **Why this matters:** Without explicit exclusions, skills accumulate scope silently. After 10 skills, nobody knows where one ends and another begins. Name the boundary.
 
+**`Not for` is also the routing section.** Before v3.0.0 a separate `## Do Not Use For` repeated this line. It no longer exists as a required section: name the other skill in `Not for` and write it once. Routing reads only the `name` and `description`, so keep the same "Not for X (skill-name)" clause in the description too.
+
 ---
 
 ### Section 2: `## Inputs`
@@ -134,42 +140,11 @@ What this skill needs before it can run.
   N/A if context-agnostic and no files needed.
 ````
 
----
-
-### Section 3: `## Pre-flight`
-
-Dependency checks and early-exit conditions. Running before anything else.
-
-````markdown
-## Pre-flight
-
-- [Dependency check — what must exist or be loaded]
-- [Early-exit condition — when failing fast beats degraded output]
-- N/A if no pre-flight needed — write it explicitly, don't omit it.
-````
-
-**The `N/A` rule applies here most often.** Simple utility skills genuinely have no pre-flight. Write `N/A` explicitly so reviewers know it was considered.
-
-**Missing-brain rule (brain-dependent skills).** A plugin can be installed on its own, so a skill must not assume `product-marketing-context` is present. When the brain is absent, a brain-dependent skill must take one of these paths and must never end the session with a redirect alone:
-
-1. **Continue and start the brain.** For skills that work from evidence the user supplies (research, notes, source documents): proceed, and on the user's confirmation create `/foundation/brain.md` holding only that skill's section, marked `🟡 Cold start`.
-2. **Quick-Brain intake.** For skills that assemble from existing positioning: ask the shortest set of questions that makes the output usable (five or fewer), hold the answers for the session, and label the output as built from them.
-3. **Block with a working path.** Only when the skill's purpose is to format content that does not exist yet. The message must offer an action that works inside the same plugin (paste the content, or run a sibling skill), and any mention of `product-marketing-context` must say it is a separate plugin.
-
-If the environment cannot write files, show the block to save and never claim it was saved.
-
-**Gap capture (brain-dependent skills).** When a skill finds a brain field it needs that is empty, stale, or old and untagged, and the answer would change its output, it asks **one** question inline: the question, one line on why it matters, and "answer or skip".
-
-- **Answer:** use it for this run, then offer it as a brain update. The user confirms the exact before/after, and it is written with a `stated` source tag.
-- **Skip:** continue with a clearly labelled assumption and append a block with `status: skipped` to `/foundation/gaps.md` (format: `product-marketing-context/references/gaps-format.md`).
-- Never ask more than one gap question per run. Never ask when the answer would not change the output.
-- If the environment cannot write files, show the block to save and never claim it was saved.
-
-**Personal context (`me.md`).** A skill may read `/foundation/me.md` (format: `product-marketing-context/references/me-format.md`) **for format and detail only**: output length, level of detail, shape, how blunt to be. It never takes a company fact from that file, and the current request wins when the two disagree. A skill never writes `me.md`; only `product-marketing-context` does, after the user confirms. A missing `me.md` is normal: use the skill's defaults and do not ask for it.
+**Early exits live here.** A dependency check or early-exit condition is one bullet under **Context keys** ("Needs: ... If missing: ..."). A skill with real pre-flight logic (missing-brain path, gap capture) may add the optional `## Pre-flight` section described below.
 
 ---
 
-### Section 4: `## Steps`
+### Section 3: `## Steps`
 
 The core logic. Each step is a discrete, named action.
 
@@ -203,7 +178,7 @@ Rules for steps:
 
 ---
 
-### Section 5: `## Outputs`
+### Section 4: `## Outputs`
 
 What this skill produces.
 
@@ -223,73 +198,67 @@ What this skill produces.
 
 ---
 
-### Section 6: `## Verification`
+### Section 5: `## Quality Gate`
 
-How to confirm the skill ran correctly. Concrete and checkable.
-
-````markdown
-## Verification
-
-- [How to verify the output is correct. Concrete commands or checks.]
-- [What the expected result looks like.]
-- N/A only if the output is self-evidently verifiable with no steps needed.
-````
-
-This is not a quality gate (that's in Section 9). Verification is for the user to confirm success after the skill completes.
-
----
-
-### Section 7: `## Do Not Use For`
-
-Explicit routing away from this skill. Every skill has boundaries.
-
-````markdown
-## Do Not Use For
-
-- **skill-name** — When to use that skill instead. One sentence.
-- **skill-name** — When to use that skill instead.
-- N/A if this skill has no overlap with other skills — write it explicitly.
-  N/A here means: "overlap was considered and there is none."
-````
-
-**This is the most important section for a multi-skill system.** Without it, users hit the wrong skill and get confused. With it, the routing is baked in.
-
----
-
-## 5. Additional Required Sections (Strategic Skills)
-
-For Tier 1 and Tier 2 skills (see Section 12), add these after the seven required sections:
-
-### `## Operating Rules`
-
-Non-negotiable rules for this skill. One rule per line. These are what `verify` checks against.
-
-````markdown
-## Operating Rules
-
-- **Rule statement.** Reason or consequence.
-- **Rule statement.** Reason or consequence.
-````
-
-Minimum 6 rules for T1/T2 skills. If you can't write 6, the skill doesn't have enough defined behaviour to be production-grade.
-
-### `## Quality Gate`
-
-Runs after output generation, before delivery. Required for all skills where `quality_gate: true`.
+One table that runs after output generation and before delivery. It replaces the old `## Verification` section, which restated the same checks in prose. Required when `metadata.quality_gate: true`; omit the section when it is `false`.
 
 ````markdown
 ## Quality Gate
 
-Runs after output generation. Surface failures before delivering — never after.
+Runs after output generation. Surface failures before delivering, never after.
 
-| Check | Standard | Pass = |
-|---|---|---|
-| [Check name] | [What it tests] | [Pass condition] |
+| Check | Pass = |
+|---|---|
+| [Check name, binary] | [Pass condition] |
 ````
 
-Minimum 5 checks. Each check must be binary (pass/fail), not subjective.
+- Minimum 5 checks for T1/T2 skills. Each check is binary (pass/fail), not subjective.
+- One row per rule that matters. Do not also write the same rule as an Operating Rule, a Verification bullet and a Step: say it once, in the Step that does the work, and test it here.
+- **For T1/T2 skills, include a Learning Close row**, see Section 5.1 for the exact row.
 
-**For T1/T2 skills, include a Learning Close row** — see Section 5.1's template block, which has the exact row to copy.
+---
+
+### Optional: `## Pre-flight`
+
+Only for a skill with real dependency or early-exit logic. Do not add it to write `N/A`: a skill with no pre-flight leaves the section out. The rules below apply to any brain-dependent skill, wherever they are written.
+
+Dependency checks and early-exit conditions. Running before anything else.
+
+````markdown
+## Pre-flight
+
+- [Dependency check — what must exist or be loaded]
+- [Early-exit condition — when failing fast beats degraded output]
+````
+
+A skill with no pre-flight logic leaves this section out.
+
+**Missing-brain rule (brain-dependent skills).** A plugin can be installed on its own, so a skill must not assume `product-marketing-context` is present. When the brain is absent, a brain-dependent skill must take one of these paths and must never end the session with a redirect alone:
+
+1. **Continue and start the brain.** For skills that work from evidence the user supplies (research, notes, source documents): proceed, and on the user's confirmation create `/foundation/brain.md` holding only that skill's section, marked `🟡 Cold start`.
+2. **Quick-Brain intake.** For skills that assemble from existing positioning: ask the shortest set of questions that makes the output usable (five or fewer), hold the answers for the session, and label the output as built from them.
+3. **Block with a working path.** Only when the skill's purpose is to format content that does not exist yet. The message must offer an action that works inside the same plugin (paste the content, or run a sibling skill), and any mention of `product-marketing-context` must say it is a separate plugin.
+
+If the environment cannot write files, show the block to save and never claim it was saved.
+
+**Gap capture (brain-dependent skills).** When a skill finds a brain field it needs that is empty, stale, or old and untagged, and the answer would change its output, it asks **one** question inline: the question, one line on why it matters, and "answer or skip".
+
+- **Answer:** use it for this run, then offer it as a brain update. The user confirms the exact before/after, and it is written with a `stated` source tag.
+- **Skip:** continue with a clearly labelled assumption and append a block with `status: skipped` to `/foundation/gaps.md` (format: `product-marketing-context/references/gaps-format.md`).
+- Never ask more than one gap question per run. Never ask when the answer would not change the output.
+- If the environment cannot write files, show the block to save and never claim it was saved.
+
+**Personal context (`me.md`).** A skill may read `/foundation/me.md` (format: `product-marketing-context/references/me-format.md`) **for format and detail only**: output length, level of detail, shape, how blunt to be. It never takes a company fact from that file, and the current request wins when the two disagree. A skill never writes `me.md`; only `product-marketing-context` does, after the user confirms. A missing `me.md` is normal: use the skill's defaults and do not ask for it.
+
+---
+
+### Optional: `## Rules`
+
+Only for rules that no Step states. Do not restate a Step as a rule; every duplicate costs words and drifts. There is no minimum number. (This section was `## Operating Rules` with a minimum of 6 before v3.0.0; a skill may keep that heading.)
+
+---
+
+## 5. Quality Gate, Optional Sections and the Learning Close
 
 ### 5.1 `## Self-Improvement Loop` — required for T1/T2 (v2.2.0)
 
@@ -377,7 +346,7 @@ sufficient for "when did this last change" at a glance.
 
 ## 6. Appendix Conventions
 
-Optional content goes after the seven required sections. Use these canonical appendix names so skill-audit tooling can skip them correctly:
+Optional content goes after the core sections. Use these canonical appendix names so skill-audit tooling can skip them correctly:
 
 | Appendix name | Use for |
 |---|---|
@@ -397,7 +366,7 @@ Optional content goes after the seven required sections. Use these canonical app
 
 This is the single most important consistency mechanism in the spec.
 
-**Every section must be present. Always.**
+**Every core section must be present. Always.**
 
 If a section doesn't apply to a skill, write `N/A` (not applicable) under it — do not omit the section.
 
@@ -406,7 +375,7 @@ If a section doesn't apply to a skill, write `N/A` (not applicable) under it —
 
 These are completely different signals. The second is auditable. The first is not.
 
-**This rule applies to all seven required sections and to the `## Do Not Use For` section specifically.** A `## Do Not Use For` with `N/A` says: "there are no overlapping skills." A missing `## Do Not Use For` says nothing — and after 15+ skills, that silence causes real confusion.
+**This rule applies to the four core sections and to `## Quality Gate` where `quality_gate: true`.** Optional sections (`Pre-flight`, `Rules`) are the opposite: leave them out when empty instead of writing `N/A`, because an empty section is words the model must read for nothing.
 
 ---
 
@@ -430,7 +399,7 @@ Load instruction for brain-dependent skills:
 - If a loaded section is marked 🔴 Placeholder: flag before proceeding.
 ````
 
-**Brain-dependent skills:** `alternatives-map`, `beachhead-segment`, `brand-voice`, `buyer-personas`, `competitive-battlecard`, `competitive-briefing`, `competitive-profile`, `competitor-deep-dive`, `customer-stories`, `experiment-doc`, `experiment-ideas`, `gaccs-brief`, `go-to-market-strategy`, `gtm-motions`, `ideal-customer-profile`, `industry-newsletter`, `interview-summary`, `market-context`, `media-monitoring`, `message-house`, `meta-synthesis`, `pmm-metrics`, `pmm-okrs`, `positioning-ideas`, `positioning-messaging`, `prd`, `pre-mortem`, `prioritization-frameworks`, `product-marketing-context`, `product-messaging-playbook`, `proof-points`, `retro`, `signal-monitor`, `stakeholder-maps`, `value-prop-statements`, `workflow-orchestrator`
+**Brain-dependent skills:** `alternatives-map`, `beachhead-segment`, `brand-voice`, `buyer-personas`, `competitive-battlecard`, `competitive-briefing`, `competitive-profile`, `competitor-deep-dive`, `customer-stories`, `experiment-doc`, `experiment-ideas`, `gaccs-brief`, `go-to-market-strategy`, `gtm-motions`, `ideal-customer-profile`, `industry-newsletter`, `interview-summary`, `market-context`, `media-monitoring`, `message-house`, `meta-synthesis`, `pmm-metrics`, `pmm-okrs`, `positioning-ideas`, `positioning-messaging`, `prd`, `pre-mortem`, `prioritization-frameworks`, `product-marketing-context`, `product-messaging-playbook`, `proof-points`, `retro`, `signal-monitor`, `stakeholder-maps`, `value-prop-statements`, `workflow-orchestrator`, `writing-assistant`
 
 ### Context-Agnostic (`context-agnostic`)
 
@@ -450,9 +419,7 @@ Load instruction for context-agnostic skills:
 
 **Context-agnostic skills:** `meta-learn`, `meta-review`, `meta-verify`, `pmm-resume`, `privacy-policy`
 
-**Hybrid:** `writing-assistant` loads the brain for marketing content and Behavioral Messaging Review, and only Section 4 (voice) for internal messages. It moves to the brain-dependent list when its frontmatter is brought to this spec.
-
-The two lists above are checked by `tests/test_consistency.py` against each skill's `context:` frontmatter. A skill with no `context:` value (`writing-assistant`, the hybrid) is not checked.
+The two lists above are checked by `tests/test_consistency.py` against each skill's `context:` frontmatter. A skill with no `context:` value is not checked.
 
 **The rule:** If output quality depends on knowing your product → brain-dependent. If output quality depends on a universal framework → context-agnostic. When in doubt, choose agnostic.
 
@@ -533,10 +500,10 @@ instead of a fabricated one. **Found and fixed across 6 eval files on
 
 | Tier | Description | Examples | Requirements |
 |---|---|---|---|
-| **T1 — Strategic** | High-stakes, executive or customer-facing output | pre-mortem, positioning-messaging, go-to-market-strategy | All 7 sections + operating rules + quality gate + Learning Close |
-| **T2 — Execution** | Day-to-day PMM work, high frequency, medium stakes | experiment-doc, prd, retro, stakeholder-maps, gaccs-brief, competitive-battlecard, competitive-briefing, competitive-profile, competitor-deep-dive, industry-newsletter, media-monitoring, pmm-okrs, beachhead-segment, buyer-personas | All 7 sections + quality gate + Learning Close |
-| **T3 — Utility** | Tactical outputs, lower stakes | writing-assistant, pmm-resume, privacy-policy, interview-summary, prioritization-frameworks | All 7 sections. Quality gate optional. Learning Close optional. |
-| **T4 — Meta** | Skills that operate on other skills | meta-review, meta-learn, meta-verify, meta-synthesis, workflow-orchestrator, product-marketing-context | Custom per meta skill. All 7 sections still required. |
+| **T1 — Strategic** | High-stakes, executive or customer-facing output | pre-mortem, positioning-messaging, go-to-market-strategy | Core sections + quality gate + Learning Close |
+| **T2 — Execution** | Day-to-day PMM work, high frequency, medium stakes | experiment-doc, prd, retro, stakeholder-maps, gaccs-brief, competitive-battlecard, competitive-briefing, competitive-profile, competitor-deep-dive, industry-newsletter, media-monitoring, pmm-okrs, beachhead-segment, buyer-personas | Core sections + quality gate + Learning Close |
+| **T3 — Utility** | Tactical outputs, lower stakes | writing-assistant, pmm-resume, privacy-policy, interview-summary, prioritization-frameworks | Core sections. Quality gate optional. Learning Close optional. |
+| **T4 — Meta** | Skills that operate on other skills | meta-review, meta-learn, meta-verify, meta-synthesis, workflow-orchestrator, product-marketing-context | Custom per meta skill. Core sections still required. |
 
 **Note on this table (2026-08-22, updated 2026-09-01):** `competitive-battlecard`
 and `buyer-personas` were removed from the T1/T2 examples in this table's
@@ -577,7 +544,7 @@ skill remains log-free by design.
 
 ## 13. The `review` Meta Skill Checklist
 
-When the `review` meta skill audits a `SKILL.md`, it checks these in order. Use this list for self-review before committing.
+When the `meta-review` skill audits a `SKILL.md`, it checks these in order. Use this list for self-review before committing.
 
 **Frontmatter (5 checks):**
 - [ ] All required fields present
@@ -586,29 +553,25 @@ When the `review` meta skill audits a `SKILL.md`, it checks these in order. Use 
 - [ ] `metadata.context` declared as `brain-dependent` or `context-agnostic`
 - [ ] `version` and `last_updated` present
 
-**Seven required sections (7 checks):**
+**Core sections (5 checks):**
 - [ ] `## Trigger` — includes When, Not for, Example prompts
 - [ ] `## Inputs` — all three sub-fields present (or `N/A`)
-- [ ] `## Pre-flight` — present (or explicit `N/A`)
 - [ ] `## Steps` — named steps in imperative form, at least 2 steps
 - [ ] `## Outputs` — all three sub-fields present (or `N/A`)
-- [ ] `## Verification` — concrete and checkable (or explicit `N/A`)
-- [ ] `## Do Not Use For` — present with routing (or explicit `N/A`)
+- [ ] `## Quality Gate` — at least 5 binary checks when `quality_gate: true`; counts as a pass when `quality_gate: false` and the section is absent
 
-**Tier-appropriate sections (3 checks):**
-- [ ] `## Operating Rules` present with ≥6 rules (T1/T2)
-- [ ] `## Quality Gate` present with ≥5 binary checks (T1/T2 where `quality_gate: true`)
-- [ ] `## Steps` ends with a Learning Close step, per Section 5.1 (T1/T2)
+**Tier-appropriate (1 check):**
+- [ ] `## Steps` ends with a Learning Close step, per Section 5.1 (T1/T2 only; passes for T3/T4)
 
-**Quality (3 checks):**
+**Quality (4 checks):**
 - [ ] `SKILL.md` is ≤500 lines
+- [ ] `SKILL.md` is ≤3,000 words (or within its recorded legacy ceiling in `tests/test_skill_size.py`)
 - [ ] Output template is in a code fence (not raw markdown headers)
 - [ ] Evals file exists with ≥3 test cases including one edge case
 
-**Pass threshold:** 16/18 checks. Skills below this are flagged for improvement before next use.
+**Pass threshold:** 13/15 checks. Skills below this are flagged for improvement before next use.
 
-**Not checked (by design):** `## Changelog` is not part of this checklist.
-See Section 5 — it is not required under this version of the spec.
+**Not checked (by design):** `## Changelog` (see Section 5). The retired sections (`Pre-flight`, `Verification`, `Do Not Use For`, `Operating Rules`) are neither required nor penalised.
 
 ---
 
@@ -620,7 +583,7 @@ A best-in-class skill has five properties:
 
 **2. It enforces its own quality.** The quality gate runs before output is delivered. A skill that can produce a bad output without flagging it is not production-grade.
 
-**3. It knows its boundaries.** The `## Do Not Use For` section names where the skill ends and routes clearly to what comes next. Users never wonder whether they're in the right skill.
+**3. It knows its boundaries.** The `Not for` line in `## Trigger` names where the skill ends and routes clearly to what comes next. Users never wonder whether they're in the right skill.
 
 **4. It compounds through the shared system, not its own private loop.** No individual skill runs its own self-improvement pipeline. T1/T2 skills log each session to `/context/skill-sessions.md` via the standard Learning Close step (Section 5.1); `meta-synthesis` is where patterns get detected across sessions and skills, and any resulting guardrail or brain update goes live for every skill to read at Pre-flight. A skill gets smarter over time by being part of that shared system — not by inventing its own memory.
 
@@ -630,7 +593,7 @@ A best-in-class skill has five properties:
 
 ## 15. SKILL.md Template
 
-Copy this to `skills/<skill-name>/SKILL.md` when creating a new skill. Fill every section. Use `N/A` where genuinely not applicable — never leave a section blank or omit it.
+Copy this to `skills/<skill-name>/SKILL.md` when creating a new skill. Fill every core section. Use `N/A` inside a core section where it genuinely does not apply. Stay under 3,000 words.
 
 ````markdown
 ---
@@ -665,14 +628,9 @@ immediately whether this is the right skill.
 
 - **Args:** [N/A if none]
 - **Defaults:** [N/A if no defaults]
-- **Context keys:** [Files, brain sections, external resources needed.
-  N/A if context-agnostic.]
+- **Context keys:** [Files, brain sections, external resources needed, plus any
+  early exit: "Needs X. If missing: Y." N/A if context-agnostic.]
   - **Brain contract:** Reads: [sections]. Writes: [sections]. Never writes to: [sections].
-
-## Pre-flight
-
-- [Dependency check or early-exit condition]
-- N/A
 
 ## Steps
 
@@ -696,28 +654,12 @@ Omit this step for T3/T4 skills unless the author opts in.]
 - **Chat output format:** [markdown shape. N/A if no chat output.]
 - **External side effects:** [N/A if none.]
 
-## Verification
-
-- [How to confirm the skill ran correctly. Concrete.]
-- N/A
-
-## Do Not Use For
-
-- **[skill-name]** — [When to use that skill instead.]
-- N/A
-
----
-
-## Operating Rules
-
-- **Rule.** Reason.
-
 ## Quality Gate
 
-| Check | Standard | Pass = |
-|---|---|---|
-| [Check] | [What it tests] | [Pass condition] |
-| Learning Close ran | `/context/skill-sessions.md` has a new row for this session | Yes |
+| Check | Pass = |
+|---|---|
+| [Check, binary] | [Pass condition] |
+| Learning Close ran | `/context/skill-sessions.md` has a new row for this session |
 ````
 
 No `## Changelog` section — not required under this version of the spec.

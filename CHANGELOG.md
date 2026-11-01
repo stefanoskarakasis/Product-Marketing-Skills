@@ -19,6 +19,10 @@
 - Six hosted servers added from the vendors' own documentation: Ahrefs, monday.com, Productboard, Granola, Dovetail and Zoom Meetings (32 servers, 30 tools). Zoom's address is the example endpoint its docs show; Dovetail needs a token if automatic sign-in fails.
 - Salesforce, Microsoft 365, Box and Zendesk stay under "connect your own" with the documented addresses and admin steps, because each needs a per-customer address, client or admin approval.
 
+### Upload helper
+
+- `scripts/apply_staged.py` and a new `Apply staged files` workflow let you upload dot-folders (`.claude-plugin`, `.cursor-plugin`) under visible names inside `staged/` (as `dot-claude-plugin`). The workflow moves them into place, regenerates connector files, runs the checks, commits and publishes the release. Tested on a copy; not yet run on GitHub.
+
 ### More agents
 
 - New `.cursor-plugin/` manifests (a marketplace file and one per plugin) in the format of Cursor's plugin reference. Not yet tested inside Cursor.

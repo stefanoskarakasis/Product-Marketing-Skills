@@ -29,7 +29,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 FAMILY = {
     "competitive-briefing", "competitive-profile", "competitive-battlecard",
-    "competitor-deep-dive", "signal-monitor", "industry-newsletter",
+    "competitor-deep-dive", "signal-monitor", "industry-newsletter", "media-monitoring",
 }
 FAMILY_WIDE = FAMILY | {"alternatives-map", "workflow-orchestrator"}
 
@@ -122,7 +122,7 @@ class TestTriggerCollisions(unittest.TestCase):
         desc = self.skills["competitive-briefing"]["desc"]
         m = re.search(r"Not for(.*)$", desc)
         self.assertIsNotNone(m, "competitive-briefing description needs a 'Not for' clause")
-        for sib in ("competitive-profile", "competitive-battlecard", "competitor-deep-dive", "signal-monitor", "industry-newsletter"):
+        for sib in ("competitive-profile", "competitive-battlecard", "competitor-deep-dive", "signal-monitor", "industry-newsletter", "media-monitoring"):
             self.assertIn(sib, m.group(1), f"'Not for' clause should name {sib}")
 
     def test_newsletter_not_for_names_its_neighbours(self):
@@ -130,7 +130,7 @@ class TestTriggerCollisions(unittest.TestCase):
         m = re.search(r"Not for(.*)$", desc)
         self.assertIsNotNone(m, "industry-newsletter description needs a 'Not for' clause")
         for sib in ("competitive-briefing", "signal-monitor", "competitive-profile",
-                    "competitive-battlecard", "competitor-deep-dive"):
+                    "competitive-battlecard", "competitor-deep-dive", "media-monitoring"):
             self.assertIn(sib, m.group(1), f"'Not for' clause should name {sib}")
 
     def test_description_fits_the_limit(self):

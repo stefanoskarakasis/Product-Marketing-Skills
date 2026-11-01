@@ -1,0 +1,68 @@
+name: Apply staged files
+
+# Finder hides folders that start with a dot, so uploads skip them. Upload them
+# into staged/ under visible names (dot-claude-plugin, dot-cursor-plugin) and
+# this workflow puts them back, regenerates connector files, runs the checks,
+# commits, and publishes the release named by the newest CHANGELOG heading.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'staged/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Move staged files into place
+        run: python3 scripts/apply_staged.py
+
+      - name: Regenerate connector files
+        run: python3 scripts/generate_connectors.py --write
+
+      - name: Structure check
+        run: python3 .github/scripts/check_structure.py
+
+      - name: Consistency tests
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Commit changes if any
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Apply staged files"
+          git push
+
+      - name: Publish the release if its tag does not exist yet
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          v=$(grep -m1 -oE '^## v[0-9]+\.[0-9]+\.[0-9]+' CHANGELOG.md | sed 's/## //')
+          [ -n "$v" ] || { echo "No version heading in CHANGELOG."; exit 0; }
+          m=$(python3 -c "import json;print(json.load(open('.claude-plugin/marketplace.json'))['metadata']['version'])" 2>/dev/null || true)
+          if [ -n "$m" ] && [ "v$m" != "$v" ]; then
+            echo "marketplace.json says $m but CHANGELOG says $v. Not releasing."; exit 1
+          fi
+          if git ls-remote --exit-code --tags origin "refs/tags/$v" >/dev/null 2>&1; then
+            echo "Tag $v already exists."; exit 0
+          fi
+          awk -v h="## $v" 'index($0,h)==1{f=1;next} f&&/^## v/{exit} f' CHANGELOG.md > notes.md
+          gh release create "$v" --target "$(git rev-parse HEAD)" --title "$v" --notes-file notes.md

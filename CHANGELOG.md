@@ -1,5 +1,56 @@
 # Changelog
 
+## v1.20.0 — 2026-11-01
+
+### Every skill under 3,000 words
+
+- All 42 skills are now at or under 3,000 words, the way `pm-skills` keeps skills short. The 12 largest were cut: `competitive-battlecard` (1.4.0), `competitive-profile` (1.4.0), `competitor-deep-dive` (1.3.0), `industry-newsletter` (1.1.0), `product-marketing-context` (3.6.0), `pmm-resume` (3.1.0), `competitive-briefing` (1.2.0), `writing-assistant` (2.6.0), `media-monitoring` (1.1.0), `proof-points` (1.3.0), `product-messaging-playbook` (1.4.0) and `positioning-messaging` (2.7.0). Detail that only matters in some runs (connector tables, pre-flight edge cases, delivery formats, wizard questions, ingest, the full resume audit, marketing and behavioral review workflows) moved word for word into each skill's `references/` folder, with a pointer in `SKILL.md`. A retention check found no distinctive term (backticked name, number, tag, step reference) lost from any of them.
+- The separate Verification and Do Not Use For sections are gone from the skills that had them. Their checks live in the Quality Gate and their routes in Trigger (positioning-messaging, product-messaging-playbook keep theirs in `references/not-for.md`).
+- `writing-assistant` is rebuilt on the spec: a `version`, Trigger, Inputs, Steps and Outputs sections, and it now counts as brain-dependent.
+
+### Skill spec 3.0.0
+
+- `SKILL-SPEC.md` requires four core sections: Trigger, Inputs, Steps and Outputs, plus a Quality Gate when `quality_gate: true`. Pre-flight and Rules are optional. New word budget of 3,000 (aim for 2,000). The checklist is 15 checks, pass at 13. `meta-review` (4.0.0) scores against it.
+- `tests/test_skill_size.py` enforces the budget and the core sections for every skill.
+
+### Fewer connectors for the brain
+
+- `product-marketing-context` now wires nine connectors (Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Semrush), the ones its Add material step reads, instead of all 26. Other plugins are unchanged. `connectors.json` gains a `brain_servers` list that the generator and tests enforce. The root `.mcp.json` still carries the whole catalog.
+
+### More agents
+
+- New `.cursor-plugin/` manifests (a marketplace file and one per plugin) in the format of Cursor's plugin reference. Not yet tested inside Cursor.
+- README Option 2 is corrected: Claude Code reads `.claude/skills/`, Codex reads `.agents/skills/`, and the brain is copied whole because its scripts live inside it.
+- README: `pmm-meta` moves out of the "pick by job" table into a note for skill builders.
+
+### Evals
+
+- New `docs/run-the-evals.md`, `docs/eval-first-sitting.md` (28 cases across the five biggest changes) and `scripts/eval_sheet.py`, which builds a run sheet for any skill. Nothing is recorded as run yet.
+
+### Tests
+
+- 51 tests. New: `tests/test_skill_size.py`, `tests/test_cursor_manifests.py`; the connector test now checks the brain's list.
+
+## v1.19.0 — 2026-11-01
+
+### The agent map
+
+- `product-marketing-context` (3.5.0) now writes a short map into your project's `AGENTS.md` when the brain is built, so your agent reads the brain in every chat, not only when you call a skill. It lists the brain's sections and what each is for, the records that exist and the helper scripts, in about 230 words. The block sits between markers: your own text is never touched, a second run changes nothing, and `/product-marketing-context:agents-map` refreshes it. A marked `@AGENTS.md` line is added to `CLAUDE.md` (created if missing) so Claude Code reads it. Agents that read `AGENTS.md` pick the map up directly.
+
+### Helper scripts
+
+- Two plain-Python scripts ship in `product-marketing-context/scripts/` and are copied to `foundation/tools/`: `brain_section.py` prints only the sections a task needs, and `lint_draft.py` checks a draft against your forbidden phrases, forbidden claims and prohibited topics, and lists numbers that are not in your approved metrics and leftover `[NEEDS PROOF]` markers. Skills still work without them.
+
+### Send guard
+
+- `pmm-competitive-intelligence` ships a Claude Code hook (`hooks/`) that asks before a connector tool sends, posts, replies to or forwards a message through Slack, Gmail, Outlook or Teams. Reading, searching and drafting are never asked about. `PMM_GUARD=off` turns it off; `PMM_GUARD_ALLOW=slack` allows one service. The same hook sits in the root `hooks/` for the whole-repo install.
+
+### Fixes and documentation
+
+- `AGENTS.md` is rewritten as a short map for contributors and now carries the release rules that lived in `CLAUDE.md`, which is a one-line import of it. It no longer says the brain has six sections or that the repo has six plugins: the brain has eight sections and the repo has nine plugins. `QUICK-START.md` says 42 skills.
+- README gains a "What your agent loads, and when" table; new `docs/agents-map.md` explains the map, the scripts and the guard.
+- Tests: `tests/test_hooks.py` and `tests/test_agent_map.py` cover the guard, both scripts and the map; `AGENTS.md` and `QUICK-START.md` counts are now checked against the folders on disk.
+
 ## v1.18.0 — 2026-10-29
 
 ### Competitive intelligence

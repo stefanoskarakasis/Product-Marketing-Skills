@@ -1,0 +1,12 @@
+{
+  "name": "pmm-competitive-intelligence",
+  "description": "Competitive intelligence skills for B2B SaaS PMMs: a scheduled sweep of your core competitors with the fixes drafted, dated competitor profiles, live-deal battlecards, decision-ready deep-dives, a weekly leadership brief and a weekly industry newsletter, with competitor answers your team can get in Slack.",
+  "author": {
+    "name": "Stefanos Karakasis",
+    "url": "https://stefanoskarakasis.substack.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-competitive-intelligence",
+  "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
+  "skills": "./skills"
+}

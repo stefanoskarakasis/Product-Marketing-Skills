@@ -28,6 +28,17 @@ Prefer the plugin marketplace? See [Installation](#installation) below.
 
 **The fix:** `product-marketing-context` builds one document, `/foundation/brain.md`: product, ICP, alternatives, positioning, voice, market context and proof points. Every other skill reads it before producing anything. One brain covers one product; for several product lines, keep one folder and one brain per product.
 
+### What your agent loads, and when
+
+| Layer | In this repo | When it loads |
+|---|---|---|
+| AGENTS.md map | About 230 words written into your project when the brain is built | Every session |
+| Brain | `foundation/brain.md`, 8 sections | Only the sections a task names |
+| Skills | 42 workflows | When your request matches one |
+| Scripts | `lint_draft.py` and `brain_section.py` in `foundation/tools/` | When a check needs no judgment |
+
+The map is what makes your agent read the brain in chats where you call no skill. Claude Code reads it through a one-line `CLAUDE.md` import; agents that read `AGENTS.md` pick it up directly. In Claude Code, the competitive-intelligence plugin also asks before anything is sent to Slack or email. How it works, and how to turn it off: [docs/agents-map.md](docs/agents-map.md).
+
 ## Start here: pick by job
 
 Nine plugins, grouped by the work you do. Install `product-marketing-context` first; add the rest as you need them.
@@ -49,8 +60,9 @@ Nine plugins, grouped by the work you do. Install `product-marketing-context` fi
 | Run the PMM job: OKRs, retros, pre-mortems | `pmm-okrs`, `retro`, `pre-mortem` | `pmm-execution` |
 | Generate and measure growth ideas | `experiment-ideas`, `pmm-metrics` | `pmm-growth` |
 | Write customer stories | `customer-stories` | `pmm-growth` |
+
+**Building or auditing skills yourself?** `pmm-meta` (`meta-review`, `meta-learn`, `meta-synthesis`, `meta-verify`) is for skill builders. It audits skills against `SKILL-SPEC.md`; you do not need it to use the rest.
 | Draft content, briefs, resumes | `writing-assistant`, `gaccs-brief` | `pmm-toolkit` |
-| Keep my skills sharp | `meta-review`, `meta-learn` | `pmm-meta` |
 
 **Skills** are single guided workflows; **plugins** bundle related skills into one install. The full catalogue is under [Available Skills](#available-skills-42-total).
 
@@ -152,7 +164,7 @@ The one-line `npx skills add` install is at the top of this page. These are the 
 /plugin install pmm-meta
 ```
 
-Connectors load per plugin. `product-marketing-context` (the brain) wires the whole catalog, so installing it alone gives you every connector, and each other plugin wires only what its skills read. If you instead load the repo root as one plugin, the root `.mcp.json` carries the same catalog. Pick one path: using both declares the same servers twice. Install `product-marketing-context` first — every other plugin reads the brain it
+Connectors load per plugin. `product-marketing-context` (the brain) wires only the nine servers its Add material step can read (Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Semrush), and each other plugin wires only what its skills read. If you instead load the repo root as one plugin, the root `.mcp.json` carries the same catalog. Pick one path: using both declares the same servers twice. Install `product-marketing-context` first — every other plugin reads the brain it
 builds. `pmm-meta` can be installed alongside any combination of the
 others; it doesn't depend on which ones you have.
 
@@ -160,12 +172,23 @@ others; it doesn't depend on which ones you have.
 
 ### Option 2: Clone and Copy
 
+Each agent reads skills from its own folder. Copy the skill folders there.
+
+| Agent | Project folder | Personal folder |
+|---|---|---|
+| Claude Code | `.claude/skills/` | `~/.claude/skills/` |
+| Codex | `.agents/skills/` | `~/.agents/skills/` |
+
 ```bash
 git clone https://github.com/stefanoskarakasis/Product-Marketing-Skills.git
-cp -r Product-Marketing-Skills/pmm-execution/skills/* .agents/skills/
+mkdir -p .claude/skills                                   # Codex: .agents/skills
+cp -r Product-Marketing-Skills/product-marketing-context .claude/skills/
+cp -r Product-Marketing-Skills/pmm-positioning/skills/* .claude/skills/
 ```
 
-Adjust the source path per plugin depending on which skills you want.
+Repeat the last line for each plugin you want (`pmm-execution`, `pmm-competitive-intelligence`, and so on). The brain is copied whole because its helper scripts live inside it. Folders are as documented by [Claude Code](https://code.claude.com/docs/en/skills) and Codex at the time of writing; `npx skills add` at the top of this page picks the right folder for you.
+
+**Cursor:** the repo ships Cursor plugin manifests (`.cursor-plugin/`) in the format of Cursor's plugin reference. They have not been tested inside Cursor yet; tell us what you see.
 
 ### Option 3: Fork and Customize
 
@@ -180,7 +203,7 @@ Skills work without connectors. Connect tools and they pull candidate facts for 
 <!-- generated:plugin-table begin -->
 | Plugin | Connectors wired |
 |---|---|
-| product-marketing-context | Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Linear, Figma, Canva, Gmail, Google Calendar, Klaviyo, Supermetrics, Amplitude (US and EU), Mixpanel (US and EU), Asana, Wispr Flow, Semrush, Crunchbase, Exa |
+| product-marketing-context | Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Semrush |
 | pmm-positioning | Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Google Slides, Gmail, Google Calendar, Mixpanel (US and EU), Wispr Flow, Semrush |
 | pmm-execution | Notion, Atlassian, Gong, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Linear, Figma, Canva, Gmail, Google Calendar, Asana, Wispr Flow |
 | pmm-go-to-market | HubSpot, Gong, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Canva, Gmail, Google Calendar, Klaviyo, Supermetrics, Wispr Flow, Semrush |
@@ -195,7 +218,7 @@ Some connectors need extra access: Semrush needs an API plan,
 Gong usually needs an admin to enable it, Crunchbase needs a workspace seat, and Wispr Flow needs
 Notetaker and MCP access on your account. Salesforce, GitHub, Zendesk,
 Snowflake, Zoom, Salesloft, Clay and other tools with no public endpoint are
-connect-your-own or paste-only. The brain plugin (`product-marketing-context`) wires every connector in the catalog. Every other plugin wires only the tools its skills read. Install each plugin on its own to load its connectors (see Installation). To add or change a connector, edit `connectors.json` ([how](docs/add-a-connector.md)). Sign-in steps: [docs/connect-your-tools.md](docs/connect-your-tools.md). Competitor answers in a Slack thread: [docs/slack-setup.md](docs/slack-setup.md). Category registry: [CONNECTORS.md](CONNECTORS.md).
+connect-your-own or paste-only. The brain plugin (`product-marketing-context`) wires the nine connectors it reads from. Every other plugin wires only the tools its skills read. Install each plugin on its own to load its connectors (see Installation). To add or change a connector, edit `connectors.json` ([how](docs/add-a-connector.md)). Sign-in steps: [docs/connect-your-tools.md](docs/connect-your-tools.md). Competitor answers in a Slack thread: [docs/slack-setup.md](docs/slack-setup.md). Category registry: [CONNECTORS.md](CONNECTORS.md).
 
 ## Workflow Intelligence
 
@@ -213,7 +236,7 @@ The skills use `~~category` placeholders (like `~~CRM`) instead of vendor names,
 Contributions are welcome: new skills, better frameworks, fixes, and connector ideas.
 
 - Read [CONTRIBUTING.md](CONTRIBUTING.md) and [SKILL-SPEC.md](SKILL-SPEC.md) first.
-- Connector rules (placeholders only, never commit credentials) are in [CLAUDE.md](CLAUDE.md).
+- Connector rules (placeholders only, never commit credentials) are in [AGENTS.md](AGENTS.md).
 - A structure check runs on every change. Locally: `python3 .github/scripts/check_structure.py`.
 - Found a bug or have an idea? [Open an issue](https://github.com/stefanoskarakasis/Product-Marketing-Skills/issues).
 

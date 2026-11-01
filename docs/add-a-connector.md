@@ -13,7 +13,7 @@ Never edit those by hand. The text between `<!-- generated:... begin -->` and `<
 
 ## Which plugin gets which server
 
-- `product-marketing-context` (the brain) always gets every server in the file. You do not list it.
+- `product-marketing-context` (the brain) gets only the servers named in `brain_servers` at the top of the file. Do not put it in a server's `plugins` list.
 - Every other plugin gets a server only if you name it in that server's `"plugins"` list. Add a plugin only when its skills read the server's category, so people sign in to fewer tools and grant fewer permissions.
 
 ## Add a server that has a public address

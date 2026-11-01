@@ -1,0 +1,16 @@
+{
+  "description": "Asks you before any connector tool sends or posts a message (Slack, Gmail, Outlook, Teams). Reading and drafting are never blocked.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/guard_external_send.py\""
+          }
+        ]
+      }
+    ]
+  }
+}

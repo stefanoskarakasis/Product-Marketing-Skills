@@ -20,7 +20,7 @@ the `product-marketing-context` skill. It walks you through:
 - Market context
 - Proof points
 
-Takes about 15 minutes. Answers save to `/foundation/brain.md`.
+Takes about 15 minutes. Answers save to `/foundation/brain.md`. When the brain is built, the skill also writes a short map into your project's `AGENTS.md`, so your agent reads the brain in every chat, not only when you call a skill. Details: [docs/agents-map.md](docs/agents-map.md).
 
 **No time for 15 minutes?** Copy [`examples/example-brain.md`](examples/example-brain.md) to `/foundation/brain.md` to see what the skills produce, or start with `alternatives-map`, `ideal-customer-profile` or `proof-points` in `pmm-positioning`: each works from your own notes and starts your brain.
 
@@ -39,7 +39,7 @@ automatically. Try:
 - "What tier is this launch?" 
 - "Run a retro on our last launch"
 
-## What You Can Do (40 skills across 9 plugins)
+## What You Can Do (42 skills across 9 plugins)
 
 See the [main README](./README.md) for the full skill list and what each
 plugin covers.

@@ -27,12 +27,12 @@ it's a bug fix, a typo, or a new skill idea.
 - Every contributor will be listed publicly.
 
 - Skills refer to tools by connector category, not vendor. See the
-  Connectors section of [CLAUDE.md](CLAUDE.md) before adding or changing a
+  Connectors section of [AGENTS.md](AGENTS.md) before adding or changing a
   connector block.
 
 ## Releases and Versioning
 
-See [CLAUDE.md](CLAUDE.md) for how this repo versions releases — one
+See the Releases section of [AGENTS.md](AGENTS.md) for how this repo versions releases — one
 version number across the whole repo, driven by `CHANGELOG.md`.
 
 ## License

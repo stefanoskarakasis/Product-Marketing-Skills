@@ -1,149 +1,86 @@
 # AGENTS.md
 
-Guidelines for AI agents working in this repository.
+Rules for AI agents and contributors working in this repository. Short on purpose: it points to where the detail lives. Claude Code reads it through the one-line `CLAUDE.md`.
 
-## Repository Overview
+## What this repo is
 
-This repository contains **PMM Skills** for AI agents following the
-[Agent Skills specification](https://agentskills.io/specification.md).
-This repo also serves as a **Claude Code plugin marketplace** via
-`.claude-plugin/marketplace.json`.
+Product marketing skills for B2B SaaS PMMs and GTM operators: 42 skills in 9 plugins, plus one shared brain (`foundation/brain.md`) that every skill reads. Skills are plain `SKILL.md` files that follow the [Agent Skills specification](https://agentskills.io/specification.md). The repo is also a Claude Code plugin marketplace through `.claude-plugin/marketplace.json`. Creator: Stefanos Karakasis. License: MIT.
 
-- **Name**: Product Marketing Skills
-- **GitHub**: [stefanoskarakasis/Product-Marketing-Skills](https://github.com/stefanoskarakasis/Product-Marketing-Skills)
-- **Creator**: Stefanos Karakasis
-- **License**: MIT
+## Where things live
 
-## Repository Structure
+| If the task is | Read |
+|---|---|
+| Writing or changing a skill | `SKILL-SPEC.md` (the canonical standard) |
+| Brain sections, field keys, who may write what | `product-marketing-context/references/brain-schema.md` (the brain has 8 sections) |
+| Adding or changing a connector | `docs/add-a-connector.md`, then edit `connectors.json` |
+| Skill routing and trigger collisions | `docs/routing-checks.md`, `tests/test_triggers.py` |
+| The agent map, helper scripts and send guard | `docs/agents-map.md` |
+| Installing and using the repo | `README.md`, `QUICK-START.md` |
+| Contributing | `CONTRIBUTING.md` |
+
+## Layout
 
 ```
-Product-Marketing-Skills/
-├── .claude-plugin/
-│   ├── marketplace.json        # Claude Code plugin marketplace manifest
-│   └── plugin.json             # Root plugin manifest
-├── product-marketing-context/  # The brain — product-marketing-context plugin
-├── pmm-go-to-market/           # Go-to-market strategy + workflow orchestration
-├── pmm-positioning/            # Positioning & messaging
-├── pmm-execution/              # Day-to-day PMM execution
-├── pmm-toolkit/                # PMM utilities
-├── pmm-meta/                   # Meta skills (skill quality, learning, verification)
-├── context/                    # Guardrails: meta-patterns.md, read by every skill's pre-flight
-├── CONTRIBUTING.md
-├── SKILL-SPEC.md                # Skill authoring standard
-├── LICENSE
-├── README.md
-├── QUICK-START.md
-├── CHANGELOG.md                 # Repo-wide release log — see Versioning below
-└── AGENTS.md                    # AI agent guidelines
+.claude-plugin/            marketplace.json and root plugin.json
+product-marketing-context/ the brain skill, its schema, template and scripts/
+pmm-positioning/           ICP, alternatives, messaging, proof points
+pmm-go-to-market/          beachhead, GTM strategy, motions, orchestration
+pmm-competitive-intelligence/  profiles, battlecards, briefing, newsletter, media monitoring, hooks/
+pmm-intelligence/          signal-monitor
+pmm-execution/             OKRs, PRDs, retros, pre-mortems
+pmm-growth/                metrics, ideas, value props, customer stories
+pmm-toolkit/               writing, briefs, resume, privacy policy
+pmm-meta/                  skill quality, learning, verification
+context/                   guardrails read by every skill's pre-flight
+docs/  examples/  scripts/  tests/  hooks/  .github/
 ```
 
-## Build / Lint / Test Commands
+## Commands
 
-Skills are content-only (no build step). Verify manually:
-- YAML frontmatter is valid
-- `name` field matches directory name exactly
-- `name` is 1-64 chars, lowercase alphanumeric and hyphens only
-- `description` is 1-1024 characters
-- Brain-dependent skills read from `/foundation/brain.md` for shared context
+Skills are content, so there is no build. These checks run on every push:
 
-## Agent Skills Specification
+- `python3 .github/scripts/check_structure.py` — manifests, paths, cross-references, connector files.
+- `python3 -m unittest discover -s tests -v` — versions, counts, brain sections, routing, hooks, scripts.
+- `python3 scripts/generate_connectors.py --write` — regenerates every `.mcp.json` and connector table from `connectors.json`.
+- `python3 scripts/eval_sheet.py --priority` — builds the run sheet for the evals worth running first (`docs/run-the-evals.md`).
 
-Skills follow the [Agent Skills spec](https://agentskills.io/specification.md)
-and this repo's own [SKILL-SPEC.md](SKILL-SPEC.md), which is the canonical
-authoring standard for this repo specifically.
+## Skill rules
 
-### Required Frontmatter
+- `name` matches the folder exactly: lowercase letters, digits and single hyphens, 1 to 64 characters.
+- `description` is 1 to 1024 characters and keeps the trigger phrases.
+- `SKILL.md` stays under 500 lines and 3,000 words (`tests/test_skill_size.py`). Heavy content goes to `references/`, loaded only when needed.
+- `.cursor-plugin/` manifests mirror the Claude ones and carry no version. Add a plugin to both marketplaces.
+- Name another skill or file only after checking that it exists in this repo.
+- A skill cites only brain sections that exist in `brain-schema.md`. Sections 1 to 6 are required, 7 and 8 are recommended. Never invent a section and never renumber.
+- A skill writes to the brain only where the schema allows, and only after the user confirms the exact before and after.
 
-```yaml
----
-name: skill-name
-description: What this skill does and when to use it. Include trigger phrases.
----
-```
+## Connectors
 
-### Name Field Rules
+- Skills name tools by category with two tildes in backticks, never by vendor.
+- Every category used in a skill is listed in that plugin's `CONNECTORS.md`, and every category there exists in the root `CONNECTORS.md`.
+- A plugin that ships a `.mcp.json` names each server in its `CONNECTORS.md`. Each server needs `type` and `url`.
+- Never commit credentials: no keys, tokens, passwords, `headers`, `env` or authorization values. Each user signs in with their own account.
+- Never hand-edit a `.mcp.json` or text between `<!-- generated:... -->` markers. Edit `connectors.json` and run the generator.
+- Connectors are read-only by default, pulled facts are drafts until the user confirms, and every skill with a connector block must still work by paste.
 
-- Lowercase letters, numbers, and hyphens only
-- Cannot start or end with hyphen
-- No consecutive hyphens (`--`)
-- Must match parent directory name exactly
+## Scripts and hooks
 
-**No known exceptions as of 2026-08-24.** Every skill's frontmatter
-`name:` field matches its directory name exactly. `experiment-doc` was
-the last remaining mismatch (its frontmatter previously said
-`experiment-doc-builder`) — fixed in the structural-compliance sweep
-that also added missing required sections to several skills.
+- Scripts that customers run live inside `product-marketing-context/scripts/`, because only skill folders travel with an install. `write_agents_map.py` copies two of them into the customer's `foundation/tools/`.
+- The send guard lives in `pmm-competitive-intelligence/hooks/` and again in the root `hooks/`, so both install routes have it. The two copies must stay byte-identical; a test enforces it.
+- A script is an accelerator. Every skill must still work by paste when scripts cannot run.
 
-## Brain Integration
+## Releases
 
-Brain-dependent skills read from `/foundation/brain.md` — a shared context
-layer built by the `product-marketing-context` skill. It has exactly 6
-sections: Product Context, ICP Definition, Alternatives & Positioning,
-Voice & Tone, Market Context, and Proof Points Registry. There is no
-Section 7 — earlier drafts of several skills invented one (variously
-called "Strategy Layer," "Launch History," or "Meta-Learnings") and every
-instance found has been removed. If you see a skill reference a brain
-Section 7, that's a bug — file it or fix it, don't treat it as real.
+- `CHANGELOG.md` is the source of truth. The newest `## vX.Y.Z — YYYY-MM-DD` heading is the released version.
+- One version everywhere: `.claude-plugin/marketplace.json`, the root `plugin.json` and every plugin's `plugin.json` (ten files) carry the same number as the newest heading. No per-plugin versions.
+- Semver: breaking change is major; new skill, command, hook or changed behavior is minor; fix or docs only is patch.
+- Add each user-facing change under `## Unreleased`. To release: rename it to `## vX.Y.Z — YYYY-MM-DD`, set the version in those eleven files, commit together. Merging to `main` tags and publishes the release.
 
-**Status:** every skill's brain-read/write claims have been verified
-against this 6-section schema as of Workstream 4b. If a skill you're
-touching cites a section number that doesn't match this list, treat that
-as a bug in the skill, not in this document.
+## Git and pull requests
 
-When using brain-dependent skills, ensure `/foundation/brain.md` exists.
-If not, run `product-marketing-context` to build it.
+- Branches: `feature/skill-name`, `fix/skill-name-description`, `docs/description`. Commits follow Conventional Commits: `feat:`, `fix:`, `docs:`.
+- Before opening a PR: name matches folder, description has trigger phrases, `SKILL.md` under 500 lines, brain sections are real, no credentials, and every example matches what the skill really does.
 
-## Claude Code Plugin
+## After any change
 
-This repo serves as a plugin marketplace via
-`.claude-plugin/marketplace.json`, listing six plugins:
-
-```bash
-claude plugin marketplace add stefanoskarakasis/Product-Marketing-Skills
-claude plugin install product-marketing-context
-claude plugin install pmm-go-to-market
-claude plugin install pmm-positioning
-claude plugin install pmm-execution
-claude plugin install pmm-toolkit
-claude plugin install pmm-meta
-```
-
-See [Claude Code plugins documentation](https://docs.claude.ai/plugins)
-for details.
-
-## Git Workflow
-
-### Branch Naming
-
-- New skills: `feature/skill-name`
-- Improvements: `fix/skill-name-description`
-- Documentation: `docs/description`
-
-### Commit Messages
-
-Follow the [Conventional Commits](https://www.conventionalcommits.org/)
-specification: `feat: ...`, `fix: ...`, `docs: ...`.
-
-### Pull Request Checklist
-
-- [ ] `name` matches directory name exactly
-- [ ] `description` is 1-1024 chars with trigger phrases
-- [ ] `SKILL.md` is under 500 lines
-- [ ] Brain-dependent skills correctly cite real brain sections (see
-      `SKILL-SPEC.md` Section 8-9)
-- [ ] No sensitive data or credentials
-- [ ] Examples match actual skill behavior — don't reference a skill,
-      command, or file that doesn't exist in this repo
-
-## Versioning
-
-This repo uses one version number across the entire repo, not independent
-per-plugin versions. `marketplace.json`, every `plugin.json`, and the
-newest `CHANGELOG.md` heading always carry the same version. See
-`CLAUDE.md` for the full rule and release procedure.
-
-## Cross-Skill References
-
-When adding new skills, only reference other skills by name if they
-actually exist in this repo — verify the folder and frontmatter `name:`
-field before citing a skill in your own `description` or routing text.
+Ask: does this change mention a skill, command, file or number that actually exists? Check the folder, not memory of what was planned. This repo's biggest source of past errors was documentation describing things that were never built, and this file was one of them. The tests now check its counts.

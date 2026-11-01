@@ -9,7 +9,7 @@ Connect a tool when you want skills to pull candidate facts for you to confirm.
 2. The first time Claude uses a tool, it asks you to sign in. Approve it.
 3. Pulled facts arrive as drafts, tagged with category, tool and date. Nothing is saved to your brain until you confirm it.
 
-The `product-marketing-context` plugin wires every connector in the catalog. Other plugins wire only what their skills read. If you load the repo root as a single plugin instead, the root `.mcp.json` carries the whole catalog. Use one path, not both. If a tool does not show up, install the plugin that wires it on its own.
+The `product-marketing-context` plugin wires only the nine connectors it reads from when it builds your brain. Other plugins wire only what their skills read. If you load the repo root as a single plugin instead, the root `.mcp.json` carries the whole catalog. Use one path, not both. If a tool does not show up, install the plugin that wires it on its own.
 
 ## Personal setup: nothing is connected for you
 

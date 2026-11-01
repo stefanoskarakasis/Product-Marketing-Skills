@@ -2,7 +2,7 @@
 
 Skills in this repo refer to tools by **category**, written with two tildes
 before the category name, never by vendor. Each plugin ships its own
-`.mcp.json` that wires the vendors its skills use (the brain plugin wires every one), and its own `CONNECTORS.md`
+`.mcp.json` that wires the vendors its skills use (the brain plugin wires only the nine its Add material step reads), and its own `CONNECTORS.md`
 that lists which categories it uses. This file is the master list of
 categories. Every category used in a plugin must exist here.
 
@@ -52,12 +52,12 @@ use the built-in connector instead.
 
 ### Google connectors by plugin
 
-The brain plugin (`product-marketing-context`) wires every Google server. Every other plugin wires only the Google servers its skills use, Calendar included: fewer sign-ins, fewer permissions. This table is generated from `connectors.json`. Do not edit it by hand.
+The brain plugin (`product-marketing-context`) wires only Google Drive and Google Docs. Every other plugin wires only the Google servers its skills use, Calendar included: fewer sign-ins, fewer permissions. This table is generated from `connectors.json`. Do not edit it by hand.
 
 <!-- generated:google-table begin -->
 | Plugin | Gmail | Calendar | Drive | Docs | Sheets | Slides |
 |---|---|---|---|---|---|---|
-| product-marketing-context | yes | yes | yes | yes | yes | yes |
+| product-marketing-context |  |  | yes | yes |  |  |
 | pmm-positioning | yes | yes | yes | yes |  | yes |
 | pmm-execution | yes | yes | yes | yes | yes | yes |
 | pmm-go-to-market | yes | yes | yes | yes | yes | yes |

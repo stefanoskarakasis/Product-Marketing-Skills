@@ -2,6 +2,8 @@
 
 The evals in each skill's `evals/` folder are written test cases. This page records whether anyone has **run** them. The checks that run automatically on every change (structure and version consistency) do not run evals.
 
+See [run-the-evals.md](run-the-evals.md) for the 28-case first sitting.
+
 **Status: not yet run.** Nothing below is a pass until a row says so.
 
 ## How to run an eval

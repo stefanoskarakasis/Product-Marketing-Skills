@@ -150,6 +150,7 @@ named competitor (competitive-battlecard)?"
 - positioning-messaging — if an opportunity says your message no longer separates you
 - pmm-okrs — if an opportunity changes what this quarter should aim at
 - competitive-battlecard — if an opportunity says a named competitor moved and a live deal is affected
+- media-monitoring — if you want the competitor pages behind these signals swept on a schedule, with the fix for each drafted
 **Prompt to surface:** "Next, pick one if an opportunity needs action: update your alternatives (alternatives-map), rework the message (positioning-messaging), adjust the quarter's goals (pmm-okrs), or refresh the seller card for that competitor (competitive-battlecard)?"
 
 ## After competitive-profile (profiles saved, board shown)
@@ -160,7 +161,8 @@ named competitor (competitive-battlecard)?"
 - signal-monitor — if you want the market read weekly between refreshes
 - competitive-briefing — if leadership needs the weekly read on these competitors, with a recommendation and the open decisions
 - industry-newsletter — if GTM leaders across Product, Sales and RevOps need a weekly market read, not only the competitor view
-**Prompt to surface:** "Next, pick one: build a seller card for a live deal (competitive-battlecard), rework the map (alternatives-map), register the claims the profiles could not use (proof-points), track the market weekly (signal-monitor), brief leadership (competitive-briefing), or send GTM leaders the weekly newsletter (industry-newsletter)?"
+- media-monitoring — if you want these competitors' public pages swept weekly and the fixes drafted
+**Prompt to surface:** "Next, pick one: build a seller card for a live deal (competitive-battlecard), rework the map (alternatives-map), register the claims the profiles could not use (proof-points), track the market weekly (signal-monitor), brief leadership (competitive-briefing), send GTM leaders the weekly newsletter (industry-newsletter), or sweep these competitors weekly (media-monitoring)?"
 
 ## After competitor-deep-dive (document delivered, record saved)
 **Next options (not a single path — ask which applies):**
@@ -202,3 +204,15 @@ named competitor (competitive-battlecard)?"
 - meta-verify — a second quality gate, before the issue is forwarded beyond the team
 - meta-learn — a deeper capture of what this session taught
 **Prompt to surface:** "Next, pick one: refresh the stale profile lines (competitive-profile), build the evidence behind the decision (competitor-deep-dive), brief the CEO in euro (competitive-briefing), give sellers the play (competitive-battlecard), register the claims it could not use (proof-points), or run a second quality check before it is forwarded (meta-verify)?"
+
+## After media-monitoring (brief delivered, records saved)
+**Next options (not a single path — ask which applies):**
+- signal-monitor — if more than one thing moved and you want them ranked against this quarter's priorities
+- competitive-battlecard — if a pricing or launch item needs the card rebuilt rather than patched
+- competitive-profile — if a profile line is past its window or a competitor is missing from the roster
+- competitive-briefing — if leadership needs the euro-quantified decision on the top item
+- competitor-deep-dive — if an item needs the long, sourced evidence behind a decision
+- industry-newsletter — if a pattern across weeks belongs in the weekly newsletter
+- meta-synthesis — after the monthly review, to find patterns across the sessions
+- meta-verify — a second quality gate, before an approved note goes beyond the team
+**Prompt to surface:** "Next, pick one: rank what moved (signal-monitor), rebuild a seller card (competitive-battlecard), refresh a stale profile (competitive-profile), brief leadership (competitive-briefing), build the evidence for a decision (competitor-deep-dive), feed the newsletter (industry-newsletter), or look for patterns across sessions (meta-synthesis)?"

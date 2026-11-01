@@ -31,11 +31,11 @@ Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Ca
 
 | Category | What it adds | Tools |
 |---|---|---|
-| `~~market data` | competitor traffic and audience shifts | Semrush |
+| `~~market data` | competitor traffic and audience shifts | Semrush, Ahrefs |
 | `~~team chat` | team threads, launch coordination, field feedback | Slack |
 | `~~email` | customer and stakeholder email context | Gmail |
 | `~~calendar` | meeting cadence, launch dates and attendees | Google Calendar |
-| `~~SEO` | keyword demand, competitor organic positioning | Semrush |
+| `~~SEO` | keyword demand, competitor organic positioning | Semrush, Ahrefs |
 | `~~company data` | funding, headcount, hiring and leadership changes for a named company | Crunchbase |
 | `~~web research` | open-web search and page fetch for competitor moves, launches and market signals | Exa |
 

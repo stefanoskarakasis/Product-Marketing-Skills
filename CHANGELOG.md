@@ -13,9 +13,11 @@
 - `SKILL-SPEC.md` requires four core sections: Trigger, Inputs, Steps and Outputs, plus a Quality Gate when `quality_gate: true`. Pre-flight and Rules are optional. New word budget of 3,000 (aim for 2,000). The checklist is 15 checks, pass at 13. `meta-review` (4.0.0) scores against it.
 - `tests/test_skill_size.py` enforces the budget and the core sections for every skill.
 
-### Fewer connectors for the brain
+### Wider connector catalog
 
-- `product-marketing-context` now wires nine connectors (Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Semrush), the ones its Add material step reads, instead of all 26. Other plugins are unchanged. `connectors.json` gains a `brain_servers` list that the generator and tests enforce. The root `.mcp.json` still carries the whole catalog.
+- The brain plugin keeps wiring the whole catalog, as before. A trial trim to nine servers was reverted.
+- Six hosted servers added from the vendors' own documentation: Ahrefs, monday.com, Productboard, Granola, Dovetail and Zoom Meetings (32 servers, 30 tools). Zoom's address is the example endpoint its docs show; Dovetail needs a token if automatic sign-in fails.
+- Salesforce, Microsoft 365, Box and Zendesk stay under "connect your own" with the documented addresses and admin steps, because each needs a per-customer address, client or admin approval.
 
 ### More agents
 

@@ -7,8 +7,9 @@ and the output has the same shape. Category definitions live in the root
 | Placeholder | What it adds here | Wired today |
 |---|---|---|
 | `~~CRM` | segment performance and pipeline context | HubSpot |
-| `~~market data` | segment sizing and competitor signals | Semrush |
-| `~~call recordings` | buyer language for beachhead and motion choices | Gong, Wispr Flow |
+| `~~market data` | segment sizing and competitor signals | Semrush, Ahrefs |
+| `~~call recordings` | buyer language for beachhead and motion choices | Gong, Wispr Flow, Granola, Dovetail |
+| `~~video meetings` | meeting recordings and summaries from calls with buyers | Zoom |
 | `~~team chat` | launch coordination context | Slack |
 | `~~email marketing` | lifecycle and campaign performance | Klaviyo |
 | `~~marketing analytics` | cross-channel performance | Supermetrics |
@@ -16,10 +17,10 @@ and the output has the same shape. Category definitions live in the root
 | `~~email` | stakeholder and customer email threads | Gmail |
 | `~~calendar` | launch dates and milestones | Google Calendar |
 | `~~cloud storage` | launch docs, sheets and decks | Google Drive, Google Docs, Google Sheets, Google Slides |
-| `~~SEO` | keyword demand, competitor organic positioning | Semrush |
+| `~~SEO` | keyword demand, competitor organic positioning | Semrush, Ahrefs |
 
 <!-- generated:servers begin -->
-Servers in this plugin's `.mcp.json`: hubspot, gong, slack, google-drive, google-docs, google-sheets, google-slides, canva, gmail, google-calendar, klaviyo, supermetrics, wispr-flow, semrush.
+Servers in this plugin's `.mcp.json`: hubspot, gong, slack, google-drive, google-docs, google-sheets, google-slides, canva, gmail, google-calendar, klaviyo, supermetrics, wispr-flow, semrush, ahrefs, granola, dovetail, zoom.
 <!-- generated:servers end -->
 
 Rules: read-only by default, ask before writing, tag every pulled fact with

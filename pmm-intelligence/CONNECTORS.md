@@ -6,8 +6,8 @@ output has the same shape. Category definitions live in the root
 
 | Placeholder | What it adds here | Wired today |
 |---|---|---|
-| `~~market data` | competitor traffic and audience shifts | Semrush |
-| `~~SEO` | keyword demand and competitor organic movement | Semrush |
+| `~~market data` | competitor traffic and audience shifts | Semrush, Ahrefs |
+| `~~SEO` | keyword demand and competitor organic movement | Semrush, Ahrefs |
 | `~~team chat` | team threads, launch coordination, field feedback | Slack |
 | `~~email` | customer and stakeholder email context | Gmail |
 | `~~calendar` | meeting cadence, launch dates and attendees | Google Calendar |
@@ -15,7 +15,7 @@ output has the same shape. Category definitions live in the root
 | `~~web research` | open-web search and page fetch for competitor moves, launches and market signals | Exa |
 
 <!-- generated:servers begin -->
-Servers in this plugin's `.mcp.json`: slack, gmail, google-calendar, semrush, crunchbase, exa.
+Servers in this plugin's `.mcp.json`: slack, gmail, google-calendar, semrush, crunchbase, exa, ahrefs.
 <!-- generated:servers end -->
 
 Rules: read-only by default, ask before writing, tag every pulled fact with

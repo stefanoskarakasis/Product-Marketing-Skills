@@ -23,26 +23,26 @@ have and the output has the same shape.
 |---|---|---|---|
 | `~~knowledge base` | Company overview, product docs, pricing, positioning docs | Notion, Atlassian | Confluence, Guru, Google Drive |
 | `~~CRM` | Win/loss reasons, deal data, segment performance | HubSpot | Salesforce (hosted MCP uses per-user OAuth but has no public endpoint: connect your own org's server), Pipedrive, Attio |
-| `~~call recordings` | Sales and customer call transcripts, objections, buyer language | Gong, Wispr Flow | Chorus, Grain, Otter, Avoma |
-| `~~market data` | Competitor traffic, audience and market-size signals | Semrush | Sensor Tower, Crunchbase |
+| `~~call recordings` | Sales and customer call transcripts, objections, buyer language | Gong, Wispr Flow, Granola, Dovetail | Chorus, Grain, Otter, Avoma |
+| `~~market data` | Competitor traffic, audience and market-size signals | Semrush, Ahrefs | Sensor Tower, Crunchbase |
 | `~~support` | Support conversations, recurring pain points, churn language | Intercom | Zendesk (no official hosted server found: paste or connect a partner server), Front, Help Scout |
 | `~~reviews` | Public reviews and win/loss themes (G2 etc.) | Docs-only today: paste exports | G2, Capterra, TrustRadius (export and paste) |
 | `~~competitive intelligence` | Competitor cards, win/loss stories and profiles your CI team already curates | Docs-only today: connect your vendor's MCP server, or paste | Klue, Crayon, Kompyte, Contify |
 | `~~win/loss` | Structured buyer interviews and win/loss reports: why deals were won or lost | Docs-only today: paste exports | Clozd, Primary Intelligence, Anecdote, Dovetail |
 | `~~company data` | Funding, headcount, hiring and leadership changes for a named company | Crunchbase | PitchBook, LinkedIn (no official server: paste exports) |
-| `~~SEO` | Keyword demand, competitor organic positioning | Semrush | Moz |
+| `~~SEO` | Keyword demand, competitor organic positioning | Semrush, Ahrefs | Moz |
 | `~~product analytics` | Usage, activation and adoption metrics | Amplitude (US and EU), Mixpanel (US and EU) | Heap, Google Analytics |
 | `~~marketing analytics` | Cross-channel campaign and spend performance | Supermetrics | Google Analytics, Funnel, Windsor |
 | `~~email marketing` | Lifecycle email and campaign performance | Klaviyo | Pardot (only third-party servers found: paste exports), Mailchimp, Customer.io |
 | `~~team chat` | Team threads, launch coordination, field feedback | Slack | Microsoft Teams |
-| `~~project tracker` | Launch tasks, roadmap items, ticket context | Linear, Asana | Jira, ClickUp, monday |
+| `~~project tracker` | Launch tasks, roadmap items, ticket context | Linear, Asana, monday.com, Productboard | Jira, ClickUp, monday |
 | `~~design` | Design files, prototypes and launch assets | Figma, Canva | Adobe Creative Cloud |
 | `~~email` | Customer and stakeholder email context | Gmail | Outlook |
 | `~~calendar` | Meeting cadence, launch dates and attendees | Google Calendar | Outlook Calendar |
 | `~~cloud storage` | Decks, docs and spreadsheets in Drive | Google Drive, Google Docs, Google Sheets, Google Slides | OneDrive, SharePoint, Dropbox, Box |
 | `~~revenue intelligence` | Pipeline health, forecast and sales-engagement activity | Docs-only today: Salesloft's server is an admin-enabled add-on, so ask your admin for the endpoint | Clari, Outreach |
 | `~~data warehouse` | Your own product, pipeline and revenue tables | Docs-only today: Snowflake's endpoint is per account | BigQuery, Databricks |
-| `~~video meetings` | Meeting recordings, transcripts and summaries from your video tool | Docs-only today: Zoom publishes an official server, take the address from Zoom | Google Meet, Microsoft Teams |
+| `~~video meetings` | Meeting recordings, transcripts and summaries from your video tool | Zoom | Google Meet, Microsoft Teams |
 | `~~enrichment` | Company and contact enrichment for named accounts | Docs-only today: Clay runs locally as a CLI over stdio, so it cannot sit in `.mcp.json` | Apollo |
 | `~~web research` | Open-web search and page fetch for competitor moves, launches and market signals | Exa | Any web-search MCP server |
 
@@ -57,7 +57,7 @@ The brain plugin (`product-marketing-context`) wires only Google Drive and Googl
 <!-- generated:google-table begin -->
 | Plugin | Gmail | Calendar | Drive | Docs | Sheets | Slides |
 |---|---|---|---|---|---|---|
-| product-marketing-context |  |  | yes | yes |  |  |
+| product-marketing-context | yes | yes | yes | yes | yes | yes |
 | pmm-positioning | yes | yes | yes | yes |  | yes |
 | pmm-execution | yes | yes | yes | yes | yes | yes |
 | pmm-go-to-market | yes | yes | yes | yes | yes | yes |

@@ -32,8 +32,8 @@ Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Ca
 | Category | What it adds | Tools |
 |---|---|---|
 | `~~CRM` | segment performance and pipeline context | HubSpot |
-| `~~market data` | segment sizing and competitor signals | Semrush |
-| `~~call recordings` | buyer language for beachhead and motion choices | Gong, Wispr Flow |
+| `~~market data` | segment sizing and competitor signals | Semrush, Ahrefs |
+| `~~call recordings` | buyer language for beachhead and motion choices | Gong, Wispr Flow, Granola, Dovetail |
 | `~~team chat` | launch coordination context | Slack |
 | `~~email marketing` | lifecycle and campaign performance | Klaviyo |
 | `~~marketing analytics` | cross-channel performance | Supermetrics |
@@ -41,7 +41,7 @@ Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Ca
 | `~~email` | stakeholder and customer email threads | Gmail |
 | `~~calendar` | launch dates and milestones | Google Calendar |
 | `~~cloud storage` | launch docs, sheets and decks | Google Drive, Google Docs, Google Sheets, Google Slides |
-| `~~SEO` | keyword demand, competitor organic positioning | Semrush |
+| `~~SEO` | keyword demand, competitor organic positioning | Semrush, Ahrefs |
 
 ## Author
 

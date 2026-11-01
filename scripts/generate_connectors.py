@@ -56,11 +56,6 @@ def validate(cat):
     if foundation not in plugins:
         problems.append(f"foundation '{foundation}' must be listed in plugins")
     known = {s.get("name") for s in cat["servers"]}
-    for n in cat.get("brain_servers", []):
-        if n not in known:
-            problems.append(f"brain_servers lists '{n}', which is not a server in this file")
-    if not cat.get("brain_servers"):
-        problems.append("brain_servers is missing: list the servers the brain plugin reads (its Add material step), not the whole catalog")
     root_conn = (ROOT / "CONNECTORS.md").read_text(encoding="utf-8")
     root_cats = set(re.findall(r"`~~([^`]+)`", root_conn))
     names = set()
@@ -86,7 +81,7 @@ def validate(cat):
                 problems.append(f"server '{n}': category '{c}' is not in the root CONNECTORS.md table. Add the category row there first")
         for p in s.get("plugins", []):
             if p not in plugins or p == foundation:
-                problems.append(f"server '{n}': '{p}' is not a valid plugin here (the brain plugin gets only the servers named in brain_servers, so do not list it)")
+                problems.append(f"server '{n}': '{p}' is not a valid plugin here (the brain plugin always gets every server, so do not list it)")
     for o in cat["connect_your_own"]:
         extra = set(o) - OWN_FIELDS
         if extra or not all(o.get(f) for f in OWN_FIELDS):
@@ -97,10 +92,7 @@ def validate(cat):
 
 
 def wired(cat, plugin):
-    if plugin == cat["foundation"]:
-        keep = set(cat["brain_servers"])
-        return [s for s in cat["servers"] if s["name"] in keep]
-    return [s for s in cat["servers"] if plugin in s.get("plugins", [])]
+    return [s for s in cat["servers"] if plugin == cat["foundation"] or plugin in s.get("plugins", [])]
 
 
 def labels(servers):

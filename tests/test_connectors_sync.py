@@ -22,18 +22,21 @@ class ConnectorCatalog(unittest.TestCase):
         r = subprocess.run([sys.executable, str(SCRIPT), "--check"], capture_output=True, text=True)
         self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
 
-    def test_brain_plugin_wires_only_what_the_brain_reads(self):
+    def test_brain_plugin_wires_every_server(self):
         cat = json.loads(CATALOG.read_text(encoding="utf-8"))
         brain = json.loads((ROOT / cat["foundation"] / ".mcp.json").read_text(encoding="utf-8"))["mcpServers"]
-        self.assertEqual(sorted(brain), sorted(cat["brain_servers"]))
-        self.assertLessEqual(len(brain), 10, "The brain plugin should not install the whole catalog")
+        for s in cat["servers"]:
+            self.assertIn(s["name"], brain, f"{s['name']} is missing from the {cat['foundation']} .mcp.json")
+        for p in cat["plugins"]:
+            mine = json.loads((ROOT / p / ".mcp.json").read_text(encoding="utf-8"))["mcpServers"]
+            self.assertTrue(set(mine) <= set(brain), f"{p} wires a server the brain plugin does not")
 
     def test_every_wired_category_is_listed_in_plugin_connectors(self):
         cat = json.loads(CATALOG.read_text(encoding="utf-8"))
         for p in cat["plugins"]:
             text = (ROOT / p / "CONNECTORS.md").read_text(encoding="utf-8")
             for s in cat["servers"]:
-                if (p == cat["foundation"] and s["name"] in cat["brain_servers"]) or p in s.get("plugins", []):
+                if p == cat["foundation"] or p in s.get("plugins", []):
                     for c in [x.strip() for x in s["category"].split(",")]:
                         self.assertIn(f"`~~{c}`", text,
                                       f"{p}/CONNECTORS.md needs a row for `~~{c}` ({s['name']} is wired there)")

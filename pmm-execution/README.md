@@ -39,9 +39,9 @@ Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Ca
 
 | Category | What it adds | Tools |
 |---|---|---|
-| `~~call recordings` | interview and call transcripts for summaries | Gong, Wispr Flow |
+| `~~call recordings` | interview and call transcripts for summaries | Gong, Wispr Flow, Granola |
 | `~~knowledge base` | retro, PRD and OKR source docs | Notion, Atlassian |
-| `~~project tracker` | launch tasks and ticket context | Linear, Asana |
+| `~~project tracker` | launch tasks and ticket context | Linear, Asana, monday.com, Productboard |
 | `~~design` | design files and assets referenced in PRDs | Figma, Canva |
 | `~~team chat` | stakeholder and launch threads | Slack |
 | `~~email` | customer and stakeholder email threads | Gmail |

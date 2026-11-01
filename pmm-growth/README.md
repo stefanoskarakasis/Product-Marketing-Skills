@@ -34,10 +34,10 @@ Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Ca
 | Category | What it adds | Tools |
 |---|---|---|
 | `~~product analytics` | activation, adoption and retention metrics | Amplitude (US and EU), Mixpanel (US and EU) |
-| `~~market data` | traffic and market benchmarks | Semrush |
-| `~~SEO` | keyword and content demand signals | Semrush |
+| `~~market data` | traffic and market benchmarks | Semrush, Ahrefs |
+| `~~SEO` | keyword and content demand signals | Semrush, Ahrefs |
 | `~~CRM` | funnel and conversion data | HubSpot |
-| `~~call recordings` | customer calls and quotes to build stories from | Gong, Wispr Flow |
+| `~~call recordings` | customer calls and quotes to build stories from | Gong, Wispr Flow, Granola |
 | `~~email marketing` | lifecycle email performance | Klaviyo |
 | `~~marketing analytics` | cross-channel campaign and spend performance | Supermetrics |
 | `~~cloud storage` | metric sheets, past reports and experiment logs | Google Drive, Google Sheets |

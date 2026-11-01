@@ -50,6 +50,12 @@ that account can see. No keys, tokens or passwords live in this repo.
 | Semrush | market data, SEO | Semrush login (OAuth) | Competitor traffic, keyword demand and organic positioning | Needs a Semrush plan with API units. SEO data comes with Semrush One or SEO Classic plans, traffic and market data with the Trends API |
 | Crunchbase | company data | Crunchbase login (OAuth) | Funding, headcount and leadership changes for a named company | Needs a Crunchbase MCP seat assigned by your workspace admin. In Claude Code the connector only loads when you are signed in with a Claude.ai subscription, not an API key |
 | Exa | web research | None needed: free and rate-limited | Web search and page fetch for competitor and market signals | Rate-limited without an account. For your own Exa usage, add `https://mcp.exa.ai/mcp?login` as a custom connector |
+| Ahrefs | market data, SEO | Ahrefs login (OAuth) | Competitor backlinks, organic keywords and traffic | Needs a paid Ahrefs plan (Lite or higher). OAuth keys default to a monthly API unit limit that a workspace admin can change |
+| monday.com | project tracker | monday.com login (OAuth) | Launch boards, tasks and owners | Ask your monday.com admin to allow the connector for your account |
+| Productboard | project tracker | Productboard login (OAuth) | Roadmap items and customer feedback notes | A workspace admin must switch on Settings > Integrations > MCP server and allow your role |
+| Granola | call recordings | Granola login (OAuth, no keys to paste) | Meeting notes and transcripts for ICP, alternatives and proof points | Folders and transcripts need a paid Granola plan. On Enterprise an admin chooses which notes members can reach |
+| Dovetail | call recordings | Dovetail login (OAuth) | Customer interview transcripts, highlights and insights | Dovetail does not support automatic client registration. If sign-in fails, add it as a custom connector with an API token kept in your environment |
+| Zoom | video meetings | Zoom login (OAuth 2.1) | Meeting content and recordings (Zoom Meetings server) | Zoom documents this Meetings address as an example endpoint. Your Zoom admin may need to approve the app |
 <!-- generated:tools-table end -->
 
 ## Connect your own (not wired here)
@@ -59,12 +65,13 @@ These tools are in the category list, but this repo does not wire them. Either t
 <!-- generated:own-table begin -->
 | Tool | Category | What the vendor documents | What to do |
 |---|---|---|---|
-| Salesforce | CRM | Hosted MCP servers use per-user OAuth 2.0 with PKCE and are aimed at customers with Flex Credits. The docs give no public endpoint | Ask your Salesforce admin for your org's server address |
+| Salesforce | CRM | Official hosted servers, one per capability: `https://api.salesforce.com/platform/mcp/v1/<SERVER-NAME>` (sandbox: `.../v1/sandbox/<SERVER-NAME>`). Sign-in is OAuth through an External Client App your admin creates in your org | Ask your Salesforce admin for the External Client App consumer key and the server name, then add it as a custom connector |
+| Microsoft 365 | cloud storage | Anthropic's Microsoft 365 connector searches SharePoint, OneDrive, Outlook and Teams. It has no public server address and needs a Microsoft Entra Global Administrator to approve it once | Turn it on from the Connectors page in Claude (a Claude organization owner enables it first on Team and Enterprise plans) |
+| Box | cloud storage | Official remote server at `https://mcp.box.com`. Your Box admin creates the client ID and secret in the Admin Console | Ask your Box admin, then add it as a custom connector with those credentials kept in your environment |
+| Zendesk | support | No official hosted server. Community servers use API tokens, which Zendesk is retiring | Paste a ticket export, or use a partner server that signs in with OAuth |
 | GitHub | project tracker | GitHub hosts an official remote server at `https://api.githubcopilot.com/mcp/`. Sign-in needs either a personal access token or an OAuth app that your host has been set up with. Whether Claude Code's own OAuth works with it is not confirmed | Add it yourself with your own token kept in your environment, or paste issues and release notes. Never put the token in `.mcp.json`; the structure check blocks it |
 | Klue | competitive intelligence | Each customer gets their own endpoint and sign-in | Ask your admin or customer success manager |
-| Zendesk | support | No official general-purpose hosted server was found as of August 2026. Partner and community servers exist. Zendesk is retiring API tokens (none can be created from 27 October 2026), so token-based community servers will stop working | Paste an export, or use a partner server that signs in with OAuth |
 | Snowflake | data warehouse | Managed server with one endpoint per database and schema: `https://<account_url>/api/v2/databases/{database}/schemas/{schema}/mcp-servers/{name}`. Snowflake OAuth | Create the server in your account, then add it as a custom connector |
-| Zoom | video meetings | Zoom hosts an official server over streamable HTTP. Its docs page does not list the address or sign-in steps | Take the address from Zoom's developer docs, or paste transcripts |
 | Salesloft | revenue intelligence | Official read-only server, reported as an admin-enabled add-on for customers with an Agent package | Ask your Salesloft admin. Clari and Outreach: no official server found, paste exports |
 | Pardot | email marketing | Only third-party servers found | Paste exports |
 | Clay | enrichment | Runs on your machine as a CLI over stdio (`clay mcp`) and signs in with `clay login` or an API key in your environment | Add it as a local server in your own Claude settings. Never put the key in `.mcp.json`; the structure check blocks it |

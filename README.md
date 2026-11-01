@@ -164,7 +164,7 @@ The one-line `npx skills add` install is at the top of this page. These are the 
 /plugin install pmm-meta
 ```
 
-Connectors load per plugin. `product-marketing-context` (the brain) wires only the nine servers its Add material step can read (Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Semrush), and each other plugin wires only what its skills read. If you instead load the repo root as one plugin, the root `.mcp.json` carries the same catalog. Pick one path: using both declares the same servers twice. Install `product-marketing-context` first — every other plugin reads the brain it
+Connectors load per plugin. `product-marketing-context` (the brain) wires the whole catalog, so installing it alone gives you every connector, and each other plugin wires only what its skills read. If you instead load the repo root as one plugin, the root `.mcp.json` carries the same catalog. Pick one path: using both declares the same servers twice. Install `product-marketing-context` first — every other plugin reads the brain it
 builds. `pmm-meta` can be installed alongside any combination of the
 others; it doesn't depend on which ones you have.
 
@@ -203,13 +203,13 @@ Skills work without connectors. Connect tools and they pull candidate facts for 
 <!-- generated:plugin-table begin -->
 | Plugin | Connectors wired |
 |---|---|
-| product-marketing-context | Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Semrush |
-| pmm-positioning | Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Google Slides, Gmail, Google Calendar, Mixpanel (US and EU), Wispr Flow, Semrush |
-| pmm-execution | Notion, Atlassian, Gong, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Linear, Figma, Canva, Gmail, Google Calendar, Asana, Wispr Flow |
-| pmm-go-to-market | HubSpot, Gong, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Canva, Gmail, Google Calendar, Klaviyo, Supermetrics, Wispr Flow, Semrush |
-| pmm-growth | HubSpot, Gong, Slack, Google Drive, Google Sheets, Gmail, Google Calendar, Klaviyo, Supermetrics, Amplitude (US and EU), Mixpanel (US and EU), Wispr Flow, Semrush |
-| pmm-intelligence | Slack, Gmail, Google Calendar, Semrush, Crunchbase, Exa |
-| pmm-competitive-intelligence | Notion, Atlassian, HubSpot, Gong, Slack, Google Drive, Google Docs, Gmail, Google Calendar, Wispr Flow, Semrush, Crunchbase, Exa |
+| product-marketing-context | Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Linear, Figma, Canva, Gmail, Google Calendar, Klaviyo, Supermetrics, Amplitude (US and EU), Mixpanel (US and EU), Asana, Wispr Flow, Semrush, Crunchbase, Exa, Ahrefs, monday.com, Productboard, Granola, Dovetail, Zoom |
+| pmm-positioning | Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Google Slides, Gmail, Google Calendar, Mixpanel (US and EU), Wispr Flow, Semrush, Ahrefs, Granola, Dovetail, Zoom |
+| pmm-execution | Notion, Atlassian, Gong, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Linear, Figma, Canva, Gmail, Google Calendar, Asana, Wispr Flow, monday.com, Productboard, Granola |
+| pmm-go-to-market | HubSpot, Gong, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Canva, Gmail, Google Calendar, Klaviyo, Supermetrics, Wispr Flow, Semrush, Ahrefs, Granola, Dovetail, Zoom |
+| pmm-growth | HubSpot, Gong, Slack, Google Drive, Google Sheets, Gmail, Google Calendar, Klaviyo, Supermetrics, Amplitude (US and EU), Mixpanel (US and EU), Wispr Flow, Semrush, Ahrefs, Granola |
+| pmm-intelligence | Slack, Gmail, Google Calendar, Semrush, Crunchbase, Exa, Ahrefs |
+| pmm-competitive-intelligence | Notion, Atlassian, HubSpot, Gong, Slack, Google Drive, Google Docs, Gmail, Google Calendar, Wispr Flow, Semrush, Crunchbase, Exa, Ahrefs, Granola, Dovetail, Zoom |
 | pmm-toolkit | Notion, Atlassian, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Canva, Gmail, Google Calendar |
 | pmm-meta | None |
 <!-- generated:plugin-table end -->

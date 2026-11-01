@@ -8,9 +8,10 @@ named competitor are read with web search, so no connector is needed for those. 
 | Placeholder | What it adds here | Wired today |
 |---|---|---|
 | `~~CRM` | closed-won and closed-lost deals naming the competitor, loss reasons, account type, contract end date | HubSpot |
-| `~~call recordings` | objections as buyers said them, and what moved the deal after | Gong, Wispr Flow |
+| `~~call recordings` | objections as buyers said them, and what moved the deal after | Gong, Wispr Flow, Granola, Dovetail |
+| `~~video meetings` | meeting recordings and summaries from calls with buyers | Zoom |
 | `~~team chat` | where questions arrive and answers are posted; field intel and pricing claims reps reported | Slack |
-| `~~market data` | competitor traffic and audience shifts | Semrush |
+| `~~market data` | competitor traffic and audience shifts | Semrush, Ahrefs |
 | `~~knowledge base` | internal positioning and product notes | Notion, Atlassian |
 | `~~cloud storage` | existing decks, battlecards and win/loss logs | Google Drive, Google Docs |
 | `~~competitive intelligence` | the competitor cards, win/loss stories and profiles your CI team already keeps, so the card does not contradict them | none wired: paste, or connect your own server |
@@ -20,10 +21,10 @@ named competitor are read with web search, so no connector is needed for those. 
 | `~~web research` | public pages about a named competitor when a line is stale or missing | Exa |
 | `~~email` | customer and stakeholder email context | Gmail |
 | `~~calendar` | meeting cadence, launch dates and attendees | Google Calendar |
-| `~~SEO` | keyword demand, competitor organic positioning | Semrush |
+| `~~SEO` | keyword demand, competitor organic positioning | Semrush, Ahrefs |
 
 <!-- generated:servers begin -->
-Servers in this plugin's `.mcp.json`: notion, atlassian, hubspot, gong, slack, google-drive, google-docs, gmail, google-calendar, wispr-flow, semrush, crunchbase, exa.
+Servers in this plugin's `.mcp.json`: notion, atlassian, hubspot, gong, slack, google-drive, google-docs, gmail, google-calendar, wispr-flow, semrush, crunchbase, exa, ahrefs, granola, dovetail, zoom.
 <!-- generated:servers end -->
 
 Rules: read-only by default, ask before writing, tag every pulled fact with

@@ -7,10 +7,10 @@ and the output has the same shape. Category definitions live in the root
 | Placeholder | What it adds here | Wired today |
 |---|---|---|
 | `~~product analytics` | activation, adoption and retention metrics | Amplitude (US and EU), Mixpanel (US and EU) |
-| `~~market data` | traffic and market benchmarks | Semrush |
-| `~~SEO` | keyword and content demand signals | Semrush |
+| `~~market data` | traffic and market benchmarks | Semrush, Ahrefs |
+| `~~SEO` | keyword and content demand signals | Semrush, Ahrefs |
 | `~~CRM` | funnel and conversion data | HubSpot |
-| `~~call recordings` | customer calls and quotes to build stories from | Gong, Wispr Flow |
+| `~~call recordings` | customer calls and quotes to build stories from | Gong, Wispr Flow, Granola |
 | `~~email marketing` | lifecycle email performance | Klaviyo |
 | `~~marketing analytics` | cross-channel campaign and spend performance | Supermetrics |
 | `~~cloud storage` | metric sheets, past reports and experiment logs | Google Drive, Google Sheets |
@@ -19,7 +19,7 @@ and the output has the same shape. Category definitions live in the root
 | `~~calendar` | meeting cadence, launch dates and attendees | Google Calendar |
 
 <!-- generated:servers begin -->
-Servers in this plugin's `.mcp.json`: hubspot, gong, slack, google-drive, google-sheets, gmail, google-calendar, klaviyo, supermetrics, amplitude, amplitude-eu, mixpanel, mixpanel-eu, wispr-flow, semrush.
+Servers in this plugin's `.mcp.json`: hubspot, gong, slack, google-drive, google-sheets, gmail, google-calendar, klaviyo, supermetrics, amplitude, amplitude-eu, mixpanel, mixpanel-eu, wispr-flow, semrush, ahrefs, granola.
 <!-- generated:servers end -->
 
 Rules: read-only by default, ask before writing, tag every pulled fact with

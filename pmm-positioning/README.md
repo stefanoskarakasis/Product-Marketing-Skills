@@ -41,12 +41,12 @@ Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Ca
 
 | Category | What it adds | Tools |
 |---|---|---|
-| `~~call recordings` | buyer language, objections, alternatives named on calls | Gong, Wispr Flow |
+| `~~call recordings` | buyer language, objections, alternatives named on calls | Gong, Wispr Flow, Granola, Dovetail |
 | `~~CRM` | win/loss reasons and segment data | HubSpot |
-| `~~market data` | competitor and market signals | Semrush |
+| `~~market data` | competitor and market signals | Semrush, Ahrefs |
 | `~~support` | pain points and churn language | Intercom |
 | `~~knowledge base` | internal positioning and market notes | Notion, Atlassian |
-| `~~SEO` | keyword demand and competitor organic positioning | Semrush |
+| `~~SEO` | keyword demand and competitor organic positioning | Semrush, Ahrefs |
 | `~~team chat` | win threads and field feedback | Slack |
 | `~~cloud storage` | existing decks, case studies and docs | Google Drive, Google Docs, Google Slides |
 | `~~reviews` | public review themes (paste only today) | none wired: paste, or connect your own server |

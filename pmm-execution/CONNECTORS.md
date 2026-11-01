@@ -6,9 +6,9 @@ and the output has the same shape. Category definitions live in the root
 
 | Placeholder | What it adds here | Wired today |
 |---|---|---|
-| `~~call recordings` | interview and call transcripts for summaries | Gong, Wispr Flow |
+| `~~call recordings` | interview and call transcripts for summaries | Gong, Wispr Flow, Granola |
 | `~~knowledge base` | retro, PRD and OKR source docs | Notion, Atlassian |
-| `~~project tracker` | launch tasks and ticket context | Linear, Asana |
+| `~~project tracker` | launch tasks and ticket context | Linear, Asana, monday.com, Productboard |
 | `~~design` | design files and assets referenced in PRDs | Figma, Canva |
 | `~~team chat` | stakeholder and launch threads | Slack |
 | `~~email` | customer and stakeholder email threads | Gmail |
@@ -16,7 +16,7 @@ and the output has the same shape. Category definitions live in the root
 | `~~cloud storage` | specs, decks, docs and spreadsheets | Google Drive, Google Docs, Google Sheets, Google Slides |
 
 <!-- generated:servers begin -->
-Servers in this plugin's `.mcp.json`: notion, atlassian, gong, slack, google-drive, google-docs, google-sheets, google-slides, linear, figma, canva, gmail, google-calendar, asana, wispr-flow.
+Servers in this plugin's `.mcp.json`: notion, atlassian, gong, slack, google-drive, google-docs, google-sheets, google-slides, linear, figma, canva, gmail, google-calendar, asana, wispr-flow, monday, productboard, granola.
 <!-- generated:servers end -->
 
 Rules: read-only by default, ask before writing, tag every pulled fact with

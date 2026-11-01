@@ -62,9 +62,9 @@ Optional. Sign-in: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md)
 | Category | What it adds | Tools |
 |---|---|---|
 | `~~CRM` | closed deals naming the competitor, loss reasons | HubSpot |
-| `~~call recordings` | objections as buyers said them | Gong, Wispr Flow |
+| `~~call recordings` | objections as buyers said them | Gong, Wispr Flow, Granola, Dovetail |
 | `~~team chat` | questions and answers; field intel from reps | Slack |
-| `~~market data` | competitor traffic shifts | Semrush |
+| `~~market data` | competitor traffic shifts | Semrush, Ahrefs |
 | `~~knowledge base` | internal positioning and product notes | Notion, Atlassian |
 | `~~cloud storage` | existing decks, battlecards, win/loss logs | Google Drive, Google Docs |
 | `~~competitive intelligence` | cards your CI team keeps (paste only today) | none wired: paste, or connect your own server |
@@ -74,7 +74,7 @@ Optional. Sign-in: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md)
 | `~~web research` | public pages for stale or missing lines | Exa |
 | `~~email` | stakeholder email context | Gmail |
 | `~~calendar` | meeting cadence and launch dates | Google Calendar |
-| `~~SEO` | keyword demand, organic positioning | Semrush |
+| `~~SEO` | keyword demand, organic positioning | Semrush, Ahrefs |
 
 ## Author
 

@@ -25,6 +25,19 @@ class ApplyStaged(unittest.TestCase):
             self.assertTrue((root / ".cursor-plugin" / "marketplace.json").exists())
             self.assertFalse((root / "staged").exists() and any((root / "staged").rglob("*.json")))
 
+    def test_stray_dot_folders_without_staged_parent_are_fixed(self):
+        with tempfile.TemporaryDirectory() as t:
+            root = Path(t)
+            f = root / "pmm-toolkit" / "dot-cursor-plugin" / "plugin.json"
+            f.parent.mkdir(parents=True)
+            f.write_text("{}", encoding="utf-8")
+            keep = root / "pmm-toolkit" / "README.md"
+            keep.write_text("x", encoding="utf-8")
+            moved = apply_staged.apply(root)
+            self.assertEqual(moved, ["pmm-toolkit/.cursor-plugin/plugin.json"])
+            self.assertTrue(keep.exists())
+            self.assertFalse(f.exists())
+
     def test_no_staged_folder_is_fine(self):
         with tempfile.TemporaryDirectory() as t:
             self.assertEqual(apply_staged.apply(Path(t)), [])

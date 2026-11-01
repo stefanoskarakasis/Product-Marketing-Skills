@@ -23,21 +23,36 @@ def target_of(rel: Path) -> Path:
     return Path(*parts)
 
 
+def _skip(rel: Path) -> bool:
+    return rel.parts[0] in (".git", "node_modules") or "__pycache__" in rel.parts
+
+
 def apply(root: Path) -> list:
-    staged = root / "staged"
+    """Move every file under staged/ AND any stray file whose path has a
+    "dot-" folder or file name (for example a staged folder dragged in
+    without its "staged" parent) to the dotted path."""
     moved = []
-    if not staged.is_dir():
-        return moved
-    for src in sorted(p for p in staged.rglob("*") if p.is_file()):
-        rel = src.relative_to(staged)
-        if rel.name.lower() == "readme.md" and len(rel.parts) == 1:
+    for src in sorted(p for p in root.rglob("*") if p.is_file()):
+        rel = src.relative_to(root)
+        if _skip(rel):
             continue
-        dest = root / target_of(rel)
+        in_staged = rel.parts[0] == "staged"
+        body = Path(*rel.parts[1:]) if in_staged else rel
+        if in_staged and len(rel.parts) == 1:
+            continue
+        if in_staged and len(rel.parts) == 2 and rel.name.lower() == "readme.md":
+            continue
+        has_dot = any(p.startswith("dot-") and len(p) > 4 for p in body.parts)
+        if not (in_staged or has_dot):
+            continue
+        dest = root / target_of(body)
+        if dest == src:
+            continue
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_bytes(src.read_bytes())
         src.unlink()
-        moved.append(str(target_of(rel)))
-    for d in sorted((p for p in staged.rglob("*") if p.is_dir()), reverse=True):
+        moved.append(str(target_of(body)))
+    for d in sorted((p for p in root.rglob("*") if p.is_dir() and not _skip(p.relative_to(root))), reverse=True):
         try:
             d.rmdir()
         except OSError:

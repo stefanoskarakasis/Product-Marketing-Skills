@@ -39,6 +39,8 @@
 
 ## v1.19.0 — 2026-11-01
 
+> Released together with v1.20.0. There is no separate v1.19.0 tag or GitHub release: this version never existed on its own in `main`.
+
 ### The agent map
 
 - `product-marketing-context` (3.5.0) now writes a short map into your project's `AGENTS.md` when the brain is built, so your agent reads the brain in every chat, not only when you call a skill. It lists the brain's sections and what each is for, the records that exist and the helper scripts, in about 230 words. The block sits between markers: your own text is never touched, a second run changes nothing, and `/product-marketing-context:agents-map` refreshes it. A marked `@AGENTS.md` line is added to `CLAUDE.md` (created if missing) so Claude Code reads it. Agents that read `AGENTS.md` pick the map up directly.

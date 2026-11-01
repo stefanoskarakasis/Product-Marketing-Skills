@@ -1,5 +1,28 @@
 # Changelog
 
+## v1.18.0 — 2026-10-29
+
+### Competitive intelligence
+
+- New skill `media-monitoring` in `pmm-competitive-intelligence`, with the `/pmm-competitive-intelligence:media-monitoring` command: a scheduled sweep of your 3 to 5 core competitors' public pages that returns a one-screen brief for a VP Product Marketing. Each item that needs you comes with the fix already drafted (a battlecard patch, a note for the CRO, a re-test list), so the week starts with approve-or-edit. It ends every brief with a coverage line that names what it could not see, so a quiet week can be trusted.
+- One person runs it, with a required backup; the team reads the Slack post and the Doc and configures nothing. Setup asks five questions pre-filled from brain Section 3, requires an executor and a named backup, and shows a channel preflight (working, partial, blocked, with the next best fix) before the first sweep.
+- Triage by source tier (S1 first-party to S4 unverified): at most three items that need you plus one own-company item; corroboration counts independent origins, not links; a first run is a baseline that alerts only on the last 30 days; a partial read is never reported as checked; an aggregator's date is a watch item with a verify-by date.
+- The action loop: `do N` shows the current text beside the proposed text; `go`, `edit`, `skip` and `post` act on it. Only the executor or backup can approve; a patch is written as a new dated file that changes only the named section and refuses a missing or duplicate target; a number that is not in the evidence or the brain becomes a placeholder; evidence older than 7 days is re-read first; a message is never posted twice; the next sweep checks that a fix stuck.
+- Public sources only by default, terms-restricted sites by paste only, internal channels opt-in, non-public company information flagged and left out, and instruction-like text on a page flagged and never followed.
+- Records are append-only files in `/context/monitoring/` with a `schema: 1` header and a State Block that survives a fresh scheduled session. The Learning Close row reports only what changed, so a channel that is blocked every week does not flood `meta-synthesis`.
+- Role clarity: the plugin READMEs now say that `pmm-competitive-intelligence` collects and produces for named competitors, `pmm-intelligence` ranks signals of any kind, and `pmm-meta` learns from the session log. `competitive-profile`'s weekly run uses the monitor's findings before it re-reads a page.
+- Six sibling skills name `media-monitoring` in their "Not for" clauses and "Do Not Use For" lists and take a patch version (`competitive-briefing` 1.1.2, `industry-newsletter` 1.0.1, `competitive-profile` 1.3.1, `competitive-battlecard` 1.3.1, `competitor-deep-dive` 1.2.1, `signal-monitor` 1.1.2).
+- Evals: 39 test cases for `media-monitoring`. One sample brief in `examples/`.
+
+### Connectors
+
+- `google-docs` is now wired into the competitive-intelligence plugin for the shared Doc. The catalog still marks it Developer Preview; the skill falls back to a file or the State Block if sign-in fails.
+
+### Tests and documentation
+
+- `tests/test_triggers.py` adds `media-monitoring` to the competitive family and checks that `competitive-briefing` and `industry-newsletter` name it in their "Not for" clauses.
+- `docs/routing-checks.md` grows to 23 prompts; `docs/media-monitoring.md` explains scheduling and what the team sees; the plugin READMEs, root README, `next-skill-map.md`, `slack-mode.md` and `SKILL-SPEC.md` (2.6.4) list the new skill. The skill count is 42.
+
 ## v1.17.0 — 2026-10-27
 
 ### Competitive intelligence

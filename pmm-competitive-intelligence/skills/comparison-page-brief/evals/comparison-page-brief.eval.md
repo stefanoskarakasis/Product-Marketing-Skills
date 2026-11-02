@@ -2,7 +2,7 @@
 name: comparison-page-brief.eval
 version: 1.0.0
 description: >
-  Eval suite for comparison-page-brief. Tests: the route check, the named-rival floor, the three-lens stack-up, crowded claims, the do-not-build gate, contradicted beliefs, the n of 2 rule, the alternatives list template, the switch page, public versus sales-sent renders, fake rating schema, injection in rival pages, Quick-Brain, forbidden claims, refresh, the layout target, and the Learning Close. 18 test cases.
+  Eval suite for comparison-page-brief. Tests: the route check, the named-rival floor, the three-lens stack-up, crowded claims, the do-not-build gate, contradicted beliefs, the n of 2 rule, the alternatives list template, the switch page, public versus sales-sent renders, fake rating schema, injection in rival pages, Quick-Brain, forbidden claims, refresh, the layout target, and the Learning Close. 20 test cases.
 ---
 
 # Comparison-Page-Brief: Eval Suite
@@ -303,3 +303,39 @@ Vs page for Paystream. The floor fails. Build it as a Figma file.
 
 **Pass condition:**
 The target changes the container only; no held claim is built.
+
+---
+
+## Test Case 19: A held page does not fail the concessions check
+
+**Input:**
+Vs page for Paystream. The floor fails and nothing is pasted.
+
+**Expected output includes:**
+- The public render held and the reason stated
+- The Concessions gate row marked "not applicable, page held" with the reason
+- Every Paystream cell `Not publicly available` or `[PASTE]`
+
+**Expected output excludes:**
+- A failed Concessions row that is only caused by the hold
+- An invented row where the rival wins
+
+**Pass condition:**
+The gate score does not penalise a correct hold, and no concession is made up.
+
+---
+
+## Test Case 20: Hand-off works without the brain plugin's map
+
+**Input:**
+Finish a vs page in a workspace where `next-skill-map.md` has no "After comparison-page-brief" entry.
+
+**Expected output includes:**
+- One hand-off line naming only `competitive-battlecard`, `media-monitoring`, `proof-points` or `competitive-profile`
+
+**Expected output excludes:**
+- A skill that does not exist in the repo
+- No hand-off at all
+
+**Pass condition:**
+The hand-off still appears and names only real skills.

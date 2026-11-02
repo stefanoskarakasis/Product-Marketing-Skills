@@ -55,7 +55,7 @@ Follow `references/stack-up.md`. Judge three lenses, never one: head-to-head (WI
 
 ### Step 4: Claims Ledger
 
-Build one row per claim per `references/claims-ledger.md`: id, text, source URL and retrieved date, tier S1 to S4, audience (public or sales-only), expiry (30 days pricing, 90 days features), page section. The public render takes only S1/S2 claims inside expiry. A rival fact with no fresh source is `Not publicly available`, never a guess. Concessions are claims too: the page needs at least two rows where the rival wins.
+Build one row per claim per `references/claims-ledger.md`: id, text, source URL and retrieved date, tier S1 to S4, audience (public or sales-only), expiry (30 days pricing, 90 days features), page section. The public render takes only S1/S2 claims inside expiry. A rival fact with no fresh source is `Not publicly available`, never a guess. Concessions are claims too: a live page needs at least two rows where the rival wins or ties. A held page has no sourced rival rows yet, so this is stated as not applicable until the floor clears.
 
 ### Step 5: Write the Page
 
@@ -79,7 +79,7 @@ Deliver the page and the supporting files in Outputs. Save the run to `/context/
 
 ### Step 10: Hand Off
 
-Offer, never perform, the next move from `product-marketing-context/.claude-plugin/next-skill-map.md` ("After comparison-page-brief"). Name only skills listed there. Typical: a battlecard update when the stack-up changed a LOSE row, `media-monitoring` to watch the rival's own "vs us" page, `proof-points` for a claim that needs a customer source.
+Offer, never perform, the next move. Use the "After comparison-page-brief" entry in `product-marketing-context/.claude-plugin/next-skill-map.md` when the brain plugin is installed; when it is not, or the entry is missing, use this list and name no other skill: a battlecard update when the stack-up changed a LOSE row, `media-monitoring` to watch the rival's own "vs us" page, `proof-points` for a claim that needs a customer source.
 
 ### Step 11: Learning Close
 
@@ -128,7 +128,7 @@ Runs after the page is built. Surface failures before delivering, never after.
 |---|---|
 | Named-rival floor | Fresh S1/S2 pricing and feature rows for the rival, or the page is downgraded or held |
 | Ledger complete | Every page claim has a ledger row; every public row is S1/S2 and inside expiry |
-| Concessions | At least two rows where the rival wins or ties |
+| Concessions | At least two rows where the rival wins or ties; "not applicable, page held" when the floor failed, with the reason stated |
 | Stack-up honest | Three lenses shown; crowded differentiators not used as differentiators |
 | Table rules | 8 to 12 rows per table, fixed value vocabulary, units on prices, no unsourced Yes/No |
 | Lint | No asterisk without footnote, no stat that fails its claim, no fake rating schema |

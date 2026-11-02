@@ -1,17 +1,17 @@
 ---
 name: competitor-deep-dive
-version: 1.3.0
+version: 1.3.1
 description: >
   Builds a long-form, fully sourced deep-dive on one competitor for a named decision
   (strategy call, RFP, pricing change, roadmap bet), with dated reviews, deal evidence, a
   head-to-head per offering and where they win. In a Slack thread it posts a short summary and builds the full document. Triggers: "deep-dive on [competitor]",
   "full competitor write-up", "what do users really say about [competitor]", "teardown of
-  [competitor]". Related: competitive-battlecard, competitive-profile, signal-monitor. Not for a weekly leadership read (competitive-briefing), or the scheduled competitor sweep (media-monitoring).
+  [competitor]". Related: competitive-battlecard, competitive-profile, signal-monitor. Not for a weekly leadership read (competitive-briefing), the scheduled competitor sweep (media-monitoring) or a public vs page (comparison-page-brief).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-11-01
+last_updated: 2026-11-02
 ---
 
 # Competitor Deep-Dive

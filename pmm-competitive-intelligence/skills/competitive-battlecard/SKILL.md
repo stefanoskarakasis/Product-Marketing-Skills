@@ -1,17 +1,17 @@
 ---
 name: competitive-battlecard
-version: 1.4.0
+version: 1.4.1
 description: >
   Builds a one-page competitor battlecard a seller can skim in 60 seconds before a call,
   tailored to role, GTM motion, buyer persona, deal stage and the competitor's status in
   the deal. In a Slack thread it posts the card in the thread. Also lists your saved cards by roster tier and logs deal outcomes. Trigger on: "battlecard for [competitor]", "how do we beat [competitor]",
   "[competitor] is in my deal", "counter this
-  objection", "set of cards", "we won against [competitor]", "that reply worked". Related: alternatives-map, signal-monitor, proof-points. Not for the leadership brief (competitive-briefing) or a competitor Q&A (competitive-profile), or the scheduled competitor sweep (media-monitoring).
+  objection", "set of cards", "we won against [competitor]", "that reply worked". Related: alternatives-map, signal-monitor, proof-points. Not for the leadership brief (competitive-briefing), a competitor Q&A (competitive-profile), the scheduled sweep (media-monitoring) or a public vs page (comparison-page-brief).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-11-01
+last_updated: 2026-11-02
 ---
 
 # Competitive Battlecard

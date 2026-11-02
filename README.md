@@ -34,7 +34,7 @@ Prefer the plugin marketplace? See [Installation](#installation) below.
 |---|---|---|
 | AGENTS.md map | About 230 words written into your project when the brain is built | Every session |
 | Brain | `foundation/brain.md`, 8 sections | Only the sections a task names |
-| Skills | 42 workflows | When your request matches one |
+| Skills | 43 workflows | When your request matches one |
 | Scripts | `lint_draft.py` and `brain_section.py` in `foundation/tools/` | When a check needs no judgment |
 
 The map is what makes your agent read the brain in chats where you call no skill. Claude Code reads it through a one-line `CLAUDE.md` import; agents that read `AGENTS.md` pick it up directly. In Claude Code, the competitive-intelligence plugin also asks before anything is sent to Slack or email. How it works, and how to turn it off: [docs/agents-map.md](docs/agents-map.md).
@@ -56,6 +56,7 @@ Nine plugins, grouped by the work you do. Install `product-marketing-context` fi
 | Brief the CEO, CRO or board on competitors every week | `competitive-briefing` | `pmm-competitive-intelligence` |
 | Send GTM leaders one weekly industry newsletter | `industry-newsletter` | `pmm-competitive-intelligence` |
 | Sweep my competitors' public pages every week and get the fixes drafted | `media-monitoring` | `pmm-competitive-intelligence` |
+| Publish a "us vs a rival" or "alternatives to a rival" page where every row is sourced | `comparison-page-brief` | `pmm-competitive-intelligence` |
 | Rank what changed around my product against my priorities | `signal-monitor` | `pmm-intelligence` |
 | Run the PMM job: OKRs, retros, pre-mortems | `pmm-okrs`, `retro`, `pre-mortem` | `pmm-execution` |
 | Generate and measure growth ideas | `experiment-ideas`, `pmm-metrics` | `pmm-growth` |
@@ -64,7 +65,7 @@ Nine plugins, grouped by the work you do. Install `product-marketing-context` fi
 **Building or auditing skills yourself?** `pmm-meta` (`meta-review`, `meta-learn`, `meta-synthesis`, `meta-verify`) is for skill builders. It audits skills against `SKILL-SPEC.md`; you do not need it to use the rest.
 | Draft content, briefs, resumes | `writing-assistant`, `gaccs-brief` | `pmm-toolkit` |
 
-**Skills** are single guided workflows; **plugins** bundle related skills into one install. The full catalogue is under [Available Skills](#available-skills-42-total).
+**Skills** are single guided workflows; **plugins** bundle related skills into one install. The full catalogue is under [Available Skills](#available-skills-43-total).
 
 ## How it fits together
 
@@ -98,7 +99,7 @@ Ask in plain language, or call a skill directly.
 
 Direct call example: `/pmm-positioning:ideal-customer-profile`.
 
-## Available Skills (42 Total)
+## Available Skills (43 Total)
 
 | Skill | Plugin | Description |
 |-------|--------|-------------|
@@ -118,6 +119,7 @@ Direct call example: `/pmm-positioning:ideal-customer-profile`.
 | [competitor-deep-dive](pmm-competitive-intelligence/skills/competitor-deep-dive/) | pmm-competitive-intelligence | Long-form, sourced deep-dive on one competitor for a named decision |
 | [competitive-briefing](pmm-competitive-intelligence/skills/competitive-briefing/) | pmm-competitive-intelligence | Weekly leadership brief: verdict with the risk in euro, one recommended decision, what moved, the last call graded and the decisions still open |
 | [media-monitoring](pmm-competitive-intelligence/skills/media-monitoring/) | pmm-competitive-intelligence | Scheduled sweep of your core competitors' public pages: a one-screen brief, the fix for each item drafted, and a line on what it could not see |
+| [comparison-page-brief](pmm-competitive-intelligence/skills/comparison-page-brief/) | pmm-competitive-intelligence | A vs, alternatives or switch page for a named rival, built from your brain and competitor records, with a sourced claims ledger behind every row |
 | [industry-newsletter](pmm-competitive-intelligence/skills/industry-newsletter/) | pmm-competitive-intelligence | Weekly industry newsletter for GTM leaders in one locked layout: numbered competitor tables, industry changes, pricing watch and role-owned actions; formatted for Google Doc, email or Slack |
 | [gaccs-brief](pmm-toolkit/skills/gaccs-brief/) | pmm-toolkit | Campaign briefs (Goals, Audience, Creative, Channels, Stakeholders) |
 | [writing-assistant](pmm-toolkit/skills/writing-assistant/) | pmm-toolkit | Sharpen any written communication; draft blog posts, landing pages, press releases, case studies, newsletters, social posts |

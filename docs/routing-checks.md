@@ -37,8 +37,11 @@ Claude chooses a skill from its name and description. This page is how you check
 | 21 | What did the monitoring catch this week | `media-monitoring` |
 | 22 | Rank this week's sweep findings against our quarterly priorities | `signal-monitor` |
 | 23 | Competitor news | One question (sweep, opportunities or leadership brief). No build |
+| 24 | Build our vs page against Northgate AP | `comparison-page-brief` |
+| 25 | Write a best alternatives to Paystream page | `comparison-page-brief` |
+| 26 | Competitive page | One question (page type and rival, or seller card). No build |
 
-**Pass:** 21 of 23, and prompts 12 to 14 and 23 never build a leadership brief or a newsletter without asking.
+**Pass:** 24 of 26, and prompts 12 to 14, 23 and 26 never build a leadership brief or a newsletter without asking.
 
 ## If two sets of skills are installed
 
@@ -56,4 +59,4 @@ Better still, keep one set of competitive skills per project.
 
 ## Recording results
 
-Add one row per run to [`docs/eval-results.md`](eval-results.md): date, plugin version, prompts passed out of 23, and each failure with its exact prompt. A failure is a trigger-wording bug: report it as an issue and the description is changed, not the prompt.
+Add one row per run to [`docs/eval-results.md`](eval-results.md): date, plugin version, prompts passed out of 26, and each failure with its exact prompt. A failure is a trigger-wording bug: report it as an issue and the description is changed, not the prompt.

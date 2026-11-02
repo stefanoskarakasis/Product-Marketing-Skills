@@ -29,7 +29,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 FAMILY = {
     "competitive-briefing", "competitive-profile", "competitive-battlecard",
-    "competitor-deep-dive", "signal-monitor", "industry-newsletter", "media-monitoring",
+    "competitor-deep-dive", "signal-monitor", "industry-newsletter", "media-monitoring", "comparison-page-brief",
 }
 FAMILY_WIDE = FAMILY | {"alternatives-map", "workflow-orchestrator"}
 

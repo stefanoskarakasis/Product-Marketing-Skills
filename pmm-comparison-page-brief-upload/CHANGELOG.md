@@ -1,0 +1,442 @@
+# Changelog
+
+## Unreleased
+
+### New skill: comparison-page-brief
+
+- New skill `comparison-page-brief` in `pmm-competitive-intelligence`, with the `/pmm-competitive-intelligence:comparison-page-brief` command: builds a "you vs a named rival" page, a "best alternatives to X" page (one rival or a ranked list) or a switch page. It first loads the brain and every competitor record, works out how you stack up in three lenses (head-to-head, field position, switching reality), and writes only what a claims ledger can source. One dataset renders the public page and the sales-sent version.
+- It holds or downgrades the page when the named rival's pricing and features cannot be sourced, says where you lose, and never adds a rating schema without a real rating. Saves to `/context/comparisons/`; never writes the brain.
+- Quality Gate of 12 checks; the layout (a Claude Design wireframe in Claude) is a standard output the team builds on. New Step 7 (Choose the Layout Target): in Claude with a Design artifact available the layout defaults to a private, editable Claude Design wireframe; otherwise one-column HTML or a Doc; Figma is a text spec, not tested against a live Figma connector. Evals: 18 test cases.
+- `competitive-battlecard` (1.4.1), `competitive-profile` (1.4.1) and `competitor-deep-dive` (1.3.1) name the new skill in their "Not for" clauses. `next-skill-map.md`, the READMEs, `SKILL-SPEC.md`, `docs/routing-checks.md` (26 prompts) and the manifest descriptions list it. New `docs/comparison-page-brief.md`.
+- Counts: 43 skills in 9 plugins.
+
+## v1.20.0 — 2026-11-01
+
+### Every skill under 3,000 words
+
+- All 42 skills are now at or under 3,000 words, the way `pm-skills` keeps skills short. The 12 largest were cut: `competitive-battlecard` (1.4.0), `competitive-profile` (1.4.0), `competitor-deep-dive` (1.3.0), `industry-newsletter` (1.1.0), `product-marketing-context` (3.6.0), `pmm-resume` (3.1.0), `competitive-briefing` (1.2.0), `writing-assistant` (2.6.0), `media-monitoring` (1.1.0), `proof-points` (1.3.0), `product-messaging-playbook` (1.4.0) and `positioning-messaging` (2.7.0). Detail that only matters in some runs (connector tables, pre-flight edge cases, delivery formats, wizard questions, ingest, the full resume audit, marketing and behavioral review workflows) moved word for word into each skill's `references/` folder, with a pointer in `SKILL.md`. A retention check found no distinctive term (backticked name, number, tag, step reference) lost from any of them.
+- The separate Verification and Do Not Use For sections are gone from the skills that had them. Their checks live in the Quality Gate and their routes in Trigger (positioning-messaging, product-messaging-playbook keep theirs in `references/not-for.md`).
+- `writing-assistant` is rebuilt on the spec: a `version`, Trigger, Inputs, Steps and Outputs sections, and it now counts as brain-dependent.
+
+### Skill spec 3.0.0
+
+- `SKILL-SPEC.md` requires four core sections: Trigger, Inputs, Steps and Outputs, plus a Quality Gate when `quality_gate: true`. Pre-flight and Rules are optional. New word budget of 3,000 (aim for 2,000). The checklist is 15 checks, pass at 13. `meta-review` (4.0.0) scores against it.
+- `tests/test_skill_size.py` enforces the budget and the core sections for every skill.
+
+### Wider connector catalog
+
+- The brain plugin keeps wiring the whole catalog, as before. A trial trim to nine servers was reverted.
+- Six hosted servers added from the vendors' own documentation: Ahrefs, monday.com, Productboard, Granola, Dovetail and Zoom Meetings (32 servers, 30 tools). Zoom's address is the example endpoint its docs show; Dovetail needs a token if automatic sign-in fails.
+- Salesforce, Microsoft 365, Box and Zendesk stay under "connect your own" with the documented addresses and admin steps, because each needs a per-customer address, client or admin approval.
+
+### Upload helper
+
+- `scripts/apply_staged.py` and a new `Apply staged files` workflow let you upload dot-folders (`.claude-plugin`, `.cursor-plugin`) under visible names inside `staged/` (as `dot-claude-plugin`). The workflow moves them into place, regenerates connector files, runs the checks, commits and publishes the release. Tested on a copy; not yet run on GitHub.
+
+### More agents
+
+- New `.cursor-plugin/` manifests (a marketplace file and one per plugin) in the format of Cursor's plugin reference. Not yet tested inside Cursor.
+- README Option 2 is corrected: Claude Code reads `.claude/skills/`, Codex reads `.agents/skills/`, and the brain is copied whole because its scripts live inside it.
+- README: `pmm-meta` moves out of the "pick by job" table into a note for skill builders.
+
+### Evals
+
+- New `docs/run-the-evals.md`, `docs/eval-first-sitting.md` (28 cases across the five biggest changes) and `scripts/eval_sheet.py`, which builds a run sheet for any skill. Nothing is recorded as run yet.
+
+### Tests
+
+- 51 tests. New: `tests/test_skill_size.py`, `tests/test_cursor_manifests.py`; the connector test now checks the brain's list.
+
+## v1.19.0 — 2026-11-01
+
+> Released together with v1.20.0. There is no separate v1.19.0 tag or GitHub release: this version never existed on its own in `main`.
+
+### The agent map
+
+- `product-marketing-context` (3.5.0) now writes a short map into your project's `AGENTS.md` when the brain is built, so your agent reads the brain in every chat, not only when you call a skill. It lists the brain's sections and what each is for, the records that exist and the helper scripts, in about 230 words. The block sits between markers: your own text is never touched, a second run changes nothing, and `/product-marketing-context:agents-map` refreshes it. A marked `@AGENTS.md` line is added to `CLAUDE.md` (created if missing) so Claude Code reads it. Agents that read `AGENTS.md` pick the map up directly.
+
+### Helper scripts
+
+- Two plain-Python scripts ship in `product-marketing-context/scripts/` and are copied to `foundation/tools/`: `brain_section.py` prints only the sections a task needs, and `lint_draft.py` checks a draft against your forbidden phrases, forbidden claims and prohibited topics, and lists numbers that are not in your approved metrics and leftover `[NEEDS PROOF]` markers. Skills still work without them.
+
+### Send guard
+
+- `pmm-competitive-intelligence` ships a Claude Code hook (`hooks/`) that asks before a connector tool sends, posts, replies to or forwards a message through Slack, Gmail, Outlook or Teams. Reading, searching and drafting are never asked about. `PMM_GUARD=off` turns it off; `PMM_GUARD_ALLOW=slack` allows one service. The same hook sits in the root `hooks/` for the whole-repo install.
+
+### Fixes and documentation
+
+- `AGENTS.md` is rewritten as a short map for contributors and now carries the release rules that lived in `CLAUDE.md`, which is a one-line import of it. It no longer says the brain has six sections or that the repo has six plugins: the brain has eight sections and the repo has nine plugins. `QUICK-START.md` says 42 skills.
+- README gains a "What your agent loads, and when" table; new `docs/agents-map.md` explains the map, the scripts and the guard.
+- Tests: `tests/test_hooks.py` and `tests/test_agent_map.py` cover the guard, both scripts and the map; `AGENTS.md` and `QUICK-START.md` counts are now checked against the folders on disk.
+
+## v1.18.0 — 2026-10-29
+
+### Competitive intelligence
+
+- New skill `media-monitoring` in `pmm-competitive-intelligence`, with the `/pmm-competitive-intelligence:media-monitoring` command: a scheduled sweep of your 3 to 5 core competitors' public pages that returns a one-screen brief for a VP Product Marketing. Each item that needs you comes with the fix already drafted (a battlecard patch, a note for the CRO, a re-test list), so the week starts with approve-or-edit. It ends every brief with a coverage line that names what it could not see, so a quiet week can be trusted.
+- One person runs it, with a required backup; the team reads the Slack post and the Doc and configures nothing. Setup asks five questions pre-filled from brain Section 3, requires an executor and a named backup, and shows a channel preflight (working, partial, blocked, with the next best fix) before the first sweep.
+- Triage by source tier (S1 first-party to S4 unverified): at most three items that need you plus one own-company item; corroboration counts independent origins, not links; a first run is a baseline that alerts only on the last 30 days; a partial read is never reported as checked; an aggregator's date is a watch item with a verify-by date.
+- The action loop: `do N` shows the current text beside the proposed text; `go`, `edit`, `skip` and `post` act on it. Only the executor or backup can approve; a patch is written as a new dated file that changes only the named section and refuses a missing or duplicate target; a number that is not in the evidence or the brain becomes a placeholder; evidence older than 7 days is re-read first; a message is never posted twice; the next sweep checks that a fix stuck.
+- Public sources only by default, terms-restricted sites by paste only, internal channels opt-in, non-public company information flagged and left out, and instruction-like text on a page flagged and never followed.
+- Records are append-only files in `/context/monitoring/` with a `schema: 1` header and a State Block that survives a fresh scheduled session. The Learning Close row reports only what changed, so a channel that is blocked every week does not flood `meta-synthesis`.
+- Role clarity: the plugin READMEs now say that `pmm-competitive-intelligence` collects and produces for named competitors, `pmm-intelligence` ranks signals of any kind, and `pmm-meta` learns from the session log. `competitive-profile`'s weekly run uses the monitor's findings before it re-reads a page.
+- Six sibling skills name `media-monitoring` in their "Not for" clauses and "Do Not Use For" lists and take a patch version (`competitive-briefing` 1.1.2, `industry-newsletter` 1.0.1, `competitive-profile` 1.3.1, `competitive-battlecard` 1.3.1, `competitor-deep-dive` 1.2.1, `signal-monitor` 1.1.2).
+- Evals: 39 test cases for `media-monitoring`. One sample brief in `examples/`.
+
+### Connectors
+
+- `google-docs` is now wired into the competitive-intelligence plugin for the shared Doc. The catalog still marks it Developer Preview; the skill falls back to a file or the State Block if sign-in fails.
+
+### Tests and documentation
+
+- `tests/test_triggers.py` adds `media-monitoring` to the competitive family and checks that `competitive-briefing` and `industry-newsletter` name it in their "Not for" clauses.
+- `docs/routing-checks.md` grows to 23 prompts; `docs/media-monitoring.md` explains scheduling and what the team sees; the plugin READMEs, root README, `next-skill-map.md`, `slack-mode.md` and `SKILL-SPEC.md` (2.6.4) list the new skill. The skill count is 42.
+
+## v1.17.0 — 2026-10-27
+
+### Competitive intelligence
+
+- New skill `industry-newsletter` in `pmm-competitive-intelligence`, with the `/pmm-competitive-intelligence:industry-newsletter` command: the weekly newsletter on your competitors and your industry for GTM leaders across Product, Sales, RevOps, PMM and Pricing, in one locked layout: title with issue and ISO week, a line of regions and the owning team, a one-sentence verdict, Competitor Watch, Industry Changes, Decisions & Actions and Sources & References (last). Every claim carries a link retrieved in that run; an unlinked claim is held, not softened.
+- Written for readability and scanning: heading levels (H1 title, H2 section, H3 numbered competitor, H4 label), one table per competitor with the same columns every time (update, impact and horizon, confidence, one-sentence pipeline implication, source), and 3 to 5 competitor product updates in total (fewer only when fewer were verifiable, and the count is stated). Confidence marks (🔵 🟡 ⚠️) carry a 1 to 5 score from a written rubric. A body of about 900 words with a 1,200-word ceiling keeps it a five-minute read.
+- It asks once, before the first build, where the issue will be read (Google Doc, email or Slack), saves the answer, and formats for it: 5-column tables for a Doc, 4 columns for email, a single post of about 220 words with no tables for Slack. Scheduled runs use the saved answer and never ask.
+- It pulls from your other CI skills and your tools: competitor profiles, battlecards and the outcome log, deep-dives, signals and the leadership brief's ledgers, plus Gong (`~~call recordings`), Slack (`~~team chat`), Klue (`~~competitive intelligence`, paste or your vendor's server) and Google Drive (`~~cloud storage`). Those are leads, never the claim: a public page must confirm anything before it is published, sellers' reports appear only as "seller-reported, n=", and no account names, amounts, call links or long quotes leave an internal source. `references/inputs.md` has the map.
+- Every issue carries the pricing and packaging watch, a decision question, Now, Next and Later pipeline impact, the last call's result with one new falsifiable call, and at most five actions, each tied to a competitor or industry number and owned by a role. A quiet week is a short issue, never a skipped one.
+- Each issue learns from the previous one through three append-only files in `/context/industry-newsletter/`: a call ledger (the last call is graded; "x of y" appears after three graded calls), a watchlist (unresolved signals carried forward with their age and the trigger that would promote them) and reader feedback (a change is proposed only when three roles say the same thing across two issues, and applied only after you say yes; the pricing watch, calls, actions and handling line can never be tuned away).
+- Handling is internal use only: no deal data, no euro figures. Items the issue could not verify stay out of the document and are listed in the chat. The brain is read-only.
+- `competitive-briefing` (1.1.1) and `signal-monitor` (1.1.1) now name `industry-newsletter` in their "Not for" clauses so requests route correctly. The hand-off map in `next-skill-map.md` lists the new skill after `competitive-profile`, after `competitive-briefing` and after itself.
+- Evals: 33 test cases for `industry-newsletter`. Two samples in `examples/` (Google Doc and Slack).
+
+### Tests and documentation
+
+- `tests/test_triggers.py` adds `industry-newsletter` to the competitive family and checks that its "Not for" clause names its five neighbours and that no family description passes 1,024 characters.
+- `docs/routing-checks.md` grows to 18 prompts; the plugin README, root README, `slack-mode.md` and `SKILL-SPEC.md` list the new skill. The skill count is 41.
+
+## v1.16.0 — 2026-10-26
+
+### Competitive intelligence
+
+- Fixed how Claude picks between the competitive skills. Routing reads only a skill's name and description, so the "Do Not Use For" notes added in v1.15.0 could not stop a wrong pick. Every competitive description now ends with a "Not for ..." clause naming the skill the request belongs to.
+- `competitive-briefing` (1.1.0) triggers now always name an audience or the leadership brief: "brief the CEO on competitors", "weekly leadership brief", "board update on competitors", "exec brief on competitors", "grade last week's call". The generic phrases "competitive brief" and "competitive update" are no longer claimed, which also removes the overlap with other vendors' "competitive brief" skills.
+- `competitive-profile` (1.3.0), `competitive-battlecard` (1.3.0), `competitor-deep-dive` (1.2.0), `competitive-briefing` and `signal-monitor` (1.1.0) open Pre-flight with a Route check: if a request fits a sibling skill better, the skill says so in one line and asks before continuing, and a bare "competitive update" gets one question instead of a build. Each skill's eval suite gains a routing case.
+- `competitive-battlecard`'s trigger "what do I say against [competitor]" is now "what do I say against [competitor] in my deal", so it no longer hides inside `competitive-profile`'s pricing question.
+
+### Tests and documentation
+
+- New `tests/test_triggers.py`: no trigger phrase is claimed by two skills, no generic phrase is claimed, no skill in the competitive family hides a phrase inside another's, every competitive description has a "Not for" clause, and every competitive skill opens Pre-flight with a Route check.
+- New `docs/routing-checks.md`: a 15-prompt battery to run by hand after an install or update, and the slash commands to use when two sets of competitive skills are installed together.
+- The plugin README gains a "Which skill do I use?" table. `SKILL-SPEC.md` now requires a "Not for" clause in a description when a sibling shares vocabulary.
+
+## v1.15.0 — 2026-10-26
+
+### Competitive intelligence
+
+- New skill `competitive-briefing` in `pmm-competitive-intelligence`, with the `/pmm-competitive-intelligence:competitive-briefing` command: the weekly leadership brief for your CEO and board, CRO, product leadership or the whole company. It opens with a verdict (what changed, what it puts at risk in euro, what to do, by when), then one decision with two options, a recommendation and what would change it, what moved ranked by exposure, what not to react to, the last call graded and the next one, and a Held list.
+- The brief is built only from records you already keep: profiles, battlecards and the outcome log, deep-dives, signals and the brain. It does no research of its own, and it stops with a plain message if there is no profile, signal or paste to build from. A week with nothing worth reporting gets a short brief, not silence.
+- Money figures come only from `~~CRM` or a dated paste; otherwise the brief says "not quantified". Euro is the default currency; a figure in another currency is shown as given and never converted without a rate you supply.
+- Two small append-only ledgers in `/context/briefings/`: `_ledger.md` (each brief makes one falsifiable call and grades the last, shown as "3 of 5", never a percentage) and `_decisions.md` (decisions asked for, shown with their age until you or a listed approver closes them).
+- Nothing unverified goes out unmarked: the status stays HOLD until the Held list is empty and you name who checked the brief. Competitor-confidential material is excluded and named. The skill never writes the brain.
+- The brief posts in Slack as a short bullet version; `slack-mode.md` and `docs/slack-setup.md` describe it, and a Monday scheduled prompt is in the skill's `references/brief-format.md`. The hand-off map in `next-skill-map.md` lists the new skill after `competitive-profile` and after itself.
+- Evals: 23 test cases for `competitive-briefing`.
+- `competitive-battlecard` (1.2.1), `competitive-profile` (1.2.1) and `competitor-deep-dive` (1.1.1) list `competitive-briefing` under Do Not Use For, so requests for the leadership brief route to it. The plugin and marketplace descriptions mention the weekly leadership brief.
+
+## v1.14.0 — 2026-10-26
+
+### Competitive intelligence
+
+- `competitive-profile` now answers competitor questions in Slack or chat (`ask` mode). It reads every internal CI record for the named competitor first (profile, battlecard, deep-dive, signals, brain Section 3, and your CI platform and knowledge base if connected), goes on to your deal data and then the public web only if those cannot answer inside their freshness window, and replies in the thread in about 120 words or fewer with dated sources. With no sourced answer it says so and logs the question for your PMM.
+- Tag Claude in a thread with new intel and `competitive-profile` drafts one change and tags a named approver. Only a listed approver can approve; an approval writes a new time-stamped profile record and lists the saved cards and deep-dives that cite the old value for re-check. One report stays a note until a second arrives, a draft expires after 7 days, and the brain is never written from a thread.
+- A weekly run posts a freshness board to a Slack channel, sweeps one field channel into drafts, and shows the five most common unanswered questions. The board also lists saved battlecards past their re-check date, and the run asks sellers in the field channel how recent cards ended: at most three prompts a week, each card at most twice, and only replies that say exactly won, lost or no decision are logged.
+- `competitive-battlecard` (1.2.0): in Slack the card posts in the thread as bullets, with no table and no delivery question. Every card now shows the competitor's roster tier (from the profile record) and a re-check date (the oldest displayed claim plus about 90 days); a saved card is flagged when it passes that date and is never edited.
+- `competitive-battlecard` also answers "set of cards": an index of the newest saved card per roster competitor, with tier, date, status and win condition, that rebuilds nothing.
+- `competitive-battlecard` logs how deals ended. A seller says "we won against [competitor]" or "that reply worked" and one row is appended to `/context/battlecards/_outcomes.md` (roles only, never a name). Two or more outcomes appear on the next card as seller-reported field results and can become a proposed Section 3 note, shown as exact text and written only after a yes.
+- `competitor-deep-dive` posts a five-line summary in a Slack thread and builds the full document as before.
+- New `docs/slack-setup.md`: what your team can do in Slack, how to ask, and a 30-minute admin setup.
+- New skill `competitor-deep-dive` in `pmm-competitive-intelligence`, with the `/pmm-competitive-intelligence:competitor-deep-dive` command: a long-form, sourced deep-dive on one competitor for a named decision. It asks once whether to connect, paste or skip the deal and pricing tools, tests the brain's standing beliefs against fresh evidence, saves to `/context/deep-dives/`, and proposes an append-only Deep-Dive Field Notes block to Section 3 for you to confirm.
+
+### Connectors
+
+- New `connectors.json` is the single list of connector servers. `scripts/generate_connectors.py` writes each plugin's `.mcp.json`, a root `.mcp.json`, the server line and the "Wired today" column in each `CONNECTORS.md` and plugin README, the Google table, the README plugin table and the two tool tables in `docs/connect-your-tools.md` from it. A "Connectors sync" GitHub Action runs it when `connectors.json` changes, and a new test fails if generated files drift. See `docs/add-a-connector.md`.
+- `product-marketing-context` (the brain) wires every server in the catalog. Other plugins wire only the servers whose category their skills read, except Slack, Gmail and Google Calendar, which every connector-shipping plugin wires.
+- Removed Fireflies, Granola, SimilarWeb, Pendo and Ahrefs from the wired servers. Dropped the connect-your-own notes for ZoomInfo, 6sense, Looker, G2, Crayon and Marketo.
+- Wired six servers: `mixpanel` and `mixpanel-eu` (`~~product analytics`), `asana` (`~~project tracker`), `wispr-flow` (`~~call recordings`), `semrush` (`~~market data` and `~~SEO`), `crunchbase` (`~~company data`) and `exa` (new `~~web research`).
+- `pmm-intelligence` now wires Semrush, Crunchbase, Exa, Slack, Gmail and Google Calendar, and `signal-monitor` reads `~~company data` and `~~web research` as well as `~~market data` and `~~SEO`.
+- New categories in the root `CONNECTORS.md`: `~~web research`, `~~revenue intelligence`, `~~data warehouse`, `~~video meetings` and `~~enrichment`. Only `~~web research` has a wired server.
+- `docs/connect-your-tools.md` lists, for 10 tools with no public address (Salesforce, GitHub, Klue, Zendesk, Snowflake, Zoom, Salesloft, Pardot, Clay, LinkedIn), what each vendor documents and what to do.
+
+### Documentation
+
+- Every plugin README and `plugin.json` credits Stefanos Karakasis with a link to Stefanos's Stack on Substack.
+
+## v1.13.0 — 2026-10-14
+
+### pmm-competitive-intelligence
+
+- `competitive-battlecard` also reads `alt_shortfalls`, `switching_forces`, `objections`, `anti_persona` and `customer_phrases` from the brain.
+- Added the **pmm-competitive-intelligence** plugin with one skill, **competitive-battlecard** (`/pmm-competitive-intelligence:competitive-battlecard`). It builds a one-page card for one competitor in one deal: win condition, what to say first, a five-row snapshot, questions to ask, replies to what the buyer will say, when to lean in and when to walk away, and the proof you are allowed to use.
+- Tailored to role, GTM motion, the competitor's status in the deal, buyer persona, deal stage and segment. It asks once, always asks whether you want a Google Doc (paste-ready in chat, the default) or an HTML page, shows both in one stacked column with identical headers, and states every assumption on the card.
+- Checks brain Section 6 forbidden claims and Section 8 prohibited items before it writes a line, keeps unapproved claims about your product off the card, tags and dates every competitor claim, and turns an unsourced weakness into a question.
+- Saves each card to `/context/battlecards/`, shows what changed since the last card, reads recent `signal-monitor` lists, and proposes dated field notes back to brain Section 3 only after you confirm the exact text. It never writes any other section and never writes to a CRM.
+- With no brain it asks five quick questions and holds the answers for the session.
+- Three new connector categories in the root `CONNECTORS.md`: `~~competitive intelligence` (Klue, Crayon and similar), `~~win/loss` and `~~company data`. None is wired in `.mcp.json`, because those vendors give each customer their own endpoint; connect yours or paste. `competitive-battlecard` reads a CI platform's cards first so the card never contradicts them, and never writes back. `~~CRM` now notes Salesforce (connect your own org's server).
+
+### product-marketing-context
+
+- **Sharper brain (3.4.0).** Added ten fields that capture what happens in deals and what customers say, inside the existing sections (no renumbering): `business_model` (Section 1), `jobs_to_be_done`, `cost_of_problem`, `anti_persona`, `committee_roles` (Section 2), `alt_shortfalls`, `switching_forces`, `objections` (Section 3), `customer_phrases` (Section 4), `conversion_action` (Section 7).
+- Customer language is verbatim. Every `customer_phrases` entry is an exact quote with a source (an evidence id, or who said it and when). No source means no entry; it becomes a gap. New Operating Rule 10.
+- The wizard asks the new fields in the right sections, and ingest (Step 8) routes calls, interviews, surveys and win/loss notes to them and the pricing page to `business_model` and `conversion_action`. Phrases are never merged.
+- Existing brains stay complete. The health audit reports "Deal-reality fields captured: X of 10" and never lowers a section score for a missing one.
+- Fixed the template version (said 3.1.0, skill is 3.4.0), updated the skill description and triggers for Sections 7 and 8, and removed an unverified time claim.
+- `brain-schema.md` documents the ten fields and who may write them. The example brain, the plugin README and 8 new evals (29 to 36) cover them.
+- `brain-schema.md` lets `competitive-battlecard` append field notes or a stub to Section 3 after you confirm. `next-skill-map.md` adds an "After competitive-battlecard" entry and offers the card after `alternatives-map`, `signal-monitor` and `proof-points`.
+
+### pmm-go-to-market
+
+- `go-to-market-strategy` reads `business_model` and `conversion_action` from the brain.
+- `workflow-orchestrator` 2.6.0 routes the "Competitive Intelligence Program" and "Competitive Response (Fast)" workflows to `competitive-battlecard` instead of a placeholder. The `go-to-market-strategy` T1 template checklist names the skill.
+
+### pmm-positioning
+
+- `ideal-customer-profile`, `alternatives-map`, `buyer-personas`, `brand-voice`, `positioning-messaging` and `product-messaging-playbook` now read the new brain fields instead of re-asking. `ideal-customer-profile` fills `committee_roles`, `jobs_to_be_done`, `anti_persona` and `cost_of_problem`; `alternatives-map` fills `alt_shortfalls` and `switching_forces`. `brand-voice` uses `customer_phrases` verbatim and never rewords them. `buyer-personas` still writes nothing.
+- The playbook's objection handling uses the approved responses in `objections` first.
+- `product-messaging-playbook` 1.3.1 points to `competitive-battlecard` for a full competitor card.
+
+### pmm-intelligence
+
+- `signal-monitor` 1.0.1 points to `competitive-battlecard` for a competitor card.
+
+### pmm-execution
+
+- `interview-summary` now says where customer words, objections and switching forces go: `product-marketing-context` (Add material), after you approve the Brain Diff.
+
+### Repo
+
+- `SKILL-SPEC.md` 2.6.2 adds `competitive-battlecard` to the brain-dependent list and the T2 examples.
+- Changed the skill count to 37 across 9 plugins.
+
+## v1.12.1 — 2026-10-11
+
+### product-marketing-context
+
+- Added source tags to every brain field: where it came from, the date, whether you stated it or it was pulled or inferred, and whether it is confirmed. Brains without tags keep working.
+- Added optional Section 7 (Strategy: priorities, launches, quarterly goals, active bets, what you are not doing) and optional Section 8 (Execution: stakeholders, approvals, what is prohibited, channels, cadence). Section 8 goes stale after 180 days; the audit reports a missing Section 8 as "not built", not as a gap.
+- Added an Offerings block to Section 1: how the product is packaged, approved terminology and permitted claims.
+- Added one canonical schema, `references/brain-schema.md`, and a test that fails if a skill cites a brain section that does not exist or the brain template drifts from the schema.
+- Added **ingest** mode: give it your website and pricing page, then optionally calls, planning notes or decks. It extracts evidence, compares sources and shows a Brain Diff you approve section by section. Two or more agreeing sources are tagged `pulled`, one source is `inferred`, conflicts are shown side by side and a value you confirmed is never overwritten. Website copy is never treated as proof and personal data is not stored.
+- Added **refresh** mode (`/product-marketing-context:refresh-brain`): lists only the fields past their section's freshness limit and asks, one at a time, whether each is still true, changed, or dropped.
+- Added a gaps queue (`/foundation/gaps.md`) and `/product-marketing-context:brain-gaps`: a skipped question is saved and stays quiet for 30 days. The health audit now reports open gaps and the oldest field in each section.
+- Added **My context** mode (`/product-marketing-context:my-context`) and `/foundation/me.md`: how you like outputs (length, detail, shape, bluntness). Skills read it for format and detail only, never for company facts.
+- Added `references/evidence-format.md`, `references/gaps-format.md` and `references/me-format.md`, and evals 4 to 28 for the new behaviors.
+- Changed the next-steps offer to come from `next-skill-map.md`, with a test that checks every skill name in it.
+- Changed "Not applicable" to `N/A` everywhere, and clarified that one brain covers one product or platform: for several product lines, keep one folder and one brain per product.
+- Fixed the `build-brain` command pointing to a step that does not exist and listing an invocation that does not match its name.
+
+### pmm-intelligence
+
+- Added the **pmm-intelligence** plugin with one skill, **signal-monitor** (`/pmm-intelligence:signal-monitor`). It reads only the signals you name (pasted notes, files, listed URLs, or `~~market data` and `~~SEO` connectors) and returns at most five opportunities, each with a dated source, the brain field it touches, the Section 7 priority it serves, a confidence label and one suggested next move.
+- Made it read-only for your brain: it saves a dated list to `/context/signals/` and hands brain changes to `product-marketing-context`, which asks first. One source is never `high` confidence and a company's own claims are never treated as proof.
+- With no brain, it asks three quick questions and holds the answers for the session.
+
+### pmm-positioning
+
+- `positioning-messaging` and `product-messaging-playbook` ask one gap question when a needed brain fact is missing, and read `/foundation/me.md` for format.
+- `proof-points` flags a claim that touches a prohibited topic and notes who approves it.
+
+### pmm-go-to-market
+
+- `go-to-market-strategy` reads Section 7, asks one gap question and reads `/foundation/me.md` for format.
+- `workflow-orchestrator` 2.5.0 added a "Weekly Opportunities" workflow (`/run weekly-opportunities`).
+
+### pmm-execution
+
+- `pmm-okrs` reads Section 7, can propose a Section 7 update only after you confirm, asks one gap question and reads `/foundation/me.md` for format.
+- `stakeholder-maps` starts from your Section 8 stakeholders and can propose new ones; `pre-mortem` tests approval lead times and prohibited claims.
+- `interview-summary` 2.5.0 states its brain contract: it reads Sections 2 and 3 only to check the ICP match and compare alternatives, and never writes the brain.
+- Fixed the eval fixtures in `prioritization-frameworks`, `stakeholder-maps`, `prd` and `pre-mortem` that described brain sections that never existed ("Revenue Levers", "Personas (§4)"). They now use Sections 2, 3, 7 and 8, and a new test keeps those phantom sections out. Removed leftover "Revenue Levers" references from `retro`, `interview-summary` and `pmm-okrs`.
+
+### pmm-toolkit
+
+- `gaccs-brief` asks one gap question and, with `writing-assistant`, reads `/foundation/me.md` for format.
+
+### Repo
+
+- Added `SKILL-SPEC.md` 2.6.1 with the gap capture rule and the personal context rule, and aligned its lists of brain-dependent and context-agnostic skills with each skill's `context:` label (`prd`, `experiment-doc`, `prioritization-frameworks`, `interview-summary` and `product-marketing-context` were listed wrongly). A new test checks the lists against the labels.
+- Added `examples/ingest-demo/` (five fictional sources plus the expected evidence and Brain Diff), `docs/keep-your-brain-fresh.md`, `docs/ai-marketer-loop.md` and a `.gitignore`.
+- Changed the skill count to 36 across 8 plugins. This release rolls up the work of steps 1.7 to 1.11.1; a first upload labelled 1.12.0 missed the hidden files, was never released, and 1.12.1 is the complete release.
+- Removed the last retired-prefix and storefront links outside the root README, and added tests that keep them out.
+
+## v1.6.0 — 2026-10-10
+
+### pmm-go-to-market
+
+- `gtm-motions` now asks once, after its output, whether to keep the Quick-Brain answers as the start of your brain. Only on a yes it writes a Section 2 stub under the `🟡 Cold start` line, tagged user-stated, and never the motion stack.
+
+### pmm-growth
+
+- `positioning-ideas` now asks the same keep question and, on a yes, writes a Section 3 stub with the alternatives, tagged user-stated, and never the positioning options. Neither skill overwrites an existing section.
+
+## v1.5.0 — 2026-10-10
+
+### product-marketing-context
+
+- The brain skill recognises a brain another skill started (the `🟡 Cold start` line): it lists filled and missing sections, asks only for missing fields, scores absent sections 0, and removes the line once all six are confirmed.
+
+### pmm-go-to-market
+
+- `gtm-motions` no longer stops without a brain: it asks two Quick-Brain questions (best-fit buyer, self-serve or sales conversation), session-only.
+- `go-to-market-strategy` wording now matches its Step 0: with no brain it sends you to `beachhead-segment` in the same plugin, no longer to `product-marketing-context`.
+- `workflow-orchestrator` 2.4.1 still stops without a brain but sends you to `beachhead-segment` (a quick brain in about 3 minutes) instead of a plugin you may not have installed.
+- Fixed `beachhead-segment` Pre-flight saying "hard block" while its Step 0 ran the Quick-Brain: no brain now means three quick questions, not a stop.
+
+### pmm-growth
+
+- `positioning-ideas` no longer stops without a brain: it asks for what you sell, the best-fit buyer and three alternatives including doing nothing, tagged user-stated, session-only.
+- `value-prop-statements` asks you to paste or write your positioning instead of sending you to another plugin, and still never invents one.
+
+### pmm-positioning
+
+- `positioning-messaging` offers "name your 3 alternatives now" next to `alternatives-map` when Section 3 is empty, and `alternatives-map` no longer says `positioning-ideas` hard-blocks.
+- Fixed `positioning-messaging` 2.4.2 back under the 500-line limit by moving the Onboarding steps to `references/onboarding.md`, and repaired a corrupted frontmatter value (`brain-dependentContext keys`).
+
+### pmm-meta
+
+- Fixed `meta-review` to run all 18 checks in `SKILL-SPEC.md` Section 13 (it ran 17 and missed the Learning Close check). The pass threshold is 16/18.
+
+## v1.4.0 — 2026-10-10
+
+### pmm-positioning
+
+- `alternatives-map`, `ideal-customer-profile` and `proof-points` no longer stop without a brain: they work from the material you paste and, after you confirm, start `/foundation/brain.md` with their own section only. If files cannot be written, they show the block to save and never claim it was saved.
+- `product-messaging-playbook` asks five Quick-Brain questions when there is no brain and nothing pasted, labels the result as such and never writes to the brain.
+- `message-house` offers two paths that work inside the plugin when there is no positioning: paste it, or run `positioning-messaging`.
+
+### product-marketing-context
+
+- Fixed the `brain-template.md` reference example attributing invented numbers and quotes to a real company; it now points to the fictional example.
+
+### Repo
+
+- Added `SKILL-SPEC.md` v2.4.0 with the missing-brain rule for brain-dependent skills.
+- Added `examples/example-brain.md` (a finished brain for a fictional company) and `examples/README.md` with five prompts to try before building your own.
+- Added a "Start here" block to each plugin README: the outcome, the first command, a prompt to try and whether it needs the brain.
+- Added `docs/eval-results.md`, which records which evals have been run. Nothing is marked as passed yet.
+
+## v1.3.0 — 2026-10-10
+
+### pmm-growth
+
+- Added the **customer-stories** skill and `/pmm-growth:customer-stories`: runs a story from kickoff to customer approval with kickoff questions and an internal brief, interview questions, a draft in one fixed seven-block structure (before, decision, rollout, results, people, limit, next), the customer review pack and an audit of a finished story. You choose the depth (short, standard, deep) and the angle before drafting.
+- Made it ask for the names and departments of everyone involved and never assume them. A stage and next action are tracked per story, permission is recorded per use and a cannot-say list is binding on every draft.
+- Required a baseline, period, denominator, source and status for every stat, and a named speaker, title and job for every quote. Gaps become placeholders, nothing is invented, "up to" claims need the typical value, and an 8-point gate runs on its own draft before handover.
+- Added a story ledger at `/context/customer-stories.md`, logging of each session to `/context/skill-sessions.md`, handover of confirmed claims to `proof-points`, a `~~call recordings` connector category (Fireflies, Gong) and a next-skill-map entry.
+
+### pmm-toolkit
+
+- `writing-assistant` 2.4.1 points case-study requests to the story ledger and to `customer-stories` when a verified story is needed.
+
+### Repo
+
+- Added the five-field session shape (`type`, `skill`, `session_date`, `pattern`, `source`) to the Learning Close template in `SKILL-SPEC.md` 2.3.1, and reworded "four-field" language in 5 skills and 18 eval files to match.
+- Removed the `google-prune-upload/` staging folder; every file in it was identical to, or older than, the live copy.
+
+## v1.2.0 — 2026-10-10
+
+### pmm-positioning
+
+- Fixed `pmm-positioning` loading with zero skills and zero commands and no visible error, by removing the hard `dependencies: ["product-marketing-context"]` entry from its `plugin.json` and `marketplace.json` entry. That dependency lived in a different marketplace, which Claude Code can't auto-resolve, so the plugin was silently disabled. All eight skills already handle a missing brain, and that logic can now run. Fixes #1.
+
+### pmm-toolkit
+
+- Added `writing-assistant` 2.4.0, which drafts blog posts, landing pages, press releases, case studies, newsletters and social posts, taking audience, key messages, voice and proof from the brain and asking once for what is missing. It never invents stats, quotes, customer names, results or search volume.
+- Added an Audit mode that names AI patterns and quotes the lines without rewriting, a routing step so Slack, email and memo rewrites keep their zero-question behavior, and `references/` format guides for six formats plus an SEO checklist.
+- Added `/pmm-toolkit:marketing-content`; `homepage` now follows the landing-page guide.
+- Made the skill read `/foundation/brain.md`; the old `.agents/product-marketing-context.md` file still works as a fallback.
+- Rewrote the evals to the SPEC format: the original 3 tests plus 12 new ones.
+
+### Repo
+
+- Added Google Docs, Google Sheets and Google Slides servers, each wired only into the plugins whose skills use them: Gmail and Calendar in execution, go-to-market and toolkit; Drive, Docs, Sheets and Slides in the brain; Drive, Docs and Slides in positioning; Drive and Sheets in growth. `pmm-meta` has none.
+- Added `~~cloud storage` to the pmm-metrics and experiment-ideas connector blocks.
+
+## v1.1.0 — 2026-10-04
+
+### Connectors
+
+- Added per-plugin `.mcp.json` and `CONNECTORS.md` for six plugins, a root `CONNECTORS.md` category registry, and `docs/connect-your-tools.md`.
+- Added optional Connectors blocks and evals to the brain and fifteen skills.
+- Added structure Check 5 for connector files.
+- Wired Canva, Klaviyo, Supermetrics, Amplitude EU, Gmail, Google Calendar and Google Drive, and added Slack, Ahrefs and Notion to more plugins. Added `~~email marketing` and `~~marketing analytics` categories.
+- Added the Slack OAuth client settings that Slack's MCP server needs.
+- Added structure Check 6 that blocks credentials in `.mcp.json`, a "personal setup" section in the connect guide, `docs/make-it-yours.md`, and an "other tools that work" column in `CONNECTORS.md`.
+- Added consistent display names for all plugins in the marketplace listing.
+- Added a Connectors section to `CLAUDE.md` and `CONTRIBUTING.md`, a connect step in `QUICK-START.md`, and an access-requirements note in the README.
+- Fixed the dead reference to the retired proof-points skill name in message-house and reset the pmm-positioning version to match the CHANGELOG.
+
+## v1.0.0 — 2026-08-25
+
+### Repo-wide
+
+- Fixed broken JSON syntax in `.claude-plugin/marketplace.json` (unclosed array and object).
+- Registered `pmm-foundation` (the `product-marketing-context` folder) as an installable plugin in `marketplace.json` and root `plugin.json` for the first time.
+- Fixed the root `plugin.json`'s `skills` field from a single unparseable comma-joined string to a proper array; corrected the `pmm-meta` path.
+- Fixed `pmm-meta/.claude-plugin/plugin.json`'s `skills` path, which pointed at a nonexistent `skills/` subfolder.
+- Corrected `SKILL-SPEC.md`'s example skill lists to only cite skills that exist in this repo.
+- Added `CLAUDE.md` establishing one version number across the entire repo, synced across every manifest.
+
+### product-marketing-context (pmm-foundation)
+
+- Added `.claude-plugin/plugin.json`, `README.md`, and `commands/build-brain.md` — this folder is now a proper installable plugin, not a bare skill folder.
+- Removed the redundant `.skill/skill.json` manifest.
+
+# Legacy releases
+
+These three releases use the old numbering from before the repo moved to 1.x. They stay published and tagged; the notes are rewritten in the format above. Skill names are shown without the retired prefix they carried at the time.
+
+## v2.5.0 — 2026-06-12
+
+### Core skills
+
+- Brought `positioning-messaging` (16/19 to 19/19), `stakeholder-maps` (18/19 to 19/19) and `experiment-doc` (17/19 to 19/19) to full `SKILL-SPEC` v2.0.0 compliance. `go-to-market-strategy` stayed at 18/19 and `pre-mortem` at 19/19; both gained evals.
+- Added to `positioning-messaging`: `version`, `metadata` and `last_updated` frontmatter; Trigger, Inputs, Pre-flight, Outputs, Verification, Do Not Use For and Changelog sections; 8 Operating Rules; and a Quality Gate of 8 binary checks. All 6 phases are unchanged.
+- Added to `experiment-doc`: `last_updated` (renamed from `updated`), `metadata.context` and `metadata.quality_gate`; Trigger, Inputs, Pre-flight (a knowledge check for false beliefs), Outputs, Verification and Changelog sections; and a Quality Gate of 9 binary checks. All four modes (Formulate, Diagnose, Pressure-Test, Score) are unchanged.
+- Added to `stakeholder-maps`: `last_updated`, a formal Trigger, an Inputs section (replacing the INTAKE block), Outputs, Verification and Do Not Use For sections. The five sections, the `/map`, `/sprint`, `/deep-dive`, `/update` and `/check` commands and the learning loop are unchanged.
+
+### Evals
+
+- Added 35 evals, 7 each for `go-to-market-strategy`, `positioning-messaging`, `stakeholder-maps`, `pre-mortem` and `experiment-doc`, covering happy paths, modes, refusals, brain-missing cases and the learning close.
+
+### Repo
+
+- Backward compatible: no change to methodology, commands, triggers or brain integration.
+- Added `DELIVERABLES-SUMMARY.md`, `REPO-UPDATE-GUIDE.md` and `FILES-INDEX.md`.
+- Credited April Dunford (positioning), Gary Klein (pre-mortem), Anthony W. Ulwick (Jobs to Be Done) and Paweł Huryn (learning loops and pattern capture).
+- Install: add the marketplace `stefanoskarakasis/Product-Marketing-Skills` in Claude, or run `claude plugin marketplace add stefanoskarakasis/Product-Marketing-Skills`.
+
+## v2.0.0 — 2026-05-23
+
+### product-marketing-context
+
+- Added **product-marketing-context**, a setup wizard and brain health audit in one skill. About 20 minutes of questions across six sections: Product Context (5), ICP (8), Alternatives and Positioning (6), Voice and Tone (5), Market Context (4), Proof Points Registry (3). It creates `/foundation/brain.md`, which other skills read.
+- Added a 0 to 100 brain health score with recommendations, and compound intelligence: skills save their outputs to brain Section 7 so the next skill builds on them.
+
+### pmm-positioning
+
+- Added `positioning-messaging`, based on April Dunford's framework, with five modes: BUILD (positioning statement and four-layer messaging doc), AUDIT (scored review and rewrite queue), FLETCH (six-slide internal deck), SALES-ENABLEMENT (persona cards and competitive playbook) and HOMEPAGE (copy with no placeholders). It reads Product, ICP, Alternatives and Market, and saves positioning to Section 7.
+
+### pmm-toolkit
+
+- Added four skills: `writing-assistant` (rewrites copy to brand voice), `pmm-resume`, `privacy-policy` (jurisdiction-aware) and `gaccs-brief`. `writing-assistant` and `gaccs-brief` optionally read the brain; the other two are standalone.
+
+### Repo
+
+- Shipped 3 plugins and 6 skills, with 50+ input validation rules and 15+ evals.
+- Replaced 7 separate foundation skills with one brain. v1.x users export their data, run the brain setup, paste the data in and delete the old skills; every v1.x field maps to a v2.0 brain section.
+- Install in Claude.ai from the release ZIPs (start with `product-marketing-context.zip`), or in Claude Code with `claude plugin marketplace add stefanoskarakasis/Product-Marketing-Skills`.
+- Planned next: execution skills (PRDs, OKRs, retros, pre-mortems, stakeholder maps), value propositions and battlecards, then a visual brain editor, multi-brain support, MCP integrations and brain version control.
+- Credited April Dunford, Emily Kramer (MKT1) and Paweł Huryn (self-improving skills). MIT licensed.
+
+## v2.1.0 — 2026-05-22
+
+### product-marketing-context
+
+- Released **product-marketing-context** v2.1.0: a setup wizard with validation (31 onboarding questions, 15 to 20 minutes), a brain health audit scored 0 to 100, compound intelligence where skills write back to the brain, and 15 evals.
+- Install in Claude.ai by uploading `product-marketing-context.zip` under Settings, Skills, then saying "Set up my PMM brain".

@@ -2,7 +2,7 @@
 name: comparison-page-brief.eval
 version: 1.0.0
 description: >
-  Eval suite for comparison-page-brief. Tests: the route check, the named-rival floor, the three-lens stack-up, crowded claims, the do-not-build gate, contradicted beliefs, the n of 2 rule, the alternatives list template, the switch page, public versus sales-sent renders, fake rating schema, injection in rival pages, Quick-Brain, forbidden claims, refresh, and the Learning Close. 16 test cases.
+  Eval suite for comparison-page-brief. Tests: the route check, the named-rival floor, the three-lens stack-up, crowded claims, the do-not-build gate, contradicted beliefs, the n of 2 rule, the alternatives list template, the switch page, public versus sales-sent renders, fake rating schema, injection in rival pages, Quick-Brain, forbidden claims, refresh, the layout target, and the Learning Close. 18 test cases.
 ---
 
 # Comparison-Page-Brief: Eval Suite
@@ -266,3 +266,40 @@ Any completed run.
 
 **Pass condition:**
 Row present.
+
+---
+
+## Test Case 17: Claude Design is the default layout target
+
+**Input:**
+Build our vs page against Northgate AP. The session offers a Design artifact type.
+
+**Expected output includes:**
+- The layout built as one fluid Claude Design wireframe after the Quality Gate passes
+- A ledger id on every table cell and a `[PASTE]` marker on every unsourced value
+- A note that the artifact link is private until shared
+
+**Expected output excludes:**
+- A wireframe built before the Gate
+- Invented stats, logos or quotes in any block
+
+**Pass condition:**
+The wireframe is delivered every run as a team-ready output (not on request only). The target is Claude Design without an extra question, and the wireframe follows the page template block order.
+
+---
+
+## Test Case 18: A held page stays held in every layout target
+
+**Input:**
+Vs page for Paystream. The floor fails. Build it as a Figma file.
+
+**Expected output includes:**
+- The public render held and the reason stated
+- A text spec labelled as untested against a live Figma connector, or a labelled wireframe with the held status strip
+
+**Expected output excludes:**
+- Unsourced values in the layout
+- A claim that a Figma file was created
+
+**Pass condition:**
+The target changes the container only; no held claim is built.

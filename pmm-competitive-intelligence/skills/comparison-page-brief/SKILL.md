@@ -27,8 +27,8 @@ A buyer who searches "you vs rival" or "alternatives to rival" is already choosi
 
 ## Inputs
 
-- **Args:** Page type (`vs`, `alt-single`, `alt-list`, `switch`), the named rival, `purpose` (`seo` default, `sales-sent`), optional pasted pages, a ratings export or a keyword list. Missing type: ask once.
-- **Defaults:** Reader view VP Product Marketing. Public render uses only S1/S2 claims inside expiry. An alternatives list has 7 entries (max 10). Delivery: a Doc or one-column HTML plus the files in Outputs. A skipped answer is stated as an assumption.
+- **Args:** Page type (`vs`, `alt-single`, `alt-list`, `switch`), the named rival, `purpose` (`seo` default, `sales-sent`), `render` (`design`, `doc`, `html`, `figma`), optional pasted pages, a ratings export or a keyword list. Missing type: ask once.
+- **Defaults:** Reader view VP Product Marketing. Public render uses only S1/S2 claims inside expiry. An alternatives list has 7 entries (max 10). Layout target: Claude Design when the session offers it, else one-column HTML (Step 7), plus the files in Outputs. A skipped answer is stated as an assumption.
 - **Context keys:** `/foundation/brain.md`, `/foundation/evidence.md` and `gaps.md`, `/context/competitor-profiles/`, deep-dives, `/context/battlecards/`, `_outcomes.md`, `/context/monitoring/`, `meta-patterns.md`, `skill-sessions.md`, `~~` connectors in `references/connectors.md` (if absent, paste). Own store: `/context/comparisons/`.
   - **Brain contract:** Reads Sections 1 to 8. Writes none; appends only a `skipped` block to `/foundation/gaps.md`. Field detail and Quick-Brain fallback: `references/field-load.md`.
 
@@ -65,19 +65,23 @@ Use the template for the type in `references/page-templates.md`: one-line verdic
 
 Run the lint rules in `references/claims-ledger.md`: every statistic supports its claim, asterisks resolve to footnotes, no unsourced Yes or No cell, testimonial heading matches attribution, owner and update date shown, one count source across pages. Fix what evidence allows; cut or hold what cannot pass. Check for private data: a sales-only claim never reaches the public render.
 
-### Step 7: Gate
+### Step 7: Choose the Layout Target
+
+Settle where the page is built, following `references/design-handoff.md`. In Claude with a Design artifact type available, the default is **Claude Design**: one fluid wireframe artboard that follows the page template, with a ledger id on every table cell and a `[PASTE]` marker on every unsourced value, which the team can edit and share. Otherwise one-column HTML or a Doc. A `figma` target gets a text spec. The target changes the container, never the claims: a held public render stays held, and nothing the Gate cuts is built. Ask once if the user has not said and more than one target is possible.
+
+### Step 8: Gate
 
 Run the Quality Gate. Show the score and failed rows only.
 
-### Step 8: Deliver and Save
+### Step 9: Deliver and Save
 
-Deliver the page and the supporting files in Outputs. Save the run to `/context/comparisons/<slug>-YYYY-MM-DD.md` (never overwrite). If files cannot be written, show the ledger and say nothing was saved. Offer the Figma handoff from `references/figma-spec.md` when asked. Nothing is published, posted or sent.
+Deliver the page and the supporting files in Outputs. Save the run to `/context/comparisons/<slug>-YYYY-MM-DD.md` (never overwrite). If files cannot be written, show the ledger and say nothing was saved. Build the layout from Step 7 after the Gate passes, every run: it is a deliverable, not an option. A Design artifact is private until the user shares it from its Share menu; say so, and say others cannot open the link until then. Nothing is published, posted or sent.
 
-### Step 9: Hand Off
+### Step 10: Hand Off
 
 Offer, never perform, the next move from `product-marketing-context/.claude-plugin/next-skill-map.md` ("After comparison-page-brief"). Name only skills listed there. Typical: a battlecard update when the stack-up changed a LOSE row, `media-monitoring` to watch the rival's own "vs us" page, `proof-points` for a claim that needs a customer source.
 
-### Step 10: Learning Close
+### Step 11: Learning Close
 
 End every completed session by appending one row to `/context/skill-sessions.md` (create it with a header if absent):
 
@@ -93,8 +97,8 @@ Write a `pattern` only for what surprised or changed: "a brain belief about win 
 
 ## Outputs
 
-- **Files written:** `/context/comparisons/<slug>-YYYY-MM-DD.md` containing the page, `claims-ledger.md`, `stack-up.md`, `keyword-targets.md`, `page.md` (machine twin), `publish-checklist.md`, `schema.json`, `positioning-angle.md`, and `figma-spec.md` when requested. `/context/skill-sessions.md` (one row). Possibly one `skipped` block in `/foundation/gaps.md`. Never the brain.
-- **Chat output format:** the Field Map and verdict first, then the page, the gate score with failed rows only, and one hand-off line.
+- **Files written:** `/context/comparisons/<slug>-YYYY-MM-DD.md` containing the page, `claims-ledger.md`, `stack-up.md`, `keyword-targets.md`, `page.md` (machine twin), `publish-checklist.md`, `schema.json`, `positioning-angle.md`, and **the layout the team builds on**: an editable Claude Design wireframe of the page (a private link the user can share from the artifact's Share menu), or one-column HTML, a Doc, or `figma-spec.md`, as chosen in Step 7. A held page still gets its layout, labelled held. `/context/skill-sessions.md` (one row). Possibly one `skipped` block in `/foundation/gaps.md`. Never the brain.
+- **Chat output format:** the Field Map and verdict first, then the page, a one-line pointer to the layout (the wireframe card or file) with how to share it, the gate score with failed rows only, and one hand-off line.
 
 ```markdown
 # [Page title]
@@ -131,5 +135,6 @@ Runs after the page is built. Surface failures before delivering, never after.
 | Constraints | Section 6 `forbidden_claims` and Section 8 `prohibited` checked, result stated |
 | Audience split | No sales-only claim in the public render |
 | Dated | Owner, update date and next review date on the page |
+| Layout delivered | A layout in the chosen target exists, carries a ledger id per table cell and `[PASTE]` for unsourced values, and nothing the Gate cut |
 | Brain untouched | No write to `/foundation/brain.md` |
 | Learning Close ran | `/context/skill-sessions.md` has a new row for this session |

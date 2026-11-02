@@ -30,7 +30,11 @@ If the rival's pricing and at least five features cannot be sourced, it holds th
 
 ## What you get
 
-A page, plus a claims ledger (every row with a source, a date and an expiry), a stack-up, keyword targets, a plain-text twin of the page, a publish checklist, schema for facts that are on the page, and optionally a Figma text spec. Saved to `/context/comparisons/`.
+A page, plus a claims ledger (every row with a source, a date and an expiry), a stack-up, keyword targets, a plain-text twin of the page, a publish checklist and schema for facts that are on the page. Saved to `/context/comparisons/`.
+
+## Where the page is built
+
+Every run ends with a layout your team can open and build on. The skill asks once where to build it, unless you say. In Claude with a Design artifact available the default is **Claude Design**: a private, editable wireframe artboard with the ledger id on every table cell and a `[PASTE]` marker where the evidence could not fill a value. Other options: a Doc or one-column HTML, or a Figma text spec (not tested against a live Figma connector). The target never changes the claims, and a page held from public stays held in every target. The wireframe link is private until you share it.
 
 ## Keep it fresh
 

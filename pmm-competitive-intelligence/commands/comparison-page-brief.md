@@ -32,5 +32,5 @@ and up to five roster rivals, and states the cost of the run before it
 reads anything. It builds a Field Map with a coverage score and checks the
 named-rival floor, judges the stack-up in three lenses (head-to-head, field
 position, switching reality), builds the claims ledger, writes the page from
-the template for its type, lints it, runs an 11-check gate and saves the
-records. Ask for the Figma handoff and it adds a text spec.
+the template for its type, lints it, runs an 12-check gate, builds the layout and saves the
+records. It then asks where the page is built: Claude Design (a private, editable wireframe, the default in Claude), a Doc or HTML, or a Figma text spec.

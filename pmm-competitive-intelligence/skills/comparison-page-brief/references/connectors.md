@@ -9,4 +9,4 @@ Read-only. Without them, paste the material.
 | ~~call recordings | buyer language, why leaving |
 | ~~review platforms | ratings (S3), pasted if terms restrict automation |
 | ~~cloud storage | Doc delivery after first confirmation |
-| ~~design tool | Figma handoff |
+| ~~design tool | Claude Design wireframe (default in Claude) or Figma handoff |

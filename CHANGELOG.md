@@ -6,7 +6,7 @@
 
 - New skill `comparison-page-brief` in `pmm-competitive-intelligence`, with the `/pmm-competitive-intelligence:comparison-page-brief` command: builds a "you vs a named rival" page, a "best alternatives to X" page (one rival or a ranked list) or a switch page. It first loads the brain and every competitor record, works out how you stack up in three lenses (head-to-head, field position, switching reality), and writes only what a claims ledger can source. One dataset renders the public page and the sales-sent version.
 - It holds or downgrades the page when the named rival's pricing and features cannot be sourced, says where you lose, and never adds a rating schema without a real rating. Saves to `/context/comparisons/`; never writes the brain.
-- Quality Gate of 11 checks. Evals: 16 test cases. Figma handoff is a text spec, not tested against a live Figma connector.
+- Quality Gate of 12 checks; the layout (a Claude Design wireframe in Claude) is a standard output the team builds on. New Step 7 (Choose the Layout Target): in Claude with a Design artifact available the layout defaults to a private, editable Claude Design wireframe; otherwise one-column HTML or a Doc; Figma is a text spec, not tested against a live Figma connector. Evals: 18 test cases.
 - `competitive-battlecard` (1.4.1), `competitive-profile` (1.4.1) and `competitor-deep-dive` (1.3.1) name the new skill in their "Not for" clauses. `next-skill-map.md`, the READMEs, `SKILL-SPEC.md`, `docs/routing-checks.md` (26 prompts) and the manifest descriptions list it. New `docs/comparison-page-brief.md`.
 - Counts: 43 skills in 9 plugins.
 

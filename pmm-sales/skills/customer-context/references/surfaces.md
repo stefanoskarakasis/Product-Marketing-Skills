@@ -31,7 +31,7 @@ Decide from the session, never by asking.
 Design target. Assume the reader is a seller or CSM, on a phone, between calls.
 
 - **Who may be in the room.** Check the channel before reading anything internal. If it has members from outside your company (a shared channel with the customer, a partner), post nothing from the CRM, calls, chat, support or usage. Say once: "This brief is internal. I can post it in an internal channel or a DM." Do not name what the brief would have said.
-- **Shape.** The thread reply in `brief-format.md`: the answer first, up to three flags, sources in words, one note line. About 150 words. Plain text. No tables, no headers, no HTML. Slack does not render tables reliably.
+- **Shape.** The thread reply template in `brief-format.md`, copied as written: the answer first, up to three flags, a next move, sources in words, one note line. About 150 words. Bold labels with single asterisks and the emoji from the key; no tables, no `#` headers, no HTML. Slack does not render tables or markdown headers reliably.
 - **No format question.** Never ask Doc or HTML in Slack. The thread reply is the default; the full brief is a Google Doc link if `~~cloud storage` is connected, otherwise it is posted as up to three short follow-up messages in the same thread, one section each.
 - **One clarifying message at most,** and only if the answer would change the reply (two customers with the same name, "my customers" with no owner match). Otherwise state the assumption in the Note line and go.
 - **Thread context.** Read the earlier messages in the thread before answering. A customer named earlier in the thread is the customer.
@@ -69,8 +69,8 @@ Some surfaces cannot write files. Do not claim a save. Say in one line what was 
 
 | Format | When | Notes |
 |---|---|---|
-| Thread reply | Slack, always | Plain text, about 150 words |
+| Thread reply | Slack, always | Template in `brief-format.md`: bold labels and emoji, no tables or headers, about 150 words |
 | Google Doc | Full brief on request, or Cowork | One column, tables stacked; customer context in its own block above the sections |
-| Chat reply | Claude chat, Claude Code | Markdown in the shape of `brief-format.md` |
+| Chat reply | Claude chat, Claude Code | Markdown with `#` and `##` headers and the emoji key, exactly as in `brief-format.md` |
 | HTML | Only if the user asks for it | One column |
-| Plain text note | Pasting into a CRM or email | No markdown; same order |
+| Plain text note | Pasting into a CRM or email | No markdown and no emoji; same order and labels |

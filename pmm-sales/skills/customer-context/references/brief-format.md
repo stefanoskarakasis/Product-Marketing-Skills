@@ -1,43 +1,106 @@
 # Brief Format
 
-Read at Step 10.
+Read at Step 10. This file is the format standard. Copy the templates; do not invent sections, reorder them or add emoji of your own, so every reader meets the same shape on every run.
 
-## Full brief (chat or Google Doc)
+## Emoji key
 
-Order never changes, so readers learn one shape.
+Use only these, one per label, never inside a body sentence.
 
-1. **Header:** account, owner, date, mode (first brief or delta since [date]), sources used, sources not queried.
-2. **Current state:** two or three sentences. What is happening, what is at stake, the next date that matters.
-3. **Flags:** up to five, each with source in words, date and one link.
-4. **Changed since [date]:** only on a delta. New or re-read lines; everything else is "unchanged".
-5. **CRM:** owner, profile, renewal and open opps (stage, amount, close date, next step), recent closed, last activity.
-6. **Contacts:** name, role, last touch, two-way thread yes or no.
-7. **Correspondence:** five most recent, one line each.
-8. **Calls and docs:** latest call and key point; account plan, success plan, contract, with last modified and whether a desired outcome is written.
-9. **Chat, support, usage:** themes and counts.
-10. **Brain check:** ICP, competitors, objections, claims we may use.
-11. **Proposed for other skills:** exact text and receiver, or "none proposed".
+| Emoji | Where |
+|---|---|
+| 📋 | Brief title |
+| 📅 | Current state |
+| 🚩 | A flag |
+| 🆕 | Changed since, and new lines in a delta |
+| 🗂️ | CRM |
+| 👤 | Contacts |
+| ✉️ | Correspondence |
+| 📞 | Calls and docs |
+| 💬 | Chat, support, usage |
+| 🧠 | Brain check |
+| 🔁 | Proposed for other skills |
+| ✅ | Gate, a cleared flag, a yes in the contacts table |
+| ❌ | A no in the contacts table |
+| ⚠️ | Stale, not queried, conflicting or not fired. Never decoration |
+| ➡️ | Next move (Slack) |
+| 📎 | Sources (Slack) |
+| 📄 | Full brief link (Slack) |
 
-A section with no data is named and left short ("Chat: not queried"), never padded.
+## Full brief (chat, Cowork, Claude Code or a Google Doc)
 
-## Slack reply (the default in Slack; an `ask` or a brief)
+Order never changes. Use real headers: one `#` title, `##` for each section. A section with no data is named and left short ("Support: not queried"), never padded.
 
 ```
-[Answer or current state in one or two plain sentences.]
-- [Flag 1: source, date]
-- [Flag 2: source, date]
-- [Next move]
-Sources: [source, date] · [source, date]
-Note: [only when stale, not queried, or conflicting]
-Full brief: [Google Doc link]
+# 📋 Customer context: [Customer]
+
+**Date:** [date] · **Mode:** [first brief | delta since date] · **Owner:** [name] · **Last touch:** [date, who]
+**Sources used:** [list]
+**Not queried:** [list]
+
+## 📅 Current state
+[Two or three sentences: what is happening, what is at stake, the next date that matters.]
+
+## 🚩 Flags ([n] of max 5)
+1. **[Flag]:** [what, source in words, date]. `found | stated | validated`
+⚠️ **Not fired:** [flag, and why] (only when it helps)
+
+## 🆕 Changed since [date]
+[New or re-read lines only; "unchanged" for the rest | first brief, nothing to compare]
+
+## 🗂️ CRM
+*[tool, date]*
+[Owner, profile, renewal opp (stage, amount, close date, next step), last closed, last activity]
+
+## 👤 Contacts
+[Table: role, last touch, two-way thread ✅ or ❌]
+
+## ✉️ Correspondence
+*[5 most recent, one line each, date first]*
+
+## 📞 Calls and docs
+[Latest call and key point; account plan, success plan, contract: last modified, desired outcome written or not]
+
+## 💬 Chat, support, usage
+[Themes and counts; "not queried" where it applies]
+
+## 🧠 Brain check
+[ICP, competitors, objections, claims we may use]
+
+## 🔁 Proposed for other skills
+[Exact text and receiver | none proposed, and the pattern count]
+
+## ✅ Gate
+**[n] of 12** · Not queried: [list]
 ```
 
-About 150 words or fewer. Plain text: no tables, no headers. The first line is the answer. If "Full brief" cannot be a link, post the sections as up to three follow-up messages in the thread. Rules for who may be in the room and what to leave out: `surfaces.md` section 2.
+In a Google Doc, tables stack in one column and the customer's renewal context sits in its own block above the sections.
+
+## Slack thread reply (the default in Slack)
+
+Slack does not render markdown headers or tables, so no `#` headers and no tables. Bold labels use Slack's single asterisks. About 150 words or fewer; the first line is the answer.
+
+```
+*[Customer]* [answer in one or two sentences: renewal, date, the one fact that matters].
+
+🚩 *[Flag]:* [what, source, date]
+🚩 *[Flag]:* [what, source, date]
+(at most three)
+
+➡️ *Next move:* [one sentence]
+
+📎 *Sources:* [source, date] · [source, date]
+⚠️ *Note:* [only when stale, not queried or conflicting]
+📄 *Full brief:* [Google Doc link]
+```
+
+**Delta reply** (a brief exists): the first line says what changed. Then `🆕 *Changed:* [line, source, date]`, `✅ *Cleared:* [flag]` where a flag no longer fires, and `🚩 *Unchanged:* [flag, source, date]`. The rest is as above.
+
+If "Full brief" cannot be a link, post the sections as up to three follow-up messages in the thread. Who may be in the room and what to leave out: `surfaces.md` section 2.
 
 ## Owner DM (offered when the user is not the owner)
 
 Two sentences in a conversational tone: the opp, one detail from the brief, one question ("Anything you need from me on it?"). Show the draft. Post it only if asked.
 
-## Doc delivery
+## Plain text note (to paste into a CRM or email)
 
-Google Doc on request, or the default in Cowork; HTML on request. Tables stack in one column. The customer's renewal context sits in its own block, apart from the title. Other surfaces: `surfaces.md`.
+Same order and labels, no markdown and no emoji.

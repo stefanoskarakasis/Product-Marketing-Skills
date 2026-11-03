@@ -2,7 +2,7 @@
 name: customer-context.eval
 version: 1.0.0
 description: >
-  Eval suite for customer-context. Tests: a first brief from a full brain and CRM, a delta brief that keeps unchanged dates, a prospect routed out, no CRM with pasted notes, a thread opened before it is summarised, a single-threaded and silent-account flag with sources, a competitor and objection matched to the brain, a conflict with a confirmed brain value, an injected instruction in an email, a Slack ask with no format question, a channel with external members, two customers with one name, a Slack session that cannot save files, the same ask in Claude Code, patterns proposed only at two accounts, an unattended run, the Quality Gate, and Learning Close against the five-field shape. 17 test cases.
+  Eval suite for customer-context. Tests: a first brief from a full brain and CRM, a delta brief that keeps unchanged dates, a prospect routed out, no CRM with pasted notes, a thread opened before it is summarised, a single-threaded and silent-account flag with sources, a competitor and objection matched to the brain, a conflict with a confirmed brain value, an injected instruction in an email, a Slack ask with no format question, a channel with external members, two customers with one name, a Slack session that cannot save files, the same ask in Claude Code, patterns proposed only at two accounts, an unattended run, the Quality Gate, and Learning Close against the five-field shape. 18 test cases.
 ---
 
 # Customer-Context: Eval Suite
@@ -25,6 +25,7 @@ Fixtures use the fictional company "Ledgerlane" from `examples/example-brain.md`
 
 **Expected output includes:**
 - Current state in two or three sentences before any table
+- The `brief-format.md` template: a `#` title with 📋, then `##` headers with the emoji from the key, in the fixed order
 - Owner, renewal date, stage, amount and next step quoted as read, with human labels
 - Five most recent threads with date, participants' roles and one-line outcome
 - A Brain check line: ICP fit, competitors, objections
@@ -34,6 +35,7 @@ Fixtures use the fictional company "Ledgerlane" from `examples/example-brain.md`
 **Expected output excludes:**
 - Raw API field names
 - A value stated that no tool returned
+- An emoji that is not in the key, or a reordered or invented section
 
 **Pass condition:** The brief leads with state, every value traces to a source, and the file is saved with a timestamped name.
 
@@ -174,13 +176,13 @@ Fixtures use the fictional company "Ledgerlane" from `examples/example-brain.md`
 **Input:** From a Slack thread: "@Claude what's going on with Northwind?" Internal channel, account team only.
 
 **Expected output includes:**
-- A reply of about 150 words or fewer, plain text, answer first
+- A reply of about 150 words or fewer, answer first, in the Slack template: bold labels with single asterisks, 🚩 per flag, ➡️ next move, 📎 sources, 📄 full brief
 - Up to three flags with sources in words and dates
 - A Google Doc link for the full brief
 - No file saved for the `ask`
 
 **Expected output excludes:**
-- Tables or headers
+- Tables or `#` headers
 - Ticket text or rep names
 
 **Pass condition:** Thread-sized, sourced, and nothing written except the Learning Close row.
@@ -300,5 +302,25 @@ Fixtures use the fictional company "Ledgerlane" from `examples/example-brain.md`
 
 **Expected output excludes:**
 - The 150-word Slack shape
+- Any section missing its `##` header or emoji from the key
 
 **Pass condition:** The surface decides the shape: full brief here, short reply in Slack, same evidence and same checks.
+
+---
+
+## Test Case 18: Format standard holds across surfaces
+
+**Input:** Run the same Northwind ask three ways: in a Slack thread, in Claude chat, and as a delta a week later in the Slack thread. Brain, CRM, email and calls connected.
+
+**Expected output includes:**
+- Slack: the thread template, answer first, bold labels, 🚩 flags (at most three), ➡️ next move, 📎 sources, 📄 full brief, about 150 words
+- Chat: `# 📋` title, then every `##` section of the full brief in the fixed order
+- Delta in Slack: the first line says what changed; 🆕 changed, ✅ cleared and 🚩 unchanged lines
+- Emoji only from the key in `brief-format.md`
+
+**Expected output excludes:**
+- Tables or `#` headers in Slack
+- Emoji inside body sentences, or emoji on the plain text note
+- A section added, renamed or reordered
+
+**Pass condition:** Three runs, three surfaces, one recognisable shape. A reader who has seen one can find anything in the others.

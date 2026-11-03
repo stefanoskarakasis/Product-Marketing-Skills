@@ -2,13 +2,21 @@
 
 ## Unreleased
 
+### New plugin: pmm-sales, with customer-context
+
+- New plugin `pmm-sales` and its first skill `customer-context`, with the `/pmm-sales:customer-context` command. It builds a dated brief on one existing customer from your CRM, email, calls, docs, chat, support and usage, checks it against your brain (ICP fit, competitors, objections, approved claims), flags up to five evidenced risks and, on a second run, shows only what changed.
+- Slack first: a seller tags Claude in a thread and gets a plain-text reply of about 150 words with sources in words and a Doc link for the full brief. The same skill gives the full brief in Claude chat, Cowork and Claude Code, and runs on a schedule. In a channel with outside members it posts nothing internal. Surface rules live in `references/surfaces.md`.
+- It never writes the brain. Observations go to `/context/customers/_patterns.md`; a pattern is proposed to `product-marketing-context`, `alternatives-map`, `competitive-profile`, `proof-points`, `customer-stories` or `interview-summary` only when two customers agree (a customer phrase or a stated outcome needs one), always as exact text for the PMM to confirm.
+- Quality Gate of 12 checks. Evals: 17 test cases. Connectors: `pmm-sales` is added to `connectors.json` for HubSpot, Slack, Gmail, Google Calendar, Gong, Wispr Flow, Granola, Google Drive, Google Docs, Notion, Atlassian, Intercom, Amplitude and Mixpanel; `.mcp.json` and the connector tables are generated.
+- `next-skill-map.md`, `SKILL-SPEC.md`, the root `README.md`, `QUICK-START.md` and `AGENTS.md` list the new plugin and skill.
+- Counts: 44 skills in 10 plugins.
+
 ### New skill: comparison-page-brief
 
 - New skill `comparison-page-brief` in `pmm-competitive-intelligence`, with the `/pmm-competitive-intelligence:comparison-page-brief` command: builds a "you vs a named rival" page, a "best alternatives to X" page (one rival or a ranked list) or a switch page. It first loads the brain and every competitor record, works out how you stack up in three lenses (head-to-head, field position, switching reality), and writes only what a claims ledger can source. One dataset renders the public page and the sales-sent version.
 - It holds or downgrades the page when the named rival's pricing and features cannot be sourced, says where you lose, and never adds a rating schema without a real rating. Saves to `/context/comparisons/`; never writes the brain.
 - Quality Gate of 12 checks; the layout (a Claude Design wireframe in Claude) is a standard output the team builds on. New Step 7 (Choose the Layout Target): in Claude with a Design artifact available the layout defaults to a private, editable Claude Design wireframe; otherwise one-column HTML or a Doc; Figma is a text spec, not tested against a live Figma connector. Fixes from the first test round: the Concessions gate row is not applicable when a page is held, and the hand-off step works when the brain plugin's next-skill map has no entry for this skill. Evals: 20 test cases.
 - `competitive-battlecard` (1.4.1), `competitive-profile` (1.4.1) and `competitor-deep-dive` (1.3.1) name the new skill in their "Not for" clauses. `next-skill-map.md`, the READMEs, `SKILL-SPEC.md`, `docs/routing-checks.md` (26 prompts) and the manifest descriptions list it. New `docs/comparison-page-brief.md`.
-- Counts: 43 skills in 9 plugins.
 
 ## v1.20.0 — 2026-11-01
 

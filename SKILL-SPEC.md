@@ -399,7 +399,7 @@ Load instruction for brain-dependent skills:
 - If a loaded section is marked 🔴 Placeholder: flag before proceeding.
 ````
 
-**Brain-dependent skills:** `alternatives-map`, `beachhead-segment`, `brand-voice`, `buyer-personas`, `competitive-battlecard`, `competitive-briefing`, `competitive-profile`, `comparison-page-brief`, `competitor-deep-dive`, `customer-stories`, `experiment-doc`, `experiment-ideas`, `gaccs-brief`, `go-to-market-strategy`, `gtm-motions`, `ideal-customer-profile`, `industry-newsletter`, `interview-summary`, `market-context`, `media-monitoring`, `message-house`, `meta-synthesis`, `pmm-metrics`, `pmm-okrs`, `positioning-ideas`, `positioning-messaging`, `prd`, `pre-mortem`, `prioritization-frameworks`, `product-marketing-context`, `product-messaging-playbook`, `proof-points`, `retro`, `signal-monitor`, `stakeholder-maps`, `value-prop-statements`, `workflow-orchestrator`, `writing-assistant`
+**Brain-dependent skills:** `alternatives-map`, `beachhead-segment`, `brand-voice`, `buyer-personas`, `competitive-battlecard`, `competitive-briefing`, `competitive-profile`, `comparison-page-brief`, `customer-context`, `competitor-deep-dive`, `customer-stories`, `experiment-doc`, `experiment-ideas`, `gaccs-brief`, `go-to-market-strategy`, `gtm-motions`, `ideal-customer-profile`, `industry-newsletter`, `interview-summary`, `market-context`, `media-monitoring`, `message-house`, `meta-synthesis`, `pmm-metrics`, `pmm-okrs`, `positioning-ideas`, `positioning-messaging`, `prd`, `pre-mortem`, `prioritization-frameworks`, `product-marketing-context`, `product-messaging-playbook`, `proof-points`, `retro`, `signal-monitor`, `stakeholder-maps`, `value-prop-statements`, `workflow-orchestrator`, `writing-assistant`
 
 ### Context-Agnostic (`context-agnostic`)
 
@@ -501,7 +501,7 @@ instead of a fabricated one. **Found and fixed across 6 eval files on
 | Tier | Description | Examples | Requirements |
 |---|---|---|---|
 | **T1 — Strategic** | High-stakes, executive or customer-facing output | pre-mortem, positioning-messaging, go-to-market-strategy | Core sections + quality gate + Learning Close |
-| **T2 — Execution** | Day-to-day PMM work, high frequency, medium stakes | experiment-doc, prd, retro, stakeholder-maps, gaccs-brief, competitive-battlecard, competitive-briefing, competitive-profile, competitor-deep-dive, industry-newsletter, media-monitoring, comparison-page-brief, pmm-okrs, beachhead-segment, buyer-personas | Core sections + quality gate + Learning Close |
+| **T2 — Execution** | Day-to-day PMM work, high frequency, medium stakes | experiment-doc, prd, retro, stakeholder-maps, gaccs-brief, competitive-battlecard, competitive-briefing, competitive-profile, competitor-deep-dive, industry-newsletter, media-monitoring, comparison-page-brief, customer-context, pmm-okrs, beachhead-segment, buyer-personas | Core sections + quality gate + Learning Close |
 | **T3 — Utility** | Tactical outputs, lower stakes | writing-assistant, pmm-resume, privacy-policy, interview-summary, prioritization-frameworks | Core sections. Quality gate optional. Learning Close optional. |
 | **T4 — Meta** | Skills that operate on other skills | meta-review, meta-learn, meta-verify, meta-synthesis, workflow-orchestrator, product-marketing-context | Custom per meta skill. Core sections still required. |
 
@@ -524,6 +524,8 @@ and Quality Gate sections) and is added to the T2 row above as of this update.
 `media-monitoring` was built on 2026-10-29 as the sixth skill of that plugin (`quality_gate: true`, read-only on the brain, with its own append-only store in `/context/monitoring/`) and is added to the brain-dependent list and the T2 row the same way.
 
 `comparison-page-brief` was built on 2026-11-02 as the seventh skill of that plugin (`quality_gate: true`, read-only on the brain, with its own append-only store in `/context/comparisons/`) and is added to the brain-dependent list and the T2 row the same way.
+
+`customer-context` was built on 2026-11-03 as the first skill of the `pmm-sales` plugin (`quality_gate: true`, read-only on the brain, with its own append-only store in `/context/customers/`) and is added to the brain-dependent list and the T2 row the same way.
 
 **Note on enforcement (2026-08-24):** This table's "All 7 sections still
 required" language for every tier, including T3 and T4, was accurate but

@@ -9,7 +9,8 @@ a lookup table. Update this file, not the individual skills, when sequencing cha
 - alternatives-map — if Section 3 lists fewer than three named alternatives or no status quo
 - positioning-messaging — if Sections 1 to 6 are solid and there is no positioning statement yet
 - pmm-okrs — if Section 7 (Strategy) is filled and this quarter's goals need turning into OKRs
-**Prompt to surface:** "Next, pick one: tighten your proof points (proof-points), map your alternatives (alternatives-map), build positioning (positioning-messaging), or turn this quarter's goals into OKRs (pmm-okrs)?"
+- prospect-research — if Sections 2 and 3 are solid and you want to try the brain on a real company before a first touch
+**Prompt to surface:** "Next, pick one: tighten your proof points (proof-points), map your alternatives (alternatives-map), build positioning (positioning-messaging), turn this quarter's goals into OKRs (pmm-okrs), or test the brain on a real prospect (prospect-research)?"
 
 ## After ideal-customer-profile (brain Section 2 deepened)
 **Next:** beachhead-segment
@@ -214,6 +215,28 @@ named competitor (competitive-battlecard)?"
 - interview-summary — if this was a churn or near-churn call worth a structured debrief
 - product-marketing-context — to confirm a proposed objection or customer phrase into the brain
 **Prompt to surface:** "Next, pick one: build the rival card (competitive-battlecard), log the intel (competitive-profile), start a story (customer-stories), register the outcome (proof-points), debrief a churn call (interview-summary), or confirm what this customer taught the brain (product-marketing-context)?"
+
+## After prospect-research (prospect brief delivered or answered in Slack)
+**Next options (not a single path — ask which applies):**
+- competitive-battlecard — if an incumbent or rival tool was found and the seller needs the card for the first conversation
+- writing-assistant — if the seller wants the hypothesis and first question turned into a message in their own voice
+- buyer-personas — if a deep brief showed a committee worth mapping before outreach
+- stakeholder-maps — if several stakeholders need a plan, not one message
+- experiment-doc — if the hypothesis is worth testing on about ten accounts before scaling
+- competitive-profile — if a competitor was seen at this prospect and should be logged for the PMM to approve
+- product-marketing-context — to confirm a proposed trigger into the brain
+- sales-research-digest — for the PMM, weekly, to see how sellers use these briefs and what to change
+**Prompt to surface:** "Next, pick one: build the rival card (competitive-battlecard), turn this into a message (writing-assistant), map the committee (buyer-personas), plan the stakeholders (stakeholder-maps), test the hypothesis on ten accounts (experiment-doc), log the rival (competitive-profile), confirm a trigger for the brain (product-marketing-context), or see how the team uses these briefs (sales-research-digest)?"
+
+## After sales-research-digest (weekly sales report delivered, file saved)
+**Next options (not a single path — ask which applies):**
+- product-marketing-context — to confirm a proposed change to who you sell to or your list of rivals
+- alternatives-map — if a tool at three or more companies is missing from your list of rivals
+- competitive-profile — if a known competitor appeared at three or more companies
+- ideal-customer-profile — if companies keep falling outside the size you usually sell to
+- prospect-research — if the report showed a red company worth a second look
+- meta-synthesis — to see the same week across every skill, not only the sales ones
+**Prompt to surface:** "Next, pick one: confirm a change for the brain (product-marketing-context), add a missing tool (alternatives-map), log a rival (competitive-profile), check who you sell to (ideal-customer-profile), look again at a red company (prospect-research), or see all skills this week (meta-synthesis)?"
 
 ## After media-monitoring (brief delivered, records saved)
 **Next options (not a single path — ask which applies):**

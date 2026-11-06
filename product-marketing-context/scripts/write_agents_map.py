@@ -49,7 +49,9 @@ RECORDS = [
     ("context/monitoring", "weekly competitor sweep records"),
     ("context/signals", "ranked market signals"),
     ("context/industry-newsletter", "newsletter issues and call ledger"),
-    ("context/meta-patterns.md", "guardrails every skill follows"),
+    ("context/meta-patterns.md", "guardrails every skill follows, and the date of the last weekly sweep"),
+    ("context/learning-sources.md", "the ledgers the weekly sweep reads"),
+    ("context/promotion-queue.md", "proposed guardrails and brain edits waiting for a yes"),
 ]
 
 

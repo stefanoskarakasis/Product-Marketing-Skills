@@ -1,17 +1,19 @@
 ---
 name: meta-synthesis
-version: 3.2.0
+version: 3.3.0
 description: >
   Reads /context/skill-sessions.md to detect patterns that repeat across 2+ sessions,
   proposes new guardrails for /context/meta-patterns.md, and proposes brain updates for
-  confirmed learnings. Run on demand or roughly weekly, not as a background job. Trigger
-  on: "run meta-synthesis", "what patterns are emerging", "detect cross-skill signals",
-  "update guardrails", "compound our learnings", "what should we remember".
+  confirmed learnings. Reads the ledgers other skills keep (outcomes, patterns, usage), not
+  only the session log, and in weekly mode shows adoption per skill and one promotion queue.
+  Trigger on: "run meta-synthesis", "what patterns are emerging", "detect cross-skill signals",
+  "update guardrails", "compound our learnings", "what should we remember", "run the weekly
+  learning sweep".
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-08-24
+last_updated: 2026-11-06
 ---
 
 # meta-synthesis — Skill
@@ -54,6 +56,7 @@ The skill runs in 5 steps:
 - **Defaults:** All sessions in `/context/skill-sessions.md` if no timeframe is given.
 - **Context keys:**
   - `/context/skill-sessions.md` — required. The session log every execution skill writes to.
+  - `/context/learning-sources.md` and the ledgers it lists — optional; `references/learning-sources.md` has the table, the counting rules and the thresholds. Weekly mode: `references/weekly.md`.
   - `/context/meta-patterns.md` — optional; loaded if it exists, treated as empty otherwise.
   - `/foundation/brain.md` — optional; Sections 1-6 loaded silently as baseline context for proposed updates.
   - **Brain contract:** Reads Sections 1-6. Writes: Section named in an approved brain-update proposal only, after explicit user approval (Step 3).
@@ -77,7 +80,7 @@ Load:
 - `/context/meta-patterns.md` — load if it exists; if missing, treat as empty (this run may create it).
 - `/foundation/brain.md` — load Sections 1-6 silently, as baseline context for any proposed updates.
 
-Ask, if not specified: "Look at all sessions, or a specific timeframe (e.g. last 30 days)?" Default: all sessions in the log.
+If the request is weekly, or a scheduled run, follow `references/weekly.md` for the rest of the run. Otherwise ask, if not specified: "Look at all sessions, or a specific timeframe (e.g. last 30 days)?" Default: all sessions in the log.
 
 ---
 
@@ -85,7 +88,7 @@ Ask, if not specified: "Look at all sessions, or a specific timeframe (e.g. last
 
 Read every entry in `/context/skill-sessions.md` for the chosen timeframe
 where `type: execution`. Skip `type: synthesis` entries — those are this
-skill's own prior output, not raw material for pattern detection. Group
+skill's own prior output, not raw material for pattern detection. Read the ledgers in `/context/learning-sources.md` the same way, counting by `references/learning-sources.md`. Group
 the remaining entries by two lenses:
 
 **Within one skill** — the same issue showing up 2+ times in sessions from the same skill (e.g. `retro` logging "champion alignment gap" in two different launches).
@@ -106,7 +109,7 @@ Classify each pattern by occurrence count:
 | 2 | Medium | Propose as a guardrail, flagged "watch" rather than "confirmed" |
 | 1 | Low | Note only — not enough evidence yet, don't propose anything |
 
-If a pattern points at something durable about the business rather than a process gap — a buying trigger, a market shift, a proof point that keeps landing — propose it as a brain update instead of a guardrail, naming the exact section (2 ICP, 5 Market Context, 6 Proof Points) it belongs in.
+If a pattern points at something durable about the business rather than a process gap — a buying trigger, a market shift, a proof point that keeps landing — propose it as a brain update instead of a guardrail, naming the exact section (2 ICP, 5 Market Context, 6 Proof Points) it belongs in. A brain edit needs 3 distinct accounts, deals or outcomes; fewer stays a note.
 
 ---
 
@@ -190,7 +193,7 @@ Close by telling the user plainly what changed: how many guardrails are now live
 
 ## Operating Rules
 
-- **Session log is the only input.** No integrations, no scheduler, no separate memory store — everything this skill needs, every other skill already writes to `/context/skill-sessions.md`.
+- **Inputs are files, never integrations.** The session log plus the ledgers listed in `/context/learning-sources.md`. No separate memory store. Scheduling is the user's choice and is offered at the end of a run (`references/weekly.md`).
 - **2+ occurrences minimum to propose anything.** A single session is an anecdote, not a pattern.
 - **Cross-skill patterns take priority.** They're invisible from inside any one skill, which is the entire reason this skill exists.
 - **Every write is gated.** No guardrail or brain update happens without explicit approval, shown as exact text before it's written.

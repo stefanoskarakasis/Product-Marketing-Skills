@@ -3,12 +3,12 @@ name: customer-context
 version: 1.0.0
 description: >
   Builds a dated 360-degree brief on one existing customer from your CRM, email, calls, docs, chat, support and usage, checks it against your brain (ICP fit, competitors, objections, approved claims) and shows what changed since the last brief. Built for Slack first: a seller tags Claude in a thread and gets a short sourced answer, and the same skill works in Claude chat, Cowork, Claude Code and scheduled runs.
-  Trigger on: "customer context for [customer]", "catch me up on [customer]", "what's going on with [customer]", "brief me on [customer] before the renewal", "what changed at [customer]", "is [customer] at risk". Not for a company that is not yet a customer, a competitor (competitive-profile), a competitor in a live deal (competitive-battlecard) or a customer story (customer-stories).
+  Trigger on: "customer context for [customer]", "catch me up on [customer]", "what's going on with [customer]", "brief me on [customer] before the renewal", "what changed at [customer]", "is [customer] at risk". Not for a company that is not yet a customer (prospect-research), a competitor (competitive-profile), a competitor in a live deal (competitive-battlecard) or a customer story (customer-stories).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-11-03
+last_updated: 2026-11-05
 ---
 
 # Customer Context
@@ -59,7 +59,7 @@ Decide where the answer will be read, from the session, never by asking: a Slack
 
 ### Step 3: Load Context
 
-Load the brain sections above, the newest earlier brief for this customer, and any saved card or profile naming a competitor in this account. Say what was found in one line ("Brain: 1 to 8, Section 2 stale. Last brief: 2026-09-30. Two cards."). An earlier brief makes this run a **delta**: unchanged lines keep their original date, and only what is past its window or touched by a new signal is re-read (`references/signals.md`).
+Load the brain sections above, the newest earlier brief for this customer, and any saved card or profile naming a competitor in this account. If this customer was a prospect, also read its newest `/context/prospects/<slug>-*.md` (the hypothesis and first question that opened the deal). Say what was found in one line ("Brain: 1 to 8, Section 2 stale. Last brief: 2026-09-30. Two cards."). An earlier brief makes this run a **delta**: unchanged lines keep their original date, and only what is past its window or touched by a new signal is re-read (`references/signals.md`).
 
 ### Step 4: Pull the CRM Record
 

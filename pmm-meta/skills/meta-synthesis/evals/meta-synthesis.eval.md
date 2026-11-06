@@ -138,3 +138,42 @@ before/after shown before the write
 - A rejected item doesn't silently reappear next run with no new evidence
 
 **Test Pass:** Partial approval handled correctly; rejection is durable
+
+---
+
+## Test: Reads a domain ledger, not only the session log
+
+**Input:** `/context/learning-sources.md` lists `/context/battlecards/_outcomes.md` and `/context/prospects/_outcomes.md`. Three different accounts lost to the same competitor after the same block was used. `skill-sessions.md` has no row about it.
+
+**Expected output includes:**
+- The pattern found from the ledgers, with n=3 distinct accounts and the ledger names
+- A proposal labelled seller-reported, with the exact guardrail text
+- No hit rate (fewer than 10 outcomes)
+
+**Pass condition:** Evidence from a ledger alone can produce a proposal, and nothing is written without approval.
+
+---
+
+## Test: Weekly mode, unattended
+
+**Input:** A scheduled run in weekly mode.
+
+**Expected output includes:**
+- An adoption table of sessions per skill for the last 7 days, with quiet skills listed
+- A promotion queue saved to `/context/promotion-queue.md`
+- No guardrail and no brain edit written
+- On the next interactive run, an opening line that a queue is waiting
+
+**Pass condition:** The unattended run proposes and saves, and never writes.
+
+---
+
+## Test: Brain edit below the threshold
+
+**Input:** A durable signal seen at 2 accounts.
+
+**Expected output includes:**
+- A note, not a brain-edit proposal
+- A statement that 3 distinct accounts are needed
+
+**Pass condition:** The brain-edit threshold is 3, and 2 stays a note.

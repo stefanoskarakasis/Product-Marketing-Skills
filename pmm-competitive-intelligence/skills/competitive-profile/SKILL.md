@@ -97,7 +97,7 @@ For each competitor in scope, fill the record in `references/profile-format.md`:
 
 ### Step 5: Intake From Signals, Battlecards and Deals (intake)
 
-Read `/context/signals/` (last four runs), `/context/battlecards/` records and open items, and `~~CRM` or `~~call recordings` evidence the user names. Turn each item into at most one proposed profile change, tagged with its source. Two rules protect the profile from noise: (a) one data point stays a `note`; a loss reason or objection is proposed as "where they win" only when it appears at least twice (n of 2 or more, with the window stated); (b) a signal that touches none of the five competitors is dropped and counted. A change that conflicts with a value you confirmed in the brain is shown with both values and the question, not applied.
+Read `/context/signals/` (last four runs), `/context/battlecards/` records and open items, `/context/prospects/` rows naming a competitor, and `~~CRM` or `~~call recordings` evidence the user names. Turn each item into at most one proposed profile change, tagged with its source. Two rules protect the profile from noise: (a) one data point stays a `note`; a loss reason or objection is proposed as "where they win" only when it appears at least twice (n of 2 or more, with the window stated); (b) a signal that touches none of the five competitors is dropped and counted. A change that conflicts with a value you confirmed in the brain is shown with both values and the question, not applied.
 
 **From a Slack thread:** draft one change, post it with the approver tagged, wait; only a listed approver (`_slack.md`) can approve; never write the brain from a thread. Rules and the 7-day expiry: `references/slack-mode.md` section 8.
 

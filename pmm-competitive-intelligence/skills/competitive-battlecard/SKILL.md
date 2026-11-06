@@ -61,7 +61,7 @@ Three request types. A **card** request runs Steps 1 to 11. A **pack** request (
 
 ### Step 1: Load Context
 
-Read the brain as above. Then read the most recent card in `/context/battlecards/` for this competitor (to show what changed), the newest `/context/deep-dives/<competitor-slug>-*.md` if one exists (its Card feed block and Brain check; each claim keeps its own tag and date, and a `re-check` line is shown as a question), and the last 30 days of `/context/signals/` for any opportunity that names this competitor (a move to weigh, tagged with its original confidence), and the rows for this competitor in `/context/battlecards/_outcomes.md` from the last 180 days (seller-reported, rank 5). Say in one line what was found, e.g. "Brain: Sections 1 to 8 present, Section 5 stale. Last card: 2026-08-14."
+Read the brain as above. Then read the most recent card in `/context/battlecards/` for this competitor (to show what changed), the newest `/context/deep-dives/<competitor-slug>-*.md` if one exists (its Card feed block and Brain check; each claim keeps its own tag and date, and a `re-check` line is shown as a question), and the last 30 days of `/context/signals/` for any opportunity that names this competitor (a move to weigh, tagged with its original confidence), and, at a prospecting stage, the newest `/context/prospects/<slug>-*.md` for the account, and the rows for this competitor in `/context/battlecards/_outcomes.md` from the last 180 days (seller-reported, rank 5). Say in one line what was found.
 
 ### Step 2: Establish the Deal
 

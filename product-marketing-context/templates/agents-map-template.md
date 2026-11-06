@@ -14,6 +14,10 @@ Read this first. Load only what the task needs, never everything.
 **Records** (read when the task is about them)
 {{RECORDS}}
 
+**Weekly learning**
+- If `context/meta-patterns.md` shows `last_synthesis` older than 7 days, or `never` and the session log has rows, tell the user once per chat: "The weekly learning sweep is due. Say: run the weekly learning sweep."
+- If `context/promotion-queue.md` exists, say a queue is waiting and ask for the answer.
+
 **Tools** (run these instead of working it out)
 - `python3 foundation/tools/brain_section.py 3` prints one brain section (use 1,4,6 for several).
 - `python3 foundation/tools/lint_draft.py <file>` checks a draft against forbidden phrases and unapproved numbers.

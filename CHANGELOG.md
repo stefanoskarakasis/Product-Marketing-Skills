@@ -2,6 +2,21 @@
 
 ## Unreleased
 
+### Compounding across the repo
+
+- `meta-synthesis` 3.3.0 reads the ledgers other skills keep (battlecard outcomes, customer and prospect patterns, usage, briefing calls), not only the session log. New `references/learning-sources.md` (registry, counting rules, thresholds: 2 sessions for a guardrail, 3 distinct accounts or outcomes for a brain edit) and `references/weekly.md` (adoption per skill, one promotion queue, unattended runs save the queue and write nothing). Three new eval cases.
+- Reminders for end users: the project map tells the user in chat when the weekly sweep is overdue or a queue is waiting; `meta-patterns.md` carries `last_synthesis`; the sweep offers a Friday scheduled task; `QUICK-START.md` gains step 5.
+
+### New skill: prospect-research
+
+- New skill `prospect-research` in the `pmm-sales` plugin, with the `/pmm-sales:prospect-research` command. It builds a dated brief on one company you do not sell to yet from web search, your CRM and any enrichment you connect, keeps only the signals that map to a pain in your brain, and ends in a hypothesis, an angle, a first question and a fallback. Fit and timing are scored separately. It never drafts or sends outreach.
+- Built on the six steps of Anthropic's `account-research` (Ground, Check the CRM first, Research, Fit, Relevance hooks, Output), reweighted so the hypothesis is the product and the company profile is the evidence.
+- EMEA mode: on automatically when your team or the account is in the EEA, the UK or Switzerland. It keeps person-level research off unless asked, withholds enrichment contact fields, requires a source and date on every person-fact, honours CRM opt-outs, notes that outreach rules differ by country and adds a retention date to every record. Stated as EMEA-aware defaults, not legal compliance (`references/emea.md`).
+- It never writes the brain. Observations go to `/context/prospects/_patterns.md` with the same columns as `customer-context`; outcomes logged with a `log:` line go to `_outcomes.md`. Patterns are proposed to ten other skills only at the n in `references/feed-forward.md`. v1 records outcomes but does not compute hit rates.
+- Quality Gate of 12 checks. Evals: 24 test cases. Brain read from Drive, Notion, GitHub or local (`brain_source`); thin-brain mode; a usage log with a seller handle; Salesforce reading guide; two-minute default brief and a 120-word Slack reply. Reads the brain and sibling skills (`references/learn-from.md`), with owner-aware next steps, a verdict-aware Slack reply and a connected-tools line. One fixed output format with an emoji key, full-brief headers and a Slack thread template. Connectors: `pmm-sales` gains Crunchbase and Exa in `connectors.json`; `.mcp.json` and the connector tables are generated.
+- `next-skill-map.md`, `SKILL-SPEC.md`, the root `README.md`, `AGENTS.md`, `docs/routing-checks.md` and `tests/test_triggers.py` list or check the new skill.
+- Counts: 45 skills in 10 plugins.
+
 ### New plugin: pmm-sales, with customer-context
 
 - New plugin `pmm-sales` and its first skill `customer-context`, with the `/pmm-sales:customer-context` command. It builds a dated brief on one existing customer from your CRM, email, calls, docs, chat, support and usage, checks it against your brain (ICP fit, competitors, objections, approved claims), flags up to five evidenced risks and, on a second run, shows only what changed.

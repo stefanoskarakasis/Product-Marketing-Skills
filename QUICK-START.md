@@ -39,7 +39,14 @@ automatically. Try:
 - "What tier is this launch?" 
 - "Run a retro on our last launch"
 
-## What You Can Do (44 skills across 10 plugins)
+## 5. Keep it learning (2 minutes a week)
+
+Every skill logs what it learns. Nothing improves until you read it back.
+
+- **Every Friday:** say "run the weekly learning sweep". You get one list of proposed guardrails and brain edits and a table of which skills were used. Approve what is right.
+- **Want a reminder?** At the end of the sweep, say yes to "Want this every Friday?" and a scheduled task does the counting for you. Your project map also tells you in chat when a sweep is overdue.
+
+## What You Can Do (45 skills across 10 plugins)
 
 See the [main README](./README.md) for the full skill list and what each
 plugin covers.

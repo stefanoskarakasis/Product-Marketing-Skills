@@ -58,6 +58,7 @@ Nine plugins, grouped by the work you do. Install `product-marketing-context` fi
 | Sweep my competitors' public pages every week and get the fixes drafted | `media-monitoring` | `pmm-competitive-intelligence` |
 | Publish a "us vs a rival" or "alternatives to a rival" page where every row is sourced | `comparison-page-brief` | `pmm-competitive-intelligence` |
 | Catch up on a customer before a call or renewal, in Slack or anywhere | `customer-context` | `pmm-sales` |
+| Find the reason, angle and first question for a company you do not sell to yet | `prospect-research` | `pmm-sales` |
 | Rank what changed around my product against my priorities | `signal-monitor` | `pmm-intelligence` |
 | Run the PMM job: OKRs, retros, pre-mortems | `pmm-okrs`, `retro`, `pre-mortem` | `pmm-execution` |
 | Generate and measure growth ideas | `experiment-ideas`, `pmm-metrics` | `pmm-growth` |
@@ -100,7 +101,7 @@ Ask in plain language, or call a skill directly.
 
 Direct call example: `/pmm-positioning:ideal-customer-profile`.
 
-## Available Skills (44 Total)
+## Available Skills (45 Total)
 
 | Skill | Plugin | Description |
 |-------|--------|-------------|
@@ -122,6 +123,7 @@ Direct call example: `/pmm-positioning:ideal-customer-profile`.
 | [media-monitoring](pmm-competitive-intelligence/skills/media-monitoring/) | pmm-competitive-intelligence | Scheduled sweep of your core competitors' public pages: a one-screen brief, the fix for each item drafted, and a line on what it could not see |
 | [comparison-page-brief](pmm-competitive-intelligence/skills/comparison-page-brief/) | pmm-competitive-intelligence | A vs, alternatives or switch page for a named rival, built from your brain and competitor records, with a sourced claims ledger behind every row |
 | [customer-context](pmm-sales/skills/customer-context/) | pmm-sales | Dated brief on one customer from your CRM, email, calls and chat, checked against your brain; Slack first |
+| [prospect-research](pmm-sales/skills/prospect-research/) | pmm-sales | Pain hypothesis, angle and first question for one prospect from web search, CRM and enrichment, checked against your brain; EMEA-aware; Slack first |
 | [industry-newsletter](pmm-competitive-intelligence/skills/industry-newsletter/) | pmm-competitive-intelligence | Weekly industry newsletter for GTM leaders in one locked layout: numbered competitor tables, industry changes, pricing watch and role-owned actions; formatted for Google Doc, email or Slack |
 | [gaccs-brief](pmm-toolkit/skills/gaccs-brief/) | pmm-toolkit | Campaign briefs (Goals, Audience, Creative, Channels, Stakeholders) |
 | [writing-assistant](pmm-toolkit/skills/writing-assistant/) | pmm-toolkit | Sharpen any written communication; draft blog posts, landing pages, press releases, case studies, newsletters, social posts |
@@ -216,7 +218,7 @@ Skills work without connectors. Connect tools and they pull candidate facts for 
 | pmm-intelligence | Slack, Gmail, Google Calendar, Semrush, Crunchbase, Exa, Ahrefs |
 | pmm-competitive-intelligence | Notion, Atlassian, HubSpot, Gong, Slack, Google Drive, Google Docs, Gmail, Google Calendar, Wispr Flow, Semrush, Crunchbase, Exa, Ahrefs, Granola, Dovetail, Zoom |
 | pmm-toolkit | Notion, Atlassian, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Canva, Gmail, Google Calendar |
-| pmm-sales | Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Gmail, Google Calendar, Amplitude (US and EU), Mixpanel (US and EU), Wispr Flow, Granola |
+| pmm-sales | Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Gmail, Google Calendar, Amplitude (US and EU), Mixpanel (US and EU), Wispr Flow, Crunchbase, Exa, Granola |
 | pmm-meta | None |
 <!-- generated:plugin-table end -->
 

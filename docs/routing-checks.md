@@ -40,8 +40,15 @@ Claude chooses a skill from its name and description. This page is how you check
 | 24 | Build our vs page against Northgate AP | `comparison-page-brief` |
 | 25 | Write a best alternatives to Paystream page | `comparison-page-brief` |
 | 26 | Competitive page | One question (page type and rival, or seller card). No build |
+| 27 | Research Acme before I reach out | `prospect-research` |
+| 28 | Is there a reason to contact Acme now? | `prospect-research` |
+| 29 | Catch me up on Acme (Acme is a customer in the CRM) | `customer-context` |
+| 30 | Catch me up on Acme (no CRM match) | One question: is this a customer? |
+| 31 | Research the CFO at Acme (Acme is in Germany) | `prospect-research`, then the EMEA role-only question |
+| 32 | What do we say against Acme on pricing? | `competitive-profile`, not `prospect-research` |
+| 33 | Run the weekly learning sweep | `meta-synthesis` (weekly mode) |
 
-**Pass:** 24 of 26, and prompts 12 to 14, 23 and 26 never build a leadership brief or a newsletter without asking.
+**Pass:** 30 of 33, and prompts 12 to 14, 23 and 26 never build a leadership brief or a newsletter without asking.
 
 ## If two sets of skills are installed
 

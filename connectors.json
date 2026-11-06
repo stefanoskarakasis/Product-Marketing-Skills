@@ -281,7 +281,7 @@
       "category": "company data",
       "type": "http",
       "url": "https://mcp.crunchbase.com",
-      "plugins": ["pmm-intelligence", "pmm-competitive-intelligence"],
+      "plugins": ["pmm-intelligence", "pmm-competitive-intelligence", "pmm-sales"],
       "signin": "Crunchbase login (OAuth)",
       "unlocks": "Funding, headcount and leadership changes for a named company",
       "if_fails": "Needs a Crunchbase MCP seat assigned by your workspace admin. In Claude Code the connector only loads when you are signed in with a Claude.ai subscription, not an API key"
@@ -292,7 +292,7 @@
       "category": "web research",
       "type": "http",
       "url": "https://mcp.exa.ai/mcp",
-      "plugins": ["pmm-intelligence", "pmm-competitive-intelligence"],
+      "plugins": ["pmm-intelligence", "pmm-competitive-intelligence", "pmm-sales"],
       "signin": "None needed: free and rate-limited",
       "unlocks": "Web search and page fetch for competitor and market signals",
       "if_fails": "Rate-limited without an account. For your own Exa usage, add `https://mcp.exa.ai/mcp?login` as a custom connector"
@@ -382,6 +382,12 @@
       "category": "cloud storage",
       "documents": "Official remote server at `https://mcp.box.com`. Your Box admin creates the client ID and secret in the Admin Console",
       "todo": "Ask your Box admin, then add it as a custom connector with those credentials kept in your environment"
+    },
+    {
+      "tool": "GitHub",
+      "category": "knowledge base",
+      "documents": "Reads a brain stored as a file in a repository. This repo wires no GitHub server; use the one your organization approves",
+      "todo": "Ask your admin which GitHub MCP server is approved, add it as a custom connector, then set brain_source: github in the prospect-research config"
     },
     {
       "tool": "Zendesk",

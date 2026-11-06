@@ -33,6 +33,9 @@ FAMILY = {
 }
 FAMILY_WIDE = FAMILY | {"alternatives-map", "workflow-orchestrator"}
 
+# the pmm-sales pair: one routes customers, the other routes prospects
+SALES = {"customer-context", "prospect-research"}
+
 # phrases no skill may claim as a trigger: they fit several skills equally
 GENERIC = {
     "competitive update", "competitor update", "competitive brief",
@@ -145,6 +148,22 @@ class TestTriggerCollisions(unittest.TestCase):
             if not m or "Route check" not in m.group(1):
                 bad.append(name)
         self.assertEqual(bad, [], "Pre-flight must open with a Route check bullet")
+
+    def test_sales_pair_found(self):
+        for name in SALES:
+            self.assertIn(name, self.skills, f"{name} not found")
+
+    def test_sales_pair_name_each_other_in_not_for(self):
+        for name, other in (("customer-context", "prospect-research"), ("prospect-research", "customer-context")):
+            m = re.search(r"Not for(.*)$", self.skills[name]["desc"])
+            self.assertIsNotNone(m, f"{name} description needs a 'Not for' clause")
+            self.assertIn(other, m.group(1), f"{name} 'Not for' clause should name {other}")
+
+    def test_sales_pair_route_check_and_limit(self):
+        for name in SALES:
+            self.assertLessEqual(len(self.skills[name]["desc"]), 1024, f"{name} description over 1024 characters")
+            m = re.search(r"## Pre-flight\n\n(.*?)\n", self.skills[name]["body"])
+            self.assertTrue(m and "Route check" in m.group(1), f"{name}: Pre-flight must open with a Route check bullet")
 
 
 if __name__ == "__main__":

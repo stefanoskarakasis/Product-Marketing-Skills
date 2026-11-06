@@ -1,3 +1,5 @@
+last_synthesis: never
+
 Active guardrails every skill reads at its own Pre-flight step.
 
 Populated by `meta-synthesis`, which proposes new guardrails here after

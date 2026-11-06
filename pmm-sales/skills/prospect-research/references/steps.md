@@ -51,6 +51,7 @@ Write `/context/prospects/<company-slug>-YYYY-MM-DD-HHMM.md`, never overwriting.
 - Log: rows to `_patterns.md` (slug only; no names, quotes or contact details), same columns as `customer-context`.
 - Outcome: `log: meeting booked | no reply | lost: [reason] | won` for a company with an open record appends to `_outcomes.md` with the hypothesis id and updates the record. Hit rates are not computed in v1.
 - Propose: only at the n in `feed-forward.md`, as exact text with the receiving skill named. Unattended runs log and propose nothing. In Slack, proposals go to the PMM in the run summary, not the seller's thread.
+- PMM pointer: after 10 or more lines in `_usage.md`, tell `pmm_owner` once in the run summary, never in the seller's thread: "Weekly view of how sellers use this: run `sales-research-digest`."
 - Hand off, offer only: `competitive-battlecard` for an incumbent, `buyer-personas` or `stakeholder-maps` for the committee, `experiment-doc` for a hypothesis worth ten accounts, `writing-assistant` for the opener.
 
 ## Fast path for an ask

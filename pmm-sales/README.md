@@ -8,17 +8,21 @@ Sales-facing context for sellers and CSMs, built for Slack first: tag Claude in 
 - **First command:** `/pmm-sales:customer-context`
 - **Try:** "@Claude catch me up on Northwind before Thursday's renewal call"
 - **Before a first touch:** `/pmm-sales:prospect-research`. Try: "@Claude is there a reason to contact Tidewell Foods now?" You get a verdict, a hypothesis, an angle and a first question. EMEA data rules switch on by themselves for European accounts.
-- **The brain:** both skills use it for ICP fit, competitors, objections and approved claims. Without one it still runs and says so. Never writes to it.
+- **For the PMM, weekly:** `/pmm-sales:sales-research-digest`. Plain words, three actions, outcomes from your CRM.
+- **The brain:** both research skills use it for ICP fit, competitors, objections and approved claims. Without one it still runs and says so. Never writes to it.
 
-## Skills (2)
+## Skills (3)
 
 - **customer-context** — Build a dated brief on one existing customer from your CRM, email, calls, docs, chat, support and usage, check it against your brain and show what changed since last time. Read-only.
 - **prospect-research** — Build a pre-first-touch brief on one company you do not sell to yet: dated signals mapped to your pains, fit and timing scored separately, a hypothesis with angle, first question and fallback. Checks the CRM first, applies EMEA data defaults, proposes what other skills should learn. Never writes outreach.
 
-## Commands (2)
+- **sales-research-digest** — Turn the logs of the sales research skills into one plain-language weekly report for the PMM: use, advice quality, common threads, up to three actions. Reads outcomes from your CRM. Proposes only.
+
+## Commands (3)
 
 - `/pmm-sales:customer-context` — Get the current state of one customer.
 - `/pmm-sales:prospect-research` — Get the reason, angle and first question for one prospect.
+- `/pmm-sales:sales-research-digest` — Get the weekly report on how the sales research skills are used.
 
 ## Connectors (Optional)
 

@@ -8,7 +8,7 @@ description: >
   only the session log, and in weekly mode shows adoption per skill and one promotion queue.
   Trigger on: "run meta-synthesis", "what patterns are emerging", "detect cross-skill signals",
   "update guardrails", "compound our learnings", "what should we remember", "run the weekly
-  learning sweep".
+  learning sweep". Not for a sales-only weekly report (sales-research-digest).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

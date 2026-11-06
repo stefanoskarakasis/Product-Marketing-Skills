@@ -21,6 +21,7 @@ Read at Step 0 and Step 1. Skills already write their own ledgers. This file map
 | `/context/prospects/_patterns.md` | `prospect-research` | `date` | `type` | `observation` and `count` |
 | `/context/prospects/_usage.md` | `prospect-research` | `date` | `surface` | `verdict` |
 | `/context/customers/_patterns.md` | `customer-context` | `date` | `type` | `observation` and `count` |
+| `/context/digests/*-sales.md` | `sales-research-digest` | report date | the week | actions proposed and answered |
 | `/context/briefings/_ledger.md` | `competitive-briefing` | call date | the call | graded right or wrong |
 | `/context/briefings/_decisions.md` | `competitive-briefing` | `asked` date | the decision | open or closed |
 

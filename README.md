@@ -59,6 +59,7 @@ Nine plugins, grouped by the work you do. Install `product-marketing-context` fi
 | Publish a "us vs a rival" or "alternatives to a rival" page where every row is sourced | `comparison-page-brief` | `pmm-competitive-intelligence` |
 | Catch up on a customer before a call or renewal, in Slack or anywhere | `customer-context` | `pmm-sales` |
 | Find the reason, angle and first question for a company you do not sell to yet | `prospect-research` | `pmm-sales` |
+| See how your sales team used the research skills this week, in plain words | `sales-research-digest` | `pmm-sales` |
 | Rank what changed around my product against my priorities | `signal-monitor` | `pmm-intelligence` |
 | Run the PMM job: OKRs, retros, pre-mortems | `pmm-okrs`, `retro`, `pre-mortem` | `pmm-execution` |
 | Generate and measure growth ideas | `experiment-ideas`, `pmm-metrics` | `pmm-growth` |
@@ -67,7 +68,7 @@ Nine plugins, grouped by the work you do. Install `product-marketing-context` fi
 **Building or auditing skills yourself?** `pmm-meta` (`meta-review`, `meta-learn`, `meta-synthesis`, `meta-verify`) is for skill builders. It audits skills against `SKILL-SPEC.md`; you do not need it to use the rest.
 | Draft content, briefs, resumes | `writing-assistant`, `gaccs-brief` | `pmm-toolkit` |
 
-**Skills** are single guided workflows; **plugins** bundle related skills into one install. The full catalogue is under [Available Skills](#available-skills-43-total).
+**Skills** are single guided workflows; **plugins** bundle related skills into one install. The full catalogue is under [Available Skills](#available-skills-46-total).
 
 ## How it fits together
 
@@ -101,7 +102,7 @@ Ask in plain language, or call a skill directly.
 
 Direct call example: `/pmm-positioning:ideal-customer-profile`.
 
-## Available Skills (45 Total)
+## Available Skills (46 Total)
 
 | Skill | Plugin | Description |
 |-------|--------|-------------|
@@ -124,6 +125,7 @@ Direct call example: `/pmm-positioning:ideal-customer-profile`.
 | [comparison-page-brief](pmm-competitive-intelligence/skills/comparison-page-brief/) | pmm-competitive-intelligence | A vs, alternatives or switch page for a named rival, built from your brain and competitor records, with a sourced claims ledger behind every row |
 | [customer-context](pmm-sales/skills/customer-context/) | pmm-sales | Dated brief on one customer from your CRM, email, calls and chat, checked against your brain; Slack first |
 | [prospect-research](pmm-sales/skills/prospect-research/) | pmm-sales | Pain hypothesis, angle and first question for one prospect from web search, CRM and enrichment, checked against your brain; EMEA-aware; Slack first |
+| [sales-research-digest](pmm-sales/skills/sales-research-digest/) | pmm-sales | Weekly plain-language report for the PMM on how the sales research skills are used, whether the advice held up and what to do next; outcomes from your CRM |
 | [industry-newsletter](pmm-competitive-intelligence/skills/industry-newsletter/) | pmm-competitive-intelligence | Weekly industry newsletter for GTM leaders in one locked layout: numbered competitor tables, industry changes, pricing watch and role-owned actions; formatted for Google Doc, email or Slack |
 | [gaccs-brief](pmm-toolkit/skills/gaccs-brief/) | pmm-toolkit | Campaign briefs (Goals, Audience, Creative, Channels, Stakeholders) |
 | [writing-assistant](pmm-toolkit/skills/writing-assistant/) | pmm-toolkit | Sharpen any written communication; draft blog posts, landing pages, press releases, case studies, newsletters, social posts |

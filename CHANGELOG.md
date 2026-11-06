@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### New skill: sales-research-digest
+
+- New skill `sales-research-digest` in `pmm-sales`, with the `/pmm-sales:sales-research-digest` command. One plain-language weekly report for the PMM on how the sales research skills are used, whether the advice held up, what the companies have in common and up to three actions. Outcomes come from your CRM (read-only; the report tells you to connect one if none answers). Full report saved to `/context/digests/`; the Slack summary shows teams only. Plain-language rules are part of the skill. 10-check Quality Gate; 13 test cases. Counts: 46 skills in 10 plugins.
+
 ### Compounding across the repo
 
 - `meta-synthesis` 3.3.0 reads the ledgers other skills keep (battlecard outcomes, customer and prospect patterns, usage, briefing calls), not only the session log. New `references/learning-sources.md` (registry, counting rules, thresholds: 2 sessions for a guardrail, 3 distinct accounts or outcomes for a brain edit) and `references/weekly.md` (adoption per skill, one promotion queue, unattended runs save the queue and write nothing). Three new eval cases.

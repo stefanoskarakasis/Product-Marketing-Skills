@@ -47,8 +47,11 @@ Claude chooses a skill from its name and description. This page is how you check
 | 31 | Research the CFO at Acme (Acme is in Germany) | `prospect-research`, then the EMEA role-only question |
 | 32 | What do we say against Acme on pricing? | `competitive-profile`, not `prospect-research` |
 | 33 | Run the weekly learning sweep | `meta-synthesis` (weekly mode) |
+| 34 | Weekly sales digest | `sales-research-digest` |
+| 35 | How is the sales team using the research briefs? | `sales-research-digest` |
+| 36 | Which skills did we use this week across everything? | `meta-synthesis` (weekly mode), not `sales-research-digest` |
 
-**Pass:** 30 of 33, and prompts 12 to 14, 23 and 26 never build a leadership brief or a newsletter without asking.
+**Pass:** 33 of 36, and prompts 12 to 14, 23 and 26 never build a leadership brief or a newsletter without asking.
 
 ## If two sets of skills are installed
 

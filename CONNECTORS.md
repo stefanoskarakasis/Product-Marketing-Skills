@@ -65,6 +65,7 @@ The brain plugin (`product-marketing-context`) wires only Google Drive and Googl
 | pmm-intelligence | yes | yes |  |  |  |  |
 | pmm-competitive-intelligence | yes | yes | yes | yes |  |  |
 | pmm-toolkit | yes | yes | yes | yes | yes | yes |
+| pmm-sales | yes | yes | yes | yes |  |  |
 | pmm-meta |  |  |  |  |  |  |
 <!-- generated:google-table end -->
 

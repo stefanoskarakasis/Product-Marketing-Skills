@@ -18,6 +18,7 @@
     "./product-marketing-context",
     "./pmm-growth/skills",
     "./pmm-intelligence/skills",
-    "./pmm-competitive-intelligence/skills"
+    "./pmm-competitive-intelligence/skills",
+    "./pmm-sales/skills"
   ]
 }

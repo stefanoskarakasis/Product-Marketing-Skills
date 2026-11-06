@@ -32,6 +32,10 @@
       "source": "pmm-competitive-intelligence"
     },
     {
+      "name": "pmm-sales",
+      "source": "pmm-sales"
+    },
+    {
       "name": "pmm-toolkit",
       "source": "pmm-toolkit"
     },

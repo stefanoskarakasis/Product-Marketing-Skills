@@ -205,6 +205,16 @@ named competitor (competitive-battlecard)?"
 - meta-learn — a deeper capture of what this session taught
 **Prompt to surface:** "Next, pick one: refresh the stale profile lines (competitive-profile), build the evidence behind the decision (competitor-deep-dive), brief the CEO in euro (competitive-briefing), give sellers the play (competitive-battlecard), register the claims it could not use (proof-points), or run a second quality check before it is forwarded (meta-verify)?"
 
+## After customer-context (customer brief delivered or answered in Slack)
+**Next options (not a single path — ask which applies):**
+- competitive-battlecard — if a rival is active in this customer's renewal or expansion and the seller needs the card
+- competitive-profile — if a rival or a price change should be logged for the PMM to approve
+- customer-stories — if the customer stated an outcome or showed an advocate signal
+- proof-points — if the customer stated a measured outcome that is not yet in the registry
+- interview-summary — if this was a churn or near-churn call worth a structured debrief
+- product-marketing-context — to confirm a proposed objection or customer phrase into the brain
+**Prompt to surface:** "Next, pick one: build the rival card (competitive-battlecard), log the intel (competitive-profile), start a story (customer-stories), register the outcome (proof-points), debrief a churn call (interview-summary), or confirm what this customer taught the brain (product-marketing-context)?"
+
 ## After media-monitoring (brief delivered, records saved)
 **Next options (not a single path — ask which applies):**
 - signal-monitor — if more than one thing moved and you want them ranked against this quarter's priorities

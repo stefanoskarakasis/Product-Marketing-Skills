@@ -58,6 +58,14 @@
       "tags": ["competitive-intelligence", "battlecards", "competitor-analysis", "monitoring", "sales-enablement", "slack"]
     },
     {
+      "name": "pmm-sales",
+      "displayName": "PMM Sales",
+      "description": "Customer account context for sellers and CSMs, built for Slack first: the current state of one customer from your CRM, email, calls, docs, chat, support and usage, checked against your brain, with risks flagged.",
+      "source": "./pmm-sales",
+      "category": "product-marketing",
+      "tags": ["customer-context", "account-context", "renewals", "sales-enablement", "slack", "b2b-saas"]
+    },
+    {
       "name": "pmm-toolkit",
       "displayName": "PMM Toolkit",
       "description": "PMM utilities: writing assistant for internal and marketing content, resume review, privacy policy generator and GACCS campaign briefs.",

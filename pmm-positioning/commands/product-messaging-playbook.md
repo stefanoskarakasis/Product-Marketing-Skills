@@ -1,6 +1,5 @@
 ---
 description: Assemble a Sales/CS-ready messaging playbook — problem, story, competitive comparison, discovery questions, objections
-argument-hint: "<feature/product name, optionally 'vs [competitor]', or paste a message-house/positioning-messaging output>"
 ---
 
 # /pmm-positioning:product-messaging-playbook -- Product Messaging Playbook

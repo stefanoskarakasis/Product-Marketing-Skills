@@ -3,6 +3,11 @@ import re
 import unittest
 from pathlib import Path
 
+try:
+    from tests.skill_meta import sidecar_get
+except ImportError:  # run as a plain script from tests/
+    from skill_meta import sidecar_get
+
 ROOT = Path(__file__).resolve().parent.parent
 BUDGET = 3000
 LINE_LIMIT = 500
@@ -58,7 +63,10 @@ class TestSkillSize(unittest.TestCase):
                 continue
             heads = set(re.findall(r"^## (.+?)\s*$", text, re.M))
             need = ["Trigger", "Inputs", "Steps", "Outputs"]
-            if frontmatter_flag(text, "quality_gate") == "true":
+            gate = frontmatter_flag(text, "quality_gate")
+            if gate is None:
+                gate = str(sidecar_get(p, "quality_gate")).lower()
+            if gate == "true":
                 need.append("Quality Gate")
             for h in need:
                 if not any(x == h or x.startswith(h) for x in heads):

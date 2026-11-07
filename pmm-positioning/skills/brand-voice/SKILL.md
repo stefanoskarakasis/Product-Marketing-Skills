@@ -1,16 +1,10 @@
 ---
 name: brand-voice
-version: 1.0.0
 description: >
   Builds a persona-adaptive Voice & Tone guide (brand attributes, tone shifts by buyer
   type and channel, forbidden language), then deepens brain Section 4. Trigger with "how
   should we sound", "voice guide", "our copy feels off", "we sound like everyone else",
   "adapt tone for", or any request to define, apply, or audit how the brand communicates.
-metadata:
-  author: Stefanos Karakasis
-  context: brain-dependent
-  quality_gate: true
-last_updated: 2026-08-31
 ---
 
 # Brand Voice

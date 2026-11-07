@@ -1,6 +1,5 @@
 ---
 description: Build or audit positioning statements, messaging, and related output
-argument-hint: "<what you need — a positioning statement, messaging audit, deck, sales cards, or homepage copy>"
 ---
 
 # /pmm-positioning:positioning-messaging -- Positioning & Messaging

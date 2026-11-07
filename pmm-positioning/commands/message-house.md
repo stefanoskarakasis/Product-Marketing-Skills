@@ -1,6 +1,5 @@
 ---
 description: Format existing positioning into a Message House (Roof + Value Pillars)
-argument-hint: "<optional: paste a positioning-messaging output, or leave blank to use the brain>"
 ---
 
 # /pmm-positioning:message-house -- Message House

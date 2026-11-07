@@ -50,6 +50,8 @@ skills/skill-name/
 
 Every `SKILL.md` opens with YAML frontmatter:
 
+> **Directory exception: `pmm-positioning`.** The Claude plugin directory refuses frontmatter keys outside its allowed list from unverified organizations (`LOCAL_CODE_FRONTMATTER_KEY`). In `pmm-positioning`, `SKILL.md` frontmatter is `name` and `description` only. `version`, `metadata.author`, `metadata.context`, `metadata.quality_gate` and `last_updated` live in `pmm-positioning/skills.meta.json`, and the tests read them from there. `tests/test_directory_frontmatter.py` checks the allowed list before you push.
+
 ````yaml
 ---
 name: skill-name

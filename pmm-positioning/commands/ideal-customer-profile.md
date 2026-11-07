@@ -1,6 +1,5 @@
 ---
 description: Build, enrich, or audit your ICP — trigger events, buyer map, JTBD, disqualifiers
-argument-hint: "<what you have — nothing yet, customer data to enrich from, or an existing ICP to audit>"
 ---
 
 # /pmm-positioning:ideal-customer-profile -- Ideal Customer Profile

@@ -1,6 +1,5 @@
 ---
 name: product-messaging-playbook
-version: 1.4.0
 description: >
   Assembles a single Sales/CS-ready playbook for a new product or feature: problem, story,
   one named competitive comparison, discovery questions and objection handling. Use when
@@ -8,11 +7,6 @@ description: >
   feature," "handoff doc for sales and CS," or "solution guide for this launch." Assembles
   from message-house, positioning-messaging and proof-points; does not derive strategy
   itself.
-metadata:
-  author: Stefanos Karakasis
-  context: brain-dependent
-  quality_gate: true
-last_updated: 2026-11-01
 ---
 
 # Product Messaging Playbook

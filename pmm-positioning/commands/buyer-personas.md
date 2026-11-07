@@ -1,6 +1,5 @@
 ---
 description: Map the buying committee, then build alternatives-anchored messaging personas
-argument-hint: "<segment or deal context — research data if you have it, otherwise just describe the buyer>"
 ---
 
 # /pmm-positioning:buyer-personas -- Buyer Personas

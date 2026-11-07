@@ -1,6 +1,5 @@
 ---
 description: Build the "why now" market narrative — macro forces, buying triggers, category moment
-argument-hint: "<what's changing in your market, or just say 'build my market context'>"
 ---
 
 # /pmm-positioning:market-context -- Market Context

@@ -1,6 +1,5 @@
 ---
 name: alternatives-map
-version: 2.1.2
 description: >
   Turns research (win/loss notes, call transcripts, G2/Capterra reviews, analyst reports)
   into a named alternatives map across direct competitors, adjacent tools, DIY and status
@@ -8,11 +7,6 @@ description: >
   3. Trigger with "map our alternatives", "who do we actually compete with", "status quo
   analysis", "our alternatives section is just a competitor list", or any request to
   identify, evidence, or sharpen who buyers compare you to.
-metadata:
-  author: Stefanos Karakasis
-  context: brain-dependent
-  quality_gate: true
-last_updated: 2026-10-10
 ---
 
 # Alternatives Map

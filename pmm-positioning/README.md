@@ -58,6 +58,10 @@ Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Ca
 
 Stefanos Karakasis — [Stefanos's Stack on Substack](https://stefanoskarakasis.substack.com/)
 
+## Privacy
+
+This plugin collects no data. See the [privacy policy](PRIVACY.md).
+
 ## License
 
 MIT

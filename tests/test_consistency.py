@@ -34,6 +34,11 @@ import re
 import unittest
 from pathlib import Path
 
+try:
+    from tests.skill_meta import sidecar_get
+except ImportError:  # run as a plain script from tests/
+    from skill_meta import sidecar_get
+
 ROOT = Path(__file__).resolve().parent.parent
 MARKETPLACE = ROOT / ".claude-plugin" / "marketplace.json"
 CHANGELOG = ROOT / "CHANGELOG.md"
@@ -273,12 +278,13 @@ class TestContextClassification(unittest.TestCase):
             if ".git" in skill.parts:
                 continue
             m = re.search(r"^  context: (\S+)", skill.read_text(encoding="utf-8"), re.M)
-            if not m:
+            ctx = m.group(1) if m else sidecar_get(skill, "context")
+            if not ctx:
                 continue
             name = skill.parent.name
-            want = dep if m.group(1) == "brain-dependent" else agn
+            want = dep if ctx == "brain-dependent" else agn
             if name not in want:
-                bad.append(f"{name}: frontmatter says {m.group(1)}, not in the matching SKILL-SPEC list")
+                bad.append(f"{name}: context says {ctx}, not in the matching SKILL-SPEC list")
         self.assertEqual(bad, [])
 
 

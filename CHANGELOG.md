@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### pmm-positioning: pass the directory policy gate
+
+- The directory refused the v1.20.0 listing with `LOCAL_CODE_FRONTMATTER_KEY`: an unverified organization may not ship frontmatter keys outside the allowed list. `pmm-positioning` skills now carry `name` and `description` only. `version`, `author`, `context`, `quality_gate` and `last_updated` moved to `pmm-positioning/skills.meta.json`; the `argument-hint` key is removed from its commands.
+- Added `pmm-positioning/PRIVACY.md` (no data collected; connectors are opt-in) and `privacyPolicyUrl` in its `plugin.json`. The bundled `.mcp.json` is unchanged.
+- Tests read `quality_gate` and `context` from the sidecar when frontmatter has none. New `tests/test_directory_frontmatter.py` runs the allowed-list check before you push.
+- Trade-off: slash-command autocomplete no longer shows the argument hint for the nine positioning commands.
+
 ### New skill: sales-research-digest
 
 - New skill `sales-research-digest` in `pmm-sales`, with the `/pmm-sales:sales-research-digest` command. One plain-language weekly report for the PMM on how the sales research skills are used, whether the advice held up, what the companies have in common and up to three actions. Outcomes come from your CRM (read-only; the report tells you to connect one if none answers). Full report saved to `/context/digests/`; the Slack summary shows teams only. Plain-language rules are part of the skill. 10-check Quality Gate; 13 test cases. Counts: 46 skills in 10 plugins.

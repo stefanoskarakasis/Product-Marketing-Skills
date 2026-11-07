@@ -1,6 +1,5 @@
 ---
 description: Add, verify, or audit the sourced claims your messaging relies on — then deepen brain Section 6
-argument-hint: "<paste a deck/battlecard, a claim to add or verify, or 'audit my proof points'>"
 ---
 
 # /pmm-positioning:proof-points -- Proof Points

@@ -1,16 +1,10 @@
 ---
 name: message-house
-version: 1.4.1
 description: >
   Turns your existing positioning into one clean table: your core story
   at the top, your 3 supporting reasons to believe it below. Use when
   someone asks to "build a message house," "put our messaging in a
   message house," or wants positioning laid out as one scannable page.
-metadata:
-  author: Stefanos Karakasis
-  context: brain-dependent
-  quality_gate: true
-last_updated: 2026-10-10
 ---
 
 ## Trigger

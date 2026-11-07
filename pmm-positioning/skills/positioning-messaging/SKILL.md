@@ -1,6 +1,5 @@
 ---
 name: positioning-messaging
-version: 2.7.0
 description: >
   Builds or audits positioning statements, messaging hierarchies, homepage copy and
   persona cards using April Dunford's Obviously Awesome framework, in five modes (build,
@@ -8,11 +7,6 @@ description: >
   persona and 3+ alternatives including status quo, and blocks output until a 7-point
   verification gate passes. Use when your messaging is scattered, or sales cannot explain
   what you do in one sentence.
-metadata:
-  author: Stefanos Karakasis
-  context: brain-dependent
-  quality_gate: true
-last_updated: 2026-11-01
 ---
 
 # positioning-messaging

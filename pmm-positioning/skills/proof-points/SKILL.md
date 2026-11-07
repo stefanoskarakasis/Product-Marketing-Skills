@@ -1,17 +1,11 @@
 ---
 name: proof-points
-version: 1.3.0
 description: >
   Builds and maintains a sourced, gated registry of the proof points your messaging relies
   on (metrics, customer quotes, case study results, analyst citations), then deepens brain
   Section 6. Use when pulling proof points out of a deck or battlecard, checking whether a
   stat is safe to use, sourcing a new claim before it ships, or auditing claims for
   anything unsourced, stale or unapproved.
-metadata:
-  author: Stefanos Karakasis
-  context: brain-dependent
-  quality_gate: true
-last_updated: 2026-11-01
 ---
 
 # Proof Points

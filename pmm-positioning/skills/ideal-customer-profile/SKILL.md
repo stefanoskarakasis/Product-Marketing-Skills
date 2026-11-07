@@ -73,7 +73,7 @@ Needs.
   - **Brain contract:** Reads Section 2. Writes Section 2 only — the four
     profile layers, appended on explicit confirmation. Layers map to the
     Section 2 fields `committee_roles` (buyer map), `jobs_to_be_done`
-    (JTBD), `anti_persona` (disqualifiers) and `cost_of_problem` (pains).
+    (JTBD), `anti_persona` (disqualifiers), `cost_of_problem` (pains) and `sales_cycle` (days to signed per segment).
     Read these before asking; fill an empty one instead of re-asking. Never creates a separate ICP file. If no brain exists, creates
     `/foundation/brain.md` holding this section alone (cold start).
 
@@ -150,6 +150,16 @@ how they discover and evaluate solutions, buying process and timeline,
 solo decision vs. committee, technical adoption speed, tool-switching
 frequency, peer influence.
 
+**Sales cycle** — per segment, in days, learned from this company's own
+data, never from a benchmark. Order: (1) CRM won deals over the last 12 to
+18 months: median days from first real conversation to signed, and median
+days in each stage; (2) dates in interviews and win/loss notes; (3) ask
+once: "From the first real conversation to signed, how long does a typical
+deal take in [segment]? Shortest, longest, and how many deals is that
+based on?" Record source, sample size and date; label a stated figure
+"stated". B2B SaaS cycles run from weeks to 12 months or more and shift
+with deal size, so each segment gets its own line.
+
 **Jobs to Be Done** — what they're actually hiring the product to do:
 - Functional job (the concrete outcome they need produced)
 - Emotional job (how they want to feel afterward)
@@ -189,6 +199,8 @@ content, do not create a separate file:
 **Source:** [survey / interviews / usage data / win-loss — n=X if known]
 
 **Behaviors:** [how they discover, decide, adopt]
+
+**Sales cycle:** [segment: days to signed, range, median days in stage; learned from CRM / stated / interviews; n=X; date]
 
 **Jobs to Be Done:**
 - Functional: [one sentence]
@@ -258,6 +270,7 @@ above, which still requires explicit confirmation.
 - Cold start: with no brain file, the skill proceeded without redirecting, and the only file it created held this section alone (or the block was shown for pasting).
 - Cohort being profiled is stated and justified, not just "our customers."
 - All four layers profiled: Demographics, Behaviors, JTBD, Needs.
+- Sales cycle recorded per segment with its source, sample size and date; a stated figure labelled "stated"; no benchmark stored as the company's own.
 - Every claim without a cited source flagged `[A]`.
 - Pain points ranked by source frequency, not asserted importance.
 - One-Line ICP Test passed before the brain write is proposed.

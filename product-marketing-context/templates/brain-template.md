@@ -85,6 +85,9 @@ Use this template file in your repo. The `product-marketing-context` skill will 
 **Buying Committee (standing roles, what each cares about, what makes each block):**
 {{committee_roles}}
 
+**Sales Cycle (per segment: days to signed, range, median days in stage, how learned, sample size, date):**
+{{sales_cycle}}
+
 ---
 
 ## Section 3: Alternatives & Positioning

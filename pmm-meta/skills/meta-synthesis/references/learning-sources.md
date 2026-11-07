@@ -19,6 +19,9 @@ Read at Step 0 and Step 1. Skills already write their own ledgers. This file map
 | `/context/battlecards/_outcomes.md` | `competitive-battlecard` | `date` | `competitor` | `result` |
 | `/context/prospects/_outcomes.md` | `prospect-research` | `date` | signal types and `segment` | the `log:` outcome |
 | `/context/prospects/_patterns.md` | `prospect-research` | `date` | `type` | `observation` and `count` |
+| `/context/deals/_outcomes.md` | `deal-review` | `date` | stage and `segment` | the `log:` outcome |
+| `/context/deals/_patterns.md` | `deal-review` | `date` | `type` | `observation` and `count` |
+| `/context/deals/_gaps.md` | `deal-review` | `date` | gap `type` | gap and `count` |
 | `/context/prospects/_usage.md` | `prospect-research` | `date` | `surface` | `verdict` |
 | `/context/customers/_patterns.md` | `customer-context` | `date` | `type` | `observation` and `count` |
 | `/context/digests/*-sales.md` | `sales-research-digest` | report date | the week | actions proposed and answered |

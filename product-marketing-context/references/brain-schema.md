@@ -7,7 +7,7 @@ Skills keep their own one-line "Brain contract" (plugins install standalone).
 | Sec | Name | Field keys | Fresh for | May be written by |
 |---|---|---|---|---|
 | 1 | Product Context | name, description, stage, target_market, value_prop, offerings, glossary, permitted_claims, business_model | 180 days | product-marketing-context |
-| 2 | ICP Definition | company_size, industry, geography, persona, economic_buyer, champion, pains, triggers, jobs_to_be_done, cost_of_problem, anti_persona, committee_roles | 180 days | product-marketing-context, ideal-customer-profile (including `jobs_to_be_done`, `cost_of_problem`, `anti_persona`, `committee_roles`), beachhead-segment, gtm-motions (stub only) |
+| 2 | ICP Definition | company_size, industry, geography, persona, economic_buyer, champion, pains, triggers, jobs_to_be_done, cost_of_problem, anti_persona, committee_roles, sales_cycle | 180 days | product-marketing-context, ideal-customer-profile (including `jobs_to_be_done`, `cost_of_problem`, `anti_persona`, `committee_roles`, `sales_cycle`), beachhead-segment, gtm-motions (stub only) |
 | 3 | Alternatives & Positioning | alternatives, status_quo, why_leaving, unique_capabilities, category, market_type, alt_shortfalls, switching_forces, objections | 180 days | product-marketing-context, alternatives-map (including `alt_shortfalls`, `switching_forces`), positioning-ideas (stub only), competitive-battlecard (field notes and stub only, user-confirmed), competitor-deep-dive (field notes and stub only, user-confirmed), competitive-profile (roster and profile notes only, user-confirmed, never from an unattended run) |
 | 4 | Voice & Tone | attributes, tone_shifts, language_prefs, forbidden_phrases, tone_example, customer_phrases | 365 days | product-marketing-context, brand-voice |
 | 5 | Market Context | maturity, macro_forces, why_now, narrative | 90 days | product-marketing-context, market-context |
@@ -31,6 +31,10 @@ Ten fields hold what happens in deals and what customers actually say. They sit 
 | `objections` | 3 | The 3 to 5 objections heard most in deals: who raises it, and the approved response | An objection with no approved response is stored with the response left open and a gap is added |
 | `customer_phrases` | 4 | Exact words customers use for the problem and for you, each with who said it and where | Verbatim only. See the rule below |
 | `conversion_action` | 7 | The one action the funnel is built to make people take, for example "book a demo" | |
+
+## Sales cycle (`sales_cycle`, Section 2)
+
+Every company's cycle is its own, from weeks to 12 months or more, and it moves with segment and deal size. The field holds one line per segment: days from first real conversation to signed, the typical range, the median days in each stage, **how it was learned** (CRM won deals over the last 12 to 18 months, the user's own statement, or interview and win/loss dates), the sample size and the date. A stated figure is labelled "stated". A benchmark from outside the company is never stored as the company's cycle. Skills that need it (`deal-review`, `customer-context`) read it from here first and ask only when it is missing. They propose a change to the cycle when fresh data differs by more than a quarter; `ideal-customer-profile` or `product-marketing-context` writes it on confirmation. An existing brain without the field stays complete.
 
 Rules for these ten fields:
 - They use the same provenance tag, freshness limit and confirmation as every other field. A field inherits its section's freshness limit.

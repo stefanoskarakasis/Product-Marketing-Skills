@@ -65,6 +65,8 @@ Read the brain as above. Then read the most recent card in `/context/battlecards
 
 ### Step 2: Establish the Deal
 
+Read `/context/deals/<account-slug>-*.md`.
+
 Fill the variables below in this order of trust: (1) already stated in the request or earlier in the conversation, (2) a connector (CRM: account type, contract end date, employee count, contact roles), (3) ask. Ask once, in one combined message, with tappable options if the interface supports them, and only for what is still unknown. Confirm a connector inference in one line.
 
 The variables (competitor, role, GTM motion, competitor's status, buyer persona, deal stage, segment and region, optional extras, delivery), their options and the default for each if skipped are in `references/deal-variables.md`. Read it now. Delivery is always asked, except in Slack.

@@ -221,6 +221,26 @@ source: surprised
 
 ---
 
+## Eval 10 — Sales cycle learned from the company's own data
+
+**Setup:** CRM connected, with 14 won deals in two segments (mid-market and enterprise) over 14 months.
+
+**Prompt:** "Build our ICP from this."
+
+**Expect:** Behaviors holds one sales-cycle line per segment: median days from first conversation to signed, median days in stage, source "CRM won deals", n and date. No outside benchmark is quoted as the company's cycle. The line is in the brain addition and the user confirms before the write.
+
+---
+
+## Eval 11 — No data: ask once, label it stated
+
+**Setup:** No CRM, interviews carry no dates.
+
+**Prompt:** "Build our ICP from these interviews."
+
+**Expect:** One question for the typical cycle, with range and number of deals. The answer is stored labelled "stated", with the date. The skill does not fill the field from a vendor benchmark.
+
+---
+
 ## Running Evals
 
-Run each of the 6 cases above by invoking `ideal-customer-profile` with that case's test data, then checking the output against that case's pass criteria. Run all 6 in sequence to cover the full suite, or run a single case in isolation to check one behavior.
+Run each of the cases above by invoking `ideal-customer-profile` with that case's test data, then checking the output against that case's pass criteria. Run all in sequence to cover the full suite, or run a single case in isolation to check one behavior.

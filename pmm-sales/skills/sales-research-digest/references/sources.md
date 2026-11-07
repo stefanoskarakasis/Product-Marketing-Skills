@@ -10,6 +10,7 @@ Read at Steps 1 and 4. Every source is optional. A missing source is named under
 | `/context/prospects/_patterns.md` | `prospect-research` | Tools seen, pains in the company's own words, kinds of signs |
 | `/context/prospects/_outcomes.md` | `prospect-research` (`log:` lines) | Meeting booked, no reply, lost, won (seller-reported) |
 | saved briefs in `/context/prospects/` | `prospect-research` | Which brain sections were missing, size conflicts |
+| `/context/deals/_outcomes.md`, `_patterns.md`, `_gaps.md` | `deal-review` | Deal stage reached, reasons deals stall, gaps found before calls (never `_mine.md`) |
 | `/context/customers/_patterns.md` | `customer-context` | Pains customers describe, to compare with prospects |
 | `/context/skill-sessions.md` | every skill | What surprised, was wrong or was missing, for the two sales skills only |
 | brain Sections 2, 3, 6 | the PMM | To say where an action belongs |

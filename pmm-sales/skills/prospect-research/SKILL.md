@@ -3,7 +3,7 @@ name: prospect-research
 version: 1.0.0
 description: >
   Builds a dated brief on one company you do not sell to yet, from web search, your CRM and any enrichment you connect, and ends in a pain hypothesis, an angle, a first question and a fallback. Reads your brain, keeps EMEA data rules on for European accounts, answers in a Slack thread or as a full brief.
-  Trigger on: "research [company] before I reach out", "is there a reason to contact [company] now", "prospect brief for [company]", "what's the angle for [company]", "what changed at [company] since my last brief", "log: meeting booked at [company]". Not for a customer (customer-context), a competitor (competitive-profile), a competitor in a live deal (competitive-battlecard) or a plain company profile.
+  Trigger on: "research [company] before I reach out", "is there a reason to contact [company] now", "prospect brief for [company]", "what's the angle for [company]", "what changed at [company] since my last brief", "log: meeting booked at [company]". Not for a customer (customer-context), a live deal (deal-review), a competitor (competitive-profile), a competitor in a live deal (competitive-battlecard) or a plain company profile.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent

@@ -3,7 +3,7 @@ name: customer-context
 version: 1.0.0
 description: >
   Builds a dated 360-degree brief on one existing customer from your CRM, email, calls, docs, chat, support and usage, checks it against your brain (ICP fit, competitors, objections, approved claims) and shows what changed since the last brief. Built for Slack first: a seller tags Claude in a thread and gets a short sourced answer, and the same skill works in Claude chat, Cowork, Claude Code and scheduled runs.
-  Trigger on: "customer context for [customer]", "catch me up on [customer]", "what's going on with [customer]", "brief me on [customer] before the renewal", "what changed at [customer]", "is [customer] at risk". Not for a company that is not yet a customer (prospect-research), a competitor (competitive-profile), a competitor in a live deal (competitive-battlecard) or a customer story (customer-stories).
+  Trigger on: "customer context for [customer]", "catch me up on [customer]", "what's going on with [customer]", "brief me on [customer] before the renewal", "what changed at [customer]", "is [customer] at risk". Not for a company that is not yet a customer (prospect-research), a live deal review (deal-review), a competitor (competitive-profile), a competitor in a live deal (competitive-battlecard) or a customer story (customer-stories).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
@@ -30,7 +30,7 @@ A seller or CSM walks into a customer call with five tabs open and none of them 
 ## Inputs
 
 - **Args:** A customer name or domain, optionally a mode: `brief` (default), `since` (delta only) or `ask` (one question, thread-sized). A one-line question about a named customer is an `ask`.
-- **Defaults:** Lookbacks follow the sales cycle in brain Section 7, else email 90 days, chat 60, CRM activity 90, calls 90. The surface decides shape and delivery (`references/surfaces.md`): a Slack thread gets a short reply, other surfaces a full brief.
+- **Defaults:** Lookbacks follow the sales cycle in brain Section 2 (`sales_cycle`), else email 90 days, chat 60, CRM activity 90, calls 90. The surface decides shape and delivery (`references/surfaces.md`): a Slack thread gets a short reply, other surfaces a full brief.
 - **Context keys:** the brain (`/foundation/brain.md`, `gaps.md`, `me.md` for format only); `/context/customers/` (earlier briefs, `_patterns.md`); `/context/competitor-profiles/` and `/context/battlecards/` (read only); the `~~` connectors in `references/connectors.md`.
   - **Brain contract:** Reads Section 2 (`anti_persona`, `committee_roles`, size, industry), Section 3 (`alternatives`, `objections`, `switching_forces`), Section 6 (approved proof, `forbidden_claims`), Section 8 (`prohibited`, `approvals`). Never writes the brain. Anything it learns is a proposal for `product-marketing-context` and other skills (`references/feed-forward.md`).
 

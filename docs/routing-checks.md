@@ -50,8 +50,14 @@ Claude chooses a skill from its name and description. This page is how you check
 | 34 | Weekly sales digest | `sales-research-digest` |
 | 35 | How is the sales team using the research briefs? | `sales-research-digest` |
 | 36 | Which skills did we use this week across everything? | `meta-synthesis` (weekly mode), not `sales-research-digest` |
+| 37 | Review the Acme deal before Friday's call | `deal-review` |
+| 38 | Is the Acme deal real or are we kidding ourselves? | `deal-review` |
+| 39 | What changed on the Acme deal since last week? | `deal-review` (`since`) |
+| 40 | Which of my deals need attention today? | `deal-review` (`queue`, deals only) |
+| 41 | Research Acme before we reach out (no deal yet) | `prospect-research`, not `deal-review` |
+| 42 | Build a battlecard for the Acme deal against Rival | `competitive-battlecard`, not `deal-review` |
 
-**Pass:** 33 of 36, and prompts 12 to 14, 23 and 26 never build a leadership brief or a newsletter without asking.
+**Pass:** 39 of 42, and prompts 12 to 14, 23 and 26 never build a leadership brief or a newsletter without asking.
 
 ## If two sets of skills are installed
 

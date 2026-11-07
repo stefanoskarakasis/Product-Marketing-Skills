@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### New skill: deal-review
+
+- New skill `deal-review` in `pmm-sales`, with the `/pmm-sales:deal-review` command. Reviews one live deal from CRM, calls, email and chat: evidence ranked `validated` / `stated` / `not found`, the buyer's own decisions, the most likely reason it dies, one next step and paste-ready CRM, next-step and question blocks. Modes: `review`, `since`, `ask`, `prep`, `queue` (deals only), `mine` (private) and `log:`.
+- New brain field `sales_cycle` (Section 2): days to signed per segment, learned from the company's own CRM, interviews or the user's statement, never from a benchmark. `ideal-customer-profile` and the `product-marketing-context` wizard capture it; `deal-review` and `customer-context` read it first and ask only when it is missing.
+- Never assumes deal size or stage: asks. Never writes to the CRM, sends email or scores people. A manager queue shows deals, not reps.
+- Feeds `/context/deals/` ledgers to `meta-synthesis` and `sales-research-digest` as propose-only learnings. `_mine.md` is private and never read by any other skill.
+
 ### pmm-positioning: pass the directory policy gate
 
 - The directory refused the v1.20.0 listing with `LOCAL_CODE_FRONTMATTER_KEY`: an unverified organization may not ship frontmatter keys outside the allowed list. `pmm-positioning` skills now carry `name` and `description` only. `version`, `author`, `context`, `quality_gate` and `last_updated` moved to `pmm-positioning/skills.meta.json`; the `argument-hint` key is removed from its commands.

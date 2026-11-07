@@ -34,7 +34,7 @@ FAMILY = {
 FAMILY_WIDE = FAMILY | {"alternatives-map", "workflow-orchestrator"}
 
 # the pmm-sales pair: one routes customers, the other routes prospects
-SALES = {"customer-context", "prospect-research", "sales-research-digest"}
+SALES = {"customer-context", "prospect-research", "sales-research-digest", "deal-review"}
 
 # phrases no skill may claim as a trigger: they fit several skills equally
 GENERIC = {
@@ -154,7 +154,7 @@ class TestTriggerCollisions(unittest.TestCase):
             self.assertIn(name, self.skills, f"{name} not found")
 
     def test_sales_pair_name_each_other_in_not_for(self):
-        for name, other in (("customer-context", "prospect-research"), ("prospect-research", "customer-context")):
+        for name, other in (("customer-context", "prospect-research"), ("prospect-research", "customer-context"), ("deal-review", "prospect-research"), ("prospect-research", "deal-review"), ("customer-context", "deal-review")):
             m = re.search(r"Not for(.*)$", self.skills[name]["desc"])
             self.assertIsNotNone(m, f"{name} description needs a 'Not for' clause")
             self.assertIn(other, m.group(1), f"{name} 'Not for' clause should name {other}")

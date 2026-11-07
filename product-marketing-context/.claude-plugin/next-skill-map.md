@@ -228,6 +228,14 @@ named competitor (competitive-battlecard)?"
 - sales-research-digest — for the PMM, weekly, to see how sellers use these briefs and what to change
 **Prompt to surface:** "Next, pick one: build the rival card (competitive-battlecard), turn this into a message (writing-assistant), map the committee (buyer-personas), plan the stakeholders (stakeholder-maps), test the hypothesis on ten accounts (experiment-doc), log the rival (competitive-profile), confirm a trigger for the brain (product-marketing-context), or see how the team uses these briefs (sales-research-digest)?"
 
+## After deal-review (review, since, prep or queue delivered)
+**Next options (not a single path — ask which applies):**
+- competitive-battlecard — if a named rival is in the deal and the seller needs the card for the next call
+- buyer-personas or stakeholder-maps — if the review shows a missing buyer role or a single thread
+- writing-assistant — if the seller wants the next step or the questions turned into a message in their own voice
+- customer-context — if the deal closed won and a handover brief is needed
+**Prompt to surface:** "Next, pick one: build the rival card (competitive-battlecard), map the committee (buyer-personas or stakeholder-maps), turn the next step into a message (writing-assistant), or start the customer brief (customer-context)."
+
 ## After sales-research-digest (weekly sales report delivered, file saved)
 **Next options (not a single path — ask which applies):**
 - product-marketing-context — to confirm a proposed change to who you sell to or your list of rivals

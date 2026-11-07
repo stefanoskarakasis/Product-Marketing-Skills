@@ -60,10 +60,10 @@
     {
       "name": "pmm-sales",
       "displayName": "PMM Sales",
-      "description": "Customer account context for sellers and CSMs, built for Slack first: the current state of one customer from your CRM, email, calls, docs, chat, support and usage, checked against your brain, with risks flagged.",
+      "description": "Sales skills for sellers and CSMs, built for Slack first: review a live deal and know what to do next, get the current state of one customer, research a prospect and digest sales signals, all checked against your brain and sourced to your CRM, calls and email.",
       "source": "./pmm-sales",
       "category": "product-marketing",
-      "tags": ["customer-context", "account-context", "renewals", "sales-enablement", "slack", "b2b-saas"]
+      "tags": ["deal-review", "customer-context", "prospect-research", "renewals", "sales-enablement", "slack", "b2b-saas"]
     },
     {
       "name": "pmm-toolkit",

@@ -29,7 +29,7 @@ The C-suite reads this in two minutes, so every line must earn its place. This s
 
 - **Args:** Optional: the company, a competitor to add, the markets, the requester (name, role, department, market), the window end date, pasted material.
 - **Notation:** `Section N` means a brain section. Items carry the date as `DD Mon`. Threat levels: 🔴 High · 🟠 Medium-High · 🟡 Medium · 🟢 Low-Medium. Trends: ⬆️ rising · ⬇️ weakening · ➡️ stable. Section and label emoji: the legend in `references/update-format.md`, and no others.
-- **Defaults:** Window: the 7 days before the run date. Competitor set and markets: from the saved setup, else the brain roster. Delivery: chat. A skipped answer is stated as an assumption in the Coverage line.
+- **Defaults:** Window: the 7 days ending on the run date; if the newest edition is older than 7 days, it starts the day after that edition (maximum 14 days, see `references/records.md`). Competitor set and markets: from the saved setup, else the brain roster. Delivery: chat. A skipped answer is stated as an assumption in the Coverage line.
 - **Context keys:** the brain (`/foundation/brain.md`, `me.md` for format and detail only, `gaps.md` append only), this skill's records in `/context/weekly-updates/` (`references/records.md`), and read-only leads from `/context/competitor-profiles/`, `/context/monitoring/signal-log.md` and `/context/signals/`, `meta-patterns.md`, `skill-sessions.md` and the `~~` connectors in `references/connectors.md`, or pasted material.
   - **Brain contract:** Reads Sections 1, 2, 3, 4, 6, 7, 8. Writes none; a note worth keeping is shown as text for `competitive-profile` intake, never applied.
 
@@ -150,7 +150,7 @@ These are the update's contract. The Quality Gate tests them.
 1. **Do not fabricate data.** Anything ambiguous, incomplete or speculative is marked ⚠️ with the limitation in one short clause.
 2. **No news, no report.** A competitor with no item in the window is omitted everywhere: no "no new items" lines, placeholders or empty deep dives.
 3. **No owners.** Decisions and watchlist items never name an owner, team or person. If sign-off is needed, add *Leadership sign-off needed.*
-4. **Conflicting figures are not quoted.** Flag the conflict under Data Confidence & Gaps and exclude the figure until verified.
+4. **Conflicting figures are not quoted.** Two values for the same metric and the same period are a conflict: flag it under Data Confidence & Gaps and exclude the figure until verified. Values for different dates are a change, reported with both dates.
 5. **No duplication.** The summary gives headlines, the decisions follow it directly as one block, the takeaways give the data-backed implications. A point appears in one section.
 6. **Keep it sharp.** Numbers first, one "So what" per competitor only where it adds value.
 7. **Fact is not interpretation.** Each takeaway has a **Fact:** (sourced, dated) and an **Interpretation:** on separate bullet lines.
@@ -166,7 +166,7 @@ Runs after the update is built, before delivery. Surface failures before deliver
 |---|---|
 | Window held | Every item is dated `DD Mon` inside the 7-day window; undated items are ⚠️ or out |
 | No news, no report | No competitor without an item appears; none outside the setup list |
-| Sources inline | Every claim has a link retrieved this run, or ⚠️ and "link pending" |
+| Sources inline | Every claim has a link retrieved this run; a carried watchlist item without one says ⚠️ "link pending" and still passes |
 | Fact and interpretation | Each takeaway has separate Fact and Interpretation lines; interpretation never sits in a Fact line |
 | Fixed order | Eight sections in template order; decisions directly after the summary; emoji only from the legend |
 | Counts and owners | 2 to 4 decisions, 2 to 4 takeaways, no owner anywhere |

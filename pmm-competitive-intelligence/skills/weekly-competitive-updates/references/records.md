@@ -67,4 +67,4 @@ Without the file or the block, the next run is a first edition and the Threat Bo
 
 - **Store drift:** if the Doc's Carry-forward Block and the files disagree, show both and ask which is right. In a scheduled run, use the files and say so in the Coverage line.
 - **Setup drift:** a competitor in `setup.md` that is not on the brain roster is flagged once, never added or removed automatically.
-- **Window drift:** the window starts the day after the newest edition's run date, up to a maximum of 14 days. A longer gap is reported as a coverage gap, not swept in full.
+- **Window drift:** the window is the 7 days ending on the run date. If the newest edition is older than 7 days, it starts the day after that edition's run date, up to a maximum of 14 days. A longer gap is reported as a coverage gap, not swept in full.

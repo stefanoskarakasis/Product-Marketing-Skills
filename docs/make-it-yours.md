@@ -20,7 +20,7 @@ server and the skills use it for that category.
 2. Run `claude mcp add --transport http <name> <address>`, for example a name like `salesforce`.
 3. Run `/mcp` and sign in.
 
-**Claude (web, desktop or Cowork):** go to Settings, then Connectors, then add a custom connector with the server address, and sign in.
+**Claude (web or desktop):** go to Settings, then Connectors, then add a custom connector with the server address, and sign in.
 
 Then ask a skill for the category as usual, for example "build my ICP from our CRM deals".
 

@@ -1,17 +1,17 @@
 ---
 name: competitor-deep-dive
-version: 1.3.1
+version: 1.3.2
 description: >
   Builds a long-form, fully sourced deep-dive on one competitor for a named decision
   (strategy call, RFP, pricing change, roadmap bet), with dated reviews, deal evidence, a
   head-to-head per offering and where they win. In a Slack thread it posts a short summary and builds the full document. Triggers: "deep-dive on [competitor]",
   "full competitor write-up", "what do users really say about [competitor]", "teardown of
-  [competitor]". Related: competitive-battlecard, competitive-profile, signal-monitor. Not for a weekly leadership read (competitive-briefing), the scheduled competitor sweep (media-monitoring) or a public vs page (comparison-page-brief).
+  [competitor]". Related: competitive-battlecard, competitive-profile, signal-monitor. Not for a weekly leadership read (competitive-briefing), the weekly C-suite news update (weekly-competitive-updates), the scheduled competitor sweep (media-monitoring) or a public vs page (comparison-page-brief).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-11-02
+last_updated: 2026-11-09
 ---
 
 # Competitor Deep-Dive
@@ -21,7 +21,7 @@ A deep-dive is read before a decision and checked when a claim is challenged. Th
 ## Trigger
 
 - **When:** A PMM, product lead or exec needs the long, sourced view of one competitor behind a named decision, or a refresh of an earlier deep-dive.
-- **Not for:** The one-page sales card → `competitive-battlecard`. Keeping five competitors' profiles current and the roster → `competitive-profile`. A weekly read on what changed → `signal-monitor`. Mapping who buyers compare you to → `alternatives-map`. Registering or checking a claim → `proof-points`. A multi-skill competitive program → `workflow-orchestrator`. The scheduled sweep of public pages → `media-monitoring` (feeds this). Positioning and messaging hierarchy → `positioning-messaging`. The weekly leadership brief → `competitive-briefing` (offer this deep-dive when a decision needs the long evidence).
+- **Not for:** The one-page sales card → `competitive-battlecard`. Keeping five competitors' profiles current and the roster → `competitive-profile`. A weekly read on what changed → `signal-monitor`. Mapping who buyers compare you to → `alternatives-map`. Registering or checking a claim → `proof-points`. A multi-skill competitive program → `workflow-orchestrator`. The scheduled sweep of public pages → `media-monitoring` (feeds this). Positioning and messaging hierarchy → `positioning-messaging`. The weekly leadership brief → `competitive-briefing` (offer this deep-dive when a decision needs the long evidence). The weekly public-source C-suite update → `weekly-competitive-updates`.
 - **Example prompts:**
   - "Deep-dive on [competitor] for our pricing review"
   - "Deep dive on [competitor] before the RFP response"

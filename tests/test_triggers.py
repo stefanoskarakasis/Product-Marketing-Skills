@@ -30,6 +30,7 @@ ROOT = Path(__file__).resolve().parent.parent
 FAMILY = {
     "competitive-briefing", "competitive-profile", "competitive-battlecard",
     "competitor-deep-dive", "signal-monitor", "industry-newsletter", "media-monitoring", "comparison-page-brief",
+    "weekly-competitive-updates",
 }
 FAMILY_WIDE = FAMILY | {"alternatives-map", "workflow-orchestrator"}
 
@@ -125,7 +126,7 @@ class TestTriggerCollisions(unittest.TestCase):
         desc = self.skills["competitive-briefing"]["desc"]
         m = re.search(r"Not for(.*)$", desc)
         self.assertIsNotNone(m, "competitive-briefing description needs a 'Not for' clause")
-        for sib in ("competitive-profile", "competitive-battlecard", "competitor-deep-dive", "signal-monitor", "industry-newsletter", "media-monitoring"):
+        for sib in ("competitive-profile", "competitive-battlecard", "competitor-deep-dive", "signal-monitor", "industry-newsletter", "media-monitoring", "weekly-competitive-updates"):
             self.assertIn(sib, m.group(1), f"'Not for' clause should name {sib}")
 
     def test_newsletter_not_for_names_its_neighbours(self):
@@ -133,8 +134,25 @@ class TestTriggerCollisions(unittest.TestCase):
         m = re.search(r"Not for(.*)$", desc)
         self.assertIsNotNone(m, "industry-newsletter description needs a 'Not for' clause")
         for sib in ("competitive-briefing", "signal-monitor", "competitive-profile",
-                    "competitive-battlecard", "competitor-deep-dive", "media-monitoring"):
+                    "competitive-battlecard", "competitor-deep-dive", "media-monitoring", "weekly-competitive-updates"):
             self.assertIn(sib, m.group(1), f"'Not for' clause should name {sib}")
+
+    def test_weekly_update_not_for_names_its_neighbours(self):
+        desc = self.skills["weekly-competitive-updates"]["desc"]
+        m = re.search(r"Not for(.*)$", desc)
+        self.assertIsNotNone(m, "weekly-competitive-updates description needs a 'Not for' clause")
+        for sib in ("competitive-briefing", "media-monitoring", "industry-newsletter", "competitive-profile",
+                    "competitive-battlecard", "competitor-deep-dive", "signal-monitor"):
+            self.assertIn(sib, m.group(1), f"'Not for' clause should name {sib}")
+
+    def test_neighbours_name_the_weekly_update(self):
+        bad = []
+        for name in ("competitive-briefing", "media-monitoring", "industry-newsletter", "competitive-profile",
+                     "competitive-battlecard", "competitor-deep-dive", "comparison-page-brief", "signal-monitor"):
+            m = re.search(r"Not for(.*)$", self.skills[name]["desc"])
+            if not m or "weekly-competitive-updates" not in m.group(1):
+                bad.append(name)
+        self.assertEqual(bad, [], "description needs a 'Not for ... (weekly-competitive-updates)' clause")
 
     def test_description_fits_the_limit(self):
         for name in FAMILY:

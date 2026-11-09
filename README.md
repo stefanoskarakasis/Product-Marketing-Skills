@@ -34,7 +34,7 @@ Prefer the plugin marketplace? See [Installation](#installation) below.
 |---|---|---|
 | AGENTS.md map | About 230 words written into your project when the brain is built | Every session |
 | Brain | `foundation/brain.md`, 8 sections | Only the sections a task names |
-| Skills | 47 skills | When your request matches one |
+| Skills | 48 skills | When your request matches one |
 | Scripts | `lint_draft.py` and `brain_section.py` in `foundation/tools/` | When a check needs no judgment |
 
 The map is what makes your agent read the brain in chats where you call no skill. Claude Code reads it through a one-line `CLAUDE.md` import; agents that read `AGENTS.md` pick it up directly. In Claude Code, the competitive-intelligence plugin also asks before anything is sent to Slack or email. How it works, and how to turn it off: [docs/agents-map.md](docs/agents-map.md).
@@ -55,6 +55,7 @@ Ten plugins, grouped by the work you do. Install `product-marketing-context` fir
 | Answer competitor questions in Slack | `competitive-profile` | `pmm-competitive-intelligence` |
 | Brief the CEO, CRO or board on competitors every week | `competitive-briefing` | `pmm-competitive-intelligence` |
 | Send GTM leaders one weekly industry newsletter | `industry-newsletter` | `pmm-competitive-intelligence` |
+| Give the C-suite one weekly competitor update from public sources, with the threat board compared to last week | `weekly-competitive-updates` | `pmm-competitive-intelligence` |
 | Sweep my competitors' public pages every week and get the fixes drafted | `media-monitoring` | `pmm-competitive-intelligence` |
 | Publish a "us vs a rival" or "alternatives to a rival" page where every row is sourced | `comparison-page-brief` | `pmm-competitive-intelligence` |
 | Catch up on a customer before a call or renewal, in Slack or anywhere | `customer-context` | `pmm-sales` |
@@ -69,7 +70,7 @@ Ten plugins, grouped by the work you do. Install `product-marketing-context` fir
 
 **Building or auditing skills yourself?** `pmm-meta` (`meta-review`, `meta-learn`, `meta-synthesis`, `meta-verify`) is mostly for skill builders: `meta-review` audits skills against `SKILL-SPEC.md`. You do not need it to use the rest, except `meta-synthesis`, which runs the weekly learning sweep ([QUICK-START step 5](QUICK-START.md#5-keep-it-learning-2-minutes-a-week)).
 
-**Skills** are single guided workflows; **plugins** bundle related skills into one install. The full catalogue is under [Available Skills](#available-skills-47-total).
+**Skills** are single guided workflows; **plugins** bundle related skills into one install. The full catalogue is under [Available Skills](#available-skills-48-total).
 
 ## How it fits together
 
@@ -103,7 +104,7 @@ Ask in plain language, or call a skill directly.
 
 Direct call example: `/pmm-positioning:ideal-customer-profile`.
 
-## Available Skills (47 Total)
+## Available Skills (48 Total)
 
 | Skill | Plugin | Description |
 |-------|--------|-------------|
@@ -123,6 +124,7 @@ Direct call example: `/pmm-positioning:ideal-customer-profile`.
 | [competitor-deep-dive](pmm-competitive-intelligence/skills/competitor-deep-dive/) | pmm-competitive-intelligence | Long-form, sourced deep-dive on one competitor for a named decision |
 | [competitive-briefing](pmm-competitive-intelligence/skills/competitive-briefing/) | pmm-competitive-intelligence | Weekly leadership brief: verdict with the risk in euro, one recommended decision, what moved, the last call graded and the decisions still open |
 | [media-monitoring](pmm-competitive-intelligence/skills/media-monitoring/) | pmm-competitive-intelligence | Scheduled sweep of your core competitors' public pages: a one-screen brief, the fix for each item drafted, and a line on what it could not see |
+| [weekly-competitive-updates](pmm-competitive-intelligence/skills/weekly-competitive-updates/) | pmm-competitive-intelligence | Weekly C-suite competitor update from public sources: the last 7 days, every item dated and linked, decisions, fact versus interpretation, a threat board that remembers last week and a 30-day watchlist |
 | [comparison-page-brief](pmm-competitive-intelligence/skills/comparison-page-brief/) | pmm-competitive-intelligence | A vs, alternatives or switch page for a named rival, built from your brain and competitor records, with a sourced claims ledger behind every row |
 | [customer-context](pmm-sales/skills/customer-context/) | pmm-sales | Dated brief on one customer from your CRM, email, calls and chat, checked against your brain; Slack first |
 | [prospect-research](pmm-sales/skills/prospect-research/) | pmm-sales | Pain hypothesis, angle and first question for one prospect from web search, CRM and enrichment, checked against your brain; EMEA-aware; Slack first |

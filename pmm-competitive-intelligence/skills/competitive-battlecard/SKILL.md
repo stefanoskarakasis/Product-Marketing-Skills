@@ -1,17 +1,17 @@
 ---
 name: competitive-battlecard
-version: 1.4.1
+version: 1.4.2
 description: >
   Builds a one-page competitor battlecard a seller can skim in 60 seconds before a call,
   tailored to role, GTM motion, buyer persona, deal stage and the competitor's status in
   the deal. In a Slack thread it posts the card in the thread. Also lists your saved cards by roster tier and logs deal outcomes. Trigger on: "battlecard for [competitor]", "how do we beat [competitor]",
   "[competitor] is in my deal", "counter this
-  objection", "set of cards", "we won against [competitor]", "that reply worked". Related: alternatives-map, signal-monitor, proof-points. Not for the leadership brief (competitive-briefing), a competitor Q&A (competitive-profile), the scheduled sweep (media-monitoring) or a public vs page (comparison-page-brief).
+  objection", "set of cards", "we won against [competitor]", "that reply worked". Related: alternatives-map, signal-monitor, proof-points. Not for the leadership brief (competitive-briefing), the C-suite news update (weekly-competitive-updates), a competitor Q&A (competitive-profile), the scheduled sweep (media-monitoring) or a public vs page (comparison-page-brief).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-11-02
+last_updated: 2026-11-09
 ---
 
 # Competitive Battlecard
@@ -21,12 +21,12 @@ A battlecard is read once, five minutes before a call, and quoted from memory in
 ## Trigger
 
 - **When:** A seller or PMM needs a competitor-specific play for a live or upcoming deal, or a refresh of an existing card.
-- **Not for:** A single question about a competitor with no deal to tailor to (a price, a launch, why we lose) → `competitive-profile` (`ask` mode). A request that names a role, buyer or stage stays here. Mapping who buyers compare you to → `alternatives-map`. A weekly read on what changed → `signal-monitor`. Registering or checking a claim → `proof-points`. A feature-level handoff doc with one comparison → `product-messaging-playbook`. Persona cards and a competitive playbook inside a positioning build → `positioning-messaging` (SALES-ENABLEMENT mode). A multi-skill program → `workflow-orchestrator`. The scheduled sweep of public pages → `media-monitoring` (its findings feed this card). A weekly leadership brief across the roster → `competitive-briefing`. The long document behind a decision → `competitor-deep-dive` (read here when one exists).
+- **Not for:** A single question about a competitor with no deal to tailor to (a price, a launch, why we lose) → `competitive-profile` (`ask` mode). A request that names a role, buyer or stage stays here. Mapping who buyers compare you to → `alternatives-map`. A weekly read on what changed → `signal-monitor`. Registering or checking a claim → `proof-points`. A feature-level handoff doc with one comparison → `product-messaging-playbook`. Persona cards and a competitive playbook inside a positioning build → `positioning-messaging` (SALES-ENABLEMENT mode). A multi-skill program → `workflow-orchestrator`. The scheduled sweep of public pages → `media-monitoring` (its findings feed this card). A weekly leadership brief across the roster → `competitive-briefing`. The weekly public-source C-suite update → `weekly-competitive-updates`. The long document behind a decision → `competitor-deep-dive` (read here when one exists).
 - **Example prompts:**
   - "Battlecard for [competitor]"
   - "How do we beat [competitor] with a CFO in the evaluation stage?"
-  - "They say [claim]. How do I counter it?" (edge: one objection, answered from the card's blocks)
-  - "Refresh the [competitor] card" (edge: compares with the last card)
+  - "They say [claim]. How do I counter it?" (edge: one objection, answered from the card)
+  - "Refresh the [competitor] card" (edge: diffs the last card)
   - "Set of cards for my five competitors" (pack: an index of saved cards, nothing rebuilt)
   - "We lost to [competitor], the price reply did not land" (outcome: one row in the log)
 
@@ -168,13 +168,13 @@ a sparse one `meta-synthesis` can't trust.
 
 ## Operating Rules
 
-The claim, constraint, tailoring and connector rules live in Steps 2 to 5 and are tested in the Quality Gate. These five are stated only here.
+Claim, constraint, tailoring and connector rules live in Steps 2 to 5 and the Quality Gate.
 
-- **Section 3 is the competitive source of truth.** Never create a separate profile or competitor file. Notes append under Section 3 on confirmation; the saved card is an output, not a second brain.
+- **Section 3 is the competitive source of truth.** Never create a separate competitor file. Notes append under Section 3 on confirmation; the saved card is an output.
 - **One page.** Cut the weakest row; never shrink type below 9 pt.
 - **Brain writes need exact text and a yes.** Append only; a confirmed value is never overwritten.
 - **Internal use only.** Every card carries the footer; legal review is flagged when Sections 6 or 8 require it.
-- **Outcomes are append-only and seller-reported.** One row per report in `_outcomes.md`, roles only, never edit a saved card; a brain note needs two or more outcomes, exact text and a yes.
+- **Outcomes are append-only and seller-reported.** One row per report in `_outcomes.md`, roles only; never edit a saved card. A brain note needs two or more outcomes, exact text and a yes.
 
 ## Quality Gate
 

@@ -52,7 +52,7 @@ The sweep is the `meta-synthesis` skill, which lives in the `pmm-meta` plugin. I
 - **Every Friday:** say "run the weekly learning sweep". You get one list of proposed guardrails and brain edits and a table of which skills were used. Approve what is right.
 - **Want a reminder?** At the end of the sweep, say yes to "Want this every Friday?" and a scheduled task does the counting for you. Your project map also tells you in chat when a sweep is overdue.
 
-## What You Can Do (47 skills across 10 plugins)
+## What You Can Do (48 skills across 10 plugins)
 
 See the [main README](./README.md) for the full skill list and what each
 plugin covers.

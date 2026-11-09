@@ -1,13 +1,13 @@
 ---
 name: comparison-page-brief
-version: 1.0.0
+version: 1.0.1
 description: >
-  Builds a "you vs a named rival" comparison page or a "best alternatives to X" page from your brain, your competitor records and fresh public sources, with a sourced claims ledger so every row on the page can be defended. One dataset renders the public SEO page and the sales-sent version. Trigger on: "comparison page brief", "build a comparison page", "X vs Y page", "alternatives to [competitor] page", "versus page for [competitor]", "migration or switch page from [competitor]", "refresh our vs page". Not for a seller card (competitive-battlecard), one competitor question (competitive-profile), a long write-up (competitor-deep-dive), the leadership brief (competitive-briefing) or a weekly page sweep (media-monitoring).
+  Builds a "you vs a named rival" comparison page or a "best alternatives to X" page from your brain, your competitor records and fresh public sources, with a sourced claims ledger so every row on the page can be defended. One dataset renders the public SEO page and the sales-sent version. Trigger on: "comparison page brief", "build a comparison page", "X vs Y page", "alternatives to [competitor] page", "versus page for [competitor]", "migration or switch page from [competitor]", "refresh our vs page". Not for a seller card (competitive-battlecard), one competitor question (competitive-profile), a long write-up (competitor-deep-dive), the leadership brief (competitive-briefing), the C-suite news update (weekly-competitive-updates) or a weekly page sweep (media-monitoring).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-11-02
+last_updated: 2026-11-09
 ---
 
 # Comparison Page Brief
@@ -17,7 +17,7 @@ A buyer who searches "you vs rival" or "alternatives to rival" is already choosi
 ## Trigger
 
 - **When:** A PMM wants a public comparison page, an alternatives page, a migration ("switch from X") page, or a sales-sent version of one, aimed at competitive-intent search or a live deal.
-- **Not for:** A seller card for a live deal → `competitive-battlecard`. One question about one rival → `competitive-profile`. A long sourced write-up → `competitor-deep-dive`. The leadership brief → `competitive-briefing`. A scheduled sweep of rival pages → `media-monitoring`. Who buyers compare you to → `alternatives-map`. Brand-new positioning → `positioning-messaging`.
+- **Not for:** A seller card for a live deal → `competitive-battlecard`. One question about one rival → `competitive-profile`. A long sourced write-up → `competitor-deep-dive`. The leadership brief → `competitive-briefing`. The weekly C-suite news update → `weekly-competitive-updates`. A scheduled sweep of rival pages → `media-monitoring`. Who buyers compare you to → `alternatives-map`. Brand-new positioning → `positioning-messaging`.
 - **Example prompts:**
   - "Build our vs page against Northgate AP."
   - "Write a 'best alternatives to Paystream' page."

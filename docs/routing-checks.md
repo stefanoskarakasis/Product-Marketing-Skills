@@ -56,8 +56,12 @@ Claude chooses a skill from its name and description. This page is how you check
 | 40 | Which of my deals need attention today? | `deal-review` (`queue`, deals only) |
 | 41 | Research Acme before we reach out (no deal yet) | `prospect-research`, not `deal-review` |
 | 42 | Build a battlecard for the Acme deal against Rival | `competitive-battlecard`, not `deal-review` |
+| 43 | Run the weekly competitive updates | `weekly-competitive-updates` |
+| 44 | Weekly competitor update for the C-suite, Germany only | `weekly-competitive-updates` |
+| 45 | Executive competitor news this week | `weekly-competitive-updates`, not `industry-newsletter` |
+| 46 | Weekly competitor update for the C-suite with the euro at risk | `competitive-briefing`, not `weekly-competitive-updates` |
 
-**Pass:** 39 of 42, and prompts 12 to 14, 23 and 26 never build a leadership brief or a newsletter without asking.
+**Pass:** 43 of 46, and prompts 12 to 14, 23 and 26 never build a leadership brief or a newsletter without asking.
 
 ## If two sets of skills are installed
 
@@ -66,6 +70,7 @@ If you also run another set of competitive skills in the same project (for examp
 | You want | Use |
 |---|---|
 | The weekly leadership brief | `/pmm-competitive-intelligence:competitive-briefing` |
+| The weekly C-suite update from public sources | `/pmm-competitive-intelligence:weekly-competitive-updates` |
 | The weekly industry newsletter | `/pmm-competitive-intelligence:industry-newsletter` |
 | A battlecard for a live deal | `/pmm-competitive-intelligence:competitive-battlecard` |
 | A deep-dive on one competitor | `/pmm-competitive-intelligence:competitor-deep-dive` |

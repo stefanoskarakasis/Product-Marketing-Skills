@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Competitive intelligence: weekly-competitive-updates
+
+- New skill `weekly-competitive-updates` in `pmm-competitive-intelligence`, with the `/pmm-competitive-intelligence:weekly-competitive-updates` command: a weekly C-suite competitor update built from public sources only, covering the trailing 7 days, in one fixed order (executive summary, 2 to 4 recommended decisions, takeaways with fact and interpretation kept apart, threat board, 30-day watchlist, dated deep dives, data confidence and gaps). Every item carries a date and an inline link retrieved in the run; a competitor with no news is left out; no owners are named anywhere.
+- It remembers: each edition, a threat-level ledger (the threat board shows "raised from Medium" against last week), a watchlist that closes its own items (happened, lapsed, still open) and the confirmed requester. Records are append-only in `/context/weekly-updates/`. A requester is never assumed; a scheduled run uses a saved one only if it was confirmed at scheduling and is under 90 days old, otherwise it runs cross-market and says so. Without files, a Carry-forward Block carries the state.
+- Seven sibling skills (`competitive-briefing`, `media-monitoring`, `industry-newsletter`, `competitive-profile`, `competitive-battlecard`, `competitor-deep-dive`, `comparison-page-brief`) and `signal-monitor` name it in their "Not for" clauses and take a patch version; the generic "competitive update" route check now offers it. To stay under the 3,000-word ceiling, four of them lost a few words of repeated rule text and example wording; no behaviour changed.
+- `tests/test_triggers.py` adds the skill to the competitive family and checks both directions of the "Not for" naming. Evals: 24 test cases. `docs/routing-checks.md` grows to 46 prompts. Counts: 48 skills, 56 commands.
+
 ### Cursor
 
 - **Fixed all ten `.cursor-plugin/plugin.json` manifests.** Each carried `author.url`, which Cursor's published plugin schema (`schemas/plugin.schema.json` in `cursor/plugins`) does not allow: `author` takes only `name` and `email`. The marketplace manifest already passed. Every manifest now validates against both Cursor schemas. The plugin's `homepage` and `repository` URLs are unchanged, and the Claude manifests are unchanged.

@@ -1,13 +1,13 @@
 ---
 name: media-monitoring
-version: 1.1.0
+version: 1.1.1
 description: >
-  Sweeps the public pages of your 3 to 5 core competitors on a schedule and returns a one-screen brief: what needs you this week with the fix already drafted, what needs no action, and what the sweep could not see. One person runs it with a named backup; the team reads the Slack post and Doc. Nothing is changed or sent without your go. Trigger on: "run the media monitoring", "weekly competitor sweep", "monitor my competitors' public pages", "what did the monitoring catch", "set up media monitoring". Not for the leadership brief (competitive-briefing), one competitor's question (competitive-profile), a seller card (competitive-battlecard), a long write-up (competitor-deep-dive), a weekly opportunities list (signal-monitor) or the industry newsletter (industry-newsletter).
+  Sweeps the public pages of your 3 to 5 core competitors on a schedule and returns a one-screen brief: what needs you this week with the fix already drafted, what needs no action, and what the sweep could not see. One person runs it with a named backup; the team reads the Slack post and Doc. Nothing is changed or sent without your go. Trigger on: "run the media monitoring", "weekly competitor sweep", "monitor my competitors' public pages", "what did the monitoring catch", "set up media monitoring". Not for the leadership brief (competitive-briefing), one competitor's question (competitive-profile), a seller card (competitive-battlecard), a long write-up (competitor-deep-dive), a weekly opportunities list (signal-monitor), the industry newsletter (industry-newsletter) or the public-source C-suite news update (weekly-competitive-updates).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-11-01
+last_updated: 2026-11-09
 ---
 
 # Media Monitoring
@@ -17,7 +17,7 @@ Competitor news is only useful if it ends in a changed asset or a sent message. 
 ## Trigger
 
 - **When:** A PMM or CI lead wants a recurring, read-only sweep of named competitors' public pages, with the results triaged and the next action drafted. Also to act on an item from the last brief.
-- **Not for:** The weekly leadership brief with a decision and the euro at risk → `competitive-briefing`. One question about one competitor → `competitive-profile`. A seller card for a live deal → `competitive-battlecard`. A long sourced write-up for a decision → `competitor-deep-dive`. A ranked list of up to five opportunities against your Section 7 priorities → `signal-monitor`. The weekly industry newsletter → `industry-newsletter`. A multi-skill program → `workflow-orchestrator`. Who buyers compare you to → `alternatives-map`.
+- **Not for:** The weekly leadership brief with a decision and the euro at risk → `competitive-briefing`. One question about one competitor → `competitive-profile`. A seller card for a live deal → `competitive-battlecard`. A long sourced write-up for a decision → `competitor-deep-dive`. A ranked list of up to five opportunities against your Section 7 priorities → `signal-monitor`. The weekly industry newsletter → `industry-newsletter`. The weekly C-suite news update from public sources, with no fixes drafted → `weekly-competitive-updates`. A multi-skill program → `workflow-orchestrator`. Who buyers compare you to → `alternatives-map`.
 - **Example prompts:**
   - "Set up media monitoring for our five competitors."
   - "Run the weekly competitor sweep."
@@ -43,7 +43,7 @@ The `~~` connectors this skill can read and what each feeds are in `references/c
 
 ## Pre-flight
 
-- **Route check (first).** If the request is generic ("competitive update", "what are our competitors doing") or asks what changed with no sweep intent, ask one question before loading anything: "Do you want a sweep of your competitors' public pages with fixes drafted (media-monitoring), a ranked list of opportunities (signal-monitor), or the leadership brief (competitive-briefing)?" For a single-competitor question, a seller card, a long write-up or the newsletter, name the matching skill from Trigger in one line and ask whether to continue here. Never sweep from a generic phrase.
+- **Route check (first).** If the request is generic ("competitive update", "what are our competitors doing") or asks what changed with no sweep intent, ask one question before loading anything: "Do you want a sweep of your competitors' public pages with fixes drafted (media-monitoring), a ranked list of opportunities (signal-monitor), the leadership brief (competitive-briefing), or the weekly C-suite news update (weekly-competitive-updates)?" For a single-competitor question, a seller card, a long write-up or the newsletter, name the matching skill from Trigger in one line and ask whether to continue here. Never sweep from a generic phrase.
 - Load `/foundation/brain.md`. Read Sections 3, 6 and 8 first, then 1, 2, 4 and 7.
 - Load `/context/monitoring/watchlist.md` and `_state.md`: no watchlist means `setup`; a schema other than `schema: 1` stops the run with a one-line migration note. Meta-patterns, Quick-Brain when the brain is absent, freshness windows and gap capture (one question, once) are in `references/preflight-details.md`; read it now.
 - **Constraints first:** read Section 8 `prohibited` and `approvals` and Section 6 `forbidden_claims`. If naming a competitor to the reader is prohibited, stop and show the entry.

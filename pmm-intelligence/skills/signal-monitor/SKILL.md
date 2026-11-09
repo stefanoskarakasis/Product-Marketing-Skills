@@ -1,18 +1,18 @@
 ---
 name: signal-monitor
-version: 1.1.2
+version: 1.1.3
 description: >
   Turns the signals you name into at most five opportunities, each tied to a brain field
   and a Section 7 priority, with evidence, a confidence label and one suggested next move;
   it never edits your brain. Trigger on: "what changed this week", "weekly opportunities",
   "signal monitor", "what should we act on", "competitor moves this week", "scan these
   signals". Related: alternatives-map, positioning-messaging, pmm-okrs,
-  workflow-orchestrator. Not for a leadership brief on competitors (competitive-briefing) or the weekly industry newsletter (industry-newsletter), or the scheduled competitor sweep (media-monitoring).
+  workflow-orchestrator. Not for a leadership brief on competitors (competitive-briefing) the weekly industry newsletter (industry-newsletter), the C-suite competitor news update (weekly-competitive-updates) or the scheduled competitor sweep (media-monitoring).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-29
+last_updated: 2026-11-09
 ---
 
 # Signal Monitor
@@ -22,7 +22,7 @@ Most weekly "market scans" produce a long list and no decision. This skill does 
 ## Trigger
 
 - **When:** A weekly or ad hoc read on what changed (competitor pages, search and traffic shifts, win/loss notes, news you paste) and what to do about it.
-- **Not for:** A single question about one competitor (a price, a launch, why we lose) → `competitive-profile` (`ask` mode). A competitor battlecard for a live deal → `competitive-battlecard`. Keeping five competitor profiles current → `competitive-profile` (it reads your saved lists). Running a multi-skill program → `workflow-orchestrator`. Re-mapping alternatives → `alternatives-map`. Rewriting positioning → `positioning-messaging`. Setting quarterly goals → `pmm-okrs`.
+- **Not for:** A single question about one competitor (a price, a launch, why we lose) → `competitive-profile` (`ask` mode). A competitor battlecard for a live deal → `competitive-battlecard`. Keeping five competitor profiles current → `competitive-profile` (it reads your saved lists). Running a multi-skill program → `workflow-orchestrator`. Re-mapping alternatives → `alternatives-map`. Rewriting positioning → `positioning-messaging`. Setting quarterly goals → `pmm-okrs`. The weekly C-suite competitor news update → `weekly-competitive-updates`.
 - **Example prompts:**
   - "Here is what changed on two competitor pricing pages: [paste]. What matters for us?"
   - "Weekly opportunities, please."

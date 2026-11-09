@@ -4,7 +4,7 @@ Rules for AI agents and contributors working in this repository. Short on purpos
 
 ## What this repo is
 
-Product marketing skills for B2B SaaS PMMs and GTM operators: 47 skills in 10 plugins, plus one shared brain (`foundation/brain.md`) that every skill reads. Skills are plain `SKILL.md` files that follow the [Agent Skills specification](https://agentskills.io/specification.md). The repo is also a Claude Code plugin marketplace through `.claude-plugin/marketplace.json`. Creator: Stefanos Karakasis. License: MIT.
+Product marketing skills for B2B SaaS PMMs and GTM operators: 47 skills in 10 plugins, with 55 commands, plus one shared brain (`foundation/brain.md`) that every skill reads. Skills are plain `SKILL.md` files that follow the [Agent Skills specification](https://agentskills.io/specification.md). The repo is also a Claude Code plugin marketplace through `.claude-plugin/marketplace.json`. Creator: Stefanos Karakasis. License: MIT.
 
 ## Where things live
 
@@ -50,10 +50,26 @@ Skills are content, so there is no build. These checks run on every push:
 - `name` matches the folder exactly: lowercase letters, digits and single hyphens, 1 to 64 characters.
 - `description` is 1 to 1024 characters and keeps the trigger phrases.
 - `SKILL.md` stays under 500 lines and 3,000 words (`tests/test_skill_size.py`). Heavy content goes to `references/`, loaded only when needed.
-- `.cursor-plugin/` manifests mirror the Claude ones and carry no version. Add a plugin to both marketplaces.
+- `.cursor-plugin/` manifests mirror the Claude ones and carry no version. Add a plugin to both marketplaces. Their keys must fit Cursor's plugin schema (`author` takes only `name` and `email`); a test checks it.
 - Name another skill or file only after checking that it exists in this repo.
 - A skill cites only brain sections that exist in `brain-schema.md`. Sections 1 to 6 are required, 7 and 8 are recommended. Never invent a section and never renumber.
 - A skill writes to the brain only where the schema allows, and only after the user confirms the exact before and after.
+- Skills are nouns: frameworks Claude loads when a topic matches. Commands are verbs: `/plugin:command`, run by the user.
+- Commands need `description`, plus `argument-hint` when they take arguments (`tests/test_command_frontmatter.py`). A command with no arguments goes on that test's `NO_ARGS` list.
+- `pmm-positioning` is the exception: its skills and commands carry `name` and `description` only, because the plugin directory refuses other frontmatter keys. Its metadata lives in `pmm-positioning/skills.meta.json` (`tests/test_directory_frontmatter.py`).
+- No cross-plugin references in commands. Suggest follow-ups in natural language only, because plugins install independently.
+
+## What shows where
+
+Edit the right text, and keep the ones that must match in sync.
+
+| Text | Where people see it |
+|---|---|
+| `marketplace.json` description | Marketplace browser and Claude Code |
+| `plugin.json` description | Plugin list. Keep it equal to that plugin's `README.md` |
+| `SKILL.md` description | Skill list and auto-loading. Carries the trigger phrases |
+| Command description and `argument-hint` | Shown when typing `/`. `pmm-positioning` has no hint |
+| `README.md` | GitHub only, never loaded at runtime |
 
 ## Connectors
 
@@ -75,7 +91,7 @@ Skills are content, so there is no build. These checks run on every push:
 - `CHANGELOG.md` is the source of truth. The newest `## vX.Y.Z — YYYY-MM-DD` heading is the released version.
 - One version everywhere: `.claude-plugin/marketplace.json`, the root `plugin.json` and every plugin's `plugin.json` (ten files) carry the same number as the newest heading. No per-plugin versions.
 - Semver: breaking change is major; new skill, command, hook or changed behavior is minor; fix or docs only is patch.
-- Add each user-facing change under `## Unreleased`. To release: rename it to `## vX.Y.Z — YYYY-MM-DD`, set the version in those eleven files, commit together. Merging to `main` tags and publishes the release.
+- Add each user-facing change under `## Unreleased`. To release: rename it to `## vX.Y.Z — YYYY-MM-DD`, set the version in those twelve files (marketplace, root plugin, ten plugins), commit together. Merging to `main` tags and publishes the release.
 
 ## Git and pull requests
 
@@ -84,4 +100,11 @@ Skills are content, so there is no build. These checks run on every push:
 
 ## After any change
 
-Ask: does this change mention a skill, command, file or number that actually exists? Check the folder, not memory of what was planned. This repo's biggest source of past errors was documentation describing things that were never built, and this file was one of them. The tests now check its counts.
+1. Ask: does this change mention a skill, command, file or number that actually exists? Check the folder, not memory of what was planned. This repo's biggest source of past errors was documentation describing things that were never built, and this file was one of them. The tests now check its counts.
+2. Run `python3 .github/scripts/check_structure.py` and `python3 -m unittest discover -s tests`.
+3. If you added or removed a skill, command or plugin, update the counts: `README.md` (layer table, "Ten plugins" line, `Available Skills (N Total)` header and table), `QUICK-START.md`, the first paragraph of this file, and each plugin's own `## Skills (N)` and `## Commands (N)` headers. `tests/test_prose_counts.py` fails on a mismatch.
+4. If you changed a plugin description, sync its `plugin.json` and `README.md`.
+5. Add a bullet under `## Unreleased` in `CHANGELOG.md`.
+6. Bump versions only when you release.
+
+When the work is done, offer the follow-ups that apply: run the checks, update counts, sync descriptions, cut a release.

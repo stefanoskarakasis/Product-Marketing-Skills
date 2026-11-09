@@ -2,13 +2,42 @@
 
 ## Unreleased
 
-### Docs and checks: counts, agent guidance, command rule
-- Fixed all ten `.cursor-plugin/plugin.json` files: `author.url` is not allowed by Cursor's plugin schema. New test `test_manifest_keys_match_cursor_schema`.
-- README and QUICK-START now state exactly what is verified per agent (Claude Code, Codex, Cursor) and the Cursor `mcp.json` limitation.
-- README and `AGENTS.md` counts now match the repo: 47 skills, 55 commands, ten plugins. New `tests/test_prose_counts.py` fails the build when a count written in `README.md`, `QUICK-START.md` or `AGENTS.md` is wrong.
-- `QUICK-START.md` checked against the repo: removed an unsourced "15 minutes" claim, said the brain wizard starts from your website and documents, listed Strategy and Execution, corrected "every skill logs" to "nearly every", named the plugin the weekly sweep needs (`pmm-meta`), and noted the two skills that need a prerequisite. The README no longer says `pmm-meta` is unnecessary for everyone.
-- `AGENTS.md` gains "What shows where", a numbered "After any change" checklist, the skills-and-commands rules and the `pmm-positioning` frontmatter exception. The version bump now says twelve files, not eleven.
-- `CONTRIBUTING.md` no longer says every command needs `argument-hint`. The rule is `description`, plus `argument-hint` when the command takes arguments, and none in `pmm-positioning`. New `tests/test_command_frontmatter.py` enforces it.
+### Cursor
+
+- **Fixed all ten `.cursor-plugin/plugin.json` manifests.** Each carried `author.url`, which Cursor's published plugin schema (`schemas/plugin.schema.json` in `cursor/plugins`) does not allow: `author` takes only `name` and `email`. The marketplace manifest already passed. Every manifest now validates against both Cursor schemas. The plugin's `homepage` and `repository` URLs are unchanged, and the Claude manifests are unchanged.
+- New test `test_manifest_keys_match_cursor_schema` in `tests/test_cursor_manifests.py` fails the build if a Cursor manifest uses a top-level key outside Cursor's schema, or any `author` key other than `name` and `email`. Putting an old `url` back makes it fail.
+- README now says what is verified for Cursor and what is not. Skills are plain `SKILL.md` folders, so the copy method works there too (Cursor documents `.cursor/skills/` and `.agents/skills/`, and also reads `.claude/skills/`). The manifests pass Cursor's schemas but have not been run inside Cursor itself. **Known limitation:** Cursor reads `mcp.json`, not the `.mcp.json` files this repo ships, so Cursor users add connectors in Cursor's own MCP settings.
+
+### Docs: counts and agent guidance
+
+- **README counts fixed:** "43 workflows" is now "47 skills", and "Nine plugins" is now "Ten plugins". The "Draft content, briefs, resumes" row sat outside the pick-by-job table; it is back inside it, under "Write customer stories".
+- **README no longer says nobody needs `pmm-meta`.** `meta-review` audits skills and is for skill builders, but `meta-synthesis`, which runs the weekly learning sweep, lives only in `pmm-meta`, and QUICK-START step 5 tells every user to run it. The sentence now says so and links to that step.
+- **`AGENTS.md` rebuilt** to cover what a new contributor or agent needs: 47 skills in 10 plugins with 55 commands, a "What shows where" table (which text appears in the marketplace, plugin list, skill list, the `/` menu or GitHub only), skills-are-nouns and commands-are-verbs, the command frontmatter rule, the `pmm-positioning` exception, the no-cross-plugin-references rule for commands, the Cursor schema rule, and a numbered six-step "After any change" checklist. The version bump now says **twelve** files (marketplace, root plugin, ten plugins); it said eleven.
+- **`CONTRIBUTING.md` corrected.** It said every command needs `argument-hint`. Twelve do not, and that is right: nine are in `pmm-positioning`, where the Claude plugin directory refuses every frontmatter key except `name` and `description` (it refused the v1.20.0 listing with `LOCAL_CODE_FRONTMATTER_KEY`), and three (`agents-map`, `brain-gaps`, `my-context`) take no arguments. The rule is now `description`, plus `argument-hint` when the command takes arguments, and none in `pmm-positioning`.
+- **`QUICK-START.md` audited claim by claim against the repo:**
+  - Removed "Takes about 15 minutes", which nothing in the repo supports.
+  - The brain wizard opens by asking for your website, pricing page, deck or call notes and builds from those first. The text now says so, and adds Strategy and execution (brain sections 7 and 8) as recommended, not required.
+  - "Every skill logs what it learns" is now "Nearly every skill": 44 of 47 do; the wizard, `meta-review` and `meta-verify` do not.
+  - The first example prompt, "Generate positioning", appeared in no skill; it is now "Build positioning for our platform".
+  - The weekly sweep step now names `meta-synthesis` and the `pmm-meta` plugin.
+  - Troubleshooting names the two skills that need a prerequisite: `go-to-market-strategy` needs a beachhead segment and `positioning-messaging` needs the positioning inputs.
+  - The unsourced "works with Cursor, Claude Cowork and any agent that supports it" answer is replaced with what is tested: Claude Code and Codex install with `npx skills add`; Cursor is schema-checked but not run; Claude on the web or desktop takes skill zips from Settings.
+- `docs/make-it-yours.md` no longer lists Cowork as a separate place to add a connector: Cowork is now part of Claude.
+
+### Tests
+
+- New `tests/test_prose_counts.py` (3 tests) reads `README.md`, `QUICK-START.md` and `AGENTS.md` and fails when a skill count, command count or plugin count written in the text differs from the folders on disk. It counts `SKILL.md` files, `*/commands/*.md` files and plugin folders, and accepts digits or number words up to twelve.
+- New `tests/test_command_frontmatter.py` (4 tests) enforces the corrected rule: every command has `description`; every command outside `pmm-positioning` has `argument-hint` unless it is on the test's `NO_ARGS` list; and that list must stay current, so a command that gains arguments cannot hide on it.
+- The suite goes from 60 to 68 tests. Each new check was proven by breaking the repo on purpose: a wrong README count, a missing `argument-hint`, a hint added to a `pmm-positioning` command, a 56th command file, a wrong skill count in QUICK-START, and a `url` put back in a Cursor manifest.
+
+### Verified in this release
+
+- `claude plugin validate` is clean on the marketplace and all ten plugins. `claude plugin marketplace add` and `claude plugin install` work from a local path and from GitHub shorthand, and Claude Code lists 102 items, which is 47 skills plus 55 commands.
+- All 47 skills meet the Agent Skills and Anthropic limits: lowercase-hyphen names that match their folder, no reserved words, descriptions of 1 to 1024 characters with no angle brackets, and every `SKILL.md` under 500 lines.
+- All 111 relative links and anchors across 39 docs resolve.
+- `npx skills add` installs for Claude Code, Codex and Cursor targets.
+- Not tested: the manifests and skills inside Cursor itself, and how Claude Code's model routes the QUICK-START example prompts (`docs/routing-checks.md` covers only the competitive skills).
+- Non-blocking directory warnings left for a later release: missing plugin icons and privacy-policy URLs on the plugins other than `pmm-positioning`.
 
 ### New skill: deal-review
 

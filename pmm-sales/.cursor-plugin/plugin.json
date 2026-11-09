@@ -2,8 +2,7 @@
   "name": "pmm-sales",
   "description": "Customer account context for sellers and CSMs, built for Slack first: the current state of one customer from your CRM, email, calls, docs, chat, support and usage, checked against your brain, with risks flagged.",
   "author": {
-    "name": "Stefanos Karakasis",
-    "url": "https://stefanoskarakasis.substack.com"
+    "name": "Stefanos Karakasis"
   },
   "license": "MIT",
   "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-sales",

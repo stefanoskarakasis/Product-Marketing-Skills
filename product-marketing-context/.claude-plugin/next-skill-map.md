@@ -257,3 +257,15 @@ named competitor (competitive-battlecard)?"
 - meta-synthesis — after the monthly review, to find patterns across the sessions
 - meta-verify — a second quality gate, before an approved note goes beyond the team
 **Prompt to surface:** "Next, pick one: rank what moved (signal-monitor), rebuild a seller card (competitive-battlecard), refresh a stale profile (competitive-profile), brief leadership (competitive-briefing), build the evidence for a decision (competitor-deep-dive), feed the newsletter (industry-newsletter), or look for patterns across sessions (meta-synthesis)?"
+
+## After weekly-competitive-updates (update delivered, edition and ledgers saved)
+**Next options (not a single path — ask which applies):**
+- competitive-briefing — if a decision needs the euro at risk from your pipeline
+- competitor-deep-dive — if an item needs the long, sourced evidence behind a decision
+- competitive-battlecard — if a move touches a live deal and the seller card needs a patch
+- competitive-profile — if a profile line is past its window or a competitor is missing from the roster
+- media-monitoring — if you want the pages behind these items swept on a schedule, with the fix for each drafted
+- signal-monitor — if more than one thing moved and you want them ranked against this quarter's priorities
+- industry-newsletter — if the same week belongs in the newsletter for GTM leaders
+- meta-synthesis — after several editions, to find patterns across the sessions
+**Prompt to surface:** "Next, pick one: add the euro at risk (competitive-briefing), build the evidence for a decision (competitor-deep-dive), patch a seller card (competitive-battlecard), refresh a stale profile (competitive-profile), sweep the pages on a schedule (media-monitoring), rank what moved (signal-monitor), feed the newsletter (industry-newsletter), or look for patterns across sessions (meta-synthesis)?"

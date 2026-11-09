@@ -2,8 +2,7 @@
   "name": "pmm-intelligence",
   "description": "A weekly read on what changed around your product: at most five opportunities from signals you name, each tied to your brain and quarterly priorities.",
   "author": {
-    "name": "Stefanos Karakasis",
-    "url": "https://stefanoskarakasis.substack.com"
+    "name": "Stefanos Karakasis"
   },
   "license": "MIT",
   "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-intelligence",

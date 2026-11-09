@@ -34,14 +34,14 @@ Prefer the plugin marketplace? See [Installation](#installation) below.
 |---|---|---|
 | AGENTS.md map | About 230 words written into your project when the brain is built | Every session |
 | Brain | `foundation/brain.md`, 8 sections | Only the sections a task names |
-| Skills | 43 workflows | When your request matches one |
+| Skills | 47 skills | When your request matches one |
 | Scripts | `lint_draft.py` and `brain_section.py` in `foundation/tools/` | When a check needs no judgment |
 
 The map is what makes your agent read the brain in chats where you call no skill. Claude Code reads it through a one-line `CLAUDE.md` import; agents that read `AGENTS.md` pick it up directly. In Claude Code, the competitive-intelligence plugin also asks before anything is sent to Slack or email. How it works, and how to turn it off: [docs/agents-map.md](docs/agents-map.md).
 
 ## Start here: pick by job
 
-Nine plugins, grouped by the work you do. Install `product-marketing-context` first; add the rest as you need them.
+Ten plugins, grouped by the work you do. Install `product-marketing-context` first; add the rest as you need them.
 
 | I need to… | Start with | Plugin |
 |---|---|---|
@@ -65,9 +65,9 @@ Nine plugins, grouped by the work you do. Install `product-marketing-context` fi
 | Run the PMM job: OKRs, retros, pre-mortems | `pmm-okrs`, `retro`, `pre-mortem` | `pmm-execution` |
 | Generate and measure growth ideas | `experiment-ideas`, `pmm-metrics` | `pmm-growth` |
 | Write customer stories | `customer-stories` | `pmm-growth` |
-
-**Building or auditing skills yourself?** `pmm-meta` (`meta-review`, `meta-learn`, `meta-synthesis`, `meta-verify`) is for skill builders. It audits skills against `SKILL-SPEC.md`; you do not need it to use the rest.
 | Draft content, briefs, resumes | `writing-assistant`, `gaccs-brief` | `pmm-toolkit` |
+
+**Building or auditing skills yourself?** `pmm-meta` (`meta-review`, `meta-learn`, `meta-synthesis`, `meta-verify`) is mostly for skill builders: `meta-review` audits skills against `SKILL-SPEC.md`. You do not need it to use the rest, except `meta-synthesis`, which runs the weekly learning sweep ([QUICK-START step 5](QUICK-START.md#5-keep-it-learning-2-minutes-a-week)).
 
 **Skills** are single guided workflows; **plugins** bundle related skills into one install. The full catalogue is under [Available Skills](#available-skills-47-total).
 
@@ -199,7 +199,7 @@ cp -r Product-Marketing-Skills/pmm-positioning/skills/* .claude/skills/
 
 Repeat the last line for each plugin you want (`pmm-execution`, `pmm-competitive-intelligence`, and so on). The brain is copied whole because its helper scripts live inside it. Folders are as documented by [Claude Code](https://code.claude.com/docs/en/skills) and Codex at the time of writing; `npx skills add` at the top of this page picks the right folder for you.
 
-**Cursor:** the repo ships Cursor plugin manifests (`.cursor-plugin/`) in the format of Cursor's plugin reference. They have not been tested inside Cursor yet; tell us what you see.
+**Cursor:** the skills are plain `SKILL.md` folders, so the copy method above works there too (Cursor documents `.cursor/skills/` and `.agents/skills/`, and also reads `.claude/skills/`). The repo also ships Cursor plugin manifests (`.cursor-plugin/`); they pass the JSON schemas in Cursor's public `cursor/plugins` repo, but they have not been tested inside Cursor itself. Connectors: Cursor reads `mcp.json`, not the `.mcp.json` files shipped here, so add your connector in Cursor's own MCP settings. Tell us what you see.
 
 ### Option 3: Fork and Customize
 

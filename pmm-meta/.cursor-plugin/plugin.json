@@ -2,8 +2,7 @@
   "name": "pmm-meta",
   "description": "Meta skills that operate on the skill system itself: skill review, session learning, cross-skill synthesis and output verification.",
   "author": {
-    "name": "Stefanos Karakasis",
-    "url": "https://stefanoskarakasis.substack.com"
+    "name": "Stefanos Karakasis"
   },
   "license": "MIT",
   "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-meta",

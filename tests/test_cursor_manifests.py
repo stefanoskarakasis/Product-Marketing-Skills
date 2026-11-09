@@ -30,6 +30,17 @@ class CursorManifests(unittest.TestCase):
             for s in ([man["skills"]] if isinstance(man["skills"], str) else man["skills"]):
                 self.assertTrue((d / s).exists(), f"{p['name']}: skills path {s} does not exist")
 
+    def test_manifest_keys_match_cursor_schema(self):
+        """cursor/plugins schemas/plugin.schema.json: author takes only name and email; no extra top-level keys."""
+        allowed = {"name", "displayName", "description", "version", "minClientVersions", "author", "publisher",
+                   "homepage", "repository", "license", "logo", "keywords", "category", "tags", "commands",
+                   "agents", "skills", "rules", "hooks", "variables", "mcpServers"}
+        for f in ROOT.glob("*/.cursor-plugin/plugin.json"):
+            man = json.loads(f.read_text(encoding="utf-8"))
+            self.assertLessEqual(set(man), allowed, f"{f.parent.parent.name}: key not in Cursor schema")
+            self.assertLessEqual(set(man.get("author", {})), {"name", "email"},
+                                 f"{f.parent.parent.name}: Cursor author allows only name and email")
+
 
 if __name__ == "__main__":
     unittest.main()

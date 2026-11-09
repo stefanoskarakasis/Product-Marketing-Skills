@@ -1,16 +1,5 @@
 # Changelog
 
-## Unreleased
-
-### Docs and checks: counts, agent guidance, command rule
-- Fixed all ten `.cursor-plugin/plugin.json` files: `author.url` is not allowed by Cursor's plugin schema. New test `test_manifest_keys_match_cursor_schema`.
-- README and QUICK-START now state exactly what is verified per agent (Claude Code, Codex, Cursor) and the Cursor `mcp.json` limitation.
-
-- README and `AGENTS.md` counts now match the repo: 47 skills, 55 commands, ten plugins. New `tests/test_prose_counts.py` fails the build when a count written in `README.md`, `QUICK-START.md` or `AGENTS.md` is wrong.
-- `QUICK-START.md` checked against the repo: removed an unsourced "15 minutes" claim, said the brain wizard starts from your website and documents, listed Strategy and Execution, corrected "every skill logs" to "nearly every", named the plugin the weekly sweep needs (`pmm-meta`), and noted the two skills that need a prerequisite. The README no longer says `pmm-meta` is unnecessary for everyone.
-- `AGENTS.md` gains "What shows where", a numbered "After any change" checklist, the skills-and-commands rules and the `pmm-positioning` frontmatter exception. The version bump now says twelve files, not eleven.
-- `CONTRIBUTING.md` no longer says every command needs `argument-hint`. The rule is `description`, plus `argument-hint` when the command takes arguments, and none in `pmm-positioning`. New `tests/test_command_frontmatter.py` enforces it.
-
 ### New skill: deal-review
 
 - New skill `deal-review` in `pmm-sales`, with the `/pmm-sales:deal-review` command. Reviews one live deal from CRM, calls, email and chat: evidence ranked `validated` / `stated` / `not found`, the buyer's own decisions, the most likely reason it dies, one next step and paste-ready CRM, next-step and question blocks. Modes: `review`, `since`, `ask`, `prep`, `queue` (deals only), `mine` (private) and `log:`.

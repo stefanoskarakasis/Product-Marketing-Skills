@@ -16,7 +16,10 @@ it's a bug fix, a typo, or a new skill idea.
 - Follow existing patterns: skills are nouns (domain knowledge), commands
   are verbs (workflows).
 - Every skill needs frontmatter with `name` and `description`. Every
-  command needs `description` and `argument-hint`.
+  command needs `description`, plus `argument-hint` when it takes
+  arguments. `pmm-positioning` carries `name` and `description` only,
+  because the plugin directory refuses other frontmatter keys (see
+  [SKILL-SPEC.md](SKILL-SPEC.md)).
 - Skill `name` must match its directory name.
 - Every skill should meet [SKILL-SPEC.md](SKILL-SPEC.md) — read it before
   proposing a new skill or editing an existing one.

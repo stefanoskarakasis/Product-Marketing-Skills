@@ -1,19 +1,19 @@
 ---
 name: competitive-profile
-version: 1.5.0
+version: 1.5.1
 description: >
   Keeps a roster of your five key competitors with a dated, sourced profile each, refreshes only
   stale lines, and answers a team's competitor questions in Slack or chat from your CI records.
   Trigger on: "who are my key competitors", "set up my competitive profiles", "refresh my
-  competitor profiles", "what's stale", "what do we say against [competitor] on pricing", "is
-  [competitor] cheaper than us", "[competitor] just launched". Not for competitive-briefing,
-  competitive-battlecard, competitor-deep-dive, signal-monitor, industry-newsletter,
-  media-monitoring, weekly-competitive-updates or comparison-page-brief.
+  competitor profiles", "what's stale in my competitor profiles", "what do we say against
+  [competitor] on pricing", "is [competitor] cheaper than us", "[competitor] just launched". Not
+  for competitive-briefing, competitive-battlecard, competitor-deep-dive, signal-monitor,
+  industry-newsletter, media-monitoring, weekly-competitive-updates or comparison-page-brief.
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-11-12
+last_updated: 2026-11-13
 ---
 
 # Competitive Profile

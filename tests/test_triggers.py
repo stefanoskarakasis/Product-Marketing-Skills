@@ -114,6 +114,22 @@ class TestTriggerCollisions(unittest.TestCase):
                 bad.append(f"{a}: '{pa}' vs {b}: '{pb}'")
         self.assertEqual(bad, [])
 
+    def test_no_subset_phrases_anywhere_in_the_repo(self):
+        """The family test above is not enough: 'what's stale' once sat inside 'what's stale in my brain'."""
+        allowed = {
+            # writing-assistant keeps its case-study format on purpose (see CHANGELOG v1.1x customer-stories)
+            ("writing-assistant", "case study", "customer-stories", "kick off a case study"),
+        }
+        bad = []
+        items = [(n, p) for n, s in self.skills.items() for p in s["phrases"]]
+        for (a, pa), (b, pb) in itertools.combinations(items, 2):
+            if a == b or (a, pa, b, pb) in allowed or (b, pb, a, pa) in allowed:
+                continue
+            ta, tb = tokens(pa), tokens(pb)
+            if len(ta) >= 2 and len(tb) >= 2 and (ta <= tb or tb <= ta):
+                bad.append(f"{a}: '{pa}' vs {b}: '{pb}'")
+        self.assertEqual(bad, [], "a short trigger phrase hidden inside a longer one is claimed by both skills")
+
     def test_not_for_clause_names_the_briefing(self):
         bad = []
         for name in FAMILY - {"competitive-briefing"}:

@@ -1,6 +1,6 @@
 ---
 name: writing-assistant
-version: 2.6.1
+version: 2.6.2
 description: >
   Rewrites, sharpens and drafts B2B writing in the writer's real voice: Slack messages, emails,
   memos, PRDs, decks, plus marketing content (blog, landing page, press release, case study,
@@ -11,12 +11,12 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: false
-last_updated: 2026-11-12
+last_updated: 2026-11-13
 conversation_starters:
   - "Write a blog post about our new feature"
   - "Draft landing page copy for this offer"
   - "Write a press release for our launch"
-  - "Turn this customer win into a case study"
+  - "Turn this approved customer story into a LinkedIn post"
   - "Does this draft read as AI-written?"
   - "Review my copy — why isn't it landing?"
 ---

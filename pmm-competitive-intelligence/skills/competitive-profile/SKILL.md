@@ -1,6 +1,6 @@
 ---
 name: competitive-profile
-version: 1.5.1
+version: 1.5.2
 description: >
   Keeps a roster of your five key competitors with a dated, sourced profile each, refreshes only
   stale lines, and answers a team's competitor questions in Slack or chat from your CI records.
@@ -23,6 +23,7 @@ Competitor facts decay: pricing pages change in weeks, a launch changes the stor
 ## Trigger
 
 - **When:** Setting up or reviewing which competitors matter and what market you play in; refreshing profiles; checking what has gone stale; folding signals, battlecard debriefs, deal data or Slack intel into the profiles; answering a question about a named competitor from everything the CI records hold.
+- **Bare "what's stale":** With no object, ask once: "Your brain or your competitor profiles?" Competitor profiles → this skill; brain → `product-marketing-context`.
 - **Not for:** A one-page card for a live deal → `competitive-battlecard` (a single question is an `ask`; a request with deal context such as role, buyer and stage is the battlecard). Mapping who buyers compare you to, status quo and DIY included → `alternatives-map`. A weekly read on what changed across the market → `signal-monitor`. Registering or verifying your own claims → `proof-points`. Building the brain itself → `product-marketing-context`. The scheduled sweep of public pages → `media-monitoring` (feeds this skill). The weekly leadership brief → `competitive-briefing`. The weekly public-source C-suite update → `weekly-competitive-updates`. Positioning, messaging or persona cards → `positioning-messaging`. A multi-skill competitive program → `workflow-orchestrator`.
 - **Example prompts:**
   - "Set up my competitive profiles."

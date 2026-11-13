@@ -1,6 +1,6 @@
 ---
 name: product-marketing-context
-version: 3.6.1
+version: 3.6.2
 description: >
   Builds and maintains the shared GTM brain (product context, ICP, positioning, voice, market,
   proof points, strategy, execution and deal-reality fields) that every other skill reads first.
@@ -12,7 +12,7 @@ metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-11-12
+last_updated: 2026-11-13
 ---
 
 # Product Marketing Context (The Brain)
@@ -25,6 +25,7 @@ Stop re-explaining your company, your buyer, and your competitors to every tool 
 
 - **When:** Building the GTM brain for the first time, editing a section, refreshing fields that have gone stale, answering the open questions other skills left behind, or running a health audit on the existing brain.
 - **Not for:** Any skill that reads the brain rather than builds it — every brain-dependent skill in this stack routes here first if the brain is missing, then uses its own Trigger. This skill has no downstream overlap since it is upstream of everything else.
+- **Bare "what's stale":** With no object, ask once: "Your brain or your competitor profiles?" Brain → this skill; competitor profiles → `competitive-profile`.
 - **Example prompts:**
   - "Build my brain"
   - "Set up my GTM foundation"

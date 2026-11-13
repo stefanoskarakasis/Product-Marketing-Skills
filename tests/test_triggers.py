@@ -119,6 +119,7 @@ class TestTriggerCollisions(unittest.TestCase):
         allowed = {
             # writing-assistant keeps its case-study format on purpose (see CHANGELOG v1.1x customer-stories)
             ("writing-assistant", "case study", "customer-stories", "kick off a case study"),
+            ("writing-assistant", "case study", "customer-stories", "turn this customer win into a case study"),
         }
         bad = []
         items = [(n, p) for n, s in self.skills.items() for p in s["phrases"]]

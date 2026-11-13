@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.21.1 — 2026-11-13
+
+### Trigger collisions
+
+- **`competitive-profile` no longer claims "what's stale" on its own.** The phrase sat inside `product-marketing-context`'s "what's stale in my brain", so both skills matched it. The trigger is now "what's stale in my competitor profiles". `competitive-profile` 1.5.1.
+- New repo-wide test `test_no_subset_phrases_anywhere_in_the_repo` in `tests/test_triggers.py`: it fails when a short trigger phrase of two or more words sits inside a longer phrase of a different skill, in any plugin. The earlier test only compared skills in the same family, which is how this one slipped through. One pair is allowed on purpose: `writing-assistant` "case study" and `customer-stories` "kick off a case study".
+- Description total is 19,944 characters (ceiling 20,000).
+
 ## v1.21.0 — 2026-11-12
 
 ### Discoverability: a budget for skill descriptions

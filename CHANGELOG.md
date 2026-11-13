@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.21.2 — 2026-11-13
+
+### Routing fixes from the first manual check
+
+- **Customer win into a case study now routes to `customer-stories`.** `customer-stories` 1.0.2 lists "turn this customer win into a case study" as a trigger. `writing-assistant` 2.6.2 no longer uses that sentence as a conversation starter (it now says "Turn this approved customer story into a LinkedIn post"); it keeps "case study" as a format. The collision test allows this one pair on purpose.
+- **A bare "what's stale" now asks first.** `product-marketing-context` 3.6.2 and `competitive-profile` 1.5.2 each carry one line: with no object, ask "Your brain or your competitor profiles?" and send the answer to the right skill. No description text changed.
+- Description total is 19,988 characters (ceiling 20,000).
+
 ## v1.21.1 — 2026-11-13
 
 ### Trigger collisions

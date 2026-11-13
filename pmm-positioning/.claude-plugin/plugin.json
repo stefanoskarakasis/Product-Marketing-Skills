@@ -10,7 +10,7 @@
   "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
   "license": "MIT",
   "privacyPolicyUrl": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/blob/main/pmm-positioning/PRIVACY.md",
-  "version": "1.21.0",
+  "version": "1.21.1",
   "skills": "./skills",
   "keywords": [
     "product marketing",

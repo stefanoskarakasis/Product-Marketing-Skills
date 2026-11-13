@@ -1,17 +1,16 @@
 ---
 name: value-prop-statements
-version: 1.1.0
+version: 1.1.1
 description: >
-  Fans an existing positioning statement out into segment- and channel-specific value-prop
-  copy variants for marketing, sales and onboarding, without re-running positioning.
-  Trigger with "write value prop statements for [segment]", "adapt our positioning for
-  [channel]", "sales copy for this persona", or any request for segment-specific messaging
-  variants once a canonical positioning statement already exists.
+  Fans an existing positioning statement out into segment- and channel-specific value-prop copy
+  variants for marketing, sales and onboarding, without re-running positioning. Trigger with
+  "write value prop statements for [segment]", "adapt our positioning for [channel]", "sales copy
+  for this persona".
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-10
+last_updated: 2026-11-12
 ---
 
 # Value Prop Statements

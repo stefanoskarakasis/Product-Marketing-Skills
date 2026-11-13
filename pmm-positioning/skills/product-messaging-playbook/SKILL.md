@@ -1,12 +1,10 @@
 ---
 name: product-messaging-playbook
 description: >
-  Assembles a single Sales/CS-ready playbook for a new product or feature: problem, story,
-  one named competitive comparison, discovery questions and objection handling. Use when
-  you say "build a messaging playbook," "give sales something they can use for this
-  feature," "handoff doc for sales and CS," or "solution guide for this launch." Assembles
-  from message-house, positioning-messaging and proof-points; does not derive strategy
-  itself.
+  Assembles a single Sales/CS-ready playbook for a new product or feature: problem, story, one
+  named competitive comparison, discovery questions and objection handling. Use when you say
+  "build a messaging playbook," "give sales something they can use for this feature," "handoff doc
+  for sales and CS," or "solution guide for this launch."
 ---
 
 # Product Messaging Playbook

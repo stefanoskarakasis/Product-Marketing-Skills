@@ -1,19 +1,16 @@
 ---
 name: gaccs-brief
-version: 3.6.0
+version: 3.6.1
 description: >
-  Builds, pressure-tests and outputs a complete GACCS Brief (Goals, Audience, Creative,
-  Channels, Stakeholders) for any marketing, GTM or enablement project. Use whenever a PMM
-  mentions a campaign, launch, content piece, event or enablement asset, or says "I need
-  to write a brief", "help me think through this campaign", "I'm planning a launch",
-  "where do I even start with this". Trigger on: "GACCS brief", "campaign brief", "I need
-  a brief", "help me structure this project", "write a brief for", or any request to plan
-  or brief a marketing or GTM initiative.
+  Builds, pressure-tests and outputs a GACCS Brief (Goals, Audience, Creative, Channels,
+  Stakeholders) for any marketing, GTM or enablement project. Trigger on: "GACCS brief", "campaign
+  brief", "I need a brief", "help me structure this project", "write a brief for", "I'm planning a
+  launch", "where do I even start with this".
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-11
+last_updated: 2026-11-12
 ---
 
 # gaccs-brief

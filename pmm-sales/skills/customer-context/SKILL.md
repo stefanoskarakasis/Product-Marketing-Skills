@@ -1,14 +1,19 @@
 ---
 name: customer-context
-version: 1.0.0
+version: 1.0.1
 description: >
-  Builds a dated 360-degree brief on one existing customer from your CRM, email, calls, docs, chat, support and usage, checks it against your brain (ICP fit, competitors, objections, approved claims) and shows what changed since the last brief. Built for Slack first: a seller tags Claude in a thread and gets a short sourced answer, and the same skill works in Claude chat, Cowork, Claude Code and scheduled runs.
-  Trigger on: "customer context for [customer]", "catch me up on [customer]", "what's going on with [customer]", "brief me on [customer] before the renewal", "what changed at [customer]", "is [customer] at risk". Not for a company that is not yet a customer (prospect-research), a live deal review (deal-review), a competitor (competitive-profile), a competitor in a live deal (competitive-battlecard) or a customer story (customer-stories).
+  Builds a dated 360-degree brief on one existing customer from CRM, email, calls, docs, support
+  and usage, checks it against your brain and shows what changed since the last brief; works in a
+  Slack thread for sellers. Trigger on: "customer context for [customer]", "catch me up on
+  [customer]", "what's going on with [customer]", "brief me on [customer] before the renewal", "is
+  [customer] at risk". Not for a company that is not yet a customer (prospect-research), a live
+  deal (deal-review), a competitor (competitive-profile), a competitor in a live deal
+  (competitive-battlecard) or a customer story (customer-stories).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-11-05
+last_updated: 2026-11-12
 ---
 
 # Customer Context

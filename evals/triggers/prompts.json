@@ -1,0 +1,1208 @@
+{
+ "version": 1,
+ "readme": "Three prompts per skill (direct, indirect, near-miss) plus prompts that should trigger no skill. A near-miss belongs to the neighbouring skill named in expect. Every prompt carries its own material. See evals/triggers/README.md.",
+ "prompts": [
+  {
+   "skill": "comparison-page-brief",
+   "kind": "direct",
+   "prompt": "Build a comparison page brief for us versus Acme. We sell invoicing software at 29 euro per seat; Acme charges 45 euro and has no EU VAT automation.",
+   "expect": [
+    "comparison-page-brief"
+   ]
+  },
+  {
+   "skill": "comparison-page-brief",
+   "kind": "indirect",
+   "prompt": "We want to rank for 'alternatives to Acme'. Our invoicing tool handles EU VAT and Acme's does not. What should the page say and what proof do we need before we publish it?",
+   "expect": [
+    "comparison-page-brief"
+   ]
+  },
+  {
+   "skill": "comparison-page-brief",
+   "kind": "near-miss",
+   "prompt": "My AE has a call tomorrow where Acme is the other vendor. We are cheaper (29 vs 45 euro per seat) and automate EU VAT. Give her a one-pager.",
+   "expect": [
+    "competitive-battlecard"
+   ]
+  },
+  {
+   "skill": "competitive-battlecard",
+   "kind": "direct",
+   "prompt": "Battlecard for Acme. I am an AE, the buyer is a finance director at a 300-person company, and we are at the demo stage.",
+   "expect": [
+    "competitive-battlecard"
+   ]
+  },
+  {
+   "skill": "competitive-battlecard",
+   "kind": "indirect",
+   "prompt": "Acme just showed up in my Northwind deal at the proposal stage and they are pitching a lower price. What do I say on the call?",
+   "expect": [
+    "competitive-battlecard"
+   ]
+  },
+  {
+   "skill": "competitive-battlecard",
+   "kind": "near-miss",
+   "prompt": "Is Acme cheaper than us? Their site lists 45 euro per seat and ours is 29.",
+   "expect": [
+    "competitive-profile"
+   ]
+  },
+  {
+   "skill": "competitive-briefing",
+   "kind": "direct",
+   "prompt": "Brief the CEO on competitors this week. Acme cut its price by 20 percent on Monday and Globex launched a VAT module.",
+   "expect": [
+    "competitive-briefing"
+   ]
+  },
+  {
+   "skill": "competitive-briefing",
+   "kind": "indirect",
+   "prompt": "I need something for the board meeting on what our rivals did this month: an Acme price cut, a Globex VAT module launch and an Initech funding round.",
+   "expect": [
+    "competitive-briefing"
+   ]
+  },
+  {
+   "skill": "competitive-briefing",
+   "kind": "near-miss",
+   "prompt": "Run the weekly C-suite competitor news update from public sources only for Acme, Globex and Initech.",
+   "expect": [
+    "weekly-competitive-updates"
+   ]
+  },
+  {
+   "skill": "competitive-profile",
+   "kind": "direct",
+   "prompt": "Set up my competitive profiles. My five competitors are Acme, Globex, Initech, Umbrella and Hooli; we sell invoicing software to EU mid-market companies.",
+   "expect": [
+    "competitive-profile"
+   ]
+  },
+  {
+   "skill": "competitive-profile",
+   "kind": "indirect",
+   "prompt": "Which of my competitor notes are stale? Acme's pricing line is dated March and Globex launched a new tier last week.",
+   "expect": [
+    "competitive-profile"
+   ]
+  },
+  {
+   "skill": "competitive-profile",
+   "kind": "near-miss",
+   "prompt": "Write a full ten-page write-up on Acme for our pricing decision next month, including what users say in reviews.",
+   "expect": [
+    "competitor-deep-dive"
+   ]
+  },
+  {
+   "skill": "competitor-deep-dive",
+   "kind": "direct",
+   "prompt": "Deep-dive on Acme for our RFP response next month: pricing, reviews, and where they win and lose in deals.",
+   "expect": [
+    "competitor-deep-dive"
+   ]
+  },
+  {
+   "skill": "competitor-deep-dive",
+   "kind": "indirect",
+   "prompt": "Our board wants to know whether Acme is a real threat before we commit to the roadmap bet. I need the long sourced version, not a summary.",
+   "expect": [
+    "competitor-deep-dive"
+   ]
+  },
+  {
+   "skill": "competitor-deep-dive",
+   "kind": "near-miss",
+   "prompt": "Give the CEO a one-page weekly read on Acme and Globex with one decision to make.",
+   "expect": [
+    "competitive-briefing"
+   ]
+  },
+  {
+   "skill": "industry-newsletter",
+   "kind": "direct",
+   "prompt": "Write this week's industry newsletter for our GTM leaders: Acme cut prices, Globex launched a VAT module, and the EU e-invoicing mandate moved up to July.",
+   "expect": [
+    "industry-newsletter"
+   ]
+  },
+  {
+   "skill": "industry-newsletter",
+   "kind": "indirect",
+   "prompt": "I want a forwardable weekly note for the exec team on our competitors and the invoicing industry, with an action per role. Last week I predicted Acme would cut price; grade that call.",
+   "expect": [
+    "industry-newsletter"
+   ]
+  },
+  {
+   "skill": "industry-newsletter",
+   "kind": "near-miss",
+   "prompt": "Check the public pages of Acme, Globex and Initech this week and tell me what changed and what I need to fix on our side.",
+   "expect": [
+    "media-monitoring"
+   ]
+  },
+  {
+   "skill": "media-monitoring",
+   "kind": "direct",
+   "prompt": "Run the weekly competitor sweep: Acme, Globex and Initech pricing pages, release notes and job posts.",
+   "expect": [
+    "media-monitoring"
+   ]
+  },
+  {
+   "skill": "media-monitoring",
+   "kind": "indirect",
+   "prompt": "Set up something that checks my three main competitors' websites every Monday and drafts fixes for our own pages where theirs changed.",
+   "expect": [
+    "media-monitoring"
+   ]
+  },
+  {
+   "skill": "media-monitoring",
+   "kind": "near-miss",
+   "prompt": "Here are five things I saw this week: an Acme price cut, a Gartner report, a G2 review spike, a LinkedIn post by Globex's CEO and a customer churn email. Which should we act on?",
+   "expect": [
+    "signal-monitor"
+   ]
+  },
+  {
+   "skill": "weekly-competitive-updates",
+   "kind": "direct",
+   "prompt": "Run the weekly competitive updates for the C-suite: Acme, Globex and Initech, last seven days, public sources only.",
+   "expect": [
+    "weekly-competitive-updates"
+   ]
+  },
+  {
+   "skill": "weekly-competitive-updates",
+   "kind": "indirect",
+   "prompt": "The CEO wants a Monday note on what competitors did last week, with sources linked, a threat board and a 30-day watchlist.",
+   "expect": [
+    "weekly-competitive-updates"
+   ]
+  },
+  {
+   "skill": "weekly-competitive-updates",
+   "kind": "near-miss",
+   "prompt": "Brief the CRO on win and loss against competitors this quarter, with one recommended decision and the revenue at risk.",
+   "expect": [
+    "competitive-briefing"
+   ]
+  },
+  {
+   "skill": "signal-monitor",
+   "kind": "direct",
+   "prompt": "What changed this week? Signals: an Acme price cut, Globex hired a VP of partnerships, and three G2 reviews mention slow onboarding at us.",
+   "expect": [
+    "signal-monitor"
+   ]
+  },
+  {
+   "skill": "signal-monitor",
+   "kind": "indirect",
+   "prompt": "I have a pile of notes from sales calls and news this week. Pick the five worth acting on and tie each to our priorities.",
+   "expect": [
+    "signal-monitor"
+   ]
+  },
+  {
+   "skill": "signal-monitor",
+   "kind": "near-miss",
+   "prompt": "Look at our skill session logs from the last month and tell me which patterns repeat across sessions.",
+   "expect": [
+    "meta-synthesis"
+   ]
+  },
+  {
+   "skill": "experiment-doc",
+   "kind": "direct",
+   "prompt": "Write an experiment doc: we will test a shorter signup form on the pricing page. Hypothesis is 10 percent more trial starts, 2 weeks, 5,000 visitors per arm.",
+   "expect": [
+    "experiment-doc"
+   ]
+  },
+  {
+   "skill": "experiment-doc",
+   "kind": "indirect",
+   "prompt": "Does this make sense to test? We want to move the demo button above the fold. I think it lifts demo requests but I have not picked a metric.",
+   "expect": [
+    "experiment-doc"
+   ]
+  },
+  {
+   "skill": "experiment-doc",
+   "kind": "near-miss",
+   "prompt": "Give me eight cheap growth experiments for our invoicing tool aimed at finance directors in Germany.",
+   "expect": [
+    "experiment-ideas"
+   ]
+  },
+  {
+   "skill": "interview-summary",
+   "kind": "direct",
+   "prompt": "Summarize this interview. The customer said: 'We switched because month-end close took six days and the old tool could not handle EU VAT.' Later: 'I would not go back.'",
+   "expect": [
+    "interview-summary"
+   ]
+  },
+  {
+   "skill": "interview-summary",
+   "kind": "indirect",
+   "prompt": "I have three call transcripts with churned customers. Help me pull out the jobs they were hiring us for and the pains that repeat.",
+   "expect": [
+    "interview-summary"
+   ]
+  },
+  {
+   "skill": "interview-summary",
+   "kind": "near-miss",
+   "prompt": "Turn this customer call into a case study draft: Northwind cut month-end close from six days to two with our tool.",
+   "expect": [
+    "customer-stories"
+   ]
+  },
+  {
+   "skill": "pmm-okrs",
+   "kind": "direct",
+   "prompt": "Help me set our PMM OKRs for Q1. The company goal is 30 percent more enterprise pipeline and my team is three people covering launches and competitive.",
+   "expect": [
+    "pmm-okrs"
+   ]
+  },
+  {
+   "skill": "pmm-okrs",
+   "kind": "indirect",
+   "prompt": "Are my KRs measurable? KR1: improve sales confidence in positioning. KR2: launch 3 features.",
+   "expect": [
+    "pmm-okrs"
+   ]
+  },
+  {
+   "skill": "pmm-okrs",
+   "kind": "near-miss",
+   "prompt": "Which metrics should my PMM scorecard track? We sell B2B invoicing software, 120 customers, sales-led.",
+   "expect": [
+    "pmm-metrics"
+   ]
+  },
+  {
+   "skill": "prd",
+   "kind": "direct",
+   "prompt": "Write a PRD with a solution story for a new bulk-approval feature. Finance approvers get 40 invoices a week and approve them one by one today.",
+   "expect": [
+    "prd"
+   ]
+  },
+  {
+   "skill": "prd",
+   "kind": "indirect",
+   "prompt": "I need to hand engineering a spec and sales a story for the same feature, auto-matching invoices to purchase orders. Where do I start?",
+   "expect": [
+    "prd"
+   ]
+  },
+  {
+   "skill": "prd",
+   "kind": "near-miss",
+   "prompt": "Write a brief for the launch campaign of our bulk-approval feature: goals, audience, channels and who must sign off.",
+   "expect": [
+    "gaccs-brief"
+   ]
+  },
+  {
+   "skill": "pre-mortem",
+   "kind": "direct",
+   "prompt": "Run a pre-mortem on our pricing change: moving from per-seat to usage-based billing on 1 March for 400 customers.",
+   "expect": [
+    "pre-mortem"
+   ]
+  },
+  {
+   "skill": "pre-mortem",
+   "kind": "indirect",
+   "prompt": "What could go wrong with this launch? We ship a new tier in two weeks, support is not trained and the pricing page is not finished.",
+   "expect": [
+    "pre-mortem"
+   ]
+  },
+  {
+   "skill": "pre-mortem",
+   "kind": "near-miss",
+   "prompt": "The launch is over. Run a retro on what went wrong: pipeline was 40 percent below target and sales was not enabled.",
+   "expect": [
+    "retro"
+   ]
+  },
+  {
+   "skill": "prioritization-frameworks",
+   "kind": "direct",
+   "prompt": "Help me score these four initiatives with RICE: comparison pages, a customer story program, a pricing page redesign and a partner webinar series.",
+   "expect": [
+    "prioritization-frameworks"
+   ]
+  },
+  {
+   "skill": "prioritization-frameworks",
+   "kind": "indirect",
+   "prompt": "We have 12 things on the launch backlog and one PMM. How do I decide which get real GTM weight?",
+   "expect": [
+    "prioritization-frameworks"
+   ]
+  },
+  {
+   "skill": "prioritization-frameworks",
+   "kind": "near-miss",
+   "prompt": "What launch tier is the new bulk-approval feature, and what is the GTM plan for it?",
+   "expect": [
+    "go-to-market-strategy"
+   ]
+  },
+  {
+   "skill": "retro",
+   "kind": "direct",
+   "prompt": "Run a post-launch retro for our Q3 launch with eng, design, PM and PMM. The target was 500 trials and we got 310.",
+   "expect": [
+    "retro"
+   ]
+  },
+  {
+   "skill": "retro",
+   "kind": "indirect",
+   "prompt": "Debrief this launch with me. What should we do differently next time? Sales said they did not hear about it until launch day.",
+   "expect": [
+    "retro"
+   ]
+  },
+  {
+   "skill": "retro",
+   "kind": "near-miss",
+   "prompt": "Before we ship next month, stress-test the plan and list the ways it could fail.",
+   "expect": [
+    "pre-mortem"
+   ]
+  },
+  {
+   "skill": "stakeholder-maps",
+   "kind": "direct",
+   "prompt": "Build my stakeholder map for the pricing change launch: legal, finance, sales, support, product and the CEO all care.",
+   "expect": [
+    "stakeholder-maps"
+   ]
+  },
+  {
+   "skill": "stakeholder-maps",
+   "kind": "indirect",
+   "prompt": "Who can block this launch and who can champion it? I need to know who to brief first.",
+   "expect": [
+    "stakeholder-maps"
+   ]
+  },
+  {
+   "skill": "stakeholder-maps",
+   "kind": "near-miss",
+   "prompt": "Map the buying committee at our customers: who signs, who champions and who blocks a purchase of invoicing software?",
+   "expect": [
+    "buyer-personas"
+   ]
+  },
+  {
+   "skill": "beachhead-segment",
+   "kind": "direct",
+   "prompt": "Which segment should we focus on first? Candidates: German mid-market manufacturers, UK agencies, Dutch logistics firms. Our ICP is too broad.",
+   "expect": [
+    "beachhead-segment"
+   ]
+  },
+  {
+   "skill": "beachhead-segment",
+   "kind": "indirect",
+   "prompt": "We sell to everyone and win nowhere. Help me pick the one wedge to dominate before we expand.",
+   "expect": [
+    "beachhead-segment"
+   ]
+  },
+  {
+   "skill": "beachhead-segment",
+   "kind": "near-miss",
+   "prompt": "Define our ideal customer profile from our 60 closed-won deals and win/loss notes.",
+   "expect": [
+    "ideal-customer-profile"
+   ]
+  },
+  {
+   "skill": "go-to-market-strategy",
+   "kind": "direct",
+   "prompt": "What tier is this launch and what is the GTM strategy? We are releasing automated VAT reporting to existing customers in March.",
+   "expect": [
+    "go-to-market-strategy"
+   ]
+  },
+  {
+   "skill": "go-to-market-strategy",
+   "kind": "indirect",
+   "prompt": "Plan my launch for a new usage-based pricing model: which channels, what success metrics and how big a push?",
+   "expect": [
+    "go-to-market-strategy"
+   ]
+  },
+  {
+   "skill": "go-to-market-strategy",
+   "kind": "near-miss",
+   "prompt": "Should we run product-led, sales-led or partner-led for the SMB segment?",
+   "expect": [
+    "gtm-motions"
+   ]
+  },
+  {
+   "skill": "gtm-motions",
+   "kind": "direct",
+   "prompt": "Which GTM motion fits us: product-led, sales-led or partner-led? ACV is 8,000 euro, the sales cycle is 45 days and 30 percent of trials are self-serve.",
+   "expect": [
+    "gtm-motions"
+   ]
+  },
+  {
+   "skill": "gtm-motions",
+   "kind": "indirect",
+   "prompt": "Our trials convert fine but enterprise deals stall. Should we change how we go to market for each segment?",
+   "expect": [
+    "gtm-motions"
+   ]
+  },
+  {
+   "skill": "gtm-motions",
+   "kind": "near-miss",
+   "prompt": "Which single segment should we attack first: German manufacturers or UK agencies?",
+   "expect": [
+    "beachhead-segment"
+   ]
+  },
+  {
+   "skill": "workflow-orchestrator",
+   "kind": "direct",
+   "prompt": "Run a full launch workflow end to end for our new VAT module: positioning, competitive, GTM strategy, stakeholder map and retro.",
+   "expect": [
+    "workflow-orchestrator"
+   ]
+  },
+  {
+   "skill": "workflow-orchestrator",
+   "kind": "indirect",
+   "prompt": "It's quarterly planning. Run the whole PMM cycle for me, positioning refresh through competitive program, with one master document.",
+   "expect": [
+    "workflow-orchestrator"
+   ]
+  },
+  {
+   "skill": "workflow-orchestrator",
+   "kind": "near-miss",
+   "prompt": "Just tier this launch and give me the GTM brief for the VAT module; no other steps.",
+   "expect": [
+    "go-to-market-strategy"
+   ]
+  },
+  {
+   "skill": "customer-stories",
+   "kind": "direct",
+   "prompt": "Write a customer story for Northwind: month-end close fell from six days to two, 14 users, and they replaced a spreadsheet process.",
+   "expect": [
+    "customer-stories"
+   ]
+  },
+  {
+   "skill": "customer-stories",
+   "kind": "indirect",
+   "prompt": "Prepare the customer review pack for the Northwind case study. They have to approve the quotes before we publish.",
+   "expect": [
+    "customer-stories"
+   ]
+  },
+  {
+   "skill": "customer-stories",
+   "kind": "near-miss",
+   "prompt": "Here are notes from a Northwind call. Pull out the themes and jobs to be done; I am not writing a story.",
+   "expect": [
+    "interview-summary"
+   ]
+  },
+  {
+   "skill": "experiment-ideas",
+   "kind": "direct",
+   "prompt": "Give me marketing ideas: cheap ways to promote our invoicing tool to finance directors in Germany. Budget is 3,000 euro a month.",
+   "expect": [
+    "experiment-ideas"
+   ]
+  },
+  {
+   "skill": "experiment-ideas",
+   "kind": "indirect",
+   "prompt": "What should we try next quarter to get more demo requests? We have no ad budget, only a newsletter list of 4,000.",
+   "expect": [
+    "experiment-ideas"
+   ]
+  },
+  {
+   "skill": "experiment-ideas",
+   "kind": "near-miss",
+   "prompt": "Write up the experiment: we will test a new hero headline on the homepage for two weeks and measure demo requests.",
+   "expect": [
+    "experiment-doc"
+   ]
+  },
+  {
+   "skill": "pmm-metrics",
+   "kind": "direct",
+   "prompt": "Define our north star metric and input metrics for product marketing. We sell B2B invoicing software, 120 customers, sales-led.",
+   "expect": [
+    "pmm-metrics"
+   ]
+  },
+  {
+   "skill": "pmm-metrics",
+   "kind": "indirect",
+   "prompt": "My VP wants a PMM scorecard. What should we measure across financial, customer, product GTM and process?",
+   "expect": [
+    "pmm-metrics"
+   ]
+  },
+  {
+   "skill": "pmm-metrics",
+   "kind": "near-miss",
+   "prompt": "Write my team's Q1 OKRs with key results and projects.",
+   "expect": [
+    "pmm-okrs"
+   ]
+  },
+  {
+   "skill": "positioning-ideas",
+   "kind": "direct",
+   "prompt": "Give me positioning angles for our invoicing tool. We are the only one with built-in EU VAT automation and the alternatives are spreadsheets and a big ERP module.",
+   "expect": [
+    "positioning-ideas"
+   ]
+  },
+  {
+   "skill": "positioning-ideas",
+   "kind": "indirect",
+   "prompt": "We keep saying 'all-in-one finance platform' and so does everyone else. What other ways could we frame who we are?",
+   "expect": [
+    "positioning-ideas"
+   ]
+  },
+  {
+   "skill": "positioning-ideas",
+   "kind": "near-miss",
+   "prompt": "Build the full positioning statement and messaging hierarchy for our invoicing tool with Dunford's framework.",
+   "expect": [
+    "positioning-messaging"
+   ]
+  },
+  {
+   "skill": "value-prop-statements",
+   "kind": "direct",
+   "prompt": "Write value prop statements for the finance-director segment from our positioning: 'Automated EU VAT reporting so month-end closes in two days.'",
+   "expect": [
+    "value-prop-statements"
+   ]
+  },
+  {
+   "skill": "value-prop-statements",
+   "kind": "indirect",
+   "prompt": "Adapt our positioning for the LinkedIn channel and for the onboarding email. The canonical statement is: 'Close the month in two days, VAT included.'",
+   "expect": [
+    "value-prop-statements"
+   ]
+  },
+  {
+   "skill": "value-prop-statements",
+   "kind": "near-miss",
+   "prompt": "Put our positioning into one scannable message house with three pillars.",
+   "expect": [
+    "message-house"
+   ]
+  },
+  {
+   "skill": "meta-learn",
+   "kind": "direct",
+   "prompt": "Capture what we learned from the battlecard session we just finished. What surprised me: sellers ignored the pricing block. What was wrong: the card assumed AEs, but SDRs used it.",
+   "expect": [
+    "meta-learn"
+   ]
+  },
+  {
+   "skill": "meta-learn",
+   "kind": "indirect",
+   "prompt": "Log this session so patterns can be found later: the OKR draft needed two rounds because the KRs were activities, not outcomes.",
+   "expect": [
+    "meta-learn"
+   ]
+  },
+  {
+   "skill": "meta-learn",
+   "kind": "near-miss",
+   "prompt": "Run the weekly learning sweep across all our logged sessions.",
+   "expect": [
+    "meta-synthesis"
+   ]
+  },
+  {
+   "skill": "meta-review",
+   "kind": "direct",
+   "prompt": "Review this skill against the spec. It has frontmatter with a name and description, a Trigger section and a Steps section, but no Inputs, Outputs or Quality Gate.",
+   "expect": [
+    "meta-review"
+   ]
+  },
+  {
+   "skill": "meta-review",
+   "kind": "indirect",
+   "prompt": "Is this skill done? It has Trigger, Inputs, Steps and Outputs, runs 3,400 words and has no eval file.",
+   "expect": [
+    "meta-review"
+   ]
+  },
+  {
+   "skill": "meta-review",
+   "kind": "near-miss",
+   "prompt": "Check this brief before I send it to the CEO. It came out of competitive-briefing and I want it re-checked against that skill's quality gate.",
+   "expect": [
+    "meta-verify"
+   ]
+  },
+  {
+   "skill": "meta-verify",
+   "kind": "direct",
+   "prompt": "Second-pass this brief before I send it. It is a competitive-briefing output saying Acme cut prices 20 percent, but I cannot find the source.",
+   "expect": [
+    "meta-verify"
+   ]
+  },
+  {
+   "skill": "meta-verify",
+   "kind": "indirect",
+   "prompt": "Did that pass the quality gate? The battlecard I just generated claims we are 'the fastest' with no proof behind it.",
+   "expect": [
+    "meta-verify"
+   ]
+  },
+  {
+   "skill": "meta-verify",
+   "kind": "near-miss",
+   "prompt": "Audit this SKILL.md against the spec and score it.",
+   "expect": [
+    "meta-review"
+   ]
+  },
+  {
+   "skill": "meta-synthesis",
+   "kind": "direct",
+   "prompt": "Run meta-synthesis. The last six sessions logged 'sellers ignored the pricing block' three times, across battlecard and deal-review.",
+   "expect": [
+    "meta-synthesis"
+   ]
+  },
+  {
+   "skill": "meta-synthesis",
+   "kind": "indirect",
+   "prompt": "Run the weekly learning sweep and show adoption per skill.",
+   "expect": [
+    "meta-synthesis"
+   ]
+  },
+  {
+   "skill": "meta-synthesis",
+   "kind": "near-miss",
+   "prompt": "Give me the weekly report on how sellers used the prospect research and customer briefs.",
+   "expect": [
+    "sales-research-digest"
+   ]
+  },
+  {
+   "skill": "alternatives-map",
+   "kind": "direct",
+   "prompt": "Map our alternatives. Win/loss notes: we lose to spreadsheets, to Acme's ERP module and to 'doing nothing' about half the time.",
+   "expect": [
+    "alternatives-map"
+   ]
+  },
+  {
+   "skill": "alternatives-map",
+   "kind": "indirect",
+   "prompt": "Who do we actually compete with? Buyers say they compare us to their ERP's invoicing add-on, a freelancer and Excel.",
+   "expect": [
+    "alternatives-map"
+   ]
+  },
+  {
+   "skill": "alternatives-map",
+   "kind": "near-miss",
+   "prompt": "Keep dated profiles on my five key competitors and tell me what is stale.",
+   "expect": [
+    "competitive-profile"
+   ]
+  },
+  {
+   "skill": "brand-voice",
+   "kind": "direct",
+   "prompt": "Build our voice guide. We sound like every B2B fintech: 'streamline', 'empower', 'seamless'. Finance directors want plain and precise; developers want terse.",
+   "expect": [
+    "brand-voice"
+   ]
+  },
+  {
+   "skill": "brand-voice",
+   "kind": "indirect",
+   "prompt": "Our copy feels off between the website and the sales emails. Define how we should sound for each buyer.",
+   "expect": [
+    "brand-voice"
+   ]
+  },
+  {
+   "skill": "brand-voice",
+   "kind": "near-miss",
+   "prompt": "Rewrite this email so it sounds sharper: 'We would love to touch base regarding the possibility of a quick call.'",
+   "expect": [
+    "writing-assistant"
+   ]
+  },
+  {
+   "skill": "buyer-personas",
+   "kind": "direct",
+   "prompt": "Map our buying committee: the economic buyer is the CFO, the champion is the finance manager, IT evaluates security and procurement slows us down.",
+   "expect": [
+    "buyer-personas"
+   ]
+  },
+  {
+   "skill": "buyer-personas",
+   "kind": "indirect",
+   "prompt": "Who kills our deals? In the last 10 losses someone in legal or IT blocked us late.",
+   "expect": [
+    "buyer-personas"
+   ]
+  },
+  {
+   "skill": "buyer-personas",
+   "kind": "near-miss",
+   "prompt": "Who inside our own company can block the pricing launch?",
+   "expect": [
+    "stakeholder-maps"
+   ]
+  },
+  {
+   "skill": "ideal-customer-profile",
+   "kind": "direct",
+   "prompt": "Build my ICP from this: our 60 closed-won deals are mostly EU manufacturers with 200 to 800 staff and an in-house finance team of 3 to 10.",
+   "expect": [
+    "ideal-customer-profile"
+   ]
+  },
+  {
+   "skill": "ideal-customer-profile",
+   "kind": "indirect",
+   "prompt": "Our pipeline quality is off. Using our PMF survey (40 responses) and win/loss notes, tell me who our best customer really is.",
+   "expect": [
+    "ideal-customer-profile"
+   ]
+  },
+  {
+   "skill": "ideal-customer-profile",
+   "kind": "near-miss",
+   "prompt": "Pick which of those segments we should attack first.",
+   "expect": [
+    "beachhead-segment"
+   ]
+  },
+  {
+   "skill": "market-context",
+   "kind": "direct",
+   "prompt": "Write our why now: EU e-invoicing mandates start in 2027, ERP vendors are slow, and CFOs are cutting headcount in finance ops.",
+   "expect": [
+    "market-context"
+   ]
+  },
+  {
+   "skill": "market-context",
+   "kind": "indirect",
+   "prompt": "What macro trends support our category and what makes buyers act this year?",
+   "expect": [
+    "market-context"
+   ]
+  },
+  {
+   "skill": "market-context",
+   "kind": "near-miss",
+   "prompt": "What changed in the market this week that we should act on?",
+   "expect": [
+    "signal-monitor"
+   ]
+  },
+  {
+   "skill": "message-house",
+   "kind": "direct",
+   "prompt": "Build a message house from our positioning: 'Automated EU VAT invoicing for mid-market finance teams.' Pillars: speed, compliance, integrations.",
+   "expect": [
+    "message-house"
+   ]
+  },
+  {
+   "skill": "message-house",
+   "kind": "indirect",
+   "prompt": "Put our messaging on one page: the core story on top and three reasons to believe underneath.",
+   "expect": [
+    "message-house"
+   ]
+  },
+  {
+   "skill": "message-house",
+   "kind": "near-miss",
+   "prompt": "Create the positioning statement from scratch. We have no positioning yet and our primary persona is a finance director.",
+   "expect": [
+    "positioning-messaging"
+   ]
+  },
+  {
+   "skill": "positioning-messaging",
+   "kind": "direct",
+   "prompt": "Build our positioning with Dunford's method. Primary persona: finance director at a 500-person manufacturer. Alternatives: Excel, an ERP module and Acme.",
+   "expect": [
+    "positioning-messaging"
+   ]
+  },
+  {
+   "skill": "positioning-messaging",
+   "kind": "indirect",
+   "prompt": "Sales can't explain what we do in one sentence. Fix our messaging; the homepage says 'the future of finance'.",
+   "expect": [
+    "positioning-messaging"
+   ]
+  },
+  {
+   "skill": "positioning-messaging",
+   "kind": "near-miss",
+   "prompt": "We already have positioning. Lay it out as a message house.",
+   "expect": [
+    "message-house"
+   ]
+  },
+  {
+   "skill": "product-messaging-playbook",
+   "kind": "direct",
+   "prompt": "Build a messaging playbook for the bulk-approval feature that sales and CS can use: problem, story, one competitor comparison, discovery questions and objections.",
+   "expect": [
+    "product-messaging-playbook"
+   ]
+  },
+  {
+   "skill": "product-messaging-playbook",
+   "kind": "indirect",
+   "prompt": "Give sales something they can use for this launch: a handoff doc for the VAT module.",
+   "expect": [
+    "product-messaging-playbook"
+   ]
+  },
+  {
+   "skill": "product-messaging-playbook",
+   "kind": "near-miss",
+   "prompt": "Just give me the one-table message house for the VAT module.",
+   "expect": [
+    "message-house"
+   ]
+  },
+  {
+   "skill": "proof-points",
+   "kind": "direct",
+   "prompt": "Can I use this stat? 'Customers close the month 3x faster.' It is from a 2023 slide with no source.",
+   "expect": [
+    "proof-points"
+   ]
+  },
+  {
+   "skill": "proof-points",
+   "kind": "indirect",
+   "prompt": "Audit the claims on our homepage for anything unsourced or stale: '99.9% uptime', '3x faster close', 'trusted by 500 teams'.",
+   "expect": [
+    "proof-points"
+   ]
+  },
+  {
+   "skill": "proof-points",
+   "kind": "near-miss",
+   "prompt": "Write the full case study that proves the 3x faster close claim.",
+   "expect": [
+    "customer-stories"
+   ]
+  },
+  {
+   "skill": "customer-context",
+   "kind": "direct",
+   "prompt": "Catch me up on Northwind before the renewal next month. The CRM shows two open tickets and usage down 30 percent.",
+   "expect": [
+    "customer-context"
+   ]
+  },
+  {
+   "skill": "customer-context",
+   "kind": "indirect",
+   "prompt": "Is Northwind at risk? Their champion left in October and they have not logged in for three weeks.",
+   "expect": [
+    "customer-context"
+   ]
+  },
+  {
+   "skill": "customer-context",
+   "kind": "near-miss",
+   "prompt": "Review the Northwind renewal deal: stage, next steps and what is missing.",
+   "expect": [
+    "deal-review"
+   ]
+  },
+  {
+   "skill": "deal-review",
+   "kind": "direct",
+   "prompt": "Review this deal: Globex, 90,000 euro, stage proposal, last call 12 days ago, champion is the finance manager, no economic buyer met.",
+   "expect": [
+    "deal-review"
+   ]
+  },
+  {
+   "skill": "deal-review",
+   "kind": "indirect",
+   "prompt": "Is the Initech deal real? Prep me for tomorrow's call; the CFO still has not joined any meeting.",
+   "expect": [
+    "deal-review"
+   ]
+  },
+  {
+   "skill": "deal-review",
+   "kind": "near-miss",
+   "prompt": "I have not talked to Hooli yet. Research them before I reach out.",
+   "expect": [
+    "prospect-research"
+   ]
+  },
+  {
+   "skill": "prospect-research",
+   "kind": "direct",
+   "prompt": "Research Hooli before I reach out: 400 staff, EU logistics, and they just hired a new CFO.",
+   "expect": [
+    "prospect-research"
+   ]
+  },
+  {
+   "skill": "prospect-research",
+   "kind": "indirect",
+   "prompt": "Is there a reason to contact Umbrella now? They announced an ERP migration last week.",
+   "expect": [
+    "prospect-research"
+   ]
+  },
+  {
+   "skill": "prospect-research",
+   "kind": "near-miss",
+   "prompt": "Catch me up on our existing customer Northwind before their QBR.",
+   "expect": [
+    "customer-context"
+   ]
+  },
+  {
+   "skill": "sales-research-digest",
+   "kind": "direct",
+   "prompt": "Weekly sales digest: how did sellers use the prospect briefs and customer context this week? Four sellers, 22 briefs, 5 ignored.",
+   "expect": [
+    "sales-research-digest"
+   ]
+  },
+  {
+   "skill": "sales-research-digest",
+   "kind": "indirect",
+   "prompt": "Which research briefs got ignored, and what are sellers seeing at prospects this week?",
+   "expect": [
+    "sales-research-digest"
+   ]
+  },
+  {
+   "skill": "sales-research-digest",
+   "kind": "near-miss",
+   "prompt": "Run the repo-wide learning sweep across every skill.",
+   "expect": [
+    "meta-synthesis"
+   ]
+  },
+  {
+   "skill": "gaccs-brief",
+   "kind": "direct",
+   "prompt": "Write a GACCS brief for the VAT module launch webinar. The goal is 200 registrants and the audience is finance directors.",
+   "expect": [
+    "gaccs-brief"
+   ]
+  },
+  {
+   "skill": "gaccs-brief",
+   "kind": "indirect",
+   "prompt": "I'm planning a customer event and don't know where to start. Help me structure the project.",
+   "expect": [
+    "gaccs-brief"
+   ]
+  },
+  {
+   "skill": "gaccs-brief",
+   "kind": "near-miss",
+   "prompt": "Write the PRD for the feature that webinar will promote: automated VAT reporting.",
+   "expect": [
+    "prd"
+   ]
+  },
+  {
+   "skill": "pmm-resume",
+   "kind": "direct",
+   "prompt": "Tailor my resume to this job description: Director of Product Marketing at a Series C fintech. My bullets: led 4 launches, grew pipeline 35 percent, built battlecards used by 40 AEs.",
+   "expect": [
+    "pmm-resume"
+   ]
+  },
+  {
+   "skill": "pmm-resume",
+   "kind": "indirect",
+   "prompt": "Which bullets should I lead with for a PMM role at an AI infrastructure company? Mine: led 4 launches, grew pipeline 35 percent, built battlecards used by 40 AEs, ran a pricing change.",
+   "expect": [
+    "pmm-resume"
+   ]
+  },
+  {
+   "skill": "pmm-resume",
+   "kind": "near-miss",
+   "prompt": "Rewrite my LinkedIn post announcing my new job so it sounds less corporate.",
+   "expect": [
+    "writing-assistant"
+   ]
+  },
+  {
+   "skill": "privacy-policy",
+   "kind": "direct",
+   "prompt": "Draft a privacy policy for our invoicing SaaS. We have customers in Germany and the UK, use cookies for analytics and keep invoice data for 10 years.",
+   "expect": [
+    "privacy-policy"
+   ]
+  },
+  {
+   "skill": "privacy-policy",
+   "kind": "indirect",
+   "prompt": "What does our product need to comply with GDPR and UK GDPR? We store EU customers' names, emails and invoice data.",
+   "expect": [
+    "privacy-policy"
+   ]
+  },
+  {
+   "skill": "privacy-policy",
+   "kind": "near-miss",
+   "prompt": "Rewrite our terms page intro so it reads friendlier; no legal changes.",
+   "expect": [
+    "writing-assistant"
+   ]
+  },
+  {
+   "skill": "writing-assistant",
+   "kind": "direct",
+   "prompt": "Tighten this Slack message to my VP: 'Hi, just wanted to circle back on the thing we discussed about maybe possibly changing the launch date if that works.'",
+   "expect": [
+    "writing-assistant"
+   ]
+  },
+  {
+   "skill": "writing-assistant",
+   "kind": "indirect",
+   "prompt": "Does this sound like AI? 'In today's fast-paced landscape, our innovative platform empowers teams to unlock value.'",
+   "expect": [
+    "writing-assistant"
+   ]
+  },
+  {
+   "skill": "writing-assistant",
+   "kind": "near-miss",
+   "prompt": "Define our voice and tone rules for all our copy.",
+   "expect": [
+    "brand-voice"
+   ]
+  },
+  {
+   "skill": "product-marketing-context",
+   "kind": "direct",
+   "prompt": "Build my brain from our website and this deck: invoicing software for EU mid-market finance teams, 29 euro per seat.",
+   "expect": [
+    "product-marketing-context"
+   ]
+  },
+  {
+   "skill": "product-marketing-context",
+   "kind": "indirect",
+   "prompt": "What's stale in my brain and what are the gaps?",
+   "expect": [
+    "product-marketing-context"
+   ]
+  },
+  {
+   "skill": "product-marketing-context",
+   "kind": "near-miss",
+   "prompt": "Dig into our win/loss data and rewrite just the ICP.",
+   "expect": [
+    "ideal-customer-profile"
+   ]
+  }
+ ],
+ "non_pmm": [
+  {
+   "prompt": "Write a Python function that merges two sorted lists.",
+   "expect": []
+  },
+  {
+   "prompt": "What is the capital of Australia?",
+   "expect": []
+  },
+  {
+   "prompt": "Plan a three-day trip to Lisbon in May.",
+   "expect": []
+  },
+  {
+   "prompt": "Fix this SQL: SELECT * FORM users WHERE id = 4;",
+   "expect": []
+  },
+  {
+   "prompt": "Summarize the plot of Hamlet in three sentences.",
+   "expect": []
+  },
+  {
+   "prompt": "Convert 72 degrees Fahrenheit to Celsius.",
+   "expect": []
+  },
+  {
+   "prompt": "Explain how a transformer neural network works.",
+   "expect": []
+  },
+  {
+   "prompt": "Draft a polite note declining a friend's wedding invitation.",
+   "expect": []
+  },
+  {
+   "prompt": "Give me a vegetarian dinner recipe with chickpeas.",
+   "expect": []
+  },
+  {
+   "prompt": "How do I center a div in CSS?",
+   "expect": []
+  },
+  {
+   "prompt": "Translate 'good morning, how are you?' into Spanish.",
+   "expect": []
+  },
+  {
+   "prompt": "What are good stretches for lower back stiffness?",
+   "expect": []
+  }
+ ]
+}

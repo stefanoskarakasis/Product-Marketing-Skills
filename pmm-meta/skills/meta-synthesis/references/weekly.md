@@ -9,6 +9,7 @@ Read when the request says "weekly", "Friday sweep" or "what did we learn this w
 3. Find patterns across sessions and ledgers by the counting rules. Turn each into one numbered item: the exact text, the target file or brain section, the receiving skill, its evidence and n, and its confidence.
 4. Show the promotion queue in one message. The user answers: approve all, approve some, or reject. A rejected item is logged with its reason and is not proposed again without new evidence.
 5. Write only the approved items. Update `last_synthesis` in `/context/meta-patterns.md`. Log the session.
+6. Add one line from `hygiene.md`: live, watch and retired guardrails, and how many are due for review. Propose retirements in the same queue.
 
 ## Adoption table
 

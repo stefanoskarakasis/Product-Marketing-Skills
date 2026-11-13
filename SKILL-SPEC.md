@@ -76,7 +76,7 @@ last_updated: YYYY-MM-DD
 |---|---|---|
 | `name` | Yes | Lowercase, hyphens only. Matches directory name exactly. No `--`. |
 | `version` | Yes | Semantic versioning. See Section 10. |
-| `description` | Yes | 2–3 sentences: what it does, then trigger phrases verbatim. Mention related skills for scope boundaries. When a sibling skill shares vocabulary, add a "Not for X (skill-name)" clause here: routing reads only the name and description, never the body. Never claim a generic phrase such as "competitive update"; `tests/test_triggers.py` enforces this for the competitive skills. |
+| `description` | Yes | 2–3 sentences: what it does, then trigger phrases verbatim. **Budget:** at most 800 characters each and 20,000 across the repo (`tests/test_description_budget.py`), because the skill listing Claude Code sends is capped and shared; when you must cut, keep the trigger phrases and the "Not for" clause. Mention related skills for scope boundaries. When a sibling skill shares vocabulary, add a "Not for X (skill-name)" clause here: routing reads only the name and description, never the body. Never claim a generic phrase such as "competitive update"; `tests/test_triggers.py` enforces this for the competitive skills. |
 | `metadata.author` | Yes | Author name. |
 | `metadata.context` | Yes | `brain-dependent` or `context-agnostic`. See Section 8. |
 | `metadata.quality_gate` | Yes | `true` for any skill producing strategic output. `false` for simple utilities only. |
@@ -343,6 +343,16 @@ the actual audit trail — a hand-maintained changelog duplicates it,
 drifts from it, and was removed from every `SKILL.md` in the repo
 across Workstream 4b. `metadata.last_updated` in frontmatter is
 sufficient for "when did this last change" at a glance.
+
+---
+
+### 5.3 Scheduled skills: the run contract
+
+A skill that runs on a schedule or on a trigger states four things in its `SKILL.md` or `references/`: what makes a run **act** (and what a quiet run says), what it **remembers** so a rerun does not repeat itself, when it **stops** or hands over to a person, and where its **output** goes. Anything that sends, spends, publishes or touches personal data keeps a human checkpoint, and an unattended run never writes the brain. The full nine-part contract and the current audit are in `docs/loop-contract.md`.
+
+### 5.4 Guardrail hygiene
+
+Guardrails in `/context/meta-patterns.md` carry a status (`confirmed`, `watch`, `retired`) and leave by retirement, never deletion. At most 20 are live at a time; retired lines move word for word to an archive file on a yes. Rules: `pmm-meta/skills/meta-synthesis/references/hygiene.md`.
 
 ---
 

@@ -177,3 +177,17 @@ before/after shown before the write
 - A statement that 3 distinct accounts are needed
 
 **Pass condition:** The brain-edit threshold is 3, and 2 stays a note.
+
+---
+
+## Test: Retire, never delete
+
+**Input:** `/context/meta-patterns.md` holds 22 live guardrails. One has not been cited by any session for 120 days.
+
+**Expected output includes:**
+- A proposal to retire the uncited guardrail, shown as exact text with its reason
+- A statement that the cap is 20 live guardrails
+- No line deleted from the file: a retired guardrail keeps its text and gains `status: retired` and a date
+- Nothing written until the user says yes
+
+**Pass condition:** The guardrail is retired by status change only, on approval, and the cap is stated.

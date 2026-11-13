@@ -1,18 +1,16 @@
 ---
 name: workflow-orchestrator
-version: 2.6.1
+version: 2.6.2
 description: >
-  Chains positioning, competitive, GTM strategy, campaign briefs, stakeholder maps and
-  retros into one coherent PMM program with a master document and brain updates. Trigger
-  on: "run full GTM workflow", "run a full launch", "launch [product] end to end",
-  "positioning refresh", "quarterly PMM cycle", "competitive program", "new market entry
-  program", "full PMM onboarding", or any request for a multi-step PMM initiative that
-  spans more than one skill.
+  Chains positioning, competitive, GTM strategy, campaign briefs, stakeholder maps and retros into
+  one coherent PMM program with a master document and brain updates. Trigger on: "run full GTM
+  workflow", "run a full launch", "launch [product] end to end", "positioning refresh", "quarterly
+  PMM cycle", "competitive program", "new market entry program", "full PMM onboarding".
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-12
+last_updated: 2026-11-12
 ---
 
 # PMM Workflow Orchestrator

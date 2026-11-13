@@ -28,6 +28,12 @@ it's a bug fix, a typo, or a new skill idea.
 - No cross-plugin references in commands. Suggest follow-ups in natural
   language only.
 - Every contributor will be listed publicly.
+- Adding or changing a skill: keep every description under the repo budget
+  (`tests/test_description_budget.py`; see SKILL-SPEC.md section 3), add its
+  three prompts to `evals/triggers/prompts.json`, and keep the "Not for"
+  clause that names the neighbouring skill.
+- Report a security problem privately, as described in
+  [SECURITY.md](SECURITY.md). Be kind: see [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
 
 - Skills refer to tools by connector category, not vendor. See the
   Connectors section of [AGENTS.md](AGENTS.md) before adding or changing a

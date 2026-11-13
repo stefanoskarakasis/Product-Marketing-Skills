@@ -1,19 +1,18 @@
 ---
 name: meta-synthesis
-version: 3.3.0
+version: 3.4.0
 description: >
-  Reads /context/skill-sessions.md to detect patterns that repeat across 2+ sessions,
-  proposes new guardrails for /context/meta-patterns.md, and proposes brain updates for
-  confirmed learnings. Reads the ledgers other skills keep (outcomes, patterns, usage), not
-  only the session log, and in weekly mode shows adoption per skill and one promotion queue.
-  Trigger on: "run meta-synthesis", "what patterns are emerging", "detect cross-skill signals",
-  "update guardrails", "compound our learnings", "what should we remember", "run the weekly
-  learning sweep". Not for a sales-only weekly report (sales-research-digest).
+  Reads /context/skill-sessions.md and the other skills' ledgers to find patterns repeating across
+  2+ sessions, proposes guardrails for /context/meta-patterns.md and brain updates for confirmed
+  learnings; weekly mode shows adoption per skill. Trigger on: "run meta-synthesis", "what
+  patterns are emerging", "detect cross-skill signals", "update guardrails", "compound our
+  learnings", "what should we remember", "run the weekly learning sweep". Not for a sales-only
+  weekly report (sales-research-digest).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-11-06
+last_updated: 2026-11-12
 ---
 
 # meta-synthesis — Skill
@@ -163,6 +162,8 @@ brain_updates_proposed: [count]
 brain_updates_approved: [count]
 ```
 
+Then run the checks in `references/hygiene.md` and propose any retirements or archive moves as exact text.
+
 Close by telling the user plainly what changed: how many guardrails are now live, what the brain updates were, and what's worth watching next time (the Low-confidence, single-occurrence notes from Step 1).
 
 ---
@@ -198,6 +199,7 @@ Close by telling the user plainly what changed: how many guardrails are now live
 - **Cross-skill patterns take priority.** They're invisible from inside any one skill, which is the entire reason this skill exists.
 - **Every write is gated.** No guardrail or brain update happens without explicit approval, shown as exact text before it's written.
 - **Rejected patterns aren't silently dropped.** Log the rejection so the same pattern isn't re-proposed next run without new evidence.
+- **Retire, never delete.** Guardrails and log rows leave by a status change or a word-for-word move to an archive, on a yes. At most 20 live guardrails (`references/hygiene.md`).
 - **Durable signals go to the brain, not a guardrail.** A pattern about the business itself (buying trigger, market shift, proof point) is a brain update, not a process guardrail.
 
 ---

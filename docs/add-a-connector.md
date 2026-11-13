@@ -49,6 +49,8 @@ Delete its block, or change its `"plugins"` list. Commit. The bot does the rest.
 
 ## Rules that never change
 
+- Every new server must work read-only first: name the one harmless read that proves the sign-in works, and ask for the smallest scope that unlocks it.
+
 - No keys, tokens, headers or passwords in `connectors.json` or in any `.mcp.json`. Each person signs in with their own account. The checks block it.
 - Read-only by default. Verify the address on the vendor's own page and update `"verified"` at the top when you re-check.
 - A server that fails for every user gets removed here, not patched around.

@@ -1,18 +1,17 @@
 ---
 name: pmm-okrs
-version: 2.6.0
+version: 2.6.1
 description: >
   Builds a complete, export-ready quarterly OKR set for PMM leaders and individual PMMs:
-  Objective, Key Results, Projects, Scorecard metrics and Exec Summary language,
-  paste-ready for the PMM OKR Builder spreadsheet. Use when setting quarterly OKRs,
-  reviewing existing OKRs, stress-testing KR quality, or building a measurement plan.
-  Trigger on: "help me set our OKRs", "are my KRs measurable", "build a scorecard",
-  "stress-test this KR", "write OKRs for my team", "present goals to exec team".
+  Objective, Key Results, Projects, Scorecard metrics and Exec Summary language, paste-ready for
+  the PMM OKR Builder spreadsheet. Trigger on: "help me set our OKRs", "are my KRs measurable",
+  "build a scorecard", "stress-test this KR", "write OKRs for my team", "present goals to exec
+  team".
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-10-11
+last_updated: 2026-11-12
 ---
 
 # pmm-okrs

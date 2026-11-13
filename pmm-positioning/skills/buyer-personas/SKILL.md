@@ -1,11 +1,10 @@
 ---
 name: buyer-personas
 description: >
-  Maps the enterprise buying committee (Economic Buyer, Champion, Technical Evaluator, End
-  User, Procurement) before any messaging, then builds Dunford-structured,
-  alternatives-anchored personas ready for positioning-messaging. Trigger with "map our
-  buying committee", "who do we need to win over", "build our buyer personas", "who kills
-  our deals", or any request to identify or profile the people involved in a B2B purchase.
+  Maps the enterprise buying committee (Economic Buyer, Champion, Technical Evaluator, End User,
+  Procurement) before any messaging, then builds Dunford-structured, alternatives-anchored
+  personas ready for positioning-messaging. Trigger with "map our buying committee", "who do we
+  need to win over", "build our buyer personas", "who kills our deals".
 ---
 
 # Buyer Personas — Skill

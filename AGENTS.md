@@ -104,7 +104,8 @@ Edit the right text, and keep the ones that must match in sync.
 2. Run `python3 .github/scripts/check_structure.py` and `python3 -m unittest discover -s tests`.
 3. If you added or removed a skill, command or plugin, update the counts: `README.md` (layer table, "Ten plugins" line, `Available Skills (N Total)` header and table), `QUICK-START.md`, the first paragraph of this file, and each plugin's own `## Skills (N)` and `## Commands (N)` headers. `tests/test_prose_counts.py` fails on a mismatch.
 4. If you changed a plugin description, sync its `plugin.json` and `README.md`.
-5. Add a bullet under `## Unreleased` in `CHANGELOG.md`.
-6. Bump versions only when you release.
+5. If you added or changed a skill: keep the total description budget (`tests/test_description_budget.py`), add its three prompts to `evals/triggers/prompts.json`, and give a skill that reads outside material `references/evidence-rules.md`. A scheduled skill follows `docs/loop-contract.md`.
+6. Add a bullet under `## Unreleased` in `CHANGELOG.md`.
+7. Bump versions only when you release.
 
 When the work is done, offer the follow-ups that apply: run the checks, update counts, sync descriptions, cut a release.

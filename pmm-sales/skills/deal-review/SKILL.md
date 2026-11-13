@@ -1,14 +1,19 @@
 ---
 name: deal-review
-version: 1.0.0
+version: 1.0.1
 description: >
-  Reviews one open sales opportunity from calls, CRM, email and calendar, checks it against your brain, and returns a verdict, the gaps that matter and three dated next steps. Also runs a weekly deal queue, call prep, debriefs and a private habits mirror, in Slack or anywhere.
-  Trigger on: "review this deal", "deal review for [deal]", "what's missing on [deal]", "is [deal] real", "what changed on [deal]", "prep me for my call with [deal]", "which deals need me this week", "log: won [deal]". Not for a company with no opportunity (prospect-research), a customer with none open (customer-context), a competitor in the deal (competitive-battlecard), the committee (buyer-personas, stakeholder-maps) or writing the follow-up (writing-assistant).
+  Reviews one open sales opportunity from calls, CRM, email and calendar, checks it against your
+  brain, and returns a verdict, the gaps that matter and three dated next steps; also a weekly
+  deal queue, call prep and debriefs. Trigger on: "review this deal", "deal review for [deal]",
+  "is [deal] real", "prep me for my call with [deal]", "which deals need me this week", "log: won
+  [deal]". Not for a company with no opportunity (prospect-research), a customer with none open
+  (customer-context), a competitor in the deal (competitive-battlecard), the committee
+  (buyer-personas, stakeholder-maps) or writing the follow-up (writing-assistant).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-11-07
+last_updated: 2026-11-12
 ---
 
 # Deal Review

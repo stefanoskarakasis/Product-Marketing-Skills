@@ -1,18 +1,17 @@
 ---
 name: writing-assistant
-version: 2.6.0
+version: 2.6.1
 description: >
-  Rewrites, sharpens and drafts B2B writing in the writer's real voice: Slack
-  messages, emails, memos, PRDs, decks, plus marketing content (blog, landing
-  page, press release, case study, newsletter, social). Use whenever
-  someone wants to rewrite, tighten, draft or audit copy, asks why copy isn't landing
-  or converting, or says "write a blog post", "landing page copy", "press release",
-  "case study", "LinkedIn post", "draft the newsletter", or "does this sound like AI?"
+  Rewrites, sharpens and drafts B2B writing in the writer's real voice: Slack messages, emails,
+  memos, PRDs, decks, plus marketing content (blog, landing page, press release, case study,
+  newsletter, social). Use to rewrite, tighten, draft or audit copy, or when someone says "write a
+  blog post", "landing page copy", "press release", "case study", "LinkedIn post", "draft the
+  newsletter", or "does this sound like AI?"
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: false
-last_updated: 2026-11-01
+last_updated: 2026-11-12
 conversation_starters:
   - "Write a blog post about our new feature"
   - "Draft landing page copy for this offer"

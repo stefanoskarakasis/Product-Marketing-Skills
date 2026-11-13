@@ -1,18 +1,16 @@
 ---
 name: interview-summary
-version: 2.5.0
+version: 2.5.1
 description: >
-  Turns raw customer interview transcripts into structured discovery outputs anchored in
-  JTBD theory, with signal-level pattern detection and confidence scoring. Trigger on:
-  "summarize interview", "process transcript", "interview summary", "what did customers
-  say", "synthesize discovery", "interview debrief", "JTBD analysis", "customer insight",
-  "research synthesis", or any request to process, structure, or extract meaning from a
-  customer or prospect interview.
+  Turns raw customer interview transcripts into structured discovery outputs anchored in JTBD
+  theory, with signal-level pattern detection and confidence scoring. Trigger on: "summarize
+  interview", "process transcript", "interview summary", "what did customers say", "synthesize
+  discovery", "interview debrief", "JTBD analysis", "customer insight", "research synthesis".
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-09-25
+last_updated: 2026-11-12
 ---
 # interview-summary — Customer Discovery Synthesis Engine
 

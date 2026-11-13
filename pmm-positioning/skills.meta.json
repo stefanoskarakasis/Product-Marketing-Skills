@@ -1,10 +1,10 @@
 {
   "alternatives-map": {
-    "version": "2.1.2",
+    "version": "2.1.3",
     "author": "Stefanos Karakasis",
     "context": "brain-dependent",
     "quality_gate": true,
-    "last_updated": "2026-10-10"
+    "last_updated": "2026-11-12"
   },
   "brand-voice": {
     "version": "1.0.0",
@@ -14,11 +14,11 @@
     "last_updated": "2026-08-31"
   },
   "buyer-personas": {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "author": "Stefanos Karakasis",
     "context": "brain-dependent",
     "quality_gate": true,
-    "last_updated": "2026-08-29"
+    "last_updated": "2026-11-12"
   },
   "ideal-customer-profile": {
     "version": "1.1.0",
@@ -42,18 +42,18 @@
     "last_updated": "2026-10-10"
   },
   "positioning-messaging": {
-    "version": "2.7.0",
+    "version": "2.7.1",
     "author": "Stefanos Karakasis",
     "context": "brain-dependent",
     "quality_gate": true,
-    "last_updated": "2026-11-01"
+    "last_updated": "2026-11-12"
   },
   "product-messaging-playbook": {
-    "version": "1.4.0",
+    "version": "1.4.1",
     "author": "Stefanos Karakasis",
     "context": "brain-dependent",
     "quality_gate": true,
-    "last_updated": "2026-11-01"
+    "last_updated": "2026-11-12"
   },
   "proof-points": {
     "version": "1.3.0",

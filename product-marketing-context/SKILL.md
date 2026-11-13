@@ -1,20 +1,18 @@
 ---
 name: product-marketing-context
-version: 3.6.0
+version: 3.6.1
 description: >
-  Builds and maintains the shared GTM brain (product context, ICP, positioning, voice,
-  market context, proof points, plus optional strategy and execution sections and the
-  deal-reality fields) that every other skill reads before producing output. Works
-  standalone from your own answers, and gets stronger when you connect docs or a CRM.
-  Trigger with "build my brain", "set up my GTM foundation", "audit my brain", "update my
-  ICP", "add my objections", "capture what customers say", "refresh my brain", "what's
-  stale in my brain", "my brain gaps", "build my brain from my website and docs", or "my
-  context".
+  Builds and maintains the shared GTM brain (product context, ICP, positioning, voice, market,
+  proof points, strategy, execution and deal-reality fields) that every other skill reads first.
+  Works from your own answers, stronger with docs or a CRM connected. Trigger with "build my
+  brain", "set up my GTM foundation", "audit my brain", "update my ICP", "add my objections",
+  "capture what customers say", "refresh my brain", "what's stale in my brain", "my brain gaps",
+  "build my brain from my website and docs", or "my context".
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-11-01
+last_updated: 2026-11-12
 ---
 
 # Product Marketing Context (The Brain)

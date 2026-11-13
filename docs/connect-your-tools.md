@@ -21,6 +21,15 @@ that account can see. No keys, tokens or passwords live in this repo.
 - A different tool in the same category works too (for example Salesforce for CRM). See [make-it-yours.md](make-it-yours.md).
 - Run `/mcp` any time to see what is connected.
 
+## Start read-only
+
+1. **Make the first call a read.** After you sign in, ask for one harmless result, such as "list my five most recent calls" or "show one deal's stage". Check it matches what you expect before you run a skill.
+2. **Give the least access.** Choose read scopes, one workspace or one test folder first. Widen later.
+3. **Skills read; they do not write to your tools.** The few that post, such as a reply in the Slack thread where you tagged Claude, say so in their Outputs section. Anything a skill wants to change in your brain is shown as exact text and waits for your yes.
+4. **Check what is connected** with `/mcp`. Remove a server there when you stop using it.
+
+**For your IT or security reviewer:** no credentials live in this repo, every person signs in with their own account, the servers are listed in `connectors.json`, and each plugin wires only what its skills read. See [SECURITY.md](../SECURITY.md).
+
 ## Tools
 
 <!-- generated:tools-table begin -->

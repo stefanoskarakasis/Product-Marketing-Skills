@@ -2,7 +2,7 @@
 
 Claude chooses a skill from its name and description. This page is how you check, by hand, that the right competitive skill answers the right request. Run it after installing or updating the plugin, and whenever you add a skill that shares words with another.
 
-`tests/test_triggers.py` catches the collisions a script can catch (duplicate or hidden phrases, a missing "Not for" clause). It cannot tell you how Claude actually routes. This battery can.
+`evals/triggers/prompts.json` holds three prompts for every skill, to run the same way. `tests/test_triggers.py` catches the collisions a script can catch (duplicate or hidden phrases, a missing "Not for" clause). It cannot tell you how Claude actually routes. This battery can.
 
 ## How to run it
 

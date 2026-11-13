@@ -1,14 +1,18 @@
 ---
 name: sales-research-digest
-version: 1.0.0
+version: 1.0.1
 description: >
-  Turns what your sales team's research skills logged this week into one plain-language report for the PMM: who used them, whether the advice held up, what the companies have in common, and up to three things to do. Reads outcomes from your CRM and pushes you to connect it if it is missing. Covers the pmm-sales skills only.
-  Trigger on: "weekly sales digest", "how is the sales team using the research briefs", "which research briefs got ignored", "what are sellers seeing at prospects this week". Not for the repo-wide weekly sweep across every skill (meta-synthesis), research on one company (prospect-research) or one customer (customer-context).
+  Turns what your sales team's research skills logged this week into one plain-language report for
+  the PMM: who used them, whether the advice held up and up to three things to do; reads outcomes
+  from your CRM. Covers pmm-sales skills only. Trigger on: "weekly sales digest", "how is the
+  sales team using the research briefs", "which research briefs got ignored", "what are sellers
+  seeing at prospects this week". Not for the repo-wide weekly sweep (meta-synthesis), research on
+  one company (prospect-research) or one customer (customer-context).
 metadata:
   author: Stefanos Karakasis
   context: brain-dependent
   quality_gate: true
-last_updated: 2026-11-06
+last_updated: 2026-11-12
 ---
 
 # Sales Research Digest

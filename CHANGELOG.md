@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Run the routing checks
+
+- **Held-out routing set.** `evals/triggers/heldout.json` holds 96 prompts (two per skill: a situation and a judgement question) and 12 non-PMM prompts. It is **not blind**: it was written after reading every description, so it can only give an upper bound. `tests/test_heldout_prompts.py` keeps it complete and checks that no prompt copies a quoted trigger phrase.
+- **Run sheet.** `scripts/routing_sheet.py` builds `evals/triggers/run-sheet.md`, one row per prompt across both sets; a test fails if the sheet is out of date.
+- **Where results go.** New `docs/routing-runs.md`, with the rules for a clean run. No run has been recorded yet.
+- **Doc fixes.** `AGENTS.md` now states the real description budget (800 each, 20,000 total) instead of "1 to 1024". `docs/routing-checks.md` said "out of 26" for a 46-prompt battery.
+- No skill text changed, so no plugin versions change.
+
 ## v1.21.2 — 2026-11-13
 
 ### Routing fixes from the first manual check

@@ -80,4 +80,7 @@ Better still, keep one set of competitive skills per project.
 
 ## Recording results
 
-Add one row per run to [`docs/eval-results.md`](eval-results.md): date, plugin version, prompts passed out of 26, and each failure with its exact prompt. A failure is a trigger-wording bug: report it as an issue and the description is changed, not the prompt.
+Add one row per run to [`docs/eval-results.md`](eval-results.md): date, plugin version, prompts passed out of 46, and each failure with its exact prompt. A failure is a trigger-wording bug: report it as an issue and the description is changed, not the prompt.
+
+
+The full run sheet for this battery and the held-out set is [`evals/triggers/run-sheet.md`](../evals/triggers/run-sheet.md). How to record a run: [`routing-runs.md`](routing-runs.md).

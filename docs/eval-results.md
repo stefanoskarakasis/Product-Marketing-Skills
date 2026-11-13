@@ -6,6 +6,10 @@ See [run-the-evals.md](run-the-evals.md) for the 28-case first sitting.
 
 **Status: not yet run.** Nothing below is a pass until a row says so.
 
+## Routing runs
+
+Which skill answers a prompt is recorded separately, in [routing-runs.md](routing-runs.md). Nothing has been run yet.
+
 ## How to run an eval
 
 1. Start a fresh session with the plugin installed. One eval per session so earlier work does not leak.

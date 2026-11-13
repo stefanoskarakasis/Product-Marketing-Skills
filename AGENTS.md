@@ -48,7 +48,7 @@ Skills are content, so there is no build. These checks run on every push:
 ## Skill rules
 
 - `name` matches the folder exactly: lowercase letters, digits and single hyphens, 1 to 64 characters.
-- `description` is 1 to 1024 characters and keeps the trigger phrases.
+- `description` keeps the trigger phrases and stays within the repo budget: 800 characters each and 20,000 in total (`tests/test_description_budget.py`).
 - `SKILL.md` stays under 500 lines and 3,000 words (`tests/test_skill_size.py`). Heavy content goes to `references/`, loaded only when needed.
 - `.cursor-plugin/` manifests mirror the Claude ones and carry no version. Add a plugin to both marketplaces. Their keys must fit Cursor's plugin schema (`author` takes only `name` and `email`); a test checks it.
 - Name another skill or file only after checking that it exists in this repo.

@@ -1,0 +1,848 @@
+{
+ "version": 1,
+ "readme": "Held-out routing prompts. NOT BLIND: written by the assistant that had already read every skill description, so treat results as an upper bound. Two prompts per skill: 'situation' (the user describes a job, no skill words) and 'judgement' (the user asks for advice or a decision). non_pmm rows must route to no PMM skill. Run with docs/routing-runs.md. Never edit a prompt after seeing a result; add a new row instead.",
+ "prompts": [
+  {
+   "skill": "competitive-battlecard",
+   "kind": "situation",
+   "prompt": "Our seller Dana has a call on Thursday with the VP Finance at Tallis Freight, who is already on Corvane AP and is in the evaluation stage. We have lost two deals to Corvane on price and won one on EU VAT handling. She has ten minutes to prepare tomorrow morning.",
+   "expect": [
+    "competitive-battlecard"
+   ]
+  },
+  {
+   "skill": "competitive-battlecard",
+   "kind": "judgement",
+   "prompt": "Our AE wants to attack Corvane's weak reporting in the demo for the VP Finance at Tallis Freight. Last quarter's notes say Corvane wins on price and the champion is in operations. Is that the right angle for this deal, or will it backfire?",
+   "expect": [
+    "competitive-battlecard"
+   ]
+  },
+  {
+   "skill": "competitive-briefing",
+   "kind": "situation",
+   "prompt": "Every Monday our CEO wants a short read on where competitors threaten our renewals this quarter, how much revenue in euro is exposed, and the one decision she should make. Plexo cut list prices last week and we have 14 open deals against them worth 1.2 million euro.",
+   "expect": [
+    "competitive-briefing"
+   ]
+  },
+  {
+   "skill": "competitive-briefing",
+   "kind": "judgement",
+   "prompt": "Our CRO asked whether we should respond to Plexo's price cut before the end of the month. What decision should I put in front of the leadership team, and how much exposure do we show? 14 open deals, 1.2 million euro, win rate against Plexo is 38 percent.",
+   "expect": [
+    "competitive-briefing"
+   ]
+  },
+  {
+   "skill": "competitive-profile",
+   "kind": "situation",
+   "prompt": "We track five rivals: Corvane, Plexo, Northgate, Brightly and Hale. Which of their profiles have lines we have not re-checked in more than a month, and what did we last record on their pricing?",
+   "expect": [
+    "competitive-profile"
+   ]
+  },
+  {
+   "skill": "competitive-profile",
+   "kind": "judgement",
+   "prompt": "A seller in our Slack channel asks: does Plexo still charge per seat or did they move to usage pricing? Do we know enough to say it on a call, or does that line need re-checking first?",
+   "expect": [
+    "competitive-profile"
+   ]
+  },
+  {
+   "skill": "competitor-deep-dive",
+   "kind": "situation",
+   "prompt": "The board wants a properly sourced study of Plexo before the December pricing decision: what they offer product by product, how they price, and what the last six quarters of our deals say about where we meet them.",
+   "expect": [
+    "competitor-deep-dive"
+   ]
+  },
+  {
+   "skill": "competitor-deep-dive",
+   "kind": "judgement",
+   "prompt": "We are deciding whether to match Plexo's new usage-based pricing. Do we know enough about their offers and our deal history to make that call, or do we need a full sourced study first?",
+   "expect": [
+    "competitor-deep-dive"
+   ]
+  },
+  {
+   "skill": "industry-newsletter",
+   "kind": "situation",
+   "prompt": "Put together issue 14 of our weekly letter for the go-to-market leads: competitor movements, a pricing watch and what changed in the payments industry this week. Only publish a claim if a public page confirms it.",
+   "expect": [
+    "industry-newsletter"
+   ]
+  },
+  {
+   "skill": "industry-newsletter",
+   "kind": "judgement",
+   "prompt": "Should this week's issue lead with the competitor tables or with the industry changes? Plexo cut prices on Tuesday, and a regulator also published new e-invoicing rules on Wednesday.",
+   "expect": [
+    "industry-newsletter"
+   ]
+  },
+  {
+   "skill": "media-monitoring",
+   "kind": "situation",
+   "prompt": "Look at the public pages of our four main rivals again this week, covering pricing, careers and changelogs, and tell me what needs my action and what can be ignored. Draft the fix for anything that matters.",
+   "expect": [
+    "media-monitoring"
+   ]
+  },
+  {
+   "skill": "media-monitoring",
+   "kind": "judgement",
+   "prompt": "Hale's homepage changed overnight and this week's sweep flagged it as needing me. Is a rewritten hero line worth reacting to now, or can it wait for next week's sweep?",
+   "expect": [
+    "media-monitoring"
+   ]
+  },
+  {
+   "skill": "weekly-competitive-updates",
+   "kind": "situation",
+   "prompt": "Our executives want one page every Monday on what rivals did in public over the last week: each item dated and linked, grouped by how much it threatens us, plus a short list of things to watch next month.",
+   "expect": [
+    "weekly-competitive-updates"
+   ]
+  },
+  {
+   "skill": "weekly-competitive-updates",
+   "kind": "judgement",
+   "prompt": "A single blog post claims Plexo is about to acquire a smaller rival. Is it acceptable to include that in the executive competitor update for this week, given nothing else confirms it?",
+   "expect": [
+    "weekly-competitive-updates"
+   ]
+  },
+  {
+   "skill": "comparison-page-brief",
+   "kind": "situation",
+   "prompt": "We want a page for buyers who search for a Plexo alternative. Every row in the comparison needs a source and every price needs a date. We charge 29 euro per seat and Plexo's public page showed 45 euro in September.",
+   "expect": [
+    "comparison-page-brief"
+   ]
+  },
+  {
+   "skill": "comparison-page-brief",
+   "kind": "judgement",
+   "prompt": "Can we publish a table on our site saying we are 40 percent cheaper than Plexo? Our only evidence is a screenshot of their pricing page from March.",
+   "expect": [
+    "comparison-page-brief"
+   ]
+  },
+  {
+   "skill": "signal-monitor",
+   "kind": "situation",
+   "prompt": "Notes for this week: organic search traffic fell 12 percent, a rival launched a Salesforce integration, and two lost-deal notes mention security reviews. Which of these deserve action first given this quarter's priorities of winning mid-market logistics and cutting churn?",
+   "expect": [
+    "signal-monitor"
+   ]
+  },
+  {
+   "skill": "signal-monitor",
+   "kind": "judgement",
+   "prompt": "I have nine items in my notes from this week and room to act on maybe two. Which are worth acting on and which are noise? Priorities: mid-market logistics wins and lower churn.",
+   "expect": [
+    "signal-monitor"
+   ]
+  },
+  {
+   "skill": "alternatives-map",
+   "kind": "situation",
+   "prompt": "Here are 14 win and loss notes and 9 G2 reviews for our invoice matching product. Work out who buyers actually compare us with, including spreadsheets and doing nothing, and for each why they chose it and why they left.",
+   "expect": [
+    "alternatives-map"
+   ]
+  },
+  {
+   "skill": "alternatives-map",
+   "kind": "judgement",
+   "prompt": "We assume our main competitor is Plexo, but half of our lost deals ended with the buyer staying on spreadsheets. Are we mapping the wrong set of competitors?",
+   "expect": [
+    "alternatives-map"
+   ]
+  },
+  {
+   "skill": "ideal-customer-profile",
+   "kind": "situation",
+   "prompt": "From these 22 customer interviews and our usage data, describe who gets the most value from our product: the company profile, the jobs they hire us for and their pains in order of severity.",
+   "expect": [
+    "ideal-customer-profile"
+   ]
+  },
+  {
+   "skill": "ideal-customer-profile",
+   "kind": "judgement",
+   "prompt": "Our best customers are logistics firms with 200 to 500 staff, but most of our pipeline is 50-person startups. Is our ideal customer definition wrong, or do we just have a pipeline quality problem?",
+   "expect": [
+    "ideal-customer-profile"
+   ]
+  },
+  {
+   "skill": "proof-points",
+   "kind": "situation",
+   "prompt": "Our deck says we cut close time by 60 percent and are trusted by 500 teams. Which of these can we back with a source and which should we stop using?",
+   "expect": [
+    "proof-points"
+   ]
+  },
+  {
+   "skill": "proof-points",
+   "kind": "judgement",
+   "prompt": "Is it safe to put '3x faster month-end close' on the homepage? The number comes from one customer's slide at a conference last spring.",
+   "expect": [
+    "proof-points"
+   ]
+  },
+  {
+   "skill": "buyer-personas",
+   "kind": "situation",
+   "prompt": "For a 300k deal at a mid-market insurer, who sits on the buying committee, who will champion us and who can block us, and what does each of them care about compared with what they use today?",
+   "expect": [
+    "buyer-personas"
+   ]
+  },
+  {
+   "skill": "buyer-personas",
+   "kind": "judgement",
+   "prompt": "Should we write our messaging for the CFO or for the operations director first? Deals in logistics keep stalling at procurement.",
+   "expect": [
+    "buyer-personas"
+   ]
+  },
+  {
+   "skill": "market-context",
+   "kind": "situation",
+   "prompt": "Why would a finance team buy e-invoicing software now rather than two years ago? Lay out the forces that make this the moment, such as regulation, ERP changes and the labour shortage in accounting.",
+   "expect": [
+    "market-context"
+   ]
+  },
+  {
+   "skill": "market-context",
+   "kind": "judgement",
+   "prompt": "Is our 'why now' story strong enough to carry the launch, or is it a trend everyone repeats? We lean on the 2028 EU e-invoicing mandate.",
+   "expect": [
+    "market-context"
+   ]
+  },
+  {
+   "skill": "brand-voice",
+   "kind": "situation",
+   "prompt": "Our website reads formal, our sales emails read casual and our CEO's LinkedIn posts read like a different company. Write down how we should sound for CFOs versus operations leads and which words we should never use.",
+   "expect": [
+    "brand-voice"
+   ]
+  },
+  {
+   "skill": "brand-voice",
+   "kind": "judgement",
+   "prompt": "Should our product emails to operations managers be more playful, or should we keep the serious tone we use with CFOs? Open rates are the same for both.",
+   "expect": [
+    "brand-voice"
+   ]
+  },
+  {
+   "skill": "message-house",
+   "kind": "situation",
+   "prompt": "Here is our positioning: for finance teams at mid-market logistics firms, we automate invoice matching so month-end closes in two days, unlike spreadsheets and ERP modules. Lay it out on one page with the main claim on top and three supporting pillars underneath.",
+   "expect": [
+    "message-house"
+   ]
+  },
+  {
+   "skill": "message-house",
+   "kind": "judgement",
+   "prompt": "Does this hold together as a messaging structure? Top claim: close the books in two days. Pillars: speed, accuracy, audit trail. Should the audit trail pillar be split in two?",
+   "expect": [
+    "message-house"
+   ]
+  },
+  {
+   "skill": "positioning-messaging",
+   "kind": "situation",
+   "prompt": "We sell invoice matching to finance teams at mid-market logistics firms. Buyers compare us with spreadsheets, their ERP module and Plexo. Write our positioning and the messaging hierarchy for the homepage.",
+   "expect": [
+    "positioning-messaging"
+   ]
+  },
+  {
+   "skill": "positioning-messaging",
+   "kind": "judgement",
+   "prompt": "Our homepage headline says we are the smartest accounts payable platform. Does that position us against anything buyers actually compare us with? They look at spreadsheets and Plexo.",
+   "expect": [
+    "positioning-messaging"
+   ]
+  },
+  {
+   "skill": "product-messaging-playbook",
+   "kind": "situation",
+   "prompt": "We launch exception routing next month. Sales and customer success need one document with the problem, our story, how we compare with Plexo, questions to ask in discovery and answers to the five objections reps will hear.",
+   "expect": [
+    "product-messaging-playbook"
+   ]
+  },
+  {
+   "skill": "product-messaging-playbook",
+   "kind": "judgement",
+   "prompt": "Will a one-page summary be enough for sales on the exception routing launch, or do they also need discovery questions and objection answers? The sales team has 12 reps and half are new.",
+   "expect": [
+    "product-messaging-playbook"
+   ]
+  },
+  {
+   "skill": "positioning-ideas",
+   "kind": "situation",
+   "prompt": "Give me four genuinely different positioning angles for our invoice matching product against spreadsheets and Plexo, not four versions of faster and cheaper, so we can pick a direction.",
+   "expect": [
+    "positioning-ideas"
+   ]
+  },
+  {
+   "skill": "positioning-ideas",
+   "kind": "judgement",
+   "prompt": "We cannot decide between positioning as compliance safety or as speed to close. Which territory is more defensible against Plexo and spreadsheets?",
+   "expect": [
+    "positioning-ideas"
+   ]
+  },
+  {
+   "skill": "value-prop-statements",
+   "kind": "situation",
+   "prompt": "Our positioning is final: automate matching so finance closes in two days. Adapt it into value statements for CFOs, controllers and AP clerks, and for the website, outbound email and onboarding.",
+   "expect": [
+    "value-prop-statements"
+   ]
+  },
+  {
+   "skill": "value-prop-statements",
+   "kind": "judgement",
+   "prompt": "We rewrote the CFO version of our value statement and it now feels different from the controller version. Are they still the same positioning or have they drifted apart?",
+   "expect": [
+    "value-prop-statements"
+   ]
+  },
+  {
+   "skill": "gaccs-brief",
+   "kind": "situation",
+   "prompt": "I am planning a customer event in March for 300 finance leaders to push our exception routing launch and I do not know where to start. Help me structure what we need to decide before the agency and designers begin.",
+   "expect": [
+    "gaccs-brief"
+   ]
+  },
+  {
+   "skill": "gaccs-brief",
+   "kind": "judgement",
+   "prompt": "Is my event plan ready to hand to the agency? We have a date, a venue and a budget, but no stated goal and three different audience ideas.",
+   "expect": [
+    "gaccs-brief"
+   ]
+  },
+  {
+   "skill": "writing-assistant",
+   "kind": "situation",
+   "prompt": "Tighten this Slack message to our CEO: 'Hey, so I was thinking maybe we could possibly look at the Q4 pipeline numbers whenever you get a chance, because they might be a bit concerning.'",
+   "expect": [
+    "writing-assistant"
+   ]
+  },
+  {
+   "skill": "writing-assistant",
+   "kind": "judgement",
+   "prompt": "Does this paragraph read as AI-written? 'In today's fast-paced landscape, our innovative platform empowers teams to unlock seamless efficiency and drive transformative outcomes.'",
+   "expect": [
+    "writing-assistant"
+   ]
+  },
+  {
+   "skill": "customer-stories",
+   "kind": "situation",
+   "prompt": "Northwind cut close time from six days to two. I will interview their controller next week. Prepare the questions, and make sure every number in the story is verified before they approve it.",
+   "expect": [
+    "customer-stories"
+   ]
+  },
+  {
+   "skill": "customer-stories",
+   "kind": "judgement",
+   "prompt": "The customer asked to change 'two days' to 'about three days' in the quote they are approving. Can we still publish the story with the two day headline?",
+   "expect": [
+    "customer-stories"
+   ]
+  },
+  {
+   "skill": "experiment-ideas",
+   "kind": "situation",
+   "prompt": "I have no idea what to try next quarter for pipeline. We can spend 3,000 euro and our customers are mid-market logistics finance teams. What are some low-cost ideas worth considering?",
+   "expect": [
+    "experiment-ideas"
+   ]
+  },
+  {
+   "skill": "experiment-ideas",
+   "kind": "judgement",
+   "prompt": "Is a webinar the smartest use of 3,000 euro, or are there cheaper ways to reach logistics finance leaders? List a few alternatives with the reasoning before I pick.",
+   "expect": [
+    "experiment-ideas"
+   ]
+  },
+  {
+   "skill": "experiment-doc",
+   "kind": "situation",
+   "prompt": "Hypothesis: moving the demo button above the fold will lift bookings by 15 percent. The page gets 600 visits a week and converts at 3 percent. Write the experiment document.",
+   "expect": [
+    "experiment-doc"
+   ]
+  },
+  {
+   "skill": "experiment-doc",
+   "kind": "judgement",
+   "prompt": "Is it worth testing a shorter demo form if we only get 600 visits a week and 3 percent convert? Will we ever reach a result we can trust?",
+   "expect": [
+    "experiment-doc"
+   ]
+  },
+  {
+   "skill": "interview-summary",
+   "kind": "situation",
+   "prompt": "Interview excerpt with a controller at a logistics firm: 'We match about 4,000 invoices a month in spreadsheets. Month-end takes six days. I tried our ERP's module but exceptions pile up in an inbox nobody owns.' Turn this into what she is trying to get done, what she uses now and the problems she raised.",
+   "expect": [
+    "interview-summary"
+   ]
+  },
+  {
+   "skill": "interview-summary",
+   "kind": "judgement",
+   "prompt": "From this excerpt, is she describing a real pain or being polite? 'Yeah, it would be nice to have something faster. We have not really looked at tools. Maybe next year.'",
+   "expect": [
+    "interview-summary"
+   ]
+  },
+  {
+   "skill": "pmm-okrs",
+   "kind": "situation",
+   "prompt": "Help me set the product marketing objective and key results for Q1. The work is: launch exception routing, improve win rate against Plexo and build a sales enablement program.",
+   "expect": [
+    "pmm-okrs"
+   ]
+  },
+  {
+   "skill": "pmm-okrs",
+   "kind": "judgement",
+   "prompt": "Is 'increase brand awareness by 20 percent' a decent key result for my product marketing quarter, or is it too vague to score?",
+   "expect": [
+    "pmm-okrs"
+   ]
+  },
+  {
+   "skill": "prd",
+   "kind": "situation",
+   "prompt": "Write the requirements document for exception routing. The users are AP clerks, the problem is invoices stuck in approval, it ships in Q2 and sales needs a customer-facing story as well.",
+   "expect": [
+    "prd"
+   ]
+  },
+  {
+   "skill": "prd",
+   "kind": "judgement",
+   "prompt": "Does our feature spec need a customer-facing story for go-to-market, or is a regular requirements document enough? It is a mid-sized feature for existing customers.",
+   "expect": [
+    "prd"
+   ]
+  },
+  {
+   "skill": "pre-mortem",
+   "kind": "situation",
+   "prompt": "We are raising prices 15 percent for new customers in January and changing packaging at the same time. Before we commit, what could go wrong, who should own each risk and what should we do about the worst ones?",
+   "expect": [
+    "pre-mortem"
+   ]
+  },
+  {
+   "skill": "pre-mortem",
+   "kind": "judgement",
+   "prompt": "Is our EU launch plan safe to commit to? Imagine it failed six months from now: what are the most likely reasons?",
+   "expect": [
+    "pre-mortem"
+   ]
+  },
+  {
+   "skill": "prioritization-frameworks",
+   "kind": "situation",
+   "prompt": "We have 12 backlog ideas and room for three launches. Which scoring method fits, and how much launch investment should each of the top ones get?",
+   "expect": [
+    "prioritization-frameworks"
+   ]
+  },
+  {
+   "skill": "prioritization-frameworks",
+   "kind": "judgement",
+   "prompt": "Should we use RICE or ICE to rank these 12 features? We have no reliable data on reach.",
+   "expect": [
+    "prioritization-frameworks"
+   ]
+  },
+  {
+   "skill": "retro",
+   "kind": "situation",
+   "prompt": "The exception routing launch landed three weeks ago. Signups were half of target, sales was not ready and product shipped late. Run a debrief that ends in decisions, not blame.",
+   "expect": [
+    "retro"
+   ]
+  },
+  {
+   "skill": "retro",
+   "kind": "judgement",
+   "prompt": "What should we do differently on the next launch? The last one slipped two weeks, sales heard about it the same day as customers, and results missed target.",
+   "expect": [
+    "retro"
+   ]
+  },
+  {
+   "skill": "stakeholder-maps",
+   "kind": "situation",
+   "prompt": "Who can stop our pricing change internally, who will back it and what should I say to each of them? Finance, sales leadership, product, customer success and the CEO are all involved.",
+   "expect": [
+    "stakeholder-maps"
+   ]
+  },
+  {
+   "skill": "stakeholder-maps",
+   "kind": "judgement",
+   "prompt": "Should I brief the CRO before the CFO on the pricing change, or does the order not matter? The CRO is nervous and the CFO is sponsoring.",
+   "expect": [
+    "stakeholder-maps"
+   ]
+  },
+  {
+   "skill": "beachhead-segment",
+   "kind": "situation",
+   "prompt": "We could sell first to logistics, insurance or retail finance teams. Which segment should we win first? Pain is highest in logistics, willingness to pay in insurance, and retail refers us most.",
+   "expect": [
+    "beachhead-segment"
+   ]
+  },
+  {
+   "skill": "beachhead-segment",
+   "kind": "judgement",
+   "prompt": "Is it a mistake to chase insurance and logistics at the same time? We have four reps and one marketer.",
+   "expect": [
+    "beachhead-segment"
+   ]
+  },
+  {
+   "skill": "go-to-market-strategy",
+   "kind": "situation",
+   "prompt": "We are adding bulk upload in Q2. It is small and only existing customers care. How big should the launch be and what should we do for it?",
+   "expect": [
+    "go-to-market-strategy"
+   ]
+  },
+  {
+   "skill": "go-to-market-strategy",
+   "kind": "judgement",
+   "prompt": "Is this feature worth a full launch or a quiet release? It is an AI matching engine that changes our pricing and we expect press interest.",
+   "expect": [
+    "go-to-market-strategy"
+   ]
+  },
+  {
+   "skill": "gtm-motions",
+   "kind": "situation",
+   "prompt": "We sell 25,000 euro deals to mid-market finance teams with a six-week sales cycle. Should we lean on outbound, inbound, partners or product-led growth? Customer acquisition cost is lowest through partners.",
+   "expect": [
+    "gtm-motions"
+   ]
+  },
+  {
+   "skill": "gtm-motions",
+   "kind": "judgement",
+   "prompt": "Is product-led growth realistic for us when deals are 25,000 euro and need a security review?",
+   "expect": [
+    "gtm-motions"
+   ]
+  },
+  {
+   "skill": "workflow-orchestrator",
+   "kind": "situation",
+   "prompt": "Run everything for the exception routing launch from positioning through competitive preparation to the launch plan, and keep one master document with every decision.",
+   "expect": [
+    "workflow-orchestrator"
+   ]
+  },
+  {
+   "skill": "workflow-orchestrator",
+   "kind": "judgement",
+   "prompt": "Should we run positioning, competitive prep and launch planning separately or as one program for the EU market entry? We have six weeks.",
+   "expect": [
+    "workflow-orchestrator"
+   ]
+  },
+  {
+   "skill": "pmm-metrics",
+   "kind": "situation",
+   "prompt": "What single number tells us the product marketing team is succeeding? Give me one top metric, the inputs that drive it and a scorecard we can review monthly.",
+   "expect": [
+    "pmm-metrics"
+   ]
+  },
+  {
+   "skill": "pmm-metrics",
+   "kind": "judgement",
+   "prompt": "Are blog sessions and marketing qualified leads good metrics for a product marketing scorecard, or are they vanity numbers?",
+   "expect": [
+    "pmm-metrics"
+   ]
+  },
+  {
+   "skill": "meta-learn",
+   "kind": "situation",
+   "prompt": "I want to capture the lessons from the session we just completed properly: what surprised me, what the skill got wrong and what it did not cover.",
+   "expect": [
+    "meta-learn"
+   ]
+  },
+  {
+   "skill": "meta-learn",
+   "kind": "judgement",
+   "prompt": "Was today's finding, that sellers ignore long cards, a real pattern or a one-off? Record it in a way we can test later.",
+   "expect": [
+    "meta-learn"
+   ]
+  },
+  {
+   "skill": "meta-review",
+   "kind": "situation",
+   "prompt": "Check this skill file against our authoring standard and tell me what to fix first. It has: name: renewal-brief, a description, a Trigger section, three steps and no other sections.",
+   "expect": [
+    "meta-review"
+   ]
+  },
+  {
+   "skill": "meta-review",
+   "kind": "judgement",
+   "prompt": "Is this skill file ready to ship? It has a name, a description and three steps, but no outputs section and no quality gate.",
+   "expect": [
+    "meta-review"
+   ]
+  },
+  {
+   "skill": "meta-synthesis",
+   "kind": "situation",
+   "prompt": "Look across the last month of logged skill sessions and propose new guardrails wherever the same problem showed up more than once. Also show which skills the team actually used.",
+   "expect": [
+    "meta-synthesis"
+   ]
+  },
+  {
+   "skill": "meta-synthesis",
+   "kind": "judgement",
+   "prompt": "Three sessions this month all noted that sellers ignore long cards. Should that become a standing guardrail for every skill?",
+   "expect": [
+    "meta-synthesis"
+   ]
+  },
+  {
+   "skill": "meta-verify",
+   "kind": "situation",
+   "prompt": "Before I send this brief to the CEO, re-check it against the rules of the skill that wrote it and give me specific fixes. The brief says: 'Plexo charges 45 euro per seat. We always win on security.'",
+   "expect": [
+    "meta-verify"
+   ]
+  },
+  {
+   "skill": "meta-verify",
+   "kind": "judgement",
+   "prompt": "Is this battlecard good enough to send, or will it embarrass me? It quotes Plexo's price with no date and says we always win on security.",
+   "expect": [
+    "meta-verify"
+   ]
+  },
+  {
+   "skill": "pmm-resume",
+   "kind": "situation",
+   "prompt": "Tailor my resume for a Head of Product Marketing role at a fintech. The job asks for launch leadership, pricing experience and team management. My bullets: launched 6 products, redesigned pricing for 12,000 customers, managed a team of 4.",
+   "expect": [
+    "pmm-resume"
+   ]
+  },
+  {
+   "skill": "pmm-resume",
+   "kind": "judgement",
+   "prompt": "Which of these three bullets should lead my resume for a Director of Product Marketing role? Launched 6 products; redesigned pricing for 12,000 customers; grew pipeline 30 percent.",
+   "expect": [
+    "pmm-resume"
+   ]
+  },
+  {
+   "skill": "privacy-policy",
+   "kind": "situation",
+   "prompt": "Draft a privacy policy for our B2B invoicing app. We have EU and California customers, use analytics cookies and keep invoice data for seven years.",
+   "expect": [
+    "privacy-policy"
+   ]
+  },
+  {
+   "skill": "privacy-policy",
+   "kind": "judgement",
+   "prompt": "Do we need a separate cookie policy and a processor contract for our EU customers, or does one privacy policy cover it?",
+   "expect": [
+    "privacy-policy"
+   ]
+  },
+  {
+   "skill": "product-marketing-context",
+   "kind": "situation",
+   "prompt": "Set up the company foundation that all our marketing work will draw on: product, who we sell to, positioning, voice, market and proof. I will paste our website text and pricing page.",
+   "expect": [
+    "product-marketing-context"
+   ]
+  },
+  {
+   "skill": "product-marketing-context",
+   "kind": "judgement",
+   "prompt": "Is our company context file still accurate? Our ideal customer and our pricing changed in September and I am not sure which fields are out of date.",
+   "expect": [
+    "product-marketing-context"
+   ]
+  },
+  {
+   "skill": "customer-context",
+   "kind": "situation",
+   "prompt": "I have a renewal conversation with Northwind Logistics on Friday and have not looked at the account in two months. Pull together where things stand: usage, support tickets, who sponsors it and anything that changed.",
+   "expect": [
+    "customer-context"
+   ]
+  },
+  {
+   "skill": "customer-context",
+   "kind": "judgement",
+   "prompt": "Is Northwind Logistics at risk of churning? Usage dropped 30 percent in six weeks, their champion left in October and there are three open priority tickets.",
+   "expect": [
+    "customer-context"
+   ]
+  },
+  {
+   "skill": "prospect-research",
+   "kind": "situation",
+   "prompt": "We want to email the head of finance operations at Brightcrest GmbH, a Munich logistics firm we have never sold to. What is a credible reason to reach out now and what should the first question be?",
+   "expect": [
+    "prospect-research"
+   ]
+  },
+  {
+   "skill": "prospect-research",
+   "kind": "judgement",
+   "prompt": "Is Brightcrest GmbH worth an outbound sequence? They have 400 staff, hired a new CFO last month and we have no relationship.",
+   "expect": [
+    "prospect-research"
+   ]
+  },
+  {
+   "skill": "deal-review",
+   "kind": "situation",
+   "prompt": "Look at the Acme Freight opportunity: 180,000 euro, stage three, champion silent for 12 days, legal review pending, close date at month end. What could kill it and what is the one thing to do this week?",
+   "expect": [
+    "deal-review"
+   ]
+  },
+  {
+   "skill": "deal-review",
+   "kind": "judgement",
+   "prompt": "Should I keep Acme Freight in my commit forecast? The buyer has gone quiet and procurement has not started.",
+   "expect": [
+    "deal-review"
+   ]
+  },
+  {
+   "skill": "sales-research-digest",
+   "kind": "situation",
+   "prompt": "How are the sellers using the research briefs these weeks, did the advice help, and what should I change? Give me something I can read in two minutes.",
+   "expect": [
+    "sales-research-digest"
+   ]
+  },
+  {
+   "skill": "sales-research-digest",
+   "kind": "judgement",
+   "prompt": "Are our sellers getting real value from the research skills or is usage just curiosity? Show adoption and whether outcomes in the CRM backed up the advice.",
+   "expect": [
+    "sales-research-digest"
+   ]
+  }
+ ],
+ "non_pmm": [
+  {
+   "skill": "(none)",
+   "kind": "non-pmm",
+   "prompt": "Write a Python function that deduplicates a list of dictionaries by their id field and keeps the latest entry.",
+   "expect": []
+  },
+  {
+   "skill": "(none)",
+   "kind": "non-pmm",
+   "prompt": "What is the difference between a mortgage with a fixed rate and one with a variable rate for a first home?",
+   "expect": []
+  },
+  {
+   "skill": "(none)",
+   "kind": "non-pmm",
+   "prompt": "Plan a three day trip to Lisbon for two people who like food and walking, with a budget of 900 euro.",
+   "expect": []
+  },
+  {
+   "skill": "(none)",
+   "kind": "non-pmm",
+   "prompt": "My SQL query joining orders and customers returns duplicate rows. Here is the query: SELECT * FROM orders o JOIN customers c ON c.region = o.region. What is wrong?",
+   "expect": []
+  },
+  {
+   "skill": "(none)",
+   "kind": "non-pmm",
+   "prompt": "Summarise the causes of the 2008 financial crisis in five bullet points for a high school class.",
+   "expect": []
+  },
+  {
+   "skill": "(none)",
+   "kind": "non-pmm",
+   "prompt": "Translate this sentence into German: 'The invoice was paid on the fifteenth of March.'",
+   "expect": []
+  },
+  {
+   "skill": "(none)",
+   "kind": "non-pmm",
+   "prompt": "Draft a polite email to my landlord asking when the broken heating will be fixed. It has been out for four days.",
+   "expect": []
+  },
+  {
+   "skill": "(none)",
+   "kind": "non-pmm",
+   "prompt": "Explain how a hash map handles collisions and what the cost of lookup is in the worst case.",
+   "expect": []
+  },
+  {
+   "skill": "(none)",
+   "kind": "non-pmm",
+   "prompt": "Give me a weekly meal plan for a vegetarian who trains four times a week and has 30 minutes to cook.",
+   "expect": []
+  },
+  {
+   "skill": "(none)",
+   "kind": "non-pmm",
+   "prompt": "Help me understand the difference between a Roth IRA and a traditional IRA for someone aged 34 with a stable salary.",
+   "expect": []
+  },
+  {
+   "skill": "(none)",
+   "kind": "non-pmm",
+   "prompt": "Write a short bedtime story about a lighthouse keeper and a very small dragon.",
+   "expect": []
+  },
+  {
+   "skill": "(none)",
+   "kind": "non-pmm",
+   "prompt": "Convert this CSV of monthly sales into a bar chart and tell me which month was highest: Jan 120, Feb 90, Mar 150, Apr 130.",
+   "expect": []
+  }
+ ]
+}

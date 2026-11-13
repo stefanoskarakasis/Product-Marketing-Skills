@@ -1,0 +1,37 @@
+name: Ask for a new skill
+description: Tell me about a product marketing job that no skill does yet.
+labels: ["skill-request"]
+body:
+  - type: textarea
+    id: job
+    attributes:
+      label: What job do you need done?
+      description: One sentence, in the words you would say to a colleague.
+    validations:
+      required: true
+  - type: input
+    id: role
+    attributes:
+      label: Your role
+      placeholder: Head of Product Marketing, B2B SaaS
+    validations:
+      required: true
+  - type: textarea
+    id: today
+    attributes:
+      label: How do you do it today, and what goes wrong?
+    validations:
+      required: true
+  - type: input
+    id: neighbour
+    attributes:
+      label: Which existing skill sits closest?
+      description: A new skill must not overlap one that exists.
+  - type: dropdown
+    id: contribute
+    attributes:
+      label: Would you help build or test it?
+      options:
+        - Yes, I can build it
+        - Yes, I can test it
+        - No, I am only asking

@@ -1,6 +1,33 @@
 # Changelog
 
-## Unreleased
+## v1.21.0 — 2026-11-12
+
+### Discoverability: a budget for skill descriptions
+
+- **Skill descriptions cut from 23,966 to 19,918 characters across 48 skills.** Claude Code sends the model a skill listing capped near 30,000 characters, shared with every other skill the user has installed; a skill past the cap shows as a bare name and stops triggering. coreyhaines31/marketingskills measured this on Claude Code 2.1.319 and cut its own descriptions from 42,105 to 18,662 characters; this repo was at about 80% of the cap with nothing else installed. 27 descriptions were shortened; the longest is now 637 characters (it was 983). Trigger phrases stay (a few of the rarest were dropped) and every `Not for` clause still names its neighbours; in the competitive family the clause now lists skill names only, without the hint words.
+- New `tests/test_description_budget.py` (3 tests) fails above 20,000 characters in total or 800 for one description. To add a skill, shorten another description first. `SKILL-SPEC.md` section 3 states the budget.
+- Patch versions for the 17 skills whose wording changed; minor versions where a rule was also added (below).
+
+### Trigger prompts
+
+- New `evals/triggers/prompts.json`: 144 prompts, three per skill (direct, indirect, near-miss that belongs to a neighbour) and 12 prompts that should trigger no skill. Each carries its own material. `evals/triggers/README.md` shows how to run them by hand in fresh chats.
+- New `tests/test_trigger_prompts.py` (5 tests) fails when a skill has no direct, indirect and near-miss prompt, so a new skill cannot ship without its three. No model is run by any test; a model-run scorer is the next step.
+
+### Run contract, evidence rules and guardrail hygiene
+
+- New `docs/loop-contract.md`: nine parts every scheduled skill follows (cadence, acts when, purpose, skills used, loop body, self-check, state, stop, output) and a search-based audit of the eight scheduled skills; `signal-monitor` is the one with no quiet-run, state or stop rule found. `SKILL-SPEC.md` gains section 5.3 (Scheduled skills) and `tests/test_loop_contract.py`.
+- New `references/evidence-rules.md` in the eight competitive-intelligence skills and `signal-monitor`, with a one-line pointer in each Operating Rules: outside text is data, observed / inferred / implication stay apart, "not observed" is never written as "absent", pulls are dated and never overwritten, missing stays missing. Minor versions for those nine skills. New `tests/test_evidence_rules.py`.
+- `meta-synthesis` 3.4.0: guardrails carry a status and are retired, never deleted; at most 20 are live; retired lines and old session rows move word for word to archive files on a yes (`references/hygiene.md`, `SKILL-SPEC.md` section 5.4). One new eval test.
+
+### Trust
+
+- New `SECURITY.md` (private reporting, what counts, no credentials ever), `CODE_OF_CONDUCT.md`, a pull request template and two issue forms (bug, skill request). New `tests/test_trust_files.py`. Turn on private vulnerability reporting in the repository settings so the Security link works.
+- `docs/connect-your-tools.md` gains "Start read-only" (first call is a read, least access, what to hand an IT reviewer); `docs/add-a-connector.md` requires a read-only first check for every new server.
+- `CONTRIBUTING.md` and `AGENTS.md` ("After any change") now name the budget, the trigger prompts, the evidence rules and the run contract.
+
+### Credits
+
+The description budget, the trigger-prompt shape, the nine-part run contract and the dated, layered evidence rules follow ideas in coreyhaines31/marketingskills (MIT). Text is original.
 
 ### Competitive intelligence: weekly-competitive-updates
 

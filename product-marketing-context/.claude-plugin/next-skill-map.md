@@ -246,6 +246,15 @@ named competitor (competitive-battlecard)?"
 - meta-synthesis — to see the same week across every skill, not only the sales ones
 **Prompt to surface:** "Next, pick one: confirm a change for the brain (product-marketing-context), add a missing tool (alternatives-map), log a rival (competitive-profile), check who you sell to (ideal-customer-profile), look again at a red company (prospect-research), or see all skills this week (meta-synthesis)?"
 
+## After objection-handling (a play, call digest or reply draft delivered)
+**Next options (not a single path — ask which applies):**
+- competitive-battlecard — if a named rival was raised and the seller needs the card
+- writing-assistant — if the draft should be polished in the seller's own voice
+- deal-review — if the objection puts the whole deal in doubt
+- product-marketing-context — to confirm a proposed objection, customer phrase or the objection owner (Section 8 `context_owners`)
+- proof-points — if a play was marked unverified for lack of a sourced claim
+**Prompt to surface:** "Next, pick one: build the rival card (competitive-battlecard), polish the draft (writing-assistant), review the whole deal (deal-review), confirm a proposal for your brain (product-marketing-context), or source the missing claim (proof-points)."
+
 ## After media-monitoring (brief delivered, records saved)
 **Next options (not a single path — ask which applies):**
 - signal-monitor — if more than one thing moved and you want them ranked against this quarter's priorities

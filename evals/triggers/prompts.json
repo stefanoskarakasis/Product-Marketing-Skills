@@ -1153,6 +1153,30 @@
    "expect": [
     "ideal-customer-profile"
    ]
+  },
+  {
+   "skill": "objection-handling",
+   "kind": "direct",
+   "prompt": "Help me answer this buyer pushback from Marlow Retail: 'Your fee is more than we budgeted.' It is call two and we have not sized their problem yet. What do I say next?",
+   "expect": [
+    "objection-handling"
+   ]
+  },
+  {
+   "skill": "objection-handling",
+   "kind": "indirect",
+   "prompt": "Tidewell Foods wrote back that our fee is higher than they planned and asked for 3 percent off in writing. Draft my reply without conceding anything and tell me what I should ask them.",
+   "expect": [
+    "objection-handling"
+   ]
+  },
+  {
+   "skill": "objection-handling",
+   "kind": "near-miss",
+   "prompt": "Is the Marlow Retail deal real? They said the fee is high, the CFO has not joined a call and close is at month end.",
+   "expect": [
+    "deal-review"
+   ]
   }
  ],
  "non_pmm": [

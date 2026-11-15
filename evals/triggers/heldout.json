@@ -769,6 +769,22 @@
    "expect": [
     "sales-research-digest"
    ]
+  },
+  {
+   "skill": "objection-handling",
+   "kind": "situation",
+   "prompt": "I am an account executive at a payments company. On a call a finance director at a 40-person retailer said we do not connect to their ERP, so they cannot move forward. I have never answered this well. What do I say, and what do I ask next?",
+   "expect": [
+    "objection-handling"
+   ]
+  },
+  {
+   "skill": "objection-handling",
+   "kind": "judgement",
+   "prompt": "My buyer keeps raising price and I suspect they are only negotiating. Should I give a discount to keep the deal moving, or hold the line and offer something else?",
+   "expect": [
+    "objection-handling"
+   ]
   }
  ],
  "non_pmm": [

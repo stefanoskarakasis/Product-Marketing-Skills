@@ -63,7 +63,7 @@
       "description": "Sales skills for sellers and CSMs, built for Slack first: review a live deal and know what to do next, handle a buyer objection, get the current state of one customer, research a prospect and digest sales signals, all checked against your brain and sourced to your CRM, calls and email.",
       "source": "./pmm-sales",
       "category": "product-marketing",
-      "tags": ["deal-review", "customer-context", "prospect-research", "renewals", "sales-enablement", "slack", "b2b-saas"]
+      "tags": ["deal-review", "objection-handling", "customer-context", "prospect-research", "renewals", "sales-enablement", "slack", "b2b-saas"]
     },
     {
       "name": "pmm-toolkit",

@@ -60,8 +60,12 @@ Claude chooses a skill from its name and description. This page is how you check
 | 44 | Weekly competitor update for the C-suite, Germany only | `weekly-competitive-updates` |
 | 45 | Executive competitor news this week | `weekly-competitive-updates`, not `industry-newsletter` |
 | 46 | Weekly competitor update for the C-suite with the euro at risk | `competitive-briefing`, not `weekly-competitive-updates` |
+| 47 | They said it's too expensive, how do I answer? | `objection-handling` |
+| 48 | Digest the objections from the Marlow call | `objection-handling` |
+| 49 | Draft a reply to this pricing pushback email | `objection-handling`, not `writing-assistant` |
+| 50 | Is the Marlow deal real? | `deal-review`, not `objection-handling` |
 
-**Pass:** 43 of 46, and prompts 12 to 14, 23 and 26 never build a leadership brief or a newsletter without asking.
+**Pass:** 47 of 50, and prompts 12 to 14, 23 and 26 never build a leadership brief or a newsletter without asking.
 
 ## If two sets of skills are installed
 

@@ -13,7 +13,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-TOTAL_CEILING = 20_000   # all descriptions together
+TOTAL_CEILING = 20_550   # all descriptions together (raised 550 for objection-handling)
 ONE_CEILING = 800        # one description
 
 

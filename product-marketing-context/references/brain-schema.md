@@ -13,7 +13,11 @@ Skills keep their own one-line "Brain contract" (plugins install standalone).
 | 5 | Market Context | maturity, macro_forces, why_now, narrative | 90 days | product-marketing-context, market-context |
 | 6 | Proof Points Registry | approved_metrics, quotes, forbidden_claims | 12 months per claim | proof-points |
 | 7 | Strategy | priorities, launches, quarter_goals, active_bets, not_doing, conversion_action | 90 days | product-marketing-context, pmm-okrs (proposal, user-confirmed) |
-| 8 | Execution | stakeholders, approvals, prohibited, channels, cadence | 180 days | product-marketing-context, stakeholder-maps (proposal, user-confirmed) |
+| 8 | Execution | stakeholders, approvals, prohibited, channels, cadence, context_owners | 180 days | product-marketing-context, stakeholder-maps (proposal, user-confirmed) |
+
+## Field-level freshness exceptions
+
+`context_owners` (Section 8) is fresh for 90 days, not the section's 180: an owner confirmation older than 90 days is asked again. Section 6 is judged per claim.
 
 ## Deal-reality fields (added in 3.4.0)
 

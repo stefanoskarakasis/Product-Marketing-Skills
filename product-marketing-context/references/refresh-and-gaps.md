@@ -4,7 +4,7 @@ Moved verbatim from `SKILL.md`.
 
 ## Step 6: Refresh Stale Fields (list)
 
-1. Load the brain and `references/brain-schema.md`. For every field, work out its age from its source tag date (an untagged field uses the file's last-updated date) and compare it with the section's limit in the schema. Section 6 is judged per claim.
+1. Load the brain and `references/brain-schema.md`. For every field, work out its age from its source tag date (an untagged field uses the file's last-updated date) and compare it with the section's limit in the schema. Section 6 is judged per claim, and the Section 8 field `context_owners` is judged at 90 days, not the section's limit.
 2. If nothing is stale, say so in one line and stop.
 3. List the stale fields by section with their age and limit, most-read sections first (2, 3, 6, then the rest).
 4. Ask about one field at a time: "Still true? [yes / changed / drop]".

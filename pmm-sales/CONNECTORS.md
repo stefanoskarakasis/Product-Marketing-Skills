@@ -6,11 +6,11 @@ output has the same shape. Category definitions live in the root
 
 | Placeholder | What it adds here | Wired today |
 |---|---|---|
-| `~~CRM` | customer or prospect record, renewal and open opps, contacts, activities, owner | HubSpot |
+| `~~CRM` | customer or prospect record, renewal and open opps, contacts, activities, owner; deal outcome and loss reason, read-only, for `objection-handling`, only after the objection owner approves | HubSpot |
 | `~~team chat` | the Slack thread you ask in; internal escalations and deal desk threads | Slack |
 | `~~email` | threads with the customer's domain | Gmail |
 | `~~calendar` | recent and upcoming meetings, attendees | Google Calendar |
-| `~~call recordings` | latest call, objections and customer phrases as said | Gong, Wispr Flow, Granola |
+| `~~call recordings` | latest call, objections and customer phrases as said; `objection-handling` reads recent calls to build the objection library, only after the objection owner approves | Gong, Wispr Flow, Granola |
 | `~~cloud storage` | account plan, success plan, contract docs; saves the full brief as a Google Doc | Google Drive, Google Docs |
 | `~~knowledge base` | internal account plans and notes; where your brain lives if it is in Notion | Notion, Atlassian |
 | `~~support` | open and recent escalations by theme | Intercom |

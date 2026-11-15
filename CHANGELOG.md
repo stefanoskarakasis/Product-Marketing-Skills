@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### Sales: objection-handling
+
+- New skill `objection-handling` in `pmm-sales`, with the `/pmm-sales:objection-handling` command: tells a seller, CSM or PMM what a buyer objection really is, gives the next line, a call digest of every objection or a paste-ready email reply, and logs each objection for the seller so the library gets sharper. Works from a Slack call for help, a pasted line, a transcript or an email. Draft only; reads the brain and never writes it.
+- Ships a neutral seed library of 40 objection cards (product fit, value and adoption, proof and trust, switching risk, security and legal, incumbent, price) with `[slots]` each company tailors, and a full price play with seven types, role variants, a trade table and an honest "the numbers say no" rule.
+- Reading call recordings and CRM outcomes is the objection owner's decision, per source, recorded with role and date and asked again after 90 days. Until then it uses only what a seller pastes or uploads. The owner sees the risks first (consent, works councils, personal data, retention, CRM quality). It never reports by seller.
+- Brain Section 8 gains the field `context_owners` (which team owns each kind of knowledge, owner role, backup role, confirmed date; asked again after 90 days). `objection-handling` asks and hands `product-marketing-context` an exact proposal; it never writes the brain.
+- `deal-review`, `customer-context` and `prospect-research` name it in their "Not for" clauses. `tests/test_triggers.py` adds it to the sales group and checks the naming. `docs/routing-checks.md` grows to 50 prompts. Counts: 49 skills, 57 commands.
+
 ### Run the routing checks
 
 - **Held-out routing set.** `evals/triggers/heldout.json` holds 96 prompts (two per skill: a situation and a judgement question) and 12 non-PMM prompts. It is **not blind**: it was written after reading every description, so it can only give an upper bound. `tests/test_heldout_prompts.py` keeps it complete and checks that no prompt copies a quoted trigger phrase.

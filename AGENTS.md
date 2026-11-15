@@ -4,7 +4,7 @@ Rules for AI agents and contributors working in this repository. Short on purpos
 
 ## What this repo is
 
-Product marketing skills for B2B SaaS PMMs and GTM operators: 48 skills in 10 plugins, with 56 commands, plus one shared brain (`foundation/brain.md`) that every skill reads. Skills are plain `SKILL.md` files that follow the [Agent Skills specification](https://agentskills.io/specification.md). The repo is also a Claude Code plugin marketplace through `.claude-plugin/marketplace.json`. Creator: Stefanos Karakasis. License: MIT.
+Product marketing skills for B2B SaaS PMMs and GTM operators: 49 skills in 10 plugins, with 57 commands, plus one shared brain (`foundation/brain.md`) that every skill reads. Skills are plain `SKILL.md` files that follow the [Agent Skills specification](https://agentskills.io/specification.md). The repo is also a Claude Code plugin marketplace through `.claude-plugin/marketplace.json`. Creator: Stefanos Karakasis. License: MIT.
 
 ## Where things live
 
@@ -27,7 +27,7 @@ pmm-positioning/           ICP, alternatives, messaging, proof points
 pmm-go-to-market/          beachhead, GTM strategy, motions, orchestration
 pmm-competitive-intelligence/  profiles, battlecards, briefing, weekly update, newsletter, media monitoring, hooks/
 pmm-intelligence/          signal-monitor
-pmm-sales/                 customer-context, prospect-research, deal-review, sales-research-digest (Slack first)
+pmm-sales/                 customer-context, prospect-research, deal-review, objection-handling, sales-research-digest (Slack first)
 pmm-execution/             OKRs, PRDs, retros, pre-mortems
 pmm-growth/                metrics, ideas, value props, customer stories
 pmm-toolkit/               writing, briefs, resume, privacy policy

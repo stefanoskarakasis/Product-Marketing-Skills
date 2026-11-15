@@ -34,7 +34,7 @@ Prefer the plugin marketplace? See [Installation](#installation) below.
 |---|---|---|
 | AGENTS.md map | About 230 words written into your project when the brain is built | Every session |
 | Brain | `foundation/brain.md`, 8 sections | Only the sections a task names |
-| Skills | 48 skills | When your request matches one |
+| Skills | 49 skills | When your request matches one |
 | Scripts | `lint_draft.py` and `brain_section.py` in `foundation/tools/` | When a check needs no judgment |
 
 The map is what makes your agent read the brain in chats where you call no skill. Claude Code reads it through a one-line `CLAUDE.md` import; agents that read `AGENTS.md` pick it up directly. In Claude Code, the competitive-intelligence plugin also asks before anything is sent to Slack or email. How it works, and how to turn it off: [docs/agents-map.md](docs/agents-map.md).
@@ -61,6 +61,7 @@ Ten plugins, grouped by the work you do. Install `product-marketing-context` fir
 | Catch up on a customer before a call or renewal, in Slack or anywhere | `customer-context` | `pmm-sales` |
 | Find the reason, angle and first question for a company you do not sell to yet | `prospect-research` | `pmm-sales` |
 | Review a live deal, find what could kill it and get one next step | `deal-review` | `pmm-sales` |
+| Handle a buyer objection, digest a call's objections or draft a reply | `objection-handling` | `pmm-sales` |
 | See how your sales team used the research skills this week, in plain words | `sales-research-digest` | `pmm-sales` |
 | Rank what changed around my product against my priorities | `signal-monitor` | `pmm-intelligence` |
 | Run the PMM job: OKRs, retros, pre-mortems | `pmm-okrs`, `retro`, `pre-mortem` | `pmm-execution` |
@@ -70,7 +71,7 @@ Ten plugins, grouped by the work you do. Install `product-marketing-context` fir
 
 **Building or auditing skills yourself?** `pmm-meta` (`meta-review`, `meta-learn`, `meta-synthesis`, `meta-verify`) is mostly for skill builders: `meta-review` audits skills against `SKILL-SPEC.md`. You do not need it to use the rest, except `meta-synthesis`, which runs the weekly learning sweep ([QUICK-START step 5](QUICK-START.md#5-keep-it-learning-2-minutes-a-week)).
 
-**Skills** are single guided workflows; **plugins** bundle related skills into one install. The full catalogue is under [Available Skills](#available-skills-48-total).
+**Skills** are single guided workflows; **plugins** bundle related skills into one install. The full catalogue is under [Available Skills](#available-skills-49-total).
 
 ## How it fits together
 
@@ -104,7 +105,7 @@ Ask in plain language, or call a skill directly.
 
 Direct call example: `/pmm-positioning:ideal-customer-profile`.
 
-## Available Skills (48 Total)
+## Available Skills (49 Total)
 
 | Skill | Plugin | Description |
 |-------|--------|-------------|
@@ -129,6 +130,7 @@ Direct call example: `/pmm-positioning:ideal-customer-profile`.
 | [customer-context](pmm-sales/skills/customer-context/) | pmm-sales | Dated brief on one customer from your CRM, email, calls and chat, checked against your brain; Slack first |
 | [prospect-research](pmm-sales/skills/prospect-research/) | pmm-sales | Pain hypothesis, angle and first question for one prospect from web search, CRM and enrichment, checked against your brain; EMEA-aware; Slack first |
 | [deal-review](pmm-sales/skills/deal-review/) | pmm-sales | Weekly-ready deal review: what changed, the buyer's own words, what could kill the deal and one next step, with paste-ready CRM and email blocks; a deals-only queue; private pattern mirror; Slack first |
+| [objection-handling](pmm-sales/skills/objection-handling/) | pmm-sales | The next line for a buyer objection, a call digest or a paste-ready email reply, with a library that learns from every deal; draft only, from Slack, a pasted line, a transcript or an email |
 | [sales-research-digest](pmm-sales/skills/sales-research-digest/) | pmm-sales | Weekly plain-language report for the PMM on how the sales research skills are used, whether the advice held up and what to do next; outcomes from your CRM |
 | [industry-newsletter](pmm-competitive-intelligence/skills/industry-newsletter/) | pmm-competitive-intelligence | Weekly industry newsletter for GTM leaders in one locked layout: numbered competitor tables, industry changes, pricing watch and role-owned actions; formatted for Google Doc, email or Slack |
 | [gaccs-brief](pmm-toolkit/skills/gaccs-brief/) | pmm-toolkit | Campaign briefs (Goals, Audience, Creative, Channels, Stakeholders) |

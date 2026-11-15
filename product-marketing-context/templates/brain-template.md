@@ -213,6 +213,9 @@ Use this template file in your repo. The `product-marketing-context` skill will 
 **Cadence (recurring reviews, launches, reporting):**
 {{cadence}}
 
+**Context owners (which team owns each kind of knowledge, owner role, backup role, confirmed on; ask again after 90 days):**
+{{context_owners}}
+
 ---
 
 ## Quick Reference

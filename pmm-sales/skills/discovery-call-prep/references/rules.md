@@ -14,7 +14,7 @@ Read at Step 1. Steps and the Quality Gate test these; they are stated once here
 - Quotes are exact transcript lines or buyer words from an email; interpretation sits in its own labelled line.
 - Paste-ready text never creates a deadline, scarcity or event the buyer did not give.
 - A claim about a rival or our product comes from brain Section 3 or 6, a battlecard or a cited source; otherwise it is written as a question.
-- A customer story comes from Section 6 `proof` or `quotes`, approved. No approved story is a named gap, never "customers like you".
+- A customer story comes from Section 6 approved proof (`approved_metrics`, `quotes`). No approved story is a named gap, never "customers like you".
 - A number in the framing line or a question comes from `approved_metrics` or from the buyer.
 - The skill never researches an individual's personal social accounts, family, health, politics, religion or other sensitive traits.
 - Run `scripts/lint_draft.py` on the opener and the framing line when it is present; fix a forbidden word, an unapproved number or a leftover `[NEEDS PROOF]` before output.

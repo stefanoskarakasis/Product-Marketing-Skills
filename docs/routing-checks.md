@@ -64,8 +64,14 @@ Claude chooses a skill from its name and description. This page is how you check
 | 48 | Digest the objections from the Marlow call | `objection-handling` |
 | 49 | Draft a reply to this pricing pushback email | `objection-handling`, not `writing-assistant` |
 | 50 | Is the Marlow deal real? | `deal-review`, not `objection-handling` |
+| 51 | Prep my discovery call with the VP Finance at Tidewell Foods | `discovery-call-prep` |
+| 52 | What should I ask a head of RevOps in a 30-minute intro? | `discovery-call-prep` |
+| 53 | Prep me for my call with Marlow at 3pm | `discovery-call-prep` (open-deal short form), not `deal-review` |
+| 54 | Is there a reason to contact Tidewell Foods now? | `prospect-research`, not `discovery-call-prep` |
+| 55 | Is the Marlow deal real? | `deal-review`, not `discovery-call-prep` |
+| 56 | They said it is too expensive | `objection-handling`, not `discovery-call-prep` |
 
-**Pass:** 47 of 50, and prompts 12 to 14, 23 and 26 never build a leadership brief or a newsletter without asking.
+**Pass:** 53 of 56, and prompts 12 to 14, 23 and 26 never build a leadership brief or a newsletter without asking.
 
 ## If two sets of skills are installed
 

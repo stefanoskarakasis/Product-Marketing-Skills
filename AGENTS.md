@@ -4,7 +4,7 @@ Rules for AI agents and contributors working in this repository. Short on purpos
 
 ## What this repo is
 
-Product marketing skills for B2B SaaS PMMs and GTM operators: 49 skills in 10 plugins, with 57 commands, plus one shared brain (`foundation/brain.md`) that every skill reads. Skills are plain `SKILL.md` files that follow the [Agent Skills specification](https://agentskills.io/specification.md). The repo is also a Claude Code plugin marketplace through `.claude-plugin/marketplace.json`. Creator: Stefanos Karakasis. License: MIT.
+Product marketing skills for B2B SaaS PMMs and GTM operators: 50 skills in 10 plugins, with 58 commands, plus one shared brain (`foundation/brain.md`) that every skill reads. Skills are plain `SKILL.md` files that follow the [Agent Skills specification](https://agentskills.io/specification.md). The repo is also a Claude Code plugin marketplace through `.claude-plugin/marketplace.json`. Creator: Stefanos Karakasis. License: MIT.
 
 ## Where things live
 
@@ -27,7 +27,7 @@ pmm-positioning/           ICP, alternatives, messaging, proof points
 pmm-go-to-market/          beachhead, GTM strategy, motions, orchestration
 pmm-competitive-intelligence/  profiles, battlecards, briefing, weekly update, newsletter, media monitoring, hooks/
 pmm-intelligence/          signal-monitor
-pmm-sales/                 customer-context, prospect-research, deal-review, objection-handling, sales-research-digest (Slack first)
+pmm-sales/                 customer-context, prospect-research, deal-review, discovery-call-prep, objection-handling, sales-research-digest (Slack first)
 pmm-execution/             OKRs, PRDs, retros, pre-mortems
 pmm-growth/                metrics, ideas, value props, customer stories
 pmm-toolkit/               writing, briefs, resume, privacy policy
@@ -48,7 +48,7 @@ Skills are content, so there is no build. These checks run on every push:
 ## Skill rules
 
 - `name` matches the folder exactly: lowercase letters, digits and single hyphens, 1 to 64 characters.
-- `description` keeps the trigger phrases and stays within the repo budget: 800 characters each and 20,000 in total (`tests/test_description_budget.py`).
+- `description` keeps the trigger phrases and stays within the repo budget: 800 characters each and 21,350 in total (`tests/test_description_budget.py`).
 - `SKILL.md` stays under 500 lines and 3,000 words (`tests/test_skill_size.py`). Heavy content goes to `references/`, loaded only when needed.
 - `.cursor-plugin/` manifests mirror the Claude ones and carry no version. Add a plugin to both marketplaces. Their keys must fit Cursor's plugin schema (`author` takes only `name` and `email`); a test checks it.
 - Name another skill or file only after checking that it exists in this repo.

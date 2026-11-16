@@ -9,24 +9,27 @@ Sales-facing context for sellers and CSMs, built for Slack first: tag Claude in 
 - **Try:** "@Claude catch me up on Northwind before Thursday's renewal call"
 - **Before a first touch:** `/pmm-sales:prospect-research`. Try: "@Claude is there a reason to contact Tidewell Foods now?" You get a verdict, a hypothesis, an angle and a first question. EMEA data rules switch on by themselves for European accounts.
 - **On a live deal:** `/pmm-sales:deal-review`. Try: "@Claude review the Marlow deal before Friday's call". You get what changed, the buyer's own words, the likely reason it dies and one next step, plus blocks to paste into your CRM.
+- **Before a discovery call:** `/pmm-sales:discovery-call-prep`. Try: "@Claude prep my discovery call with the VP Finance at Tidewell Foods". You get the bet, the opener, three questions and a fast no in about 150 words; the full plan in a Doc. Run `setup` first: it checks your brain, then the owner and your recorder. Seller card: [`seller-card.md`](skills/discovery-call-prep/references/seller-card.md). Setup guide: [docs/discovery-call-prep.md](../docs/discovery-call-prep.md).
 - **On a pushback:** `/pmm-sales:objection-handling`. Try: "@Claude they said it's too expensive". You get the type behind the words, the next line and a dated next step; the objection is logged for you.
 - **For the PMM, weekly:** `/pmm-sales:sales-research-digest`. Plain words, three actions, outcomes from your CRM.
 - **The brain:** both research skills use it for ICP fit, competitors, objections and approved claims. Without one it still runs and says so. Never writes to it.
 
-## Skills (5)
+## Skills (6)
 
 - **customer-context** — Build a dated brief on one existing customer from your CRM, email, calls, docs, chat, support and usage, check it against your brain and show what changed since last time. Read-only.
 - **prospect-research** — Build a pre-first-touch brief on one company you do not sell to yet: dated signals mapped to your pains, fit and timing scored separately, a hypothesis with angle, first question and fallback. Checks the CRM first, applies EMEA data defaults, proposes what other skills should learn. Never writes outreach.
 
 - **deal-review** — Review one live deal: evidence ranked by source, what the buyer decided in their own words, the most likely reason it dies, one next step. Deals-only queue, call prep, debrief and a private pattern mirror. Read-only; never writes to the CRM.
+- **discovery-call-prep** — Get a point of view and a 7-stage discovery call plan from the prospect company and the buyer's title: a lead hypothesis and fallback, ready-to-ask questions, what good looks like per stage, where you differ in their words and a fast no. Also preps follow-up and open-deal calls, and learns from call outcomes. Draft only; read-only for the brain.
 - **objection-handling** — Take control of a buyer objection: the type behind the words, the next line, a call digest or a paste-ready email reply, and a library that learns from every deal. Asks who owns objection knowledge. Draft only; read-only for the brain.
 - **sales-research-digest** — Turn the logs of the sales research skills into one plain-language weekly report for the PMM: use, advice quality, common threads, up to three actions. Reads outcomes from your CRM. Proposes only.
 
-## Commands (5)
+## Commands (6)
 
 - `/pmm-sales:customer-context` — Get the current state of one customer.
 - `/pmm-sales:prospect-research` — Get the reason, angle and first question for one prospect.
 - `/pmm-sales:deal-review` — Review one live deal and get the next step.
+- `/pmm-sales:discovery-call-prep` — Get the plan for a discovery call.
 - `/pmm-sales:objection-handling` — Get the next line for a buyer objection.
 - `/pmm-sales:sales-research-digest` — Get the weekly report on how the sales research skills are used.
 

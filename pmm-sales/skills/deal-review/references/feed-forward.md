@@ -4,7 +4,7 @@ Read at Step 11. Propose-only: log, count, propose. Nothing writes the brain or 
 
 ## Mechanism
 
-1. Each review, since and prep run appends `_patterns.md` (queue and ask never do): date, deal slug, segment, stage, gap types, play, buyer roles. No names, amounts or quotes except buyer phrases below.
+1. Each review and since run appends `_patterns.md` (queue and ask never do): date, deal slug, segment, stage, gap types, play, buyer roles. No names, amounts or quotes except buyer phrases below.
 2. A pattern is proposed only at the n below, counted as distinct deals inside 180 days. Below n it stays a note.
 3. A proposal is exact text plus the receiving skill. The approver says yes, then runs the receiving skill. Unattended runs log and propose nothing. Never in a seller's thread.
 4. `_mine.md` is never read here.

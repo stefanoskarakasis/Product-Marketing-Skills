@@ -35,7 +35,7 @@ FAMILY = {
 FAMILY_WIDE = FAMILY | {"alternatives-map", "workflow-orchestrator"}
 
 # the pmm-sales pair: one routes customers, the other routes prospects
-SALES = {"customer-context", "prospect-research", "sales-research-digest", "deal-review", "objection-handling"}
+SALES = {"customer-context", "prospect-research", "sales-research-digest", "deal-review", "objection-handling", "discovery-call-prep"}
 
 # phrases no skill may claim as a trigger: they fit several skills equally
 GENERIC = {

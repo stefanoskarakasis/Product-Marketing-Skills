@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+### Sales: discovery-call-prep
+
+- New skill `discovery-call-prep` in `pmm-sales`, with the `/pmm-sales:discovery-call-prep` command: give it the prospect company and the title of who you are meeting; it researches the account and returns a point of view (one lead hypothesis, one fallback) plus a 7-stage plan sized to the call, with the opener, ready-to-ask questions, what good looks like, where you differ in the buyer's words and a fast no. In Slack a 150-word call card; the full plan in a Doc or chat. Modes: `prep`, `next` (from a transcript), `setup`, `library`, `sweep`, `log:`.
+- `setup` is brain first: it checks the brain fields the skill reads, names the thinnest one and the skill that fills it, then the discovery-knowledge owner, the owner's data-access decision and the recorder path.
+- It learns without sellers typing: a `sweep` grades plans from call transcripts (any recorder: a connector, a Meet, Zoom or Teams transcript in a folder, a drop folder, or a paste), CRM outcomes and a weak calendar signal. Reading calls and CRM outcomes is the owner's decision, per source, recorded with role and date and asked again after 90 days. No per-seller statistics.
+- `deal-review` no longer has the `prep` mode; the open-deal short form moved here. Its description, modes, command and evals are updated.
+- Brain: reads existing fields only (Sections 1 to 4, 6 and 8). No schema change.
+- `tests/test_description_budget.py` ceiling is now 21,350 (was 20,550). `docs/routing-checks.md` grows to 56 prompts. Counts: 50 skills, 58 commands.
+
 ### Sales: objection-handling
 
 - New skill `objection-handling` in `pmm-sales`, with the `/pmm-sales:objection-handling` command: tells a seller, CSM or PMM what a buyer objection really is, gives the next line, a call digest of every objection or a paste-ready email reply, and logs each objection for the seller so the library gets sharper. Works from a Slack call for help, a pasted line, a transcript or an email. Draft only; reads the brain and never writes it.

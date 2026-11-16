@@ -4,8 +4,8 @@ version: 1.0.1
 description: >
   Reviews one open sales opportunity from calls, CRM, email and calendar, checks it against your
   brain, and returns a verdict, the gaps that matter and three dated next steps; also a weekly
-  deal queue, call prep and debriefs. Trigger on: "review this deal", "deal review for [deal]",
-  "is [deal] real", "prep me for my call with [deal]", "which deals need me this week", "log: won
+  deal queue and debriefs. Trigger on: "review this deal", "deal review for [deal]",
+  "is [deal] real", "which deals need me this week", "log: won
   [deal]". Not for a company with no opportunity (prospect-research), a customer with none open
   (customer-context), a competitor in the deal (competitive-battlecard), the committee
   (buyer-personas, stakeholder-maps) or writing the follow-up (writing-assistant).
@@ -22,13 +22,13 @@ A review answers three things: is this deal real, what is missing, what changes 
 
 ## Trigger
 
-- **When:** Someone asks about one named open opportunity, a weekly queue, a call to prep, or a new transcript to debrief.
-- **Not for:** No opportunity → `prospect-research`. A customer with none open → `customer-context`. A competitor in the deal → `competitive-battlecard`. The committee → `buyer-personas` or `stakeholder-maps`. Writing the follow-up → `writing-assistant`. A raw call summary → `interview-summary`.
-- **Examples:** "@Claude review the Marlow deal" · "what changed on Marlow since Monday?" (`since`) · "prep me for Marlow at 3pm" (`prep`) · "which deals need me this week?" (`queue`)
+- **When:** Someone asks about one named open opportunity, a weekly queue, or a new transcript to debrief.
+- **Not for:** No opportunity → `prospect-research`. A customer with none open → `customer-context`. A competitor in the deal → `competitive-battlecard`. The committee → `buyer-personas` or `stakeholder-maps`. Writing the follow-up → `writing-assistant`. Call prep, first or open-deal → `discovery-call-prep`. A raw call summary → `interview-summary`.
+- **Examples:** "@Claude review the Marlow deal" · "what changed on Marlow since Monday?" (`since`) · "which deals need me this week?" (`queue`)
 
 ## Inputs
 
-- **Args:** deal or account; mode `review` (default), `since` (a pasted transcript makes it a debrief), `ask` (one question, thread-sized), `prep`, `queue`, `mine`. A line starting `log:` records an outcome.
+- **Args:** deal or account; mode `review` (default), `since` (a pasted transcript makes it a debrief), `ask` (one question, thread-sized), `queue`, `mine`. A line starting `log:` records an outcome.
 - **Ask, never assume:** deal size, stage, buyer role and typical sales cycle only when missing (read brain Section 2 `sales_cycle` first) and they change the review. One combined question. If unanswered, items that need them read "not assessed".
 - **Context keys:** the brain; `/context/deals/`; sibling ledgers read-only (`references/feed-forward.md`); `~~` connectors (`references/connectors.md`).
 - **Brain contract:** Reads Section 1, Section 2 (`pains`, `triggers`, `committee_roles`, `anti_persona`, `sales_cycle`), Section 3, Section 5, Section 6 (proof, `forbidden_claims`), Section 8 (`prohibited`, `approvals`). Never writes the brain.
@@ -47,7 +47,7 @@ Categories: `references/connectors.md`. Rules: `references/rules.md`. No connect
 
 ## Steps
 
-Read `references/method.md` before a `review`, `since` or `prep`. `queue`, `mine` and `log:` read `references/modes.md`.
+Read `references/method.md` before a `review` or `since`. `queue`, `mine` and `log:` read `references/modes.md`.
 
 1. **Ground.** Check tools, match the deal (several open: ask which, listing stage and owner role), load `_config.md` and the last record, find the brain, ask for missing context.
 2. **Gather.** Free first: pasted transcripts, CRM, earlier records; then email and calendar. Newest three calls in full; older ones through the last record. Never fill a gap from memory.

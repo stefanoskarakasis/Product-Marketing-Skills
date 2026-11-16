@@ -67,6 +67,11 @@ that account can see. No keys, tokens or passwords live in this repo.
 | Zoom | video meetings | Zoom login (OAuth 2.1) | Meeting content and recordings (Zoom Meetings server) | Zoom documents this Meetings address as an example endpoint. Your Zoom admin may need to approve the app |
 <!-- generated:tools-table end -->
 
+
+### Call recorders: any of them works
+
+Skills that read calls (`discovery-call-prep`, `objection-handling`, `deal-review`) need a transcript or AI notes, not a particular vendor. Order: a recorder connector from the table above; the recorder's own transcript saved where Claude can read it (Google Meet transcripts and Gemini notes land in the organiser's Drive, Zoom cloud transcripts and Teams transcripts export as files); a drop folder your owner names; or a paste. Which transcripts exist depends on your plan and on whether people turn recording on. Reading calls is the owner's decision, per source, and only for calls your company already records.
+
 ## Connect your own (not wired here)
 
 These tools are in the category list, but this repo does not wire them. Either the vendor gives each customer their own endpoint, the server needs a vendor app or plan first, or no official server exists. If your vendor offers an MCP server, add it as a custom connector in Claude settings (see [make-it-yours.md](make-it-yours.md)) and the skills use it through the category. Otherwise paste an export. The table says what each vendor's own pages said in October 2026. Check yours before relying on it.

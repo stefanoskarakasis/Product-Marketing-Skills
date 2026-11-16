@@ -10,7 +10,7 @@ One question about one deal, thread-sized: the answer, its source and date, one 
 
 ## prep
 
-Before a call: one objective; the evidence gap the call should close; three questions in the order to ask them; the likeliest objection (Section 3 `objections` if present); what a good call changes. Under 150 words in Slack.
+Moved to `discovery-call-prep`, which reads this skill's last record for the open-deal short form.
 
 ## queue
 
@@ -31,6 +31,6 @@ A private mirror of the seller's own habits. Off until the seller says yes once.
 | `<slug>-YYYY-MM-DD-HHMM.md` | A review, dated, append-only, with `retain_until` |
 | `_config.md` | `emea_mode`, `home_region`, `sales_cycle` (days per segment, asked), `stale_days` and `quiet_days` (from the cycle; 30 and 14 if unknown), `approver`, `brain_source`, `usage_identity`, `retain_days` (180). Defaults are labelled and editable |
 | `_gaps.md` | Gap types, the play each triggers, hits and total |
-| `_patterns.md` | Appended only by review, since and prep (never queue or ask). Logged runs: date, deal slug, segment, stage, gap types, play, buyer roles |
+| `_patterns.md` | Appended only by review and since (never queue or ask). Logged runs: date, deal slug, segment, stage, gap types, play, buyer roles |
 | `_outcomes.md` | `log:` outcomes |
 | `_mine.md` | The seller's own, private |

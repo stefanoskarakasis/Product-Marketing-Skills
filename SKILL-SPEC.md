@@ -76,7 +76,7 @@ last_updated: YYYY-MM-DD
 |---|---|---|
 | `name` | Yes | Lowercase, hyphens only. Matches directory name exactly. No `--`. |
 | `version` | Yes | Semantic versioning. See Section 10. |
-| `description` | Yes | 2–3 sentences: what it does, then trigger phrases verbatim. **Budget:** at most 800 characters each and 20,000 across the repo (`tests/test_description_budget.py`), because the skill listing Claude Code sends is capped and shared; when you must cut, keep the trigger phrases and the "Not for" clause. Mention related skills for scope boundaries. When a sibling skill shares vocabulary, add a "Not for X (skill-name)" clause here: routing reads only the name and description, never the body. Never claim a generic phrase such as "competitive update"; `tests/test_triggers.py` enforces this for the competitive skills. |
+| `description` | Yes | 2–3 sentences: what it does, then trigger phrases verbatim. **Budget:** at most 800 characters each and 21,350 across the repo (`tests/test_description_budget.py`), because the skill listing Claude Code sends is capped and shared; when you must cut, keep the trigger phrases and the "Not for" clause. Mention related skills for scope boundaries. When a sibling skill shares vocabulary, add a "Not for X (skill-name)" clause here: routing reads only the name and description, never the body. Never claim a generic phrase such as "competitive update"; `tests/test_triggers.py` enforces this for the competitive skills. |
 | `metadata.author` | Yes | Author name. |
 | `metadata.context` | Yes | `brain-dependent` or `context-agnostic`. See Section 8. |
 | `metadata.quality_gate` | Yes | `true` for any skill producing strategic output. `false` for simple utilities only. |
@@ -411,7 +411,7 @@ Load instruction for brain-dependent skills:
 - If a loaded section is marked 🔴 Placeholder: flag before proceeding.
 ````
 
-**Brain-dependent skills:** `alternatives-map`, `beachhead-segment`, `brand-voice`, `buyer-personas`, `competitive-battlecard`, `competitive-briefing`, `competitive-profile`, `comparison-page-brief`, `weekly-competitive-updates`, `customer-context`, `competitor-deep-dive`, `deal-review`, `objection-handling`, `prospect-research`, `sales-research-digest`, `customer-stories`, `experiment-doc`, `experiment-ideas`, `gaccs-brief`, `go-to-market-strategy`, `gtm-motions`, `ideal-customer-profile`, `industry-newsletter`, `interview-summary`, `market-context`, `media-monitoring`, `message-house`, `meta-synthesis`, `pmm-metrics`, `pmm-okrs`, `positioning-ideas`, `positioning-messaging`, `prd`, `pre-mortem`, `prioritization-frameworks`, `product-marketing-context`, `product-messaging-playbook`, `proof-points`, `retro`, `signal-monitor`, `stakeholder-maps`, `value-prop-statements`, `workflow-orchestrator`, `writing-assistant`
+**Brain-dependent skills:** `alternatives-map`, `beachhead-segment`, `brand-voice`, `buyer-personas`, `competitive-battlecard`, `competitive-briefing`, `competitive-profile`, `comparison-page-brief`, `weekly-competitive-updates`, `customer-context`, `competitor-deep-dive`, `deal-review`, `discovery-call-prep`, `objection-handling`, `prospect-research`, `sales-research-digest`, `customer-stories`, `experiment-doc`, `experiment-ideas`, `gaccs-brief`, `go-to-market-strategy`, `gtm-motions`, `ideal-customer-profile`, `industry-newsletter`, `interview-summary`, `market-context`, `media-monitoring`, `message-house`, `meta-synthesis`, `pmm-metrics`, `pmm-okrs`, `positioning-ideas`, `positioning-messaging`, `prd`, `pre-mortem`, `prioritization-frameworks`, `product-marketing-context`, `product-messaging-playbook`, `proof-points`, `retro`, `signal-monitor`, `stakeholder-maps`, `value-prop-statements`, `workflow-orchestrator`, `writing-assistant`
 
 ### Context-Agnostic (`context-agnostic`)
 
@@ -513,7 +513,7 @@ instead of a fabricated one. **Found and fixed across 6 eval files on
 | Tier | Description | Examples | Requirements |
 |---|---|---|---|
 | **T1 — Strategic** | High-stakes, executive or customer-facing output | pre-mortem, positioning-messaging, go-to-market-strategy | Core sections + quality gate + Learning Close |
-| **T2 — Execution** | Day-to-day PMM work, high frequency, medium stakes | experiment-doc, prd, retro, stakeholder-maps, gaccs-brief, competitive-battlecard, competitive-briefing, competitive-profile, competitor-deep-dive, industry-newsletter, media-monitoring, comparison-page-brief, weekly-competitive-updates, customer-context, prospect-research, deal-review, objection-handling, sales-research-digest, pmm-okrs, beachhead-segment, buyer-personas | Core sections + quality gate + Learning Close |
+| **T2 — Execution** | Day-to-day PMM work, high frequency, medium stakes | experiment-doc, prd, retro, stakeholder-maps, gaccs-brief, discovery-call-prep, competitive-battlecard, competitive-briefing, competitive-profile, competitor-deep-dive, industry-newsletter, media-monitoring, comparison-page-brief, weekly-competitive-updates, customer-context, prospect-research, deal-review, objection-handling, sales-research-digest, pmm-okrs, beachhead-segment, buyer-personas | Core sections + quality gate + Learning Close |
 | **T3 — Utility** | Tactical outputs, lower stakes | writing-assistant, pmm-resume, privacy-policy, interview-summary, prioritization-frameworks | Core sections. Quality gate optional. Learning Close optional. |
 | **T4 — Meta** | Skills that operate on other skills | meta-review, meta-learn, meta-verify, meta-synthesis, workflow-orchestrator, product-marketing-context | Custom per meta skill. Core sections still required. |
 
@@ -543,6 +543,8 @@ and Quality Gate sections) and is added to the T2 row above as of this update.
 `prospect-research` was built on 2026-11-05 as the second skill of the `pmm-sales` plugin (`quality_gate: true`, read-only on the brain, with its own append-only store in `/context/prospects/`) and is added to the brain-dependent list and the T2 row the same way.
 `deal-review` was built on 2026-11-07 as the fourth skill of the `pmm-sales` plugin (`quality_gate: true`, read-only on the brain, with its own append-only store in `/context/deals/`) and is added to the brain-dependent list and the T2 row the same way.
 `objection-handling` was built on 2026-11-10 as the fifth skill of the `pmm-sales` plugin (`quality_gate: true`, read-only on the brain, with its own append-only store in `/context/objections/`) and is added to the brain-dependent list and the T2 row the same way.
+
+`discovery-call-prep` was built on 2026-11-16 as the sixth skill of the `pmm-sales` plugin (`quality_gate: true`, read-only on the brain, with its own append-only store in `/context/discovery/`) and is added to the brain-dependent list and the T2 row the same way.
 
 **Note on enforcement (2026-08-24):** This table's "All 7 sections still
 required" language for every tier, including T3 and T4, was accurate but

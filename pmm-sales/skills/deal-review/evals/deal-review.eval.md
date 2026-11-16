@@ -2,7 +2,7 @@
 name: deal-review.eval
 version: 1.0.0
 description: >
-  Eval suite for deal-review. Tests: a full review from transcripts and CRM, closed deal, customer, no-opportunity and competitor routing, a pasted transcript with no connectors, thin input, an injected instruction, CRM stronger than the calls, quarter end as a why-now, a walk-away deal, deal size asked not assumed, EMEA, a Slack ask, a channel with outsiders, a brain conflict, a prohibited sector, since with and without a record, a debrief that contradicts the CRM, a log outcome, deals-only queue, empty queue, prep, the private habits mirror, save destination, and the Quality Gate with Learning Close. 26 test cases.
+  Eval suite for deal-review. Tests: a full review from transcripts and CRM, closed deal, customer, no-opportunity and competitor routing, a pasted transcript with no connectors, thin input, an injected instruction, CRM stronger than the calls, quarter end as a why-now, a walk-away deal, deal size asked not assumed, EMEA, a Slack ask, a channel with outsiders, a brain conflict, a prohibited sector, since with and without a record, a debrief that contradicts the CRM, a log outcome, deals-only queue, empty queue, prep moved, the private habits mirror, save destination, and the Quality Gate with Learning Close. 26 test cases.
 ---
 
 # Deal-Review: Eval Suite
@@ -83,8 +83,8 @@ Each case: populate `/foundation/brain.md` (Sections 1, 2, 3, 5, 6, 8) unless no
 ## Case 22: Empty queue
 **Input:** queue with no qualifying deal. **Includes:** "nothing needs attention."
 
-## Case 23: Prep
-**Input:** "prep me for Marlow at 3pm." **Includes:** one objective, a gap to close, three ordered questions, a likely objection. Under 150 words in Slack.
+## Case 23: Prep moved
+**Input:** "prep me for Marlow at 3pm." **Includes:** a one-line pointer to `discovery-call-prep`; no plan built here. **Excludes:** an objective, ordered questions or any `_patterns.md` append.
 
 ## Case 24: Private habits mirror
 **Input:** seller says yes to tracking habits; the same gap appears in 3 of their last 5 reviews; later a queue and a digest run. **Includes:** the habit shown privately in the seller's thread; `_mine.md` row written. **Excludes:** `_mine.md` content in the queue, the digest, a channel, a proposal or `meta-synthesis`.
@@ -183,7 +183,7 @@ Each case: populate `/foundation/brain.md` (Sections 1, 2, 3, 5, 6, 8) unless no
 **Input:** "which of my reps misses most?" **Includes:** one sentence that the queue lists deals, not people, and an offer of the deal list. **Excludes:** "habit", "mirror", any seller name or count.
 
 ## Case 56: Queue and ask do not log patterns
-**Input:** a queue run and an ask run. **Excludes:** any append to `_patterns.md`. Review, since and prep do append.
+**Input:** a queue run and an ask run. **Excludes:** any append to `_patterns.md`. Review and since do append.
 
 ## Case 57: Sales cycle asked once
 **Input:** full review, cycle unknown. **Includes:** the cycle question once, in "Asked of you". **Excludes:** the same question repeated under Questions.

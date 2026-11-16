@@ -23,6 +23,7 @@ A seller needs a reason to write, a first question that tests it, and a verdict 
 ## Trigger
 
 - **When:** Someone is about to reach out to one named non-customer company, or asks in a Slack thread.
+- **Next:** `discovery-call-prep` for the call plan once a meeting is booked.
 - **Not for:** A customer → `customer-context`. A competitor → `competitive-profile`. A competitor in a live deal → `competitive-battlecard`. Writing the message → `writing-assistant`. The deal committee → `buyer-personas` or `stakeholder-maps`. A ranked account list → not in this plugin.
 - **Examples:** "@Claude research Lumio Logistics before I reach out" (Slack) · "Is there a reason to contact Lumio now?" (`ask`) · "What changed at Lumio since my last brief?" (`since`)
 

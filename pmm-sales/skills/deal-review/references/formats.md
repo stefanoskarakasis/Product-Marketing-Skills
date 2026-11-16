@@ -79,16 +79,3 @@ They are also the fallback when a write is refused or no connector exists.
 - ⚡ **Do:** [one action] · by [date]
 ```
 Close with a count and the line "Deals only; no sellers listed." In Slack: bold deal name, then one line each.
-
-## Prep
-
-```
-## Prep: [Deal], [call]
-- **Objective:** …
-- **Gap to close:** …
-### Ask in this order
-1. …
-2. …
-3. …
-- **Likely objection:** … · **Say:** "…"
-```

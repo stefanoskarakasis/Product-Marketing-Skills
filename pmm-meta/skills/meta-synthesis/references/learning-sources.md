@@ -23,6 +23,8 @@ Read at Step 0 and Step 1. Skills already write their own ledgers. This file map
 | `/context/deals/_patterns.md` | `deal-review` | `date` | `type` | `observation` and `count` |
 | `/context/deals/_gaps.md` | `deal-review` | `date` | gap `type` | gap and `count` |
 | `/context/objections/_ledger.md` | `objection-handling` | `date` | `card ID` and `segment` | `outcome` (from the CRM, read-only) |
+| `/context/discovery/_outcomes.md` | `discovery-call-prep` | `date` | `slug` and `segment` | `outcome` (graded from calls, CRM and calendar, read-only) |
+| `/context/discovery/_questions.md` | `discovery-call-prep` | `date` | `question id` | `asked` and `unlocked` |
 | `/context/prospects/_usage.md` | `prospect-research` | `date` | `surface` | `verdict` |
 | `/context/customers/_patterns.md` | `customer-context` | `date` | `type` | `observation` and `count` |
 | `/context/digests/*-sales.md` | `sales-research-digest` | report date | the week | actions proposed and answered |

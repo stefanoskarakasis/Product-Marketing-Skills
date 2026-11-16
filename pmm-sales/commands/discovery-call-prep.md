@@ -15,6 +15,7 @@ Researches the account, builds a ranked point of view with one lead hypothesis a
 /pmm-sales:discovery-call-prep Next call with Tidewell
 /pmm-sales:discovery-call-prep Prep my call with Marlow at 3pm
 /pmm-sales:discovery-call-prep log: confirmed
+/pmm-sales:discovery-call-prep setup
 ```
 
 In Slack, tag Claude in a thread: "@Claude prep my discovery call with the VP Finance at Tidewell Foods".

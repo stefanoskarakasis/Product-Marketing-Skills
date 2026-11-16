@@ -1,6 +1,6 @@
 # Method
 
-Read before a `review`, `since` or `prep`. Output never names a framework or a gate; say the decision in plain words.
+Read before a `review` or `since`. Output never names a framework or a gate; say the decision in plain words.
 
 ## Evidence
 

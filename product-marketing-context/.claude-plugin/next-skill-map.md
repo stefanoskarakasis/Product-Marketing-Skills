@@ -218,6 +218,7 @@ named competitor (competitive-battlecard)?"
 
 ## After prospect-research (prospect brief delivered or answered in Slack)
 **Next options (not a single path — ask which applies):**
+- discovery-call-prep — if a meeting is booked and the seller needs the point of view and the questions for the call
 - competitive-battlecard — if an incumbent or rival tool was found and the seller needs the card for the first conversation
 - writing-assistant — if the seller wants the hypothesis and first question turned into a message in their own voice
 - buyer-personas — if a deep brief showed a committee worth mapping before outreach
@@ -228,8 +229,9 @@ named competitor (competitive-battlecard)?"
 - sales-research-digest — for the PMM, weekly, to see how sellers use these briefs and what to change
 **Prompt to surface:** "Next, pick one: build the rival card (competitive-battlecard), turn this into a message (writing-assistant), map the committee (buyer-personas), plan the stakeholders (stakeholder-maps), test the hypothesis on ten accounts (experiment-doc), log the rival (competitive-profile), confirm a trigger for the brain (product-marketing-context), or see how the team uses these briefs (sales-research-digest)?"
 
-## After deal-review (review, since, prep or queue delivered)
+## After deal-review (review, since or queue delivered)
 **Next options (not a single path — ask which applies):**
+- discovery-call-prep — if the next call needs a plan: the gap to close and three questions
 - competitive-battlecard — if a named rival is in the deal and the seller needs the card for the next call
 - buyer-personas or stakeholder-maps — if the review shows a missing buyer role or a single thread
 - writing-assistant — if the seller wants the next step or the questions turned into a message in their own voice

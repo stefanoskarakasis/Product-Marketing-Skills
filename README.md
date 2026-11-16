@@ -1,4 +1,4 @@
-# PMM OS: Product Marketing Skills for AI Agents
+# Product Marketing Skills for AI Agents
 
 **Positioning, competitive intelligence, GTM strategy and launch planning for B2B SaaS product marketers.** A collection of AI agent skills focused on product marketing tasks. Build your company brain once; every skill reads it, so you stop re-explaining your product in every chat. 
 

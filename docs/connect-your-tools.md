@@ -30,6 +30,31 @@ that account can see. No keys, tokens or passwords live in this repo.
 
 **For your IT or security reviewer:** no credentials live in this repo, every person signs in with their own account, the servers are listed in `connectors.json`, and each plugin wires only what its skills read. See [SECURITY.md](../SECURITY.md).
 
+## What each plugin wires
+
+Skills work without connectors. Connectors load per plugin: install `product-marketing-context` and you get the whole catalog; each other plugin wires only what its skills read.
+
+<!-- generated:plugin-table begin -->
+| Plugin | Connectors wired |
+|---|---|
+| product-marketing-context | Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Linear, Figma, Canva, Gmail, Google Calendar, Klaviyo, Supermetrics, Amplitude (US and EU), Mixpanel (US and EU), Asana, Wispr Flow, Semrush, Crunchbase, Exa, Ahrefs, monday.com, Productboard, Granola, Dovetail, Zoom |
+| pmm-positioning | Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Google Slides, Gmail, Google Calendar, Mixpanel (US and EU), Wispr Flow, Semrush, Ahrefs, Granola, Dovetail, Zoom |
+| pmm-execution | Notion, Atlassian, Gong, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Linear, Figma, Canva, Gmail, Google Calendar, Asana, Wispr Flow, monday.com, Productboard, Granola |
+| pmm-go-to-market | HubSpot, Gong, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Canva, Gmail, Google Calendar, Klaviyo, Supermetrics, Wispr Flow, Semrush, Ahrefs, Granola, Dovetail, Zoom |
+| pmm-growth | HubSpot, Gong, Slack, Google Drive, Google Sheets, Gmail, Google Calendar, Klaviyo, Supermetrics, Amplitude (US and EU), Mixpanel (US and EU), Wispr Flow, Semrush, Ahrefs, Granola |
+| pmm-intelligence | Slack, Gmail, Google Calendar, Semrush, Crunchbase, Exa, Ahrefs |
+| pmm-competitive-intelligence | Notion, Atlassian, HubSpot, Gong, Slack, Google Drive, Google Docs, Gmail, Google Calendar, Wispr Flow, Semrush, Crunchbase, Exa, Ahrefs, Granola, Dovetail, Zoom |
+| pmm-toolkit | Notion, Atlassian, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Canva, Gmail, Google Calendar |
+| pmm-sales | Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Gmail, Google Calendar, Amplitude (US and EU), Mixpanel (US and EU), Wispr Flow, Crunchbase, Exa, Granola |
+| pmm-meta | None |
+<!-- generated:plugin-table end -->
+
+Some connectors need extra access: Semrush needs an API plan,
+Gong usually needs an admin to enable it, Crunchbase needs a workspace seat, and Wispr Flow needs
+Notetaker and MCP access on your account. Salesforce, GitHub, Zendesk,
+Snowflake, Zoom, Salesloft, Clay and other tools with no public endpoint are
+connect-your-own or paste-only. The brain plugin (`product-marketing-context`) wires the nine connectors it reads from. Every other plugin wires only the tools its skills read. Install each plugin on its own to load its connectors (see Installation). To add or change a connector, edit `connectors.json` ([how](add-a-connector.md)). Sign-in steps: [docs/connect-your-tools.md](connect-your-tools.md). Competitor answers in a Slack thread: [docs/slack-setup.md](slack-setup.md). Category registry: [CONNECTORS.md](../CONNECTORS.md).
+
 ## Tools
 
 <!-- generated:tools-table begin -->

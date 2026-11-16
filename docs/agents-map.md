@@ -28,3 +28,14 @@ Skills say "show the draft and wait for your yes". An instruction can be skipped
 - Allow one service, for example for a scheduled run you have already approved: set `PMM_GUARD_ALLOW=slack` (a comma list works).
 - It needs `python3` on your path. If Python is missing the guard does nothing and your run is not interrupted.
 - It works in Claude Code. Other apps do not run Claude Code hooks, so rely on the skills' own approval steps there.
+
+## What your agent loads, and when
+
+| Layer | In this repo | When it loads |
+|---|---|---|
+| AGENTS.md map | About 230 words written into your project when the brain is built | Every session |
+| Brain | `foundation/brain.md`, 8 sections | Only the sections a task names |
+| Skills | 50 skills | When your request matches one |
+| Scripts | `lint_draft.py` and `brain_section.py` in `foundation/tools/` | When a check needs no judgment |
+
+The map is what makes your agent read the brain in chats where you call no skill. Claude Code reads it through a one-line `CLAUDE.md` import; agents that read `AGENTS.md` pick it up directly. In Claude Code, the competitive-intelligence plugin also asks before anything is sent to Slack or email. How it works, and how to turn it off: [docs/agents-map.md](agents-map.md).

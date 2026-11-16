@@ -24,55 +24,24 @@ Prefer the plugin marketplace? See [Installation](#installation) below.
 
 ## Why a brain?
 
-**The problem:** every time you ask an AI agent for positioning, battlecards or a brief, you re-explain your company. By the fifth conversation you're copy-pasting from old chats.
-
-**The fix:** `product-marketing-context` builds one document, `/foundation/brain.md`: product, ICP, alternatives, positioning, voice, market context and proof points. Every other skill reads it before producing anything. One brain covers one product; for several product lines, keep one folder and one brain per product.
-
-### What your agent loads, and when
-
-| Layer | In this repo | When it loads |
-|---|---|---|
-| AGENTS.md map | About 230 words written into your project when the brain is built | Every session |
-| Brain | `foundation/brain.md`, 8 sections | Only the sections a task names |
-| Skills | 50 skills | When your request matches one |
-| Scripts | `lint_draft.py` and `brain_section.py` in `foundation/tools/` | When a check needs no judgment |
-
-The map is what makes your agent read the brain in chats where you call no skill. Claude Code reads it through a one-line `CLAUDE.md` import; agents that read `AGENTS.md` pick it up directly. In Claude Code, the competitive-intelligence plugin also asks before anything is sent to Slack or email. How it works, and how to turn it off: [docs/agents-map.md](docs/agents-map.md).
+Every time you ask an agent for positioning, battlecards or a brief, you re-explain your company. `product-marketing-context` builds one document, `/foundation/brain.md` (product, ICP, alternatives, positioning, voice, market context, proof points), and every other skill reads it before producing anything. One brain covers one product; for several product lines, keep one folder and one brain per product. What loads and when, and how to turn the Slack and email prompts off: [docs/agents-map.md](docs/agents-map.md).
 
 ## Start here: pick by job
 
-Ten plugins, grouped by the work you do. Install `product-marketing-context` first; add the rest as you need them.
+Install `product-marketing-context` first, then add plugins as you need them. The full job-to-skill table is in [docs/pick-by-job.md](docs/pick-by-job.md).
 
-| I need to… | Start with | Plugin |
-|---|---|---|
-| Build my brain | `product-marketing-context` | `product-marketing-context` |
-| Define who we sell to and why we win | `ideal-customer-profile`, `alternatives-map` | `pmm-positioning` |
-| Write positioning and messaging | `positioning-messaging`, `message-house` | `pmm-positioning` |
-| Hand Sales a messaging playbook | `product-messaging-playbook` | `pmm-positioning` |
-| Pick a first segment and plan a launch | `beachhead-segment`, `go-to-market-strategy` | `pmm-go-to-market` |
-| Beat a competitor in a live deal | `competitive-battlecard` | `pmm-competitive-intelligence` |
-| Profile a competitor | `competitive-profile`, `competitor-deep-dive` | `pmm-competitive-intelligence` |
-| Answer competitor questions in Slack | `competitive-profile` | `pmm-competitive-intelligence` |
-| Brief the CEO, CRO or board on competitors every week | `competitive-briefing` | `pmm-competitive-intelligence` |
-| Send GTM leaders one weekly industry newsletter | `industry-newsletter` | `pmm-competitive-intelligence` |
-| Give the C-suite one weekly competitor update from public sources, with the threat board compared to last week | `weekly-competitive-updates` | `pmm-competitive-intelligence` |
-| Sweep my competitors' public pages every week and get the fixes drafted | `media-monitoring` | `pmm-competitive-intelligence` |
-| Publish a "us vs a rival" or "alternatives to a rival" page where every row is sourced | `comparison-page-brief` | `pmm-competitive-intelligence` |
-| Catch up on a customer before a call or renewal, in Slack or anywhere | `customer-context` | `pmm-sales` |
-| Find the reason, angle and first question for a company you do not sell to yet | `prospect-research` | `pmm-sales` |
-| Review a live deal, find what could kill it and get one next step | `deal-review` | `pmm-sales` |
-| Get a point of view and a 7-stage plan for a discovery call, from the company and the buyer's title | `discovery-call-prep` | `pmm-sales` |
-| Handle a buyer objection, digest a call's objections or draft a reply | `objection-handling` | `pmm-sales` |
-| See how your sales team used the research skills this week, in plain words | `sales-research-digest` | `pmm-sales` |
-| Rank what changed around my product against my priorities | `signal-monitor` | `pmm-intelligence` |
-| Run the PMM job: OKRs, retros, pre-mortems | `pmm-okrs`, `retro`, `pre-mortem` | `pmm-execution` |
-| Generate and measure growth ideas | `experiment-ideas`, `pmm-metrics` | `pmm-growth` |
-| Write customer stories | `customer-stories` | `pmm-growth` |
-| Draft content, briefs, resumes | `writing-assistant`, `gaccs-brief` | `pmm-toolkit` |
-
-**Building or auditing skills yourself?** `pmm-meta` (`meta-review`, `meta-learn`, `meta-synthesis`, `meta-verify`) is mostly for skill builders: `meta-review` audits skills against `SKILL-SPEC.md`. You do not need it to use the rest, except `meta-synthesis`, which runs the weekly learning sweep ([QUICK-START step 5](QUICK-START.md#5-keep-it-learning-2-minutes-a-week)).
-
-**Skills** are single guided workflows; **plugins** bundle related skills into one install. The full catalogue is under [Available Skills](#available-skills-50-total).
+| I need to… | Plugin |
+|---|---|
+| Build my brain | `product-marketing-context` |
+| Define who we sell to, write positioning and messaging | `pmm-positioning` |
+| Pick a first segment and plan a launch | `pmm-go-to-market` |
+| Profile competitors, build battlecards, brief the C-suite weekly | `pmm-competitive-intelligence` |
+| Prep a discovery call, review a deal, handle an objection, catch up on a customer | `pmm-sales` |
+| Rank what changed around my product against my priorities | `pmm-intelligence` |
+| Run OKRs, retros and pre-mortems | `pmm-execution` |
+| Generate and measure growth ideas, write customer stories | `pmm-growth` |
+| Draft content, briefs and resumes | `pmm-toolkit` |
+| Build or audit skills yourself | `pmm-meta` |
 
 ## How it fits together
 
@@ -92,19 +61,14 @@ Ten plugins, grouped by the work you do. Install `product-marketing-context` fir
 
 ## Usage
 
-Ask in plain language, or call a skill directly.
+Ask in plain language, or call a skill directly, for example `/pmm-positioning:ideal-customer-profile`.
 
 | Say this | Skill that runs |
 |---|---|
 | "Build my ICP from these customer interviews" | `ideal-customer-profile` |
-| "Map the alternatives my buyers consider" | `alternatives-map` |
 | "Write positioning for our new product" | `positioning-messaging` |
-| "Plan the launch for this feature as a Tier 2" | `go-to-market-strategy` |
 | "Build me a battlecard against Acme" | `competitive-battlecard` |
-| "What do we say against Acme on pricing?" | `competitive-profile` |
-| "Run a retro on last quarter's launch" | `retro` |
-
-Direct call example: `/pmm-positioning:ideal-customer-profile`.
+| "Prep my discovery call with the VP Finance at Tidewell Foods" | `discovery-call-prep` |
 
 ## Available Skills (50 Total)
 
@@ -213,50 +177,17 @@ Repeat the last line for each plugin you want (`pmm-execution`, `pmm-competitive
 2. Customize skills for your specific PMM needs
 3. Clone your fork into your projects
 
-## Connectors (Optional)
+## Connectors (optional)
 
-Skills work without connectors. Connect tools and they pull candidate facts for you to confirm instead of asking you to type them.
+Skills work without connectors. Connect tools and they pull candidate facts for you to confirm instead of asking you to type them. Which plugin wires which tool, sign-in steps and the connect-your-own list: [docs/connect-your-tools.md](docs/connect-your-tools.md). To add or change one: [docs/add-a-connector.md](docs/add-a-connector.md). Competitor answers in a Slack thread: [docs/slack-setup.md](docs/slack-setup.md).
 
-<!-- generated:plugin-table begin -->
-| Plugin | Connectors wired |
-|---|---|
-| product-marketing-context | Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Linear, Figma, Canva, Gmail, Google Calendar, Klaviyo, Supermetrics, Amplitude (US and EU), Mixpanel (US and EU), Asana, Wispr Flow, Semrush, Crunchbase, Exa, Ahrefs, monday.com, Productboard, Granola, Dovetail, Zoom |
-| pmm-positioning | Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Google Slides, Gmail, Google Calendar, Mixpanel (US and EU), Wispr Flow, Semrush, Ahrefs, Granola, Dovetail, Zoom |
-| pmm-execution | Notion, Atlassian, Gong, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Linear, Figma, Canva, Gmail, Google Calendar, Asana, Wispr Flow, monday.com, Productboard, Granola |
-| pmm-go-to-market | HubSpot, Gong, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Canva, Gmail, Google Calendar, Klaviyo, Supermetrics, Wispr Flow, Semrush, Ahrefs, Granola, Dovetail, Zoom |
-| pmm-growth | HubSpot, Gong, Slack, Google Drive, Google Sheets, Gmail, Google Calendar, Klaviyo, Supermetrics, Amplitude (US and EU), Mixpanel (US and EU), Wispr Flow, Semrush, Ahrefs, Granola |
-| pmm-intelligence | Slack, Gmail, Google Calendar, Semrush, Crunchbase, Exa, Ahrefs |
-| pmm-competitive-intelligence | Notion, Atlassian, HubSpot, Gong, Slack, Google Drive, Google Docs, Gmail, Google Calendar, Wispr Flow, Semrush, Crunchbase, Exa, Ahrefs, Granola, Dovetail, Zoom |
-| pmm-toolkit | Notion, Atlassian, Slack, Google Drive, Google Docs, Google Sheets, Google Slides, Canva, Gmail, Google Calendar |
-| pmm-sales | Notion, Atlassian, HubSpot, Gong, Intercom, Slack, Google Drive, Google Docs, Gmail, Google Calendar, Amplitude (US and EU), Mixpanel (US and EU), Wispr Flow, Crunchbase, Exa, Granola |
-| pmm-meta | None |
-<!-- generated:plugin-table end -->
+## Make them yours
 
-Some connectors need extra access: Semrush needs an API plan,
-Gong usually needs an admin to enable it, Crunchbase needs a workspace seat, and Wispr Flow needs
-Notetaker and MCP access on your account. Salesforce, GitHub, Zendesk,
-Snowflake, Zoom, Salesloft, Clay and other tools with no public endpoint are
-connect-your-own or paste-only. The brain plugin (`product-marketing-context`) wires the nine connectors it reads from. Every other plugin wires only the tools its skills read. Install each plugin on its own to load its connectors (see Installation). To add or change a connector, edit `connectors.json` ([how](docs/add-a-connector.md)). Sign-in steps: [docs/connect-your-tools.md](docs/connect-your-tools.md). Competitor answers in a Slack thread: [docs/slack-setup.md](docs/slack-setup.md). Category registry: [CONNECTORS.md](CONNECTORS.md).
-
-## Workflow Intelligence
-
-`workflow-orchestrator` (in `pmm-go-to-market`) chains multiple skills
-into one coherent, end-to-end program — a Program Charter, sequenced
-skill runs, coherence checks between their outputs, and one master
-document at the end.
-
-## Making Them Yours
-
-The skills use `~~category` placeholders (like `~~CRM`) instead of vendor names, so you can swap in your own stack. Use the defaults, add a different tool in the same category, or fork the repo and edit the skills to fit your company. Full guide: [docs/make-it-yours.md](docs/make-it-yours.md).
+The skills use `~~category` placeholders (like `~~CRM`) instead of vendor names, so you can swap in your own stack. Guide: [docs/make-it-yours.md](docs/make-it-yours.md). To chain several skills into one program, use `workflow-orchestrator` in `pmm-go-to-market`.
 
 ## Contributing
 
-Contributions are welcome: new skills, better frameworks, fixes, and connector ideas.
-
-- Read [CONTRIBUTING.md](CONTRIBUTING.md) and [SKILL-SPEC.md](SKILL-SPEC.md) first.
-- Connector rules (placeholders only, never commit credentials) are in [AGENTS.md](AGENTS.md).
-- A structure check runs on every change. Locally: `python3 .github/scripts/check_structure.py`.
-- Found a bug or have an idea? [Open an issue](https://github.com/stefanoskarakasis/Product-Marketing-Skills/issues).
+Contributions are welcome: new skills, better frameworks, fixes and connector ideas. Read [CONTRIBUTING.md](CONTRIBUTING.md) and [SKILL-SPEC.md](SKILL-SPEC.md) first; connector rules are in [AGENTS.md](AGENTS.md). A structure check runs on every change (locally: `python3 .github/scripts/check_structure.py`). Found a bug or have an idea? [Open an issue](https://github.com/stefanoskarakasis/Product-Marketing-Skills/issues).
 
 ## About
 
@@ -269,6 +200,10 @@ Selected skills based on the work of:
 - Anthony W. Ulwick — [*Jobs to Be Done*](https://jobs-to-be-done-book.com/)
 - Alistair Croll & Benjamin Yoskovitz — [*Lean Analytics*](https://www.amazon.com/Lean-Analytics-Better-Startup-Faster/dp/1449335675/)
 - April Dunford — [*Obviously Awesome*](https://www.aprildunford.com/)
+- Rick Mans — [Already Ready](https://alreadyready.me/)
+- Kyle Asad — [Sales Introverts](https://salesintroverts.com/)
+- Pawel Huryn — [Product Compass](https://www.productcompass.pm/)
+- Shane Parrish — [Farnam Street](https://fs.blog/)
 
 Curated by [Stefanos Karakasis](https://stefanoskarakasis.substack.com/). Follow along at [Stefanos's Stack](https://stefanoskarakasis.substack.com/).
 

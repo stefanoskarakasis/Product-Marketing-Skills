@@ -202,10 +202,9 @@ def desired(cat):
     rel = "CONNECTORS.md"
     txt = replace_region((ROOT / rel).read_text(encoding="utf-8"), "google-table", google_table(cat), rel)
     out[rel] = fix_wired_column(txt, cat["servers"], 4, True)
-    rel = "README.md"
-    out[rel] = replace_region((ROOT / rel).read_text(encoding="utf-8"), "plugin-table", readme_table(cat), rel)
     rel = "docs/connect-your-tools.md"
     t = (ROOT / rel).read_text(encoding="utf-8")
+    t = replace_region(t, "plugin-table", readme_table(cat), rel)
     t = replace_region(t, "tools-table", tools_table(cat), rel)
     t = replace_region(t, "own-table", own_table(cat), rel)
     out[rel] = t

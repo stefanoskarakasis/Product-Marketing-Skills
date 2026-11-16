@@ -1,10 +1,10 @@
 # PMM OS: Product Marketing Skills for AI Agents
 
-**Positioning, competitive intelligence, GTM strategy and launch planning for B2B SaaS product marketers.** Build your company brain once; every skill reads it, so you stop re-explaining your product in every chat. 
+**Positioning, competitive intelligence, GTM strategy and launch planning for B2B SaaS product marketers.** A collection of AI agent skills focused on product marketing tasks. Build your company brain once; every skill reads it, so you stop re-explaining your product in every chat. 
 
-Built for PMMs, product marketing leaders and GTM operators. Runs in Claude Code and Claude; the skills are plain `SKILL.md` files, so the same install works in other agents that support them. Built by [Stefanos Karakasis](https://stefanoskarakasis.substack.com/).
+Built by [Stefanos Karakasis](https://stefanoskarakasis.substack.com/). Built for PMMs, product marketing leaders and GTM operators. Runs in Claude Code and Claude; the skills are plain `SKILL.md` files, so the same install works in other agents that support them. 
 
-Contributions welcome! Found a way to improve a skill or have a new one to add? [open a PR](https://github.com/stefanoskarakasis/Product-Marketing-Skills#contributing). 
+**Contributions welcome!** Found a way to improve a skill or have a new one to add? [open a PR](https://github.com/stefanoskarakasis/Product-Marketing-Skills#contributing). 
 
 Run into a problem or have a question? [open an issue](https://github.com/stefanoskarakasis/Product-Marketing-Skills/issues).
 

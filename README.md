@@ -242,11 +242,11 @@ Selected skills based on the work of:
 - Alistair Croll & Benjamin Yoskovitz — [*Lean Analytics*](https://www.amazon.com/Lean-Analytics-Better-Startup-Faster/dp/1449335675/)
 - April Dunford — [*Obviously Awesome*](https://www.aprildunford.com/)
 - Rick Mans — [*Already Ready*](https://alreadyready.me/)
-- Kyle Asad — [*Sales Introverts*](https://salesintroverts.com/)
+- Kyle Asay — [*Sales Introverts*](https://salesintroverts.com/)
 - Pawel Huryn — [*Product Compass*](https://www.productcompass.pm/)
 - Shane Parrish — [*Farnam Street*](https://fs.blog/)
 
-Curated by [*Stefanos Karakasis*](https://stefanoskarakasis.substack.com/) from [*Stefanos's Stack*](https://stefanoskarakasis.substack.com/).
+Curated by Stefanos Karakasis from [Stefanos's Stack](https://stefanoskarakasis.substack.com/).
 
 ## License
 

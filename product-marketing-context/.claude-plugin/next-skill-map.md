@@ -280,3 +280,12 @@ named competitor (competitive-battlecard)?"
 - industry-newsletter — if the same week belongs in the newsletter for GTM leaders
 - meta-synthesis — after several editions, to find patterns across the sessions
 **Prompt to surface:** "Next, pick one: add the euro at risk (competitive-briefing), build the evidence for a decision (competitor-deep-dive), patch a seller card (competitive-battlecard), refresh a stale profile (competitive-profile), sweep the pages on a schedule (media-monitoring), rank what moved (signal-monitor), feed the newsletter (industry-newsletter), or look for patterns across sessions (meta-synthesis)?"
+
+## After discovery-call-scoring (review delivered)
+**Next options (not a single path — ask which applies):**
+- discovery-call-prep — if the next call needs a plan that starts from the habit to fix
+- objection-handling — if the review found an objection that was not handled well
+- deal-review — if the deal, not the skill, now needs a verdict and a next step
+- writing-assistant — if the seller wants the follow-up email in their own voice
+- product-marketing-context — to confirm a proposed customer phrase into the brain
+**Prompt to surface:** "Next, pick one: plan the next call (discovery-call-prep), handle the objection (objection-handling), review the deal (deal-review), or write the follow-up (writing-assistant)."

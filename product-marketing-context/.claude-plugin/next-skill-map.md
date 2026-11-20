@@ -289,3 +289,12 @@ named competitor (competitive-battlecard)?"
 - writing-assistant — if the seller wants the follow-up email in their own voice
 - product-marketing-context — to confirm a proposed customer phrase into the brain
 **Prompt to surface:** "Next, pick one: plan the next call (discovery-call-prep), handle the objection (objection-handling), review the deal (deal-review), or write the follow-up (writing-assistant)."
+
+## After sales-collateral (asset or win-loss read delivered)
+**Next options (not a single path — ask which applies):**
+- objection-handling — if the asset needs an approved answer to an objection that has none yet
+- competitive-battlecard — if a rival claim in the asset needs a sourced, dated edge
+- writing-assistant — if the seller wants the email that carries the asset, in their own voice
+- proof-points — if a claim in the asset is a named gap that needs approved proof
+- product-marketing-context — to confirm a gap the win-loss read found into the brain
+**Prompt to surface:** "Next, pick one: get the objection answer (objection-handling), source the rival claim (competitive-battlecard), write the email (writing-assistant), or approve the missing proof (proof-points)."

@@ -60,10 +60,6 @@ Strategic positioning and messaging using April Dunford's framework — with fiv
 
 Stefanos Karakasis — [Stefanos's Stack on Substack](https://stefanoskarakasis.substack.com/)
 
-## Privacy
-
-This plugin collects no data. See the [privacy policy](PRIVACY.md).
-
 ## License
 
 MIT

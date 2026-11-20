@@ -2,8 +2,7 @@
 
 Claude Code sends the model a skill listing capped at roughly 30,000 characters, shared with every
 other skill the user has installed. A skill past the cap shows as a bare name with no description,
-so it stops triggering. coreyhaines31/marketingskills measured this on Claude Code 2.1.319
-(evals/triggers/README.md in that repo) and cut its descriptions from 42,105 to 18,662 characters.
+so it stops triggering.
 
 This file locks the repo under a ceiling. To add a skill, shorten another description first.
 Routing reads only the name and description, so a cut must keep the "Not for" clause.
@@ -13,7 +12,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-TOTAL_CEILING = 21_750   # all descriptions together (raised 550 for objection-handling, 800 for discovery-call-prep, 400 for discovery-call-scoring)
+TOTAL_CEILING = 22_500   # all descriptions together (raised 550 for objection-handling, 800 for discovery-call-prep, 400 for discovery-call-scoring, 760 for sales-collateral)
 ONE_CEILING = 800        # one description
 
 

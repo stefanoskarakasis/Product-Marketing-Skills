@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### Sales: sales-collateral
+
+- New skill `sales-collateral` in `pmm-sales`, with the `/pmm-sales:sales-collateral` command: builds the sales assets a rep sends or uses in a deal from your brain and only claims you can defend: a one-pager or leave-behind, a demo script, a proposal, an ROI calculator, a deck outline, and win-loss analysis of why you win and lose. Every other sales-asset ask (an objection, a battlecard, persona cards, a playbook, a case study, a call plan, a message) is routed to the skill that owns it, with what you already told it.
+- Honest by design: every claim carries a brain source or becomes a named gap, no invented numbers, no named rival without a dated source, and anything a buyer will read is marked "needs approval before sending". Win-loss shows n on every figure, includes wins and never ranks sellers.
+- It learns without typing: each asset is logged with the claims it relies on in `/context/enablement/_assets.md`; a sweep flags assets whose source changed. Proposals to other skills start at counted thresholds and are never written silently. `meta-synthesis` registers both files.
+- A design brief ends every one-pager, leave-behind, deck outline or ROI layout, so it can be pasted into any design tool. No design skill or connector is named.
+- `tests/test_description_budget.py` ceiling is now 22,500 (was 21,750). `docs/routing-checks.md` grows to 68 prompts. Counts: 52 skills, 60 commands.
+
 ### Repo: Cursor manifest parity
 
 - `tests/test_cursor_manifests.py` now fails when a plugin's Cursor manifest differs from its Claude twin in name, description, license, homepage, repository, skills or author name, or when a plugin has no Cursor manifest. Cursor still carries no version, `displayName` or keywords on purpose.
@@ -59,7 +67,7 @@
 
 ### Discoverability: a budget for skill descriptions
 
-- **Skill descriptions cut from 23,966 to 19,918 characters across 48 skills.** Claude Code sends the model a skill listing capped near 30,000 characters, shared with every other skill the user has installed; a skill past the cap shows as a bare name and stops triggering. coreyhaines31/marketingskills measured this on Claude Code 2.1.319 and cut its own descriptions from 42,105 to 18,662 characters; this repo was at about 80% of the cap with nothing else installed. 27 descriptions were shortened; the longest is now 637 characters (it was 983). Trigger phrases stay (a few of the rarest were dropped) and every `Not for` clause still names its neighbours; in the competitive family the clause now lists skill names only, without the hint words.
+- **Skill descriptions cut from 23,966 to 19,918 characters across 48 skills.** Claude Code sends the model a skill listing capped near 30,000 characters, shared with every other skill the user has installed; a skill past the cap shows as a bare name and stops triggering. This repo was at about 80% of the cap with nothing else installed. 27 descriptions were shortened; the longest is now 637 characters (it was 983). Trigger phrases stay (a few of the rarest were dropped) and every `Not for` clause still names its neighbours; in the competitive family the clause now lists skill names only, without the hint words.
 - New `tests/test_description_budget.py` (3 tests) fails above 20,000 characters in total or 800 for one description. To add a skill, shorten another description first. `SKILL-SPEC.md` section 3 states the budget.
 - Patch versions for the 17 skills whose wording changed; minor versions where a rule was also added (below).
 
@@ -79,10 +87,6 @@
 - New `SECURITY.md` (private reporting, what counts, no credentials ever), `CODE_OF_CONDUCT.md`, a pull request template and two issue forms (bug, skill request). New `tests/test_trust_files.py`. Turn on private vulnerability reporting in the repository settings so the Security link works.
 - `docs/connect-your-tools.md` gains "Start read-only" (first call is a read, least access, what to hand an IT reviewer); `docs/add-a-connector.md` requires a read-only first check for every new server.
 - `CONTRIBUTING.md` and `AGENTS.md` ("After any change") now name the budget, the trigger prompts, the evidence rules and the run contract.
-
-### Credits
-
-The description budget, the trigger-prompt shape, the nine-part run contract and the dated, layered evidence rules follow ideas in coreyhaines31/marketingskills (MIT). Text is original.
 
 ### Competitive intelligence: weekly-competitive-updates
 

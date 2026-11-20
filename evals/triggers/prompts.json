@@ -1225,6 +1225,30 @@
       "expect": [
         "deal-review"
       ]
+    },
+    {
+      "skill": "sales-collateral",
+      "kind": "direct",
+      "prompt": "Build a one-pager for the CFO champion at Tidewell Foods. We sell invoice automation, the meeting went well and she needs something to take to her boss.",
+      "expect": [
+        "sales-collateral"
+      ]
+    },
+    {
+      "skill": "sales-collateral",
+      "kind": "indirect",
+      "prompt": "We keep losing mid-market deals and nobody agrees why. I have the CRM export with loss reasons for the last 40 deals and eight call transcripts. What is actually going on?",
+      "expect": [
+        "sales-collateral"
+      ]
+    },
+    {
+      "skill": "sales-collateral",
+      "kind": "near-miss",
+      "prompt": "The CFO at Tidewell just told me we are too expensive and I have a call in an hour. What do I say?",
+      "expect": [
+        "objection-handling"
+      ]
     }
   ],
   "non_pmm": [

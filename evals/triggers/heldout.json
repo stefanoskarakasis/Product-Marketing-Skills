@@ -817,6 +817,22 @@
       "expect": [
         "discovery-call-scoring"
       ]
+    },
+    {
+      "skill": "sales-collateral",
+      "kind": "situation",
+      "prompt": "Our AE meets the CFO of a 400-person distributor on Friday and wants a short page to leave behind afterwards. The finance team there keys every invoice by hand today, and the demo of invoice matching went well.",
+      "expect": [
+        "sales-collateral"
+      ]
+    },
+    {
+      "skill": "sales-collateral",
+      "kind": "judgement",
+      "prompt": "Half our lost deals this quarter are logged as price. Before I rewrite the pricing slide, how would I find out whether that is really why we lose?",
+      "expect": [
+        "sales-collateral"
+      ]
     }
   ],
   "non_pmm": [

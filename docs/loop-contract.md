@@ -1,6 +1,6 @@
 # The run contract for scheduled skills
 
-A skill that runs on a schedule, or when something triggers it, is a loop. Nobody is watching a loop, so it must be written to do nothing most weeks and to stop safely. This page is the shape every scheduled skill follows. The idea of nine parts comes from the `marketing-loops` skill in coreyhaines31/marketingskills (MIT).
+A skill that runs on a schedule, or when something triggers it, is a loop. Nobody is watching a loop, so it must be written to do nothing most weeks and to stop safely. This page is the shape every scheduled skill follows.
 
 ## The nine parts
 

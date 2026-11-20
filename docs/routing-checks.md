@@ -76,6 +76,12 @@ Claude chooses a skill from its name and description. This page is how you check
 | 60 | Plan my next discovery call with Tidewell Foods | `discovery-call-prep`, not `discovery-call-scoring` |
 | 61 | Is the Marlow deal real after that third call? | `deal-review`, not `discovery-call-scoring` |
 | 62 | Summarise this customer call into themes | `interview-summary`, not `discovery-call-scoring` |
+| 63 | Build a one-pager for the CFO champion at Tidewell Foods | `sales-collateral` |
+| 64 | Write a demo script for a 30-minute first demo to a VP Finance | `sales-collateral` |
+| 65 | Why do we lose mid-market deals? Here is the CRM export | `sales-collateral` |
+| 66 | The CFO says we are too expensive and I have a call in an hour | `objection-handling`, not `sales-collateral` |
+| 67 | Build me a battlecard for Acme | `competitive-battlecard`, not `sales-collateral` |
+| 68 | Sales enablement kit for our launch | `product-messaging-playbook`, with an offer to build the one-pager here |
 
 **Pass:** 53 of 56, and prompts 12 to 14, 23 and 26 never build a leadership brief or a newsletter without asking.
 

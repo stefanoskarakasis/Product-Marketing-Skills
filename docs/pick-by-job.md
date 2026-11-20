@@ -23,6 +23,7 @@ Ten plugins, grouped by the work you do. Install `product-marketing-context` fir
 | Get a point of view and a 7-stage plan for a discovery call, from the company and the buyer's title | `discovery-call-prep` | `pmm-sales` |
 | Score a discovery call you already ran and get the moves for the next one | `discovery-call-scoring` | `pmm-sales` |
 | Handle a buyer objection, digest a call's objections or draft a reply | `objection-handling` | `pmm-sales` |
+| Build a one-pager, demo script, proposal or ROI calculator, or find out why you win and lose | `sales-collateral` | `pmm-sales` |
 | See how your sales team used the research skills this week, in plain words | `sales-research-digest` | `pmm-sales` |
 | Rank what changed around my product against my priorities | `signal-monitor` | `pmm-intelligence` |
 | Run the PMM job: OKRs, retros, pre-mortems | `pmm-okrs`, `retro`, `pre-mortem` | `pmm-execution` |

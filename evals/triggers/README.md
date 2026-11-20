@@ -23,7 +23,7 @@ The competitive family also has a by-hand battery in `docs/routing-checks.md`. R
 - `tests/test_description_budget.py` keeps all descriptions under a shared ceiling (see `SKILL-SPEC.md` section 3).
 - `tests/test_triggers.py` catches duplicate trigger phrases and missing "Not for" clauses.
 
-None of these tests runs a model. A model-run scorer (headless `claude -p` over this file) is the next step; coreyhaines31/marketingskills publishes one under the MIT license, and it reports that identical runs of one set vary by several points, so repeat any run before you trust a small change.
+None of these tests runs a model. A model-run scorer (headless `claude -p` over this file) is the next step. Identical runs of one set can vary by several points, so repeat any run before you trust a small change.
 
 ## Adding a skill
 

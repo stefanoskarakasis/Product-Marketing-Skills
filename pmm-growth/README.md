@@ -4,18 +4,24 @@ Growth skills for PMMs: North Star Metric and scorecard, positioning angles, cam
 
 ## Start here
 
-- **You get:** campaign ideas, value-prop variants, a metrics scorecard and customer stories that stay tied to your real positioning.
-- **First command:** `/pmm-growth:customer-stories` (needs no brain)
-- **Try:** "I have a call with [customer] on Thursday. What do I ask?"
-- **The brain:** the idea skills are sharper with a brain; `positioning-ideas` and `value-prop-statements` ask for what they need if you have none. The brain-building skill is a separate plugin, `product-marketing-context`.
+- Telling a customer story? → `/pmm-growth:customer-stories`
+- Need campaign ideas? → `/pmm-growth:experiment-ideas`
+- Building a metrics scorecard? → `/pmm-growth:pmm-metrics`
+- Choosing a positioning angle? → `/pmm-growth:positioning-ideas`
+- Writing copy for a segment or channel? → `/pmm-growth:value-prop-statements`
+
+> [!NOTE]
+> 💬 **Try it:** "I have a call with [customer] on Thursday. What do I ask?"
+>
+> 🧠 **Brain:** all 5 skills read your brain (`product-marketing-context`); without one they still run.
 
 ## Skills (5)
 
-- **positioning-ideas** — Generate 3-5 divergent positioning angles anchored to your named alternatives, before you commit to one.
-- **experiment-ideas** — Generate ranked, brain-grounded growth ideas with channel, message and cost-efficiency, ready to hand to experiment-doc.
-- **value-prop-statements** — Fan an existing positioning statement out into segment- and channel-specific copy, trace-checked against drift.
-- **pmm-metrics** — Define a North Star Metric and a capped 8-16 metric scorecard, or audit a metrics list for vanity metrics.
-- **customer-stories** — Run a B2B customer story from kickoff to customer approval, with every stat and quote checked.
+- **customer-stories** — Run a customer story from kickoff to approval: questions, brief, draft, review pack and audit, with every stat and quote checked.
+- **experiment-ideas** — Generate several cost-efficient growth ideas, each with a channel, a message and a rationale, grounded in your brain.
+- **pmm-metrics** — Define a North Star Metric and input metrics, then build a capped scorecard that flags vanity and unowned metrics, or audit an existing list.
+- **positioning-ideas** — Generate three to five positioning angles anchored to your named alternatives, before you commit to one.
+- **value-prop-statements** — Fan out an existing positioning statement into segment- and channel-specific value-prop copy without re-running positioning.
 
 ## Commands (5)
 
@@ -27,23 +33,16 @@ Growth skills for PMMs: North Star Metric and scorecard, positioning angles, cam
 
 ## Connectors (Optional)
 
-Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`.
-
-Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
-
-| Category | What it adds | Tools |
-|---|---|---|
-| `~~product analytics` | activation, adoption and retention metrics | Amplitude (US and EU), Mixpanel (US and EU) |
-| `~~market data` | traffic and market benchmarks | Semrush, Ahrefs |
-| `~~SEO` | keyword and content demand signals | Semrush, Ahrefs |
-| `~~CRM` | funnel and conversion data | HubSpot |
-| `~~call recordings` | customer calls and quotes to build stories from | Gong, Wispr Flow, Granola |
-| `~~email marketing` | lifecycle email performance | Klaviyo |
-| `~~marketing analytics` | cross-channel campaign and spend performance | Supermetrics |
-| `~~cloud storage` | metric sheets, past reports and experiment logs | Google Drive, Google Sheets |
-| `~~team chat` | team threads, launch coordination, field feedback | Slack |
-| `~~email` | customer and stakeholder email context | Gmail |
-| `~~calendar` | meeting cadence, launch dates and attendees | Google Calendar |
+> [!TIP]
+> 🔌 **Every skill works without connectors.**
+>
+> 📋 **Paste what you have and the output keeps its shape.**
+>
+> ⚙️ Install this plugin on its own to load its `.mcp.json`.
+>
+> 🔑 Sign-in steps are in [`docs/connect-your-tools.md`](../docs/connect-your-tools.md).
+>
+> 📖 Every category, its tools and which skill reads it: [`CONNECTORS.md`](CONNECTORS.md).
 
 ## Author
 

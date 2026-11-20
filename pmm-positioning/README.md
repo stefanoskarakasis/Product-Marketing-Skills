@@ -4,22 +4,32 @@ Strategic positioning and messaging using April Dunford's framework — with fiv
 
 ## Start here
 
-- **You get:** positioning and messaging built against the alternatives your buyers actually compare you to.
-- **First command:** `/pmm-positioning:alternatives-map`
-- **Try:** "Map our alternatives from these win/loss notes: [paste]"
-- **The brain:** `alternatives-map`, `ideal-customer-profile` and `proof-points` work from your notes and start your brain with their section. `product-messaging-playbook` asks five questions if there is no brain. The brain-building skill is a separate plugin, `product-marketing-context`.
+- Mapping who you really compete with? → `/pmm-positioning:alternatives-map`
+- Defining your ideal customer? → `/pmm-positioning:ideal-customer-profile`
+- Mapping the buying committee? → `/pmm-positioning:buyer-personas`
+- Building the why-now story? → `/pmm-positioning:market-context`
+- Defining how you sound? → `/pmm-positioning:brand-voice`
+- Writing or auditing positioning? → `/pmm-positioning:positioning-messaging`
+- Putting positioning on one page? → `/pmm-positioning:message-house`
+- Handing sales a playbook for a feature? → `/pmm-positioning:product-messaging-playbook`
+- Checking a claim is safe to use? → `/pmm-positioning:proof-points`
+
+> [!NOTE]
+> 💬 **Try it:** "Map our alternatives from these win/loss notes: [paste]"
+>
+> 🧠 **Brain:** all 9 skills read your brain (`product-marketing-context`); without one they still run.
 
 ## Skills (9)
 
-- **ideal-customer-profile** — Turn scattered signals (surveys, interviews, usage data, win/loss notes) into a clear picture of who you should be selling to — demographics, behaviors, jobs to be done, and needs. Use when your ICP is fuzzy, your pipeline quality is off, or you need to pressure-test who you're actually targeting.
-- **alternatives-map** — Turn research (win/loss notes, sales call transcripts, reviews, analyst reports) into a map of everything buyers actually compare you to — direct competitors, adjacent tools, DIY, and doing nothing. Use before you write a word of positioning, so your story is built against real alternatives instead of guesses.
-- **buyer-personas** — Map everyone involved in the buying decision — the budget holder, the champion, the technical evaluator, the end user, procurement — before you write a single message. Use when you need persona cards that reflect how your buying committee actually behaves, not a generic template.
-- **market-context** — Build the "why now" story — what's changed in the market, what's forcing buyers to act, why this is the moment. Use when your pitch feels timeless instead of urgent, or leadership keeps asking "why now."
-- **brand-voice** — Build a voice guide that shifts appropriately by buyer and channel — brand attributes, tone rules, language to avoid. Use when your copy sounds inconsistent across channels, or new writers keep guessing at tone.
-- **positioning-messaging** — Build or audit your positioning statement, messaging hierarchy, homepage copy, sales persona cards, and competitive decks — all from one consistent story. Use when your messaging feels scattered, sales can't explain what you do in one sentence, or you're refreshing positioning from scratch.
-- **proof-points** — Register, verify, or audit the claims, metrics, quotes, and case studies your messaging relies on.
-- **message-house** — Turn your existing positioning into one clean, one-page table: your core story at the top, your 3 supporting reasons to believe it below. Use when you need a single scannable reference for sales, leadership, or a new hire — not to create positioning, only to format what already exists.
-- **product-messaging-playbook** — Assemble a Sales/CS-ready messaging playbook for a new product or feature — problem framing, story, one named competitive comparison, discovery questions, and objection handling. Use when Sales or CS needs a handoff document they can use cold, not just brain output or a formatted Roof and Pillars table.
+- **alternatives-map** — Turn win/loss notes, calls and reviews into a named map of competitors, adjacent tools, DIY and the status quo.
+- **brand-voice** — Build a voice and tone guide that shifts by buyer and channel, with forbidden language.
+- **buyer-personas** — Map the buying committee, then build alternatives-anchored personas ready for positioning.
+- **ideal-customer-profile** — Build, enrich or audit an ICP from research across demographics, behaviors, jobs to be done and needs.
+- **market-context** — Build the why-now layer: market maturity, macro forces, buying triggers and the narrative arc.
+- **message-house** — Lay out your positioning as one table: the core story on top and three reasons to believe below.
+- **positioning-messaging** — Build or audit positioning, messaging hierarchies, homepage copy and persona cards with Dunford's framework, in five modes.
+- **product-messaging-playbook** — Assemble one Sales and CS playbook for a feature: problem, story, one named comparison, discovery questions and objection handling.
+- **proof-points** — Build and audit a sourced registry of the metrics, quotes and case results your messaging relies on, and check if a stat is safe to use.
 
 ## Commands (9)
 
@@ -35,24 +45,16 @@ Strategic positioning and messaging using April Dunford's framework — with fiv
 
 ## Connectors (Optional)
 
-Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`.
-
-Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
-
-| Category | What it adds | Tools |
-|---|---|---|
-| `~~call recordings` | buyer language, objections, alternatives named on calls | Gong, Wispr Flow, Granola, Dovetail |
-| `~~CRM` | win/loss reasons and segment data | HubSpot |
-| `~~market data` | competitor and market signals | Semrush, Ahrefs |
-| `~~support` | pain points and churn language | Intercom |
-| `~~knowledge base` | internal positioning and market notes | Notion, Atlassian |
-| `~~SEO` | keyword demand and competitor organic positioning | Semrush, Ahrefs |
-| `~~team chat` | win threads and field feedback | Slack |
-| `~~cloud storage` | existing decks, case studies and docs | Google Drive, Google Docs, Google Slides |
-| `~~reviews` | public review themes (paste only today) | none wired: paste, or connect your own server |
-| `~~product analytics` | usage evidence for proof points | Mixpanel (US and EU) |
-| `~~email` | customer and stakeholder email context | Gmail |
-| `~~calendar` | meeting cadence, launch dates and attendees | Google Calendar |
+> [!TIP]
+> 🔌 **Every skill works without connectors.**
+>
+> 📋 **Paste what you have and the output keeps its shape.**
+>
+> ⚙️ Install this plugin on its own to load its `.mcp.json`.
+>
+> 🔑 Sign-in steps are in [`docs/connect-your-tools.md`](../docs/connect-your-tools.md).
+>
+> 📖 Every category, its tools and which skill reads it: [`CONNECTORS.md`](CONNECTORS.md).
 
 ## Author
 

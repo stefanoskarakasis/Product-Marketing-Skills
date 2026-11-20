@@ -4,17 +4,22 @@ Go-to-market skills for PMMs: beachhead segments, launch tiering and GTM strateg
 
 ## Start here
 
-- **You get:** a launch tier, a GTM brief and a motion stack, scored against your own ICP.
-- **First command:** `/pmm-go-to-market:beachhead-segment` (builds a three-question brain if you have none)
-- **Try:** "Which segment should we win first? Candidates: [list]"
-- **The brain:** `go-to-market-strategy` sends you to `beachhead-segment` if you have none; `gtm-motions` asks two quick questions instead. The full brain is built by a separate plugin, `product-marketing-context`.
+- Choosing your first segment? → `/pmm-go-to-market:beachhead-segment`
+- Planning a launch? → `/pmm-go-to-market:go-to-market-strategy`
+- Picking acquisition channels? → `/pmm-go-to-market:gtm-motions`
+- Running a multi-skill PMM program? → `/pmm-go-to-market:workflow-orchestrator`
+
+> [!NOTE]
+> 💬 **Try it:** "Which segment should we win first? Candidates: [list]"
+>
+> 🧠 **Brain:** all 4 skills read your brain (`product-marketing-context`); without one they still run.
 
 ## Skills (4)
 
-- **beachhead-segment** — Score candidate segments on four dimensions and pick the first wedge of customers to win before scaling.
-- **go-to-market-strategy** — Assign a launch tier (T1–T4) and generate a GTM brief with positioning angles, channels, metrics and competitive context.
-- **workflow-orchestrator** — Chain several PMM skills into one program with a charter, checkpoints and a master document.
-- **gtm-motions** — Score GTM motions against ICP deal economics and pick one primary and at most one secondary.
+- **beachhead-segment** — Score candidate segments on four dimensions with blocking gates and pick the first wedge to win, written to your brain only on your say-so.
+- **go-to-market-strategy** — Assign a launch tier (T1 to T4) and get a full GTM brief with positioning angles, channels, success metrics and competitive context.
+- **gtm-motions** — Score your motion stack (inbound, outbound, paid, community, partner, ABM, PLG) against deal economics and pick one primary and at most one secondary.
+- **workflow-orchestrator** — Chain positioning, competitive, GTM, brief, stakeholder and retro skills into one PMM program with a master document and brain updates.
 
 ## Commands (4)
 
@@ -25,23 +30,16 @@ Go-to-market skills for PMMs: beachhead segments, launch tiering and GTM strateg
 
 ## Connectors (Optional)
 
-Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`.
-
-Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
-
-| Category | What it adds | Tools |
-|---|---|---|
-| `~~CRM` | segment performance and pipeline context | HubSpot |
-| `~~market data` | segment sizing and competitor signals | Semrush, Ahrefs |
-| `~~call recordings` | buyer language for beachhead and motion choices | Gong, Wispr Flow, Granola, Dovetail |
-| `~~team chat` | launch coordination context | Slack |
-| `~~email marketing` | lifecycle and campaign performance | Klaviyo |
-| `~~marketing analytics` | cross-channel performance | Supermetrics |
-| `~~design` | launch assets | Canva |
-| `~~email` | stakeholder and customer email threads | Gmail |
-| `~~calendar` | launch dates and milestones | Google Calendar |
-| `~~cloud storage` | launch docs, sheets and decks | Google Drive, Google Docs, Google Sheets, Google Slides |
-| `~~SEO` | keyword demand, competitor organic positioning | Semrush, Ahrefs |
+> [!TIP]
+> 🔌 **Every skill works without connectors.**
+>
+> 📋 **Paste what you have and the output keeps its shape.**
+>
+> ⚙️ Install this plugin on its own to load its `.mcp.json`.
+>
+> 🔑 Sign-in steps are in [`docs/connect-your-tools.md`](../docs/connect-your-tools.md).
+>
+> 📖 Every category, its tools and which skill reads it: [`CONNECTORS.md`](CONNECTORS.md).
 
 ## Author
 

@@ -1,19 +1,49 @@
 # pmm-competitive-intelligence
 
-Competitive intelligence for B2B SaaS PMMs: a scheduled sweep of your core competitors with the fixes drafted, a weekly C-suite update from public sources, comparison pages for competitive search, plus profiles, battlecards, deep-dives, a leadership brief and a weekly newsletter. Competitor answers in Slack.
+Competitive intelligence for B2B SaaS PMMs: profiles, battlecards, weekly sweeps, leadership briefs, comparison pages and a newsletter, with competitor answers in Slack.
 
 ## Start here
 
-- **First command:** `/pmm-competitive-intelligence:competitive-profile`
-- **To watch your competitors weekly:** `/pmm-competitive-intelligence:media-monitoring`
-- **To publish a vs or alternatives page:** `/pmm-competitive-intelligence:comparison-page-brief`
-- **Try:** "Set up my competitive profiles. We sell [product] to [buyer]."
-- **For leadership:** `/pmm-competitive-intelligence:competitive-briefing`
-- **For the C-suite, from public sources:** `/pmm-competitive-intelligence:weekly-competitive-updates`
-- **For GTM leaders:** `/pmm-competitive-intelligence:industry-newsletter`
-- **In Slack:** tag Claude with "What do we say against [competitor] on pricing?" Admin setup: [`docs/slack-setup.md`](../docs/slack-setup.md)
-- **Safety (Claude Code):** a built-in guard asks you before anything is sent or posted to Slack or email. Details: [`docs/agents-map.md`](../docs/agents-map.md)
-- **The brain:** better with Sections 1 to 3 and an alternatives map (`product-marketing-context` plugin); without them, skills ask.
+- Setting up your competitor roster? → `/pmm-competitive-intelligence:competitive-profile`
+- Watching your competitors every week? → `/pmm-competitive-intelligence:media-monitoring`
+- Need a vs or alternatives page? → `/pmm-competitive-intelligence:comparison-page-brief`
+- Selling against a rival in a live deal? → `/pmm-competitive-intelligence:competitive-battlecard`
+- Briefing leadership on competitors? → `/pmm-competitive-intelligence:competitive-briefing`
+- Need the C-suite update from public sources? → `/pmm-competitive-intelligence:weekly-competitive-updates`
+- Writing the weekly newsletter for GTM leaders? → `/pmm-competitive-intelligence:industry-newsletter`
+- Need a deep-dive on one competitor? → `/pmm-competitive-intelligence:competitor-deep-dive`
+- Slack: tag Claude in a thread. Admin setup is in [`docs/slack-setup.md`](../docs/slack-setup.md).
+- Safety in Claude Code: a built-in guard asks you before anything is sent or posted to Slack or email. Details: [`docs/agents-map.md`](../docs/agents-map.md).
+
+> [!NOTE]
+> 💬 **Try it:** "@Claude what do we say against [competitor] on pricing?"
+>
+> 🧠 **Brain:** all 8 skills read your brain (`product-marketing-context`); without one they still run.
+
+## Skills (8)
+
+- **competitive-profile** — Set up a roster of five key competitors with dated, sourced profiles, refresh only what is stale, and answer team questions in Slack.
+- **competitive-battlecard** — Build a one-page battlecard a seller can skim in 60 seconds before a live deal, tailored to role, buyer and stage, with deal outcomes logged.
+- **competitor-deep-dive** — Build a long-form, sourced deep-dive on one competitor for a named decision such as a pricing change, an RFP or a roadmap bet.
+- **competitive-briefing** — Build the weekly leadership brief on competitors: a verdict, one recommended decision, what moved ranked by exposure and last week's call graded.
+- **weekly-competitive-updates** — Build the weekly C-suite competitor update from public sources only, with every item dated and linked, a threat board and a 30-day watchlist.
+- **industry-newsletter** — Build the weekly industry newsletter for GTM leaders: competitor and industry changes, a pricing watch and actions per role.
+- **media-monitoring** — Sweep your 3 to 5 core competitors' public pages on a schedule for a one-screen brief with each fix drafted, then act on items, log misses and hand over to a named backup.
+- **comparison-page-brief** — Build a you-vs-rival or best-alternatives page from your brain and fresh public sources, with a sourced claims ledger for SEO or sales.
+
+## Commands (11)
+
+- `/pmm-competitive-intelligence:competitive-profile` — Set up your roster and profiles, or ask about one competitor.
+- `/pmm-competitive-intelligence:competitor-refresh` — Refresh the stale lines of one profile or the roster.
+- `/pmm-competitive-intelligence:competitor-roster` — Check who shows up in your deals and propose a swap.
+- `/pmm-competitive-intelligence:profile-status` — Show profile freshness.
+- `/pmm-competitive-intelligence:competitive-battlecard` — Build or refresh a battlecard.
+- `/pmm-competitive-intelligence:competitor-deep-dive` — Build or refresh a deep-dive.
+- `/pmm-competitive-intelligence:competitive-briefing` — Build the weekly leadership brief.
+- `/pmm-competitive-intelligence:media-monitoring` — Set up or run the competitor sweep, and act on its items.
+- `/pmm-competitive-intelligence:weekly-competitive-updates` — Build the weekly C-suite competitor update.
+- `/pmm-competitive-intelligence:comparison-page-brief` — Build or refresh a vs, alternatives or switch page.
+- `/pmm-competitive-intelligence:industry-newsletter` — Build the weekly industry newsletter.
 
 ## Which skill do I use?
 
@@ -38,51 +68,18 @@ A bare "competitive update" gets one question. Routing checks: [`docs/routing-ch
 - **`pmm-meta` (learn):** every skill here logs one row per session to `/context/skill-sessions.md`; `meta-synthesis` finds patterns and proposes guardrails you approve.
 - **`product-marketing-context` (the brain):** read by all of them; none of these skills writes it.
 
-## Skills (8)
-
-- **competitive-profile** — Dated, sourced profiles for your five key competitors, refreshed only where stale. Answers team questions in Slack.
-- **competitive-battlecard** — One-page battlecard for a live deal, sourced and dated, with field results from past deals.
-- **competitor-deep-dive** — Long-form sourced deep-dive on one competitor for a named decision.
-- **competitive-briefing** — Weekly leadership brief: verdict with the euro at risk, one decision, last call graded.
-- **media-monitoring** — Scheduled sweep of your core competitors' public pages: one screen of what needs you, the fix drafted, blind spots named.
-- **weekly-competitive-updates** — Weekly C-suite update from public sources: last 7 days, every item dated and linked, decisions, a threat board that remembers last week.
-- **comparison-page-brief** — A vs, alternatives or switch page for a named rival, built from your brain and records, with a sourced claims ledger behind every row.
-- **industry-newsletter** — Weekly newsletter on competitors and your industry for Google Doc, email or Slack. Every claim linked.
-
-## Commands (11)
-
-- `/pmm-competitive-intelligence:competitive-profile` — Set up your roster and profiles, or ask about one competitor.
-- `/pmm-competitive-intelligence:competitor-refresh` — Refresh the stale lines of one profile or the roster.
-- `/pmm-competitive-intelligence:competitor-roster` — Check who shows up in your deals and propose a swap.
-- `/pmm-competitive-intelligence:profile-status` — Show profile freshness.
-- `/pmm-competitive-intelligence:competitive-battlecard` — Build or refresh a battlecard.
-- `/pmm-competitive-intelligence:competitor-deep-dive` — Build or refresh a deep-dive.
-- `/pmm-competitive-intelligence:competitive-briefing` — Build the weekly leadership brief.
-- `/pmm-competitive-intelligence:media-monitoring` — Set up or run the competitor sweep, and act on its items.
-- `/pmm-competitive-intelligence:weekly-competitive-updates` — Build the weekly C-suite competitor update.
-- `/pmm-competitive-intelligence:comparison-page-brief` — Build or refresh a vs, alternatives or switch page.
-- `/pmm-competitive-intelligence:industry-newsletter` — Build the weekly industry newsletter.
-
 ## Connectors (Optional)
 
-Optional. Sign-in: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). All categories: [`CONNECTORS.md`](CONNECTORS.md).
-
-| Category | What it adds | Tools |
-|---|---|---|
-| `~~CRM` | closed deals naming the competitor, loss reasons | HubSpot |
-| `~~call recordings` | objections as buyers said them | Gong, Wispr Flow, Granola, Dovetail |
-| `~~team chat` | questions and answers; field intel from reps | Slack |
-| `~~market data` | competitor traffic shifts | Semrush, Ahrefs |
-| `~~knowledge base` | internal positioning and product notes | Notion, Atlassian |
-| `~~cloud storage` | existing decks, battlecards, win/loss logs | Google Drive, Google Docs |
-| `~~competitive intelligence` | cards your CI team keeps (paste only today) | none wired: paste, or connect your own server |
-| `~~win/loss` | buyer interviews on wins and losses | none wired: paste, or connect your own server |
-| `~~company data` | funding, headcount, hiring moves | Crunchbase |
-| `~~reviews` | public review themes | none wired: paste, or connect your own server |
-| `~~web research` | public pages for stale or missing lines | Exa |
-| `~~email` | stakeholder email context | Gmail |
-| `~~calendar` | meeting cadence and launch dates | Google Calendar |
-| `~~SEO` | keyword demand, organic positioning | Semrush, Ahrefs |
+> [!TIP]
+> 🔌 **Every skill works without connectors.**
+>
+> 📋 **Paste what you have and the output keeps its shape.**
+>
+> ⚙️ Install this plugin on its own to load its `.mcp.json`.
+>
+> 🔑 Sign-in steps are in [`docs/connect-your-tools.md`](../docs/connect-your-tools.md).
+>
+> 📖 Every category, its tools and which skill reads it: [`CONNECTORS.md`](CONNECTORS.md).
 
 ## Author
 

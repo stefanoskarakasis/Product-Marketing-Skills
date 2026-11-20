@@ -1,23 +1,24 @@
 # product-marketing-context
 
-The PMM brain. Builds and maintains `/foundation/brain.md` — the shared
-GTM context file every other plugin in this marketplace reads before
-producing output. Install this first.
+The PMM brain. Builds and maintains `/foundation/brain.md` — the shared GTM context file every other plugin in this marketplace reads before producing output. Install this first.
 
 ## Start here
 
-- **You get:** one file, `/foundation/brain.md`, that the other plugins read instead of asking you the same questions again.
-- **First command:** `/product-marketing-context:build-brain`
-- **Try:** "Build my PMM brain for [product]. We sell to [buyer]."
-- **Want to see it first?** Open the [example brain](../examples/example-brain.md), a finished brain for a fictional company.
+- No brain yet? → `/product-marketing-context:build-brain`
+- Brain gone stale? → `/product-marketing-context:refresh-brain`
+- Questions waiting in the gaps queue? → `/product-marketing-context:brain-gaps`
+- Agent not reading the brain in every chat? → `/product-marketing-context:agents-map`
+- Want it to work your way? → `/product-marketing-context:my-context`
+- Want to see one first? Open the [example brain](../examples/example-brain.md), a finished brain for a fictional company.
+
+> [!NOTE]
+> 💬 **Try it:** "Build my PMM brain for [product]. We sell to [buyer]."
+>
+> 🧠 **Brain:** this plugin builds it: one file, `/foundation/brain.md`, that the other plugins read.
 
 ## Skills (1)
 
-- **product-marketing-context** — Guided setup wizard for building your
-  brain from scratch, plus refresh and gap modes that keep it current (6 core sections plus optional strategy and execution sections, and ten deal-reality fields for objections, switching forces, customer language and anti-persona: Product Context, ICP Definition,
-  Alternatives & Positioning, Voice & Tone, Market Context, Proof Points
-  Registry), plus a health-audit mode that scores an existing brain
-  file and recommends specific fixes.
+- **product-marketing-context** — Build your PMM brain with a guided setup, refresh stale fields, answer open gaps, and audit an existing brain's health.
 
 ## Commands (5)
 
@@ -45,36 +46,16 @@ positioning to another skill again.
 
 ## Connectors (Optional)
 
-Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`.
-
-Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
-
-| Category | What it adds | Tools |
-|---|---|---|
-| `~~knowledge base` | Product Context, Market Context | Notion, Atlassian |
-| `~~CRM` | ICP Definition (win/loss, deal data) | HubSpot |
-| `~~call recordings` | ICP, Alternatives, Proof Points (buyer language, objections) | Gong, Wispr Flow, Granola, Dovetail |
-| `~~market data` | Alternatives and Market Context | Semrush, Ahrefs |
-| `~~support` | ICP pain points, Voice and Tone | Intercom |
-| `~~cloud storage` | Product Context and Proof Points: decks, pricing, case studies, working docs and sheets | Google Drive, Google Docs, Google Sheets, Google Slides |
-| `~~team chat` | Voice and Tone, Proof Points (field feedback, win threads) | Slack |
-| `~~calendar` | meeting cadence, launch dates and attendees | Google Calendar |
-| `~~email` | customer and stakeholder email threads | Gmail |
-| `~~design` | design files and assets referenced in PRDs | Figma, Canva |
-| `~~marketing analytics` | cross-channel campaign and spend performance | Supermetrics |
-| `~~SEO` | keyword and content demand signals | Semrush, Ahrefs |
-| `~~product analytics` | activation, adoption and retention metrics | Amplitude (US and EU), Mixpanel (US and EU) |
-| `~~project tracker` | launch tasks and ticket context | Linear, Asana, monday.com, Productboard |
-| `~~win/loss` | buyer interviews and research on why deals were won or lost | none wired: paste, or connect your own server |
-| `~~reviews` | public review themes (G2 and similar) | none wired: paste, or connect your own server |
-| `~~competitive intelligence` | competitor cards and win/loss stories your CI team already keeps | none wired: paste, or connect your own server |
-| `~~company data` | funding, headcount, hiring and leadership changes for a named company | Crunchbase |
-| `~~email marketing` | lifecycle email performance | Klaviyo |
-| `~~revenue intelligence` | pipeline health, forecast and sales-engagement activity | none wired: paste, or connect your own server |
-| `~~data warehouse` | your own product, pipeline and revenue tables | none wired: paste, or connect your own server |
-| `~~video meetings` | meeting recordings, transcripts and summaries from your video tool | Zoom |
-| `~~enrichment` | company and contact enrichment for named accounts | none wired: paste, or connect your own server |
-| `~~web research` | open-web search and page fetch for competitor moves, launches and market signals | Exa |
+> [!TIP]
+> 🔌 **Every skill works without connectors.**
+>
+> 📋 **Paste what you have and the output keeps its shape.**
+>
+> ⚙️ Install this plugin on its own to load its `.mcp.json`.
+>
+> 🔑 Sign-in steps are in [`docs/connect-your-tools.md`](../docs/connect-your-tools.md).
+>
+> 📖 Every category, its tools and which skill reads it: [`CONNECTORS.md`](CONNECTORS.md).
 
 ## Author
 

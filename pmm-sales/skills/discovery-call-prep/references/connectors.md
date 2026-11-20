@@ -15,7 +15,7 @@ All optional. A category counts as connected only if a tool for it is present an
 | Strong | `~~team chat` | The thread you ask in; the plain-question reply that logs the outcome | Slack | Reply in chat |
 | Helpful | `~~cloud storage`, `~~knowledge base` | Saves the plan as a Doc; reads account plans | Google Drive and Docs; Notion, Atlassian | Show in the reply |
 | Gap | `~~enrichment` | Company fields for a named account | Docs only (connect your own); company fields only in EMEA mode | Paste |
-| Gap | `~~intent data`, `~~revenue intelligence` | Third-party intent; engagement and pipeline health | Docs only | Paste |
+| Gap | third-party intent (no category yet), `~~revenue intelligence` | Third-party intent; engagement and pipeline health | Docs only | Paste |
 
 Not wired and not recommended for a named contact in EMEA: contact-level enrichment and social profile tools. Company-level data is the safe default.
 

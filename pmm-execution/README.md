@@ -4,21 +4,30 @@ Day-to-day PMM execution skills: PRDs, OKRs, pre-mortems, retros, stakeholder ma
 
 ## Start here
 
-- **You get:** working PMM documents: PRDs, OKRs, pre-mortems, experiment docs, retros and interview synthesis.
-- **First command:** `/pmm-execution:interview-summary`
-- **Try:** "Summarize this customer interview: [paste transcript]"
-- **The brain:** none of these skills stop without one; they use it when it is there.
+- Interview transcript to synthesize? → `/pmm-execution:interview-summary`
+- Test idea to pressure-test? → `/pmm-execution:experiment`
+- Quarterly OKRs to build? → `/pmm-execution:okrs`
+- Feature or launch that needs a PRD? → `/pmm-execution:prd`
+- Launch about to ship? → `/pmm-execution:pre-mortem`
+- Initiatives to rank? → `/pmm-execution:prioritize`
+- Launch just finished? → `/pmm-execution:retro`
+- Launch that needs alignment? → `/pmm-execution:stakeholder-map`
+
+> [!NOTE]
+> 💬 **Try it:** "Summarize this customer interview: [paste transcript]"
+>
+> 🧠 **Brain:** all 8 skills read your brain (`product-marketing-context`); without one they still run.
 
 ## Skills (8)
 
-- **experiment-doc** — Build, audit and pressure-test an experiment brief, approving only tests that can reach significance at realistic sample sizes.
-- **interview-summary** — Turn raw customer interview transcripts into structured JTBD discovery outputs with signal detection and confidence scoring.
-- **pmm-okrs** — Build an export-ready quarterly OKR set with Key Results, Projects, scorecard metrics and Exec Summary language.
-- **prd** — Co-write a full PRD with an embedded Solution Story, anchored in your brain's positioning and ICP.
-- **pre-mortem** — Run a cross-functional pre-mortem on a launch or strategic project and surface the deal-blocking risks, with owners.
-- **prioritization-frameworks** — Apply one of 9 prioritization frameworks with a PMM interpretation layer and launch tier output (T1–T4).
-- **retro** — Facilitate a GTM retrospective anchored to OKRs and launch outcomes that ends in decisions, not venting.
-- **stakeholder-maps** — Build a political stakeholder map showing who can kill your launch, who champions it and what to say to each.
+- **experiment-doc** — Build, audit and score an experiment brief, and approve only tests that can reach significance at realistic sample sizes.
+- **interview-summary** — Turn a customer interview transcript into structured JTBD insights with signal detection and confidence scoring.
+- **pmm-okrs** — Build an export-ready quarterly OKR set with key results, projects, scorecard metrics and exec summary language.
+- **prd** — Co-write a full PRD with an embedded Solution Story, or a standalone Solution Story for GTM communications.
+- **pre-mortem** — Run a cross-functional pre-mortem before a launch or major move and surface the deal-blocking risks, each with an owner.
+- **prioritization-frameworks** — Pick and apply one of nine frameworks to rank initiatives or triage a backlog, with a launch tier (T1 to T4) for GTM weight.
+- **retro** — Facilitate a GTM retrospective anchored to OKRs and launch outcomes that ends in root causes and decisions.
+- **stakeholder-maps** — Map who can kill your launch, who champions it and what to say to each, with a power-interest grid and weekly sprint cards.
 
 ## Commands (8)
 
@@ -33,20 +42,16 @@ Day-to-day PMM execution skills: PRDs, OKRs, pre-mortems, retros, stakeholder ma
 
 ## Connectors (Optional)
 
-Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`.
-
-Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
-
-| Category | What it adds | Tools |
-|---|---|---|
-| `~~call recordings` | interview and call transcripts for summaries | Gong, Wispr Flow, Granola |
-| `~~knowledge base` | retro, PRD and OKR source docs | Notion, Atlassian |
-| `~~project tracker` | launch tasks and ticket context | Linear, Asana, monday.com, Productboard |
-| `~~design` | design files and assets referenced in PRDs | Figma, Canva |
-| `~~team chat` | stakeholder and launch threads | Slack |
-| `~~email` | customer and stakeholder email threads | Gmail |
-| `~~calendar` | meeting cadence and attendees | Google Calendar |
-| `~~cloud storage` | specs, decks, docs and spreadsheets | Google Drive, Google Docs, Google Sheets, Google Slides |
+> [!TIP]
+> 🔌 **Every skill works without connectors.**
+>
+> 📋 **Paste what you have and the output keeps its shape.**
+>
+> ⚙️ Install this plugin on its own to load its `.mcp.json`.
+>
+> 🔑 Sign-in steps are in [`docs/connect-your-tools.md`](../docs/connect-your-tools.md).
+>
+> 📖 Every category, its tools and which skill reads it: [`CONNECTORS.md`](CONNECTORS.md).
 
 ## Author
 

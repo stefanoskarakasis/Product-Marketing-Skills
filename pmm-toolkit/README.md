@@ -4,17 +4,23 @@ PMM utilities: writing assistant for internal and marketing content, resume revi
 
 ## Start here
 
-- **You get:** everyday PMM tools: rewrite a message, draft marketing content, build a campaign brief, tailor a resume.
-- **First command:** `/pmm-toolkit:write`
-- **Try:** "Rewrite this message to my VP so the ask comes first: [paste]"
-- **The brain:** `pmm-resume` and `privacy-policy` do not use it; `write` and `brief` use it when it is there.
+- Rewriting a message or draft? → `/pmm-toolkit:write`
+- Drafting marketing content? → `/pmm-toolkit:marketing-content`
+- Building a campaign brief? → `/pmm-toolkit:brief`
+- Tailoring a resume to a job? → `/pmm-toolkit:resume`
+- Need a privacy policy? → `/pmm-toolkit:privacy`
+
+> [!NOTE]
+> 💬 **Try it:** "Rewrite this message to my VP so the ask comes first: [paste]"
+>
+> 🧠 **Brain:** 2 of 4 skills read your brain (`product-marketing-context`): `gaccs-brief`, `writing-assistant`. The others work without one.
 
 ## Skills (4)
 
-- **gaccs-brief** — Build and pressure-test a GACCS Brief (Goals, Audience, Creative, Channels, Stakeholders) for any marketing or GTM project.
-- **pmm-resume** — Review and tailor a PMM resume, IC to VP, against a job description in one pass.
-- **privacy-policy** — Draft a jurisdiction-aware privacy policy for any digital product, covering GDPR, CCPA and UK GDPR.
-- **writing-assistant** — Rewrite, sharpen or draft internal and marketing writing in your voice, and audit a draft for AI patterns.
+- **gaccs-brief** — Build and pressure-test a GACCS brief (goals, audience, creative, channels, stakeholders) for any campaign or enablement project.
+- **pmm-resume** — Review a PMM resume and tailor it to a job description: rank bullets by fit and rebuild the resume in one pass.
+- **privacy-policy** — Draft a jurisdiction-aware privacy policy covering GDPR, CCPA and UK GDPR for any digital product.
+- **writing-assistant** — Rewrite, sharpen, draft or audit B2B writing in your real voice: Slack, email, memos, PRDs, decks and marketing content.
 
 ## Commands (5)
 
@@ -26,18 +32,16 @@ PMM utilities: writing assistant for internal and marketing content, resume revi
 
 ## Connectors (Optional)
 
-Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`.
-
-Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
-
-| Category | What it adds | Tools |
-|---|---|---|
-| `~~knowledge base` | source material for briefs and writing | Notion, Atlassian |
-| `~~team chat` | thread context for briefs | Slack |
-| `~~email` | email context for drafts and briefs | Gmail |
-| `~~calendar` | project dates and stakeholder meetings | Google Calendar |
-| `~~cloud storage` | source docs, sheets and decks | Google Drive, Google Docs, Google Sheets, Google Slides |
-| `~~design` | creative assets referenced in briefs | Canva |
+> [!TIP]
+> 🔌 **Every skill works without connectors.**
+>
+> 📋 **Paste what you have and the output keeps its shape.**
+>
+> ⚙️ Install this plugin on its own to load its `.mcp.json`.
+>
+> 🔑 Sign-in steps are in [`docs/connect-your-tools.md`](../docs/connect-your-tools.md).
+>
+> 📖 Every category, its tools and which skill reads it: [`CONNECTORS.md`](CONNECTORS.md).
 
 ## Author
 

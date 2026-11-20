@@ -4,10 +4,20 @@ A weekly read on what changed around your product: at most five opportunities fr
 
 ## Start here
 
-- **You get:** a short weekly list of opportunities, each with the evidence, the brain field it touches, and one suggested next move.
-- **First command:** `/pmm-intelligence:signal-monitor` (works with pasted signals; no connector needed)
-- **Try:** "Here is what changed on two competitor pricing pages this week: [paste]. What matters for us?"
-- **The brain:** sharper with a brain (Sections 3 and 7 especially). With no brain it asks three quick questions and holds the answers for the session only. The brain-building skill is a separate plugin, `product-marketing-context`.
+- Want to know what changed this week? → `/pmm-intelligence:signal-monitor`
+
+> [!NOTE]
+> 💬 **Try it:** "Here is what changed on two competitor pricing pages this week: [paste]. What matters for us?"
+>
+> 🧠 **Brain:** its one skill reads your brain (`product-marketing-context`); without one it still runs.
+
+## Skills (1)
+
+- **signal-monitor** — Turn the signals you name into at most five opportunities, each tied to a brain field and a quarterly priority, with evidence and one next move.
+
+## Commands (1)
+
+- `/pmm-intelligence:signal-monitor` — Run this week's read.
 
 ## How it fits with the other plugins
 
@@ -15,29 +25,18 @@ A weekly read on what changed around your product: at most five opportunities fr
 - **`pmm-competitive-intelligence` (competitors: collect and produce):** its `media-monitoring` skill collects competitor findings; bring them here to rank them.
 - **`product-marketing-context`:** the brain this plugin reads. It never writes it.
 
-## Skills (1)
-
-- **signal-monitor** — Turn the signals you name into at most five opportunities, each with evidence, a confidence label and one next move. Read-only for your brain.
-
-## Commands (1)
-
-- `/pmm-intelligence:signal-monitor` — Run this week's read.
-
 ## Connectors (Optional)
 
-Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`; only the sources you name in a run are read.
-
-Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
-
-| Category | What it adds | Tools |
-|---|---|---|
-| `~~market data` | competitor traffic and audience shifts | Semrush, Ahrefs |
-| `~~team chat` | team threads, launch coordination, field feedback | Slack |
-| `~~email` | customer and stakeholder email context | Gmail |
-| `~~calendar` | meeting cadence, launch dates and attendees | Google Calendar |
-| `~~SEO` | keyword demand, competitor organic positioning | Semrush, Ahrefs |
-| `~~company data` | funding, headcount, hiring and leadership changes for a named company | Crunchbase |
-| `~~web research` | open-web search and page fetch for competitor moves, launches and market signals | Exa |
+> [!TIP]
+> 🔌 **Every skill works without connectors.**
+>
+> 📋 **Paste what you have and the output keeps its shape.**
+>
+> ⚙️ Install this plugin on its own to load its `.mcp.json`.
+>
+> 🔑 Sign-in steps are in [`docs/connect-your-tools.md`](../docs/connect-your-tools.md).
+>
+> 📖 Every category, its tools and which skill reads it: [`CONNECTORS.md`](CONNECTORS.md).
 
 ## Author
 

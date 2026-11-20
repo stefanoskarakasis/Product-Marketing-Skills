@@ -1,6 +1,6 @@
 # pmm-sales connectors
 
-Every connector is optional. All seven skills work without them: paste what you have and the output keeps its shape.
+Every connector is optional. All 7 skills work without them: paste what you have and the output keeps its shape.
 
 - **Category definitions:** the root `CONNECTORS.md`.
 - **Sign-in steps:** `docs/connect-your-tools.md`.
@@ -10,13 +10,15 @@ Every connector is optional. All seven skills work without them: paste what you 
 
 | Skill | Reads |
 |---|---|
-| `customer-context` | CRM, calendar, call recordings, cloud storage, email, knowledge base, product analytics, revenue intelligence, support, team chat |
-| `deal-review` | CRM, calendar, call recordings, cloud storage, email, knowledge base, team chat |
-| `discovery-call-prep` | CRM, calendar, call recordings, cloud storage, company data, email, enrichment, knowledge base, revenue intelligence, team chat, web research |
+| `customer-context` | CRM, revenue intelligence, calendar, call recordings, email, team chat, cloud storage, knowledge base, product analytics, support |
+| `deal-review` | CRM, calendar, call recordings, email, team chat, cloud storage, knowledge base |
+| `discovery-call-prep` | CRM, revenue intelligence, calendar, call recordings, email, team chat, cloud storage, knowledge base, company data, enrichment, web research |
 | `discovery-call-scoring` | CRM, calendar, call recordings, knowledge base |
-| `objection-handling` | CRM, call recordings, cloud storage, email, knowledge base, team chat |
-| `prospect-research` | CRM, calendar, call recordings, cloud storage, company data, email, enrichment, knowledge base, team chat, web research |
-| `sales-research-digest` | CRM, cloud storage, team chat |
+| `objection-handling` | CRM, call recordings, email, team chat, cloud storage, knowledge base |
+| `prospect-research` | CRM, calendar, call recordings, email, team chat, cloud storage, knowledge base, company data, enrichment, web research |
+| `sales-research-digest` | CRM, team chat, cloud storage |
+
+Derived from the connector placeholders each skill names. A placeholder that is not in the root registry is not listed.
 
 ## Customer and deal record
 
@@ -40,7 +42,7 @@ Where the buyer and your team talk: threads, calls and meetings.
 
 ## Documents and knowledge
 
-Where plans, notes and your brain are stored, and where full briefs are saved.
+Where plans, notes, data and your brain are stored, and where full outputs are saved.
 
 | Placeholder | What it adds here | Wired today |
 |---|---|---|
@@ -56,9 +58,9 @@ Signals from customers you already have.
 | `~~support` | open and recent escalations by theme | Intercom |
 | `~~product analytics` | adoption trend and which teams use the product | Amplitude (US and EU), Mixpanel (US and EU) |
 
-## Prospect signals
+## Market and company data
 
-Facts about a company you do not sell to yet.
+Facts about competitors, markets and named companies.
 
 | Placeholder | What it adds here | Wired today |
 |---|---|---|

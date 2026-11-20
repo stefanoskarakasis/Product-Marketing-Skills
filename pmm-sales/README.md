@@ -16,13 +16,13 @@ Try it in Slack: "@Claude review the Marlow deal before Friday's call". Every sk
 
 ## Skills (7)
 
-- **customer-context** — Brief on one customer before a renewal, QBR or escalation, with what changed since last time.
-- **prospect-research** — Find out if there is a reason to contact one company, with an angle and a first question.
-- **deal-review** — See why one live deal is stalling and get the next step.
-- **discovery-call-prep** — Get a point of view and a seven-stage plan for your next discovery call.
-- **discovery-call-scoring** — Score a discovery call you ran, see what cost you and get moves for the next one.
-- **objection-handling** — Get the next line for a buyer's objection, and log it so the team's library improves.
-- **sales-research-digest** — Get the PMM's weekly report on how sellers use the research skills.
+- **customer-context** — Get the state of one customer before a call, renewal, escalation or handover, or ask one quick question about them.
+- **prospect-research** — Find out if there is a reason to contact one company, with an angle, a first question and a fallback.
+- **deal-review** — Check if one live deal is real and what could kill it, debrief a call, or see which deals need you this week.
+- **discovery-call-prep** — Get a point of view and a seven-stage plan for a discovery call, or plan the next one from the last transcript.
+- **discovery-call-scoring** — Score a discovery call you ran, see what cost you, get moves for the next one and track if you are improving.
+- **objection-handling** — Get the next line for a buyer objection, a call digest, an email reply or a prep list, and build a library from your calls.
+- **sales-research-digest** — Get the PMM's weekly report on how sellers used the research skills, whether the advice held and three actions.
 
 ## Commands (7)
 

@@ -16,13 +16,13 @@ Try it in Slack: "@Claude review the Marlow deal before Friday's call". Every sk
 
 ## Skills (7)
 
-- **customer-context** — Before a renewal call, QBR or escalation, it builds a dated brief on one existing customer from your CRM, email, calls, docs, support and usage, checks it against your brain and shows what changed since the last brief. Read-only, and it works in a Slack thread.
-- **prospect-research** — Before a first touch, it tells you whether there is a reason to contact one company you do not sell to yet: dated signals mapped to your pains, fit and timing scored separately, and a hypothesis with an angle, a first question and a fallback. EMEA data rules stay on for European accounts.
-- **deal-review** — On one live deal that may be stalling, it ranks the evidence by source, shows what the buyer decided in their own words, names the most likely reason the deal dies and gives dated next steps. It also builds a weekly queue of the deals that need you and debriefs a call transcript.
-- **discovery-call-prep** — With a prospect company and the title of who you are meeting, it researches the account and returns a point of view, one lead hypothesis with a fallback and a seven-stage plan: the opener, ready-to-ask questions, what good looks like per stage and a fast-disqualify line. It also preps follow-up and open-deal calls.
-- **discovery-call-scoring** — Right after a discovery call you ran, paste the transcript and it scores the seven discovery stages, names your pattern, replays the moments that cost you and gives two to four next-call moves with the words to say. Private to the seller: it never goes to a manager.
-- **objection-handling** — When a buyer pushes back, it names the type behind the words and gives you the next line, a call digest or a paste-ready email reply, then logs the objection so a shared library improves with every deal.
-- **sales-research-digest** — Every week it gives the PMM one plain-language report on how sellers used the research skills: who used them, whether the advice held up against CRM outcomes and up to three things to do. It covers pmm-sales skills only and proposes, never changes.
+- **customer-context** — Brief on one customer before a renewal, QBR or escalation, with what changed since last time.
+- **prospect-research** — Find out if there is a reason to contact one company, with an angle and a first question.
+- **deal-review** — See why one live deal is stalling and get the next step.
+- **discovery-call-prep** — Get a point of view and a seven-stage plan for your next discovery call.
+- **discovery-call-scoring** — Score a discovery call you ran, see what cost you and get moves for the next one.
+- **objection-handling** — Get the next line for a buyer's objection, and log it so the team's library improves.
+- **sales-research-digest** — Get the PMM's weekly report on how sellers use the research skills.
 
 ## Commands (7)
 
@@ -36,9 +36,16 @@ Try it in Slack: "@Claude review the Marlow deal before Friday's call". Every sk
 
 ## Connectors (Optional)
 
-Every skill works without connectors: paste what you have and the output keeps its shape.
-Install this plugin on its own to load its `.mcp.json`; sign-in steps are in [`docs/connect-your-tools.md`](../docs/connect-your-tools.md).
-The full reference, with every category, its tools and which skill reads it, is in [`CONNECTORS.md`](CONNECTORS.md).
+> [!TIP]
+> 🔌 **Every skill works without connectors.**
+>
+> 📋 **Paste what you have and the output keeps its shape.**
+>
+> ⚙️ Install this plugin on its own to load its `.mcp.json`.
+>
+> 🔑 Sign-in steps are in [`docs/connect-your-tools.md`](../docs/connect-your-tools.md).
+>
+> 📖 Every category, its tools and which skill reads it: [`CONNECTORS.md`](CONNECTORS.md).
 
 ## Author
 

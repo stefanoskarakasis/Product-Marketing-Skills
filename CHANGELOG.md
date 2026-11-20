@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Sales: discovery-call-scoring
+
+- New skill `discovery-call-scoring` in `pmm-sales`, with the `/pmm-sales:discovery-call-scoring` command: paste a discovery call you already ran; it scores the seven stages (point of view, priorities, current state, blockers, negative consequences, after state, business outcomes), names your pattern, replays the two to four moments that cost you (each typed as a line, prep or allocation) and gives two to four next-call moves with the words to say. Compares with your call plan when one exists; `trend` shows your trajectory. In Slack a 180-word card; the full review in a Doc or chat.
+- Private to the seller: it reviews only the asker's own call, never goes to a manager, ranks no one, does not save the transcript and writes no seller field. Reading recordings stays the owner's decision, per source.
+- It learns without typing: each review appends a counts-only row to `/context/discovery/_reviews.md`. `discovery-call-prep` shows a seller their own last review on their next plan; `sales-research-digest` shows counts; `objection-handling` ranks cards by what comes up on calls; `meta-synthesis` registers the file. Proposals to the PMM start at 1, 2, 3, 5 or 10 reviews by type.
+- `deal-review` and `discovery-call-prep` route a finished call to score here. `tests/test_description_budget.py` ceiling is now 21,750 (was 21,350). `docs/routing-checks.md` grows to 62 prompts. Counts: 51 skills, 59 commands.
+
 ### Sales: discovery-call-prep
 
 - New skill `discovery-call-prep` in `pmm-sales`, with the `/pmm-sales:discovery-call-prep` command: give it the prospect company and the title of who you are meeting; it researches the account and returns a point of view (one lead hypothesis, one fallback) plus a 7-stage plan sized to the call, with the opener, ready-to-ask questions, what good looks like, where you differ in the buyer's words and a fast no. In Slack a 150-word call card; the full plan in a Doc or chat. Modes: `prep`, `next` (from a transcript), `setup`, `library`, `sweep`, `log:`.

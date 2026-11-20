@@ -39,6 +39,7 @@ A grade is `seller-reported`, `transcript-read`, `crm` or `calendar`. A `calenda
 | `customer-context` | `_patterns.md` and won-deal baselines for the segment | Hypothesis candidates from what similar won customers prioritised (counted at 3 or more) |
 | `competitive-battlecard`, `competitive-profile`, alternatives (Section 3) | Sourced edges, the rival's current profile, `_outcomes.md` | "Where we are different, in their words" |
 | `product-marketing-context` | Sections 1, 2, 3, 4, 6, 8 | Language (`customer_phrases`), pains, disqualifiers, approved proof, who owns discovery knowledge |
+| `discovery-call-scoring` | The seller's own `/context/discovery/mine/` file only, never `_reviews.md` for a person | A "From your last review" line on that seller's plan: the habit to fix and one question to use; shown only to that seller, never in a shared thread |
 | `meta-synthesis` | The promotion queue, quiet-skill list | Whether this skill is unused: it is registered in `/context/learning-sources.md` |
 
 A learned item shapes ranking and wording. It never becomes proof, never overrides a confirmed brain value, and a conflict is shown as a question with both values.

@@ -95,7 +95,7 @@ connect-your-own or paste-only. The brain plugin (`product-marketing-context`) w
 
 ### Call recorders: any of them works
 
-Skills that read calls (`discovery-call-prep`, `objection-handling`, `deal-review`) need a transcript or AI notes, not a particular vendor. Order: a recorder connector from the table above; the recorder's own transcript saved where Claude can read it (Google Meet transcripts and Gemini notes land in the organiser's Drive, Zoom cloud transcripts and Teams transcripts export as files); a drop folder your owner names; or a paste. Which transcripts exist depends on your plan and on whether people turn recording on. Reading calls is the owner's decision, per source, and only for calls your company already records.
+Skills that read calls (`discovery-call-prep`, `discovery-call-scoring`, `objection-handling`, `deal-review`) need a transcript or AI notes, not a particular vendor. Order: a recorder connector from the table above; the recorder's own transcript saved where Claude can read it (Google Meet transcripts and Gemini notes land in the organiser's Drive, Zoom cloud transcripts and Teams transcripts export as files); a drop folder your owner names; or a paste. Which transcripts exist depends on your plan and on whether people turn recording on. Reading calls is the owner's decision, per source, and only for calls your company already records.
 
 ## Connect your own (not wired here)
 

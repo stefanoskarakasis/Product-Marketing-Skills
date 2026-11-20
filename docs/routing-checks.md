@@ -70,6 +70,12 @@ Claude chooses a skill from its name and description. This page is how you check
 | 54 | Is there a reason to contact Tidewell Foods now? | `prospect-research`, not `discovery-call-prep` |
 | 55 | Is the Marlow deal real? | `deal-review`, not `discovery-call-prep` |
 | 56 | They said it is too expensive | `objection-handling`, not `discovery-call-prep` |
+| 57 | Score this call, here is the transcript: I met the VP Finance at Tidewell Foods yesterday | `discovery-call-scoring` |
+| 58 | I never got to the cost of the problem on that call, where did I lose it? | `discovery-call-scoring` |
+| 59 | Am I getting better at discovery? | `discovery-call-scoring`, not `deal-review` |
+| 60 | Plan my next discovery call with Tidewell Foods | `discovery-call-prep`, not `discovery-call-scoring` |
+| 61 | Is the Marlow deal real after that third call? | `deal-review`, not `discovery-call-scoring` |
+| 62 | Summarise this customer call into themes | `interview-summary`, not `discovery-call-scoring` |
 
 **Pass:** 53 of 56, and prompts 12 to 14, 23 and 26 never build a leadership brief or a newsletter without asking.
 

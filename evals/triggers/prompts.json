@@ -1201,6 +1201,30 @@
       "expect": [
         "prospect-research"
       ]
+    },
+    {
+      "skill": "discovery-call-scoring",
+      "kind": "direct",
+      "prompt": "Here is the transcript of my discovery call with the VP Finance at Tidewell Foods. Score it and tell me where I went wrong.",
+      "expect": [
+        "discovery-call-scoring"
+      ]
+    },
+    {
+      "skill": "discovery-call-scoring",
+      "kind": "indirect",
+      "prompt": "I ran a first call with a head of RevOps yesterday and I think I never got past their list of annoyances. The recording transcript is attached. Where did I lose it?",
+      "expect": [
+        "discovery-call-scoring"
+      ]
+    },
+    {
+      "skill": "discovery-call-scoring",
+      "kind": "near-miss",
+      "prompt": "Is the Marlow Retail deal real? The CFO has not joined a call and close is at month end.",
+      "expect": [
+        "deal-review"
+      ]
     }
   ],
   "non_pmm": [

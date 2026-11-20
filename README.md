@@ -13,7 +13,7 @@ Built by [Stefanos Karakasis](https://stefanoskarakasis.substack.com/).
 > [!TIP]
 > **Contributions welcome!** Found a way to improve a skill or have a new one to add? [Open a PR](#contributing). Run into a problem or have a question? [Open an issue](https://github.com/stefanoskarakasis/Product-Marketing-Skills/issues).
 
-**Jump to:** [Install](#install-in-60-seconds) · [Why a brain?](#why-a-brain) · [Pick by job](#start-here-pick-by-job) · [Usage](#usage) · [All 50 skills](#available-skills-50-total) · [Installation options](#installation) · [Connectors](#connectors-optional) · [About](#about)
+**Jump to:** [Install](#install-in-60-seconds) · [Why a brain?](#why-a-brain) · [Pick by job](#start-here-pick-by-job) · [Usage](#usage) · [All 51 skills](#available-skills-51-total) · [Installation options](#installation) · [Connectors](#connectors-optional) · [About](#about)
 
 ## Install in 60 seconds
 
@@ -55,7 +55,7 @@ Every time you ask an agent for positioning, battlecards or a brief, you re-expl
 | Define who we sell to, write positioning and messaging | `pmm-positioning` |
 | Pick a first segment and plan a launch | `pmm-go-to-market` |
 | Profile competitors, build battlecards, brief the C-suite weekly | `pmm-competitive-intelligence` |
-| Prep a discovery call, review a deal, handle an objection, catch up on a customer | `pmm-sales` |
+| Prep or score a discovery call, review a deal, handle an objection, catch up on a customer | `pmm-sales` |
 | Rank what changed around my product against my priorities | `pmm-intelligence` |
 | Run OKRs, retros and pre-mortems | `pmm-execution` |
 | Generate and measure growth ideas, write customer stories | `pmm-growth` |
@@ -88,8 +88,9 @@ Ask in plain language, or call a skill directly, for example `/pmm-positioning:i
 | "Write positioning for our new product" | `positioning-messaging` |
 | "Build me a battlecard against Acme" | `competitive-battlecard` |
 | "Prep my discovery call with the VP Finance at Tidewell Foods" | `discovery-call-prep` |
+| "Score this discovery call and tell me what I missed" | `discovery-call-scoring` |
 
-## Available Skills (50 Total)
+## Available Skills (51 Total)
 
 | Skill | Plugin | Description |
 |-------|--------|-------------|
@@ -115,6 +116,7 @@ Ask in plain language, or call a skill directly, for example `/pmm-positioning:i
 | [prospect-research](pmm-sales/skills/prospect-research/) | pmm-sales | Pain hypothesis, angle and first question for one prospect from web search, CRM and enrichment, checked against your brain; EMEA-aware; Slack first |
 | [deal-review](pmm-sales/skills/deal-review/) | pmm-sales | Weekly-ready deal review: what changed, the buyer's own words, what could kill the deal and one next step, with paste-ready CRM and email blocks; a deals-only queue; private pattern mirror; Slack first |
 | [discovery-call-prep](pmm-sales/skills/discovery-call-prep/) | pmm-sales | Point of view and a 7-stage discovery call plan from the prospect company and the buyer's title, with a lead hypothesis, questions per stage and a fast no; learns from call outcomes; Slack first |
+| [discovery-call-scoring](pmm-sales/skills/discovery-call-scoring/) | pmm-sales | Paste a discovery call you ran: a seven-stage score, your pattern, the moments that cost you and the moves for the next call; private to the seller; Slack first |
 | [objection-handling](pmm-sales/skills/objection-handling/) | pmm-sales | The next line for a buyer objection, a call digest or a paste-ready email reply, with a library that learns from every deal; draft only, from Slack, a pasted line, a transcript or an email |
 | [sales-research-digest](pmm-sales/skills/sales-research-digest/) | pmm-sales | Weekly plain-language report for the PMM on how the sales research skills are used, whether the advice held up and what to do next; outcomes from your CRM |
 | [industry-newsletter](pmm-competitive-intelligence/skills/industry-newsletter/) | pmm-competitive-intelligence | Weekly industry newsletter for GTM leaders in one locked layout: numbered competitor tables, industry changes, pricing watch and role-owned actions; formatted for Google Doc, email or Slack |

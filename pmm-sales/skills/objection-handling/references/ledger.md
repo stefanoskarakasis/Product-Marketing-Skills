@@ -31,6 +31,8 @@ A pattern is proposed only at the n below, counted as distinct deals inside 180 
 | A product gap behind repeated product-fit objections | 3 | The owner, for Product |
 | A card that never resolves | 3 | The owner, to retire or rewrite it |
 
+Read-only feed: `/context/discovery/_reviews.md` (from `discovery-call-scoring`), field `objection_raised`: which cards come up on calls, by segment, to rank what to tailor first. Counts only; never a seller.
+
 Counts start at zero. Never inherit counts from another source.
 
 ## Privacy

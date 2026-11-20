@@ -801,6 +801,22 @@
       "expect": [
         "discovery-call-prep"
       ]
+    },
+    {
+      "skill": "discovery-call-scoring",
+      "kind": "situation",
+      "prompt": "I am an account executive. Yesterday's first call with a controller at a food manufacturer ran 40 minutes and I left with a list of irritations but no idea what they cost. Transcript below; tell me where it went thin.",
+      "expect": [
+        "discovery-call-scoring"
+      ]
+    },
+    {
+      "skill": "discovery-call-scoring",
+      "kind": "judgement",
+      "prompt": "Looking at my last three calls, do I stall at the same point every time, and what should I change first?",
+      "expect": [
+        "discovery-call-scoring"
+      ]
     }
   ],
   "non_pmm": [

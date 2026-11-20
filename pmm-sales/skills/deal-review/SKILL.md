@@ -23,7 +23,7 @@ A review answers three things: is this deal real, what is missing, what changes 
 ## Trigger
 
 - **When:** Someone asks about one named open opportunity, a weekly queue, or a new transcript to debrief.
-- **Not for:** No opportunity → `prospect-research`. A customer with none open → `customer-context`. A competitor in the deal → `competitive-battlecard`. The committee → `buyer-personas` or `stakeholder-maps`. Writing the follow-up → `writing-assistant`. Call prep, first or open-deal → `discovery-call-prep`. A raw call summary → `interview-summary`.
+- **Not for:** No opportunity → `prospect-research`. A customer with none open → `customer-context`. A competitor in the deal → `competitive-battlecard`. The committee → `buyer-personas` or `stakeholder-maps`. Writing the follow-up → `writing-assistant`. Call prep, first or open-deal → `discovery-call-prep`. A raw call summary → `interview-summary`. Scoring the seller's own discovery → `discovery-call-scoring`.
 - **Examples:** "@Claude review the Marlow deal" · "what changed on Marlow since Monday?" (`since`) · "which deals need me this week?" (`queue`)
 
 ## Inputs

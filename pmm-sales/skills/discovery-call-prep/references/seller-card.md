@@ -17,7 +17,7 @@ Pin this in your sales channel. Time to read: 2 minutes.
 1. The day before: run prospect research, then ask for the prep. Paste the invite note.
 2. Before the call: read the card only. Say the bet out loud.
 3. On the call: open with your guess and ask what you got wrong. Drop the bet at ten minutes if it is dead.
-4. After: nothing is required. A transcript from your recorder teaches it more than a typed reply.
+4. After: nothing is required. To see what you missed, paste the transcript into `discovery-call-scoring`. A transcript from your recorder teaches it more than a typed reply.
 
 ## Before your first ask
 - [ ] Your owner has decided whether Claude may read recorded calls and CRM outcomes. Until then it uses only what you paste.

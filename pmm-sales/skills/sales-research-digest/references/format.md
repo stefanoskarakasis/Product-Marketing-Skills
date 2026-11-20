@@ -43,6 +43,7 @@ Read at Step 7, every run. The shape never changes. The reader is a busy PMM who
 - The helper gave [n] green, [n] yellow and [n] red lights.
 - [n] of the [n] red companies were contacted anyway. [We do not know yet whether the helper or the salesperson was right. | CRM not connected, so I cannot tell.]
 - In [CRM name], [n] of [n] companies have a deal started within 60 days. [Too few to judge. | Count only.]
+- Discovery call reviews: [n] this period; the stage most often marked Needs Work is [stage]. [Too few to judge. | Count only.] (No seller is named.)
 **What this means:** [one sentence]
 
 ## 3. What did the companies have in common?

@@ -34,7 +34,7 @@ Join to outcomes: for each open record, read the CRM opportunity by account slug
 
 ## library
 
-For the owner of discovery knowledge. Shows `_library.md` (the question bank, tailored): each question with times planned, times asked, times it unlocked evidence, and times it fell flat; rates only at 10 or more asks, counts below. Lists stale questions (not planned in 180 days), questions that never unlock, questions that mention a product or feature (a violation), and proposed rewrites. Edits to the library are the owner's: the skill proposes, the owner says yes, then it writes `_library.md`. A seller's own card is `proposed` until the owner clears it.
+For the owner of discovery knowledge. Shows `_library.md` (the question bank, tailored): each question with times planned, times asked, times it unlocked evidence, and times it fell flat; rates only at 10 or more asks, counts below. Reads `/context/discovery/_reviews.md` counts (from `discovery-call-scoring`) to name the stage most often Needs Work, so the owner can strengthen the questions for it. Lists stale questions (not planned in 180 days), questions that never unlock, questions that mention a product or feature (a violation), and proposed rewrites. Edits to the library are the owner's: the skill proposes, the owner says yes, then it writes `_library.md`. A seller's own card is `proposed` until the owner clears it.
 
 A tailored library holds three questions at most per card slot (have it, roadmap, workaround is the objection library's rule; here: question, why it is asked, what to listen for).
 

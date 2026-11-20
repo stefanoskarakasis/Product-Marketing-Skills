@@ -35,7 +35,7 @@ Categories and the owner's data-access decision: `references/connectors.md`. Wit
 
 ## Pre-flight
 
-- **Route check (first).** Name the right skill in one line and stop for: research before a first touch (`prospect-research`), a deal verdict (`deal-review`), a customer (`customer-context`), a rival's claims (`competitive-battlecard`), an objection (`objection-handling`), a message or follow-up email (`writing-assistant`), a call summary (`interview-summary`). A company with no research yet is fine; this skill researches lightly itself.
+- **Route check (first).** Name the right skill in one line and stop for: research before a first touch (`prospect-research`), a deal verdict (`deal-review`), a customer (`customer-context`), a rival's claims (`competitive-battlecard`), an objection (`objection-handling`), a message or follow-up email (`writing-assistant`), a call summary (`interview-summary`), a finished call to score (`discovery-call-scoring`). A company with no research yet is fine; this skill researches lightly itself.
 - **Call type.** First or follow-up discovery, or an open deal at or past evaluation (short form, `references/modes.md`). Entry state (cold, inbound, solution-aware): `references/method.md`.
 - **Constraints.** Section 8 `prohibited` and Section 6 `forbidden_claims`; a hit stops the run with the entry shown.
 - **Region.** Decide EMEA mode (`references/rules.md`) and say it in one line.

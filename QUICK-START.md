@@ -35,7 +35,7 @@ tools (call recordings, CRM, docs) instead of asking you to paste them,
 install each plugin on its own and sign in when Claude asks. Steps and
 troubleshooting are in [docs/connect-your-tools.md](docs/connect-your-tools.md).
 
-**Sales team?** Install `pmm-sales`, then run `/pmm-sales:discovery-call-prep setup`. It checks your brain first, then asks your owner two decisions (who owns discovery knowledge, and whether Claude may read calls and CRM outcomes). Sellers then use the card in `pmm-sales/skills/discovery-call-prep/references/seller-card.md`.
+**Sales team?** Install `pmm-sales`, then run `/pmm-sales:discovery-call-prep setup`. It checks your brain first, then asks your owner two decisions (who owns discovery knowledge, and whether Claude may read calls and CRM outcomes). Sellers then use the card in `pmm-sales/skills/discovery-call-prep/references/seller-card.md`. After a call, `discovery-call-scoring` scores it for the seller alone.
 
 ## 4. Run a skill
 
@@ -54,7 +54,7 @@ The sweep is the `meta-synthesis` skill, which lives in the `pmm-meta` plugin. I
 - **Every Friday:** say "run the weekly learning sweep". You get one list of proposed guardrails and brain edits and a table of which skills were used. Approve what is right.
 - **Want a reminder?** At the end of the sweep, say yes to "Want this every Friday?" and a scheduled task does the counting for you. Your project map also tells you in chat when a sweep is overdue.
 
-## What You Can Do (50 skills across 10 plugins)
+## What You Can Do (51 skills across 10 plugins)
 
 See the [main README](./README.md) for the full skill list and what each
 plugin covers.

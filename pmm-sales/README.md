@@ -12,7 +12,10 @@ Sales skills for sellers and CSMs, built for Slack first: tag Claude in a thread
 - Buyer just pushed back? → `/pmm-sales:objection-handling`
 - Weekly report for the PMM? → `/pmm-sales:sales-research-digest`
 
-Try it in Slack: "@Claude review the Marlow deal before Friday's call". Every skill reads your brain (`product-marketing-context`) and never writes to it.
+> [!NOTE]
+> 💬 **Try it:** "@Claude catch me up on Northwind before Thursday's renewal call"
+>
+> 🧠 **Brain:** all 7 skills read your brain (`product-marketing-context`).
 
 ## Skills (7)
 

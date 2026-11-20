@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Repo: Cursor manifest parity
+
+- `tests/test_cursor_manifests.py` now fails when a plugin's Cursor manifest differs from its Claude twin in name, description, license, homepage, repository, skills or author name, or when a plugin has no Cursor manifest. Cursor still carries no version, `displayName` or keywords on purpose.
+- `pmm-sales/.cursor-plugin/plugin.json` description now matches the Claude manifest (it still described customer context only).
+
 ### Sales: discovery-call-scoring
 
 - New skill `discovery-call-scoring` in `pmm-sales`, with the `/pmm-sales:discovery-call-scoring` command: paste a discovery call you already ran; it scores the seven stages (point of view, priorities, current state, blockers, negative consequences, after state, business outcomes), names your pattern, replays the two to four moments that cost you (each typed as a line, prep or allocation) and gives two to four next-call moves with the words to say. Compares with your call plan when one exists; `trend` shows your trajectory. In Slack a 180-word card; the full review in a Doc or chat.

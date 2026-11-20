@@ -41,6 +41,28 @@ class CursorManifests(unittest.TestCase):
             self.assertLessEqual(set(man.get("author", {})), {"name", "email"},
                                  f"{f.parent.parent.name}: Cursor author allows only name and email")
 
+    def test_shared_fields_match_claude_manifest(self):
+        """A Cursor manifest says the same thing as its Claude twin, so a plugin change cannot reach one side only.
+
+        Fields compared: name, description, license, homepage, repository, skills and author name.
+        Cursor carries no version, displayName or keywords on purpose; the schema allows keywords,
+        so adding them later is a choice, not a fix.
+        """
+        for f in sorted(ROOT.glob("*/.cursor-plugin/plugin.json")):
+            d = f.parent.parent
+            cursor = json.loads(f.read_text(encoding="utf-8"))
+            claude = json.loads((d / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
+            for key in ("name", "description", "license", "homepage", "repository", "skills"):
+                self.assertEqual(cursor.get(key), claude.get(key),
+                                 f"{d.name}: Cursor {key} differs from the Claude manifest. Copy it across.")
+            self.assertEqual(cursor.get("author", {}).get("name"), claude.get("author", {}).get("name"),
+                             f"{d.name}: Cursor author name differs from the Claude manifest")
+
+    def test_every_claude_plugin_has_a_cursor_manifest(self):
+        for f in sorted(ROOT.glob("*/.claude-plugin/plugin.json")):
+            self.assertTrue((f.parent.parent / ".cursor-plugin" / "plugin.json").exists(),
+                            f"{f.parent.parent.name}: no .cursor-plugin/plugin.json")
+
 
 if __name__ == "__main__":
     unittest.main()

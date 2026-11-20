@@ -29,7 +29,7 @@ A rep repeats what you write to a buyer who can check it. Build the asset from c
 
 ## Connectors (Optional)
 
-`references/connectors.md`. Without connectors, pasted notes, transcripts and exports work. Pulled facts are drafts, tagged with category, tool and date.
+Reads `~~CRM`, `~~call recordings`, `~~win/loss`, `~~calendar`, `~~team chat`, `~~cloud storage` and `~~knowledge base` (`references/connectors.md`). Without connectors, pasted notes, transcripts and exports work. Pulled facts are drafts, tagged with category, tool and date.
 
 ## Pre-flight
 

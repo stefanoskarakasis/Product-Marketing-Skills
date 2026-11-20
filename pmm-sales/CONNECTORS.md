@@ -1,6 +1,6 @@
 # pmm-sales connectors
 
-Every connector is optional. All 7 skills work without them: paste what you have and the output keeps its shape.
+Every connector is optional. All 8 skills work without them: paste what you have and the output keeps its shape.
 
 - **Category definitions:** the root `CONNECTORS.md`.
 - **Sign-in steps:** `docs/connect-your-tools.md`.
@@ -16,6 +16,7 @@ Every connector is optional. All 7 skills work without them: paste what you have
 | `discovery-call-scoring` | CRM, calendar, call recordings, knowledge base |
 | `objection-handling` | CRM, call recordings, email, team chat, cloud storage, knowledge base |
 | `prospect-research` | CRM, calendar, call recordings, email, team chat, cloud storage, knowledge base, company data, enrichment, web research |
+| `sales-collateral` | CRM, call recordings, win/loss, calendar, team chat, cloud storage, knowledge base |
 | `sales-research-digest` | CRM, team chat, cloud storage |
 
 Derived from the connector placeholders each skill names. A placeholder that is not in the root registry is not listed.
@@ -26,7 +27,8 @@ Where the account, the opportunity and the pipeline numbers live.
 
 | Placeholder | What it adds here | Wired today |
 |---|---|---|
-| `~~CRM` | customer or prospect record, renewal and open opps, contacts, activities, owner; deal outcome and loss reason, read-only, for `objection-handling`, only after the objection owner approves | HubSpot |
+| `~~CRM` | customer or prospect record, renewal and open opps, contacts, activities, owner; deal outcome and loss reason, read-only, for `objection-handling` and `sales-collateral` win-loss, only after the owner approves | HubSpot |
+| `~~win/loss` | structured buyer interviews and win-loss reports, read-only, for `sales-collateral` win-loss | none wired: paste, or connect your own server |
 | `~~revenue intelligence` | engagement and pipeline health for the customer (paste only today) | none wired: paste, or connect your own server |
 
 ## Conversations
@@ -38,7 +40,7 @@ Where the buyer and your team talk: threads, calls and meetings.
 | `~~team chat` | the Slack thread you ask in; internal escalations and deal desk threads | Slack |
 | `~~email` | threads with the customer's domain | Gmail |
 | `~~calendar` | recent and upcoming meetings, attendees | Google Calendar |
-| `~~call recordings` | latest call, objections and customer phrases as said; `objection-handling` reads recent calls to build the objection library, only after the objection owner approves | Gong, Wispr Flow, Granola |
+| `~~call recordings` | latest call, objections and customer phrases as said; `objection-handling` reads recent calls to build the objection library, and `sales-collateral` reads them for win-loss, only after the owner approves | Gong, Wispr Flow, Granola |
 
 ## Documents and knowledge
 

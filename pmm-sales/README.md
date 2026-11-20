@@ -1,30 +1,28 @@
 # pmm-sales
 
-Sales-facing context for sellers and CSMs, built for Slack first: tag Claude in a thread and get the current state of one customer, or the reason, angle and first question for one prospect, every line sourced.
+Sales skills for sellers and CSMs, built for Slack first: tag Claude in a thread and get the state of a customer, the reason to contact a prospect, the next step on a deal, the next line for an objection or a scored discovery call, every line sourced.
 
 ## Start here
 
-- **You get:** a ~150-word answer in the Slack thread, or a full brief in chat, Cowork or Claude Code: owner, renewal, who has really replied, latest calls, up to five flags, and a check against your brain.
-- **First command:** `/pmm-sales:customer-context`
-- **Try:** "@Claude catch me up on Northwind before Thursday's renewal call"
-- **Before a first touch:** `/pmm-sales:prospect-research`. Try: "@Claude is there a reason to contact Tidewell Foods now?" You get a verdict, a hypothesis, an angle and a first question. EMEA data rules switch on by themselves for European accounts.
-- **On a live deal:** `/pmm-sales:deal-review`. Try: "@Claude review the Marlow deal before Friday's call". You get what changed, the buyer's own words, the likely reason it dies and one next step, plus blocks to paste into your CRM.
-- **Before a discovery call:** `/pmm-sales:discovery-call-prep`. Try: "@Claude prep my discovery call with the VP Finance at Tidewell Foods". You get the bet, the opener, three questions and a fast no in about 150 words; the full plan in a Doc. Run `setup` first: it checks your brain, then the owner and your recorder. Seller card: [`seller-card.md`](skills/discovery-call-prep/references/seller-card.md). Setup guide: [docs/discovery-call-prep.md](../docs/discovery-call-prep.md).
-- **After a discovery call:** `/pmm-sales:discovery-call-scoring`. Try: "@Claude score this discovery call" and paste the transcript. You get your pattern, a seven-stage score, the moments that cost you and the moves for the next call. Private to you: no manager view, nothing ranked. Seller card: [`seller-card.md`](skills/discovery-call-scoring/references/seller-card.md).
-- **On a pushback:** `/pmm-sales:objection-handling`. Try: "@Claude they said it's too expensive". You get the type behind the words, the next line and a dated next step; the objection is logged for you.
-- **For the PMM, weekly:** `/pmm-sales:sales-research-digest`. Plain words, three actions, outcomes from your CRM.
-- **The brain:** both research skills use it for ICP fit, competitors, objections and approved claims. Without one it still runs and says so. Never writes to it.
+- Researching a company you do not sell to yet? → `/pmm-sales:prospect-research`
+- Catching up on a customer before a renewal? → `/pmm-sales:customer-context`
+- Live deal that might stall? → `/pmm-sales:deal-review`
+- Discovery call coming up? → `/pmm-sales:discovery-call-prep`
+- Discovery call just ended? → `/pmm-sales:discovery-call-scoring`
+- Buyer just pushed back? → `/pmm-sales:objection-handling`
+- Weekly report for the PMM? → `/pmm-sales:sales-research-digest`
+
+Try it in Slack: "@Claude review the Marlow deal before Friday's call". Every skill reads your brain (`product-marketing-context`) and never writes to it.
 
 ## Skills (7)
 
-- **customer-context** — Build a dated brief on one existing customer from your CRM, email, calls, docs, chat, support and usage, check it against your brain and show what changed since last time. Read-only.
-- **prospect-research** — Build a pre-first-touch brief on one company you do not sell to yet: dated signals mapped to your pains, fit and timing scored separately, a hypothesis with angle, first question and fallback. Checks the CRM first, applies EMEA data defaults, proposes what other skills should learn. Never writes outreach.
-
-- **deal-review** — Review one live deal: evidence ranked by source, what the buyer decided in their own words, the most likely reason it dies, one next step. Deals-only queue, call prep, debrief and a private pattern mirror. Read-only; never writes to the CRM.
-- **discovery-call-prep** — Get a point of view and a 7-stage discovery call plan from the prospect company and the buyer's title: a lead hypothesis and fallback, ready-to-ask questions, what good looks like per stage, where you differ in their words and a fast no. Also preps follow-up and open-deal calls, and learns from call outcomes. Draft only; read-only for the brain.
-- **discovery-call-scoring** — Paste a discovery call you ran and get it scored across seven stages: your pattern, the moments that cost you, and two to four moves with the words to say. Private to the seller; compares with your call plan; learns across calls. Draft only; read-only for the brain.
-- **objection-handling** — Take control of a buyer objection: the type behind the words, the next line, a call digest or a paste-ready email reply, and a library that learns from every deal. Asks who owns objection knowledge. Draft only; read-only for the brain.
-- **sales-research-digest** — Turn the logs of the sales research skills into one plain-language weekly report for the PMM: use, advice quality, common threads, up to three actions. Reads outcomes from your CRM. Proposes only.
+- **customer-context** — Before a renewal call, QBR or escalation, it builds a dated brief on one existing customer from your CRM, email, calls, docs, support and usage, checks it against your brain and shows what changed since the last brief. Read-only, and it works in a Slack thread.
+- **prospect-research** — Before a first touch, it tells you whether there is a reason to contact one company you do not sell to yet: dated signals mapped to your pains, fit and timing scored separately, and a hypothesis with an angle, a first question and a fallback. EMEA data rules stay on for European accounts.
+- **deal-review** — On one live deal that may be stalling, it ranks the evidence by source, shows what the buyer decided in their own words, names the most likely reason the deal dies and gives dated next steps. It also builds a weekly queue of the deals that need you and debriefs a call transcript.
+- **discovery-call-prep** — With a prospect company and the title of who you are meeting, it researches the account and returns a point of view, one lead hypothesis with a fallback and a seven-stage plan: the opener, ready-to-ask questions, what good looks like per stage and a fast-disqualify line. It also preps follow-up and open-deal calls.
+- **discovery-call-scoring** — Right after a discovery call you ran, paste the transcript and it scores the seven discovery stages, names your pattern, replays the moments that cost you and gives two to four next-call moves with the words to say. Private to the seller: it never goes to a manager.
+- **objection-handling** — When a buyer pushes back, it names the type behind the words and gives you the next line, a call digest or a paste-ready email reply, then logs the objection so a shared library improves with every deal.
+- **sales-research-digest** — Every week it gives the PMM one plain-language report on how sellers used the research skills: who used them, whether the advice held up against CRM outcomes and up to three things to do. It covers pmm-sales skills only and proposes, never changes.
 
 ## Commands (7)
 
@@ -38,24 +36,9 @@ Sales-facing context for sellers and CSMs, built for Slack first: tag Claude in 
 
 ## Connectors (Optional)
 
-Every skill works without connectors. Install this plugin on its own to load its `.mcp.json`.
-
-Sign-in steps: [`docs/connect-your-tools.md`](../docs/connect-your-tools.md). Category list: [`CONNECTORS.md`](CONNECTORS.md).
-
-| Category | What it adds | Tools |
-|---|---|---|
-| `~~CRM` | customer record, renewal, open opps, contacts | HubSpot |
-| `~~team chat` | the thread you ask in; internal escalations | Slack |
-| `~~email` | threads with the customer's domain | Gmail |
-| `~~calendar` | recent and upcoming meetings | Google Calendar |
-| `~~call recordings` | latest call, objections, customer phrases; recent calls build the objection library once the objection owner approves | Gong, Wispr Flow, Granola |
-| `~~cloud storage` | account plans; saves the full brief | Google Drive, Google Docs |
-| `~~knowledge base` | account plans and notes | Notion, Atlassian |
-| `~~support` | escalations by theme | Intercom |
-| `~~product analytics` | adoption trend | Amplitude (US and EU), Mixpanel (US and EU) |
-| `~~company data` | funding, size, headcount, hiring | Crunchbase |
-| `~~web research` | news and pages about the company | Exa |
-| `~~enrichment` | company fields (docs only, no server) | none wired: paste, or connect your own server |
+Every skill works without connectors: paste what you have and the output keeps its shape.
+Install this plugin on its own to load its `.mcp.json`; sign-in steps are in [`docs/connect-your-tools.md`](../docs/connect-your-tools.md).
+The full reference, with every category, its tools and which skill reads it, is in [`CONNECTORS.md`](CONNECTORS.md).
 
 ## Author
 

@@ -35,7 +35,7 @@ Skills say "show the draft and wait for your yes". An instruction can be skipped
 |---|---|---|
 | AGENTS.md map | About 230 words written into your project when the brain is built | Every session |
 | Brain | `foundation/brain.md`, 8 sections | Only the sections a task names |
-| Skills | 51 skills | When your request matches one |
+| Skills | 52 skills | When your request matches one |
 | Scripts | `lint_draft.py` and `brain_section.py` in `foundation/tools/` | When a check needs no judgment |
 
 The map is what makes your agent read the brain in chats where you call no skill. Claude Code reads it through a one-line `CLAUDE.md` import; agents that read `AGENTS.md` pick it up directly. In Claude Code, the competitive-intelligence plugin also asks before anything is sent to Slack or email. How it works, and how to turn it off: [docs/agents-map.md](agents-map.md).

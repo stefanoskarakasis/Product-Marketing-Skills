@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Repo: tidy
+
+- `strip_frontmatter.py` (a one-time migration script) moved from the repo root to `scripts/`. `pmm-sales/SELLER-CARD.md`, the prospect-research seller card, moved to `pmm-sales/skills/prospect-research/references/seller-card.md`, next to the discovery-call-scoring card. No skill, command or routing change.
+
 ### Sales: sales-collateral
 
 - New skill `sales-collateral` in `pmm-sales`, with the `/pmm-sales:sales-collateral` command: builds the sales assets a rep sends or uses in a deal from your brain and only claims you can defend: a one-pager or leave-behind, a demo script, a proposal, an ROI calculator, a deck outline, and win-loss analysis of why you win and lose. Every other sales-asset ask (an objection, a battlecard, persona cards, a playbook, a case study, a call plan, a message) is routed to the skill that owns it, with what you already told it.

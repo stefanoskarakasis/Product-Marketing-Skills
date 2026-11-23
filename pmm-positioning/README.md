@@ -1,6 +1,6 @@
 # pmm-positioning
 
-Strategic positioning and messaging using April Dunford's framework — with five output modes — plus ICP, alternatives, buying-committee, market-narrative, and voice depth to ground it in real research, real competitive evidence, real power dynamics, real timing, and a consistent sound, not just firmographics.
+Know who you sell to, who else they consider and why you win. Positioning and messaging on April Dunford's framework, with five output modes, grounded in your ICP, alternatives, buying committee, market narrative and voice.
 
 ## Start here
 

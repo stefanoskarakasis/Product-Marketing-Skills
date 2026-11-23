@@ -1,6 +1,6 @@
 # pmm-go-to-market
 
-Go-to-market skills for PMMs: beachhead segments, launch tiering and GTM strategy briefs, GTM motions and multi-skill workflow orchestration.
+Pick the first segment, tier the launch, plan the motion. Beachhead scoring, launch tiers and GTM briefs, motion selection and multi-skill programs.
 
 ## Start here
 

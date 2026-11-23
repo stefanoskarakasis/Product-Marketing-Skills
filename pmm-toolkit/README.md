@@ -1,6 +1,6 @@
 # pmm-toolkit
 
-PMM utilities: writing assistant for internal and marketing content, resume review, privacy policy generator and GACCS campaign briefs.
+Everyday PMM utilities: a writing assistant for internal and marketing content, resume review, a privacy policy generator and GACCS campaign briefs.
 
 ## Start here
 

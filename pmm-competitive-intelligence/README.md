@@ -1,6 +1,6 @@
 # pmm-competitive-intelligence
 
-Competitive intelligence for B2B SaaS PMMs: profiles, battlecards, weekly sweeps, leadership briefs, comparison pages and a newsletter, with competitor answers in Slack.
+Know what your competitors did this week and what to say about it. Profiles, battlecards, weekly sweeps, leadership briefs, comparison pages and a newsletter, with competitor answers in Slack.
 
 ## Start here
 

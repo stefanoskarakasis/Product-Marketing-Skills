@@ -1,6 +1,6 @@
 # pmm-growth
 
-Growth skills for PMMs: North Star Metric and scorecard, positioning angles, campaign ideas, value-prop variants and checked customer stories.
+Find the next angle and prove it worked. North Star Metric and scorecard, positioning angles, campaign ideas, value-prop variants and checked customer stories.
 
 ## Start here
 

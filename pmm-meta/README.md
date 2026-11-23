@@ -1,6 +1,6 @@
 # pmm-meta
 
-Meta skills that operate on the skill system itself: skill review, session learning, cross-skill synthesis and output verification.
+Keep the skills honest. Skill review, session learning, cross-skill synthesis and output verification.
 
 ## Start here
 

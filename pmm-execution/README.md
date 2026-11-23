@@ -1,6 +1,6 @@
 # pmm-execution
 
-Day-to-day PMM execution skills: PRDs, OKRs, pre-mortems, retros, stakeholder maps, interview summaries, experiment docs and prioritization frameworks.
+Run the PMM week. PRDs, OKRs, pre-mortems, retros, stakeholder maps, interview summaries, experiment docs and prioritization frameworks.
 
 ## Start here
 

@@ -1,6 +1,6 @@
 # pmm-intelligence
 
-A weekly read on what changed around your product: at most five opportunities from signals you name, each tied to your brain and quarterly priorities.
+Know what changed this week. At most five opportunities from signals you name, each tied to your brain and quarterly priorities.
 
 ## Start here
 

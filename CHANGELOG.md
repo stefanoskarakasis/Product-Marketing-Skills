@@ -6,7 +6,8 @@
 
 - Root README top block, "Why a brain?" section (new Without/With table and a learning callout), install callout, proof-first bullet and Usage intro rewritten around one outcome: product marketing that compounds from one company brain.
 - QUICK-START lead line, examples intro, pick-by-job intro and the `product-marketing-context` and `pmm-sales` README openings follow the same voice.
-- No skill, command, routing, connector or manifest change.
+- The other eight plugin READMEs and the marketplace and plugin descriptions (`.claude-plugin` and `.cursor-plugin` manifests) follow the same voice.
+- No skill, command, routing or connector change.
 
 ### Sales: pipeline-digest
 

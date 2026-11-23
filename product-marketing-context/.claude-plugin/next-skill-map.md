@@ -229,7 +229,7 @@ named competitor (competitive-battlecard)?"
 - sales-research-digest — for the PMM, weekly, to see how sellers use these briefs and what to change
 **Prompt to surface:** "Next, pick one: build the rival card (competitive-battlecard), turn this into a message (writing-assistant), map the committee (buyer-personas), plan the stakeholders (stakeholder-maps), test the hypothesis on ten accounts (experiment-doc), log the rival (competitive-profile), confirm a trigger for the brain (product-marketing-context), or see how the team uses these briefs (sales-research-digest)?"
 
-## After deal-review (review, since or queue delivered)
+## After deal-review (review or since delivered)
 **Next options (not a single path — ask which applies):**
 - discovery-call-prep — if the next call needs a plan: the gap to close and three questions
 - competitive-battlecard — if a named rival is in the deal and the seller needs the card for the next call
@@ -237,6 +237,15 @@ named competitor (competitive-battlecard)?"
 - writing-assistant — if the seller wants the next step or the questions turned into a message in their own voice
 - customer-context — if the deal closed won and a handover brief is needed
 **Prompt to surface:** "Next, pick one: build the rival card (competitive-battlecard), map the committee (buyer-personas or stakeholder-maps), turn the next step into a message (writing-assistant), or start the customer brief (customer-context)."
+
+## After pipeline-digest (digest, hygiene list or forecast sheet delivered, files saved)
+**Next options (not a single path — ask which applies):**
+- deal-review — if one deal on the list needs a full check: is it real, and what could kill it
+- discovery-call-prep — if a deal in the five needs a plan for its next call
+- buyer-personas or stakeholder-maps — if the digest shows many deals with a single contact role
+- writing-assistant — if the seller wants the next step or a DM turned into a message in their own voice
+- sales-research-digest — if the PMM's weekly report should include the pipeline counts
+**Prompt to surface:** "Next, pick one: check one deal (deal-review), plan the next call (discovery-call-prep), map the committee (buyer-personas or stakeholder-maps), or turn a next step into a message (writing-assistant)?"
 
 ## After sales-research-digest (weekly sales report delivered, file saved)
 **Next options (not a single path — ask which applies):**

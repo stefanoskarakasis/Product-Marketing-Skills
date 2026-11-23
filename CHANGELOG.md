@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v1.22.0 — 2026-11-23
 
 ### Repo: positioning
 

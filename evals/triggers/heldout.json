@@ -833,6 +833,22 @@
       "expect": [
         "sales-collateral"
       ]
+    },
+    {
+      "skill": "pipeline-digest",
+      "kind": "situation",
+      "prompt": "I manage nine account executives. On Monday I opened Salesforce and found 40 open opportunities, many with old close dates and empty next steps. Show me where the pipeline stands without scoring any of my people.",
+      "expect": [
+        "pipeline-digest"
+      ]
+    },
+    {
+      "skill": "pipeline-digest",
+      "kind": "judgement",
+      "prompt": "Before my forecast call, which of the deals I put in commit have the least behind them? Judge by the activity, not by the stage I set.",
+      "expect": [
+        "pipeline-digest"
+      ]
     }
   ],
   "non_pmm": [

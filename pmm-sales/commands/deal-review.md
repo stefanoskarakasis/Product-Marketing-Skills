@@ -1,6 +1,6 @@
 ---
-description: Review one open deal, debrief a transcript or see which deals need you this week, from your calls, CRM and email, checked against your brain, in Slack or anywhere else
-argument-hint: "<deal or account, plus what you want: 'is it real', 'what changed', 'which deals need me', or a pasted transcript>"
+description: Review one open deal or debrief a transcript, from your calls, CRM and email, checked against your brain, in Slack or anywhere else
+argument-hint: "<deal or account, plus what you want: 'is it real', 'what changed', or a pasted transcript>"
 ---
 
 # /pmm-sales:deal-review -- Deal Review
@@ -10,8 +10,8 @@ reason it dies and up to three dated next steps with an owner role and a
 sample move. Ranks every claim by evidence, flags where the CRM is more
 optimistic than the calls, asks for deal size and stage instead of assuming
 them, and ends with paste-ready blocks for your CRM, Slack and email. Also runs
-a weekly queue of deals (never sellers), a debrief on a new
-transcript and an optional private mirror of your own habits.
+a debrief on a new transcript and an optional private mirror of your own habits.
+For the weekly list of deals across a pipeline, use `pipeline-digest`.
 
 ## Invocation
 
@@ -19,7 +19,6 @@ transcript and an optional private mirror of your own habits.
 /pmm-sales:deal-review Marlow Retail
 /pmm-sales:deal-review Is Marlow real?
 /pmm-sales:deal-review What changed on Marlow since Monday?
-/pmm-sales:deal-review Which deals need me this week?
 /pmm-sales:deal-review log: lost: no budget, Marlow
 ```
 

@@ -14,11 +14,11 @@ Moved to `discovery-call-prep`, which reads this skill's last record for the ope
 
 ## queue
 
-Weekly, scheduled once the user approves it, or on request. Lists 3 to 5 deals where attention changes the outcome: close date moved, buyer silent for `quiet_days`, one buyer role since the first meeting, a buyer-dated event within 14 days, or a next step with no date. Each line: deal, stage, the gap, owner as a role, one action. **Deals only: no seller names, no per-seller counts, no ranking of people, in every output.** If asked to rank or compare sellers, say once that the queue lists deals, not people, and offer the deal list. Never mention habits or the private mirror. Fewer than three qualify: list them and say so; none: say "nothing needs attention". CRM read-only.
+Moved to `pipeline-digest`, which reads the whole open pipeline of a person or a team, lists deals only and asks for any CRM field it is missing. This skill keeps one deal.
 
 ## mine
 
-A private mirror of the seller's own habits. Off until the seller says yes once. Then each review appends to `_mine.md` the date, deal slug and any review question left unanswered. A habit is shown to the seller, privately and in their own thread, when the same gap appears in at least three of their last five reviews. `_mine.md` is the seller's file: never read by `queue`, `sales-research-digest`, `meta-synthesis` or any proposal, never shown in a channel, never written when the seller is unknown. Say how to delete it.
+A private mirror of the seller's own habits. Off until the seller says yes once. Then each review appends to `_mine.md` the date, deal slug and any review question left unanswered. A habit is shown to the seller, privately and in their own thread, when the same gap appears in at least three of their last five reviews. `_mine.md` is the seller's file: never read by `pipeline-digest`, `sales-research-digest`, `meta-synthesis` or any proposal, never shown in a channel, never written when the seller is unknown. Say how to delete it.
 
 ## log:
 
@@ -31,6 +31,6 @@ A private mirror of the seller's own habits. Off until the seller says yes once.
 | `<slug>-YYYY-MM-DD-HHMM.md` | A review, dated, append-only, with `retain_until` |
 | `_config.md` | `emea_mode`, `home_region`, `sales_cycle` (days per segment, asked), `stale_days` and `quiet_days` (from the cycle; 30 and 14 if unknown), `approver`, `brain_source`, `usage_identity`, `retain_days` (180). Defaults are labelled and editable |
 | `_gaps.md` | Gap types, the play each triggers, hits and total |
-| `_patterns.md` | Appended only by review and since (never queue or ask). Logged runs: date, deal slug, segment, stage, gap types, play, buyer roles |
+| `_patterns.md` | Appended only by review and since (never ask). Logged runs: date, deal slug, segment, stage, gap types, play, buyer roles |
 | `_outcomes.md` | `log:` outcomes |
 | `_mine.md` | The seller's own, private |

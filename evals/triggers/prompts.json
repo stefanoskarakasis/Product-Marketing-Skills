@@ -1249,6 +1249,30 @@
       "expect": [
         "objection-handling"
       ]
+    },
+    {
+      "skill": "pipeline-digest",
+      "kind": "direct",
+      "prompt": "Pipeline digest for my team: 31 open deals in Salesforce, 4 close dates have passed and 6 deals have had no activity for two weeks. What needs doing this week?",
+      "expect": [
+        "pipeline-digest"
+      ]
+    },
+    {
+      "skill": "pipeline-digest",
+      "kind": "indirect",
+      "prompt": "I have 22 open opportunities in HubSpot and a forecast call on Thursday, and I think half of the next steps and contact roles are blank. Where do I start?",
+      "expect": [
+        "pipeline-digest"
+      ]
+    },
+    {
+      "skill": "pipeline-digest",
+      "kind": "near-miss",
+      "prompt": "Is the Kestrel Logistics deal real? Their board signs Thursday and I only have one contact there.",
+      "expect": [
+        "deal-review"
+      ]
     }
   ],
   "non_pmm": [

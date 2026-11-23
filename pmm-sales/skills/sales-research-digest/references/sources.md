@@ -12,6 +12,7 @@ Read at Steps 1 and 4. Every source is optional. A missing source is named under
 | saved briefs in `/context/prospects/` | `prospect-research` | Which brain sections were missing, size conflicts |
 | `/context/deals/_outcomes.md`, `_patterns.md`, `_gaps.md` | `deal-review` | Deal stage reached, reasons deals stall, gaps found before calls (never `_mine.md`) |
 | `/context/discovery/_reviews.md` | `discovery-call-scoring` | Counts only: reviews, the stage most often Needs Work, the pattern most often named. Never a seller, a name or a quote |
+| `/context/pipeline/_patterns.md`, `_gaps.md`, `_outcomes.md` | `pipeline-digest` | Counts only: flags by segment and stage, CRM fields missing, how many questions were filled. Never a seller or a name |
 | `/context/customers/_patterns.md` | `customer-context` | Pains customers describe, to compare with prospects |
 | `/context/skill-sessions.md` | every skill | What surprised, was wrong or was missing, for the two sales skills only |
 | brain Sections 2, 3, 6 | the PMM | To say where an action belongs |

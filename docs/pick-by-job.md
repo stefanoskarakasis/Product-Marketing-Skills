@@ -20,6 +20,7 @@ Ten plugins, grouped by the work you do. Install `product-marketing-context` fir
 | Catch up on a customer before a call or renewal, in Slack or anywhere | `customer-context` | `pmm-sales` |
 | Find the reason, angle and first question for a company you do not sell to yet | `prospect-research` | `pmm-sales` |
 | Review a live deal, find what could kill it and get one next step | `deal-review` | `pmm-sales` |
+| See what changed in my pipeline or my team's, which deals need me this week and which CRM fields to fix | `pipeline-digest` | `pmm-sales` |
 | Get a point of view and a 7-stage plan for a discovery call, from the company and the buyer's title | `discovery-call-prep` | `pmm-sales` |
 | Score a discovery call you already ran and get the moves for the next one | `discovery-call-scoring` | `pmm-sales` |
 | Handle a buyer objection, digest a call's objections or draft a reply | `objection-handling` | `pmm-sales` |

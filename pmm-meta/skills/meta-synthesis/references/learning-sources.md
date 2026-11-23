@@ -22,6 +22,9 @@ Read at Step 0 and Step 1. Skills already write their own ledgers. This file map
 | `/context/deals/_outcomes.md` | `deal-review` | `date` | stage and `segment` | the `log:` outcome |
 | `/context/deals/_patterns.md` | `deal-review` | `date` | `type` | `observation` and `count` |
 | `/context/deals/_gaps.md` | `deal-review` | `date` | gap `type` | gap and `count` |
+| `/context/pipeline/_patterns.md` | `pipeline-digest` | `date` | `segment` and stage | flags and `count` (by deal; no seller field) |
+| `/context/pipeline/_gaps.md` | `pipeline-digest` | `date` | CRM field | asked and filled (counts only) |
+| `/context/pipeline/_outcomes.md` | `pipeline-digest` | `date` | stage and `segment` | the `log:` outcome (seller-reported) |
 | `/context/objections/_ledger.md` | `objection-handling` | `date` | `card ID` and `segment` | `outcome` (from the CRM, read-only) |
 | `/context/discovery/_outcomes.md` | `discovery-call-prep` | `date` | `slug` and `segment` | `outcome` (graded from calls, CRM and calendar, read-only) |
 | `/context/discovery/_questions.md` | `discovery-call-prep` | `date` | `question id` | `asked` and `unlocked` |

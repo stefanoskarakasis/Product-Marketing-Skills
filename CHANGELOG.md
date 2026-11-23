@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+### Sales: pipeline-digest
+
+- New skill `pipeline-digest` in `pmm-sales`, with the `/pmm-sales:pipeline-digest` command: reads the whole open pipeline of one seller or a team from Salesforce, another CRM or a CSV and returns what changed since last week, the deals that are quiet, slow in stage or past due, the CRM fields to fix and up to five deals to act on, each with one action and one date. Modes: `weekly`, `hygiene`, `forecast` (call prep, no probabilities), `since` and `log:`.
+- It asks for what is missing: a field a check needs and cannot find (a contact role, an amount) becomes a question and "not checked", never a guess. For each deal owner it drafts a DM that is sent only after a yes that names it; unattended runs send nothing.
+- Deals only: no seller is named, ranked or counted, and Slack shows no amounts. Plain words, short sentences, weekday-day-month dates and flag icons so a junior Account Manager in any market can follow it; it replies in the language the asker writes in.
+- It learns without typing: each run appends `_patterns.md` and `_gaps.md` in `/context/pipeline/` (counts only, by deal, segment, stage and field). Proposals to other skills start at counted thresholds and are never written silently. `sales-research-digest` reads the counts and `meta-synthesis` registers the files.
+- `deal-review` no longer has the `queue` mode: the weekly list of deals moved here. Its description, modes, formats, command and evals are updated (1.1.0).
+- No new connector category or server. Salesforce stays connect-your-own.
+- `tests/test_description_budget.py` ceiling is now 23,150 (was 22,500). `docs/routing-checks.md` grows to 74 prompts. Counts: 53 skills, 61 commands.
+
 ### Repo: tidy
 
 - `strip_frontmatter.py` (a one-time migration script) moved from the repo root to `scripts/`. `pmm-sales/SELLER-CARD.md`, the prospect-research seller card, moved to `pmm-sales/skills/prospect-research/references/seller-card.md`, next to the discovery-call-scoring card. No skill, command or routing change.

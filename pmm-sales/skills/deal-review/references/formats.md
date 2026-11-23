@@ -67,15 +67,3 @@ Rules:
 3. **Send-now questions:** one email, subject line included, no pitch.
 
 They are also the fallback when a write is refused or no connector exists.
-
-## Queue
-
-```
-## Deals to look at this week
-### 1. [Deal]
-- **Stage:** [stage]
-- **Gap:** [gap]
-- **Owner:** [role]
-- ⚡ **Do:** [one action] · by [date]
-```
-Close with a count and the line "Deals only; no sellers listed." In Slack: bold deal name, then one line each.

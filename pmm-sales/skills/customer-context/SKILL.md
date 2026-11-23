@@ -23,7 +23,7 @@ A seller or CSM walks into a customer call with five tabs open and none of them 
 ## Trigger
 
 - **When:** Someone needs the current state of one named customer before a call, a renewal, an escalation or a handover, or asks about it in a Slack thread.
-- **Not for:** A prospect or a company you do not sell to yet; say so, then offer to build the brief from pasted notes. A competitor → `competitive-profile`. A competitor inside a live deal → `competitive-battlecard`. Who decides and who blocks in a deal → `stakeholder-maps` or `buyer-personas`. A discovery call plan → `discovery-call-prep`. A customer story or reference → `customer-stories`. A pipeline or forecast across many customers → N/A in this plugin.
+- **Not for:** A prospect or a company you do not sell to yet; say so, then offer to build the brief from pasted notes. A competitor → `competitive-profile`. A competitor inside a live deal → `competitive-battlecard`. Who decides and who blocks in a deal → `stakeholder-maps` or `buyer-personas`. A discovery call plan → `discovery-call-prep`. A customer story or reference → `customer-stories`. A pipeline or forecast across many deals → `pipeline-digest`.
 - **Example prompts:**
   - "@Claude catch me up on Northwind" (Slack thread)
   - "Customer context for Northwind before Thursday's renewal call."

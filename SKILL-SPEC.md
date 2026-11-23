@@ -411,7 +411,7 @@ Load instruction for brain-dependent skills:
 - If a loaded section is marked 🔴 Placeholder: flag before proceeding.
 ````
 
-**Brain-dependent skills:** `alternatives-map`, `beachhead-segment`, `brand-voice`, `buyer-personas`, `competitive-battlecard`, `competitive-briefing`, `competitive-profile`, `comparison-page-brief`, `weekly-competitive-updates`, `customer-context`, `competitor-deep-dive`, `deal-review`, `discovery-call-prep`, `discovery-call-scoring`, `objection-handling`, `prospect-research`, `sales-research-digest`, `sales-collateral`, `customer-stories`, `experiment-doc`, `experiment-ideas`, `gaccs-brief`, `go-to-market-strategy`, `gtm-motions`, `ideal-customer-profile`, `industry-newsletter`, `interview-summary`, `market-context`, `media-monitoring`, `message-house`, `meta-synthesis`, `pmm-metrics`, `pmm-okrs`, `positioning-ideas`, `positioning-messaging`, `prd`, `pre-mortem`, `prioritization-frameworks`, `product-marketing-context`, `product-messaging-playbook`, `proof-points`, `retro`, `signal-monitor`, `stakeholder-maps`, `value-prop-statements`, `workflow-orchestrator`, `writing-assistant`
+**Brain-dependent skills:** `alternatives-map`, `beachhead-segment`, `brand-voice`, `buyer-personas`, `competitive-battlecard`, `competitive-briefing`, `competitive-profile`, `comparison-page-brief`, `weekly-competitive-updates`, `customer-context`, `competitor-deep-dive`, `deal-review`, `discovery-call-prep`, `discovery-call-scoring`, `objection-handling`, `prospect-research`, `sales-research-digest`, `sales-collateral`, `pipeline-digest`, `customer-stories`, `experiment-doc`, `experiment-ideas`, `gaccs-brief`, `go-to-market-strategy`, `gtm-motions`, `ideal-customer-profile`, `industry-newsletter`, `interview-summary`, `market-context`, `media-monitoring`, `message-house`, `meta-synthesis`, `pmm-metrics`, `pmm-okrs`, `positioning-ideas`, `positioning-messaging`, `prd`, `pre-mortem`, `prioritization-frameworks`, `product-marketing-context`, `product-messaging-playbook`, `proof-points`, `retro`, `signal-monitor`, `stakeholder-maps`, `value-prop-statements`, `workflow-orchestrator`, `writing-assistant`
 
 ### Context-Agnostic (`context-agnostic`)
 
@@ -513,7 +513,7 @@ instead of a fabricated one. **Found and fixed across 6 eval files on
 | Tier | Description | Examples | Requirements |
 |---|---|---|---|
 | **T1 — Strategic** | High-stakes, executive or customer-facing output | pre-mortem, positioning-messaging, go-to-market-strategy | Core sections + quality gate + Learning Close |
-| **T2 — Execution** | Day-to-day PMM work, high frequency, medium stakes | experiment-doc, prd, retro, stakeholder-maps, gaccs-brief, discovery-call-prep, discovery-call-scoring, competitive-battlecard, competitive-briefing, competitive-profile, competitor-deep-dive, industry-newsletter, media-monitoring, comparison-page-brief, weekly-competitive-updates, customer-context, prospect-research, deal-review, objection-handling, sales-research-digest, sales-collateral, pmm-okrs, beachhead-segment, buyer-personas | Core sections + quality gate + Learning Close |
+| **T2 — Execution** | Day-to-day PMM work, high frequency, medium stakes | experiment-doc, prd, retro, stakeholder-maps, gaccs-brief, discovery-call-prep, discovery-call-scoring, competitive-battlecard, competitive-briefing, competitive-profile, competitor-deep-dive, industry-newsletter, media-monitoring, comparison-page-brief, weekly-competitive-updates, customer-context, prospect-research, deal-review, objection-handling, sales-research-digest, sales-collateral, pipeline-digest, pmm-okrs, beachhead-segment, buyer-personas | Core sections + quality gate + Learning Close |
 | **T3 — Utility** | Tactical outputs, lower stakes | writing-assistant, pmm-resume, privacy-policy, interview-summary, prioritization-frameworks | Core sections. Quality gate optional. Learning Close optional. |
 | **T4 — Meta** | Skills that operate on other skills | meta-review, meta-learn, meta-verify, meta-synthesis, workflow-orchestrator, product-marketing-context | Custom per meta skill. Core sections still required. |
 
@@ -545,6 +545,8 @@ and Quality Gate sections) and is added to the T2 row above as of this update.
 `objection-handling` was built on 2026-11-10 as the fifth skill of the `pmm-sales` plugin (`quality_gate: true`, read-only on the brain, with its own append-only store in `/context/objections/`) and is added to the brain-dependent list and the T2 row the same way.
 
 `discovery-call-prep` was built on 2026-11-16 as the sixth skill of the `pmm-sales` plugin (`quality_gate: true`, read-only on the brain, with its own append-only store in `/context/discovery/`) and is added to the brain-dependent list and the T2 row the same way.
+
+`pipeline-digest` was built on 2026-11-23 as the ninth skill of the `pmm-sales` plugin (`quality_gate: true`, read-only on the brain, with its own append-only store in `/context/pipeline/`) and is added to the brain-dependent list and the T2 row the same way. It took the weekly deal list over from `deal-review`.
 
 `discovery-call-scoring` was built on 2026-11-17 as the seventh skill of the `pmm-sales` plugin (`quality_gate: true`, read-only on the brain, with seller-private files in `/context/discovery/mine/` and a counts-only `_reviews.md`) and is added to the brain-dependent list and the T2 row the same way.
 

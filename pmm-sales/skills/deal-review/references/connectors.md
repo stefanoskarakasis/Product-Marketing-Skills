@@ -8,7 +8,7 @@ All optional. A category is connected only if a tool for it is present and answe
 | `~~call recordings` | Transcripts, objections, who spoke | Gong, Granola | Paste a transcript |
 | `~~email` | Threads with the buyer's domain | Gmail | Skip |
 | `~~calendar` | Meetings held and booked, attendee roles | Google Calendar | Skip |
-| `~~team chat` | The thread you ask in; the weekly queue | Slack | Reply in chat |
+| `~~team chat` | The thread you ask in | Slack | Reply in chat |
 | `~~cloud storage`, `~~knowledge base` | The saved review and `/context/deals/` | Google Drive and Docs, Notion | Show in the reply |
 
 Not wired here: support, analytics, company data, enrichment and web research. `customer-context` and `prospect-research` own them.

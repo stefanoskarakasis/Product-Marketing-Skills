@@ -31,6 +31,7 @@ Found by searching each skill and its references for the words below, not by rea
 | competitive-briefing | found | found (prediction ledger) | found (prohibited competitor only) |
 | competitive-profile | found (refresh only stale lines) | found (dated records) | found (prohibited competitor only) |
 | sales-research-digest | found (unattended rules) | found (last run) | found |
+| pipeline-digest | found (unattended rules) | found (last digest, `_gaps.md`) | found (no CRM answer and no paste) |
 | meta-synthesis | found (unattended rules) | found (`last_synthesis`) | found |
 | signal-monitor | not found | not found | not found |
 

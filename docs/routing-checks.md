@@ -53,7 +53,7 @@ Claude chooses a skill from its name and description. This page is how you check
 | 37 | Review the Acme deal before Friday's call | `deal-review` |
 | 38 | Is the Acme deal real or are we kidding ourselves? | `deal-review` |
 | 39 | What changed on the Acme deal since last week? | `deal-review` (`since`) |
-| 40 | Which of my deals need attention today? | `deal-review` (`queue`, deals only) |
+| 40 | Which of my deals need attention today? | `pipeline-digest`, not `deal-review` |
 | 41 | Research Acme before we reach out (no deal yet) | `prospect-research`, not `deal-review` |
 | 42 | Build a battlecard for the Acme deal against Rival | `competitive-battlecard`, not `deal-review` |
 | 43 | Run the weekly competitive updates | `weekly-competitive-updates` |
@@ -82,6 +82,12 @@ Claude chooses a skill from its name and description. This page is how you check
 | 66 | The CFO says we are too expensive and I have a call in an hour | `objection-handling`, not `sales-collateral` |
 | 67 | Build me a battlecard for Acme | `competitive-battlecard`, not `sales-collateral` |
 | 68 | Sales enablement kit for our launch | `product-messaging-playbook`, with an offer to build the one-pager here |
+| 69 | Pipeline digest for my team | `pipeline-digest` |
+| 70 | Which deals are stuck? | `pipeline-digest`, not `deal-review` |
+| 71 | Prep my forecast call | `pipeline-digest` |
+| 72 | Clean up my pipeline: half the next steps are blank | `pipeline-digest` |
+| 73 | Is the Marlow deal real? | `deal-review`, not `pipeline-digest` |
+| 74 | Which of my customers renew this quarter? | `customer-context`, not `pipeline-digest` |
 
 **Pass:** 53 of 56, and prompts 12 to 14, 23 and 26 never build a leadership brief or a newsletter without asking.
 
@@ -102,7 +108,7 @@ Better still, keep one set of competitive skills per project.
 
 ## Recording results
 
-Add one row per run to [`docs/eval-results.md`](eval-results.md): date, plugin version, prompts passed out of 46, and each failure with its exact prompt. A failure is a trigger-wording bug: report it as an issue and the description is changed, not the prompt.
+Add one row per run to [`docs/eval-results.md`](eval-results.md): date, plugin version, prompts passed out of 74, and each failure with its exact prompt. A failure is a trigger-wording bug: report it as an issue and the description is changed, not the prompt.
 
 
 The full run sheet for this battery and the held-out set is [`evals/triggers/run-sheet.md`](../evals/triggers/run-sheet.md). How to record a run: [`routing-runs.md`](routing-runs.md).

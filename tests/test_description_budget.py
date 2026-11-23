@@ -12,7 +12,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-TOTAL_CEILING = 22_500   # all descriptions together (raised 550 for objection-handling, 800 for discovery-call-prep, 400 for discovery-call-scoring, 760 for sales-collateral)
+TOTAL_CEILING = 23_150   # all descriptions together (raised 550 for objection-handling, 800 for discovery-call-prep, 400 for discovery-call-scoring, 760 for sales-collateral, 650 for pipeline-digest)
 ONE_CEILING = 800        # one description
 
 

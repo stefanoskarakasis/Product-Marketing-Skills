@@ -1,6 +1,6 @@
 # product-marketing-context
 
-The PMM brain. Builds and maintains `/foundation/brain.md` — the shared GTM context file every other plugin in this marketplace reads before producing output. Install this first.
+The PMM brain. Build your company context once, in about 15 minutes. Every other plugin reads `/foundation/brain.md` before it writes a word. Install this first.
 
 ## Start here
 

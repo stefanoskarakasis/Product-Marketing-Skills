@@ -1,6 +1,6 @@
 # pmm-sales
 
-Sales skills for sellers and CSMs, built for Slack first: tag Claude in a thread and get the state of a customer, the reason to contact a prospect, the next step on a deal, the next line for an objection or a scored discovery call, every line sourced.
+Sales skills for sellers and CSMs, built for Slack first. Tag Claude in a thread and get the state of a customer, the reason to contact a prospect, the next step on a deal, the next line for an objection or a scored discovery call. Every line sourced.
 
 ## Start here
 

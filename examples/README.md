@@ -2,7 +2,7 @@
 
 ## Try the skills without building a brain
 
-`example-brain.md` is a finished brain for **Ledgerlane**, a fictional accounts payable company. Use it to see what the skills produce before you spend 15 minutes on your own.
+`example-brain.md` is a finished brain for **Ledgerlane**, a fictional accounts payable company. Run a skill against it and see the output before you spend 15 minutes on your own.
 
 Everything in it is invented: the company, the customers, the numbers and the quotes. Do not cite any of it.
 

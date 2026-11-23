@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Repo: positioning
+
+- Root README top block, "Why a brain?" section (new Without/With table and a learning callout), install callout, proof-first bullet and Usage intro rewritten around one outcome: product marketing that compounds from one company brain.
+- QUICK-START lead line, examples intro, pick-by-job intro and the `product-marketing-context` and `pmm-sales` README openings follow the same voice.
+- No skill, command, routing, connector or manifest change.
+
 ### Sales: pipeline-digest
 
 - New skill `pipeline-digest` in `pmm-sales`, with the `/pmm-sales:pipeline-digest` command: reads the whole open pipeline of one seller or a team from Salesforce, another CRM or a CSV and returns what changed since last week, the deals that are quiet, slow in stage or past due, the CRM fields to fix and up to five deals to act on, each with one action and one date. Modes: `weekly`, `hygiene`, `forecast` (call prep, no probabilities), `since` and `log:`.

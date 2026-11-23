@@ -1,6 +1,6 @@
 # Pick a skill by job
 
-Ten plugins, grouped by the work you do. Install `product-marketing-context` first; add the rest as you need them.
+Start from the job, not the catalog. Ten plugins, grouped by the work you do. Install `product-marketing-context` first; add the rest as you need them.
 
 | I need to… | Start with | Plugin |
 |---|---|---|

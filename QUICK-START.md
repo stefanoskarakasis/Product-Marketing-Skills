@@ -1,5 +1,7 @@
 # Quick Start
 
+60 seconds to install. 15 minutes to build your brain. Then every skill starts from it.
+
 ## 1. Install
 
 ```bash

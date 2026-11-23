@@ -1,12 +1,14 @@
 # Product Marketing Skills for AI Agents
 
-**Positioning, competitive intelligence, GTM strategy and launch planning for B2B SaaS product marketers.**
+**Product marketing that compounds.**
 
-A collection of AI agent skills focused on product marketing tasks.
+53 free skills that start from your company brain, not a blank chat. Positioning, battlecards, call prep and launch plans that already know your product, your buyer and your voice.
 
-Build your company brain once; every skill reads it, so you stop re-explaining your product in every chat.
+**Your best work shouldn't live in one person's chat.**
 
-Built for PMMs, product marketing leaders and GTM operators. Runs in Claude Code and Claude; the skills are plain `SKILL.md` files, so the same install works in other agents that support them.
+**Build the brain once. Every skill reads it. Nothing changes without your yes.**
+
+Built for PMMs, product marketing leaders and GTM operators in B2B SaaS. Free, MIT licensed. Runs in Claude Code and Claude; the skills are plain `SKILL.md` files, so the same install works in other agents that support them.
 
 Built by [Stefanos Karakasis](https://stefanoskarakasis.substack.com/).
 
@@ -26,20 +28,32 @@ npx skills add stefanoskarakasis/Product-Marketing-Skills -a claude-code
 ```
 
 > [!IMPORTANT]
-> Then run **`product-marketing-context`** first. It interviews you for about 15 minutes and writes `/foundation/brain.md`. Everything else builds on it.
+> Run **`product-marketing-context`** first. About 15 minutes, starting from your website, pricing page or deck. It writes `/foundation/brain.md`. Everything else builds on it.
 
-- **No time?** Open [`examples/`](examples/) to see a finished brain and five prompts to try.
+- **Want proof first?** Open [`examples/`](examples/). A finished brain for a fictional company and five prompts, so you see the output before you build anything.
 - **Prefer the plugin marketplace?** See [Installation](#installation) below.
 
 ## Why a brain?
 
-Every time you ask an agent for positioning, battlecards or a brief, you re-explain your company. `product-marketing-context` fixes that with one document, `/foundation/brain.md`, and every other skill reads it before producing anything.
+Every new chat starts from zero. You paste the ICP. You re-explain the competitors. You fix the tone. Again.
+
+`product-marketing-context` ends that. It builds one document, `/foundation/brain.md`, in about 15 minutes, and every other skill reads it before it writes a word.
+
+| Without a brain | With the brain |
+|---|---|
+| Every chat starts from zero | Every skill starts from your company |
+| You re-paste the ICP and the competitors | The skill reads them from the brain |
+| Your best prompt lives in one person's chat | Your best work lives in one file the whole stack reads |
+| Output sounds like any B2B SaaS company | Output sounds like yours |
 
 | The brain holds | |
 |---|---|
 | **Your company** | Product, ICP, alternatives |
 | **How you sound** | Positioning, voice |
 | **What you can claim** | Market context, proof points |
+
+> [!TIP]
+> **The brain keeps learning, on your terms.** Skills flag what's stale and ask what's missing. You approve every change. Nothing is rewritten behind your back.
 
 > [!NOTE]
 > One brain covers one product. For several product lines, keep one folder and one brain per product. What loads and when, and how to turn the Slack and email prompts off: [docs/agents-map.md](docs/agents-map.md).
@@ -80,7 +94,7 @@ Every time you ask an agent for positioning, battlecards or a brief, you re-expl
 
 ## Usage
 
-Ask in plain language, or call a skill directly, for example `/pmm-positioning:ideal-customer-profile`.
+Ask in plain language. The right skill picks itself. Or call one directly, for example `/pmm-positioning:ideal-customer-profile`.
 
 | Say this | Skill that runs |
 |---|---|

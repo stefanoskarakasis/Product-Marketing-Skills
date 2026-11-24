@@ -1,0 +1,26 @@
+{
+  "name": "pmm-sales",
+  "displayName": "PMM Sales",
+  "description": "Help sellers win the deal in front of them. Slack first: review a live deal, prep and score discovery calls, handle an objection, catch up on a customer, research a prospect and see which deals need you, all checked against your brain and sourced to your CRM, calls and email.",
+  "version": "1.22.1",
+  "author": {
+    "name": "Stefanos Karakasis",
+    "url": "https://stefanoskarakasis.substack.com"
+  },
+  "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-sales",
+  "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
+  "license": "MIT",
+  "skills": "./skills",
+  "keywords": [
+    "deal review",
+    "discovery call scoring",
+    "discovery call prep",
+    "objection handling",
+    "customer context",
+    "prospect research",
+    "renewals",
+    "sales enablement",
+    "slack",
+    "pmm"
+  ]
+}

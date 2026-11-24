@@ -1,0 +1,51 @@
+{
+  "name": "pmm-skills",
+  "owner": {
+    "name": "Stefanos Karakasis"
+  },
+  "metadata": {
+    "description": "Product marketing that compounds. Skills for B2B SaaS PMMs and GTM operators that start from one shared company brain: positioning, battlecards, call prep, GTM plans and weekly competitive briefs for Claude Code and Claude."
+  },
+  "plugins": [
+    {
+      "name": "pmm-go-to-market",
+      "source": "pmm-go-to-market"
+    },
+    {
+      "name": "pmm-positioning",
+      "source": "pmm-positioning"
+    },
+    {
+      "name": "pmm-execution",
+      "source": "pmm-execution"
+    },
+    {
+      "name": "pmm-growth",
+      "source": "pmm-growth"
+    },
+    {
+      "name": "pmm-intelligence",
+      "source": "pmm-intelligence"
+    },
+    {
+      "name": "pmm-competitive-intelligence",
+      "source": "pmm-competitive-intelligence"
+    },
+    {
+      "name": "pmm-sales",
+      "source": "pmm-sales"
+    },
+    {
+      "name": "pmm-toolkit",
+      "source": "pmm-toolkit"
+    },
+    {
+      "name": "pmm-meta",
+      "source": "pmm-meta"
+    },
+    {
+      "name": "product-marketing-context",
+      "source": "product-marketing-context"
+    }
+  ]
+}

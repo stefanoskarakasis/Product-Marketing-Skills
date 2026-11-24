@@ -1,0 +1,11 @@
+{
+  "name": "product-marketing-context",
+  "description": "The brain. Builds and maintains /foundation/brain.md, the context every other plugin reads before it writes. Build it once; stop re-explaining your product.",
+  "author": {
+    "name": "Stefanos Karakasis"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/product-marketing-context",
+  "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
+  "skills": "./"
+}

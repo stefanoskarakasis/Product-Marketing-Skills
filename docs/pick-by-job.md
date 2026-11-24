@@ -34,4 +34,4 @@ Start from the job, not the catalog. Ten plugins, grouped by the work you do. In
 
 **Building or auditing skills yourself?** `pmm-meta` (`meta-review`, `meta-learn`, `meta-synthesis`, `meta-verify`) is mostly for skill builders: `meta-review` audits skills against `SKILL-SPEC.md`. You do not need it to use the rest, except `meta-synthesis`, which runs the weekly learning sweep ([QUICK-START step 5](../QUICK-START.md#5-keep-it-learning-2-minutes-a-week)).
 
-**Skills** are single guided workflows; **plugins** bundle related skills into one install. The full catalogue is under [Available Skills](../README.md#available-skills-50-total).
+**Skills** are single guided workflows; **plugins** bundle related skills into one install. The full catalogue is under [Available Skills](../README.md#available-skills).

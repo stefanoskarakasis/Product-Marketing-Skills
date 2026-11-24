@@ -1,0 +1,11 @@
+{
+  "name": "pmm-meta",
+  "description": "Keep the skills honest: skill review, session learning, cross-skill synthesis and output verification.",
+  "author": {
+    "name": "Stefanos Karakasis"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills/tree/main/pmm-meta",
+  "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
+  "skills": "./skills"
+}

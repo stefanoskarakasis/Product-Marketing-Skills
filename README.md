@@ -1,21 +1,37 @@
 # Product Marketing Skills for AI Agents
 
+[![Structure check](https://github.com/stefanoskarakasis/Product-Marketing-Skills/actions/workflows/structure-check.yml/badge.svg)](https://github.com/stefanoskarakasis/Product-Marketing-Skills/actions/workflows/structure-check.yml) [![Latest release](https://img.shields.io/github/v/release/stefanoskarakasis/Product-Marketing-Skills)](https://github.com/stefanoskarakasis/Product-Marketing-Skills/releases) [![License: MIT](https://img.shields.io/github/license/stefanoskarakasis/Product-Marketing-Skills)](LICENSE)
+
 **Product marketing that compounds.**
 
-53 free skills that start from your company brain, not a blank chat. Positioning, battlecards, call prep and launch plans that already know your product, your buyer and your voice.
+Free skills that start from your company brain, not a blank chat. Positioning, battlecards, call prep and launch plans that already know your product, your buyer and your voice.
 
 **Your best work shouldn't live in one person's chat.**
 
 **Build the brain once. Every skill reads it. Nothing changes without your yes.**
 
-Built for PMMs, product marketing leaders and GTM operators in B2B SaaS. Free, MIT licensed. Runs in Claude Code and Claude; the skills are plain `SKILL.md` files, so the same install works in other agents that support them.
+Built for PMMs, product marketing leaders and GTM operators in B2B SaaS. Free, MIT licensed.
+
+**Works with:** Claude Code and Codex (tested), Claude on the web and desktop (upload as zips), and any agent that reads standard `SKILL.md` folders, such as Cursor. More in the [Quick start](QUICK-START.md).
+
+**Want your skills to read your CRM, calls, email and Slack?** Skills work without connectors. Connect your tools and they pull facts for you to confirm. Start with the [connectors guide](docs/connect-your-tools.md).
 
 Built by [Stefanos Karakasis](https://stefanoskarakasis.substack.com/).
 
 > [!TIP]
 > **Contributions welcome!** Found a way to improve a skill or have a new one to add? [Open a PR](#contributing). Run into a problem or have a question? [Open an issue](https://github.com/stefanoskarakasis/Product-Marketing-Skills/issues).
 
-**Jump to:** [Install](#install-in-60-seconds) · [Why a brain?](#why-a-brain) · [Pick by job](#start-here-pick-by-job) · [Usage](#usage) · [All 53 skills](#available-skills-53-total) · [Installation options](#installation) · [Connectors](#connectors-optional) · [About](#about)
+**Jump to:** [Try it](#see-it-in-2-minutes) · [Install](#install-in-60-seconds) · [Why a brain?](#why-a-brain) · [Find by job](#find-your-skill-by-job) · [Usage](#usage) · [All skills](#available-skills) · [Installation options](#installation) · [Connectors](#connectors-optional) · [About](#about)
+
+## See it in 2 minutes
+
+No brain yet? Use the example one. It is a finished brain for **Ledgerlane**, a fictional accounts payable company, so you see real output before you build your own.
+
+1. Copy `examples/example-brain.md` into your working folder as `/foundation/brain.md`. In Claude.ai, paste it into the chat and say "Use this as my brain."
+2. Say: **"Build our message house."**
+3. You get a Roof and Pillars table filled from the brain, with anything missing listed under "Still needed".
+
+Four more prompts to try, and how to switch to your own brain: [examples/](examples/).
 
 ## Install in 60 seconds
 
@@ -30,7 +46,9 @@ npx skills add stefanoskarakasis/Product-Marketing-Skills -a claude-code
 > [!IMPORTANT]
 > Run **`product-marketing-context`** first. About 15 minutes, starting from your website, pricing page or deck. It writes `/foundation/brain.md`. Everything else builds on it.
 
-- **Want proof first?** Open [`examples/`](examples/). A finished brain for a fictional company and five prompts, so you see the output before you build anything.
+> [!NOTE]
+> **Draft only.** Skills ask before writing to any tool, and nothing in your brain changes without your yes. [How connectors stay safe](docs/connect-your-tools.md#start-read-only)
+
 - **Prefer the plugin marketplace?** See [Installation](#installation) below.
 
 ## Why a brain?
@@ -58,14 +76,14 @@ Every new chat starts from zero. You paste the ICP. You re-explain the competito
 > [!NOTE]
 > One brain covers one product. For several product lines, keep one folder and one brain per product. What loads and when, and how to turn the Slack and email prompts off: [docs/agents-map.md](docs/agents-map.md).
 
-## Start here: pick by job
+## Find your skill by job
 
 > [!TIP]
 > Install `product-marketing-context` first, then add plugins as you need them. The full job-to-skill table is in [docs/pick-by-job.md](docs/pick-by-job.md).
 
 | I need to… | Plugin |
 |---|---|
-| Build my brain | `product-marketing-context` |
+| Stop re-explaining your company | `product-marketing-context` |
 | Define who we sell to, write positioning and messaging | `pmm-positioning` |
 | Pick a first segment and plan a launch | `pmm-go-to-market` |
 | Profile competitors, build battlecards, brief the C-suite weekly | `pmm-competitive-intelligence` |
@@ -98,24 +116,32 @@ Ask in plain language. The right skill picks itself. Or call one directly, for e
 
 | Say this | Skill that runs |
 |---|---|
+| "Build my brain from our website and pricing page" | `product-marketing-context` |
 | "Build my ICP from these customer interviews" | `ideal-customer-profile` |
 | "Write positioning for our new product" | `positioning-messaging` |
 | "Build me a battlecard against Acme" | `competitive-battlecard` |
 | "Prep my discovery call with the VP Finance at Tidewell Foods" | `discovery-call-prep` |
 | "Score this discovery call and tell me what I missed" | `discovery-call-scoring` |
+| "A buyer says we are too expensive. What do I say?" | `objection-handling` |
+| "What launch tier is this feature, and what is the plan?" | `go-to-market-strategy` |
+| "Give me positioning angles to choose between" | `positioning-ideas` |
+| "Run a pre-mortem on our Q1 launch" | `pre-mortem` |
+| "What changed around us this week?" | `signal-monitor` |
+| "Tighten this Slack message to our VP" | `writing-assistant` |
+| "Review this skill against the spec" | `meta-review` |
 
-## Available Skills (53 Total)
+## Available Skills
 
 | Skill | Plugin | Description |
 |-------|--------|-------------|
 | [product-marketing-context](product-marketing-context/) | product-marketing-context | Build or audit your GTM brain |
 | [ideal-customer-profile](pmm-positioning/skills/ideal-customer-profile/) | pmm-positioning | ICP from research: demographics, behaviors, JTBD, needs |
-| [alternatives-map](pmm-positioning/skills/alternatives-map/) | pmm-positioning | Named alternatives map — direct competitors, adjacent tools, DIY, status quo |
+| [alternatives-map](pmm-positioning/skills/alternatives-map/) | pmm-positioning | Named alternatives map: direct competitors, adjacent tools, DIY, status quo |
 | [buyer-personas](pmm-positioning/skills/buyer-personas/) | pmm-positioning | Buying committee map + alternatives-anchored persona cards |
 | [market-context](pmm-positioning/skills/market-context/) | pmm-positioning | "Why now" narrative: market maturity, macro forces, category moment |
 | [brand-voice](pmm-positioning/skills/brand-voice/) | pmm-positioning | Persona-adaptive voice guide: tone by buyer and channel |
 | [positioning-messaging](pmm-positioning/skills/positioning-messaging/) | pmm-positioning | Positioning statements, messaging hierarchy, homepage copy |
-| [proof-points](pmm-positioning/skills/proof-points/) | pmm-positioning | Sourced, gated claims registry — approved metrics, quotes, forbidden claims |
+| [proof-points](pmm-positioning/skills/proof-points/) | pmm-positioning | Sourced, gated claims registry: approved metrics, quotes, forbidden claims |
 | [message-house](pmm-positioning/skills/message-house/) | pmm-positioning | Formats existing positioning into a Roof + Value Pillars table |
 | [product-messaging-playbook](pmm-positioning/skills/product-messaging-playbook/) | pmm-positioning | Sales/CS-ready messaging playbook: problem, story, one named competitive comparison, discovery/objection script |
 | [signal-monitor](pmm-intelligence/skills/signal-monitor/) | pmm-intelligence | Weekly read: at most five opportunities from signals you name |
@@ -254,16 +280,16 @@ This marketplace evolves with practice and AI capabilities.
 
 Selected skills based on the work of:
 
-- Marty Cagan — [*INSPIRED*](https://www.amazon.com/INSPIRED-Create-Tech-Products-Customers/dp/1119387507/) and [*TRANSFORMED*](https://www.amazon.com/dp/1119697336/)
-- Ash Maurya — [*Running Lean*](https://www.amazon.com/dp/B004J4XGN6/)
-- Anthony W. Ulwick — [*Jobs to Be Done*](https://jobs-to-be-done-book.com/)
-- Alistair Croll & Benjamin Yoskovitz — [*Lean Analytics*](https://www.amazon.com/Lean-Analytics-Better-Startup-Faster/dp/1449335675/)
-- April Dunford — [*Obviously Awesome*](https://www.aprildunford.com/)
-- Rick Mans — [*Already Ready*](https://alreadyready.me/)
-- Corey Haines — [*Marketing Skills*](https://github.com/coreyhaines31/marketingskills)
-- Kyle Asay — [*Sales Introverts*](https://salesintroverts.com/)
-- Pawel Huryn — [*Product Compass*](https://www.productcompass.pm/)
-- Shane Parrish — [*Farnam Street*](https://fs.blog/)
+- Marty Cagan: [INSPIRED](https://www.amazon.com/INSPIRED-Create-Tech-Products-Customers/dp/1119387507/) and [TRANSFORMED](https://www.amazon.com/dp/1119697336/)
+- Ash Maurya: [Running Lean](https://www.amazon.com/dp/B004J4XGN6/)
+- Anthony W. Ulwick: [Jobs to Be Done](https://jobs-to-be-done-book.com/)
+- Alistair Croll & Benjamin Yoskovitz: [Lean Analytics](https://www.amazon.com/Lean-Analytics-Better-Startup-Faster/dp/1449335675/)
+- April Dunford: [Obviously Awesome](https://www.aprildunford.com/)
+- Rick Mans: [Already Ready](https://alreadyready.me/)
+- Corey Haines: [Marketing Skills](https://github.com/coreyhaines31/marketingskills)
+- Kyle Asay: [Sales Introverts](https://salesintroverts.com/)
+- Pawel Huryn: [Product Compass](https://www.productcompass.pm/)
+- Shane Parrish: [Farnam Street](https://fs.blog/)
 
 Curated by Stefanos Karakasis from [Stefanos's Stack](https://stefanoskarakasis.substack.com/).
 

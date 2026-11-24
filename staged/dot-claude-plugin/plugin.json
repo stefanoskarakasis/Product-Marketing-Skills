@@ -1,0 +1,24 @@
+{
+  "name": "pmm-skills",
+  "description": "Product marketing that compounds. Skills for B2B SaaS PMMs and GTM operators that start from one shared company brain: positioning, battlecards, call prep, GTM plans and weekly competitive briefs for Claude Code and Claude.",
+  "version": "1.22.1",
+  "author": {
+    "name": "Stefanos Karakasis",
+    "url": "https://stefanoskarakasis.substack.com"
+  },
+  "homepage": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
+  "repository": "https://github.com/stefanoskarakasis/Product-Marketing-Skills",
+  "license": "MIT",
+  "skills": [
+    "./pmm-go-to-market/skills",
+    "./pmm-positioning/skills",
+    "./pmm-execution/skills",
+    "./pmm-toolkit/skills",
+    "./pmm-meta",
+    "./product-marketing-context",
+    "./pmm-growth/skills",
+    "./pmm-intelligence/skills",
+    "./pmm-competitive-intelligence/skills",
+    "./pmm-sales/skills"
+  ]
+}

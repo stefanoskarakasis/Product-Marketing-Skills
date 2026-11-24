@@ -1,6 +1,6 @@
 """Counts written in prose must match what is on disk.
 
-test_consistency.py checks the "## Available Skills (N Total)" header and each
+test_consistency.py checks the "## Available Skills" table and each
 plugin README's section headers. This file checks the sentences around them:
 "47 skills", "47 workflows", "55 commands" and "Ten plugins" in README.md,
 QUICK-START.md and AGENTS.md. Standard library only.

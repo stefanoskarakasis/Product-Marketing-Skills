@@ -186,18 +186,16 @@ class TestReadmeCounts(unittest.TestCase):
         return sum(skill_count(p) for p in plugins), sum(command_count(p) for p in plugins), len(plugins)
 
     def test_root_readme_available_skills_total(self):
-        """'## Available Skills (N Total)' header must match both the
-        total on disk AND the number of rows actually in the table below
-        it — catches the header drifting from the table as much as from
-        disk."""
+        """The '## Available Skills' table must have one row per skill on
+        disk. An older '(N Total)' header, if present, must match too."""
         total_skills, _, _ = self._totals()
         text = ROOT_README.read_text(encoding="utf-8")
 
-        m = re.search(r"^## Available Skills \((\d+) Total\)", text, re.M)
+        m = re.search(r"^## Available Skills(?: \((\d+) Total\))?[ \t]*$", text, re.M)
         self.assertIsNotNone(
-            m, "README.md has no '## Available Skills (N Total)' header"
+            m, "README.md has no '## Available Skills' header"
         )
-        header_count = int(m.group(1))
+        header_count = int(m.group(1)) if m.group(1) else None
 
         # count table rows: lines starting with "| [" between this header
         # and the next "## " header
@@ -206,16 +204,17 @@ class TestReadmeCounts(unittest.TestCase):
         table_block = text[start:next_header if next_header != -1 else None]
         row_count = len(re.findall(r"^\| \[", table_block, re.M))
 
+        if header_count is not None:
+            self.assertEqual(
+                header_count,
+                row_count,
+                f"README.md header says ({header_count} Total) but the skills "
+                f"table has {row_count} rows",
+            )
         self.assertEqual(
-            header_count,
             row_count,
-            f"README.md header says ({header_count} Total) but the skills "
-            f"table has {row_count} rows",
-        )
-        self.assertEqual(
-            header_count,
             total_skills,
-            f"README.md header says ({header_count} Total) but {total_skills} "
+            f"README.md skills table has {row_count} rows but {total_skills} "
             f"skill folders exist on disk across all plugins",
         )
 

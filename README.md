@@ -1,7 +1,5 @@
 # Product Marketing Skills for AI Agents
 
-[![Structure check](https://github.com/stefanoskarakasis/Product-Marketing-Skills/actions/workflows/structure-check.yml/badge.svg)](https://github.com/stefanoskarakasis/Product-Marketing-Skills/actions/workflows/structure-check.yml) [![Latest release](https://img.shields.io/github/v/release/stefanoskarakasis/Product-Marketing-Skills)](https://github.com/stefanoskarakasis/Product-Marketing-Skills/releases) [![License: MIT](https://img.shields.io/github/license/stefanoskarakasis/Product-Marketing-Skills)](LICENSE)
-
 **Product marketing that compounds.**
 
 Free skills that start from your company brain, not a blank chat. Positioning, battlecards, call prep and launch plans that already know your product, your buyer and your voice.

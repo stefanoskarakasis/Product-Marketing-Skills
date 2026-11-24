@@ -2,7 +2,7 @@
 
 **Product marketing that compounds.**
 
-Free skills that start from your company brain, not a blank chat. Positioning, battlecards, call prep and launch plans that already know your product, your buyer and your voice.
+Free AI agent skills that start from your company brain, not a blank chat. Positioning, battlecards, call prep and launch plans that already know your product, your buyer and your voice.
 
 **Your best work shouldn't live in one person's chat.**
 

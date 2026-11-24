@@ -1,8 +1,8 @@
 {
   "name": "pmm-sales",
   "displayName": "PMM Sales",
-  "description": "Sales skills for sellers and CSMs, built for Slack first: review a live deal and know what to do next, handle a buyer objection, get the current state of one customer, research a prospect and digest sales signals, all checked against your brain and sourced to your CRM, calls and email.",
-  "version": "1.22.0",
+  "description": "Help sellers win the deal in front of them. Slack first: review a live deal, prep and score discovery calls, handle an objection, catch up on a customer, research a prospect and see which deals need you, all checked against your brain and sourced to your CRM, calls and email.",
+  "version": "1.22.1",
   "author": {
     "name": "Stefanos Karakasis",
     "url": "https://stefanoskarakasis.substack.com"

@@ -1,6 +1,6 @@
 {
   "name": "pmm-meta",
-  "description": "Meta skills that operate on the skill system itself: skill review, session learning, cross-skill synthesis and output verification.",
+  "description": "Keep the skills honest: skill review, session learning, cross-skill synthesis and output verification.",
   "author": {
     "name": "Stefanos Karakasis"
   },

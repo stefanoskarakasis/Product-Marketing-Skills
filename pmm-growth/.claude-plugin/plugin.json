@@ -1,8 +1,8 @@
 {
   "name": "pmm-growth",
   "displayName": "PMM Growth",
-  "description": "Growth skills for PMMs: North Star Metric and scorecard, positioning angles, campaign ideas, value-prop variants and checked customer stories.",
-  "version": "1.22.0",
+  "description": "Find the next angle and prove it worked. North Star Metric and scorecard, positioning angles, campaign ideas, value-prop variants and checked customer stories.",
+  "version": "1.22.1",
   "author": {
     "name": "Stefanos Karakasis",
     "url": "https://stefanoskarakasis.substack.com"

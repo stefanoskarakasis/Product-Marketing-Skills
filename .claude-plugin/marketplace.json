@@ -5,14 +5,14 @@
     "url": "https://stefanoskarakasis.substack.com"
   },
   "metadata": {
-    "description": "Product marketing skills for B2B SaaS PMMs and GTM operators: positioning and messaging, ICP and buyer personas, competitive intelligence and battlecards, GTM strategy and launch tiering, OKRs, PRDs, retros, customer stories and a shared company brain for Claude Code and Claude.",
-    "version": "1.22.0"
+    "description": "Product marketing that compounds. Skills for B2B SaaS PMMs and GTM operators that start from one shared company brain: positioning, battlecards, call prep, GTM plans and weekly competitive briefs for Claude Code and Claude.",
+    "version": "1.22.1"
   },
   "plugins": [
     {
       "name": "pmm-go-to-market",
       "displayName": "PMM Go-to-Market",
-      "description": "Go-to-market skills for PMMs: beachhead segments, launch tiering and GTM strategy briefs, GTM motions and multi-skill workflow orchestration.",
+      "description": "Pick the first segment, tier the launch, plan the motion. Beachhead scoring, launch tiers and GTM briefs, motion selection and multi-skill programs.",
       "source": "./pmm-go-to-market",
       "category": "product-marketing",
       "tags": ["go-to-market", "gtm", "launch-planning", "beachhead", "b2b-saas"]
@@ -20,7 +20,7 @@
     {
       "name": "pmm-positioning",
       "displayName": "Product Marketing",
-      "description": "Positioning and messaging skills for B2B SaaS PMMs: ICP, alternatives map, buyer personas, market context, brand voice, positioning statements, message house, proof points and messaging playbooks.",
+      "description": "Know who you sell to, who else they consider and why you win. ICP, alternatives map, buyer personas, market context, brand voice, positioning statements, message house, proof points and messaging playbooks.",
       "source": "./pmm-positioning",
       "category": "product-marketing",
       "tags": ["positioning", "messaging", "gtm", "competitive-intelligence", "b2b-saas", "icp", "product-marketing"]
@@ -28,7 +28,7 @@
     {
       "name": "pmm-execution",
       "displayName": "PMM Execution",
-      "description": "Day-to-day PMM execution skills: PRDs, OKRs, pre-mortems, retros, stakeholder maps, interview summaries, experiment docs and prioritization frameworks.",
+      "description": "Run the PMM week: PRDs, OKRs, pre-mortems, retros, stakeholder maps, interview summaries, experiment docs and prioritization frameworks.",
       "source": "./pmm-execution",
       "category": "product-marketing",
       "tags": ["okrs", "prd", "retro", "pre-mortem", "experiments", "pmm"]
@@ -36,7 +36,7 @@
     {
       "name": "pmm-growth",
       "displayName": "PMM Growth",
-      "description": "Growth skills for PMMs: North Star Metric and scorecard, positioning angles, campaign ideas, value-prop variants and checked customer stories.",
+      "description": "Find the next angle and prove it worked. North Star Metric and scorecard, positioning angles, campaign ideas, value-prop variants and checked customer stories.",
       "source": "./pmm-growth",
       "category": "product-marketing",
       "tags": ["growth", "experiments", "customer-stories", "metrics", "value-proposition"]
@@ -44,7 +44,7 @@
     {
       "name": "pmm-intelligence",
       "displayName": "PMM Intelligence",
-      "description": "A weekly read on what changed around your product: at most five opportunities from signals you name, each tied to your brain and quarterly priorities.",
+      "description": "Know what changed this week. At most five opportunities from signals you name, each tied to your brain and your quarterly priorities.",
       "source": "./pmm-intelligence",
       "category": "product-marketing",
       "tags": ["market-intelligence", "signals", "monitoring", "competitive-intelligence"]
@@ -52,7 +52,7 @@
     {
       "name": "pmm-competitive-intelligence",
       "displayName": "PMM Competitive Intelligence",
-      "description": "Competitive intelligence skills for B2B SaaS PMMs: a scheduled sweep of your core competitors with the fixes drafted, dated competitor profiles, live-deal battlecards, decision-ready deep-dives, a weekly leadership brief and a weekly industry newsletter, with competitor answers your team can get in Slack.",
+      "description": "Know what your competitors did this week and what to say about it. A scheduled sweep with the fixes drafted, dated profiles, live-deal battlecards, comparison pages, deep-dives, a weekly leadership brief and a weekly industry newsletter, with answers your team can get in Slack.",
       "source": "./pmm-competitive-intelligence",
       "category": "product-marketing",
       "tags": ["competitive-intelligence", "battlecards", "competitor-analysis", "monitoring", "sales-enablement", "slack"]
@@ -60,7 +60,7 @@
     {
       "name": "pmm-sales",
       "displayName": "PMM Sales",
-      "description": "Sales skills for sellers and CSMs, built for Slack first: review a live deal and know what to do next, handle a buyer objection, get the current state of one customer, research a prospect and digest sales signals, all checked against your brain and sourced to your CRM, calls and email.",
+      "description": "Help sellers win the deal in front of them. Slack first: review a live deal, prep and score discovery calls, handle an objection, catch up on a customer, research a prospect and see which deals need you, all checked against your brain and sourced to your CRM, calls and email.",
       "source": "./pmm-sales",
       "category": "product-marketing",
       "tags": ["deal-review", "objection-handling", "customer-context", "prospect-research", "renewals", "sales-enablement", "slack", "b2b-saas"]
@@ -68,7 +68,7 @@
     {
       "name": "pmm-toolkit",
       "displayName": "PMM Toolkit",
-      "description": "PMM utilities: writing assistant for internal and marketing content, resume review, privacy policy generator and GACCS campaign briefs.",
+      "description": "Everyday PMM utilities: a writing assistant for internal and marketing content, resume review, a privacy policy generator and GACCS campaign briefs.",
       "source": "./pmm-toolkit",
       "category": "product-marketing",
       "tags": ["writing", "briefs", "content", "pmm"]
@@ -76,7 +76,7 @@
     {
       "name": "pmm-meta",
       "displayName": "PMM Meta",
-      "description": "Meta skills that operate on the skill system itself: skill review, session learning, cross-skill synthesis and output verification.",
+      "description": "Keep the skills honest: skill review, session learning, cross-skill synthesis and output verification.",
       "source": "./pmm-meta",
       "category": "product-marketing",
       "tags": ["meta", "skill-quality", "evals"]
@@ -84,7 +84,7 @@
     {
       "name": "product-marketing-context",
       "displayName": "PMM Brain",
-      "description": "The PMM brain — builds and maintains /foundation/brain.md, the GTM context file every other plugin in this stack reads before producing output.",
+      "description": "The brain. Builds and maintains /foundation/brain.md, the context every other plugin reads before it writes. Build it once; stop re-explaining your product.",
       "source": "./product-marketing-context",
       "category": "product-marketing",
       "tags": ["gtm", "foundation", "icp", "positioning", "b2b-saas", "product-marketing"]

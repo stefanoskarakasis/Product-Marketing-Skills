@@ -1,5 +1,15 @@
 # Changelog
 
+## v1.22.1 — 2026-11-24
+
+### Repo: positioning
+
+- Root README: new "See it in 2 minutes" block on the Ledgerlane example brain, a compatibility line and a connectors-guide pointer in the opening, a "Draft only" note, status badges, a "Find your skill by job" section and a Usage table with one prompt for every plugin.
+- The first paragraph no longer states a skill count. The "Available Skills" heading no longer carries one either, so its anchor stays stable. `test_consistency.py` still checks the table against the skills on disk. This also fixes the stale `#available-skills-50-total` link in `docs/pick-by-job.md`.
+- Voice cleanup: no em dashes in the skills table or credits, no italic book titles.
+- Marketplace, plugin and Cursor manifest descriptions now use the outcome-led voice that the v1.22.0 notes described.
+- No skill, command, routing or connector change.
+
 ## v1.22.0 — 2026-11-23
 
 ### Repo: positioning

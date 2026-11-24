@@ -1,8 +1,8 @@
 {
   "name": "pmm-competitive-intelligence",
   "displayName": "PMM Competitive Intelligence",
-  "description": "Competitive intelligence skills for B2B SaaS PMMs: a scheduled sweep of your core competitors with the fixes drafted, dated competitor profiles, live-deal battlecards, decision-ready deep-dives, a weekly leadership brief and a weekly industry newsletter, with competitor answers your team can get in Slack.",
-  "version": "1.22.0",
+  "description": "Know what your competitors did this week and what to say about it. A scheduled sweep with the fixes drafted, dated profiles, live-deal battlecards, comparison pages, deep-dives, a weekly leadership brief and a weekly industry newsletter, with answers your team can get in Slack.",
+  "version": "1.22.1",
   "author": {
     "name": "Stefanos Karakasis",
     "url": "https://stefanoskarakasis.substack.com"
